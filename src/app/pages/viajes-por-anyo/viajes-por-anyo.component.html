@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row fh5co-post-entry">
+        <div *ngFor="let viajes of servicioViajes.viajesPorAnyoLista">
+            <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
+                <figure>
+                    <a routerLink="/viaje/Tossa"><img src="assets/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
+                </figure>
+                <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></span>
+                <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></span>
+                <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.destino}}</a></h2>
+                <!-- <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></h2>
+                <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></h2> -->
+                <span class="fh5co-meta fh5co-date">desde {{viajes.fechaInicio}} </span>
+                <span class="fh5co-meta fh5co-date"> hasta {{viajes.fechaFin}} </span>
+                <div *ngFor="let transporte of viajes.transporte" class="disposicion">
+                    <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos">
+                </div>
+            </article>        
+        </div>
+        <div class="clearfix visible-xs-block"></div>
+    </div>
+</div>
