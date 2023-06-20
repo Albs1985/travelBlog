@@ -1,0 +1,88 @@
+{
+    "2023":{
+        "TossaDeMar1":{
+            "fechaInicio": "2023-06-10",
+            "fechaFin":"2023-06-18",
+            "categoria": "Playa",
+            "destino": "Tossa De Mar",
+            "provincia": "Girona",
+            "pais": "España",
+            "dias": 8,
+            "estancia": "Hotel Don Juan 4*",
+            "tipoEstancia": "Hotel",
+            "transporte": ["Coche", "Barco"],
+            "personas": ["Mateu", "Alba", "Albert"]
+        },
+        "Andorra1":{
+            "fechaInicio": "2023-04-06",
+            "fechaFin":"2023-04-10",
+            "categoria": "Montaña",
+            "destino": "Les Escaldes",
+            "provincia": "Andorra la Vella",
+            "pais": "Andorra",
+            "dias": 5,
+            "estancia": "Casa Tía Anna i Benjamín",
+            "tipoEstancia": "Casa",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert", "Tieta", "Emili", "Marcel"]
+        }
+    },
+    "2022":{
+        "TossaDeMar2":{
+            "fechaInicio": "2023-06-10",
+            "fechaFin":"2023-06-18",
+            "categoria": "Montaña",
+            "destino": "Tossa De Mar",
+            "provincia": "Girona",
+            "pais": "España",
+            "dias": 8,
+            "estancia": "Hotel Don Juan 4*",
+            "tipoEstancia": "Hotel",
+            "transporte": ["Coche", "Barco"],
+            "personas": ["Mateu", "Alba", "Albert"]
+        },
+        "Andorra2":{
+            "fechaInicio": "2023-04-06",
+            "fechaFin":"2023-04-10",
+            "categoria": "Montaña",
+            "destino": "Les Escaldes",
+            "provincia": "Andorra la Vella",
+            "pais": "Andorra",
+            "dias": 5,
+            "estancia": "Casa Tía Anna i Benjamín",
+            "tipoEstancia": "Casa",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert", "Tieta", "Emili", "Marcel"]
+        }
+    },
+    "2021":{
+        "TossaDeMar3":{
+            "fechaInicio": "2023-06-10",
+            "fechaFin":"2023-06-18",
+            "categoria": "Montaña",
+            "destino": "Tossa De Mar",
+            "provincia": "Girona",
+            "pais": "España",
+            "dias": 8,
+            "estancia": "Hotel Don Juan 4*",
+            "tipoEstancia": "Hotel",
+            "transporte": ["Coche", "Barco"],
+            "personas": ["Mateu", "Alba", "Albert"]
+        },
+        "Andorra3":{
+            "fechaInicio": "2023-04-06",
+            "fechaFin":"2023-04-10",
+            "categoria": "Montaña",
+            "destino": "Les Escaldes",
+            "provincia": "Andorra la Vella",
+            "pais": "Andorra",
+            "dias": 5,
+            "estancia": "Casa Tía Anna i Benjamín",
+            "tipoEstancia": "Casa",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert", "Tieta", "Emili", "Marcel"]
+        }
+    }
+    
+}
+    
