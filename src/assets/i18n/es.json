@@ -1,0 +1,48 @@
+{
+    "app": {
+        "titulo": "Cuaderno de viaje",
+        "galeriaImagenes": "Galería de Imágenes",
+        "cargando": "Cargando...",
+        "espere": "Espere por favor",
+        "videoNoSoportado": "Tu navegador no soporta este tipo de video",
+        "youtubeVideos" : "Vídeos de Youtube",
+        "idioma": "Idioma",
+        "spanish": "Castellano",
+        "valenciano": "Valenciano",
+        "home": "Inicio",
+        "galeria": "Galería",
+        "video": "Vídeo",
+        "sobre": "Quienes somos",
+        "viajeros": "Viajeros",
+        "viajes" : "Viajes",
+        "cerrar": "Cerrar",
+        "destinos" : "Destinos"
+    },
+    "about":{
+        "titulo": "Portafolio Alba",
+        "frase": "El secreto del éxito verdadero es el CONOCIMIENTO unido a la ACCIÓN.",
+        "nombre": "Alba Casares Català",
+        "subtitulo": "Artista, Diseñadora",
+        "acerca": "«Nadie puede hacerte sentir inferior sin tu consentimiento» — Eleanor Roosevelt",
+        "soriano" : "Jefa de edición de Libros y encuadernados",
+        "mapubli" : "Impresión digital en gran formato, pequeño formato, textil y 3D",
+        "valores": "Valores",
+        "textoValores" : "El respeto entre personas y con el medio ambiente. El esfuerzo por la perfección, nos gusta mejorar constantemente. La proactividad, nos tomamos muy en serio nuestros retos, no queremos parar de innovar. El compañerismo, imprescindible para trabajar como un equipo sólido."
+    },
+    "header":{
+        "categoria" : "Categoria",
+        "playa": "Playa",
+        "montana" : "Montaña",
+        "ciudad" : "Ciudad",
+        "buscar": "Buscar",
+        "informacion": "Información",
+        "palabra": "Filtrar"
+    },
+    "viaje":{
+        "desde": "Desde",
+        "hasta": "Hasta"
+    },
+    "home":{
+        
+    }
+}

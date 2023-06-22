@@ -16,20 +16,27 @@ export class ViajesPorAnyoComponent implements OnInit{
 
   ngOnInit(){
 
-    this.route.params.subscribe(parametros =>{
+    this.route.params.subscribe(params =>{
       
-      // console.log(parametros);
       
-      this.servicioViajes.cargarViajesPorAnyo(parametros);
+      // console.log('ALBERT');
+      // console.log(params['filtro']);
+      // console.log(params['filtro']);
+      // console.log(isNaN(Number(filtro.toString())));
+      var isNum = Number.isInteger(Number(params['filtro']));
+      // console.log(isNum);
+
+      if (isNum){
+        console.log('Filtramos por anyo');
+        this.servicioViajes.cargarViajesPorAnyo(params);
+      }else{
+        console.log('Filtramos por palabra');
+        this.servicioViajes.buscarViaje(params);
+      }
+      
       
     }); 
 
   }
-
-
-  // refresh(): void {
-  //   window.location.reload();
-  //   this.isRefreshed = true;
-  // }
 
 }

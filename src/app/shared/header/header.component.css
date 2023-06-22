@@ -1,0 +1,38 @@
+.idiomas{
+    justify-content: space-between !important;
+    display: inline-block !important;
+}
+
+.idioma{
+    background: transparent;
+    border-color: transparent;
+}
+
+.seleccionado{
+    /* border: 10px solid transparent; *//*PARA HACER LA IMAGEN MÁS PEQUEÑA, LA QUE ESTÉ SELECCIONADA*/
+    border-radius: 30px;    
+    border: 2px solid grey;
+ }
+
+ .imagenLupa{
+    /* border-radius: 25px;     */
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+ }
+
+ #botonLupa{
+    background: transparent;
+    border-color: transparent;
+ }
+
+ #myInput{
+    width: 200px !important;
+
+ }
+
+ #busquedaForm{
+    display: inline-flex !important;
+    
+ }
