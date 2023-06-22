@@ -15,6 +15,7 @@
         "sobre": "Quienes somos",
         "viajeros": "Viajeros",
         "viajes" : "Viajes",
+        "viaje" : "Viaje",
         "cerrar": "Cerrar",
         "destinos" : "Destinos"
     },
@@ -34,13 +35,19 @@
         "playa": "Playa",
         "montana" : "Montaña",
         "ciudad" : "Ciudad",
+        "nieve" : "Nieve",
         "buscar": "Buscar",
         "informacion": "Información",
         "palabra": "Filtrar"
     },
     "viaje":{
         "desde": "Desde",
-        "hasta": "Hasta"
+        "hasta": "Hasta",
+        "titulo": "Nuestro viaje a ",
+        "destacado": "Destacado",
+        "fraseDestacado": "Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia",
+        "fraseComillas": "She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove ",
+        "autorFraseComillas":"  Jean Smith"
     },
     "home":{
         

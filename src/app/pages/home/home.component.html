@@ -13,7 +13,7 @@
                     </figure>
                     <span class="fh5co-meta"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{ 'app.destinos' | translate }}</a></span>
                     <div *ngFor="let destino of viajes.destinos">
-                        <h2 class="fh5co-article-title"><a routerLink="/viaje/{{destino}}">{{destino}}</a></h2>
+                        <h2 class="fh5co-article-title"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{destino}}</a></h2>
                     </div>
                     <span class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
                 </article>

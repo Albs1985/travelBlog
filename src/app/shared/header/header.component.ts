@@ -44,7 +44,7 @@ export class HeaderComponent {
     }
     console.log("Busca por "+this.palabra);
     
-    this.servicioViajes.buscarViaje(this.palabra);
+    this.servicioViajes.buscarViajes(this.palabra);
     this.router.navigate(['/viajesFiltrados/', this.palabra]);
 
   }

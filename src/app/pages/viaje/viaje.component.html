@@ -5,7 +5,7 @@
                 <img src="assets/images/single_1.jpg" alt="Image" class="img-responsive">
             </figure>
             <span class="fh5co-meta "><a href="#">Travel</a></span>
-            <h2 class="fh5co-article-title "><a href="#">My First Time Traveling in Vietnam</a></h2>
+            <h2 class="fh5co-article-title "><a href="#">{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
             <span class="fh5co-meta fh5co-date ">March 6th, 2016</span>
             
             <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
@@ -65,6 +65,8 @@
                     </div>
                 </div>
 
+                <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!-- {{servicioViajes.viajesDetalleLista[0].mapaSrc[0]}} -->
                 <div class="row">
                     <div class="col-md-12 ">
                         <h2>Pointing has no control about the blind texts</h2>
@@ -95,7 +97,26 @@
                         <p>She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
                     </div>
                 </div>
+
+
+                <!-- <div class="video-container">
+                    <div class="vid-border">
+                        <div >                
+                            <div>
+                                <h1 class="tituloVideo">{{video.titulo}}</h1>
+                            </div>
+                            
+                            <video class="video-item" controls muted >
+                                <source *ngIf="!video.url.includes('youtube')" src="assets/videos/{{video.url}}">                                   
+                                {{ 'app.videoNoSoportado' | translate }}
+                            </video>
                 
+                            <h2 class="descripcionVideo">{{video.descripcion}}</h2>
+                
+                        </div> 
+                    </div>    
+                </div>
+                 -->
                 
             </div>
         </article>

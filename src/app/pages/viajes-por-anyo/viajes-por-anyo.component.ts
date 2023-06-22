@@ -21,17 +21,15 @@ export class ViajesPorAnyoComponent implements OnInit{
       
       // console.log('ALBERT');
       // console.log(params['filtro']);
-      // console.log(params['filtro']);
-      // console.log(isNaN(Number(filtro.toString())));
+      
       var isNum = Number.isInteger(Number(params['filtro']));
-      // console.log(isNum);
-
+      
       if (isNum){
         console.log('Filtramos por anyo');
         this.servicioViajes.cargarViajesPorAnyo(params);
       }else{
         console.log('Filtramos por palabra');
-        this.servicioViajes.buscarViaje(params);
+        this.servicioViajes.buscarViajes(params);
       }
       
       
