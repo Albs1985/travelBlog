@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ViajerosService } from 'src/app/services/viajeros.service';
 
 @Component({
   selector: 'app-about',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent {
+
+
+  constructor (private route: ActivatedRoute, 
+              public viajerosService : ViajerosService){                  
+                
+                viajerosService.cargarViajeros();
+  }
 
 }

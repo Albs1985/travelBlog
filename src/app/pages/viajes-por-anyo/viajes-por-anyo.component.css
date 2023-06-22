@@ -7,3 +7,10 @@
 .disposicion{
     display: inline-flex;
 }
+
+.fotoPerfil{
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    padding: 5px;   
+}
