@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViajesService } from '../../services/viajes.service';
+import { FotosService } from 'src/app/services/fotos.service';
 
 @Component({
   selector: 'app-viaje',
@@ -10,7 +11,7 @@ import { ViajesService } from '../../services/viajes.service';
 export class ViajeComponent implements OnInit{
 
   
-  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService){
+  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService){
 
   }
 
@@ -20,6 +21,7 @@ export class ViajeComponent implements OnInit{
     this.route.params.subscribe(params =>{
       
       console.log(params['ciudad']);      
+      this.servicioFotos.cargarFotos(params);
       this.servicioViajes.cargarViaje(params);
       
     }); 

@@ -9,6 +9,7 @@ import { Viaje } from '../interfaces/viaje.interface';
 export class ViajesService {
 
   cargando = true;
+  anyoViaje = '';
 
   viajesJSON = "assets/data/viajes.json";
   viaje : Viaje = {
@@ -135,6 +136,8 @@ export class ViajesService {
                 this.viaje.destino =viajesAnyo[viatge].destino;
                 this.viaje.provincia =viajesAnyo[viatge].provincia;
                 this.viaje.pais =viajesAnyo[viatge].pais;
+                this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+                this.viaje.precio =viajesAnyo[viatge].precio;
                 this.viaje.dias =viajesAnyo[viatge].dias;
                 this.viaje.categoria =viajesAnyo[viatge].categoria;
                 this.viaje.estancia =viajesAnyo[viatge].estancia;
@@ -239,6 +242,8 @@ export class ViajesService {
               this.viaje.destino =viajesAnyo[viatge].destino;
               this.viaje.provincia =viajesAnyo[viatge].provincia;
               this.viaje.pais =viajesAnyo[viatge].pais;
+              this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+              this.viaje.precio =viajesAnyo[viatge].precio; 
               this.viaje.dias =viajesAnyo[viatge].dias;
               this.viaje.estancia =viajesAnyo[viatge].estancia;
               this.viaje.categoria =viajesAnyo[viatge].categoria;
@@ -389,7 +394,7 @@ export class ViajesService {
           var array = [];
           var fechaInicioViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1);
           // console.log(fechaInicioViaje);
-          var anyoViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1, clave.ciudad.indexOf('-'));
+          this.anyoViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1, clave.ciudad.indexOf('-'));
           // console.log(fechaInicioViaje);
 
           for(let key in response){
@@ -400,7 +405,7 @@ export class ViajesService {
             // console.log('response key');
             // console.log(response[key]);
             var viajesAnyo = response[key];
-            if (anyoViaje === key){
+            if (this.anyoViaje === key){
               for (let viatge in response[key]){
                 if (fechaInicioViaje == viajesAnyo[viatge].fechaInicio){
                   console.log('viatge');
@@ -428,6 +433,8 @@ export class ViajesService {
                     this.viaje.destino =viajesAnyo[viatge].destino;
                     this.viaje.provincia =viajesAnyo[viatge].provincia;
                     this.viaje.pais =viajesAnyo[viatge].pais;
+                    this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+                    this.viaje.precio =viajesAnyo[viatge].precio;
                     this.viaje.dias =viajesAnyo[viatge].dias;
                     this.viaje.categoria =viajesAnyo[viatge].categoria;
                     this.viaje.estancia =viajesAnyo[viatge].estancia;
