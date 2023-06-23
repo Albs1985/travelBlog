@@ -15,19 +15,18 @@
     </div> -->
 
     <div class="fh5co-menu">
-        <div class="fh5co-box">
+        <div>
             <ul>
-                <li><a href="#">{{ 'app.home' | translate }}</a></li>
+                <li><a class="js-fh5co-close-offcanvas" href="#">{{ 'app.home' | translate }}</a><img class="imagenPerfil js-fh5co-close-offcanvas" src="assets/images/person1.jpg" alt="" routerLink="/about/"></li>
             </ul>
         </div>
         <div class="fh5co-box">
             <h3 class="heading">{{ 'header.categoria' | translate }}</h3>
             <ul>
-                <li><a routerLink="/viajesFiltrados/playa">{{ 'header.playa' | translate }}</a></li>
-                <li><a routerLink="/viajesFiltrados/montanya">{{ 'header.montana' | translate }}</a></li>
-                <li><a routerLink="/viajesFiltrados/ciudad">{{ 'header.ciudad' | translate }}</a></li>
-                <li><a routerLink="/viajesFiltrados/Puertomingalvo">Puertomingalvo</a></li>
-                <li><a routerLink="/viajesFiltrados/LaPoblaDeFarnals">La Pobla de Farnals</a></li>
+                <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/playa">{{ 'header.playa' | translate }}</a></li>
+                <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/montanya">{{ 'header.montanya' | translate }}</a></li>
+                <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/ciudad">{{ 'header.ciudad' | translate }}</a></li>
+                <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/nieve">{{ 'header.nieve' | translate }}</a></li>
             </ul>
         </div>
         <div class="fh5co-box">
@@ -36,7 +35,7 @@
                 <div id="busquedaForm" class="form-group">
                     <input id="myInput" type="text" class="form-control" placeholder="{{ 'header.palabra' | translate }}">
                         <button id="botonLupa" (touchstart)="buscar()" (click)="buscar()">
-                            <img src="assets/icons/lupa.gif" alt="" class="imagenLupa">
+                            <img src="assets/icons/lupa.gif" alt="" class="imagenLupa js-fh5co-close-offcanvas">
                         </button>
                 </div>
             </form>
@@ -44,7 +43,7 @@
         <div class="fh5co-box">
             <h3 class="heading">{{ 'header.informacion' | translate }}</h3>
             <ul>
-                <li><a routerLink="/about/">{{ 'app.viajeros' | translate }}</a></li>                
+                <li><a class="js-fh5co-close-offcanvas" routerLink="/about/">{{ 'app.viajeros' | translate }}</a></li>                
             </ul>
         </div>
     </div>
@@ -76,3 +75,6 @@
     </div>
     
 </header>
+
+<!-- <h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a href="#">{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
+<h2 *ngIf="mensajeCabeceraAny" class="fh5co-article-title subtitulo"><a href="#">{{ 'header.mensajeCabeceraAny' | translate }} {{mensajeCabeceraAny}} </a></h2> -->

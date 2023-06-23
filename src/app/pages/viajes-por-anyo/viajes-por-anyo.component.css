@@ -14,3 +14,9 @@
     height: 50px;
     padding: 5px;   
 }
+
+.subtitulo{
+    text-align: right;
+    font-size: 26px;
+    margin-right: 25px;
+ }

@@ -1,16 +1,20 @@
+<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} {{palabra}}</a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{'header.'+palabra | translate}}</a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
+
 <div class="container-fluid">
     <div class="row fh5co-post-entry">
         <div *ngFor="let viajes of servicioViajes.viajesDetalleLista">
             <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
                 <figure>
-                    <a routerLink="/viaje/Tossa"><img src="assets/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
+                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
                 </figure>
                 <div *ngFor="let persona of viajes.personas" class="disposicion">
-                    <img src="assets/images/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil">
+                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil">
                 </div>
-                <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></span>
+                <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}">{{viajes.provincia}}</a></span>
                 <!-- <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></span> -->
-                <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.destino}}</a></h2>
+                <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}">{{viajes.destino}}</a></h2>
                 <!-- <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></h2>
                 <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></h2> -->
                 <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{viajes.fechaInicio}}</b> </span>

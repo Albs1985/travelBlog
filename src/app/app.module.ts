@@ -12,6 +12,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     HomeComponent,
     ViajeComponent,
     ViajesPorAnyoComponent,
-    AboutComponent
+    AboutComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       }
     })
   ],
-  providers: [],
+  providers: [HeaderComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

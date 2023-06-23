@@ -12,4 +12,5 @@ export interface Viaje{
     tipoEstancia: string;
     transporte: string[];
     personas: string[];    
+    mapaSrc: string[];    
 }
