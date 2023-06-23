@@ -1,24 +1,29 @@
+<h2 class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>
 <div class="container-fluid imagenFondo">
     <!-- <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
             <span class="sr-only">Cargando...</span>
         </div>
     </div> -->
+
+    <!-- <span class="fh5co-meta "><a href="#">Viajes por Año</a></span> -->
     
+    <!-- <span class="fh5co-meta fh5co-date ">Viajes por Año</span> -->
+
     <div class="row fh5co-post-entry">            
-            <div *ngFor="let viajes of servicioViajes.viajesLista">
+            <div *ngFor="let viajes of servicioViajes.viajesLista">                
                 <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
+                    <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
                     <figure>
                         <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
                     </figure>
-                    <span class="fh5co-meta"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{ 'app.destinos' | translate }}</a></span>
+                    <!-- <span class="fh5co-meta"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{ 'app.destinos' | translate }}</a></span> -->
                     <div *ngFor="let destino of viajes.destinos">
                         <h2 class="fh5co-article-title"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{destino}}</a></h2>
-                    </div>
-                    <span class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
-                </article>
-            
+                    </div>                    
+                </article>            
             <div class="clearfix visible-xs-block"></div>        
+            
         </div>
     </div>
 

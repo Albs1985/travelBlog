@@ -21,9 +21,6 @@ export class ViajeComponent implements OnInit{
       
       console.log(params['ciudad']);      
       this.servicioViajes.cargarViaje(params);
-
-      console.log(this.servicioViajes.viajesDetalleLista[0].mapaSrc[0]);
-      
       
     }); 
 

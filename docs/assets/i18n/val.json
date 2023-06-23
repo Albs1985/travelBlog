@@ -32,12 +32,15 @@
     "header":{
         "categoria" : "Categoría",
         "playa": "Platja",
-        "montana" : "Muntanya",
+        "montanya" : "Muntanya",
         "ciudad" : "Ciutat",
         "nieve" : "Neu",
         "buscar": "Recerca",
         "informacion": "Informació",
-        "palabra": "Filtrar"
+        "palabra": "Filtrar",
+        "mensajeCabeceraAnyos" : "Viatges per any",
+        "mensajeCabeceraAny" : "Viatges en l'any",
+        "mensajeCabeceraFiltrar" : "Filtrar per "
     },
     "viaje":{
         "desde": "Des de",

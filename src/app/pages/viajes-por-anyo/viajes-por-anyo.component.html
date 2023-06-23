@@ -1,3 +1,7 @@
+<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} {{'header.'+palabra | translate}}</a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{'header.'+palabra | translate}}</a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
+
 <div class="container-fluid">
     <div class="row fh5co-post-entry">
         <div *ngFor="let viajes of servicioViajes.viajesDetalleLista">

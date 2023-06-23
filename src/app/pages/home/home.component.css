@@ -1,3 +1,13 @@
 .imagenFondo{
     /* background-image: url("/assets/images/pic_1.jpg"); */
 }
+
+.fh5co-post-entry article .fh5co-meta{
+    font-size: 34px;
+}
+
+.subtitulo{
+    text-align: right !important;
+    font-size: 26px !important;
+    margin-right: 25px !important;
+ }

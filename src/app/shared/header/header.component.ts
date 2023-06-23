@@ -12,11 +12,18 @@ export class HeaderComponent {
   palabra : any;
   isSelectedSpanish : boolean = false;
   isSelectedValenciano : boolean = true;
+  // mensajeCabeceraAnyo : boolean = true;
+  // mensajeCabeceraFiltrar : boolean = false;
+  // mensajeCabeceraAny : string = '';
 
-  constructor(private route: ActivatedRoute, 
+  constructor(/*private route: ActivatedRoute, */
               public servicioViajes : ViajesService, 
               private translate: TranslateService,
               private router: Router){   
+
+                // this.mensajeCabeceraAnyo = true;
+                // this.mensajeCabeceraFiltrar = false;
+                // this.mensajeCabecera = 'Viatges per any';
 
   }
 
@@ -26,6 +33,7 @@ export class HeaderComponent {
     this.isSelectedSpanish = true;
     this.isSelectedValenciano = false;
     console.log('Idioma cambiado al Español');    
+    // this.mensajeCabecera = 'Viajes por año';
   }
   // Se cambia el idioma a Valenciano
   changeLanguageToValenciano(): void {
@@ -33,6 +41,7 @@ export class HeaderComponent {
     this.isSelectedSpanish = false;
     this.isSelectedValenciano = true;
     console.log('Idioma cambiado al Valenciano');
+    // this.mensajeCabecera = 'Viatges per any';
   }
 
   buscar(){
@@ -43,7 +52,12 @@ export class HeaderComponent {
       this.palabra = $('#myInput').val();
     }
     console.log("Busca por "+this.palabra);
+
+    // this.mensajeCabeceraAnyo = false;
+    // this.mensajeCabeceraFiltrar = true;
+    // this.mensajeCabeceraAny = '';
     
+    // this.mensajeCabecera = 'Filtramos por '+ this.palabra;
     this.servicioViajes.buscarViajes(this.palabra);
     this.router.navigate(['/viajesFiltrados/', this.palabra]);
 

@@ -33,12 +33,15 @@
     "header":{
         "categoria" : "Categoria",
         "playa": "Playa",
-        "montana" : "Montaña",
+        "montanya" : "Montaña",
         "ciudad" : "Ciudad",
         "nieve" : "Nieve",
         "buscar": "Buscar",
         "informacion": "Información",
-        "palabra": "Filtrar"
+        "palabra": "Filtrar",
+        "mensajeCabeceraAnyos" : "Viajes por año",
+        "mensajeCabeceraAny" : "Viajes en el año",
+        "mensajeCabeceraFiltrar" : "Filtrar por "
     },
     "viaje":{
         "desde": "Desde",
