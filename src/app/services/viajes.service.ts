@@ -393,9 +393,10 @@ export class ViajesService {
 
           var array = [];
           var fechaInicioViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1);
-          // console.log(fechaInicioViaje);
+          console.log(fechaInicioViaje);
           this.anyoViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1, clave.ciudad.indexOf('-'));
-          // console.log(fechaInicioViaje);
+          console.log(this.anyoViaje);
+
 
           for(let key in response){
             // console.log('ciudad');

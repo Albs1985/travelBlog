@@ -3,25 +3,25 @@
         "nacimiento": "2023-08-02",        
         "nombreCompleto": "Marina Serrador Casares",
         "nombreCorto": "Marina",
-        "fotoPerfil" : "/assets/images/perfiles/fotoPerfilMarina.jpg"
+        "fotoPerfil" : "assets/images/perfiles/fotoPerfilMarina.jpg"
     },
     "Mateu":{
         "nacimiento": "2020-09-04",        
         "nombreCompleto": "Mateu Serrador Casares",
         "nombreCorto": "Mateu",
-        "fotoPerfil" : "/assets/images/perfiles/fotoPerfilMateu.jpg"
+        "fotoPerfil" : "assets/images/perfiles/fotoPerfilMateu.jpg"
     },
     "Alba":{
         "nacimiento": "1985-05-10",        
         "nombreCompleto": "Alba Casares Català",
         "nombreCorto": "Alba",
-        "fotoPerfil" : "/assets/images/perfiles/fotoPerfilAlba.jpg"
+        "fotoPerfil" : "assets/images/perfiles/fotoPerfilAlba.jpg"
     },
     "Albert":{
         "nacimiento": "1985-06-06",        
         "nombreCompleto": "Albert Serrador Sánchez",
         "nombreCorto": "Albert",
-        "fotoPerfil" : "/assets/images/perfiles/fotoPerfilAlbert.jpg"
+        "fotoPerfil" : "assets/images/perfiles/fotoPerfilAlbert.jpg"
     }    
     
 }

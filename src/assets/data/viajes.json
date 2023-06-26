@@ -16,7 +16,7 @@
             "personas": ["Albert", "Fede", "Borja", "Carles"],
             "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9902.843243301051!2d0.7869389151614111!3d42.705552371348446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a89a7929a015f5%3A0x3ebf97589d57c3d3!2s25530%20Vielha%2C%20L%C3%A9rida!5e1!3m2!1ses!2ses!4v1687519516950!5m2!1ses!2ses"]
         },
-        "Puertomingalvo":{
+        "Valdelinares":{
             "fechaInicio": "2023-03-12",
             "fechaFin":"2023-03-14",
             "categoria": "Nieve",
@@ -112,7 +112,7 @@
             "tipoEstancia": "Apartamento",
             "transporte": ["Coche", "Barco"],
             "personas": ["Mateu", "Alba", "Albert"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
         },
         "Andorra":{
             "fechaInicio": "2022-08-15",
@@ -128,7 +128,7 @@
             "tipoEstancia": "Hotel",
             "transporte": ["Coche"],
             "personas": ["Mateu", "Alba", "Albert", "Dani", "Gloria", "Marti"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
         },
         "Madrid":{
             "fechaInicio": "2022-10-21",
@@ -144,7 +144,7 @@
             "tipoEstancia": "Hotel",
             "transporte": ["Coche", "Tren"],
             "personas": ["Mateu", "Alba", "Albert"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
         }
     },
     "2021":{
@@ -162,7 +162,41 @@
             "tipoEstancia": "",
             "transporte": ["Coche"],
             "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
+
+        },
+        "Altea1":{
+            "fechaInicio": "2020-06-11",
+            "fechaFin":"2020-06-20",
+            "categoria": "Playa",
+            "destino": "Altea",
+            "provincia": "Alicante",
+            "pais": "España",
+            "dias": 1,
+            "precio": 0,
+            "numFotos": 10,
+            "estancia": "",
+            "tipoEstancia": "",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert"],
+            "mapaSrc": [""]
+
+        },
+        "Altea2":{
+            "fechaInicio": "2020-04-02",
+            "fechaFin":"2020-04-05",
+            "categoria": "Playa",
+            "destino": "Altea",
+            "provincia": "Alicante",
+            "pais": "España",
+            "dias": 4,
+            "precio": 0,
+            "numFotos": 6,
+            "estancia": "",
+            "tipoEstancia": "",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert"],
+            "mapaSrc": [""]
 
         }
         
@@ -182,7 +216,7 @@
             "tipoEstancia": "",
             "transporte": ["Coche"],
             "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
 
         },
         "CuevaTurche":{
@@ -199,7 +233,7 @@
             "tipoEstancia": "",
             "transporte": ["Coche"],
             "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
         },
         "Ibiza":{
             "fechaInicio": "2020-06-10",
@@ -211,12 +245,44 @@
             "dias": 1,
             "precio": 0,
             "numFotos": 6,
-            "estancia": "",
+            "estancia": "Furgoneta",
+            "tipoEstancia": "Furgoneta",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili"],
+            "mapaSrc": [""]
+
+        },
+        "Gilet":{
+            "fechaInicio": "2020-06-08",
+            "fechaFin":"2020-06-14",
+            "categoria": "Montaña",
+            "destino": "Gilet",
+            "provincia": "Castellón",
+            "pais": "España",
+            "dias": 6,
+            "precio": 0,
+            "numFotos": 6,
+            "estancia": "Casa",
             "tipoEstancia": "",
             "transporte": ["Coche"],
             "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
-
+            "mapaSrc": [""]
+        },
+        "Madrid":{
+            "fechaInicio": "2023-05-10",
+            "fechaFin":"2023-04-12",
+            "categoria": "Ciudad",
+            "destino": "Madrid",
+            "provincia": "Madrid",
+            "pais": "España",
+            "dias": 2,
+            "precio": 0,
+            "numFotos": 6,
+            "estancia": "Apartamento",
+            "tipoEstancia": "Apartamento",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert"],
+            "mapaSrc": [""]
         }
     },
     "2019":{
@@ -234,9 +300,9 @@
             "tipoEstancia": "Hotel",
             "transporte": ["Barca", "Moto", "Avion"],
             "personas": ["Alba", "Albert"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
         },
-        "Andorra3":{
+        "Fanzara":{
             "fechaInicio": "2023-04-06",
             "fechaFin":"2023-04-10",
             "categoria": "Montaña",
@@ -250,7 +316,23 @@
             "tipoEstancia": "Casa",
             "transporte": ["Coche"],
             "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili", "Marcel"],
-            "mapaSrc": ["https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1153.009578123029!2d2.9340214709477053!3d41.717824790661794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1687441691997!5m2!1ses!2ses"]
+            "mapaSrc": [""]
+        },
+        "Boda":{
+            "fechaInicio": "2023-04-06",
+            "fechaFin":"2023-04-10",
+            "categoria": "Montaña",
+            "destino": "Les Escaldes",
+            "provincia": "Andorra la Vella",
+            "pais": "Andorra",
+            "dias": 5,
+            "precio": 121.50,
+            "numFotos": 9,
+            "estancia": "Casa Tía Anna i Benjamín",
+            "tipoEstancia": "Casa",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili", "Marcel"],
+            "mapaSrc": [""]
         }
     }
     
