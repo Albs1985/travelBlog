@@ -5,8 +5,9 @@ export interface Viaje{
     categoria: string;
     provincia: string;
     pais: string;
-    dias: number;
+    year: number;
     numFotos: number;
+    fotoPrincipal: string;
     precio: number;
     estancia: string;
     tipoEstancia: string;

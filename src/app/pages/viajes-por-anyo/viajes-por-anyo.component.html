@@ -7,7 +7,7 @@
         <div *ngFor="let viajes of servicioViajes.viajesDetalleLista">
             <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
                 <figure>
-                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
+                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.fotoPrincipal}}" alt="Image" class="img-responsive"></a>
                 </figure>
                 <div *ngFor="let persona of viajes.personas" class="disposicion">
                     <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil">

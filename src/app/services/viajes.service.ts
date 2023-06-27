@@ -8,7 +8,7 @@ import { Viaje } from '../interfaces/viaje.interface';
 })
 export class ViajesService {
 
-  cargando = true;
+  cargandoViajes = true;
   anyoViaje = '';
 
   viajesJSON = "assets/data/viajes.json";
@@ -19,8 +19,9 @@ export class ViajesService {
     categoria: '',
     provincia: '',
     pais: '',
-    dias: 0,
+    year: 0,
     numFotos: 0,
+    fotoPrincipal: '',
     precio : 0,
     estancia: '',
     tipoEstancia: '',
@@ -82,9 +83,8 @@ export class ViajesService {
 
           // console.log(this.viajesLista);
 
-          this.cargando = false;
-
           resolve(this.viajesLista);
+          this.cargandoViajes = false;
           
         });
       
@@ -109,6 +109,7 @@ export class ViajesService {
             // console.log('response key');
             // console.log(response[key]);
             var viajesAnyo = response[key];
+            this.anyoViaje = anyo.filtro;
             if (anyo.filtro === key){
               for (let viatge in response[key]){
                 // console.log('viatge');
@@ -121,8 +122,9 @@ export class ViajesService {
                   categoria: '',
                   provincia: '',
                   pais: '',
-                  dias: 0,
+                  year: 0,
                   numFotos: 0,
+                  fotoPrincipal: '',
                   precio : 0,
                   estancia: '',
                   tipoEstancia: '',
@@ -137,8 +139,9 @@ export class ViajesService {
                 this.viaje.provincia =viajesAnyo[viatge].provincia;
                 this.viaje.pais =viajesAnyo[viatge].pais;
                 this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+                this.viaje.fotoPrincipal =viajesAnyo[viatge].fotoPrincipal;
                 this.viaje.precio =viajesAnyo[viatge].precio;
-                this.viaje.dias =viajesAnyo[viatge].dias;
+                this.viaje.year =viajesAnyo[viatge].year;
                 this.viaje.categoria =viajesAnyo[viatge].categoria;
                 this.viaje.estancia =viajesAnyo[viatge].estancia;
                 this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
@@ -165,6 +168,10 @@ export class ViajesService {
                     icono = icono+"moto.png";
                   }else if (transport == "Tren"){
                     icono = icono+"tren.png";
+                  }else if (transport == "Furgoneta"){
+                    icono = icono+"camper.png";
+                  }else if (transport == "Caravana"){
+                    icono = icono+"caravana.png";
                   }
                   // console.log(icono);
 
@@ -197,10 +204,8 @@ export class ViajesService {
 
           // console.log(this.viajesDetalleLista);
 
-          this.cargando = false;
-
           resolve(this.viajesDetalleLista);
-          
+          this.cargandoViajes = false;          
         });
       
     });
@@ -227,8 +232,9 @@ export class ViajesService {
                 categoria: '',
                 provincia: '',
                 pais: '',
-                dias: 0,
+                year: 0,
                 numFotos: 0,
+                fotoPrincipal: '',
                 precio : 0,
                 estancia: '',
                 tipoEstancia: '',
@@ -243,8 +249,9 @@ export class ViajesService {
               this.viaje.provincia =viajesAnyo[viatge].provincia;
               this.viaje.pais =viajesAnyo[viatge].pais;
               this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+              this.viaje.fotoPrincipal =viajesAnyo[viatge].fotoPrincipal;
               this.viaje.precio =viajesAnyo[viatge].precio; 
-              this.viaje.dias =viajesAnyo[viatge].dias;
+              this.viaje.year =viajesAnyo[viatge].year;
               this.viaje.estancia =viajesAnyo[viatge].estancia;
               this.viaje.categoria =viajesAnyo[viatge].categoria;
               this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
@@ -271,6 +278,10 @@ export class ViajesService {
                   icono = icono+"moto.png";
                 }else if (transport == "Tren"){
                   icono = icono+"tren.png";
+                }else if (transport == "Furgoneta"){
+                  icono = icono+"camper.png";
+                }else if (transport == "Caravana"){
+                  icono = icono+"caravana.png";
                 }
                 // console.log(icono);
 
@@ -302,10 +313,8 @@ export class ViajesService {
           this.viajesFiltrado = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
           // console.log(this.viajesFiltrado);
-
-          this.cargando = false;
-
           resolve(this.viajesFiltrado);
+          this.cargandoViajes = false;          
           
         });
       
@@ -419,8 +428,9 @@ export class ViajesService {
                       categoria: '',
                       provincia: '',
                       pais: '',
-                      dias: 0,
+                      year: 0,
                       numFotos: 0,
+                      fotoPrincipal: '',
                       precio : 0,
                       estancia: '',
                       tipoEstancia: '',
@@ -435,13 +445,13 @@ export class ViajesService {
                     this.viaje.provincia =viajesAnyo[viatge].provincia;
                     this.viaje.pais =viajesAnyo[viatge].pais;
                     this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+                    this.viaje.fotoPrincipal =viajesAnyo[viatge].fotoPrincipal;
                     this.viaje.precio =viajesAnyo[viatge].precio;
-                    this.viaje.dias =viajesAnyo[viatge].dias;
+                    this.viaje.year =viajesAnyo[viatge].year;
                     this.viaje.categoria =viajesAnyo[viatge].categoria;
                     this.viaje.estancia =viajesAnyo[viatge].estancia;
                     this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
                     
-
                     for (let j=0; j < viajesAnyo[viatge].transporte.length; j++){
                       var transport = viajesAnyo[viatge].transporte[j];
                       // console.log('transport');
@@ -463,6 +473,10 @@ export class ViajesService {
                         icono = icono+"moto.png";
                       }else if (transport == "Tren"){
                         icono = icono+"tren.png";
+                      }else if (transport == "Furgoneta"){
+                        icono = icono+"camper.png";
+                      }else if (transport == "Caravana"){
+                        icono = icono+"caravana.png";
                       }
                       // console.log(icono);
 
@@ -497,9 +511,8 @@ export class ViajesService {
 
           console.log(this.viajesDetalleLista);
 
-          this.cargando = false;
-
           resolve(this.viajesDetalleLista);
+          this.cargandoViajes = false;
           
         });
       

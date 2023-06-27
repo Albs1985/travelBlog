@@ -20,9 +20,10 @@ export class ViajeComponent implements OnInit{
 
     this.route.params.subscribe(params =>{
       
-      console.log(params['ciudad']);      
-      this.servicioFotos.cargarFotos(params);
+      console.log(params['ciudad']);
+      
       this.servicioViajes.cargarViaje(params);
+      this.servicioFotos.cargarFotos(params);
       
     }); 
 

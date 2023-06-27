@@ -10,7 +10,7 @@ export class FotosService {
   fotosJSON = "assets/data/fotos.json";
   fotosLista : Foto[] = [];
 
-  cargando = true;
+  cargandoFotos = true;
 
   foto : Foto = {
     principal : '',
@@ -22,6 +22,9 @@ export class FotosService {
     foto6 : '',
     foto7 : '',
     foto8 : '',
+    foto9 : '',
+    foto10 : '',
+    foto11 : '',
     descPrincipal : '',
     descFoto1 : '',
     descFoto2 : '',
@@ -30,7 +33,10 @@ export class FotosService {
     descFoto5 : '',
     descFoto6 : '',
     descFoto7 : '',
-    descFoto8 : ''
+    descFoto8 : '',
+    descFoto9 : '',
+    descFoto10 : '',
+    descFoto11 : ''
   }
 
   constructor(private http: HttpClient) {
@@ -63,6 +69,9 @@ export class FotosService {
                 foto6 : '',
                 foto7 : '',
                 foto8 : '',
+                foto9 : '',
+                foto10 : '',
+                foto11 : '',
                 descPrincipal : '',
                 descFoto1 : '',
                 descFoto2 : '',
@@ -71,7 +80,10 @@ export class FotosService {
                 descFoto5 : '',
                 descFoto6 : '',
                 descFoto7 : '',
-                descFoto8 : ''
+                descFoto8 : '',
+                descFoto9 : '',
+                descFoto10 : '',
+                descFoto11 : ''
               };
               
               this.foto.principal = response[key].principal;
@@ -83,6 +95,9 @@ export class FotosService {
               this.foto.foto6 = response[key].foto6;
               this.foto.foto7 = response[key].foto7;
               this.foto.foto8 = response[key].foto8;    
+              this.foto.foto9 = response[key].foto9;
+              this.foto.foto10 = response[key].foto10;
+              this.foto.foto11 = response[key].foto11;
               this.foto.descPrincipal = response[key].descPrincipal;
               this.foto.descFoto1 = response[key].descFoto1;
               this.foto.descFoto2 = response[key].descFoto2;
@@ -92,6 +107,9 @@ export class FotosService {
               this.foto.descFoto6 = response[key].descFoto6;
               this.foto.descFoto7 = response[key].descFoto7;
               this.foto.descFoto8 = response[key].descFoto8;
+              this.foto.descFoto9 = response[key].descFoto9;
+              this.foto.descFoto10 = response[key].descFoto10;
+              this.foto.descFoto11 = response[key].descFoto11;
 
               console.log(this.foto);
   
@@ -102,9 +120,10 @@ export class FotosService {
           console.log(array);
           this.fotosLista = array; 
 
-          this.cargando = false;
+          
 
           resolve(this.fotosLista);
+          this.cargandoFotos = false;
           
         });
       
