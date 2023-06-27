@@ -9,6 +9,9 @@
         "foto6": "Tossa6.jpg",
         "foto7": "Tossa7.jpg",
         "foto8": "Tossa8.jpg",
+        "foto9": "Tossa9.jpg",
+        "foto10": "Tossa10.jpg",
+        "foto11": "Tossa11.jpg",
         "descPrincipal" : "Pointing has no control about the blind texts",
         "descFoto1" : "Pointing has no control about the blind texts",
         "descFoto2" : "Pointing has no control about the blind texts",
@@ -17,7 +20,10 @@
         "descFoto5" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
         "descFoto6" : "Pointing has no control about the blind texts",
         "descFoto7" : "Pointing has no control about the blind texts",
-        "descFoto8" : "Pointing has no control about the blind texts"
+        "descFoto8" : "Pointing has no control about the blind texts",
+        "descFoto9" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
+        "descFoto10" : "Pointing has no control about the blind texts",
+        "descFoto11" : "Pointing has no control about the blind texts"
     },
     "2023-06-01":{
         "principal": "FormenteraPrincipal.jpg",        
@@ -26,18 +32,24 @@
         "foto3": "Formentera3.jpg",
         "foto4": "Formentera4.jpg",
         "foto5": "Formentera5.jpg",
-        "foto6": "Formentera6.jpg",
-        "foto7": "Formentera7.jpg",
-        "foto8": "Formentera8.jpg",
+        "foto6": "",
+        "foto7": "",
+        "foto8": "",
+        "foto9": "",
+        "foto10": "",
+        "foto11": "",
         "descPrincipal" : "Pointing has no control about the blind texts",
         "descFoto1" : "Pointing has no control about the blind texts",
-        "descFoto2" : "Pointing has no control about the blind texts",
+        "descFoto2" : "",
         "descFoto3" : "Pointing has no control about the blind texts",
         "descFoto4" : "Pointing has no control about the blind texts",
-        "descFoto5" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
-        "descFoto6" : "Pointing has no control about the blind texts",
-        "descFoto7" : "Pointing has no control about the blind texts",
-        "descFoto8" : "Pointing has no control about the blind texts"
+        "descFoto5" : "",
+        "descFoto6" : "",
+        "descFoto7" : "",
+        "descFoto8" : "",
+        "descFoto9" : "",
+        "descFoto10" : "",
+        "descFoto11" : ""
     },
     "2023-05-19":{
         "principal": "OlivaPrincipal.jpg",        
@@ -49,6 +61,9 @@
         "foto6": "Oliva6.jpg",
         "foto7": "Oliva7.jpg",
         "foto8": "Oliva8.jpg",
+        "foto9": "Oliva9.jpg",
+        "foto10": "Oliva10.jpg",
+        "foto11": "Oliva11.jpg",
         "descPrincipal" : "Pointing has no control about the blind texts",
         "descFoto1" : "Pointing has no control about the blind texts",
         "descFoto2" : "Pointing has no control about the blind texts",
@@ -57,7 +72,10 @@
         "descFoto5" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
         "descFoto6" : "Pointing has no control about the blind texts",
         "descFoto7" : "Pointing has no control about the blind texts",
-        "descFoto8" : "Pointing has no control about the blind texts"
+        "descFoto8" : "Pointing has no control about the blind texts",
+        "descFoto9" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
+        "descFoto10" : "Pointing has no control about the blind texts",
+        "descFoto11" : "Pointing has no control about the blind texts"
     },
     "2023-04-06":{
         "principal": "AndorraPrincipal.jpg",        
@@ -69,6 +87,9 @@
         "foto6": "Andorra6.jpg",
         "foto7": "Andorra7.jpg",
         "foto8": "Andorra8.jpg",
+        "foto9": "Andorra9.jpg",
+        "foto10": "Andorra10.jpg",
+        "foto11": "Andorra11.jpg",
         "descPrincipal" : "Pointing has no control about the blind texts",
         "descFoto1" : "Pointing has no control about the blind texts",
         "descFoto2" : "Pointing has no control about the blind texts",
@@ -77,7 +98,10 @@
         "descFoto5" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
         "descFoto6" : "Pointing has no control about the blind texts",
         "descFoto7" : "Pointing has no control about the blind texts",
-        "descFoto8" : "Pointing has no control about the blind texts"
+        "descFoto8" : "Pointing has no control about the blind texts",
+        "descFoto9" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
+        "descFoto10" : "Pointing has no control about the blind texts",
+        "descFoto11" : "Pointing has no control about the blind texts"
     },
     "2023-03-12":{
         "principal": "PuertoPrincipal.jpg",        
@@ -89,6 +113,9 @@
         "foto6": "Puerto6.jpg",
         "foto7": "Puerto7.jpg",
         "foto8": "Puerto8.jpg",
+        "foto9": "Puerto9.jpg",
+        "foto10": "Puerto10.jpg",
+        "foto11": "Puerto11.jpg",
         "descPrincipal" : "Pointing has no control about the blind texts",
         "descFoto1" : "Pointing has no control about the blind texts",
         "descFoto2" : "Pointing has no control about the blind texts",
@@ -97,7 +124,10 @@
         "descFoto5" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
         "descFoto6" : "Pointing has no control about the blind texts",
         "descFoto7" : "Pointing has no control about the blind texts",
-        "descFoto8" : "Pointing has no control about the blind texts"
+        "descFoto8" : "Pointing has no control about the blind texts",
+        "descFoto9" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
+        "descFoto10" : "Pointing has no control about the blind texts",
+        "descFoto11" : "Pointing has no control about the blind texts"
     },
     "2023-01-29":{
         "principal": "BaqueiraPrincipal.jpg",        
@@ -109,6 +139,9 @@
         "foto6": "Baqueira6.jpg",
         "foto7": "Baqueira7.jpg",
         "foto8": "Baqueira8.jpg",
+        "foto9": "Baqueira9.jpg",
+        "foto10": "Baqueira10.jpg",
+        "foto11": "Baqueira11.jpg",
         "descPrincipal" : "Pointing has no control about the blind texts",
         "descFoto1" : "Pointing has no control about the blind texts",
         "descFoto2" : "Pointing has no control about the blind texts",
@@ -117,7 +150,10 @@
         "descFoto5" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
         "descFoto6" : "Pointing has no control about the blind texts",
         "descFoto7" : "Pointing has no control about the blind texts",
-        "descFoto8" : "Pointing has no control about the blind texts"
+        "descFoto8" : "Pointing has no control about the blind texts",
+        "descFoto9" : "Pointing has no control about the blind textsPointing has no control about the blind texts",
+        "descFoto10" : "Pointing has no control about the blind texts",
+        "descFoto11" : "Pointing has no control about the blind texts"
     }    
 }
     
