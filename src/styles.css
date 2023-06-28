@@ -1,1 +1,140 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* Para todas las animaciones*/
+.animated {
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;    
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+
+@keyframes bounceInRight {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    from {
+        opacity: 0;
+        transform: translate3d(3000px, 0, 0) scaleX(3);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(-25px, 0, 0) scaleX(1);
+    }
+
+    75% {
+        transform: translate3d(10px, 0, 0) scaleX(0.98);
+    }
+
+    90% {
+        transform: translate3d(-5px, 0, 0) scaleX(0.995);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+  
+.bounceInRight {
+animation-name: bounceInRight;
+}
+
+
+@keyframes rollIn {
+from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
+}
+
+to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+}
+
+.rollIn {
+animation-name: rollIn;
+}
+
+
+@keyframes bounceInUp {
+from,
+60%,
+75%,
+90%,
+to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0) scaleY(5);
+}
+
+60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0) scaleY(0.9);
+}
+
+75% {
+    transform: translate3d(0, 10px, 0) scaleY(0.95);
+}
+
+90% {
+    transform: translate3d(0, -5px, 0) scaleY(0.985);
+}
+
+to {
+    transform: translate3d(0, 0, 0);
+}
+}
+
+.bounceInUp {
+animation-name: bounceInUp;
+}

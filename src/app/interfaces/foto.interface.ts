@@ -16,17 +16,6 @@ export interface Foto{
     foto9 : string;
     foto10 : string;
     foto11 : string;
-    descPrincipal : string;
-    descFoto1 : string;
-    descFoto2 : string;
-    descFoto3 : string;
-    descFoto4 : string;
-    descFoto5 : string;
-    descFoto6 : string;
-    descFoto7 : string;
-    descFoto8 : string;
-    descFoto9 : string;
-    descFoto10 : string;
-    descFoto11 : string;
+    foto12 : string;
 
 }

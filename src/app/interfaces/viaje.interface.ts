@@ -6,8 +6,12 @@ export interface Viaje{
     provincia: string;
     pais: string;
     year: number;
+    diaInicio : number,    
+    mesInicio : number;
+    diaFin : number,
+    mesFin : number;
     numFotos: number;
-    fotoPrincipal: string;
+    identificadorFotos: string;
     precio: number;
     estancia: string;
     tipoEstancia: string;

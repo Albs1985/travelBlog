@@ -1,5 +1,5 @@
-<h2 class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>
-<div class="container-fluid imagenFondo">
+<h2 class="fh5co-article-title subtitulo animated fadeIn"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>
+<div class="container-fluid imagenFondo animated fadeIn">
     <!-- <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
             <span class="sr-only">Cargando...</span>
@@ -10,10 +10,10 @@
    
     <!-- <span class="fh5co-meta fh5co-date ">Viajes por Año</span> -->
 
-    <div class="row fh5co-post-entry">            
+    <div class="row fh5co-post-entry animated fadeInDown">            
             <div *ngFor="let viajes of servicioViajes.viajesLista">                
                 <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
-                    <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
+                    <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp"><b>{{viajes.anyo}}</b></span>
                     <figure>
                         <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" alt="Image" class="img-responsive"></a>
                     </figure>

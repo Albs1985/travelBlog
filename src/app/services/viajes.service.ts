@@ -20,8 +20,12 @@ export class ViajesService {
     provincia: '',
     pais: '',
     year: 0,
+    diaInicio : 0,
+    mesInicio : 0,
+    diaFin : 0,
+    mesFin : 0,
     numFotos: 0,
-    fotoPrincipal: '',
+    identificadorFotos: '',
     precio : 0,
     estancia: '',
     tipoEstancia: '',
@@ -40,8 +44,6 @@ export class ViajesService {
   }
 
   constructor(private http: HttpClient) {
-
-    // this.cargarViajesPorAnyo();
 
   }
 
@@ -65,23 +67,14 @@ export class ViajesService {
             this.viajes.anyo = +key;
             var i = 0;
             for (let destins in response[key]){
-              // console.log(destins);
               this.viajes.destinos[i] = destins;
               i++;
             }
-            
-
-            // console.log(this.viajes);
             array.push(this.viajes);
-            // console.log(array);
             
           } 
-          // console.log(array); // your required array
-
-
+          
           this.viajesLista = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
-
-          // console.log(this.viajesLista);
 
           resolve(this.viajesLista);
           this.cargandoViajes = false;
@@ -92,6 +85,97 @@ export class ViajesService {
     
   }
 
+
+  addViajeEnArray(viatge : any, viajesAnyo : any){
+    this.viaje = {
+      fechaInicio: new Date,
+      fechaFin: new Date,      
+      destino: '',
+      categoria: '',
+      provincia: '',
+      pais: '',
+      diaInicio : 0,
+      diaFin : 0,
+      year: 0,
+      mesInicio : 0,
+      mesFin : 0,
+      numFotos: 0,
+      identificadorFotos: '',
+      precio : 0,
+      estancia: '',
+      tipoEstancia: '',
+      transporte: [],
+      personas: [] ,
+      mapaSrc: [] 
+    };
+    
+    this.viaje.fechaInicio =viajesAnyo[viatge].fechaInicio;
+    this.viaje.fechaFin =viajesAnyo[viatge].fechaFin;
+    this.viaje.destino =viajesAnyo[viatge].destino;
+    this.viaje.provincia =viajesAnyo[viatge].provincia;
+    this.viaje.pais =viajesAnyo[viatge].pais;
+    this.viaje.numFotos =viajesAnyo[viatge].numFotos;
+    this.viaje.identificadorFotos =viajesAnyo[viatge].identificadorFotos;
+    this.viaje.precio =viajesAnyo[viatge].precio;
+    this.viaje.diaInicio =viajesAnyo[viatge].fechaInicio.substring(8);
+    this.viaje.mesInicio =viajesAnyo[viatge].fechaInicio.substring(5, 7);
+    this.viaje.diaFin =viajesAnyo[viatge].fechaFin.substring(8);
+    this.viaje.mesFin =viajesAnyo[viatge].fechaFin.substring(5, 7);
+    this.viaje.year =viajesAnyo[viatge].year;
+    this.viaje.categoria =viajesAnyo[viatge].categoria;
+    this.viaje.estancia =viajesAnyo[viatge].estancia;
+    this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
+    
+
+    for (let j=0; j < viajesAnyo[viatge].transporte.length; j++){
+      var transport = viajesAnyo[viatge].transporte[j];
+      var icono = "";
+      if (transport == "Autobus"){
+        icono = icono+"autobus.png";
+      }else if (transport == "Avion"){
+        icono = icono+"avion.png";
+      }else if (transport == "Barco"){
+        icono = icono+"barco-grande.png";
+      }else if (transport == "Barca"){
+        icono = icono+"barca.png";
+      }else if (transport == "Bicicleta"){
+        icono = icono+"bicicleta.png";
+      }else if (transport == "Coche"){
+        icono = icono+"coche.png";
+      }else if (transport == "Moto"){
+        icono = icono+"moto.png";
+      }else if (transport == "Tren"){
+        icono = icono+"tren.png";
+      }else if (transport == "Furgoneta"){
+        icono = icono+"camper.png";
+      }else if (transport == "Caravana"){
+        icono = icono+"caravana.png";
+      }else if (transport == "FoodTruck"){
+        icono = icono+"foodTruck.png";
+      }
+
+      this.viaje.transporte[j] = icono;
+    }
+
+    for (let i=0; i < viajesAnyo[viatge].personas.length; i++){
+      var persona = viajesAnyo[viatge].personas[i];
+      this.viaje.personas[i] = persona;
+    }      
+    
+    for (let i=0; i < viajesAnyo[viatge].mapaSrc.length; i++){
+      var mapaSrc = viajesAnyo[viatge].mapaSrc[i];
+      this.viaje.mapaSrc[i] = mapaSrc;
+    }
+
+    return this.viaje;
+  
+}
+
+
+  
+
+  
+
   cargarViajesPorAnyo(anyo : any){
 
     //Añadimos el PROMISE para esperar a que se carguen los viajes
@@ -101,108 +185,18 @@ export class ViajesService {
         .subscribe( (response: any ) => {
 
           var array = [];
-          for(let key in response){
-            // console.log('anyo');
-            // console.log(anyo.filtro);
-            // console.log('key');
-            // console.log(key);
-            // console.log('response key');
-            // console.log(response[key]);
+          for(let key in response){           
             var viajesAnyo = response[key];
             this.anyoViaje = anyo.filtro;
             if (anyo.filtro === key){
               for (let viatge in response[key]){
-                // console.log('viatge');
-                // console.log(viatge);
-                // console.log(viajesAnyo[viatge]);
-                this.viaje = {
-                  fechaInicio: new Date,
-                  fechaFin: new Date,
-                  destino: '',
-                  categoria: '',
-                  provincia: '',
-                  pais: '',
-                  year: 0,
-                  numFotos: 0,
-                  fotoPrincipal: '',
-                  precio : 0,
-                  estancia: '',
-                  tipoEstancia: '',
-                  transporte: [],
-                  personas: [] ,
-                  mapaSrc: [] 
-                };
-                
-                this.viaje.fechaInicio =viajesAnyo[viatge].fechaInicio;
-                this.viaje.fechaFin =viajesAnyo[viatge].fechaFin;
-                this.viaje.destino =viajesAnyo[viatge].destino;
-                this.viaje.provincia =viajesAnyo[viatge].provincia;
-                this.viaje.pais =viajesAnyo[viatge].pais;
-                this.viaje.numFotos =viajesAnyo[viatge].numFotos;
-                this.viaje.fotoPrincipal =viajesAnyo[viatge].fotoPrincipal;
-                this.viaje.precio =viajesAnyo[viatge].precio;
-                this.viaje.year =viajesAnyo[viatge].year;
-                this.viaje.categoria =viajesAnyo[viatge].categoria;
-                this.viaje.estancia =viajesAnyo[viatge].estancia;
-                this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
-                
 
-                for (let j=0; j < viajesAnyo[viatge].transporte.length; j++){
-                  var transport = viajesAnyo[viatge].transporte[j];
-                  // console.log('transport');
-                  // console.log(transport);
-                  var icono = "";
-                  if (transport == "Autobus"){
-                    icono = icono+"autobus.png";
-                  }else if (transport == "Avion"){
-                    icono = icono+"avion.png";
-                  }else if (transport == "Barco"){
-                    icono = icono+"barco-grande.png";
-                  }else if (transport == "Barca"){
-                    icono = icono+"barca.png";
-                  }else if (transport == "Bicicleta"){
-                    icono = icono+"bicicleta.png";
-                  }else if (transport == "Coche"){
-                    icono = icono+"coche.png";
-                  }else if (transport == "Moto"){
-                    icono = icono+"moto.png";
-                  }else if (transport == "Tren"){
-                    icono = icono+"tren.png";
-                  }else if (transport == "Furgoneta"){
-                    icono = icono+"camper.png";
-                  }else if (transport == "Caravana"){
-                    icono = icono+"caravana.png";
-                  }
-                  // console.log(icono);
-
-                  this.viaje.transporte[j] = icono;
-                  // console.log(this.viaje.transporte[j]);
-                  // i++;
-                }
-
-                for (let i=0; i < viajesAnyo[viatge].personas.length; i++){
-                  var persona = viajesAnyo[viatge].personas[i];
-                  // console.log('persona');
-                  // console.log(persona);
-                  this.viaje.personas[i] = persona;
-                }      
-                
-                for (let i=0; i < viajesAnyo[viatge].mapaSrc.length; i++){
-                  var mapaSrc = viajesAnyo[viatge].mapaSrc[i];
-                  // console.log('persona');
-                  // console.log(persona);
-                  this.viaje.mapaSrc[i] = mapaSrc;
-                }
-    
-                // console.log(this.viajes);
+                this.viaje = this.addViajeEnArray(viatge, viajesAnyo);                
                 array.push(this.viaje);
-                // console.log(array);
               }
             }
           } 
           this.viajesDetalleLista = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
-
-          // console.log(this.viajesDetalleLista);
 
           resolve(this.viajesDetalleLista);
           this.cargandoViajes = false;          
@@ -225,94 +219,13 @@ export class ViajesService {
           for(let key in response){
             var viajesAnyo = response[key];
             for (let viatge in response[key]){
-              this.viaje = {
-                fechaInicio: new Date,
-                fechaFin: new Date,
-                destino: '',
-                categoria: '',
-                provincia: '',
-                pais: '',
-                year: 0,
-                numFotos: 0,
-                fotoPrincipal: '',
-                precio : 0,
-                estancia: '',
-                tipoEstancia: '',
-                transporte: [],
-                personas: [] ,
-                mapaSrc: [] 
-              };
-              
-              this.viaje.fechaInicio =viajesAnyo[viatge].fechaInicio;
-              this.viaje.fechaFin =viajesAnyo[viatge].fechaFin;
-              this.viaje.destino =viajesAnyo[viatge].destino;
-              this.viaje.provincia =viajesAnyo[viatge].provincia;
-              this.viaje.pais =viajesAnyo[viatge].pais;
-              this.viaje.numFotos =viajesAnyo[viatge].numFotos;
-              this.viaje.fotoPrincipal =viajesAnyo[viatge].fotoPrincipal;
-              this.viaje.precio =viajesAnyo[viatge].precio; 
-              this.viaje.year =viajesAnyo[viatge].year;
-              this.viaje.estancia =viajesAnyo[viatge].estancia;
-              this.viaje.categoria =viajesAnyo[viatge].categoria;
-              this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
-              
-
-              for (let j=0; j < viajesAnyo[viatge].transporte.length; j++){
-                var transport = viajesAnyo[viatge].transporte[j];
-                // console.log('transport');
-                // console.log(transport);
-                var icono = "";
-                if (transport == "Autobus"){
-                  icono = icono+"autobus.png";
-                }else if (transport == "Avion"){
-                  icono = icono+"avion.png";
-                }else if (transport == "Barco"){
-                  icono = icono+"barco-grande.png";
-                }else if (transport == "Barca"){
-                  icono = icono+"barca.png";
-                }else if (transport == "Bicicleta"){
-                  icono = icono+"bicicleta.png";
-                }else if (transport == "Coche"){
-                  icono = icono+"coche.png";
-                }else if (transport == "Moto"){
-                  icono = icono+"moto.png";
-                }else if (transport == "Tren"){
-                  icono = icono+"tren.png";
-                }else if (transport == "Furgoneta"){
-                  icono = icono+"camper.png";
-                }else if (transport == "Caravana"){
-                  icono = icono+"caravana.png";
-                }
-                // console.log(icono);
-
-                this.viaje.transporte[j] = icono;
-                // console.log(this.viaje.transporte[j]);
-                // i++;
-              }
-              for (let i=0; i < viajesAnyo[viatge].personas.length; i++){
-                var persona = viajesAnyo[viatge].personas[i];
-                // console.log('persona');
-                // console.log(persona);
-                this.viaje.personas[i] = persona;
-              }   
-              
-              for (let i=0; i < viajesAnyo[viatge].mapaSrc.length; i++){
-                var mapaSrc = viajesAnyo[viatge].mapaSrc[i];
-                // console.log('persona');
-                // console.log(persona);
-                this.viaje.mapaSrc[i] = mapaSrc;
-              }
-  
-              // console.log(this.viajes);
+              this.viaje = this.addViajeEnArray(viatge, viajesAnyo);              
               array.push(this.viaje);
-              // console.log(array);
-            }
-          
-              
+            }   
           } 
+
           this.viajesFiltrado = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
-          // console.log(this.viajesFiltrado);
           resolve(this.viajesFiltrado);
           this.cargandoViajes = false;          
           
@@ -323,15 +236,12 @@ export class ViajesService {
   }
 
   buscarViajes(termino : any){
-    // console.log('buscarViaje');
-    // console.log(termino);
     var palabra = '';
     if (termino.filtro != undefined){
       palabra = termino.filtro;
     }else{
       palabra = termino;
-    }
-    
+    }   
 
     if (this.viajesFiltrado.length === 0){
       //Cargar o esperar a que se carguen
@@ -348,10 +258,6 @@ export class ViajesService {
   }
 
   private filtrarViajes(termino : string){
-    
-    // console.log('filtrarProductos this.viajesFiltrado');
-    // console.log(this.viajesFiltrado);
-    // console.log(termino);
     
     this.viajesDetalleLista = [];
     
@@ -407,104 +313,15 @@ export class ViajesService {
           console.log(this.anyoViaje);
 
 
-          for(let key in response){
-            // console.log('ciudad');
-            // console.log(clave.ciudad);
-            // console.log('key');
-            // console.log(key);
-            // console.log('response key');
-            // console.log(response[key]);
+          for(let key in response){            
             var viajesAnyo = response[key];
             if (this.anyoViaje === key){
               for (let viatge in response[key]){
                 if (fechaInicioViaje == viajesAnyo[viatge].fechaInicio){
-                  console.log('viatge');
-                    console.log(viatge);
-                    console.log(viajesAnyo[viatge]);
-                    this.viaje = {
-                      fechaInicio: new Date,
-                      fechaFin: new Date,
-                      destino: '',
-                      categoria: '',
-                      provincia: '',
-                      pais: '',
-                      year: 0,
-                      numFotos: 0,
-                      fotoPrincipal: '',
-                      precio : 0,
-                      estancia: '',
-                      tipoEstancia: '',
-                      transporte: [],
-                      personas: [] ,
-                      mapaSrc: [] 
-                    };
-                    
-                    this.viaje.fechaInicio =viajesAnyo[viatge].fechaInicio;
-                    this.viaje.fechaFin =viajesAnyo[viatge].fechaFin;
-                    this.viaje.destino =viajesAnyo[viatge].destino;
-                    this.viaje.provincia =viajesAnyo[viatge].provincia;
-                    this.viaje.pais =viajesAnyo[viatge].pais;
-                    this.viaje.numFotos =viajesAnyo[viatge].numFotos;
-                    this.viaje.fotoPrincipal =viajesAnyo[viatge].fotoPrincipal;
-                    this.viaje.precio =viajesAnyo[viatge].precio;
-                    this.viaje.year =viajesAnyo[viatge].year;
-                    this.viaje.categoria =viajesAnyo[viatge].categoria;
-                    this.viaje.estancia =viajesAnyo[viatge].estancia;
-                    this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
-                    
-                    for (let j=0; j < viajesAnyo[viatge].transporte.length; j++){
-                      var transport = viajesAnyo[viatge].transporte[j];
-                      // console.log('transport');
-                      // console.log(transport);
-                      var icono = "";
-                      if (transport == "Autobus"){
-                        icono = icono+"autobus.png";
-                      }else if (transport == "Avion"){
-                        icono = icono+"avion.png";
-                      }else if (transport == "Barco"){
-                        icono = icono+"barco-grande.png";
-                      }else if (transport == "Barca"){
-                        icono = icono+"barca.png";
-                      }else if (transport == "Bicicleta"){
-                        icono = icono+"bicicleta.png";
-                      }else if (transport == "Coche"){
-                        icono = icono+"coche.png";
-                      }else if (transport == "Moto"){
-                        icono = icono+"moto.png";
-                      }else if (transport == "Tren"){
-                        icono = icono+"tren.png";
-                      }else if (transport == "Furgoneta"){
-                        icono = icono+"camper.png";
-                      }else if (transport == "Caravana"){
-                        icono = icono+"caravana.png";
-                      }
-                      // console.log(icono);
-
-                      this.viaje.transporte[j] = icono;
-                      // console.log(this.viaje.transporte[j]);
-                      // i++;
-                    }
-
-                    for (let i=0; i < viajesAnyo[viatge].personas.length; i++){
-                      var persona = viajesAnyo[viatge].personas[i];
-                      // console.log('persona');
-                      // console.log(persona);
-                      this.viaje.personas[i] = persona;
-                    }      
-                    
-                    for (let i=0; i < viajesAnyo[viatge].mapaSrc.length; i++){
-                      var mapaSrc = viajesAnyo[viatge].mapaSrc[i];
-                      // console.log('persona');
-                      // console.log(persona);
-                      this.viaje.mapaSrc[i] = mapaSrc;
-                    }
-        
-                    // console.log(this.viajes);
-                    array.push(this.viaje);
-                    // console.log(array);
-                  }
+                  this.viaje = this.addViajeEnArray(viatge, viajesAnyo);
+                  array.push(this.viaje);
                 }
-                
+              }                
             }
           } 
           this.viajesDetalleLista = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero

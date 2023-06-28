@@ -25,18 +25,7 @@ export class FotosService {
     foto9 : '',
     foto10 : '',
     foto11 : '',
-    descPrincipal : '',
-    descFoto1 : '',
-    descFoto2 : '',
-    descFoto3 : '',
-    descFoto4 : '',
-    descFoto5 : '',
-    descFoto6 : '',
-    descFoto7 : '',
-    descFoto8 : '',
-    descFoto9 : '',
-    descFoto10 : '',
-    descFoto11 : ''
+    foto12 : ''
   }
 
   constructor(private http: HttpClient) {
@@ -72,18 +61,7 @@ export class FotosService {
                 foto9 : '',
                 foto10 : '',
                 foto11 : '',
-                descPrincipal : '',
-                descFoto1 : '',
-                descFoto2 : '',
-                descFoto3 : '',
-                descFoto4 : '',
-                descFoto5 : '',
-                descFoto6 : '',
-                descFoto7 : '',
-                descFoto8 : '',
-                descFoto9 : '',
-                descFoto10 : '',
-                descFoto11 : ''
+                foto12 : ''
               };
               
               this.foto.principal = response[key].principal;
@@ -98,18 +76,7 @@ export class FotosService {
               this.foto.foto9 = response[key].foto9;
               this.foto.foto10 = response[key].foto10;
               this.foto.foto11 = response[key].foto11;
-              this.foto.descPrincipal = response[key].descPrincipal;
-              this.foto.descFoto1 = response[key].descFoto1;
-              this.foto.descFoto2 = response[key].descFoto2;
-              this.foto.descFoto3 = response[key].descFoto3;
-              this.foto.descFoto4 = response[key].descFoto4;
-              this.foto.descFoto5 = response[key].descFoto5;
-              this.foto.descFoto6 = response[key].descFoto6;
-              this.foto.descFoto7 = response[key].descFoto7;
-              this.foto.descFoto8 = response[key].descFoto8;
-              this.foto.descFoto9 = response[key].descFoto9;
-              this.foto.descFoto10 = response[key].descFoto10;
-              this.foto.descFoto11 = response[key].descFoto11;
+              this.foto.foto12 = response[key].foto12;
 
               console.log(this.foto);
   

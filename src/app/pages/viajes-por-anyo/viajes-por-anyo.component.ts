@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FotosService } from 'src/app/services/fotos.service';
 import { ViajesService } from 'src/app/services/viajes.service';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 
@@ -17,7 +18,7 @@ export class ViajesPorAnyoComponent implements OnInit{
 
   constructor (private route: ActivatedRoute,
                 public servicioViajes : ViajesService,
-                public cabeceraComp : HeaderComponent){
+                public servicioFotos : FotosService){
                   
   }
 
@@ -25,13 +26,13 @@ export class ViajesPorAnyoComponent implements OnInit{
 
     this.route.params.subscribe(params =>{
       
-      
+      console.log(params);
       // console.log('ALBERT');
       // console.log(params['filtro']);
       
       var isNum = Number.isInteger(Number(params['filtro']));
       this.palabra = params['filtro'];
-      console.log(  );
+      console.log(this.palabra);
       if (isNum){
         console.log('Filtramos por anyo');
         this.mensajeCabeceraAnyo = true;
@@ -75,14 +76,14 @@ export class ViajesPorAnyoComponent implements OnInit{
         }
         
         this.servicioViajes.buscarViajes(params);
+        
         // this.cabeceraComp.mensajeCabeceraAny = params['filtro'];
         // console.log(this.cabeceraComp.mensajeCabeceraAny);
+
+        // this.servicioFotos.cargarFotos(this.servicioViajes.viajesDetalleLista[0].destino+'_'+this.servicioViajes.viajesDetalleLista[0].fechaInicio);
+
       }
 
-
-      
-      
-      
     }); 
 
   }
