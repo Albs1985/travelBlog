@@ -1,0 +1,6 @@
+.dobleFotos{
+    width: 25%;
+    height: 25%;
+    display: table-cell;
+    padding: 5px;
+}

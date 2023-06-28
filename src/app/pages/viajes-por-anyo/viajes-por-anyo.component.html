@@ -2,25 +2,82 @@
 <h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{'header.'+palabra | translate}}</a></h2>
 <h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
 
-<div class="container-fluid">
+<div class="container-fluid animated fadeIn">
     <div class="row fh5co-post-entry">
         <div *ngFor="let viajes of servicioViajes.viajesDetalleLista">
             <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
-                <figure>
-                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/pic_1.jpg" alt="Image" class="img-responsive"></a>
-                </figure>
+                
+                <div id="theCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicadores -->
+                    <!-- <ol class="carousel-indicators">
+                        <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#theCarousel" data-slide-to="1"></li>
+                        <li data-target="#theCarousel" data-slide-to="2"></li>
+                        <li data-target="#theCarousel" data-slide-to="3"></li>                    
+                    </ol> -->
+                
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}Principal.jpg" alt="" > </a>
+                            <!-- <div class="carousel-caption d-none d-md-block">
+                                <h3>Gusti Ilustración</h3>
+                                <p>Exposición</p>
+                            </div> -->
+                        </div>
+
+                        <div class="item">
+                            <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}1.jpg" alt=""> </a>
+                            <!-- <div class="carousel-caption d-none d-md-block">
+                                <h3> Xataka Fotografía</h3>
+                                <p>Concurso</p>
+                            </div> -->
+                        </div>
+                
+                        <div class="item">
+                            <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}2.jpg" alt=""></a>
+                            <!-- <div class="carousel-caption d-none d-md-block">
+                                <h3>DoArt Pintura</h3>
+                                <p>Curso</p>
+                            </div> -->
+                        </div>
+
+                        <div class="item">
+                            <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}3.jpg" alt=""> </a>
+                            <!-- <div class="carousel-caption d-none d-md-block">
+                                <h3>UX UI Diseño Gráfico</h3>
+                                <p>Curso</p>
+                            </div> -->
+                        </div>                
+                
+                        <!-- <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden=""></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden=""></span>
+                            <span class="sr-only">Siguiente</span>
+                        </a> -->
+                    </div>
+                </div>
+                
+
+                <!-- <figure>
+                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.fotoPrincipal}}" alt="Image" class="img-responsive"></a>
+                </figure> -->
+
+                <br>
                 <div *ngFor="let persona of viajes.personas" class="disposicion">
-                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil">
+                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight">
                 </div>
                 <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}">{{viajes.provincia}}</a></span>
                 <!-- <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></span> -->
                 <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}">{{viajes.destino}}</a></h2>
                 <!-- <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></h2>
                 <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></h2> -->
-                <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{viajes.fechaInicio}}</b> </span>
-                <span class="fh5co-meta fh5co-date"> {{ 'viaje.hasta' | translate }} <b>{{viajes.fechaFin}}</b> </span>
+                <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{viajes.diaInicio}} de {{'mesAnyo.'+viajes.mesInicio | translate }}</b></span>
+                <span class="fh5co-meta fh5co-date">{{ 'viaje.hasta' | translate }} <b>{{viajes.diaFin}} de {{'mesAnyo.'+viajes.mesFin | translate }}</b></span>
                 <div *ngFor="let transporte of viajes.transporte" class="disposicion">
-                    <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos">
+                    <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos animated rollIn">
                 </div>
             </article>        
         </div>
