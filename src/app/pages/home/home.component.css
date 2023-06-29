@@ -11,3 +11,20 @@
     font-size: 26px !important;
     margin-right: 25px !important;
  }
+
+.contenedor-imagen {
+    position: relative;
+    display: inline-block;
+}
+
+ .textoEnImagen{
+
+    position: absolute;
+    bottom: 30px; /* Ajusta la posición vertical */
+    right: 30px; /* Ajusta la posición horizontal */
+    color: #fff; /* Color del texto */
+    font-size: 36px; /* Tamaño de fuente */
+    background-color: rgba(0, 0, 0, 0.7); /*Color de fondo del texto */
+    padding: 5px; /* Espacio interno del texto */
+
+ }

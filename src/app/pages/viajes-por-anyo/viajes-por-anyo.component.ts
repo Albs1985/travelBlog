@@ -17,8 +17,7 @@ export class ViajesPorAnyoComponent implements OnInit{
   mensajeCabeceraFiltrarSinTranslate : boolean = false;
 
   constructor (private route: ActivatedRoute,
-                public servicioViajes : ViajesService,
-                public servicioFotos : FotosService){
+                public servicioViajes : ViajesService){
                   
   }
 

@@ -11,12 +11,15 @@ export class ViajerosService {
   viajerosLista : Viajero[] = [];
 
   cargando = true;
+  anyo : number = new Date().getFullYear();
+
 
   viajero : Viajero = {
     nacimiento : new Date(),
     nombreCompleto : '',
     nombreCorto : '',
-    fotoPerfil : ''
+    fotoPerfil : '',
+    edad : 0
   }
 
   constructor(private http: HttpClient) {
@@ -31,6 +34,8 @@ export class ViajerosService {
       
       this.http.get(this.viajerosJSON)
         .subscribe( (response: any ) => {
+
+
           console.log(response);
           var array = [];
           for(let key in response){
@@ -40,12 +45,15 @@ export class ViajerosService {
               nacimiento : new Date(),
               nombreCompleto : '',
               nombreCorto : '',
-              fotoPerfil : ''
+              fotoPerfil : '',
+              edad : 0
             };
             this.viajero.nacimiento = response[key].nacimiento;
             this.viajero.nombreCompleto = response[key].nombreCompleto;
             this.viajero.nombreCorto = response[key].nombreCorto;
             this.viajero.fotoPerfil = response[key].fotoPerfil;
+            
+            this.viajero.edad = this.anyo - Number.parseInt(response[key].nacimiento.substring(0, 4));
 
             array.push(this.viajero);           
             

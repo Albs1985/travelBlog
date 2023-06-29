@@ -157,26 +157,27 @@
         }
     },
     "2021":{
-        "Montanejos":{
-            "fechaInicio": "2021-06-11",
-            "fechaFin":"2021-06-20",
+        "Alborache":{
+            "fechaInicio": "2021-06-10",
+            "fechaFin":"2021-06-18",
             "categoria": "Montaña",
-            "destino": "Montanejos",
-            "provincia": "Teruel",
+            "destino": "Ruta del agua",
+            "provincia": "Buñol",
             "pais": "España",
             "year": 2021,
             "precio": 0,
-            "numFotos": 10,
-            "identificadorFotos": "Baqueira",
-            "estancia": "",
+            "numFotos": 6,
+            "identificadorFotos": "Alborache",
+            "estancia": "Alborache",
             "tipoEstancia": "",
-            "transporte": ["Caravana"],
-            "personas": ["Mateu", "Alba", "Albert"],
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert", "Maria", "Emili"],
             "mapaSrc": [""]
-        },                
+
+        },
         "Altea":{
-            "fechaInicio": "2021-06-11",
-            "fechaFin":"2021-06-20",
+            "fechaInicio": "2020-06-11",
+            "fechaFin":"2020-06-20",
             "categoria": "Playa",
             "destino": "Altea",
             "provincia": "Alicante",
@@ -184,6 +185,63 @@
             "year": 2021,
             "precio": 0,
             "numFotos": 10,
+            "identificadorFotos": "Baqueira",
+            "estancia": "",
+            "tipoEstancia": "",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert"],
+            "mapaSrc": [""]
+
+        },
+        "Altea ":{
+            "fechaInicio": "2020-04-02",
+            "fechaFin":"2020-04-05",
+            "categoria": "Playa",
+            "destino": "Altea",
+            "provincia": "Alicante",
+            "pais": "España",
+            "year": 2021,
+            "precio": 0,
+            "numFotos": 6,
+            "identificadorFotos": "Baqueira",
+            "estancia": "",
+            "tipoEstancia": "",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert"],
+            "mapaSrc": [""]
+
+        }
+        
+    },
+    "2020":{
+        "Estanys d'Almenara":{
+            "fechaInicio": "2020-06-10",
+            "fechaFin":"2020-06-18",
+            "categoria": "Montaña",
+            "destino": "Estanys d'Almenara",
+            "provincia": "Almenara",
+            "pais": "España",
+            "year": 2020,
+            "precio": 0,
+            "numFotos": 6,
+            "identificadorFotos": "Baqueira",
+            "estancia": "Almenara",
+            "tipoEstancia": "",
+            "transporte": ["Coche"],
+            "personas": ["Mateu", "Alba", "Albert"],
+            "mapaSrc": [""]
+
+        },
+        "Cova del Turche":{
+            "fechaInicio": "2020-06-10",
+            "fechaFin":"2020-06-18",
+            "categoria": "Montaña",
+            "destino": "Cova del Turche",
+            "provincia": "Alborache",
+            "pais": "España",
+            "year": 2020,
+            "precio": 0,
+            "numFotos": 6,
             "identificadorFotos": "Baqueira",
             "estancia": "",
             "tipoEstancia": "",
@@ -191,36 +249,17 @@
             "personas": ["Mateu", "Alba", "Albert"],
             "mapaSrc": [""]
         },
-        "Altea ":{
-            "fechaInicio": "2021-04-02",
-            "fechaFin":"2021-04-05",
-            "categoria": "Playa",
-            "destino": "Altea",
-            "provincia": "Alicante",
-            "pais": "España",
-            "year": 2021,
-            "precio": 0,
-            "numFotos": 6,
-            "identificadorFotos": "Baqueira",
-            "estancia": "",
-            "tipoEstancia": "",
-            "transporte": ["Coche"],
-            "personas": ["Mateu", "Alba", "Albert"],
-            "mapaSrc": [""]
-        }        
-    },
-    "2020":{        
-        "Ibiza":{
+        "Eivissa":{
             "fechaInicio": "2020-06-10",
             "fechaFin":"2020-06-18",
             "categoria": "Playa",
-            "destino": "Ibiza",
+            "destino": "Eivissa",
             "provincia": "Balears",
             "pais": "España",
             "year": 2020,
             "precio": 0,
             "numFotos": 6,
-            "identificadorFotos": "Ibiza",
+            "identificadorFotos": "Baqueira",
             "estancia": "Furgoneta",
             "tipoEstancia": "Furgoneta",
             "transporte": ["Furgoneta"],
@@ -246,8 +285,8 @@
             "mapaSrc": [""]
         },
         "Madrid":{
-            "fechaInicio": "2020-05-10",
-            "fechaFin":"2020-04-12",
+            "fechaInicio": "2023-05-10",
+            "fechaFin":"2023-04-12",
             "categoria": "Ciudad",
             "destino": "Madrid",
             "provincia": "Madrid",
@@ -255,7 +294,7 @@
             "year": 2020,
             "precio": 0,
             "numFotos": 6,
-            "identificadorFotos": "Madrid",
+            "identificadorFotos": "Baqueira",
             "estancia": "Apartamento",
             "tipoEstancia": "Apartamento",
             "transporte": ["Coche"],
