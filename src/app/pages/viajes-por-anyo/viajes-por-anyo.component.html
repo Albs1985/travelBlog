@@ -1,10 +1,10 @@
-<div>
-    <div class="divOrdenar animated zoomInDown">
-        <button *ngIf="!orderDesc" class="botonOrdenar" (touchstart)="ordenar()" (click)="ordenar()"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
-        <button *ngIf="orderDesc" class="botonOrdenar" (touchstart)="ordenar()" (click)="ordenar()"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button>     
+<div class="tituloOrdenar">
+    <div class="divOrdenar">
+        <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
+        <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button>     
     </div>
-    <div class="divVolver animated zoomInDown">
-        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
+    <div class="divVolver">
+        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated zoomInDown" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
     </div>
 </div>
 

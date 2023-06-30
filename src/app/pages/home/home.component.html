@@ -1,6 +1,6 @@
 <div class="tituloOrdenar">
-    <button *ngIf="!orderDesc" class="botonOrdenar" (touchstart)="ordenar()" (click)="ordenar()"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
-    <button *ngIf="orderDesc" class="botonOrdenar" (touchstart)="ordenar()" (click)="ordenar()"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button> 
+    <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
+    <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button> 
     <h2 class="fh5co-article-title subtitulo animated fadeIn"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>    
 </div>
 <div class="container-fluid imagenFondo animated fadeIn">
