@@ -1,4 +1,8 @@
-<h2 class="fh5co-article-title subtitulo animated fadeIn"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>
+<div class="tituloOrdenar">
+    <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
+    <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button> 
+    <h2 class="fh5co-article-title subtitulo animated fadeIn"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>    
+</div>
 <div class="container-fluid imagenFondo animated fadeIn">
     <!-- <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
@@ -13,9 +17,10 @@
     <div class="row fh5co-post-entry animated fadeInDown">            
             <div *ngFor="let viajes of servicioViajes.viajesLista">                
                 <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
-                    <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp"><b>{{viajes.anyo}}</b></span>
-                    <figure>
+                    <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp">{{viajes.anyo}}</span>
+                    <figure class="contenedor-imagen">
                         <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" alt="Image" class="img-responsive"></a>
+                        <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsive">{{viajes.anyo}}</div>
                     </figure>
                     <!-- <span class="fh5co-meta"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{ 'app.destinos' | translate }}</a></span> -->
                     <div *ngFor="let destino of viajes.destinos">

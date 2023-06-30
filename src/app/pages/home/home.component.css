@@ -11,3 +11,42 @@
     font-size: 26px !important;
     margin-right: 25px !important;
  }
+
+.contenedor-imagen {
+    position: relative;
+    display: inline-block;
+}
+
+ .textoEnImagen{
+
+    position: absolute;
+    bottom: 20px; /* Ajusta la posición vertical */
+    right: 20px; /* Ajusta la posición horizontal */
+    color: #fff; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    background-color: rgba(0, 0, 0, 0.7); /*Color de fondo del texto */
+    padding: 5px; /* Espacio interno del texto */
+
+ }
+
+ .tituloOrdenar{
+    justify-content: space-between;
+ }
+
+.iconoFlecha {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color : rgb(247, 200, 115);
+    border-radius: 15px;
+
+    /* filter: blur(1px);
+    -webkit-filter: blur(1px); */
+}
+
+.botonOrdenar{
+    background: transparent;
+    border-color: transparent;
+    font-size: 16px;
+    margin-left: 20px;
+}

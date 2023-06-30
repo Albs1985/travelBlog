@@ -237,23 +237,28 @@ export class ViajesService {
 
   buscarViajes(termino : any){
     var palabra = '';
+
     if (termino.filtro != undefined){
       palabra = termino.filtro;
     }else{
       palabra = termino;
     }   
 
-    if (this.viajesFiltrado.length === 0){
-      //Cargar o esperar a que se carguen
-      this.cargarViajesParaFiltrar().then(() => {
-        //ejecutar después de tener los productos
+    return new Promise( (resolve, reject) => {
+      if (this.viajesFiltrado.length === 0){
+        //Cargar o esperar a que se carguen
+        this.cargarViajesParaFiltrar().then(() => {
+          //ejecutar después de tener los productos
+          //Aplicar filtro
+          resolve(this.filtrarViajes(palabra));
+        });
+      }else{
         //Aplicar filtro
-        this.filtrarViajes(palabra);
-      });
-    }else{
-      //Aplicar filtro
-      this.filtrarViajes(palabra);
-    }
+        resolve(this.filtrarViajes(palabra));
+      }
+
+    });
+    
 
   }
 

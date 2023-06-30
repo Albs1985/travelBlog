@@ -15,11 +15,14 @@ export class ViajesPorAnyoComponent implements OnInit{
   mensajeCabeceraFiltrar : boolean = false;
   palabra : string = '';
   mensajeCabeceraFiltrarSinTranslate : boolean = false;
+  orderDesc : boolean;
+  ejecutarSoloTouch : boolean;
 
   constructor (private route: ActivatedRoute,
-                public servicioViajes : ViajesService,
-                public servicioFotos : FotosService){
+                public servicioViajes : ViajesService){
                   
+                  this.orderDesc = false;
+                  this.ejecutarSoloTouch = false;
   }
 
   ngOnInit(){
@@ -27,9 +30,6 @@ export class ViajesPorAnyoComponent implements OnInit{
     this.route.params.subscribe(params =>{
       
       console.log(params);
-      // console.log('ALBERT');
-      // console.log(params['filtro']);
-      
       var isNum = Number.isInteger(Number(params['filtro']));
       this.palabra = params['filtro'];
       console.log(this.palabra);
@@ -39,13 +39,8 @@ export class ViajesPorAnyoComponent implements OnInit{
         this.mensajeCabeceraFiltrar = false;
         this.mensajeCabeceraFiltrarSinTranslate = false;  
         this.servicioViajes.cargarViajesPorAnyo(params);
-        // this.cabeceraComp.mensajeCabeceraAny = params['filtro'];
-        // console.log(this.cabeceraComp.mensajeCabeceraAny);
       }else{
         console.log('Filtramos por palabra');
-        // this.mensajeCabeceraAnyo = false;
-        // this.mensajeCabeceraFiltrar = true; 
-        // this.mensajeCabeceraFiltrarSinTranslate = false; 
 
         switch (this.palabra) {
           case 'playa':
@@ -76,16 +71,31 @@ export class ViajesPorAnyoComponent implements OnInit{
         }
         
         this.servicioViajes.buscarViajes(params);
-        
-        // this.cabeceraComp.mensajeCabeceraAny = params['filtro'];
-        // console.log(this.cabeceraComp.mensajeCabeceraAny);
-
-        // this.servicioFotos.cargarFotos(this.servicioViajes.viajesDetalleLista[0].destino+'_'+this.servicioViajes.viajesDetalleLista[0].fechaInicio);
 
       }
 
     }); 
 
+  }
+
+  public ordenar(eventType: string): void {
+    
+    //Para ejecutar sólo uno de los dos
+    this.orderDesc = !this.orderDesc;
+    if (eventType === 'click' && !this.ejecutarSoloTouch) { 
+      if (this.servicioViajes.viajesDetalleLista != null && this.servicioViajes.viajesDetalleLista.length > 0){
+        this.servicioViajes.viajesDetalleLista.reverse();
+      }else if (this.servicioViajes.viajesFiltrado != null && this.servicioViajes.viajesFiltrado.length > 0){
+        this.servicioViajes.viajesFiltrado.reverse();
+      }    
+    }else if (eventType === 'touchstart') {
+      this.ejecutarSoloTouch  = true; 
+      if (this.servicioViajes.viajesDetalleLista != null && this.servicioViajes.viajesDetalleLista.length > 0){
+        this.servicioViajes.viajesDetalleLista.reverse();
+      }else if (this.servicioViajes.viajesFiltrado != null && this.servicioViajes.viajesFiltrado.length > 0){
+        this.servicioViajes.viajesFiltrado.reverse();
+      }
+    }
   }
 
 }

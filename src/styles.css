@@ -7,6 +7,7 @@
     animation-fill-mode: both;
 }
 
+/***********************************fadeIn*************************************/
 
 @-webkit-keyframes fadeIn {
     from {
@@ -31,6 +32,7 @@
     animation-name: fadeIn;
 }
 
+/***********************************fadeInDown*************************************/
 
 @keyframes fadeInDown {
     from {
@@ -48,7 +50,7 @@
     animation-name: fadeInDown;
 }
 
-
+/***********************************bounceInRight*************************************/
 @keyframes bounceInRight {
     from,
     60%,
@@ -82,9 +84,10 @@
 }
   
 .bounceInRight {
-animation-name: bounceInRight;
+    animation-name: bounceInRight;
 }
 
+/***********************************rollIn*************************************/
 
 @keyframes rollIn {
 from {
@@ -102,6 +105,7 @@ to {
 animation-name: rollIn;
 }
 
+/***********************************bounceInUp*************************************/
 
 @keyframes bounceInUp {
 from,
@@ -136,5 +140,25 @@ to {
 }
 
 .bounceInUp {
-animation-name: bounceInUp;
+    animation-name: bounceInUp;
 }
+
+
+/***********************************zoomInDown*************************************/
+@keyframes zoomInDown {
+    from {
+      opacity: 0;
+      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    }
+  }
+  
+  .zoomInDown {
+    animation-name: zoomInDown;
+  }

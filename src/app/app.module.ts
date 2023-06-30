@@ -13,6 +13,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SafePipe } from './pipes/safe.pipe';
+import { BookModeComponent } from './pages/book-mode/book-mode.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SafePipe } from './pipes/safe.pipe';
     ViajeComponent,
     ViajesPorAnyoComponent,
     AboutComponent,
-    SafePipe
+    SafePipe,
+    BookModeComponent
   ],
   imports: [
     BrowserModule,

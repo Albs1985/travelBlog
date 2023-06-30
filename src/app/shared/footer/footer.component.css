@@ -1,5 +1,52 @@
-.imagenFooter{
-    background-image: url("/assets/images/playa.gif");
+/* .imagenFooter{
+    background-image: url("/assets/images/single_1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+} */
+
+.audio{
+    margin-left: 50px;
+    margin-bottom: -50px;
+    width: 260px;
+}
+
+@media(min-width: 600px){
+    .audio{    
+        width: 460px;
+    }
+}
+@media(min-width: 900px){
+    .audio{   
+        width: 600px; 
+    }
+}
+
+@media(min-width: 1100px){
+    .audio{   
+        width: 900px; 
+    }
+}
+
+@media(min-width: 1100px){
+    .audio{   
+        width: 900px; 
+    }
+}
+
+@media(min-width: 1500px){
+    .audio{   
+        width: 1200px; 
+    }
+}
+
+@media(min-width: 2000px){
+    .audio{   
+        width: 1800px; 
+    }
+}
+
+@media(min-width: 2200px){
+    .audio{   
+        width: 2000px; 
+    }
 }

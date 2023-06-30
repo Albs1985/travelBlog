@@ -3,4 +3,5 @@ export interface Viajero{
     nombreCompleto: string;
     nombreCorto: string;
     fotoPerfil: string;
+    edad : number;
 }

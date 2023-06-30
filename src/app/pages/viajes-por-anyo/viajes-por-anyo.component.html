@@ -1,6 +1,17 @@
+<div class="tituloOrdenar">
+    <div class="divOrdenar">
+        <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
+        <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button>     
+    </div>
+    <div class="divVolver">
+        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated zoomInDown" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
+    </div>
+</div>
+
 <h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} {{palabra}}</a></h2>
 <h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{'header.'+palabra | translate}}</a></h2>
 <h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
+
 
 <div class="container-fluid animated fadeIn">
     <div class="row fh5co-post-entry">
@@ -62,7 +73,7 @@
                 
 
                 <!-- <figure>
-                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.fotoPrincipal}}" alt="Image" class="img-responsive"></a>
+                    <a routerLink="/viaje/{{viajes.destino}}_{{viajes.fechaInicio}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}Principal.jpg" alt="" class="img-responsive"></a>
                 </figure> -->
 
                 <br>

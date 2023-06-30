@@ -28,4 +28,36 @@
     margin: auto;
 }
 
+.tituloOrdenar{
+    justify-content: space-between;
+ }
+
+.divOrdenar{
+    text-align: left;
+ }
+
+ .divVolver{
+    text-align: right;
+    margin-top: -35px;
+    margin-right: 15px;
+ }
+
+.iconoFlecha {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color : rgb(247, 200, 115);
+    border-radius: 15px;
+    /* cursor: pointer; */
+    /* filter: blur(1px);
+    -webkit-filter: blur(1px); */
+}
+
+.botonOrdenar{
+    background: transparent;
+    border-color: transparent;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
  

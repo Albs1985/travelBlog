@@ -4,12 +4,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
 import { AboutComponent } from './pages/about/about.component';
+import { BookModeComponent } from './pages/book-mode/book-mode.component';
 
 const app_routes: Routes = [
   { path: 'home', component : HomeComponent},
   { path: 'about', component : AboutComponent},
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
+  { path: 'bookMode', component : BookModeComponent},
   { path: '**', pathMatch: 'full', redirectTo : 'home'},
 ];
 
