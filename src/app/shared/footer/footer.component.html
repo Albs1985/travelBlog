@@ -1,10 +1,21 @@
 <div class="imagenFooter">
-    <audio id="audioMar" class="audio" controls>
+    <!-- <audio id="audioMar" class="audio" controls autoplay loop>
         <source src="/assets/audios/audioMar.mp3">
         {{ 'app.audioNoSoportado' | translate }}
-    </audio>    
+    </audio>     -->
     <!-- <audio [src]="audioMar.src" controls autoplay loop></audio> -->
     <!-- <audio #audioPlayer class="audio" [src]="audioMar.src" controls autoplay loop></audio> -->
+
+    <!-- <audio [src]="audioUrl" controls (ended)="pauseAudio()" [loop]="isPlaying"></audio>
+    <button (click)="playAudio()" [disabled]="isPlaying">Reproducir</button>
+    <button (click)="pauseAudio()" [disabled]="!isPlaying">Pausar</button> -->
+
+    <!-- Para tener un audio pero desde youtube -->
+    <iframe width="0px" height="0px" src="https://www.youtube.com/embed/xkUyIYfmTmg?autoplay=1" 
+        title="YouTube video player" frameborder="0" 
+        allow="autoplay" allowfullscreen>
+    </iframe>
+    
     <footer id="fh5co-footer">
         <div class="col-lg-12 col-md-12 text-center">
             <h1 id="fh5co-logo"><a href="#">{{ 'app.viajes' | translate }} <sup>Serrador Casares</sup></a></h1>                
