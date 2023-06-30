@@ -11,11 +11,11 @@ export class FooterComponent implements AfterViewInit, OnInit{
   anyo : number = new Date().getFullYear();
 
   // @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
-  audioMar: HTMLAudioElement;
+  // audioMar: HTMLAudioElement;
   
 
   constructor() {
-    this.audioMar = new Audio();  
+    // this.audioMar = new Audio();  
     //No deja hacerlo aquí, tenemos que hacerlo en el afterViewInit, para que pille el cambio del volumen por defecto
     // this.audioMar.volume = 0.2;
     // this.audioMar.play();    
@@ -29,14 +29,14 @@ export class FooterComponent implements AfterViewInit, OnInit{
   }
 
   playAudio(): void {
-    this.audioMar.src = '/assets/audios/audioMar.mp3';
-    this.audioMar.load();
-    this.audioMar.play();    
-    this.audioMar.loop = true;
+    // this.audioMar.src = '/assets/audios/audioMar.mp3';
+    // this.audioMar.load();
+    // this.audioMar.play();    
+    // this.audioMar.loop = true;
   }
 
   ngOnInit(): void {
-    this.playAudio();
+    // this.playAudio();
   }
 
 }
