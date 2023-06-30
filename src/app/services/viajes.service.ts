@@ -10,6 +10,8 @@ export class ViajesService {
 
   cargandoViajes = true;
   anyoViaje = '';
+  anyoActual : number = new Date().getFullYear();
+  arrayFotos : string[] = [];
 
   viajesJSON = "assets/data/viajes.json";
   viaje : Viaje = {
@@ -47,6 +49,39 @@ export class ViajesService {
 
   }
 
+  cargarFotosGaleria(){
+
+    return new Promise( (resolve, reject) => {
+      
+      this.http.get(this.viajesJSON)
+        .subscribe( (response: any ) => {
+
+          for(let key in response){           
+            var viajesAnyo = response[key];
+            // console.log(viajesAnyo);
+              for (let viatge in response[key]){
+                // console.log(viatge);
+                for (var i=1; i < viajesAnyo[viatge].numFotos; i++){
+                  var foto = viajesAnyo[viatge].year +'/'+viajesAnyo[viatge].identificadorFotos+''+i+'.jpg';
+                  console.log(foto);
+                  this.arrayFotos.push(foto); 
+                }                
+              }
+          } 
+          
+          console.log(this.arrayFotos);
+          
+          resolve(this.arrayFotos);
+          
+        });
+      
+    });
+   
+    
+  }
+  
+
+  
 
   cargarViajes(){
 

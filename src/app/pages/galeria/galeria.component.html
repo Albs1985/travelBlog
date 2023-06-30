@@ -1,0 +1,22 @@
+<!-- <h2>Responsive Image Gallery</h2> -->
+
+<br>
+<h2>{{ 'app.galeriaImagenes' | translate }}</h2>
+<br>
+<div class="row fotosPerfiles">
+    <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
+        <figure>
+            <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
+            <figcaption>{{viajero.nombreCompleto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
+        </figure>   
+    </div>
+</div>
+<div *ngFor="let viaje of viajesService.arrayFotos" class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="assets/images/{{viaje}}">
+      <img src="assets/images/{{viaje}}" alt="" width="600" height="400">
+    </a>    
+  </div>
+</div>
+
+<div class="clearfix"></div>

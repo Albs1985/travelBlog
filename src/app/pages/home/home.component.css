@@ -26,6 +26,7 @@
     font-size: 16px; /* Tamaño de fuente */
     background-color: rgba(0, 0, 0, 0.7); /*Color de fondo del texto */
     padding: 5px; /* Espacio interno del texto */
+    cursor: pointer;
 
  }
 
