@@ -15,10 +15,12 @@ export class ViajesPorAnyoComponent implements OnInit{
   mensajeCabeceraFiltrar : boolean = false;
   palabra : string = '';
   mensajeCabeceraFiltrarSinTranslate : boolean = false;
+  orderDesc : boolean;
 
   constructor (private route: ActivatedRoute,
                 public servicioViajes : ViajesService){
                   
+                  this.orderDesc = false;
   }
 
   ngOnInit(){
@@ -85,6 +87,18 @@ export class ViajesPorAnyoComponent implements OnInit{
 
     }); 
 
+  }
+
+  public ordenar(): void {
+    // console.log('Vamos a ordenar. Está ordenado ascendente? '+this.orderDesc);
+    this.orderDesc = !this.orderDesc;
+    if (this.servicioViajes.viajesDetalleLista != null && this.servicioViajes.viajesDetalleLista.length > 0){
+      this.servicioViajes.viajesDetalleLista.reverse();
+    }
+    if (this.servicioViajes.viajesFiltrado != null && this.servicioViajes.viajesFiltrado.length > 0){
+      this.servicioViajes.viajesFiltrado.reverse();
+    }
+    
   }
 
 }

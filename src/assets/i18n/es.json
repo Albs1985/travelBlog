@@ -5,6 +5,7 @@
         "cargando": "Cargando...",
         "espere": "Espere por favor",
         "videoNoSoportado": "Tu navegador no soporta este tipo de video",
+        "audioNoSoportado": "Tu navegador no soporta este tipo de audio",
         "youtubeVideos" : "Vídeos de Youtube",
         "idioma": "Idioma",
         "spanish": "Castellano",
@@ -18,7 +19,8 @@
         "viaje" : "Viaje",
         "cerrar": "Cerrar",
         "destinos" : "Destinos",
-        "modoLibro" : "Formato libro"
+        "modoLibro" : "Formato libro",
+        "historia": "Historia de los viajeros"
     },
     "about":{
         "titulo": "Familia Serrador Casares",

@@ -9,6 +9,8 @@ import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent {
 
+  orderDesc : boolean;
+  
   constructor(public servicioViajes : ViajesService,
     private translate: TranslateService){
     
@@ -19,7 +21,15 @@ export class HomeComponent {
     // });
     
     this.servicioViajes.cargarViajes();
+    this.orderDesc = false;
+    // console.log('INICIALIZAMOS this.orderDesc='+this.orderDesc);
 
+  }
+
+  public ordenar(): void {
+    // console.log('Vamos a ordenar. Está ordenado ascendente? '+this.orderDesc);
+    this.orderDesc = !this.orderDesc;
+    this.servicioViajes.viajesLista.reverse();    
   }
 
 }

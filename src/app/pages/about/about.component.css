@@ -4,3 +4,21 @@
     display: table-cell;
     padding: 5px;
 }
+
+.divVolver{
+    text-align: right;
+    margin-top: 0px;
+    margin-right: 15px;
+    margin-bottom: 25px;
+ }
+
+.iconoFlecha {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color : rgb(247, 200, 115);
+    border-radius: 15px;
+    cursor: pointer;
+    /* filter: blur(1px);
+    -webkit-filter: blur(1px); */
+}
