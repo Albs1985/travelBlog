@@ -40,8 +40,8 @@ export class FotosService {
       this.http.get(this.fotosJSON)
         .subscribe( (response: any ) => {
 
-          var fechaInicioViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1);
-          // console.log('fechaInicioViaje '+fechaInicioViaje);
+          var fechaInicioViaje = clave.ciudad.substring(0, clave.ciudad.indexOf('_'));
+          // console.log('fechaInicioViaje FOTOS '+fechaInicioViaje);
           // var anyoViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1, clave.ciudad.indexOf('-'));
 
           var array = [];
@@ -78,13 +78,13 @@ export class FotosService {
               this.foto.foto11 = response[key].foto11;
               this.foto.foto12 = response[key].foto12;
 
-              console.log(this.foto);
+              // console.log(this.foto);
   
               array.push(this.foto);
             }            
             
           } 
-          console.log(array);
+          // console.log(array);
           this.fotosLista = array; 
 
           

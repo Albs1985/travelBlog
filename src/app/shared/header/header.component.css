@@ -28,6 +28,7 @@
     width: 30px;
     height: 30px;
     align-self: center;
+    cursor: pointer;
  }
 
  #botonLupa{

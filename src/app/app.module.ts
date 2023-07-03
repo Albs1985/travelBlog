@@ -14,6 +14,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SafePipe } from './pipes/safe.pipe';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
+import { GaleriaComponent } from './pages/galeria/galeria.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BookModeComponent } from './pages/book-mode/book-mode.component';
     ViajesPorAnyoComponent,
     AboutComponent,
     SafePipe,
-    BookModeComponent
+    BookModeComponent,
+    GaleriaComponent
   ],
   imports: [
     BrowserModule,

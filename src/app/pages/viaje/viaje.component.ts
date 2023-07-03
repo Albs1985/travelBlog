@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit/*, ElementRef, ViewChild, AfterViewInit*/ } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViajesService } from '../../services/viajes.service';
 import { FotosService } from 'src/app/services/fotos.service';
@@ -8,8 +8,8 @@ import { FotosService } from 'src/app/services/fotos.service';
   templateUrl: './viaje.component.html',
   styleUrls: ['./viaje.component.css']
 })
-export class ViajeComponent implements OnInit{
-
+export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
+  // @ViewChild('container') containerRef!: ElementRef;
   
   constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService){
 
@@ -28,6 +28,11 @@ export class ViajeComponent implements OnInit{
     }); 
 
   }
+
+  // ngAfterViewInit() {
+  //   this.containerRef.nativeElement.scrollTo(0, 0);
+  // }
+
 
 
 }

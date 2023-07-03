@@ -6,6 +6,8 @@ export interface Viaje{
     provincia: string;
     pais: string;
     year: number;
+    idAnteriorViaje: string;
+    idSiguienteViaje: string;
     diaInicio : number,    
     mesInicio : number;
     diaFin : number,

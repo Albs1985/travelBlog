@@ -20,12 +20,14 @@
  .textoEnImagen{
 
     position: absolute;
-    bottom: 20px; /* Ajusta la posición vertical */
-    right: 20px; /* Ajusta la posición horizontal */
-    color: #fff; /* Color del texto */
+    bottom: 10px; /* Ajusta la posición vertical */
+    right: 10px; /* Ajusta la posición horizontal */
+    color: rgba(255, 255, 255, 0.6);; /* Color del texto */
     font-size: 16px; /* Tamaño de fuente */
-    background-color: rgba(0, 0, 0, 0.7); /*Color de fondo del texto */
+    background-color: rgba(0, 0, 0, 0.2); /*Color de fondo del texto */
     padding: 5px; /* Espacio interno del texto */
+    cursor: pointer;
+    border-radius: 5px;
 
  }
 
@@ -39,9 +41,14 @@
     padding: 5px;
     background-color : rgb(247, 200, 115);
     border-radius: 15px;
+}
 
-    /* filter: blur(1px);
-    -webkit-filter: blur(1px); */
+.iconoFlechaPeque{
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    background-color : rgba(247, 200, 115, 0.2);
+    border-radius: 15px;
 }
 
 .botonOrdenar{
