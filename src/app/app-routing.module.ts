@@ -18,7 +18,7 @@ const app_routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(app_routes, {useHash: true})],
+  imports: [RouterModule.forRoot(app_routes, {useHash: true, scrollPositionRestoration: 'enabled'})], /* Para posicionar el cursor arriba del todo al abrir una pagina: "scrollPositionRestoration: 'enabled'" */
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

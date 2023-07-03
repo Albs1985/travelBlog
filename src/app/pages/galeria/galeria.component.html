@@ -1,7 +1,12 @@
 <!-- <h2>Responsive Image Gallery</h2> -->
 
 <br>
-<h2>{{ 'app.galeriaImagenes' | translate }}</h2>
+<h2 class="tituloGaleria">{{ 'app.galeriaImagenes' | translate }}</h2>
+<br>
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
+</div>
+<br>
 <br>
 <div class="row fotosPerfiles">
     <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">

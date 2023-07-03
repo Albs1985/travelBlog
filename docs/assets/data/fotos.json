@@ -90,6 +90,110 @@
         "foto3": "Madrid3.jpg",
         "foto4": "Madrid4.jpg",
         "foto5": "Madrid5.jpg"
+    },
+    "2022-08-15":{
+        "principal": "AndorraPrincipal.jpg",        
+        "foto1": "Andorra1.jpg",
+        "foto2": "Andorra2.jpg",
+        "foto3": "Andorra3.jpg",
+        "foto4": "Andorra4.jpg",
+        "foto5": "Andorra5.jpg"
+    },
+    "2022-06-04":{
+        "principal": "MenorcaPrincipal.jpg",        
+        "foto1": "Menorca1.jpg",
+        "foto2": "Menorca2.jpg",
+        "foto3": "Menorca3.jpg",
+        "foto4": "Menorca4.jpg",
+        "foto5": "Menorca5.jpg"
+    },   
+    "2021-04-02":{
+        "principal": "MascaratPrincipal.jpg",        
+        "foto1": "Mascarat1.jpg",
+        "foto2": "Mascarat2.jpg",
+        "foto3": "Mascarat3.jpg",
+        "foto4": "Mascarat4.jpg",
+        "foto5": "Mascarat5.jpg"
+    },  
+    "2021-05-28":{
+        "principal": "MontanejosPrincipal.jpg",        
+        "foto1": "Montanejos1.jpg",
+        "foto2": "Montanejos2.jpg",
+        "foto3": "Montanejos3.jpg",
+        "foto4": "Montanejos4.jpg",
+        "foto5": "Montanejos5.jpg"
+    } ,   
+    "2021-06-11":{
+        "principal": "AlteaPrincipal.jpg",        
+        "foto1": "Altea1.jpg",
+        "foto2": "Altea2.jpg",
+        "foto3": "Altea3.jpg",
+        "foto4": "Altea4.jpg",
+        "foto5": "Altea5.jpg"
+    } ,   
+    "2020-07-06":{
+        "principal": "IbizaPrincipal.jpg",        
+        "foto1": "Ibiza1.jpg",
+        "foto2": "Ibiza2.jpg",
+        "foto3": "Ibiza3.jpg",
+        "foto4": "Ibiza4.jpg",
+        "foto5": "Ibiza5.jpg"
+    } ,   
+    "2020-06-08":{
+        "principal": "GiletPrincipal.jpg",        
+        "foto1": "Gilet1.jpg",
+        "foto2": "Gilet2.jpg",
+        "foto3": "Gilet3.jpg",
+        "foto4": "Gilet4.jpg",
+        "foto5": "Gilet5.jpg"
+    } ,   
+    "2020-05-10":{
+        "principal": "MadridPrincipal.jpg",        
+        "foto1": "Madrid1.jpg",
+        "foto2": "Madrid2.jpg",
+        "foto3": "Madrid3.jpg",
+        "foto4": "Madrid4.jpg",
+        "foto5": "Madrid5.jpg"
+    } ,   
+    "2019-04-06":{
+        "principal": "FanzaraPrincipal.jpg",        
+        "foto1": "Fanzara1.jpg",
+        "foto2": "Fanzara2.jpg",
+        "foto3": "Fanzara3.jpg",
+        "foto4": "Fanzara4.jpg",
+        "foto5": "Fanzara5.jpg"
+    } ,   
+    "2019-09-14":{
+        "principal": "BodaPrincipal.jpg",        
+        "foto1": "Boda1.jpg",
+        "foto2": "Boda2.jpg",
+        "foto3": "Boda3.jpg",
+        "foto4": "Boda4.jpg",
+        "foto5": "Boda5.jpg",
+        "foto6": "Boda6.jpg",
+        "foto7": "Boda7.jpg",
+        "foto8": "Boda8.jpg",
+        "foto9": "Boda9.jpg",
+        "foto10": "Boda10.jpg",
+        "foto11": "Boda11.jpg",
+        "foto12": "Boda12.jpg"
+    }  ,   
+    "2019-09-17":{
+        "principal": "BaliPrincipal.jpg",        
+        "foto1": "Bali1.jpg",
+        "foto2": "Bali2.jpg",
+        "foto3": "Bali3.jpg",
+        "foto4": "Bali4.jpg",
+        "foto5": "Bali5.jpg",
+        "foto6": "Bali6.jpg",
+        "foto7": "Bali7.jpg",
+        "foto8": "Bali8.jpg",
+        "foto9": "Bali9.jpg",
+        "foto10": "Bali10.jpg",
+        "foto11": "Bali11.jpg",
+        "foto12": "Bali12.jpg"
+
     }    
+
 }
     

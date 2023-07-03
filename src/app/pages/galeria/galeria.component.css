@@ -11,17 +11,35 @@
     margin-left: 20px;
 }
 
-/* div.gallery {
-    border: 1px solid #ccc;
+.tituloGaleria{
+  margin-left: 25px;
+}
+
+.divRight{
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color : rgb(247, 200, 115);
+  border-radius: 15px;  
+}
+ div.gallery {
+    /* border: 1px solid #ccc; */
+    margin: 30px;
+    box-shadow: 5px 10px 8px #888888;
   }
   
   div.gallery:hover {
     border: 1px solid #777;
-  } */
+  }
   
   div.gallery img {
     width: 100%;
-    height: auto;
+    height: auto;    
   }
   
   div.desc {

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FotosService } from 'src/app/services/fotos.service';
 import { ViajesService } from 'src/app/services/viajes.service';
-import { HeaderComponent } from 'src/app/shared/header/header.component';
 
 @Component({
   selector: 'app-viajes-por-anyo',
@@ -17,6 +15,7 @@ export class ViajesPorAnyoComponent implements OnInit{
   mensajeCabeceraFiltrarSinTranslate : boolean = false;
   orderDesc : boolean;
   ejecutarSoloTouch : boolean;
+  viajesCargados : boolean = false;
 
   constructor (private route: ActivatedRoute,
                 public servicioViajes : ViajesService){
@@ -29,16 +28,16 @@ export class ViajesPorAnyoComponent implements OnInit{
 
     this.route.params.subscribe(params =>{
       
-      console.log(params);
+      // console.log(params);
       var isNum = Number.isInteger(Number(params['filtro']));
       this.palabra = params['filtro'];
-      console.log(this.palabra);
+      // console.log(this.palabra);
       if (isNum){
         console.log('Filtramos por anyo');
         this.mensajeCabeceraAnyo = true;
         this.mensajeCabeceraFiltrar = false;
         this.mensajeCabeceraFiltrarSinTranslate = false;  
-        this.servicioViajes.cargarViajesPorAnyo(params);
+        this.servicioViajes.cargarViajesPorAnyo(params);        
       }else{
         console.log('Filtramos por palabra');
 
@@ -74,7 +73,9 @@ export class ViajesPorAnyoComponent implements OnInit{
 
       }
 
-    }); 
+    });
+    
+    this.viajesCargados = true;
 
   }
 

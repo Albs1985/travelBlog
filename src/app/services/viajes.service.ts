@@ -22,6 +22,8 @@ export class ViajesService {
     provincia: '',
     pais: '',
     year: 0,
+    idAnteriorViaje: '',
+    idSiguienteViaje: '',
     diaInicio : 0,
     mesInicio : 0,
     diaFin : 0,
@@ -132,6 +134,8 @@ export class ViajesService {
       diaInicio : 0,
       diaFin : 0,
       year: 0,
+      idAnteriorViaje: '',
+      idSiguienteViaje: '',
       mesInicio : 0,
       mesFin : 0,
       numFotos: 0,
@@ -157,6 +161,8 @@ export class ViajesService {
     this.viaje.diaFin =viajesAnyo[viatge].fechaFin.substring(8);
     this.viaje.mesFin =viajesAnyo[viatge].fechaFin.substring(5, 7);
     this.viaje.year =viajesAnyo[viatge].year;
+    this.viaje.idAnteriorViaje =viajesAnyo[viatge].idAnteriorViaje;
+    this.viaje.idSiguienteViaje =viajesAnyo[viatge].idSiguienteViaje;
     this.viaje.categoria =viajesAnyo[viatge].categoria;
     this.viaje.estancia =viajesAnyo[viatge].estancia;
     this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
@@ -334,6 +340,7 @@ export class ViajesService {
       }
     });
 
+    this.cargandoViajes = false;
     console.log(this.viajesDetalleLista);
 
   }
@@ -347,9 +354,9 @@ export class ViajesService {
         .subscribe( (response: any ) => {
 
           var array = [];
-          var fechaInicioViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1);
+          var fechaInicioViaje = clave.ciudad.substring(0, clave.ciudad.indexOf('_'));
           console.log(fechaInicioViaje);
-          this.anyoViaje = clave.ciudad.substring(clave.ciudad.indexOf('_')+1, clave.ciudad.indexOf('-'));
+          this.anyoViaje = fechaInicioViaje.substring(0, fechaInicioViaje.indexOf('-'));
           console.log(this.anyoViaje);
 
 
