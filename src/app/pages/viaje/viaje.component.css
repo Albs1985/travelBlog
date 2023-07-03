@@ -15,12 +15,17 @@
   font-size: 14px !important;
 }
 
+.estiloNota{
+  font-style: italic;  
+}
+
 .video-container{
   display: grid;
   grid-template-columns: repeat(1, 1fr);/*Para hacer 3 columnas y que tengan el mismo tamaño*/
   padding: 20px;
   grid-gap: 20px;  
 }
+
   
 .video-item{
     position: relative;

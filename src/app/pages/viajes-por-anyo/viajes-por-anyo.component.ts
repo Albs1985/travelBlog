@@ -15,7 +15,7 @@ export class ViajesPorAnyoComponent implements OnInit{
   mensajeCabeceraFiltrarSinTranslate : boolean = false;
   orderDesc : boolean;
   ejecutarSoloTouch : boolean;
-  viajesCargados : boolean = false;
+  // viajesCargados : boolean = false;
 
   constructor (private route: ActivatedRoute,
                 public servicioViajes : ViajesService){
@@ -75,7 +75,7 @@ export class ViajesPorAnyoComponent implements OnInit{
 
     });
     
-    this.viajesCargados = true;
+    // this.viajesCargados = true;
 
   }
 

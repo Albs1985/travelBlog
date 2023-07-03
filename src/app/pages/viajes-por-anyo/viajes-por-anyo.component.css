@@ -50,6 +50,16 @@
     border-radius: 15px;
 }
 
+
+.iconoFlechaImg{
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color : rgb(247, 200, 115);
+    border-radius: 15px;
+    margin-top: 70px;
+}
+
 .botonOrdenar{
     background: transparent;
     border-color: transparent;

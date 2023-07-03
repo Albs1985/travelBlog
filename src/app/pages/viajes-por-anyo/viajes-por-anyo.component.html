@@ -13,12 +13,12 @@
 <h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
 
 
-<div *ngIf="viajesCargados" class="container-fluid animated fadeIn">
+<div *ngIf="!servicioViajes.cargandoViajes" class="container-fluid animated fadeIn">
     <div class="row fh5co-post-entry">
         <div *ngFor="let viajes of servicioViajes.viajesDetalleLista">
             <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
                 
-                <div *ngIf="!servicioViajes.cargandoViajes" id="theCarousel" class="carousel slide">
+                <div *ngIf="!servicioViajes.cargandoViajes" id="theCarousel{{viajes.identificadorFotos}}" class="carousel slide">
                     <!-- Indicadores  data-ride="carousel"-->
                     <!-- <ol class="carousel-indicators">
                         <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
@@ -60,14 +60,16 @@
                             </div> -->
                         </div>                
                 
-                        <!-- <a class="left carousel-control" href="#theCarousel" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden=""></span>
-                            <span class="sr-only">Anterior</span>
+                        <a class="left carousel-control" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="prev">
+                            <img src="assets/icons/flechaIzq.png" class="animated fadeIn iconoFlechaImg">
+                            <!-- <span class="glyphicon-chevron-left" aria-hidden=""><</span> -->
+                            <!-- <span class="sr-only">Anterior</span> -->
                         </a>
-                        <a class="right carousel-control" href="#theCarousel" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden=""></span>
-                            <span class="sr-only">Siguiente</span>
-                        </a> -->
+                        <a class="right carousel-control" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="next">
+                            <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaImg">
+                            <!-- <span class="glyphicon-chevron-right" aria-hidden="">></span> -->
+                            <!-- <span class="sr-only">Siguiente</span> -->
+                        </a>
                     </div>
                 </div>
                 
