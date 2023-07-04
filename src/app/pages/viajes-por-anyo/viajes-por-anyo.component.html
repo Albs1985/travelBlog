@@ -1,7 +1,7 @@
 <div class="tituloOrdenar">
     <div class="divOrdenar">
-        <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> Ordenar</button> 
-        <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> Ordenar</button>     
+        <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button> 
+        <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>     
     </div>
     <div class="divVolver">
         <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated zoomInDown" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
@@ -84,7 +84,7 @@
                 </div>
                 <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.provincia}}</a></span>
                 <!-- <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></span> -->
-                <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.destino}}</a></h2>
+                <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.destino}} &nbsp;<img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaColor" routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"></a></h2>
                 <!-- <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></h2>
                 <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></h2> -->
                 <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{viajes.diaInicio}} de {{'mesAnyo.'+viajes.mesInicio | translate }}</b></span>

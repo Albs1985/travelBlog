@@ -21,7 +21,8 @@
         "destinos" : "Destinos",
         "modoLibro" : "Formato libro",
         "historia": "Historia de los viajeros",
-        "ordenar": "Ordenar"
+        "ordenar": "Ordenar",
+        "volverAviajes": "Ir a los viajes"
     },
     "about":{
         "titulo": "Familia Serrador Casares",
@@ -52,7 +53,7 @@
         "bloque6_parrafo2": "Alba estaba atravesando el final de un largo camino sentimental, donde necesitaba organizar sus sentimientos. Y llego Albert para descolocarla de nuevo. Pero tras una larga conversación, un diálogo entre dos adultos ya (34 años tenían ambos), decidieron marcharse a casa juntos. Pasaron los días, semanas y en menos de unos meses esa relación se convirtió en un barco imposible de hundir, preparado para cualquier iceberg.",
         "tituloParte3": "Se acercaba la fecha",
         "bloque7_parrafo1": "Y así llego el día en que Albert, tras varias indirectas y directas de Alba, decidió pedirle en matrimonio a Alba. Para ello, tuvo primero que organizarlo todo. Hicieron un viaje en furgoneta (camperizada). Y ese viaje no podía empezar peor... Rotura de correa de distribución a la altura de Castellón y vuelta a empezar (vinieron a por ellos los iaios para traerlos a casa hasta que arreglaran la furgoneta en el Norauto de Castellón). No se dieron por vencidos, y volvieron a empezar el camino dos días después. Así llegaron a la zona de Pre-Pirineos, a Barruera, donde había un pequeño parking de caravanas y furgonetas camper. Allí hicieron la noche intermedia, para al día siguiente lanzarse hacia el refugio de Colomers, donde habían reservado un par de días. Albert había crecido en esas montañas de pequeño con sus padres, con excursiones de refugio en refugio (aunque el de Colomers lo habían re-hecho, ya que el antiguo estaba en muy malas condiciones). ",
-        "bloque7_parrafo2": "No podía esperar más, a la mañana siguiente, Albert había comprado una botella de vino, la cual pensaba abrir para celebrar el futuro matrimonio. Y le propuso a Alba hacer una pequeña excursión hacia los lagos de la parte alta de la zona, que a pesar de ser agosto, todavía tenían algo de nieve. Al llegar a aquel precioso lugar, le pidió que cerrara los ojos y al abrirlos le enseño el anillo. Un anillo valorado en 2€, para que de forma simbólica, darselo en matrimonio (ya que el verdadero habría que hacerlo a medida y se iba a perder la sorpresa). Ya solo faltaba poner fecha y organizar la boda, lo que no iba a ser poca cosa... no sabían dónde se estaban metiendo..."
+        "bloque7_parrafo2": "No podía esperar más, a la mañana siguiente, Albert había comprado una botella de vino, la cual pensaba abrir para celebrar el futuro matrimonio. Y le propuso a Alba hacer una pequeña excursión hacia los lagos de la parte alta de la zona, que a pesar de ser agosto, todavía tenían algo de nieve. Al llegar a aquel precioso lugar, le pidió que cerrara los ojos y al abrirlos le enseño el anillo. Un anillo valorado en 2€, para que de forma simbólica, darselo en matrimonio (ya que el verdadero habría que hacerlo a medida y se iba a perder la sorpresa). Ya solo faltaba poner fecha y organizar la boda, lo que no iba a ser poca cosa... no sabían dónde se estaban metiendo... El viaje continuava por la Costa Brava, con visita obligada a Cadaques, y ruta por las playas de la zona."
     },
     "header":{
         "categoria" : "Categorias",
@@ -95,7 +96,8 @@
         "pais" : "País",
         "anterior" : "Viaje Anterior",
         "siguiente" : "Siguiente Viaje",
-        "empezar": "Empezar a viajar"
+        "empezar": "Empezar a viajar",
+        "ConoceViaje": "Conoce los viajes"
     },
     "2023-06-10":{
         "tituloParte1": "Último viaje antes de la gran tormenta",

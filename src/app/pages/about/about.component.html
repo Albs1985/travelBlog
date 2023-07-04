@@ -2,7 +2,7 @@
     <div class="row fh5co-post-entry single-entry">
         <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
             <div class="divVolver">
-                <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
+                <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home/"><a routerLink="/home/">  {{ 'app.volverAviajes' | translate}}</a></span>
             </div>
             <figure class="animated zoomInDown">
                 <a target="_blank" href="assets/images/perfiles/fotoPerfilFamilia.jpg"><img src="assets/images/perfiles/fotoPerfilFamilia.jpg" alt="Image" class="img-responsive"></a>
@@ -122,14 +122,14 @@
                 <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
                     <figure>
                         <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-                        <figcaption>{{viajero.nombreCompleto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
+                        <figcaption>{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
                     </figure>   
                 </div>                         
             </div>
 
             <div class="divRight">
-                <a routerLink="/viaje/2019-04-06_Fanzara">{{ 'viaje.empezar' | translate}}</a>&nbsp;
-                <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlecha" routerLink="/viaje/2019-04-06_Fanzara">                    
+                <a routerLink="/home/">{{ 'viaje.conoceViaje' | translate}}</a>&nbsp;
+                <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlecha" routerLink="/home/">                    
             </div>
 
         </article>

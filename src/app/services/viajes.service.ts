@@ -111,7 +111,7 @@ export class ViajesService {
             
           } 
           
-          this.viajesLista = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
+          this.viajesLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
           resolve(this.viajesLista);
           this.cargandoViajes = false;
@@ -193,6 +193,8 @@ export class ViajesService {
         icono = icono+"caravana.png";
       }else if (transport == "FoodTruck"){
         icono = icono+"foodTruck.png";
+      }else if (transport == "Boda"){
+        icono = icono+"boda.png";
       }
 
       this.viaje.transporte[j] = icono;
