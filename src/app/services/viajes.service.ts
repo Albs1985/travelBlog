@@ -65,13 +65,13 @@ export class ViajesService {
                 // console.log(viatge);
                 for (var i=1; i < viajesAnyo[viatge].numFotos; i++){
                   var foto = viajesAnyo[viatge].year +'/'+viajesAnyo[viatge].identificadorFotos+''+i+'.jpg';
-                  console.log(foto);
+                  // console.log(foto);
                   this.arrayFotos.push(foto); 
                 }                
               }
           } 
           
-          console.log(this.arrayFotos);
+          // console.log(this.arrayFotos);
           
           resolve(this.arrayFotos);
           
@@ -111,7 +111,7 @@ export class ViajesService {
             
           } 
           
-          this.viajesLista = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
+          this.viajesLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
           resolve(this.viajesLista);
           this.cargandoViajes = false;
@@ -193,6 +193,8 @@ export class ViajesService {
         icono = icono+"caravana.png";
       }else if (transport == "FoodTruck"){
         icono = icono+"foodTruck.png";
+      }else if (transport == "Boda"){
+        icono = icono+"boda.png";
       }
 
       this.viaje.transporte[j] = icono;
@@ -239,8 +241,9 @@ export class ViajesService {
           } 
           this.viajesDetalleLista = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
+          this.cargandoViajes = false;
           resolve(this.viajesDetalleLista);
-          this.cargandoViajes = false;          
+                    
         });
       
     });
@@ -267,8 +270,9 @@ export class ViajesService {
 
           this.viajesFiltrado = array.reverse(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
+          this.cargandoViajes = false;  
           resolve(this.viajesFiltrado);
-          this.cargandoViajes = false;          
+                  
           
         });
       
@@ -375,8 +379,9 @@ export class ViajesService {
 
           console.log(this.viajesDetalleLista);
 
-          resolve(this.viajesDetalleLista);
           this.cargandoViajes = false;
+          resolve(this.viajesDetalleLista);
+          
           
         });
       

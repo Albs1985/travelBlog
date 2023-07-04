@@ -16,7 +16,7 @@ export class HomeComponent {
     private translate: TranslateService){
     
     this.servicioViajes.cargarViajes();
-    this.orderDesc = false;
+    this.orderDesc = true;
     this.ejecutarSoloTouch = false;
 
   }
