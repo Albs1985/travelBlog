@@ -9,11 +9,13 @@
 }
 
 .imagenPerfil{
-    padding: 15px;
-    width: 100px;
-    height: 100px;
+    /* padding: 15px; */
+    width: 40%;
+    height: 40%;
     align-self: center;
-    border-radius: 55px;
+    border-radius: 15px;
+    box-shadow: 5px 10px 8px #888888;
+
 }
 
 .seleccionado{

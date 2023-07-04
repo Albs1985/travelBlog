@@ -16,7 +16,8 @@
 }
 
 .estiloNota{
-  font-style: italic;  
+  font-style: italic !important;  
+  font-family: "sans-serif" !important;
 }
 
 .video-container{
