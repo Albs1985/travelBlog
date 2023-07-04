@@ -8,9 +8,9 @@
     </div>
 </div>
 
-<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} {{palabra}}</a></h2>
-<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{'header.'+palabra | translate}}</a></h2>
-<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
+<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{palabra}}</b></a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{'header.'+palabra | translate}}</b></a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{palabra}}</b></a></h2>
 
 
 <div *ngIf="!servicioViajes.cargandoViajes" class="container-fluid animated fadeIn">
