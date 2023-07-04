@@ -84,7 +84,7 @@
                     <!-- </div> -->
                 </div>
                 
-                <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 4" class="col-lg-6 col-lg-push-6 col-md-12 col-md-push-0">
+                <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 4" class="col-lg-6 col-md-12">
                     <figure>
                         <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto5}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto5}}" alt="foto5" class="img-responsive"></a>
                         <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto5' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto5' | translate}}</figcaption>
