@@ -3,6 +3,30 @@
   height: 300px;
 }
 
+.custom-tooltip {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: medium;
+  background-image: url('/assets/images/fondoPiedras.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: auto;
+  height: auto;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 15px;
+  z-index: 9999;
+  box-shadow: 5px 10px 8px #888888;
+  text-align: left;   
+}
+
+.infoButton{
+  background: transparent;
+  border-color: transparent;
+}
+
 .divLeft{
   float: left;
   margin-left: 5px;
@@ -42,7 +66,7 @@
   height: 260px;
   width: 340px;
   border: 5px solid rgb(212, 212, 212);
-  box-shadow: 5px 10px 8px #888888;;
+  box-shadow: 5px 10px 8px #888888;
   overflow: hidden;
   border-radius: 25px 25px;
   margin-bottom: 50px;
@@ -89,6 +113,15 @@
 
 .fh5co-post-entry article .fh5co-meta {
   font-size: 20px;
+}
+
+.iconosImg{
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -10px;
 }
     
 @media(min-width: 992px){

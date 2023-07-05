@@ -9,11 +9,27 @@
             <div *ngFor="let transporte of servicioViajes.viajesDetalleLista[0].transporte" class="disposicion">
                 <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos animated rollIn">
             </div>
+            <span class="fh5co-meta">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Playa'" src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Ciudad'" src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
+                &nbsp;{{servicioViajes.viajesDetalleLista[0].year}}
+                <button type="button" class="infoButton" (touchstart)="showTooltip()" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rollIn"></button>
+                <div class="custom-tooltip" (touchstart)="showTooltip()" (click)="showTooltip()" *ngIf="showMsg">
+                    <ul><b>{{ 'header.categoria' | translate }}: {{'categoria.'+ servicioViajes.viajesDetalleLista[0].categoria | translate}}</b></ul>
+                    <ul><b>{{ 'viaje.provincia' | translate }}: {{servicioViajes.viajesDetalleLista[0].provincia}}</b></ul>
+                    <ul><b>{{ 'viaje.pais' | translate }}: {{'localidad.'+ servicioViajes.viajesDetalleLista[0].pais | translate}}</b></ul>
+                    <ul><b>{{ 'viaje.precio' | translate }}: {{servicioViajes.viajesDetalleLista[0].precio}}€</b></ul>                    
+                    <ul><b>{{ 'viaje.estancia' | translate }}: {{servicioViajes.viajesDetalleLista[0].estancia}}</b></ul>
+                    <ul><b>{{ 'viaje.tipoEstancia' | translate }}: {{'tipoEstancia.'+ servicioViajes.viajesDetalleLista[0].tipoEstancia | translate}}</b></ul>
+                    <ul><b>{{ 'app.viajeros' | translate }}: {{servicioViajes.viajesDetalleLista[0].personas}}</b></ul>
+                </div>  
+            </span>
 
             <h2 class="fh5co-article-title"><a>{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
             <!-- <span class="fh5co-meta fh5co-date">March 6th, 2016</span> -->
             <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaInicio}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesInicio | translate }}</b> {{ 'viaje.hasta' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaFin}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesFin | translate }}</b></span>
-            
             
             <div *ngFor="let persona of servicioViajes.viajesDetalleLista[0].personas" class="disposicion">
                 <a target="_blank" href="assets/images/perfiles/fotoPerfil{{persona}}.jpg"><img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight"></a>

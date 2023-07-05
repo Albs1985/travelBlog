@@ -9,13 +9,12 @@
 }
 
 .imagenPerfil{
-    /* padding: 15px; */
-    margin-top: 6px;
-    margin-right: -10px;
+    margin-top: -20px;
+    margin-right: 10px;
     width: 40%;
     height: 40%;
     align-self: center;
-    border-radius: 15px;
+    border-radius: 55px;
     box-shadow: 5px 10px 8px #888888;
     float: right;
 
@@ -27,14 +26,29 @@
     border: 2px solid grey;
  }
 
- .imagenLupa{
+ .iconosImg{
     /* border-radius: 25px;     */
     padding: 2px;
     width: 30px;
     height: 30px;
     align-self: center;
     cursor: pointer;
+    margin-top: -10px;
  }
+
+ .liViajes{
+   margin-top: 15px !important;
+ }
+
+ /* .iconosImgTop{
+   padding: 2px;
+   width: 30px;
+   height: 30px;
+   align-self: center;
+   cursor: pointer;
+   margin-top: 40px;
+} */
+ 
 
  #botonLupa{
     background: transparent;
