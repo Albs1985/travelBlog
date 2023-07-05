@@ -8,9 +8,9 @@
     </div>
 </div>
 
-<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} {{palabra}}</a></h2>
-<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{'header.'+palabra | translate}}</a></h2>
-<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} {{palabra}}</a></h2>
+<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{palabra}}</b></a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{'header.'+palabra | translate}}</b></a></h2>
+<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{palabra}}</b></a></h2>
 
 
 <div *ngIf="!servicioViajes.cargandoViajes" class="container-fluid animated fadeIn">
@@ -82,7 +82,13 @@
                 <div *ngFor="let persona of viajes.personas" class="disposicion">
                     <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight">
                 </div>
-                <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.provincia}}</a></span>
+                <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">
+                    <img *ngIf="viajes.categoria == 'Playa'" src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">
+                    <img *ngIf="viajes.categoria == 'Ciudad'" src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">
+                    <img *ngIf="viajes.categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
+                    <img *ngIf="viajes.categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
+                    &nbsp;{{viajes.provincia}} &nbsp;{{viajes.year}}</a></span>
+
                 <!-- <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></span> -->
                 <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.destino}} &nbsp;<img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaColor" routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"></a></h2>
                 <!-- <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></h2>
