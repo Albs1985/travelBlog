@@ -15,8 +15,8 @@
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
                 &nbsp;{{servicioViajes.viajesDetalleLista[0].year}}
-                <button type="button" class="infoButton" (touchstart)="showTooltip()" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rollIn"></button>
-                <div class="custom-tooltip" (touchstart)="showTooltip()" (click)="showTooltip()" *ngIf="showMsg">
+                <button type="button" class="infoButton" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rollIn"></button>
+                <div class="custom-tooltip" (click)="showTooltip()" *ngIf="showMsg">
                     <ul><b>{{ 'header.categoria' | translate }}: {{'categoria.'+ servicioViajes.viajesDetalleLista[0].categoria | translate}}</b></ul>
                     <ul><b>{{ 'viaje.provincia' | translate }}: {{servicioViajes.viajesDetalleLista[0].provincia}}</b></ul>
                     <ul><b>{{ 'viaje.pais' | translate }}: {{'localidad.'+ servicioViajes.viajesDetalleLista[0].pais | translate}}</b></ul>
