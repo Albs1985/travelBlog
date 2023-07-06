@@ -18,6 +18,16 @@
     margin-top: -10px;
  }
 
+ .iconosImgCalendario{
+    /* border-radius: 25px;     */
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    cursor: pointer;
+    margin-top: 0px;
+ }
+
 .fotoPerfil{
     border-radius: 25px;
     width: 50px;

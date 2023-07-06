@@ -28,6 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Comandos
+ng build
 git s
 git add .
 git commit -m "Texto"

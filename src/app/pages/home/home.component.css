@@ -1,10 +1,10 @@
-/* .imagenFondo{
-    background-image: url("/assets/images/pic_1.jpg");
-} */
-
 .fh5co-post-entry article .fh5co-meta{
     font-size: 34px;
 }
+
+/* .fh5co-post-entry article {
+    display: inline-block !important;
+} */
 
 .subtitulo{
     text-align: right !important;
@@ -31,7 +31,14 @@
 
  }
 
-
+ .iconosImg{
+    padding: 2px;
+    width: 60px;
+    height: 60px;
+    align-self: center;
+    cursor: pointer;
+    margin-top: -10px;
+ }
 
  .tituloOrdenar{
     justify-content: space-between;
@@ -58,6 +65,9 @@
     border-color: transparent;
     font-size: 16px;
     margin-left: 20px;
+}
+.bloqueAnyo{
+    display: inline-block;
 }
 /*
 .bloqueAnyo{
