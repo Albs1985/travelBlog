@@ -8,6 +8,25 @@
     margin-left: 50px;
 }
 
+.tituloOrdenar{
+    justify-content: space-between;
+ }
+
+.iconoFlecha {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color : rgb(247, 200, 115);
+    border-radius: 15px;
+}
+
+.botonOrdenar{
+    background: transparent;
+    border-color: transparent;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
 .textoFoto{
     /* background-color: rgb(255, 247, 232);     */
     background: linear-gradient(rgba(255, 247, 232, -1), rgb(255, 227, 174));/*Para un degradado de colores*/
@@ -17,9 +36,42 @@
 
 }
 
+.heading{
+    font-family: "Playfair Display", times, serif;
+}
+
+.iconosImg{
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    cursor: pointer;
+    margin-top: -5px;
+ }
+
+ #botonLupa{
+    background: transparent;
+    border-color: transparent;
+ }
+
+ .filtrado{
+    margin-left: 35px;
+    margin-right: 0px;
+ }
+
+ #myInput{
+    width: 350px !important;
+ }
+
+ #busquedaForm{
+    display: inline-flex !important;
+    width: 100% !important;
+    margin-right: 25px;
+ }
+
 .divRight{
   float: right;
-  margin-right: 15px;
+  margin-right: 35px;
 }
 
 .iconosImgFav{   

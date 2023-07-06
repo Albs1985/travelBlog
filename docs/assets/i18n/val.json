@@ -26,6 +26,7 @@
         "modoLibro" : "Format llibre",
         "historia": "Història dels viatgers",
         "ordenar": "Ordenar",
+        "ordenarPorAnyo": "Ordenar per any",
         "volverAviajes": "Anar als viatges"
     },
     "about":{
@@ -126,13 +127,15 @@
         "conoceViaje": "Coneix els viatges"
     },
     "favoritos":{
-        "fotoFav1" : "2023: Lloc: Descripcio foto 1 DescripcioDe scripcioD escripcio Descr ipcio DescripcioDesc ripc ioDescripcio",
-        "fotoFav2" : "2023: Lloc: Descripcio foto 2",
-        "fotoFav3" : "2023: Lloc: Descripci foto 3",
-        "fotoFav4" : "2023: Lloc: Descripcio foto 4",
-        "fotoFav5" : "2023: Lloc: Descripcio foto 5",
-        "fotoFav6" : "2023: Lloc: Descripcio foto 6",
-        "fotoFav7" : "2023: Lloc: Descripcio foto 7"
+        "filtrado": "Any, persona, lloc, categoria...",
+        "fotoFav1" : "Descripcio foto 1 DescripcioDe scripcioD escripcio Descr ipcio DescripcioDesc ripc ioDescripcio",
+        "fotoFav2" : "Descripcio foto 2",
+        "fotoFav3" : "Descripci foto 3",
+        "fotoFav4" : "Descripcio foto 4",
+        "fotoFav5" : "Descripcio foto 5",
+        "fotoFav6" : "Descripcio foto 6",
+        "fotoFav7" : "Descripcio foto 7",
+        "fotoFav8" : "Descripcio foto 8"
     },
     "2023-06-10":{
         "tituloParte1": "Últim viatge abans de la gran tempesta",

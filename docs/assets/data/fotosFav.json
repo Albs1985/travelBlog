@@ -1,0 +1,67 @@
+{
+    "fotoFav2":{
+        "idDesc" : "fotoFav2",
+        "id": "fotoFav2.jpg",        
+        "anyo": "2016",
+        "lugar": "Alpes",
+        "categoria": "Paisaje, Paisatge, Muntanya, Montaña",
+        "personas": "Albert"
+    },
+    "fotoFav4":{
+        "idDesc" : "fotoFav4",
+        "id": "fotoFav4.jpg",        
+        "anyo": "2018",
+        "lugar": "Burjassot",
+        "categoria": "Paisaje, Playa, Platja, ",
+        "personas": "Alba"
+    },
+    "fotoFav5":{
+        "idDesc" : "fotoFav5",
+        "id": "fotoFav5.jpg",        
+        "anyo": "2018",
+        "lugar": "Burjassot",
+        "categoria": "Paisaje, Río, agua",
+        "personas": "Mateu"
+    },
+    "fotoFav6":{
+        "idDesc" : "fotoFav6",
+        "id": "fotoFav6.jpg",        
+        "anyo": "2018",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Albert"
+    },
+    "fotoFav7":{
+        "idDesc" : "fotoFav7",
+        "id": "fotoFav7.jpg",        
+        "anyo": "2018",
+        "lugar": "Burjassot",
+        "categoria": "Deporte, Nieve, Montaña",
+        "personas": "Mateu"
+    },
+    "fotoFav8":{
+        "idDesc" : "fotoFav8",
+        "id": "fotoFav8.jpg",        
+        "anyo": "2018",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Alba"
+    },
+    "fotoFav1":{
+        "idDesc" : "fotoFav1",
+        "id": "fotoFav1.jpg",        
+        "anyo": "2022",
+        "lugar": "Burjassot",
+        "categoria": "Deporte, esport",
+        "personas": "Mateu"        
+    },    
+    "fotoFav3":{
+        "idDesc" : "fotoFav3",
+        "id": "fotoFav3.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Mateu"
+    }    
+}
+    

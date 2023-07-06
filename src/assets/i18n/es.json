@@ -26,6 +26,7 @@
         "modoLibro" : "Formato libro",
         "historia": "Historia de los viajeros",
         "ordenar": "Ordenar",
+        "ordenarPorAnyo": "Ordenar por año",
         "volverAviajes": "Ir a los viajes"
     },
     "about":{
@@ -126,13 +127,15 @@
         "ConoceViaje": "Conoce los viajes"
     },
     "favoritos":{
-        "fotoFav1" : "2023: Lugar: DescripcioN foto 1",
-        "fotoFav2" : "2023: Lugar: DescripcioN foto 2",
-        "fotoFav3" : "2023: Lugar: DescripcioN foto 3",
-        "fotoFav4" : "2023: Lugar: DescripcioN foto 4",
-        "fotoFav5" : "2023: Lugar: DescripcioN foto 5",
-        "fotoFav6" : "2023: Lugar: DescripcioN foto 6",
-        "fotoFav7" : "2023: Lugar: DescripcioN foto 7"
+        "filtrado": "Año, persona, lugar, categoría...",
+        "fotoFav1" : "DescripcioN foto 1",
+        "fotoFav2" : "DescripcioN foto 2",
+        "fotoFav3" : "DescripcioN foto 3",
+        "fotoFav4" : "DescripcioN foto 4",
+        "fotoFav5" : "DescripcioN foto 5",
+        "fotoFav6" : "DescripcioN foto 6",
+        "fotoFav7" : "DescripcioN foto 7",
+        "fotoFav8" : "DescripcioN foto 8"
     },
     "2023-06-10":{
         "tituloParte1": "Último viaje antes de la gran tormenta",
