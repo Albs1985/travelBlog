@@ -1,7 +1,8 @@
 {
     "app": {
         "titulo": "Cuaderno de viaje",
-        "galeriaImagenes": "Galería de Imágenes",
+        "galeriaImagenes": "Galería de Imágenes de viajes",
+        "galeriaImagenesFav": "Galería de Imágenes Favoritas",
         "cargando": "Cargando...",
         "espere": "Espere por favor",
         "videoNoSoportado": "Tu navegador no soporta este tipo de video",
@@ -12,6 +13,9 @@
         "valenciano": "Valenciano",
         "home": "Inicio",
         "galeria": "Galería",
+        "galeriaFav": "Favoritos",
+        "subTituloFav" : "Conoce a los viajeros",
+        "subTituloFav2" : "Fotos del día a día",
         "video": "Vídeo",
         "sobre": "Quienes somos",
         "viajeros": "Viajeros",
@@ -120,6 +124,15 @@
         "siguiente" : "Siguiente Viaje",
         "empezar": "Empezar a viajar",
         "ConoceViaje": "Conoce los viajes"
+    },
+    "favoritos":{
+        "fotoFav1" : "2023: Lugar: DescripcioN foto 1",
+        "fotoFav2" : "2023: Lugar: DescripcioN foto 2",
+        "fotoFav3" : "2023: Lugar: DescripcioN foto 3",
+        "fotoFav4" : "2023: Lugar: DescripcioN foto 4",
+        "fotoFav5" : "2023: Lugar: DescripcioN foto 5",
+        "fotoFav6" : "2023: Lugar: DescripcioN foto 6",
+        "fotoFav7" : "2023: Lugar: DescripcioN foto 7"
     },
     "2023-06-10":{
         "tituloParte1": "Último viaje antes de la gran tormenta",

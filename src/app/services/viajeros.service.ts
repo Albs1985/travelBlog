@@ -36,11 +36,11 @@ export class ViajerosService {
         .subscribe( (response: any ) => {
 
 
-          console.log(response);
+          // console.log(response);
           var array = [];
           for(let key in response){
-            console.log(key);
-            console.log(response[key]);
+            // console.log(key);
+            // console.log(response[key]);
             this.viajero = {
               nacimiento : new Date(),
               nombreCompleto : '',

@@ -28,5 +28,16 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Comandos
-
+git s
+git add .
+git commit -m "Texto"
 git push -u origin main
+- Nota: Si tenemos dos ramas, hacer el pull request a la rama Master desde el GIT
+
+
+## Pasos a tener en cuenta: 
+- En desarrollo, quitar ruta del CSS de Componente Viaje:  background-image: url('/travelBlog/assets/images/fondoPiedras.jpg');
+- Si añadimos fotos en favoritos: Aumentar la variable numeroFotosFavoritos del componente FavoritosComponent
+- Añadir las descripciones de las fotos nuevas: tanto de favoritos como de los viajes
+- Añadir las traducciones al i18n de cada viaje. 
+- Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.

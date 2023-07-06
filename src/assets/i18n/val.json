@@ -1,7 +1,8 @@
 {
     "app": {
         "titulo": "Cuadern de viatge",
-        "galeriaImagenes": "Galería d'Imatges",
+        "galeriaImagenes": "Galería d'Imatges de viatges",
+        "galeriaImagenesFav": "Galería d'Imatges Favorites",
         "cargando": "Carregant...",
         "espere": "Espere per favor",
         "videoNoSoportado": "El vostre navegador no suporta aquest tipus de vídeo",
@@ -12,6 +13,9 @@
         "valenciano": "Valencià",
         "home": "Inici",
         "galeria": "Galeria",
+        "galeriaFav": "Favorits",
+        "subTituloFav" : "Coneix als viatgers",
+        "subTituloFav2" : "Fotos del día a día",
         "video": "Vídeo",
         "sobre": "Qui som",
         "viajeros": "Viatgers",
@@ -120,6 +124,15 @@
         "siguiente" : "Següent Viatge",
         "empezar": "Començar a viatjar",
         "conoceViaje": "Coneix els viatges"
+    },
+    "favoritos":{
+        "fotoFav1" : "2023: Lloc: Descripcio foto 1 DescripcioDe scripcioD escripcio Descr ipcio DescripcioDesc ripc ioDescripcio",
+        "fotoFav2" : "2023: Lloc: Descripcio foto 2",
+        "fotoFav3" : "2023: Lloc: Descripci foto 3",
+        "fotoFav4" : "2023: Lloc: Descripcio foto 4",
+        "fotoFav5" : "2023: Lloc: Descripcio foto 5",
+        "fotoFav6" : "2023: Lloc: Descripcio foto 6",
+        "fotoFav7" : "2023: Lloc: Descripcio foto 7"
     },
     "2023-06-10":{
         "tituloParte1": "Últim viatge abans de la gran tempesta",

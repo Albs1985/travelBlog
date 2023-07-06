@@ -7,12 +7,14 @@ import { AboutComponent } from './pages/about/about.component';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
+import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
   { path: 'home', component : HomeComponent},
   { path: 'about', component : AboutComponent},
   { path: 'galeria', component : GaleriaComponent},  
+  { path: 'favoritos', component : FavoritosComponent},  
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
   { path: 'bookMode', component : BookModeComponent},
