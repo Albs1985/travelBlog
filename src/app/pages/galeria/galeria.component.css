@@ -20,6 +20,15 @@
   margin-right: 15px;
 }
 
+.iconosImg{
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
 .iconoFlecha {
   width: 30px;
   height: 30px;

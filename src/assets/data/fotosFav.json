@@ -62,6 +62,38 @@
         "lugar": "Burjassot",
         "categoria": "Deporte",
         "personas": "Mateu"
-    }    
+    },    
+    "fotoFav9":{
+        "idDesc" : "fotoFav3",
+        "id": "fotoFav3.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Mateu"
+    },    
+    "fotoFav10":{
+        "idDesc" : "fotoFav3",
+        "id": "fotoFav3.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Mateu"
+    },    
+    "fotoFav11":{
+        "idDesc" : "fotoFav3",
+        "id": "fotoFav3.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Mateu"
+    },    
+    "fotoFav12":{
+        "idDesc" : "fotoFav3",
+        "id": "fotoFav3.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot",
+        "categoria": "Deporte",
+        "personas": "Mateu"
+    }        
 }
     
