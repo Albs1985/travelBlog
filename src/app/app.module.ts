@@ -16,6 +16,7 @@ import { SafePipe } from './pipes/safe.pipe';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
+import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PrincipalComponent } from './pages/principal/principal.component';
     SafePipe,
     BookModeComponent,
     GaleriaComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    FavoritosComponent
   ],
   imports: [
     BrowserModule,

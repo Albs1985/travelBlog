@@ -1,0 +1,52 @@
+<br>
+<h2 class="tituloGaleria">
+    <img src="assets/icons/estrella.png" alt="" class="iconosImgFav animated rollIn">    
+   {{ 'app.galeriaImagenesFav' | translate }}
+</h2>
+<h3 class="subTituloGaleria">
+    <img src="assets/icons/iconoFamiliar.png" alt="" class="iconosImgFav animated rollIn">    
+   {{ 'app.subTituloFav' | translate }}
+</h3>
+<h4 class="subTituloGaleria">    
+    {{ 'app.subTituloFav2' | translate }}
+</h4>
+<br>
+<div class="tituloOrdenar">
+  <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (click)="ordenar()"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenarPorAnyo' | translate }}</button> 
+  <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (click)="ordenar()"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenarPorAnyo' | translate }}</button> 
+  <div class="divRight">
+    <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/home"><a class="animated zoomInDown" routerLink="/home">{{ 'viaje.volver' | translate}}</a>
+  </div>
+</div>
+
+<br>
+<br>
+<div class="filtrado animated rollIn">
+  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
+    <form id="busquedaForm">
+      <div id="busquedaForm" class="form-group">
+          <input id="myInputFav" type="text" class="form-control" placeholder="{{ 'favoritos.filtrado' | translate }}">
+              <button id="botonLupa" (click)="buscar()">
+                  <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
+              </button>
+      </div>
+  </form>
+</div>
+<!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
+<div *ngFor="let foto of servicioFotos.fotosFavLista" class="responsive animated zoomInDown">
+  <div class="gallery">
+    <!-- <figure class=""> -->
+    <a target="_blank" href="assets/images/favoritos/{{foto.id}}">
+        <img src="assets/images/favoritos/{{foto.id}}" alt="" width="600" height="400">
+        <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}}: {{ 'favoritos.'+foto.idDesc | translate}}</figcaption>
+    </a>    
+    <!-- </figure> -->
+  </div>
+</div>
+<div class="clearfix"></div>
+<br>
+<br>
+<div class="divRight">
+    <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
+</div>
+

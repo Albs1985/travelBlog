@@ -18,6 +18,16 @@
     margin-top: -10px;
  }
 
+ .iconosImgCalendario{
+    /* border-radius: 25px;     */
+    padding: 2px;
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    cursor: pointer;
+    margin-top: 0px;
+ }
+
 .fotoPerfil{
     border-radius: 25px;
     width: 50px;
@@ -74,7 +84,13 @@
     padding: 5px;
     background-color : rgb(247, 200, 115);
     border-radius: 15px;
-    margin-top: 30px;
+    /* margin-top: 30px; */    
+}
+
+.ancla{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
 }
 
 .botonOrdenar{

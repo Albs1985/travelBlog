@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Foto } from '../interfaces/foto.interface';
 import { HttpClient } from '@angular/common/http';
+import { FotoFav } from '../interfaces/fotoFav.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,10 @@ import { HttpClient } from '@angular/common/http';
 export class FotosService {
 
   fotosJSON = "assets/data/fotos.json";
+  fotosFavJSON = "assets/data/fotosFav.json";
   fotosLista : Foto[] = [];
+  fotosFavLista : FotoFav[] = [];
+  fotosFavListaFiltrado : FotoFav[] = [];
 
   cargandoFotos = true;
 
@@ -26,6 +30,15 @@ export class FotosService {
     foto10 : '',
     foto11 : '',
     foto12 : ''
+  }
+
+  fotoFav : FotoFav = {
+    idDesc: '',
+    id: '',
+    anyo: '',
+    lugar : '',
+    categoria : '',
+    personas: ''
   }
 
   constructor(private http: HttpClient) {
@@ -96,6 +109,114 @@ export class FotosService {
       
     });
     
+  }
+
+
+  cargarFotosFav(){
+
+    //Añadimos el PROMISE para esperar a que se carguen las URL de las fotos
+    return new Promise( (resolve, reject) => {
+      
+      this.http.get(this.fotosFavJSON).subscribe( (response: any ) => {
+          var array = [];
+                    
+            for(let key in response){
+              console.log('key '+key);              
+              this.fotoFav = {  
+                idDesc: '',   
+                id: '',
+                anyo: '',
+                lugar : '',
+                categoria : '',
+                personas: ''
+              };
+              
+              this.fotoFav.idDesc = response[key].idDesc;
+              this.fotoFav.id = response[key].id;
+              this.fotoFav.anyo = response[key].anyo;
+              this.fotoFav.lugar = response[key].lugar;
+              this.fotoFav.categoria = response[key].categoria;
+              this.fotoFav.personas = response[key].personas;
+              console.log(this.fotoFav);    
+              array.push(this.fotoFav);
+            }
+          console.log(array);
+          this.fotosFavLista = array;
+          this.fotosFavListaFiltrado = array;
+
+          resolve(this.fotosFavLista);
+          this.cargandoFotos = false;
+          
+        });
+      
+    });
+    
+  }
+
+  filtrarFotosFav(termino : any){
+    // var palabra = '';
+
+    // console.log(termino);
+
+    // if (termino.filtro != undefined){
+    //   palabra = termino.filtro;
+    // }else{
+    //   palabra = termino;
+    // }   
+
+    console.log(termino);
+    return new Promise( (resolve, reject) => {
+      if (this.fotosFavListaFiltrado.length === 0){
+        //Cargar o esperar a que se carguen
+        this.cargarFotosFav().then(() => {
+          //ejecutar después de tener los productos
+          //Aplicar filtro
+          resolve(this.filtrarFotos(termino));
+        });
+      }else{
+        //Aplicar filtro
+        resolve(this.filtrarFotos(termino));
+      }
+
+    });
+
+  }
+
+
+  private filtrarFotos(termino : string){
+    
+    this.fotosFavLista = [];
+    console.log(termino);
+    const terminoLower = termino.toString().toLocaleLowerCase(); 
+    this.fotosFavListaFiltrado.forEach(foto => {
+      
+      console.log(foto);
+
+      let catergoriaLower = foto.categoria.toLocaleLowerCase();
+      if (catergoriaLower === 'montaña'){
+        catergoriaLower = 'montanya';
+      }
+      const idLower = foto.id.toLocaleLowerCase();
+      const anyo = foto.anyo;
+      const lugarLower = foto.lugar.toLocaleLowerCase();
+      // const categoriaLower = foto.categoria.toLocaleLowerCase();
+      const personasLower = foto.personas.toLocaleLowerCase();
+
+      console.log(idLower);
+      console.log(anyo);
+      console.log(lugarLower);
+      console.log(personasLower);
+
+      if (catergoriaLower.indexOf(terminoLower) >=0 || idLower.indexOf(terminoLower) >=0 || anyo.indexOf(terminoLower) >=0 || lugarLower.indexOf(terminoLower) >=0 || personasLower.indexOf(terminoLower) >=0){
+
+        this.fotosFavLista.push(foto);
+
+      }
+    });
+
+    this.cargandoFotos = false;
+    console.log(this.fotosFavLista);
+
   }
 
 }

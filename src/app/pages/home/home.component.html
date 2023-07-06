@@ -1,9 +1,13 @@
 <div class="tituloOrdenar">
     <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button> 
     <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button> 
-    <h2 class="fh5co-article-title subtitulo animated fadeIn"><a>{{ 'header.mensajeCabeceraAnyos' | translate }}</a></h2>    
+    <h2 class="fh5co-article-title subtitulo animated fadeIn">
+        <a>{{ 'header.mensajeCabeceraAnyos' | translate }} 
+            <img src="assets/icons/bloc.png" alt="" class="iconosImg animated rollIn">
+        </a>
+    </h2>    
 </div>
-<div class="container-fluid imagenFondo animated fadeIn">
+<!-- <div class="container-fluid animated fadeIn"> -->
     <!-- <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
             <span class="sr-only">Cargando...</span>
@@ -16,7 +20,7 @@
 
     <div class="row fh5co-post-entry animated fadeInDown">            
             <div *ngFor="let viajes of servicioViajes.viajesLista">                
-                <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
+                <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 bloqueAnyo">
                     <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp">{{viajes.anyo}}</span>
                     <figure class="contenedor-imagen">
                         <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" alt="Image" class="img-responsive"></a>
@@ -52,4 +56,4 @@
 </div> -->
 
 
-</div>
+<!-- </div> -->

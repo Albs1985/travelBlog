@@ -8,9 +8,23 @@
     </div>
 </div>
 
-<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{palabra}}</b></a></h2>
-<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{'header.'+palabra | translate}}</b></a></h2>
-<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{palabra}}</b></a></h2>
+<h2 *ngIf="mensajeCabeceraAnyo" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{palabra}}</b>&nbsp;
+    <img src="assets/icons/calendario.png" alt="" class="iconosImgCalendario animated rollIn">
+    </a>
+</h2>
+<h2 *ngIf="mensajeCabeceraFiltrar" class="fh5co-article-title subtitulo">
+    <a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{'header.'+palabra | translate}}</b>&nbsp; 
+        <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Playa'" src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">
+        <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Ciudad'" src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">
+        <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
+        <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
+    </a>
+</h2>
+<h2 *ngIf="mensajeCabeceraFiltrarSinTranslate" class="fh5co-article-title subtitulo">
+    <a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{palabra}}</b>&nbsp;
+        <img src="assets/icons/palabraClave.png" alt="" class="iconosImg animated rollIn">
+    </a>
+</h2>
 
 
 <div *ngIf="!servicioViajes.cargandoViajes" class="container-fluid animated fadeIn">
@@ -60,12 +74,12 @@
                             </div> -->
                         </div>                
                 
-                        <a class="left carousel-control" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="prev">
+                        <a class="left carousel-control ancla" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="prev">
                             <img src="assets/icons/flechaIzq.png" class="animated fadeIn iconoFlechaImg">
                             <!-- <span class="glyphicon-chevron-left" aria-hidden=""><</span> -->
                             <!-- <span class="sr-only">Anterior</span> -->
                         </a>
-                        <a class="right carousel-control" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="next">
+                        <a class="right carousel-control ancla" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="next">
                             <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaImg">
                             <!-- <span class="glyphicon-chevron-right" aria-hidden="">></span> -->
                             <!-- <span class="sr-only">Siguiente</span> -->

@@ -1,7 +1,9 @@
 <!-- <h2>Responsive Image Gallery</h2> -->
 
 <br>
-<h2 class="tituloGaleria">{{ 'app.galeriaImagenes' | translate }}</h2>
+<h2 class="tituloGaleria">
+  <img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn"> &nbsp;
+  {{ 'app.galeriaImagenes' | translate }}</h2>
 <br>
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
@@ -16,7 +18,7 @@
         </figure>   
     </div>
 </div>
-<div *ngFor="let viaje of viajesService.arrayFotos" class="responsive">
+<div *ngFor="let viaje of viajesService.arrayFotos" class="responsive animated zoomInDown">
   <div class="gallery">
     <a target="_blank" href="assets/images/{{viaje}}">
       <img src="assets/images/{{viaje}}" alt="" width="600" height="400">
