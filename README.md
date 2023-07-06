@@ -37,7 +37,9 @@ git push -u origin main
 
 ## Pasos a tener en cuenta: 
 - En desarrollo, quitar ruta del CSS de Componente Viaje:  background-image: url('/travelBlog/assets/images/fondoPiedras.jpg');
-- Si añadimos fotos en favoritos: Aumentar la variable numeroFotosFavoritos del componente FavoritosComponent
-- Añadir las descripciones de las fotos nuevas: tanto de favoritos como de los viajes
-- Añadir las traducciones al i18n de cada viaje. 
-- Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.
+- En data: 
+    - IMPORTANTE: El orden en que se introducen los datos es importante. Seguir el mismo patron que haya. La ordenación va en función de cuando se insertan, no de fechas u otras cosas.
+- En el i18n:    
+    - Añadir las descripciones de las fotos nuevas: tanto de favoritos como de los viajes
+    - Añadir las traducciones al i18n de cada viaje. 
+    - Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.

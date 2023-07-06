@@ -74,7 +74,13 @@
     padding: 5px;
     background-color : rgb(247, 200, 115);
     border-radius: 15px;
-    margin-top: 30px;
+    /* margin-top: 30px; */    
+}
+
+.ancla{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
 }
 
 .botonOrdenar{
