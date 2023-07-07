@@ -33,6 +33,8 @@
     </a>    
   </div>
 </div>
-<pagination-controls nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay [responsive]="paginacionResponsive" (pageChange)="p = $event"></pagination-controls>
+<div class="paginacion">
+  <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+</div>
 
 <div class="clearfix"></div>

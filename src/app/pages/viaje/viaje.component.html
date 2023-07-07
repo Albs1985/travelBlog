@@ -8,6 +8,9 @@
     <div *ngIf="!servicioViajes.cargandoViajes" class="row fh5co-post-entry single-entry">
         <article *ngIf="!servicioFotos.cargandoFotos" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
             <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><a routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}">  {{ 'viaje.volver' | translate}}</a></span>
+
+            <h2 class="fh5co-article-title"><a>{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
+            
             <figure class="animated zoomInDown">
                 <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].principal}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].principal}}" alt="{{servicioFotos.fotosLista[0].principal}}" class="img-responsive"></a>
                 <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descPrincipal' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descPrincipal' | translate}}</figcaption>
@@ -34,7 +37,7 @@
                 </div>  
             </span>
 
-            <h2 class="fh5co-article-title"><a>{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
+            
             <!-- <span class="fh5co-meta fh5co-date">March 6th, 2016</span> -->
             <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaInicio}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesInicio | translate }}</b> {{ 'viaje.hasta' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaFin}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesFin | translate }}</b></span>
             

@@ -109,3 +109,21 @@
       transform: rotate(360deg);
   }
 }
+
+
+.paginacion{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-left: -25px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination :hover {
+  background: rgb(255, 233, 194);
+  border-radius: 15px;
+}
