@@ -15,6 +15,7 @@ export class FotosService {
   fotosFavListaFiltrado : FotoFav[] = [];
 
   cargandoFotos = true;
+  cargandoFotosFav = true;
 
   foto : Foto = {
     principal : '',
@@ -113,7 +114,7 @@ export class FotosService {
 
 
   cargarFotosFav(){
-
+    this.cargandoFotosFav = true;
     //Añadimos el PROMISE para esperar a que se carguen las URL de las fotos
     return new Promise( (resolve, reject) => {
       
@@ -144,9 +145,9 @@ export class FotosService {
           this.fotosFavLista = array;
           this.fotosFavListaFiltrado = array;
 
+          this.cargandoFotosFav = false;
           resolve(this.fotosFavLista);
-          this.cargandoFotos = false;
-          
+
         });
       
     });
@@ -155,16 +156,7 @@ export class FotosService {
 
   filtrarFotosFav(termino : any){
     this.cargandoFotos = true;
-    // var palabra = '';
-
-    // console.log(termino);
-
-    // if (termino.filtro != undefined){
-    //   palabra = termino.filtro;
-    // }else{
-    //   palabra = termino;
-    // }   
-
+    
     // console.log(termino);
     return new Promise( (resolve, reject) => {
       if (this.fotosFavListaFiltrado.length === 0){
@@ -187,7 +179,7 @@ export class FotosService {
   private filtrarFotos(termino : string){
     
     this.fotosFavLista = [];
-    console.log(termino);
+    // console.log(termino);
     const terminoLower = termino.toString().toLocaleLowerCase(); 
     this.fotosFavListaFiltrado.forEach(foto => {
       
