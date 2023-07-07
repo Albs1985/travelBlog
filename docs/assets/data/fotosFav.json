@@ -3,24 +3,24 @@
         "idDesc" : "fotoFav1",
         "id": "fotoFav1.jpg",        
         "anyo": "2023",
-        "lugar": "Malvarrosa, Patacona, Valencia",
-        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "lugar": "Malvarrosa",
+        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
         "personas": "Esteve, Mateu"        
     },
     "fotoFav2":{
         "idDesc" : "fotoFav2",
         "id": "fotoFav2.jpg",        
         "anyo": "2023",
-        "lugar": "Malvarrosa, Patacona, Valencia",
-        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "lugar": "Malvarrosa",
+        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
         "personas": "Esteve, Joan"      
     },
     "fotoFav3":{
         "idDesc" : "fotoFav3",
         "id": "fotoFav3.jpg",        
         "anyo": "2023",
-        "lugar": "Malvarrosa, Patacona, Valencia",
-        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "lugar": "Malvarrosa",
+        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
         "personas": "Esteve, Emma"      
     },
     "fotoFav4":{
@@ -35,24 +35,24 @@
         "idDesc" : "fotoFav5",
         "id": "fotoFav5.jpg",        
         "anyo": "2023",
-        "lugar": "Puerto, Puertomingalvo",
-        "categoria": "Montaña, Muntanya, Iglesia",
+        "lugar": "Puertomingalvo",
+        "categoria": "Puerto, Montaña, Muntanya, Iglesia",
         "personas": "Mateu, Gerard"
     },
     "fotoFav6":{
         "idDesc" : "fotoFav6",
         "id": "fotoFav6.jpg",        
         "anyo": "2023",
-        "lugar": "Puerto, Puertomingalvo, Las Truchas, Merendero",
-        "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
+        "lugar": "Puertomingalvo, Merendero Las Truchas",
+        "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
         "personas": "Mateu"
     },
     "fotoFav7":{
         "idDesc" : "fotoFav7",
         "id": "fotoFav7.jpg",        
         "anyo": "2023",
-        "lugar": "Puerto, Puertomingalvo, Las Truchas, Merendero",
-        "categoria": "Montaña, Muntanya, Paseo, Paseig, Familia, natura, naturaleza",
+        "lugar": "Puertomingalvo, Merendero Las Truchas",
+        "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, Familia, natura, naturaleza",
         "personas": "Mateu, Alba, Albert"
     },    
     "fotoFav26":{
@@ -67,8 +67,8 @@
         "idDesc" : "fotoFav9",
         "id": "fotoFav9.jpg",        
         "anyo": "2023",
-        "lugar": "Burjassot, la granja",
-        "categoria": "Deporte, Esport, Skate, Patin, patinete, rampas",
+        "lugar": "Burjassot, Parque La granja",
+        "categoria": "Parque, Parc, Deporte, Esport, Skate, Patin, patinete, rampas",
         "personas": "Mateu, Albert"
     },    
     "fotoFav8":{
@@ -83,32 +83,32 @@
         "idDesc" : "fotoFav10",
         "id": "fotoFav10.jpg",        
         "anyo": "2022",
-        "lugar": "Puerto, Puertomingalvo, font, fuente, penilla, Merendero",
-        "categoria": "Montaña, muntaña, natura, naturaleza",
+        "lugar": "Puertomingalvo, Fuente la Penilla",
+        "categoria": "Puerto, Montaña, muntaña, natura, naturaleza, font, Merendero",
         "personas": "Mateu"
     },    
     "fotoFav11":{
         "idDesc" : "fotoFav11",
         "id": "fotoFav11.jpg",        
         "anyo": "2022",
-        "lugar": "Puerto, Puertomingalvo, font, fuente, penilla, Merendero",
-        "categoria": "Montaña, muntaña, natura, naturaleza",
+        "lugar": "Puertomingalvo, Fuente la Penilla",
+        "categoria": "Puerto, Montaña, muntaña, natura, naturaleza, font, Merendero",
         "personas": "Mateu"
     },    
     "fotoFav12":{
         "idDesc" : "fotoFav12",
         "id": "fotoFav12.jpg",        
         "anyo": "2022",
-        "lugar": "Villahermosa, Puertomingalvo, Puerto",
-        "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
+        "lugar": "Villahermosa",
+        "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza, Puertomingalvo, Puerto",
         "personas": "Mateu, Pau, Martí, Marti"
     },    
     "fotoFav13":{
         "idDesc" : "fotoFav13",
         "id": "fotoFav13.jpg",        
         "anyo": "2022",
-        "lugar": "Villahermosa, Puertomingalvo, Puerto, Las Truchas, Merendero",
-        "categoria": "Montaña, Muntanya, natura, naturaleza",
+        "lugar": "Puertomingalvo, Merendero Las Truchas",
+        "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
         "personas": "Mateu, Pau, Martí, Marti"
     },    
     "fotoFav14":{
@@ -123,16 +123,16 @@
         "idDesc" : "fotoFav15",
         "id": "fotoFav15.jpg",        
         "anyo": "2022",
-        "lugar": "Burjassot, Eixereta, Parc, Parque",
-        "categoria": "Cumpleaños, Aniversari, Familia",
+        "lugar": "Burjassot, Eixereta",
+        "categoria": "Cumpleaños, Aniversari, Familia, Parc, Parque",
         "personas": "Mateu, Alba, Albert, Ana, Pepe"
     },    
     "fotoFav16":{
         "idDesc" : "fotoFav16",
         "id": "fotoFav16.jpg",        
         "anyo": "2022",
-        "lugar": "Burjassot, Eixereta, Parc, Parque",
-        "categoria": "Cumpleaños, Aniversari, Familia",
+        "lugar": "Burjassot, Eixereta",
+        "categoria": "Cumpleaños, Aniversari, Familia, Parc, Parque",
         "personas": "Mateu, Alba, Gerard"
     },    
     "fotoFav17":{
@@ -147,40 +147,40 @@
         "idDesc" : "fotoFav18",
         "id": "fotoFav18.jpg",        
         "anyo": "2022",
-        "lugar": "Godella, Iglesia, Esglesia",
-        "categoria": "Boda, Ceremonia",
+        "lugar": "Godella",
+        "categoria": "Boda, Ceremonia, Iglesia, Esglesia",
         "personas": "Mateu, Gerard"
     },    
     "fotoFav19":{
         "idDesc" : "fotoFav19",
         "id": "fotoFav19.jpg",        
         "anyo": "2022",
-        "lugar": "Puerto, Puertomingalvo",
-        "categoria": "Montaña, Muntanya, natura, naturaleza, rio, río, riu, cuñis, broders",
+        "lugar": "Puertomingalvo",
+        "categoria": "Puerto, Montaña, Muntanya, natura, naturaleza, rio, río, riu, cuñis, broders",
         "personas": "Mateu, Blai, Gerard, Albert"
     },    
     "fotoFav20":{
         "idDesc" : "fotoFav20",
         "id": "fotoFav20.jpg",        
         "anyo": "2022",
-        "lugar": "Valencia, Vivers, Viveros",
-        "categoria": "Gelat, Helado",
+        "lugar": "Valencia, Vivers",
+        "categoria": "Gelat, Helado, Viveros",
         "personas": "Mateu, Alba"
     },    
     "fotoFav21":{
         "idDesc" : "fotoFav21",
         "id": "fotoFav21.jpg",        
         "anyo": "2022",
-        "lugar": "Alboraia, Alboraya, Sequer lo blanc",
-        "categoria": "Amagatall, Escondite",
+        "lugar": "Alboraia, Sequer lo blanc",
+        "categoria": "Amagatall, Escondite, Alboraya",
         "personas": "Mateu"
     },    
     "fotoFav22":{
         "idDesc" : "fotoFav22",
         "id": "fotoFav22.jpg",        
         "anyo": "2022",
-        "lugar": "Alboraia, Alboraya, Sequer lo blanc",
-        "categoria": "Grupo, Amigos, Amics, grup, gent, gente",
+        "lugar": "Alboraia, Sequer lo blanc",
+        "categoria": "Grupo, Amigos, Amics, grup, gent, gente, Alboraya ",
         "personas": "Putipanda"
     },    
     "fotoFav23":{
@@ -195,8 +195,8 @@
         "idDesc" : "fotoFav24",
         "id": "fotoFav24.jpg",        
         "anyo": "2022",
-        "lugar": "Burjassot, Eixereta, Parc, Parque",
-        "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati",
+        "lugar": "Burjassot, Eixereta",
+        "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati, Parc, Parque",
         "personas": "Mateu, Gerard"
     } ,    
     "fotoFav25":{
@@ -219,32 +219,31 @@
         "idDesc" : "fotoFav28",
         "id": "fotoFav28.jpg",        
         "anyo": "2021",
-        "lugar": "Malvarrosa, Patacona, Valencia",
-        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "lugar": "Malvarrosa",
+        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
         "personas": "Mateu, Blai, Gerard"
     } ,    
     "fotoFav29":{
         "idDesc" : "fotoFav29",
         "id": "fotoFav29.jpg",        
         "anyo": "2016",
-        "lugar": "Les Deux Alps, Alpes, Francia, Franceses, Estación Esquí",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar",
+        "lugar": "Les Deux Alps, Alpes Franceses",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
         "personas": "Albert"
     } ,    
     "fotoFav30":{
         "idDesc" : "fotoFav30",
         "id": "fotoFav30.jpg",        
         "anyo": "2016",
-        "lugar": "Les Deux Alps, Alpes, Francia, Franceses, Estación Esquí",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar",
+        "lugar": "Les Deux Alps, Alpes Franceses",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
         "personas": "Albert"
     } ,    
     "fotoFav31":{
         "idDesc" : "fotoFav31",
         "id": "fotoFav31.jpg",        
-        "anyo": "2016",
-        "lugar": "Les Deux Alps, Alpes, Francia, Franceses, Estación Esquí",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar",
+        "lugar": "Les Deux Alps, Alpes Franceses",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
         "personas": "Albert"
     }      
 }
