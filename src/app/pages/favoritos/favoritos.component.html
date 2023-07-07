@@ -40,7 +40,7 @@
 </div>
 
 <!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
-<div *ngFor="let foto of servicioFotos.fotosFavLista" class="responsive animated zoomInDown">
+<div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
   <div class="gallery">
     <!-- <figure class=""> -->
     <a target="_blank" href="assets/images/favoritos/{{foto.id}}">
@@ -50,6 +50,10 @@
     <!-- </figure> -->
   </div>
 </div>
+
+<pagination-controls nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay [responsive]="paginacionResponsive" (pageChange)="p = $event"></pagination-controls>
+
+
 <div class="clearfix"></div>
 <br>
 <br>

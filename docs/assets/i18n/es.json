@@ -27,7 +27,9 @@
         "historia": "Historia de los viajeros",
         "ordenar": "Ordenar",
         "ordenarPorAnyo": "Ordenar por año",
-        "volverAviajes": "Ir a los viajes"
+        "volverAviajes": "Ir a los viajes",
+        "siguiente": "Siguiente",
+        "anterior": "Anterior"
     },
     "about":{
         "titulo": "Familia Serrador Casares",

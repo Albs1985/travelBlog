@@ -12,10 +12,19 @@ export class FavoritosComponent implements OnInit{
   // numeroFotosFavoritos : number = 15;
   palabra : any = '';
   orderDesc : boolean = false;
+  
+  //PARA LA PAGINACIÓN
+  p: number = 1; // Página inicial
+  pageSize: number = 10; // Elementos por página
+  maxSizeDisplay: number = 5; //Defines the maximum number of page links to display. Default is 7. Minimum is 5.
+  paginacionResponsive = true;
+
 
   constructor(private route: ActivatedRoute, public servicioFotos : FotosService){
     // this.numeroFotosFavoritos = 15;
     this.palabra = '';
+    this.maxSizeDisplay = 5;
+    this.paginacionResponsive = true;
   }
   ngOnInit(): void {
     this.servicioFotos.cargarFotosFav();
