@@ -54,15 +54,15 @@
         "lugar": "Puerto, Puertomingalvo, Las Truchas, Merendero",
         "categoria": "Montaña, Muntanya, Paseo, Paseig, Familia, natura, naturaleza",
         "personas": "Mateu, Alba, Albert"
-    },
-    "fotoFav8":{
-        "idDesc" : "fotoFav8",
-        "id": "fotoFav8.jpg",        
-        "anyo": "2022",
-        "lugar": "Paterna, Casa iaios",
-        "categoria": "Cumpleaños, Aniversari, Casa, iaios",
-        "personas": "Mateu, Gerard, Ana, Pepe"
-    },  
+    },    
+    "fotoFav26":{
+        "idDesc" : "fotoFav26",
+        "id": "fotoFav26.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Caja, jugar",
+        "personas": "Mateu, Gerard"
+    } ,    
     "fotoFav9":{
         "idDesc" : "fotoFav9",
         "id": "fotoFav9.jpg",        
@@ -71,6 +71,14 @@
         "categoria": "Deporte, Esport, Skate, Patin, patinete, rampas",
         "personas": "Mateu, Albert"
     },    
+    "fotoFav8":{
+        "idDesc" : "fotoFav8",
+        "id": "fotoFav8.jpg",        
+        "anyo": "2022",
+        "lugar": "Paterna, Casa iaios",
+        "categoria": "Cumpleaños, Aniversari, Casa, iaios",
+        "personas": "Mateu, Gerard, Ana, Pepe"
+    },  
     "fotoFav10":{
         "idDesc" : "fotoFav10",
         "id": "fotoFav10.jpg",        
@@ -198,15 +206,7 @@
         "lugar": "Burjassot, Casa",
         "categoria": "Casa, Sofa, amor, dormido, dormit, dormir",
         "personas": "Mateu, Alba"
-    } ,    
-    "fotoFav26":{
-        "idDesc" : "fotoFav26",
-        "id": "fotoFav26.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Caja, jugar",
-        "personas": "Mateu, Gerard"
-    } ,    
+    },    
     "fotoFav27":{
         "idDesc" : "fotoFav27",
         "id": "fotoFav27.jpg",        

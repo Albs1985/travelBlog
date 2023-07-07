@@ -137,10 +137,10 @@ export class FotosService {
               this.fotoFav.lugar = response[key].lugar;
               this.fotoFav.categoria = response[key].categoria;
               this.fotoFav.personas = response[key].personas;
-              console.log(this.fotoFav);    
+              // console.log(this.fotoFav);    
               array.push(this.fotoFav);
             }
-          console.log(array);
+          // console.log(array);
           this.fotosFavLista = array;
           this.fotosFavListaFiltrado = array;
 
@@ -154,6 +154,7 @@ export class FotosService {
   }
 
   filtrarFotosFav(termino : any){
+    this.cargandoFotos = true;
     // var palabra = '';
 
     // console.log(termino);
@@ -164,7 +165,7 @@ export class FotosService {
     //   palabra = termino;
     // }   
 
-    console.log(termino);
+    // console.log(termino);
     return new Promise( (resolve, reject) => {
       if (this.fotosFavListaFiltrado.length === 0){
         //Cargar o esperar a que se carguen
@@ -190,7 +191,7 @@ export class FotosService {
     const terminoLower = termino.toString().toLocaleLowerCase(); 
     this.fotosFavListaFiltrado.forEach(foto => {
       
-      console.log(foto);
+      // console.log(foto);
 
       let catergoriaLower = foto.categoria.toLocaleLowerCase();
       if (catergoriaLower === 'montaña'){
@@ -202,10 +203,10 @@ export class FotosService {
       // const categoriaLower = foto.categoria.toLocaleLowerCase();
       const personasLower = foto.personas.toLocaleLowerCase();
 
-      console.log(idLower);
-      console.log(anyo);
-      console.log(lugarLower);
-      console.log(personasLower);
+      // console.log(idLower);
+      // console.log(anyo);
+      // console.log(lugarLower);
+      // console.log(personasLower);
 
       if (catergoriaLower.indexOf(terminoLower) >=0 || idLower.indexOf(terminoLower) >=0 || anyo.indexOf(terminoLower) >=0 || lugarLower.indexOf(terminoLower) >=0 || personasLower.indexOf(terminoLower) >=0){
 
@@ -215,7 +216,7 @@ export class FotosService {
     });
 
     this.cargandoFotos = false;
-    console.log(this.fotosFavLista);
+    // console.log(this.fotosFavLista);
 
   }
 

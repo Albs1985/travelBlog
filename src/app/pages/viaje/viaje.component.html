@@ -1,4 +1,10 @@
 <div class="container-fluid">
+
+    <div *ngIf="servicioViajes.cargandoViajes" class="spinner-container">
+        <div class="spinner"></div>
+        <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+    </div>
+
     <div *ngIf="!servicioViajes.cargandoViajes" class="row fh5co-post-entry single-entry">
         <article *ngIf="!servicioFotos.cargandoFotos" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
             <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><a routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}">  {{ 'viaje.volver' | translate}}</a></span>

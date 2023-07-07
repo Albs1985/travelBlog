@@ -4,7 +4,7 @@
 }
 
 .idioma{
-    background: transparent;
+    background: transparent;    
     border-color: transparent;
 }
 
@@ -24,6 +24,7 @@
     /* border: 10px solid transparent; *//*PARA HACER LA IMAGEN MÁS PEQUEÑA, LA QUE ESTÉ SELECCIONADA*/
     border-radius: 30px;    
     border: 2px solid grey;
+    background-color : rgb(255, 228, 177);
  }
 
  .iconosImg{

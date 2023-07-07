@@ -8,6 +8,13 @@
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
 </div>
+
+<div *ngIf="viajesService.cargandoViajes" class="spinner-container">
+  <div class="spinner">      
+  </div>
+  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+</div>
+
 <br>
 <br>
 <div class="row fotosPerfiles">
@@ -18,6 +25,7 @@
         </figure>   
     </div>
 </div>
+
 <div *ngFor="let viaje of viajesService.arrayFotos" class="responsive animated zoomInDown">
   <div class="gallery">
     <a target="_blank" href="assets/images/{{viaje}}">
