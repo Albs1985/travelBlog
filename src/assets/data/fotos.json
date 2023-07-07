@@ -128,14 +128,7 @@
         "foto4": "Gilet4.jpg",
         "foto5": "Gilet5.jpg"
     } ,   
-    "2020-05-10":{
-        "principal": "MadridPrincipal.jpg",        
-        "foto1": "Madrid1.jpg",
-        "foto2": "Madrid2.jpg",
-        "foto3": "Madrid3.jpg",
-        "foto4": "Madrid4.jpg",
-        "foto5": "Madrid5.jpg"
-    } ,   
+    
     "2019-04-06":{
         "principal": "FanzaraPrincipal.jpg",        
         "foto1": "Fanzara1.jpg",
@@ -143,6 +136,21 @@
         "foto3": "Fanzara3.jpg",
         "foto4": "Fanzara4.jpg",
         "foto5": "Fanzara5.jpg"
+    } ,   
+    "2019-05-10":{
+        "principal": "MadridPrincipal.jpg",        
+        "foto1": "Madrid1.jpg",
+        "foto2": "Madrid2.jpg",
+        "foto3": "Madrid3.jpg",
+        "foto4": "Madrid4.jpeg",
+        "foto5": "Madrid5.jpeg",
+        "foto6": "Madrid6.jpeg",
+        "foto7": "Madrid7.jpeg",
+        "foto8": "Madrid8.jpeg",
+        "foto9": "Madrid9.jpeg",
+        "foto10": "Madrid10.jpeg",
+        "foto11": "Madrid11.jpeg"
+
     } ,   
     "2019-09-14":{
         "principal": "BodaPrincipal.jpg",        
