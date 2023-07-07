@@ -27,7 +27,9 @@
         "historia": "Història dels viatgers",
         "ordenar": "Ordenar",
         "ordenarPorAnyo": "Ordenar per any",
-        "volverAviajes": "Anar als viatges"
+        "volverAviajes": "Anar als viatges",
+        "siguiente": "Següent",
+        "anterior": "Anterior"
     },
     "about":{
         "titulo": "Familia Serrador Casares",

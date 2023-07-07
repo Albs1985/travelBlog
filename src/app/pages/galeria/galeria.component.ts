@@ -11,10 +11,14 @@ import { ViajesService } from 'src/app/services/viajes.service';
 })
 export class GaleriaComponent implements OnInit{
 
-  
+  p: number = 1; // Página inicial
+  pageSize: number = 10; // Elementos por página
+  maxSizeDisplay: number = 5;
+  paginacionResponsive = true;
 
   constructor(private route: ActivatedRoute, public viajerosService : ViajerosService, public viajesService : ViajesService){
-    
+    this.maxSizeDisplay = 5;
+    this.paginacionResponsive = true;
   }
 
   ngOnInit(): void {

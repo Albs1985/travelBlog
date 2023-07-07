@@ -16,6 +16,9 @@ SEE LICENSE IN LICENSE
 @ngx-translate/http-loader
 SEE LICENSE IN LICENSE
 
+ngx-pagination
+MIT
+
 rxjs
 Apache-2.0
                                Apache License

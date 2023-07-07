@@ -26,12 +26,13 @@
     </div>
 </div>
 
-<div *ngFor="let viaje of viajesService.arrayFotos" class="responsive animated zoomInDown">
+<div *ngFor="let viaje of viajesService.arrayFotos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
   <div class="gallery">
     <a target="_blank" href="assets/images/{{viaje}}">
       <img src="assets/images/{{viaje}}" alt="" width="600" height="400">
     </a>    
   </div>
 </div>
+<pagination-controls nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay [responsive]="paginacionResponsive" (pageChange)="p = $event"></pagination-controls>
 
 <div class="clearfix"></div>
