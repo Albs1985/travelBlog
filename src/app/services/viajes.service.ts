@@ -60,19 +60,19 @@ export class ViajesService {
 
           for(let key in response){           
             var viajesAnyo = response[key];
-            // console.log(viajesAnyo);
+            console.log(viajesAnyo);
               for (let viatge in response[key]){
-                // console.log(viatge);
+                console.log(viatge);
                 for (var i=1; i < viajesAnyo[viatge].numFotos; i++){
                   var foto = viajesAnyo[viatge].year +'/'+viajesAnyo[viatge].identificadorFotos+''+i+'.jpg';
-                  // console.log(foto);
+                  console.log(foto);
                   this.arrayFotos.push(foto); 
                 }                
               }
           } 
           
           // console.log(this.arrayFotos);
-          
+          this.cargandoViajes = false;
           resolve(this.arrayFotos);
           
         });

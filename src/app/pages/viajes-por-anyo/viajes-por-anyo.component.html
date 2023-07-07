@@ -26,6 +26,10 @@
     </a>
 </h2>
 
+<div *ngIf="servicioViajes.cargandoViajes" class="spinner-container">
+    <div class="spinner"></div>
+    <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+</div>
 
 <div *ngIf="!servicioViajes.cargandoViajes" class="container-fluid animated fadeIn">
     <div class="row fh5co-post-entry">
