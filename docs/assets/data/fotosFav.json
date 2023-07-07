@@ -1,99 +1,251 @@
 {
-    "fotoFav2":{
-        "idDesc" : "fotoFav2",
-        "id": "fotoFav2.jpg",        
-        "anyo": "2016",
-        "lugar": "Alpes",
-        "categoria": "Paisaje, Paisatge, Muntanya, Montaña",
-        "personas": "Albert"
-    },
-    "fotoFav4":{
-        "idDesc" : "fotoFav4",
-        "id": "fotoFav4.jpg",        
-        "anyo": "2018",
-        "lugar": "Burjassot",
-        "categoria": "Paisaje, Playa, Platja, ",
-        "personas": "Alba"
-    },
-    "fotoFav5":{
-        "idDesc" : "fotoFav5",
-        "id": "fotoFav5.jpg",        
-        "anyo": "2018",
-        "lugar": "Burjassot",
-        "categoria": "Paisaje, Río, agua",
-        "personas": "Mateu"
-    },
-    "fotoFav6":{
-        "idDesc" : "fotoFav6",
-        "id": "fotoFav6.jpg",        
-        "anyo": "2018",
-        "lugar": "Burjassot",
-        "categoria": "Deporte",
-        "personas": "Albert"
-    },
-    "fotoFav7":{
-        "idDesc" : "fotoFav7",
-        "id": "fotoFav7.jpg",        
-        "anyo": "2018",
-        "lugar": "Burjassot",
-        "categoria": "Deporte, Nieve, Montaña",
-        "personas": "Mateu"
-    },
-    "fotoFav8":{
-        "idDesc" : "fotoFav8",
-        "id": "fotoFav8.jpg",        
-        "anyo": "2018",
-        "lugar": "Burjassot",
-        "categoria": "Deporte",
-        "personas": "Alba"
-    },
     "fotoFav1":{
         "idDesc" : "fotoFav1",
         "id": "fotoFav1.jpg",        
-        "anyo": "2022",
-        "lugar": "Burjassot",
-        "categoria": "Deporte, esport",
-        "personas": "Mateu"        
-    },    
+        "anyo": "2023",
+        "lugar": "Malvarrosa, Patacona, Valencia",
+        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "personas": "Esteve, Mateu"        
+    },
+    "fotoFav2":{
+        "idDesc" : "fotoFav2",
+        "id": "fotoFav2.jpg",        
+        "anyo": "2023",
+        "lugar": "Malvarrosa, Patacona, Valencia",
+        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "personas": "Esteve, Joan"      
+    },
     "fotoFav3":{
         "idDesc" : "fotoFav3",
         "id": "fotoFav3.jpg",        
         "anyo": "2023",
-        "lugar": "Burjassot",
-        "categoria": "Deporte",
-        "personas": "Mateu"
-    },    
-    "fotoFav9":{
-        "idDesc" : "fotoFav3",
-        "id": "fotoFav3.jpg",        
+        "lugar": "Malvarrosa, Patacona, Valencia",
+        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "personas": "Esteve, Emma"      
+    },
+    "fotoFav4":{
+        "idDesc" : "fotoFav4",
+        "id": "fotoFav4.jpeg",        
         "anyo": "2023",
         "lugar": "Burjassot",
-        "categoria": "Deporte",
+        "categoria": "Casa, Salon, Salo, Mesa, Taula, Treball, Trabajo",
         "personas": "Mateu"
+    },
+    "fotoFav5":{
+        "idDesc" : "fotoFav5",
+        "id": "fotoFav5.jpg",        
+        "anyo": "2023",
+        "lugar": "Puerto, Puertomingalvo",
+        "categoria": "Montaña, Muntanya, Iglesia",
+        "personas": "Mateu, Gerard"
+    },
+    "fotoFav6":{
+        "idDesc" : "fotoFav6",
+        "id": "fotoFav6.jpg",        
+        "anyo": "2023",
+        "lugar": "Puerto, Puertomingalvo, Las Truchas, Merendero",
+        "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
+        "personas": "Mateu"
+    },
+    "fotoFav7":{
+        "idDesc" : "fotoFav7",
+        "id": "fotoFav7.jpg",        
+        "anyo": "2023",
+        "lugar": "Puerto, Puertomingalvo, Las Truchas, Merendero",
+        "categoria": "Montaña, Muntanya, Paseo, Paseig, Familia, natura, naturaleza",
+        "personas": "Mateu, Alba, Albert"
+    },
+    "fotoFav8":{
+        "idDesc" : "fotoFav8",
+        "id": "fotoFav8.jpg",        
+        "anyo": "2022",
+        "lugar": "Paterna, Casa iaios",
+        "categoria": "Cumpleaños, Aniversari, Casa, iaios",
+        "personas": "Mateu, Gerard, Ana, Pepe"
+    },  
+    "fotoFav9":{
+        "idDesc" : "fotoFav9",
+        "id": "fotoFav9.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot, la granja",
+        "categoria": "Deporte, Esport, Skate, Patin, patinete, rampas",
+        "personas": "Mateu, Albert"
     },    
     "fotoFav10":{
-        "idDesc" : "fotoFav3",
-        "id": "fotoFav3.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot",
-        "categoria": "Deporte",
+        "idDesc" : "fotoFav10",
+        "id": "fotoFav10.jpg",        
+        "anyo": "2022",
+        "lugar": "Puerto, Puertomingalvo, font, fuente, penilla, Merendero",
+        "categoria": "Montaña, muntaña, natura, naturaleza",
         "personas": "Mateu"
     },    
     "fotoFav11":{
-        "idDesc" : "fotoFav3",
-        "id": "fotoFav3.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot",
-        "categoria": "Deporte",
+        "idDesc" : "fotoFav11",
+        "id": "fotoFav11.jpg",        
+        "anyo": "2022",
+        "lugar": "Puerto, Puertomingalvo, font, fuente, penilla, Merendero",
+        "categoria": "Montaña, muntaña, natura, naturaleza",
         "personas": "Mateu"
     },    
     "fotoFav12":{
-        "idDesc" : "fotoFav3",
-        "id": "fotoFav3.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot",
-        "categoria": "Deporte",
+        "idDesc" : "fotoFav12",
+        "id": "fotoFav12.jpg",        
+        "anyo": "2022",
+        "lugar": "Villahermosa, Puertomingalvo, Puerto",
+        "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
+        "personas": "Mateu, Pau, Martí, Marti"
+    },    
+    "fotoFav13":{
+        "idDesc" : "fotoFav13",
+        "id": "fotoFav13.jpg",        
+        "anyo": "2022",
+        "lugar": "Villahermosa, Puertomingalvo, Puerto, Las Truchas, Merendero",
+        "categoria": "Montaña, Muntanya, natura, naturaleza",
+        "personas": "Mateu, Pau, Martí, Marti"
+    },    
+    "fotoFav14":{
+        "idDesc" : "fotoFav14",
+        "id": "fotoFav14.jpg",        
+        "anyo": "2022",
+        "lugar": "Valencia, Ruzafa",
+        "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati",
+        "personas": "Mateu, Gerard"
+    },    
+    "fotoFav15":{
+        "idDesc" : "fotoFav15",
+        "id": "fotoFav15.jpg",        
+        "anyo": "2022",
+        "lugar": "Burjassot, Eixereta, Parc, Parque",
+        "categoria": "Cumpleaños, Aniversari, Familia",
+        "personas": "Mateu, Alba, Albert, Ana, Pepe"
+    },    
+    "fotoFav16":{
+        "idDesc" : "fotoFav16",
+        "id": "fotoFav16.jpg",        
+        "anyo": "2022",
+        "lugar": "Burjassot, Eixereta, Parc, Parque",
+        "categoria": "Cumpleaños, Aniversari, Familia",
+        "personas": "Mateu, Alba, Gerard"
+    },    
+    "fotoFav17":{
+        "idDesc" : "fotoFav17",
+        "id": "fotoFav17.jpg",        
+        "anyo": "2022",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Deporte, Esport, Basket, Baloncesto",
         "personas": "Mateu"
-    }        
+    },    
+    "fotoFav18":{
+        "idDesc" : "fotoFav18",
+        "id": "fotoFav18.jpg",        
+        "anyo": "2022",
+        "lugar": "Godella, Iglesia, Esglesia",
+        "categoria": "Boda, Ceremonia",
+        "personas": "Mateu, Gerard"
+    },    
+    "fotoFav19":{
+        "idDesc" : "fotoFav19",
+        "id": "fotoFav19.jpg",        
+        "anyo": "2022",
+        "lugar": "Puerto, Puertomingalvo",
+        "categoria": "Montaña, Muntanya, natura, naturaleza, rio, río, riu, cuñis, broders",
+        "personas": "Mateu, Blai, Gerard, Albert"
+    },    
+    "fotoFav20":{
+        "idDesc" : "fotoFav20",
+        "id": "fotoFav20.jpg",        
+        "anyo": "2022",
+        "lugar": "Valencia, Vivers, Viveros",
+        "categoria": "Gelat, Helado",
+        "personas": "Mateu, Alba"
+    },    
+    "fotoFav21":{
+        "idDesc" : "fotoFav21",
+        "id": "fotoFav21.jpg",        
+        "anyo": "2022",
+        "lugar": "Alboraia, Alboraya, Sequer lo blanc",
+        "categoria": "Amagatall, Escondite",
+        "personas": "Mateu"
+    },    
+    "fotoFav22":{
+        "idDesc" : "fotoFav22",
+        "id": "fotoFav22.jpg",        
+        "anyo": "2022",
+        "lugar": "Alboraia, Alboraya, Sequer lo blanc",
+        "categoria": "Grupo, Amigos, Amics, grup, gent, gente",
+        "personas": "Putipanda"
+    },    
+    "fotoFav23":{
+        "idDesc" : "fotoFav23",
+        "id": "fotoFav23.jpg",        
+        "anyo": "2022",
+        "lugar": "Godella",
+        "categoria": "Familia, cuñis, broders",
+        "personas": "Alba, Mateu, Gerard, Marta"
+    },    
+    "fotoFav24":{
+        "idDesc" : "fotoFav24",
+        "id": "fotoFav24.jpg",        
+        "anyo": "2022",
+        "lugar": "Burjassot, Eixereta, Parc, Parque",
+        "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati",
+        "personas": "Mateu, Gerard"
+    } ,    
+    "fotoFav25":{
+        "idDesc" : "fotoFav25",
+        "id": "fotoFav25.jpg",        
+        "anyo": "2022",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Casa, Sofa, amor, dormido, dormit, dormir",
+        "personas": "Mateu, Alba"
+    } ,    
+    "fotoFav26":{
+        "idDesc" : "fotoFav26",
+        "id": "fotoFav26.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Caja, jugar",
+        "personas": "Mateu, Gerard"
+    } ,    
+    "fotoFav27":{
+        "idDesc" : "fotoFav27",
+        "id": "fotoFav27.jpg",        
+        "anyo": "2021",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Bebe, biberón, bibe, bebé, xicotet",
+        "personas": "Mateu"
+    } ,    
+    "fotoFav28":{
+        "idDesc" : "fotoFav28",
+        "id": "fotoFav28.jpg",        
+        "anyo": "2021",
+        "lugar": "Malvarrosa, Patacona, Valencia",
+        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "personas": "Mateu, Blai, Gerard"
+    } ,    
+    "fotoFav29":{
+        "idDesc" : "fotoFav29",
+        "id": "fotoFav29.jpg",        
+        "anyo": "2016",
+        "lugar": "Les Deux Alps, Alpes, Francia, Franceses, Estación Esquí",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar",
+        "personas": "Albert"
+    } ,    
+    "fotoFav30":{
+        "idDesc" : "fotoFav30",
+        "id": "fotoFav30.jpg",        
+        "anyo": "2016",
+        "lugar": "Les Deux Alps, Alpes, Francia, Franceses, Estación Esquí",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar",
+        "personas": "Albert"
+    } ,    
+    "fotoFav31":{
+        "idDesc" : "fotoFav31",
+        "id": "fotoFav31.jpg",        
+        "anyo": "2016",
+        "lugar": "Les Deux Alps, Alpes, Francia, Franceses, Estación Esquí",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar",
+        "personas": "Albert"
+    }      
 }
     

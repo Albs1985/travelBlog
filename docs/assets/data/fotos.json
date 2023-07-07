@@ -10,8 +10,7 @@
         "foto7": "Tossa7.jpg",
         "foto8": "Tossa8.jpg",
         "foto9": "Tossa9.jpg",
-        "foto10": "Tossa10.jpg",
-        "foto11": "Tossa11.jpg"        
+        "foto10": "Tossa10.jpg"       
     },
     "2023-06-01":{
         "principal": "FormenteraPrincipal.jpg",        
@@ -19,7 +18,9 @@
         "foto2": "Formentera2.jpg",
         "foto3": "Formentera3.jpg",
         "foto4": "Formentera4.jpg",
-        "foto5": "Formentera5.jpg"
+        "foto5": "Formentera5.jpg",
+        "foto6": "Formentera6.jpg",
+        "foto7": "Formentera7.jpg"
     },
     "2023-05-19":{
         "principal": "OlivaPrincipal.jpg",        
@@ -27,7 +28,8 @@
         "foto2": "Oliva2.jpg",
         "foto3": "Oliva3.jpg",
         "foto4": "Oliva4.jpg",
-        "foto5": "Oliva5.jpg"
+        "foto5": "Oliva5.jpg",
+        "foto6": "Oliva6.jpg"
     },
     "2023-04-06":{
         "principal": "AndorraPrincipal.jpg",        
@@ -38,24 +40,19 @@
         "foto5": "Andorra5.jpg",
         "foto6": "Andorra6.jpg",
         "foto7": "Andorra7.jpg",
-        "foto8": "Andorra8.jpg",
-        "foto9": "Andorra9.jpg",
-        "foto10": "Andorra10.jpg",
-        "foto11": "Andorra11.jpg"
+        "foto8": "Andorra8.jpg"
     },
     "2023-03-12":{
-        "principal": "PuertoPrincipal.jpg",        
-        "foto1": "Puerto1.jpg",
-        "foto2": "Puerto2.jpg",
-        "foto3": "Puerto3.jpg",
-        "foto4": "Puerto4.jpg",
-        "foto5": "Puerto5.jpg",
-        "foto6": "Puerto6.jpg",
-        "foto7": "Puerto7.jpg",
-        "foto8": "Puerto8.jpg",
-        "foto9": "Puerto9.jpg",
-        "foto10": "Puerto10.jpg",
-        "foto11": "Puerto11.jpg"
+        "principal": "ValdelinaresPrincipal.jpg",        
+        "foto1": "Valdelinares1.jpg",
+        "foto2": "Valdelinares2.jpg",
+        "foto3": "Valdelinares3.jpg",
+        "foto4": "Valdelinares4.jpg",
+        "foto5": "Valdelinares5.jpg",
+        "foto6": "Valdelinares6.jpg",
+        "foto7": "Valdelinares7.jpeg",
+        "foto8": "Valdelinares8.jpeg",
+        "foto9": "Valdelinares9.jpg"
     },
     "2023-01-29":{
         "principal": "BaqueiraPrincipal.jpg",        
@@ -65,11 +62,7 @@
         "foto4": "Baqueira4.jpg",
         "foto5": "Baqueira5.jpg",
         "foto6": "Baqueira6.jpg",
-        "foto7": "Baqueira7.jpg",
-        "foto8": "Baqueira8.jpg",
-        "foto9": "Baqueira9.jpg",
-        "foto10": "Baqueira10.jpg",
-        "foto11": "Baqueira11.jpg"
+        "foto7": "Baqueira7.jpg"
     },
     "2022-10-21":{
         "principal": "MadridPrincipal.jpg",        
