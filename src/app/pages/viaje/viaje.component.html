@@ -27,13 +27,13 @@
                 &nbsp;{{servicioViajes.viajesDetalleLista[0].year}}
                 <button type="button" class="infoButton" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rollIn"></button>
                 <div class="custom-tooltip" (click)="showTooltip()" *ngIf="showMsg">
-                    <ul><b>{{ 'header.categoria' | translate }}: {{'categoria.'+ servicioViajes.viajesDetalleLista[0].categoria | translate}}</b></ul>
-                    <ul><b>{{ 'viaje.provincia' | translate }}: {{servicioViajes.viajesDetalleLista[0].provincia}}</b></ul>
-                    <ul><b>{{ 'viaje.pais' | translate }}: {{'localidad.'+ servicioViajes.viajesDetalleLista[0].pais | translate}}</b></ul>
-                    <ul><b>{{ 'viaje.precio' | translate }}: {{servicioViajes.viajesDetalleLista[0].precio}}€</b></ul>                    
-                    <ul><b>{{ 'viaje.estancia' | translate }}: {{servicioViajes.viajesDetalleLista[0].estancia}}</b></ul>
-                    <ul><b>{{ 'viaje.tipoEstancia' | translate }}: {{'tipoEstancia.'+ servicioViajes.viajesDetalleLista[0].tipoEstancia | translate}}</b></ul>
-                    <ul><b>{{ 'app.viajeros' | translate }}: {{servicioViajes.viajesDetalleLista[0].personas}}</b></ul>
+                    <ul>{{ 'header.categoria' | translate }}: <b>{{'categoria.'+ servicioViajes.viajesDetalleLista[0].categoria | translate}}</b></ul>
+                    <ul>{{ 'viaje.provincia' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].provincia}}</b></ul>
+                    <ul>{{ 'viaje.pais' | translate }}: <b>{{'localidad.'+ servicioViajes.viajesDetalleLista[0].pais | translate}}</b></ul>
+                    <ul>{{ 'viaje.precio' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].precio}}€</b></ul>                    
+                    <ul>{{ 'viaje.estancia' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].estancia}}</b></ul>
+                    <ul>{{ 'viaje.tipoEstancia' | translate }}: <b>{{'tipoEstancia.'+ servicioViajes.viajesDetalleLista[0].tipoEstancia | translate}}</b></ul>
+                    <ul>{{ 'app.viajeros' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].personas}}</b></ul>
                 </div>  
             </span>
 

@@ -39,6 +39,7 @@
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 
+<br>
 <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
 
 <!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
