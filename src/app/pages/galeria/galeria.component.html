@@ -14,17 +14,6 @@
   </div>
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
-
-<br>
-<br>
-<div class="row fotosPerfiles">
-    <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
-        <figure>
-            <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-            <figcaption>{{viajero.nombreCompleto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
-        </figure>   
-    </div>
-</div>
 <br>
 <div class="paginacion">
   <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
