@@ -33,7 +33,7 @@
 <div *ngFor="let viaje of viajesService.arrayFotos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
   <div class="gallery">
     <a target="_blank" href="assets/images/{{viaje}}">
-      <img src="assets/images/{{viaje}}" alt="" width="600" height="400">
+      <img src="assets/images/{{viaje}}" loading="lazy" alt="" width="600" height="400">
     </a>    
   </div>
 </div>

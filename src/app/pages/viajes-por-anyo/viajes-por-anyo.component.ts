@@ -9,6 +9,8 @@ import { ViajesService } from 'src/app/services/viajes.service';
 })
 export class ViajesPorAnyoComponent implements OnInit{
 
+  anyoActual : number = new Date().getFullYear();
+  anyoInicio : number = 2019;
   mensajeCabeceraAnyo : boolean = false;
   mensajeCabeceraFiltrar : boolean = false;
   palabra : string = '';

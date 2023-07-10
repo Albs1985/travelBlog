@@ -135,6 +135,8 @@
         "pais" : "País",
         "anterior" : "Viaje Anterior",
         "siguiente" : "Siguiente Viaje",
+        "anteriores" : "Viajes anteriores",
+        "siguientes" : "Siguientes Viajes",
         "empezar": "Empezar a viajar",
         "ConoceViaje": "Conoce los viajes"
     },

@@ -134,6 +134,8 @@
         "pais" : "País",
         "anterior" : "Viatge Anterior",
         "siguiente" : "Següent Viatge",
+        "anteriores" : "Viatges anteriors",
+        "siguientes" : "Següents Viatges",
         "empezar": "Començar a viatjar",
         "conoceViaje": "Coneix els viatges"
     },
