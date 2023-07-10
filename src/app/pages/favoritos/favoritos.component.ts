@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FotosService } from '../../services/fotos.service';
+import { ViajerosService } from 'src/app/services/viajeros.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -20,7 +21,7 @@ export class FavoritosComponent implements OnInit{
   // paginacionResponsive = true;//SI QUEREMOS QUE SEA RESPONSIVE AÑADIR ESTO COMO ATRIBUTO DE LA PAGINACION [responsive]="paginacionResponsive"
 
 
-  constructor(private route: ActivatedRoute, public servicioFotos : FotosService){
+  constructor(private route: ActivatedRoute, public viajerosService : ViajerosService, public servicioFotos : FotosService){
     // this.numeroFotosFavoritos = 15;
     this.palabra = '';
     this.maxSizeDisplay = 5;
@@ -28,6 +29,7 @@ export class FavoritosComponent implements OnInit{
   }
   ngOnInit(): void {
     this.servicioFotos.cargarFotosFav();
+    this.viajerosService.cargarViajeros();  
     
   }
 

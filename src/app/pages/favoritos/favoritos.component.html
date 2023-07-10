@@ -19,7 +19,14 @@
   </div>
 </div>
 
-<br>
+<div class="row fotosPerfiles">
+  <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
+      <figure>
+          <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
+          <figcaption>{{viajero.nombreCompleto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
+      </figure>   
+  </div>
+</div>
 <br>
 <div class="filtrado animated rollIn">
   <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
@@ -33,11 +40,14 @@
   </form>
 </div>
 
-<div *ngIf="servicioFotos.cargandoFotos" class="spinner-container">
+<div *ngIf="servicioFotos.cargandoFotosFav" class="spinner-container">
   <div class="spinner">      
   </div>
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
+
+<br>
+<pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
 
 <!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
 <div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
@@ -58,6 +68,6 @@
 <br>
 <br>
 <div class="divRight">
-    <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
+    <img src="assets/icons/flechaAtras.png" loading="lazy" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
 </div>
 

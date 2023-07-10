@@ -62,6 +62,18 @@
     margin-right: 15px;
 }
 
+.divLeft{
+    float: left;
+    margin-left: 5px;
+    font-size: 14px !important;
+}
+  
+.divRight{
+    float: right;
+    margin-right: 5px;
+    font-size: 14px !important;
+}
+
 .iconoFlecha {
     width: 30px;
     height: 30px;

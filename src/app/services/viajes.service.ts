@@ -9,6 +9,7 @@ import { Viaje } from '../interfaces/viaje.interface';
 export class ViajesService {
 
   cargandoViajes = true;
+  cargandoFotosGaleria = true;
   anyoViaje = '';
   anyoActual : number = new Date().getFullYear();
   arrayFotos : string[] = [];
@@ -72,7 +73,7 @@ export class ViajesService {
           } 
           
           // console.log(this.arrayFotos);
-          this.cargandoViajes = false;
+          this.cargandoFotosGaleria = false;
           resolve(this.arrayFotos);
           
         });
