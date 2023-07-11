@@ -12,6 +12,18 @@
     justify-content: space-between;
  }
 
+.fotosPerfiles{
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.dobleFotos{
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;    
+}
+
 .iconoFlecha {
     width: 30px;
     height: 30px;
