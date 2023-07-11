@@ -222,7 +222,95 @@
         "lugar": "Malvarrosa",
         "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
         "personas": "Mateu, Blai, Gerard"
+    }, 
+    "fotoFav39":{
+        "idDesc" : "fotoFav39",
+        "id": "fotoFav39.jpg",        
+        "anyo": "2021",
+        "lugar": "Altea",
+        "categoria": "Platja, Playa, Altea, Paisatge, Paisaje, Mar, Amanecer, Amaneixer",
+        "personas": ""
+    },    
+    "fotoFav40":{
+        "idDesc" : "fotoFav40",
+        "id": "fotoFav40.jpg",        
+        "anyo": "2021",
+        "lugar": "Altea",
+        "categoria": "Platja, Playa, Altea, Paisatge, Paisaje, Mar, Amanecer, Amaneixer",
+        "personas": ""
+    },    
+    "fotoFav41":{
+        "idDesc" : "fotoFav41",
+        "id": "fotoFav41.jpg",        
+        "anyo": "2021",
+        "lugar": "Valdelinares, Teruel",
+        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Estación Esquí, Paisatge, Paisaje",
+        "personas": ""
+    } ,
+    "fotoFav32":{
+        "idDesc" : "fotoFav32",
+        "id": "fotoFav32.jpg",        
+        "anyo": "2020",
+        "lugar": "Estanys d'Almenara",
+        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
+        "personas": ""
     } ,    
+    "fotoFav33":{
+        "idDesc" : "fotoFav33",
+        "id": "fotoFav33.jpg",        
+        "anyo": "2020",
+        "lugar": "Estanys d'Almenara",
+        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
+        "personas": ""
+    },    
+    "fotoFav34":{
+        "idDesc" : "fotoFav34",
+        "id": "fotoFav34.jpg",        
+        "anyo": "2020",
+        "lugar": "Estanys d'Almenara",
+        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
+        "personas": ""
+    },    
+    "fotoFav35":{
+        "idDesc" : "fotoFav35",
+        "id": "fotoFav35.jpg",        
+        "anyo": "2020",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, pijama",
+        "personas": "Mateu"
+    },    
+    "fotoFav36":{
+        "idDesc" : "fotoFav36",
+        "id": "fotoFav36.jpg",        
+        "anyo": "2020",
+        "lugar": "Horta de Godella",
+        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Horta, Huerta",
+        "personas": ""
+    },    
+    "fotoFav37":{
+        "idDesc" : "fotoFav37",
+        "id": "fotoFav37.jpg",        
+        "anyo": "2020",
+        "lugar": "Horta de Godella",
+        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Horta, Huerta",
+        "personas": ""
+    },    
+    "fotoFav38":{
+        "idDesc" : "fotoFav38",
+        "id": "fotoFav38.jpg",        
+        "anyo": "2020",
+        "lugar": "Platja de Massalfassar",
+        "categoria": "Platja, Playa, Valencia, Paisatge, Paisaje, Mar",
+        "personas": ""
+    },   
+    "fotoFav42":{
+        "idDesc" : "fotoFav42",
+        "id": "fotoFav42.jpg",        
+        "anyo": "2019",
+        "lugar": "Bali, Indonesia",
+        "categoria": "Río, Riu, Rio, Cascadas",
+        "personas": ""
+    }   ,    
     "fotoFav29":{
         "idDesc" : "fotoFav29",
         "id": "fotoFav29.jpg",        
@@ -242,9 +330,11 @@
     "fotoFav31":{
         "idDesc" : "fotoFav31",
         "id": "fotoFav31.jpg",        
+        "anyo": "2016",
         "lugar": "Les Deux Alps, Alpes Franceses",
         "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
         "personas": "Albert"
     }      
+    
 }
     
