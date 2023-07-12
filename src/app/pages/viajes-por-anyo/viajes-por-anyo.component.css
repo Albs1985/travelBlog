@@ -64,13 +64,13 @@
 
 .divLeft{
     float: left;
-    margin-left: 5px;
+    margin-left: 15px;
     font-size: 14px !important;
 }
   
 .divRight{
     float: right;
-    margin-right: 5px;
+    margin-right: 15px;
     font-size: 14px !important;
 }
 
