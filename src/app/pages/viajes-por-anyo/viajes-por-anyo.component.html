@@ -119,14 +119,16 @@
             </article>        
         </div>
         <div class="clearfix visible-xs-block"></div>
-        <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoInicio" class="divLeft">
-            <img src="assets/icons/flechaIzq.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">&nbsp;
-                <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">  {{ 'viaje.anteriores' | translate}}</a>
-        </div>
-        <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoActual" class="divRight">
-            <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">  {{ 'viaje.siguientes' | translate}}</a>&nbsp;
-                <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">
-                
+        <div *ngIf="mensajeCabeceraAnyo">
+            <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoInicio" class="divLeft">
+                <img src="assets/icons/flechaIzq.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">&nbsp;
+                    <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">  {{ 'viaje.anteriores' | translate}}</a>
+            </div>
+            <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoActual" class="divRight">
+                <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">  {{ 'viaje.siguientes' | translate}}</a>&nbsp;
+                    <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">
+                    
+            </div>
         </div>
     </div>
 </div>

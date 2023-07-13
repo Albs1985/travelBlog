@@ -61,12 +61,12 @@ export class ViajesService {
 
           for(let key in response){           
             var viajesAnyo = response[key];
-            console.log(viajesAnyo);
+            // console.log(viajesAnyo);
               for (let viatge in response[key]){
-                console.log(viatge);
+                // console.log(viatge);
                 for (var i=1; i < viajesAnyo[viatge].numFotos; i++){
                   var foto = viajesAnyo[viatge].year +'/'+viajesAnyo[viatge].identificadorFotos+''+i+'.jpg';
-                  console.log(foto);
+                  // console.log(foto);
                   this.arrayFotos.push(foto); 
                 }                
               }
@@ -346,7 +346,7 @@ export class ViajesService {
     });
 
     this.cargandoViajes = false;
-    console.log(this.viajesDetalleLista);
+    // console.log(this.viajesDetalleLista);
 
   }
 
@@ -360,9 +360,9 @@ export class ViajesService {
 
           var array = [];
           var fechaInicioViaje = clave.ciudad.substring(0, clave.ciudad.indexOf('_'));
-          console.log(fechaInicioViaje);
+          // console.log(fechaInicioViaje);
           this.anyoViaje = fechaInicioViaje.substring(0, fechaInicioViaje.indexOf('-'));
-          console.log(this.anyoViaje);
+          // console.log(this.anyoViaje);
 
 
           for(let key in response){            
@@ -378,7 +378,7 @@ export class ViajesService {
           } 
           this.viajesDetalleLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
-          console.log(this.viajesDetalleLista);
+          // console.log(this.viajesDetalleLista);
 
           this.cargandoViajes = false;
           resolve(this.viajesDetalleLista);
