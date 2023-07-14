@@ -77,7 +77,7 @@
         "montanya" : "Muntanya",
         "ciudad" : "Ciutat",
         "nieve" : "Neu",
-        "buscar": "Recerca",
+        "buscar": "Busca",
         "informacion": "Informació",
         "palabra": "Filtrar",
         "mensajeCabeceraAnyos" : "Viatges per any",
@@ -178,11 +178,17 @@
         "fotoFav35" : "Mateu fent la croqueta al llit dels seus pares",
         "fotoFav36" : "Vista de l'horta de Godella, a les passejades permeses en pandèmia",
         "fotoFav37" : "Arbre de l'horta de Godella, a les passejades permeses en pandèmia",
-        "fotoFav38" : "",
+        "fotoFav38" : "Platja de Massalfassar",
         "fotoFav39" : "Amaneixer des de l'apartament d'Altea",
         "fotoFav40" : "Amaneixer des de l'apartament d'Altea, sobre la taula de vidre",
         "fotoFav41" : "Pi nevat a l'estació d'esquí, primera visita de Mateu",
-        "fotoFav42" : "Paisatge del riu, a la ruta de les cascades"
+        "fotoFav42" : "Paisatge del riu, a la ruta de les cascades de Bali",
+        "fotoFav43" : "Albert disfrutant del seu primer fill",
+        "fotoFav44" : "Gerard posant als Pirineos",
+        "fotoFav45" : "Els cosins a conjunt",
+        "fotoFav46" : "Boda de Blai i Marta",
+        "fotoFav47" : "Els compis de clase de la escoleta"
+        
 
     },
     "2023-06-10":{

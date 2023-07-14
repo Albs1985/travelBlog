@@ -6,23 +6,7 @@
         "lugar": "Malvarrosa",
         "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
         "personas": "Esteve, Mateu"        
-    },
-    "fotoFav2":{
-        "idDesc" : "fotoFav2",
-        "id": "fotoFav2.jpg",        
-        "anyo": "2023",
-        "lugar": "Malvarrosa",
-        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
-        "personas": "Esteve, Joan"      
-    },
-    "fotoFav3":{
-        "idDesc" : "fotoFav3",
-        "id": "fotoFav3.jpg",        
-        "anyo": "2023",
-        "lugar": "Malvarrosa",
-        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
-        "personas": "Esteve, Emma"      
-    },
+    },    
     "fotoFav4":{
         "idDesc" : "fotoFav4",
         "id": "fotoFav4.jpeg",        
@@ -142,7 +126,23 @@
         "lugar": "Burjassot, Casa",
         "categoria": "Deporte, Esport, Basket, Baloncesto",
         "personas": "Mateu"
-    },    
+    }, 
+    "fotoFav44":{
+        "idDesc" : "fotoFav44",
+        "id": "fotoFav44.jpg",        
+        "anyo": "2022",
+        "lugar": "Pirineos",
+        "categoria": "Montaña, Muntanya, natura, naturaleza, llac, lago",
+        "personas": "Gerard"
+    },   
+    "fotoFav45":{
+        "idDesc" : "fotoFav45",
+        "id": "fotoFav45.jpg",        
+        "anyo": "2022",
+        "lugar": "La Pobla de Farnals",
+        "categoria": "Platja, Playa, Familia, niños, xiquets",
+        "personas": "Mateu, Emili"
+    },   
     "fotoFav18":{
         "idDesc" : "fotoFav18",
         "id": "fotoFav18.jpg",        
@@ -247,6 +247,22 @@
         "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Estación Esquí, Paisatge, Paisaje",
         "personas": ""
     } ,
+    "fotoFav46":{
+        "idDesc" : "fotoFav46",
+        "id": "fotoFav46.jpg",        
+        "anyo": "2021",
+        "lugar": "Godella",
+        "categoria": "Boda, Ceremonia, Iglesia, Esglesia, Cuñis, Broders, Germà, Hermano",
+        "personas": "Blai, Marta"
+    },   
+    "fotoFav47":{
+        "idDesc" : "fotoFav47",
+        "id": "fotoFav47.jpg",        
+        "anyo": "2021",
+        "lugar": "Burjassot, Parque María Marzo",
+        "categoria": "Parque, Parc, Niños, xiquets, escoleta",
+        "personas": "Omar, Onai, Darío, Mateu"
+    },
     "fotoFav32":{
         "idDesc" : "fotoFav32",
         "id": "fotoFav32.jpg",        
@@ -255,6 +271,14 @@
         "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
         "personas": ""
     } ,    
+    "fotoFav43":{
+        "idDesc" : "fotoFav43",
+        "id": "fotoFav43.jpg",        
+        "anyo": "2020",
+        "lugar": "Burjassot, Casa",
+        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+        "personas": "Mateu, Albert"
+    },  
     "fotoFav33":{
         "idDesc" : "fotoFav33",
         "id": "fotoFav33.jpg",        
@@ -334,7 +358,7 @@
         "lugar": "Les Deux Alps, Alpes Franceses",
         "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
         "personas": "Albert"
-    }      
+    }
     
 }
     
