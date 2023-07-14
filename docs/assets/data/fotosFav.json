@@ -255,6 +255,14 @@
         "categoria": "Boda, Ceremonia, Iglesia, Esglesia, Cuñis, Broders, Germà, Hermano",
         "personas": "Blai, Marta"
     },   
+    "fotoFav49":{
+        "idDesc" : "fotoFav49",
+        "id": "fotoFav49.jpg",        
+        "anyo": "2021",
+        "lugar": "Burjassot, Escoleta Llumenetes",
+        "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, Escoleta Llumenetes, cumple, aniversari, cumpleaños",
+        "personas": "Mateu"
+    },
     "fotoFav47":{
         "idDesc" : "fotoFav47",
         "id": "fotoFav47.jpg",        
@@ -302,7 +310,15 @@
         "lugar": "Burjassot, Casa",
         "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, pijama",
         "personas": "Mateu"
-    },    
+    },  
+    "fotoFav48":{
+        "idDesc" : "fotoFav48",
+        "id": "fotoFav48.jpg",        
+        "anyo": "2020",
+        "lugar": "Burjassot, Escoleta Llumenetes",
+        "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, Escoleta Llumenetes, cumple, aniversari, cumpleaños",
+        "personas": "Mateu"
+    },  
     "fotoFav36":{
         "idDesc" : "fotoFav36",
         "id": "fotoFav36.jpg",        
