@@ -1,4 +1,12 @@
 {
+    "fotoFav50":{
+        "idDesc" : "fotoFav50",
+        "id": "fotoFav50.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot, Parque La Concordia",
+        "categoria": "Parque, Parc, Deporte, Esport, Basket, Baloncesto, balón, bola",
+        "personas": "Mateu"
+    },
     "fotoFav1":{
         "idDesc" : "fotoFav1",
         "id": "fotoFav1.jpg",        
@@ -23,6 +31,22 @@
         "categoria": "Puerto, Montaña, Muntanya, Iglesia",
         "personas": "Mateu, Gerard"
     },
+    "fotoFav52":{
+        "idDesc" : "fotoFav52",
+        "id": "fotoFav52.jpg",        
+        "anyo": "2023",
+        "lugar": "Burjassot",
+        "categoria": "Moto, Garaje, Garatge",
+        "personas": "Mateu"
+    },   
+    "fotoFav51":{
+        "idDesc" : "fotoFav51",
+        "id": "fotoFav51.jpg",        
+        "anyo": "2023",
+        "lugar": "Valencia, Ruzafa",
+        "categoria": "Parque, Parc, Niños, xiquets",
+        "personas": "Mateu, Joan, Emma, Lola, Pau"
+    },    
     "fotoFav6":{
         "idDesc" : "fotoFav6",
         "id": "fotoFav6.jpg",        
@@ -302,7 +326,47 @@
         "lugar": "Estanys d'Almenara",
         "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
         "personas": ""
-    },    
+    },  
+    "fotoFav53":{
+        "idDesc" : "fotoFav53",
+        "id": "fotoFav53.jpg",        
+        "anyo": "2020",
+        "lugar": "Ibiza",
+        "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre",
+        "personas": "Alba, Albert"
+    },  
+    "fotoFav54":{
+        "idDesc" : "fotoFav54",
+        "id": "fotoFav54.jpg",        
+        "anyo": "2020",
+        "lugar": "Ibiza",
+        "categoria": "Embarcadero, bruji, novios",
+        "personas": "Alba, Albert"
+    },  
+    "fotoFav55":{
+        "idDesc" : "fotoFav55",
+        "id": "fotoFav55.jpg",        
+        "anyo": "2020",
+        "lugar": "Ibiza",
+        "categoria": "Embarcadero, bruji, novios",
+        "personas": "Alba, Albert"
+    },  
+    "fotoFav56":{
+        "idDesc" : "fotoFav56",
+        "id": "fotoFav56.jpg",        
+        "anyo": "2020",
+        "lugar": "Ibiza",
+        "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre",
+        "personas": "Sarita, Alba, Albert"
+    },  
+    "fotoFav57":{
+        "idDesc" : "fotoFav57",
+        "id": "fotoFav57.jpg",        
+        "anyo": "2020",
+        "lugar": "Ibiza",
+        "categoria": "Embarcadero, bruji, novios",
+        "personas": "Alba, Albert"
+    },   
     "fotoFav35":{
         "idDesc" : "fotoFav35",
         "id": "fotoFav35.jpg",        
