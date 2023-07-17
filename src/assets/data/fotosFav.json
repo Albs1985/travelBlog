@@ -331,42 +331,34 @@
         "idDesc" : "fotoFav53",
         "id": "fotoFav53.jpg",        
         "anyo": "2020",
-        "lugar": "Ibiza",
-        "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre",
+        "lugar": "Formentera",
+        "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre, Balears, Baleares, Isla, Illa",
         "personas": "Alba, Albert"
     },  
     "fotoFav54":{
         "idDesc" : "fotoFav54",
         "id": "fotoFav54.jpg",        
         "anyo": "2020",
-        "lugar": "Ibiza",
-        "categoria": "Embarcadero, bruji, novios",
+        "lugar": "Formentera",
+        "categoria": "Embarcadero, bruji, novios, Balears, Baleares, Isla, Illa",
         "personas": "Alba, Albert"
     },  
     "fotoFav55":{
         "idDesc" : "fotoFav55",
         "id": "fotoFav55.jpg",        
         "anyo": "2020",
-        "lugar": "Ibiza",
-        "categoria": "Embarcadero, bruji, novios",
-        "personas": "Alba, Albert"
+        "lugar": "Formentera",
+        "categoria": "Embarcadero, bruji, blanco y negro, blanc i negre, novios, Balears, Baleares, Isla, Illa",
+        "personas": "Sarita, Alba, Albert"
     },  
     "fotoFav56":{
         "idDesc" : "fotoFav56",
         "id": "fotoFav56.jpg",        
         "anyo": "2020",
-        "lugar": "Ibiza",
-        "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre",
+        "lugar": "Formentera",
+        "categoria": "Embarcadero, bruji, novios, Balears, Baleares, Isla, Illa",
         "personas": "Sarita, Alba, Albert"
-    },  
-    "fotoFav57":{
-        "idDesc" : "fotoFav57",
-        "id": "fotoFav57.jpg",        
-        "anyo": "2020",
-        "lugar": "Ibiza",
-        "categoria": "Embarcadero, bruji, novios",
-        "personas": "Alba, Albert"
-    },   
+    },      
     "fotoFav35":{
         "idDesc" : "fotoFav35",
         "id": "fotoFav35.jpg",        

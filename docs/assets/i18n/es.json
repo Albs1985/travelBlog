@@ -20,6 +20,7 @@
         "sobre": "Quienes somos",
         "viajeros": "Viajeros",
         "viajes" : "Viajes",
+        "listaViajes" : "Ir a la lista de viajes por año",
         "viaje" : "Viaje",
         "cerrar": "Cerrar",
         "destinos" : "Destinos",
@@ -34,7 +35,7 @@
     "about":{
         "titulo": "Familia Serrador Casares",
         "edad": "años",
-        "fecha" : "Junio de 2023",
+        "fecha" : "Historia contada en Junio de 2023",
         "subtitulo": "",
         "cita1": "«Una vez al año, ve a algún lugar en el que nunca hayas estado»",
         "personaCita1": "",
@@ -137,8 +138,9 @@
         "siguiente" : "Siguiente Viaje",
         "anteriores" : "Viajes anteriores",
         "siguientes" : "Siguientes Viajes",
-        "empezar": "Empezar a viajar",
-        "ConoceViaje": "Conoce los viajes"
+        "empezar": "Empezar a viajar: primer viaje",
+        "conoceViaje": "Conoce los viajes",
+        "conocerHistoria" : "Conoce la historia"
     },
     "favoritos":{
         "filtrado": "Año, persona, lugar, categoría...",
@@ -189,16 +191,15 @@
         "fotoFav45" : "Los primos a conjunto",
         "fotoFav46" : "Boda de Blai y Marta",
         "fotoFav47" : "Los compis de clase de la escoleta",
-        "fotoFav48" : "Mateu, cumple en la escoleta, 1 año",
-        "fotoFav49" : "Mateu, cumple en la escoleta, 2 años",
+        "fotoFav48" : "Mateu, cumple en la escoleta, 2 años",
+        "fotoFav49" : "Mateu, cumple en la escoleta, 1 año",
         "fotoFav50" : "Mateu, su primer balón de baloncesto y canasta",
         "fotoFav51" : "En el parque",
         "fotoFav52" : "Subido a la yamaha YZF de su padre",
         "fotoFav53" : "Alba y Albert en el embarcadero del Bruji",
         "fotoFav54" : "Alba y Albert en el embarcadero del Bruji",
-        "fotoFav55" : "Alba y Albert en el embarcadero del Bruji",
-        "fotoFav56" : "Sarita, Alba y Albert en el embarcadero del Bruji",
-        "fotoFav57" : "Alba y Albert en el embarcadero del Bruji"
+        "fotoFav55" : "Sarita, Alba y Albert en el embarcadero del Bruji",
+        "fotoFav56" : "Sarita, Alba y Albert en el embarcadero del Bruji"
 
     },
     "2023-06-10":{
@@ -261,7 +262,7 @@
         "bloque6_parrafo2": "",
         "bloque7_parrafo1": "",
         "bloque7_parrafo2": "",
-        "descPrincipal" : "Paseo de Alba por la playa de Formentera",
+        "descPrincipal" : "Paseo de Alba por la playa de Mitjorn, Formentera",
         "descFoto1" : "Alba y Sarita en el embarcadero",
         "descFoto2" : "María en el faro de la Mola",
         "descFoto3" : "Vista desde el embarcadero",
@@ -483,7 +484,7 @@
     },
     "2022-06-04":{
         "tituloParte1": "Isla querida",
-        "bloque1_parrafo1": "Por primera vez, Albert iba a tener la oportunidad de enseñarle a Alba y Mateu su isla favorita, Menorca. Había pasado algunos veranos en esta bonita y pequeña isla. En especial, el verano del 2001, cuando por segunda vez iba a la isla a buscar trabajo para el verano, pero esa vez fue con Esteve a principios de Julio, para volver a mediados de septiembre.",
+        "bloque1_parrafo1": "Por primera vez, Albert iba a tener la oportunidad de enseñarle a Alba y Mateu su isla favorita, Menorca. Había pasado algunos veranos en esta bonita y pequeña isla. En especial, el verano del 2005, cuando por segunda vez iba a la isla a buscar trabajo para el verano, pero esa vez fue con Esteve a principios de Julio, para volver a mediados de septiembre.",
         "bloque1_parrafo2": "Durmiendo en las playas, la primera semana de ese verano fue algo más dura, junto a Esteve, pero poco a poco fueron recibiendo la visita de muchos amigos y pasaron más de dos meses durmiendo en las playas, disfrutando de las calas salvajes que ofrecía la isla.",
         "bloque1_parrafo3": "Pues bien, en esta ocasión iba a ser muy diferente, pero no en lo referente a la diversión, si no a la comodidad. Con un apartamento reservado para toda la semana (8 días), con todas las comodidades que podían desear, piscina en el resort, comiendo de restaurante y viajando en coche... Su familia no merecía menos.",
         "nota1": "",
@@ -785,7 +786,7 @@
         "bloque1_parrafo3": "She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.",
         "nota1": "Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia",
         "cita1": "She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove ",
-        "personaCita1": "Jean Smith",
+        "personaCita1": "— Jean Smith",
         "bloque2_parrafo1": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
         "bloque2_parrafo2": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
         "bloque2_parrafo3": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
@@ -823,7 +824,7 @@
         "bloque1_parrafo3": "She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.",
         "nota1": "Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia",
         "cita1": "She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove ",
-        "personaCita1": "Jean Smith",
+        "personaCita1": "— Jean Smith",
         "bloque2_parrafo1": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
         "bloque2_parrafo2": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
         "bloque2_parrafo3": "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.",
