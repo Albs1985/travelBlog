@@ -8,6 +8,7 @@ import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
+import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -17,6 +18,7 @@ const app_routes: Routes = [
   { path: 'favoritos', component : FavoritosComponent},  
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
+  { path: 'contactQR', component : ContactQRComponent},  
   { path: 'bookMode', component : BookModeComponent},
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];

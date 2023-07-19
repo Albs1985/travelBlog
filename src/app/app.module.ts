@@ -18,6 +18,7 @@ import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BookModeComponent,
     GaleriaComponent,
     PrincipalComponent,
-    FavoritosComponent
+    FavoritosComponent,
+    ContactQRComponent
   ],
   imports: [
     BrowserModule,

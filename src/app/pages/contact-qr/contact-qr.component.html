@@ -1,0 +1,37 @@
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2">                
+                <!-- <div class="fh5co-spacer fh5co-spacer-sm"></div> -->
+                <h3 class="tituloContacto"><img src="assets/icons/correo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.contactoQR' | translate }}</h3>
+                <br>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="nombreTxt" type="text" class="form-control" placeholder="{{ 'app.nombre' | translate }}">	
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input id="emailTxt" type="email" class="form-control" placeholder="{{ 'app.email' | translate }}">
+                            </div>
+                            <div class="form-group">
+                                <textarea id="mensajeTxt" name="message" cols="30" class="form-control" rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button class="botonEnviar" (click)="envia()">
+                                    <a class="btn btn-primary anclaEnviar" href="mailto:{{correo}}"><b>{{ 'app.enviaMensaje' | translate }}</b></a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="divQR">
+                    <h4 class="centraTexto">{{ 'app.comparte' | translate }}</h4>
+                    <img src="assets/images/TravelQR.png" alt="" class="imagenQR">
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
