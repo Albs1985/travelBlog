@@ -17,18 +17,18 @@
                                 <input id="emailTxt" type="email" class="form-control" placeholder="{{ 'app.email' | translate }}">
                             </div>
                             <div class="form-group">
-                                <textarea id="mensajeTxt" name="message" cols="30" class="form-control" rows="10"></textarea>
+                                <textarea id="mensajeTxt" cols="30" class="form-control" rows="5"></textarea>
                             </div>
                             <div class="form-group">
                                 <button class="botonEnviar" (click)="envia()">
-                                    <a class="btn btn-primary anclaEnviar" href="mailto:{{correo}}"><b>{{ 'app.enviaMensaje' | translate }}</b></a>
+                                    <a class="btn btn-primary anclaEnviar" href="{{correo}}" target="_top"><b>{{ 'app.enviaMensaje' | translate }}</b></a>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </form>
-                <div class="divQR">
-                    <h4 class="centraTexto">{{ 'app.comparte' | translate }}</h4>
+                <div class="divQR color">
+                    <h5 class="centraTexto">{{ 'app.comparte' | translate }}</h5>
                     <img src="assets/images/TravelQR.png" alt="" class="imagenQR">
                 </div>
             </div>        

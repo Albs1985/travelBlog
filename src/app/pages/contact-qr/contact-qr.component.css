@@ -2,18 +2,25 @@
     color: black;
 }
 
+.color{
+    background-color: rgb(255, 228, 177);
+}
+
 .botonEnviar{
     background: transparent;    
-    border-color: transparent;
+    border-color: transparent;    
 }
 
 .divQR{
     /* Asegura que el contenedor ocupe el ancho del padre */
-    width: 100%;
+    /* width: 100%; */
     /* Define una altura para el contenedor (puedes ajustarla según tus necesidades) */
     height: 300px;
     /* Asegura que el contenedor sea un bloque con posición relativa */
     position: relative;
+    border-radius: 25px;
+    margin-left: 35px;
+    margin-right: 35px;
 }
 
 .imagenQR{

@@ -27,26 +27,46 @@ export class ContactQRComponent {
       this.nom = '';
     } else {
       this.nom = $('#nombreTxt').val();
-      this.nom = this.nom.replace('!', '');
+      // this.nom = this.nom.replace('!', ' ');
+      // this.nom = this.nom.replace(',', ' ');
+      // this.nom = this.nom.replace('.', ' ');
+      // this.nom = this.nom.replace(':', ' ');
+      // this.nom = this.nom.replace(';', ' ');
+      // this.nom = this.nom.replace('-', ' ');
+      // this.nom = this.nom.replace('_', ' ');
+
     }
 
     if($('#emailTxt').val() == ''){
       this.mail = '';
     } else {
       this.mail = $('#emailTxt').val();
-      this.mail = this.mail.replace('!', '');
+      // this.mail = this.mail.replace('!', ' ');
+      // this.mail = this.mail.replace(',', ' ');
+      // this.mail = this.mail.replace('.', ' ');
+      // this.mail = this.mail.replace(':', ' ');
+      // this.mail = this.mail.replace(';', ' ');
+      // this.mail = this.mail.replace('-', ' ');
+      // this.mail = this.mail.replace('_', ' ');
     }
     
     if($('#mensajeTxt').val() == ''){
       this.mensajeCorreo = '';
     } else {
       this.mensajeCorreo = $('#mensajeTxt').val();
-      this.mensajeCorreo = this.mensajeCorreo.replace('!', '');;
+      // this.mensajeCorreo = this.mensajeCorreo.replace('!', ' ').replace(',', ' ').replace('.', ' ').replace(':', ' ').replace(';', ' ').replace('-', ' ').replace('-', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace('!', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace(',', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace('.', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace(':', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace(';', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace('-', ' ');
+      // this.mensajeCorreo = this.mensajeCorreo.replace('_', ' ');
     }
 
     // console.log(this.translate.currentLang);
     //Construimos el mensaje    
-    this.correo = 'albertserrador@gmail.com?subject=';
+    this.correo = 'mailto:albertserrador@gmail.com?subject=';
     if (this.translate.currentLang == 'es'){
       this.correo = this.correo + this.asuntoES;
     }else{
