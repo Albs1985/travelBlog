@@ -35,7 +35,8 @@
         "ordenarPorAnyo": "Ordenar per any",
         "volverAviajes": "Anar als viatges",
         "siguiente": "Següent",
-        "anterior": "Anterior"
+        "anterior": "Anterior",
+        "sinResultados" : "La cerca no troba resultats"
     },
     "about":{
         "titulo": "Familia Serrador Casares",

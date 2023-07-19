@@ -35,7 +35,8 @@
         "ordenarPorAnyo": "Ordenar por año",
         "volverAviajes": "Ir a los viajes",
         "siguiente": "Siguiente",
-        "anterior": "Anterior"
+        "anterior": "Anterior",
+        "sinResultados" : "La búsqueda no encuentra resultados"
     },
     "about":{
         "titulo": "Familia Serrador Casares",

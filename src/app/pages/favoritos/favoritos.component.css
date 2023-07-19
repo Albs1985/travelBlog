@@ -94,6 +94,10 @@
     margin-top: -10px;       
 }
 
+.center{
+  text-align: center;
+}
+
 /* .foto{
     border-radius: 15px;    
     background: transparent !important;
@@ -201,3 +205,24 @@
     border-radius: 15px;
   }
   
+
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+
+  .gradiente {
+    background: linear-gradient(-45deg, #ebcdbc, #fab892, #fc9153, #ff5e01);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    /* height: 100vh; */
+  }
