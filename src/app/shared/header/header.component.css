@@ -96,3 +96,24 @@
    animation-timing-function: linear;
    animation-iteration-count: 2;
  }
+
+
+ @keyframes pulseInfinito {
+   from {
+     transform: scale3d(1, 1, 1);
+   }
+ 
+   50% {
+     transform: scale3d(1.15, 1.15, 1.15);
+   }
+ 
+   to {
+     transform: scale3d(1, 1, 1);
+   }
+ }
+ 
+ .pulseInfinito {
+   animation-name: pulseInfinito;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+ }
