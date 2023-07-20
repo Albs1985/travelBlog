@@ -23,7 +23,7 @@
     margin-right: 35px;
     animation-name: cambiaColor; 
     /* animation-name: muevePorPantalla;   */
-    animation-delay: 2s;     
+    /* animation-delay: 2s;      */
     animation-duration: 8s;
     animation-iteration-count: 1;
 }
@@ -68,8 +68,8 @@
 }
 
 @keyframes cambiaColor {
-   from {background-color: rgb(255, 243, 222)}
-   to {background-color: rgb(255, 194, 82)}
+   from {background-color: rgb(250, 242, 228)}
+   to {background-color: rgb(250, 185, 65)}
 }
 
 /* @keyframes muevePorPantalla {

@@ -23,32 +23,32 @@ export class ContactQRComponent {
 
   envia() {
     // console.log('Envia correo');
-    if($('#nombreTxt').val() == ''){
-      this.nom = '';
-    } else {
-      this.nom = $('#nombreTxt').val();
-      // this.nom = this.nom.replace('!', ' ');
-      // this.nom = this.nom.replace(',', ' ');
-      // this.nom = this.nom.replace('.', ' ');
-      // this.nom = this.nom.replace(':', ' ');
-      // this.nom = this.nom.replace(';', ' ');
-      // this.nom = this.nom.replace('-', ' ');
-      // this.nom = this.nom.replace('_', ' ');
+    // if($('#nombreTxt').val() == ''){
+    //   this.nom = '';
+    // } else {
+    //   this.nom = $('#nombreTxt').val();
+    //   // this.nom = this.nom.replace('!', ' ');
+    //   // this.nom = this.nom.replace(',', ' ');
+    //   // this.nom = this.nom.replace('.', ' ');
+    //   // this.nom = this.nom.replace(':', ' ');
+    //   // this.nom = this.nom.replace(';', ' ');
+    //   // this.nom = this.nom.replace('-', ' ');
+    //   // this.nom = this.nom.replace('_', ' ');
 
-    }
+    // }
 
-    if($('#emailTxt').val() == ''){
-      this.mail = '';
-    } else {
-      this.mail = $('#emailTxt').val();
-      // this.mail = this.mail.replace('!', ' ');
-      // this.mail = this.mail.replace(',', ' ');
-      // this.mail = this.mail.replace('.', ' ');
-      // this.mail = this.mail.replace(':', ' ');
-      // this.mail = this.mail.replace(';', ' ');
-      // this.mail = this.mail.replace('-', ' ');
-      // this.mail = this.mail.replace('_', ' ');
-    }
+    // if($('#emailTxt').val() == ''){
+    //   this.mail = '';
+    // } else {
+    //   this.mail = $('#emailTxt').val();
+    //   // this.mail = this.mail.replace('!', ' ');
+    //   // this.mail = this.mail.replace(',', ' ');
+    //   // this.mail = this.mail.replace('.', ' ');
+    //   // this.mail = this.mail.replace(':', ' ');
+    //   // this.mail = this.mail.replace(';', ' ');
+    //   // this.mail = this.mail.replace('-', ' ');
+    //   // this.mail = this.mail.replace('_', ' ');
+    // }
     
     if($('#mensajeTxt').val() == ''){
       this.mensajeCorreo = '';
@@ -72,15 +72,18 @@ export class ContactQRComponent {
     }else{
       this.correo = this.correo + this.asuntoVAL;
     }
+    
+    // this.correo = this.correo + '&cc='+$('#emailTxt').val();
+
     if (this.mensajeCorreo != null && this.mensajeCorreo != ''){
       this.correo = this.correo +'&body='+this.mensajeCorreo;
     }
-    if (this.nom != null && this.nom != ''){
-      this.correo = this.correo +'%0D%0A'+ this.nom;
-    }
-    if (this.mail != null && this.mail != ''){
-      this.correo = this.correo + ': '+ this.mail;
-    }
+    // if (this.nom != null && this.nom != ''){
+    //   this.correo = this.correo +'%0D%0A'+ this.nom;
+    // }
+    // if (this.mail != null && this.mail != ''){
+    //   this.correo = this.correo + ': '+ this.mail;
+    // }
 
     // console.log('nom: '+this.nom);
     // console.log('mail: '+this.mail);
