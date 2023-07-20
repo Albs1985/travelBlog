@@ -109,6 +109,14 @@
     display: inline-flex;
 }
 
+.mueveTransporte{
+  position: relative;
+  animation-name: muevePorPantalla;
+  /* animation-delay: 0s;      */
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
 .fotoPerfil{
     border-radius: 25px;
     width: 50px;
@@ -248,3 +256,11 @@
     animation-timing-function: ease-in;
     /* animation-direction: alternate; */
   }
+
+  @keyframes muevePorPantalla {
+    0%   {left:0px; top:0px;}
+    25%  {left:200%; top:0px;}
+    50%  {left:0px; top:0px;}
+    75%  {left:-200%; top:0px;}
+    100% {left:0px; top:0px;}
+}

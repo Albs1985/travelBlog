@@ -22,7 +22,7 @@
     margin-left: 35px;
     margin-right: 35px;
     animation-name: cambiaColor; 
-    animation-name: muevePorPantalla;  
+    /* animation-name: muevePorPantalla;   */
     animation-delay: 2s;     
     animation-duration: 8s;
     animation-iteration-count: 1;
@@ -45,7 +45,7 @@
     position: absolute;
     top: 10%;
     left: 50%;
-    /* Desplaza la imagen hacia arriba y hacia la izquierda la mitad de su ancho y altura para centrarla */
+    /* Desplaza el texto hacia arriba y hacia la izquierda la mitad de su ancho y altura para centrarla */
     transform: translate(-50%, -50%);
 }
 
@@ -69,13 +69,13 @@
 
 @keyframes cambiaColor {
    from {background-color: rgb(255, 243, 222)}
-   to {background-color: rgb(255, 206, 115)}
+   to {background-color: rgb(255, 194, 82)}
 }
 
-@keyframes muevePorPantalla {
+/* @keyframes muevePorPantalla {
     0%   {left:0px; top:0px;}
     25%  {left:200px; top:0px;}
     50%  {left:200px; top:200px;}
     75%  {left:0px; top:200px;}
     100% {left:0px; top:0px;}
-}
+} */
