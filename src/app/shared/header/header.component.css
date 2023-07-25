@@ -135,3 +135,22 @@
    animation-timing-function: linear;
    animation-iteration-count: infinite;
  }
+
+ @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.gradiente {
+  background: linear-gradient(-45deg, #c3deeb, #abd6eb, #7dc3e4, #66c7f5);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;  
+}

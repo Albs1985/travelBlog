@@ -6,6 +6,7 @@
     padding: 5px;    
 }
 
+
 .fotosPerfiles{
     margin-right: 20px;
     margin-left: 20px;
@@ -13,6 +14,11 @@
 
 .tituloGaleria{
   margin-left: 25px;
+}
+
+.subTituloGaleria{
+    margin-left: 50px;
+    margin-right: 15px;
 }
 
 .divRight{
@@ -27,6 +33,14 @@
   align-self: center;
   cursor: pointer;
   margin-top: -5px;
+}
+
+.iconosImgFav{   
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;     
+  margin-top: -10px;       
 }
 
 .iconoFlecha {

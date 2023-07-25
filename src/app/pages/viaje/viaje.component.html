@@ -9,7 +9,7 @@
         <article *ngIf="!servicioFotos.cargandoFotos" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
             <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><a routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}">  {{ 'viaje.volver' | translate}}</a></span>
 
-            <h2 class="fh5co-article-title animated pulse"><a>{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
+            <h2 class="fh5co-article-title"><a>{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
             
             <figure class="animated zoomInDown">
                 <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].principal}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].principal}}" alt="{{servicioFotos.fotosLista[0].principal}}" class="img-responsive"></a>

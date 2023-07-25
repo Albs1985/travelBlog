@@ -50,13 +50,13 @@ export class ContactQRComponent {
       this.correo = this.correo +'&body='+this.mensajeCorreo;
     }
     if (this.nom != null && this.nom != ''){
-      this.correo = this.correo +'%0D%0A'+ this.nom;
+      this.correo = this.correo +'%0D%0AFirmado: '+ this.nom;
     }
     if (this.mail != null && this.mail != ''){
       this.correo = this.correo + '&cc='+ this.mail;
     }
 
-    console.log(this.correo);
+    // console.log(this.correo);
     
   }
 
