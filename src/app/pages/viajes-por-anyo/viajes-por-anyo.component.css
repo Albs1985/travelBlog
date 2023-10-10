@@ -5,7 +5,15 @@
 }
 
 .disposicion{
-    display: inline-flex;
+    display: inline-flex;        
+}
+
+.mueveTransporte{
+    position: relative;
+    animation-name: muevePorPantalla;
+    /* animation-delay: 0s;      */
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
 
 .iconosImg{
@@ -138,3 +146,74 @@
     }
   }
  
+
+  @keyframes pulsePeque {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
+  
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  .pulsePeque {
+    animation-name: pulsePeque;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+
+  @keyframes pulseGrande {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+  
+    50% {
+      transform: scale3d(1.25, 1.25, 1.25);
+    }
+  
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  .pulseGrande {
+    animation-name: pulseGrande;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+
+  @keyframes muevePorPantalla {
+    0%   {left:0px; top:0px;}
+    25%  {left:200%; top:0px;}
+    50%  {left:0px; top:0px;}
+    75%  {left:-200%; top:0px;}
+    100% {left:0px; top:0px;}
+}
+
+@keyframes backInLeft {
+    0% {
+      transform: translateX(-2000px) scale(0.7);
+      opacity: 0.7;
+    }
+  
+    80% {
+      transform: translateX(0px) scale(0.7);
+      opacity: 0.7;
+    }
+  
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .backInLeft {
+    animation-name: backInLeft;
+  }

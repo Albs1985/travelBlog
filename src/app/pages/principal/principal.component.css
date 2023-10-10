@@ -14,7 +14,7 @@
     width: 25px;
     height: 25px;
     padding: 5px;
-    background-color : rgba(247, 200, 115, 0.2);
+    background-color : rgba(247, 200, 115, 0.6);
     border-radius: 15px;
 }
 
@@ -42,4 +42,24 @@
     right: 45px; /* Ajusta la posición horizontal */
     font-size: 26px; /* Tamaño de fuente */
   } 
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }

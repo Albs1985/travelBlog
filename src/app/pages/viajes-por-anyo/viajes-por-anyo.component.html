@@ -4,7 +4,7 @@
         <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>     
     </div>
     <div class="divVolver">
-        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated zoomInDown" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
+        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated pulsePeque zoomInDown" routerLink="/home/"><a routerLink="/home/">  {{ 'viaje.volver' | translate}}</a></span>
     </div>
 </div>
 
@@ -79,12 +79,12 @@
                         </div>                
                 
                         <a class="left carousel-control ancla" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="prev">
-                            <img src="assets/icons/flechaIzq.png" class="animated fadeIn iconoFlechaImg">
+                            <img src="assets/icons/flechaIzq.png" class="animated fadeIn pulsePeque iconoFlechaImg">
                             <!-- <span class="glyphicon-chevron-left" aria-hidden=""><</span> -->
                             <!-- <span class="sr-only">Anterior</span> -->
                         </a>
                         <a class="right carousel-control ancla" href="#theCarousel{{viajes.identificadorFotos}}" role="button" data-slide="next">
-                            <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaImg">
+                            <img src="assets/icons/flechaDer.png" class="animated fadeIn pulsePeque iconoFlechaImg">
                             <!-- <span class="glyphicon-chevron-right" aria-hidden="">></span> -->
                             <!-- <span class="sr-only">Siguiente</span> -->
                         </a>
@@ -98,7 +98,7 @@
 
                 <br>
                 <div *ngFor="let persona of viajes.personas" class="disposicion">
-                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight">
+                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight backInLeft">
                 </div>
                 <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">
                     <img *ngIf="viajes.categoria == 'Playa'" src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">
@@ -108,25 +108,25 @@
                     &nbsp;{{viajes.provincia}} &nbsp;{{viajes.year}}</a></span>
 
                 <!-- <span class="fh5co-meta"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></span> -->
-                <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.destino}} &nbsp;<img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaColor" routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"></a></h2>
+                <h2 class="fh5co-article-title"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">{{viajes.destino}} &nbsp;<img src="assets/icons/flechaDer.png" class="animated fadeIn pulseGrande iconoFlechaColor" routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"></a></h2>
                 <!-- <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.provincia}}</a></h2>
                 <h2 class="fh5co-article-title"><a routerLink="/viaje/Tossa">{{viajes.pais}}</a></h2> -->
                 <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{viajes.diaInicio}} de {{'mesAnyo.'+viajes.mesInicio | translate }}</b></span>
                 <span class="fh5co-meta fh5co-date">{{ 'viaje.hasta' | translate }} <b>{{viajes.diaFin}} de {{'mesAnyo.'+viajes.mesFin | translate }}</b></span>
                 <div *ngFor="let transporte of viajes.transporte" class="disposicion">
-                    <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos animated rollIn">
+                    <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos animated rollIn mueveTransporte">
                 </div>
             </article>        
         </div>
         <div class="clearfix visible-xs-block"></div>
         <div *ngIf="mensajeCabeceraAnyo">
             <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoInicio" class="divLeft">
-                <img src="assets/icons/flechaIzq.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">&nbsp;
+                <img src="assets/icons/flechaIzq.png" class="animated fadeIn pulseGrande iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">&nbsp;
                     <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">  {{ 'viaje.anteriores' | translate}}</a>
             </div>
             <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoActual" class="divRight">
                 <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">  {{ 'viaje.siguientes' | translate}}</a>&nbsp;
-                    <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">
+                    <img src="assets/icons/flechaDer.png" class="animated fadeIn pulseGrande iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">
                     
             </div>
         </div>

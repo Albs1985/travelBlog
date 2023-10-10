@@ -20,6 +20,24 @@
 
 }
 
+.iconoChancla {
+   width: 30px;
+   height: 30px;
+   padding: 1px;
+   /* background-color : rgb(247, 200, 115); */
+   /* border-radius: 15px; */
+   cursor: pointer;
+ }
+
+ .iconoViajeros {
+   width: 30px;
+   height: 30px;
+   padding: 1px;
+   cursor: pointer;
+   margin-top: -60px;
+   margin-left: 30px;
+ } 
+
 .seleccionado{
     /* border: 10px solid transparent; *//*PARA HACER LA IMAGEN MÁS PEQUEÑA, LA QUE ESTÉ SELECCIONADA*/
     border-radius: 30px;    
@@ -72,6 +90,67 @@
     width: 100%;
  }
 
+.menuBloques{
+   margin-top: -30px;
+}
 
 
+@keyframes pulse {
+   from {
+     transform: scale3d(1, 1, 1);
+   }
+ 
+   50% {
+     transform: scale3d(1.05, 1.05, 1.05);
+   }
+ 
+   to {
+     transform: scale3d(1, 1, 1);
+   }
+ }
+ 
+ .pulse {
+   animation-name: pulse;
+   animation-timing-function: linear;
+   animation-iteration-count: 2;
+ }
 
+
+ @keyframes pulseInfinito {
+   from {
+     transform: scale3d(1, 1, 1);
+   }
+ 
+   50% {
+     transform: scale3d(1.15, 1.15, 1.15);
+   }
+ 
+   to {
+     transform: scale3d(1, 1, 1);
+   }
+ }
+ 
+ .pulseInfinito {
+   animation-name: pulseInfinito;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+ }
+
+ @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.gradiente {
+  background: linear-gradient(-45deg, #c3deeb, #abd6eb, #7dc3e4, #66c7f5);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;  
+}

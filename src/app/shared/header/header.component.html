@@ -17,10 +17,15 @@
     <div class="fh5co-menu">
         <div class="fh5co-box">            
             <ul>
-                <li class="liViajes"><a class="js-fh5co-close-offcanvas" routerLink="/home/"><img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.viajes' | translate }}</a><img class="imagenPerfil animated bounceInUp" src="assets/images/perfiles/fotoMiniPerfilFamilia.jpg" alt=""></li>
+                <li class="liViajes">
+                    <a class="js-fh5co-close-offcanvas" routerLink="/home/">
+                        <img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.viajes' | translate }}
+                    </a>
+                    <img class="imagenPerfil animated bounceInUp" src="assets/images/perfiles/fotoMiniPerfilFamilia.jpg" alt="">
+                </li>
             </ul>
         </div>
-        <div class="fh5co-box">
+        <div class="fh5co-box menuBloques">
             <h3 class="heading"><b>{{ 'header.categoria' | translate }}</b></h3>
             <ul>
                 <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/playa"><img src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.playa' | translate }}</a></li>
@@ -29,23 +34,24 @@
                 <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/nieve"><img src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.nieve' | translate }}</a></li>
             </ul>
         </div>
-        <div class="fh5co-box">
+        <div class="fh5co-box menuBloques">
             <h3 class="heading"><b>{{ 'header.buscar' | translate }}</b></h3>
             <form id="busquedaForm">
                 <div id="busquedaForm" class="form-group">
-                    <input id="myInput" type="text" class="form-control" placeholder="{{ 'header.palabra' | translate }}">
+                    <input id="myInput" type="text" class="form-control gradiente" placeholder="{{ 'header.palabra' | translate }}">
                         <button id="botonLupa" (touchstart)="buscar()" (click)="buscar()">
                             <img src="assets/icons/lupa.gif" alt="" class="iconosImg js-fh5co-close-offcanvas">
                         </button>
                 </div>
             </form>
         </div>
-        <div class="fh5co-box">
+        <div class="fh5co-box menuBloques">
             <!-- <h3 class="heading">{{ 'header.informacion' | translate }}</h3> -->
             <ul>
                 <li><a class="js-fh5co-close-offcanvas" routerLink="/about/"> <img src="assets/icons/familia.png" alt="" class="iconosImg animated rollIn"> &nbsp;{{ 'app.historia' | translate }}</a></li>
                 <li><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.galeria' | translate }}</a></li>
                 <li><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="" class="iconosImgFav animated rollIn">  &nbsp;{{ 'app.galeriaFav' | translate }}</a></li>
+                <li><a class="js-fh5co-close-offcanvas" routerLink="/contactQR/"><img src="assets/icons/correo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.contactoQR' | translate }}</a></li>
                 <!-- <li><a class="js-fh5co-close-offcanvas" routerLink="/bookMode/"><img src="assets/icons/libro.png" alt="" class="iconosImg"> {{ 'app.modoLibro' | translate }}</a></li> -->
             </ul>
         </div>
@@ -64,13 +70,24 @@
                 <li><a href="#"><i class="icon-instagram"></i></a></li>
             </ul> -->
             <ul class="fh5co-social">
-                <li *ngIf="isSelectedValenciano"><button class="idioma seleccionado" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
+                <li *ngIf="isSelectedValenciano"><button class="idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
                 <li *ngIf="!isSelectedValenciano"><button class="idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
-                <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>                
+                <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado  animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>                
                 <li *ngIf="!isSelectedSpanish"><button class="idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>                
             </ul>
-            <div class="col-lg-12 col-md-12 text-center">
-                <h1 id="fh5co-logo"><a href="#">{{ 'app.viajes' | translate }} <sup>Serrador Casares</sup></a></h1>                                
+            <div class="col-lg-12 col-md-12 text-center animated pulse">
+                <h3 id="fh5co-logo">
+                    <a href="#">&nbsp; 
+                        <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla" routerLink="/principal/">
+                            {{ 'app.viajes' | translate }} 
+                            <sup>Serrador Casares</sup>
+                            <sub>
+                                <!-- <img src="assets/icons/viajarMundo.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
+                                <img src="assets/icons/sol.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/">
+                                <!-- <img src="assets/icons/viajeros.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
+                            </sub>
+                    </a>
+                </h3>                                
             </div>
             
         </div>
