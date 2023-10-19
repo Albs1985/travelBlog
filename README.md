@@ -28,6 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## Comandos
+ng serve
 ng build
 git s
 git add .
@@ -48,3 +49,6 @@ git push -u origin main
     - Añadir las descripciones de las fotos nuevas: tanto de favoritos como de los viajes
     - Añadir las traducciones al i18n de cada viaje. 
     - Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.
+
+- Para subirlo al GITHub, se sube la carpeta docs, que cuando hacemos el ng build se sobreescribe con el proyecto compilado y los cambios de los assets.
+    - En la ruta: https://github.com/Albs1985/travelBlog/settings/pages, tenemos lo que se publica (GitHub Pages).
