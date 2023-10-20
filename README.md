@@ -44,11 +44,13 @@ git push -u origin main
 
 - En data: 
     - IMPORTANTE: El orden en que se introducen los datos es importante. Seguir el mismo patron que haya. La ordenación va en función de cuando se insertan, no de fechas u otras cosas.
+    - Si añadimos fotos en ABOUT, cambiar el parámetro numFotosAbout : number = 15, del fotos.service.ts
+        - Las fotos tienen que ir siempre en formato JGP.
     
 - En el i18n:    
     - Añadir las descripciones de las fotos nuevas: tanto de favoritos como de los viajes
     - Añadir las traducciones al i18n de cada viaje. 
-    - Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.
+    - Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.    
 
 - Para subirlo al GITHub, se sube la carpeta docs, que cuando hacemos el ng build se sobreescribe con el proyecto compilado y los cambios de los assets.
     - En la ruta: https://github.com/Albs1985/travelBlog/settings/pages, tenemos lo que se publica (GitHub Pages).

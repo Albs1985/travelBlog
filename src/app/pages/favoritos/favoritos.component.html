@@ -53,9 +53,9 @@
 <div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
   <div class="gallery">
     <!-- <figure class=""> -->
-    <a target="_blank" href="assets/images/favoritos/{{foto.id}}">
-        <img src="assets/images/favoritos/{{foto.id}}" alt="" width="600" height="400">
-        <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}}: {{ 'favoritos.'+foto.idDesc | translate}}</figcaption>
+    <a target="_blank" href="assets/images/{{foto.id}}">
+        <img src="assets/images/{{foto.id}}" alt="" width="600" height="400">
+        <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}} {{ 'favoritos.'+foto.idDesc | translate}}</figcaption>
     </a>    
     <!-- </figure> -->
   </div>
