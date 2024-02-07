@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Foto } from '../interfaces/foto.interface';
 import { HttpClient } from '@angular/common/http';
 import { FotoFav } from '../interfaces/fotoFav.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,11 @@ export class FotosService {
   fotosFavListaFiltrado : FotoFav[] = [];
   numFotosAbout : number = 17;
 
-  cargandoFotos = true;
-  cargandoFotosFav = true;
+  // cargandoFotos = true;
+  // cargandoFotosFav = true;
+
+  cargandoFotos$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  cargandoFotosFav$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   foto : Foto = {
     principal : '',
@@ -44,14 +48,14 @@ export class FotosService {
   }
 
   constructor(private http: HttpClient) {
-    
+
   }
 
   cargarFotos(clave : any){
 
     //Añadimos el PROMISE para esperar a que se carguen las URL de las fotos
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.fotosJSON)
         .subscribe( (response: any ) => {
 
@@ -63,7 +67,7 @@ export class FotosService {
           for(let key in response){
             // console.log('key '+key);
             if (fechaInicioViaje == key){
-              this.foto = {     
+              this.foto = {
                 principal : '',
                 foto1 : '',
                 foto2 : '',
@@ -78,7 +82,7 @@ export class FotosService {
                 foto11 : '',
                 foto12 : ''
               };
-              
+
               this.foto.principal = response[key].principal;
               this.foto.foto1 = response[key].foto1;
               this.foto.foto2 = response[key].foto2;
@@ -87,80 +91,80 @@ export class FotosService {
               this.foto.foto5 = response[key].foto5;
               this.foto.foto6 = response[key].foto6;
               this.foto.foto7 = response[key].foto7;
-              this.foto.foto8 = response[key].foto8;    
+              this.foto.foto8 = response[key].foto8;
               this.foto.foto9 = response[key].foto9;
               this.foto.foto10 = response[key].foto10;
               this.foto.foto11 = response[key].foto11;
               this.foto.foto12 = response[key].foto12;
 
               // console.log(this.foto);
-  
-              array.push(this.foto);
-            }            
-            
-          } 
-          // console.log(array);
-          this.fotosLista = array; 
 
-          
+              array.push(this.foto);
+            }
+
+          }
+          // console.log(array);
+          this.fotosLista = array;
+
+
 
           resolve(this.fotosLista);
-          this.cargandoFotos = false;
-          
+          this.cargandoFotos$.next(false);
+
         });
-      
+
     });
-    
+
   }
 
 
   cargarFotosFav(){
-    this.cargandoFotosFav = true;
+    this.cargandoFotosFav$.next(true);
     //Añadimos el PROMISE para esperar a que se carguen las URL de las fotos
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.fotosFavJSON).subscribe( (response: any ) => {
           var array = [];
-                    
+
           for(let key in response){
-            // console.log('key '+key);              
-            this.fotoFav = {  
-              idDesc: '',   
+            // console.log('key '+key);
+            this.fotoFav = {
+              idDesc: '',
               id: '',
               anyo: '',
               lugar : '',
               categoria : '',
               personas: ''
             };
-            
+
             this.fotoFav.idDesc = response[key].idDesc;
             this.fotoFav.id = response[key].id;
             this.fotoFav.anyo = response[key].anyo;
             this.fotoFav.lugar = response[key].lugar;
             this.fotoFav.categoria = response[key].categoria;
             this.fotoFav.personas = response[key].personas;
-            // console.log(this.fotoFav);    
+            // console.log(this.fotoFav);
             array.push(this.fotoFav);
           }
 
           //Añadimos las fotos del about
           for (var i=1; i <= this.numFotosAbout; i++){
-            this.fotoFav = {  
-              idDesc: '',   
+            this.fotoFav = {
+              idDesc: '',
               id: '',
               anyo: '',
               lugar : '',
               categoria : '',
               personas: ''
             };
-            
+
             this.fotoFav.idDesc = 'sinTexto';
             this.fotoFav.id = 'about/about'+i+'.jpg';
             this.fotoFav.anyo = 'Época de Antaño';
             this.fotoFav.lugar = 'Por la zona';
             this.fotoFav.categoria = 'Juventud, Antaño, Infancia, Jovens';
             this.fotoFav.personas = 'Alba, Albert';
-            
+
             array.push(this.fotoFav);
           }
 
@@ -169,18 +173,18 @@ export class FotosService {
           this.fotosFavLista = array;
           this.fotosFavListaFiltrado = array;
 
-          this.cargandoFotosFav = false;
+          this.cargandoFotosFav$.next(false);
           resolve(this.fotosFavLista);
 
         });
-      
+
     });
-    
+
   }
 
   filtrarFotosFav(termino : any){
-    this.cargandoFotos = true;
-    
+    // this.cargandoFotosFav$.next(true);
+
     // console.log(termino);
     return new Promise( (resolve, reject) => {
       if (this.fotosFavListaFiltrado.length === 0){
@@ -201,12 +205,12 @@ export class FotosService {
 
 
   private filtrarFotos(termino : string){
-    
+
     this.fotosFavLista = [];
     // console.log(termino);
-    const terminoLower = termino.toString().toLocaleLowerCase(); 
+    const terminoLower = termino.toString().toLocaleLowerCase();
     this.fotosFavListaFiltrado.forEach(foto => {
-      
+
       // console.log(foto);
 
       let catergoriaLower = foto.categoria.toLocaleLowerCase();
@@ -231,7 +235,7 @@ export class FotosService {
       }
     });
 
-    this.cargandoFotos = false;
+    this.cargandoFotos$.next(false);
     // console.log(this.fotosFavLista);
 
   }

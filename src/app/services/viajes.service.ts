@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Viajes } from '../interfaces/viajes.interface';
 import { Viaje } from '../interfaces/viaje.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViajesService {
 
-  cargandoViajes = true;
-  cargandoFotosGaleria = true;
+  cargandoViajes$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  cargandoFotosGaleria$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
   anyoViaje = '';
   anyoActual : number = new Date().getFullYear();
   arrayFotos : string[] = [];
@@ -52,14 +54,15 @@ export class ViajesService {
 
   }
 
+  //TODO: : Observable<string[]>
   cargarFotosGaleria(){
 
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.viajesJSON)
         .subscribe( (response: any ) => {
 
-          for(let key in response){           
+          for(let key in response){
             var viajesAnyo = response[key];
             // console.log(viajesAnyo);
               for (let viatge in response[key]){
@@ -67,30 +70,30 @@ export class ViajesService {
                 for (var i=1; i < viajesAnyo[viatge].numFotos; i++){
                   var foto = viajesAnyo[viatge].year +'/'+viajesAnyo[viatge].identificadorFotos+''+i+'.jpg';
                   // console.log(foto);
-                  this.arrayFotos.push(foto); 
-                }                
+                  this.arrayFotos.push(foto);
+                }
               }
-          } 
-          
+          }
+
           // console.log(this.arrayFotos);
-          this.cargandoFotosGaleria = false;
+          this.cargandoFotosGaleria$.next(false);
           resolve(this.arrayFotos);
-          
+
         });
-      
+
     });
-   
-    
+
+
   }
-  
 
-  
 
+
+  //TODO: : Observable<Viajes[]>
   cargarViajes(){
 
     //Añadimos el PROMISE para esperar a que se carguen los viajes
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.viajesJSON)
         .subscribe( (response: any ) => {
 
@@ -98,7 +101,7 @@ export class ViajesService {
           for(let key in response){
             // console.log(key);
             // console.log(response[key]);
-            this.viajes = {     
+            this.viajes = {
               anyo: 0,
               destinos: []
             };
@@ -109,25 +112,25 @@ export class ViajesService {
               i++;
             }
             array.push(this.viajes);
-            
-          } 
-          
+
+          }
+
           this.viajesLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
           resolve(this.viajesLista);
-          this.cargandoViajes = false;
-          
+          this.cargandoViajes$.next(false);
+
         });
-      
+
     });
-    
+
   }
 
 
   addViajeEnArray(viatge : any, viajesAnyo : any){
     this.viaje = {
       fechaInicio: new Date,
-      fechaFin: new Date,      
+      fechaFin: new Date,
       destino: '',
       categoria: '',
       provincia: '',
@@ -146,9 +149,9 @@ export class ViajesService {
       tipoEstancia: '',
       transporte: [],
       personas: [] ,
-      mapaSrc: [] 
+      mapaSrc: []
     };
-    
+
     this.viaje.fechaInicio =viajesAnyo[viatge].fechaInicio;
     this.viaje.fechaFin =viajesAnyo[viatge].fechaFin;
     this.viaje.destino =viajesAnyo[viatge].destino;
@@ -167,7 +170,7 @@ export class ViajesService {
     this.viaje.categoria =viajesAnyo[viatge].categoria;
     this.viaje.estancia =viajesAnyo[viatge].estancia;
     this.viaje.tipoEstancia =viajesAnyo[viatge].tipoEstancia;
-    
+
 
     for (let j=0; j < viajesAnyo[viatge].transporte.length; j++){
       var transport = viajesAnyo[viatge].transporte[j];
@@ -204,51 +207,51 @@ export class ViajesService {
     for (let i=0; i < viajesAnyo[viatge].personas.length; i++){
       var persona = viajesAnyo[viatge].personas[i];
       this.viaje.personas[i] = persona;
-    }      
-    
+    }
+
     for (let i=0; i < viajesAnyo[viatge].mapaSrc.length; i++){
       var mapaSrc = viajesAnyo[viatge].mapaSrc[i];
       this.viaje.mapaSrc[i] = mapaSrc;
     }
 
     return this.viaje;
-  
+
 }
 
 
-  
 
-  
+
+
 
   cargarViajesPorAnyo(anyo : any){
 
     //Añadimos el PROMISE para esperar a que se carguen los viajes
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.viajesJSON)
         .subscribe( (response: any ) => {
 
           var array = [];
-          for(let key in response){           
+          for(let key in response){
             var viajesAnyo = response[key];
             this.anyoViaje = anyo.filtro;
             if (anyo.filtro === key){
               for (let viatge in response[key]){
 
-                this.viaje = this.addViajeEnArray(viatge, viajesAnyo);                
+                this.viaje = this.addViajeEnArray(viatge, viajesAnyo);
                 array.push(this.viaje);
               }
             }
-          } 
+          }
           this.viajesDetalleLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
-          this.cargandoViajes = false;
+          this.cargandoViajes$.next(false);
           resolve(this.viajesDetalleLista);
-                    
+
         });
-      
+
     });
-    
+
   }
 
 
@@ -256,7 +259,7 @@ export class ViajesService {
 
     //Añadimos el PROMISE para esperar a que se carguen los viajes
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.viajesJSON)
         .subscribe( (response: any ) => {
 
@@ -264,21 +267,21 @@ export class ViajesService {
           for(let key in response){
             var viajesAnyo = response[key];
             for (let viatge in response[key]){
-              this.viaje = this.addViajeEnArray(viatge, viajesAnyo);              
+              this.viaje = this.addViajeEnArray(viatge, viajesAnyo);
               array.push(this.viaje);
-            }   
-          } 
+            }
+          }
 
           this.viajesFiltrado = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
-          this.cargandoViajes = false;  
+          this.cargandoViajes$.next(false);
           resolve(this.viajesFiltrado);
-                  
-          
+
+
         });
-      
+
     });
-    
+
   }
 
   buscarViajes(termino : any){
@@ -288,7 +291,7 @@ export class ViajesService {
       palabra = termino.filtro;
     }else{
       palabra = termino;
-    }   
+    }
 
     return new Promise( (resolve, reject) => {
       if (this.viajesFiltrado.length === 0){
@@ -304,24 +307,24 @@ export class ViajesService {
       }
 
     });
-    
+
 
   }
 
   private filtrarViajes(termino : string){
-    
+
     this.viajesDetalleLista = [];
-    
-    const terminoLower = termino.toString().toLocaleLowerCase(); 
+
+    const terminoLower = termino.toString().toLocaleLowerCase();
     this.viajesFiltrado.forEach(viaj => {
-      
+
       let catergoriaLower = viaj.categoria.toLocaleLowerCase();
       if (catergoriaLower === 'montaña'){
         catergoriaLower = 'montanya';
       }
       const destinoLower = viaj.destino.toLocaleLowerCase();
       const provinciaLower = viaj.provincia.toLocaleLowerCase();
-      
+
       let personas = '';
       for (var i=0; i < viaj.personas.length; i++){
         personas = personas + ' ' + viaj.personas[i];
@@ -333,7 +336,7 @@ export class ViajesService {
         transporte = transporte + ' ' + viaj.transporte[i];
       }
       const transporteLower = transporte.toLocaleLowerCase();
-      
+
       const estanciaLower = viaj.estancia.toLocaleLowerCase();
       const tipoEstanciaLower = viaj.tipoEstancia.toLocaleLowerCase();
 
@@ -345,7 +348,7 @@ export class ViajesService {
       }
     });
 
-    this.cargandoViajes = false;
+    this.cargandoViajes$.next(false);
     // console.log(this.viajesDetalleLista);
 
   }
@@ -354,7 +357,7 @@ export class ViajesService {
 
     //Añadimos el PROMISE para esperar a que se carguen los viajes
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.viajesJSON)
         .subscribe( (response: any ) => {
 
@@ -365,7 +368,7 @@ export class ViajesService {
           // console.log(this.anyoViaje);
 
 
-          for(let key in response){            
+          for(let key in response){
             var viajesAnyo = response[key];
             if (this.anyoViaje === key){
               for (let viatge in response[key]){
@@ -373,21 +376,21 @@ export class ViajesService {
                   this.viaje = this.addViajeEnArray(viatge, viajesAnyo);
                   array.push(this.viaje);
                 }
-              }                
+              }
             }
-          } 
+          }
           this.viajesDetalleLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
           // console.log(this.viajesDetalleLista);
 
-          this.cargandoViajes = false;
+          this.cargandoViajes$.next(false);
           resolve(this.viajesDetalleLista);
-          
-          
+
+
         });
-      
+
     });
-    
+
   }
 
 

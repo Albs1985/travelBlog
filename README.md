@@ -33,6 +33,7 @@ ng build
 git s
 git add .
 git commit -m "Texto"
+    (a veces también) git pull
 git push -u origin main
 - Nota: Si tenemos dos ramas, hacer el pull request a la rama Master desde el GIT
 
@@ -52,5 +53,27 @@ git push -u origin main
     - Añadir las traducciones al i18n de cada viaje. 
     - Si añadimos algun tipo de estancia nuevo, también añadirlo al i18n.    
 
+- En las fotos: 
+
+  - Comprimir el tamaño de las fotos online: https://www.iloveimg.com/
+
 - Para subirlo al GITHub, se sube la carpeta docs, que cuando hacemos el ng build se sobreescribe con el proyecto compilado y los cambios de los assets.
     - En la ruta: https://github.com/Albs1985/travelBlog/settings/pages, tenemos lo que se publica (GitHub Pages).
+
+ URLs de documentación:
+    https://codepen.io/sosuke/pen/Pjoqqp
+    https://htmlcolorcodes.com/es/
+    https://console.firebase.google.com/u/0/project/angular-html-b9db3/database/angular-html-b9db3-default-rtdb/data/~2Fequipo
+    https://materializecss.com/
+    https://www.udemy.com/course/html-hacia-angular/
+    https://timdeschryver.dev/blog/google-maps-as-an-angular-component#map-marker-output-properties
+    https://htmltemplates.co/
+    https://www.free-css.com/free-css-templates/page220/appsea
+    https://github.com/animate-css/animate.css/tree/main/source
+    https://codemain.pro/aplicacion-web-multi-idioma-con-angular-y-ngx-translate/
+    https://animate.style/
+    https://confluence.mercadona.com/display/MI/CRE085+Fwk+Front+Angular+Responsive+de+Mercadona+-+Intermedio?preview=/925089867/932458055/Curso%20medio%20Angular.pdf
+    https://codepen.io/Klerith/pen/RZpwKm
+    https://sweetalert2.github.io/
+    https://bootswatch.com/
+    https://www.infragistics.com/products/ignite-ui-angular/angular/components/calendar

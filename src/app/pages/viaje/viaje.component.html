@@ -1,21 +1,21 @@
 <div class="container-fluid">
 
-    <div *ngIf="servicioViajes.cargandoViajes" class="spinner-container">
+    <div *ngIf="(servicioViajes.cargandoViajes$ | async) === true" class="spinner-container">
         <div class="spinner"></div>
         <span> &nbsp; {{ 'app.cargando' | translate}}</span>
     </div>
 
-    <div *ngIf="!servicioViajes.cargandoViajes" class="row fh5co-post-entry single-entry">
-        <article *ngIf="!servicioFotos.cargandoFotos" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
+    <div *ngIf="(servicioViajes.cargandoViajes$ | async) === false" class="row fh5co-post-entry single-entry">
+        <article *ngIf="(servicioFotos.cargandoFotos$ | async) === false" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
             <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><a routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}">  {{ 'viaje.volver' | translate}}</a></span>
 
             <h2 class="fh5co-article-title"><a>{{servicioViajes.viajesDetalleLista[0].destino}}</a></h2>
-            
+
             <figure class="animated zoomInDown">
                 <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].principal}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].principal}}" alt="{{servicioFotos.fotosLista[0].principal}}" class="img-responsive"></a>
                 <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descPrincipal' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descPrincipal' | translate}}</figcaption>
             </figure>
-            
+
             <div *ngFor="let transporte of servicioViajes.viajesDetalleLista[0].transporte" class="disposicion">
                 <img src="assets/icons/{{transporte}}" alt="Image" class="img-responsive iconos animated rollIn mueveTransporte">
             </div>
@@ -24,23 +24,24 @@
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Ciudad'" src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].tipoEstancia == 'Cabaña'" src="assets/icons/cabanya.png" alt="" class="iconosImg animated rollIn">
                 &nbsp;{{servicioViajes.viajesDetalleLista[0].year}}
                 <button type="button" class="infoButton" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rubberBand"></button>
                 <div class="custom-tooltip" (click)="showTooltip()" *ngIf="showMsg">
                     <ul>{{ 'header.categoria' | translate }}: <b>{{'categoria.'+ servicioViajes.viajesDetalleLista[0].categoria | translate}}</b></ul>
                     <ul>{{ 'viaje.provincia' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].provincia}}</b></ul>
                     <ul>{{ 'viaje.pais' | translate }}: <b>{{'localidad.'+ servicioViajes.viajesDetalleLista[0].pais | translate}}</b></ul>
-                    <ul>{{ 'viaje.precio' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].precio}}€</b></ul>                    
+                    <ul>{{ 'viaje.precio' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].precio}}€</b></ul>
                     <ul>{{ 'viaje.estancia' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].estancia}}</b></ul>
                     <ul>{{ 'viaje.tipoEstancia' | translate }}: <b>{{'tipoEstancia.'+ servicioViajes.viajesDetalleLista[0].tipoEstancia | translate}}</b></ul>
                     <ul>{{ 'app.viajeros' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].personas}}</b></ul>
-                </div>  
+                </div>
             </span>
 
-            
+
             <!-- <span class="fh5co-meta fh5co-date">March 6th, 2016</span> -->
             <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaInicio}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesInicio | translate }}</b> {{ 'viaje.hasta' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaFin}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesFin | translate }}</b></span>
-            
+
             <div *ngFor="let persona of servicioViajes.viajesDetalleLista[0].personas" class="disposicion">
                 <a target="_blank" href="assets/images/perfiles/fotoPerfil{{persona}}.jpg"><img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight"></a>
             </div>
@@ -54,7 +55,7 @@
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque1_parrafo2' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque1_parrafo2' | translate}}</p>
 
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque1_parrafo3' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque1_parrafo3' | translate}}</p>
-                    </div>                    
+                    </div>
                 </div>
 
                 <div class="row dobleFotos">
@@ -69,14 +70,14 @@
                             <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto2}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto2}}" alt="foto2" class="img-responsive"></a>
                             <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto2' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto2' | translate}}</figcaption>
                         </figure>
-                    </div>                                     
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <figure>
                         <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto3}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto3}}" alt="foto3" class="img-responsive"></a>
                         <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto3' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto3' | translate}}</figcaption>
                     </figure>
-                </div>   
+                </div>
 
                 <div *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.cita1' != ''" class="row rp-b">
                     <div class="col-md-12">
@@ -100,16 +101,16 @@
 
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque2_parrafo3' != ''" >{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque2_parrafo3' | translate}}</p>
                     </div>
-                </div>                
+                </div>
 
                 <div class="col-lg-4">
                     <!-- <div class="fh5co-highlight right"> -->
                         <!-- <h4 *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.nota1' != ''">{{ 'viaje.destacado' | translate}}</h4> -->
                         <h4 class="estiloNota" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.nota1' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.nota1' | translate}}</h4>
-                        <br>                        
+                        <br>
                     <!-- </div> -->
                 </div>
-                
+
                 <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 4" class="col-lg-6 col-md-12">
                     <figure>
                         <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto5}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto5}}" alt="foto5" class="img-responsive"></a>
@@ -121,7 +122,7 @@
                     <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque3_parrafo2' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque3_parrafo2' | translate}}</p>
                     <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque3_parrafo3' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque3_parrafo3' | translate}}</p>
                 </div>
-                
+
                 <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 5" class="row rp-b">
                     <div class="col-lg-6 col-lg-push-6 col-md-12 col-md-push-0">
                         <figure>
@@ -139,7 +140,7 @@
                 </div>
 
                 <iframe *ngIf="servicioViajes.viajesDetalleLista[0].mapaSrc[0] != ''" class="mapa" [src]="servicioViajes.viajesDetalleLista[0].mapaSrc[0] | safe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <h2 *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.tituloParte2' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.tituloParte2' | translate}}</h2>
@@ -153,29 +154,29 @@
                                 <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto7' != ''"> {{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto7' | translate}}</figcaption>
                             </figure>
                         </div>
-                                                                 
+
                     <!-- </div> -->
                     <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 7" class="col-md-4">
                         <figure>
                             <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto8}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto8}}" alt="foto8" class="img-responsive"></a>
                             <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto8' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto8' | translate}}</figcaption>
                         </figure>
-                    </div>  
+                    </div>
                     <!-- <div class="row"> -->
                         <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 8" class="col-md-4">
                             <figure>
                                 <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto9}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto9}}" alt="foto9" class="img-responsive"></a>
                                 <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto9' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto9' | translate}}</figcaption>
                             </figure>
-                        </div> 
+                        </div>
                         <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 9" class="col-md-4">
                             <figure>
                                 <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto10}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto10}}" alt="foto10" class="img-responsive"></a>
                                 <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto10' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto10' | translate}}</figcaption>
                             </figure>
-                        </div>                                           
+                        </div>
                     <!-- </div> -->
-                    
+
                     <div class="col-md-12">
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque6_parrafo1' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque6_parrafo1' | translate}}</p>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque6_parrafo2' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque6_parrafo2' | translate}}</p>
@@ -188,14 +189,14 @@
                                 <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto11' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto11' | translate}}</figcaption>
                             </figure>
                         </div>
-                                                              
+
                     <!-- </div> -->
                     <div *ngIf="servicioViajes.viajesDetalleLista[0].numFotos > 11" class="col-md-4">
                         <figure>
                             <a target="_blank" href="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto12}}"><img src="assets/images/{{servicioViajes.anyoViaje}}/{{servicioFotos.fotosLista[0].foto12}}" alt="foto11" class="img-responsive"></a>
                             <figcaption class="textoFoto" *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto12' != ''">{{servicioViajes.viajesDetalleLista[0].fechaInicio+'.descFoto12' | translate}}</figcaption>
                         </figure>
-                    </div>     
+                    </div>
                     <div class="col-md-12">
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque7_parrafo1' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque7_parrafo1' | translate}}</p>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque7_parrafo2' != ''">{{ servicioViajes.viajesDetalleLista[0].fechaInicio+'.bloque7_parrafo2' | translate}}</p>
@@ -208,7 +209,7 @@
                         <h4>{{ 'viaje.datosViaje' | translate}}</h4>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].destino != ''">{{ 'viaje.destino' | translate}} : {{ servicioViajes.viajesDetalleLista[0].destino}}</p>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].provincia != ''">{{ 'viaje.provincia' | translate}} : {{ servicioViajes.viajesDetalleLista[0].provincia}}</p>
-                        <p *ngIf="servicioViajes.viajesDetalleLista[0].pais != ''">{{ 'viaje.pais' | translate}} : {{ servicioViajes.viajesDetalleLista[0].pais}}</p>                        
+                        <p *ngIf="servicioViajes.viajesDetalleLista[0].pais != ''">{{ 'viaje.pais' | translate}} : {{ servicioViajes.viajesDetalleLista[0].pais}}</p>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].categoria != ''">{{ 'header.categoria' | translate}} : {{ servicioViajes.viajesDetalleLista[0].categoria}}</p>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].estancia != ''">{{ 'viaje.estancia' | translate}} : {{ servicioViajes.viajesDetalleLista[0].estancia}}</p>
                         <p *ngIf="servicioViajes.viajesDetalleLista[0].precio != 0">{{ 'viaje.precio' | translate}} : {{ servicioViajes.viajesDetalleLista[0].precio}} €</p>
@@ -217,20 +218,20 @@
 
                 <!-- <div class="video-container">
                     <div class="vid-border">
-                        <div >                
+                        <div >
                             <div>
                                 <h1 class="tituloVideo">{{video.titulo}}</h1>
                             </div>
-                            
+
                             <video class="video-item" controls muted >
-                                <source *ngIf="!video.url.includes('youtube')" src="assets/videos/{{video.url}}">                                   
+                                <source *ngIf="!video.url.includes('youtube')" src="assets/videos/{{video.url}}">
                                 {{ 'app.videoNoSoportado' | translate }}
                             </video>
-                
+
                             <h2 class="descripcionVideo">{{video.descripcion}}</h2>
-                
-                        </div> 
-                    </div>    
+
+                        </div>
+                    </div>
                 </div>
                  -->
 
@@ -244,9 +245,9 @@
                 <div *ngIf="servicioViajes.viajesDetalleLista[0].idSiguienteViaje != ''" class="divRight">
                     <a routerLink="/viaje/{{servicioViajes.viajesDetalleLista[0].idSiguienteViaje}}">  {{ 'viaje.siguiente' | translate}}</a>&nbsp;
                         <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viaje/{{servicioViajes.viajesDetalleLista[0].idSiguienteViaje}}">
-                        
+
                 </div>
-                
+
             </div>
         </article>
     </div>

@@ -1,32 +1,32 @@
 <div class="tituloOrdenar">
-    <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button> 
-    <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button> 
+    <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
+    <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
     <h2 class="fh5co-article-title subtitulo animated fadeIn">
-        <a>{{ 'header.mensajeCabeceraAnyos' | translate }} 
+        <a>{{ 'header.mensajeCabeceraAnyos' | translate }}
             <img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">
         </a>
-    </h2>    
+    </h2>
 </div>
 
-<div *ngIf="servicioViajes.cargandoViajes" class="spinner-container">
+<div *ngIf="(servicioViajes.cargandoViajes$ | async) === true" class="spinner-container">
     <div class="spinner"></div>
     <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 
-<div class="row fh5co-post-entry animated fadeInDown">            
-    <div *ngFor="let viajes of servicioViajes.viajesLista">                
+<div class="row fh5co-post-entry animated fadeInDown">
+    <div *ngFor="let viajes of servicioViajes.viajesLista">
         <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 bloqueAnyo">
             <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp">{{viajes.anyo}}</span>
             <figure class="contenedor-imagen">
                 <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" alt="Image" class="img-responsive"></a>
-                <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsive">{{viajes.anyo}} 
-                    <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque" routerLink="/viajesFiltrados/{{viajes.anyo}}"> 
+                <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsive">{{viajes.anyo}}
+                    <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque" routerLink="/viajesFiltrados/{{viajes.anyo}}">
                 </div>
             </figure>
-            
+
             <div *ngFor="let destino of viajes.destinos">
                 <h2 class="fh5co-article-title"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{destino}}</a></h2>
-            </div>                    
+            </div>
         </article>
     </div>
 </div>
