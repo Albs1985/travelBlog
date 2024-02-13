@@ -1,73 +1,91 @@
-.fh5co-post-entry article .fh5co-meta{
-    font-size: 34px;
+.fh5co-post-entry article .fh5co-meta {
+  font-size: 34px;
 }
 
 /* .fh5co-post-entry article {
     display: inline-block !important;
 } */
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: -webkit-fill-available;
+}
+.img-responsiveAnyo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.img {
+  margin: 15px !important;
+  border-radius: 15px !important;
+  -webkit-border-radius: 15px !important;
+  -moz-border-radius: 15px !important;
+  -ms-border-radius: 15px !important;
+  -o-border-radius: 15px !important;
+  box-shadow: 5px 10px 8px #888888;
+}
 
-.subtitulo{
-    text-align: right !important;
-    font-size: 26px !important;
-    margin-right: 25px !important;
- }
+.subtitulo {
+  text-align: right !important;
+  font-size: 26px !important;
+  margin-right: 25px !important;
+}
 
 .contenedor-imagen {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
- .textoEnImagen{
+.textoEnImagen {
+  position: absolute;
+  bottom: 18px; /* Ajusta la posición vertical */
+  right: 18px; /* Ajusta la posición horizontal */
+  color: rgba(255, 255, 255, 0.6); /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  background-color: rgba(0, 0, 0, 0.8); /*Color de fondo del texto */
+  padding: 5px; /* Espacio interno del texto */
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-    position: absolute;
-    bottom: 10px; /* Ajusta la posición vertical */
-    right: 10px; /* Ajusta la posición horizontal */
-    color: rgba(255, 255, 255, 0.6);; /* Color del texto */
-    font-size: 16px; /* Tamaño de fuente */
-    background-color: rgba(0, 0, 0, 0.8); /*Color de fondo del texto */
-    padding: 5px; /* Espacio interno del texto */
-    cursor: pointer;
-    border-radius: 5px;
+.iconosImg {
+  padding: 2px;
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -10px;
+}
 
- }
-
- .iconosImg{
-    padding: 2px;
-    width: 40px;
-    height: 40px;
-    align-self: center;
-    cursor: pointer;
-    margin-top: -10px;
- }
-
- .tituloOrdenar{
-    justify-content: space-between;
- }
+.tituloOrdenar {
+  justify-content: space-between;
+}
 
 .iconoFlecha {
-    width: 30px;
-    height: 30px;
-    padding: 5px;
-    background-color : rgb(247, 200, 115);
-    border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
 }
 
-.iconoFlechaPeque{
-    width: 25px;
-    height: 25px;
-    padding: 5px;
-    background-color : rgba(247, 200, 115, 0.6);
-    border-radius: 15px;
+.iconoFlechaPeque {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: rgba(247, 200, 115, 0.6);
+  border-radius: 15px;
 }
 
-.botonOrdenar{
-    background: transparent;
-    border-color: transparent;
-    font-size: 16px;
-    margin-left: 20px;
+.botonOrdenar {
+  background: transparent;
+  border-color: transparent;
+  font-size: 16px;
+  margin-left: 20px;
 }
-.bloqueAnyo{
-    display: inline-block;
+.bloqueAnyo {
+  display: inline-block;
 }
 /*
 .bloqueAnyo{
@@ -83,49 +101,47 @@
     }
 } */
 
-  
 .spinner {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    animation: spin 1s linear infinite;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ajusta la altura del contenedor según necesites */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .spinner-container {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Ajusta la altura del contenedor según necesites */
+  100% {
+    transform: rotate(360deg);
   }
-    
-  @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
   }
 
+  50% {
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
 
-  @keyframes pulse {
-    from {
-      transform: scale3d(1, 1, 1);
-    }
-  
-    50% {
-      transform: scale3d(1.25, 1.25, 1.25);
-    }
-  
-    to {
-      transform: scale3d(1, 1, 1);
-    }
+  to {
+    transform: scale3d(1, 1, 1);
   }
-  
-  .pulse {
-    animation-name: pulse;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}

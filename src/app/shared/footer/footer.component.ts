@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Viaje } from '../../interfaces/viaje.interface';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,10 +16,10 @@ export class FooterComponent implements OnInit {
   // audioUrl!: SafeResourceUrl;
   // isPlaying: boolean = false;
   // audioElement!: HTMLAudioElement;
-  
 
-  constructor(/*private sanitizer: DomSanitizer*/) {
-    
+
+  constructor(/*private sanitizer: DomSanitizer*/public commonService: CommonService) {
+
   }
 
 
@@ -47,13 +48,13 @@ export class FooterComponent implements OnInit {
 
   // @ViewChild('audioPlayer') audioPlayerRef!: ElementRef<HTMLAudioElement>;
   // audioMar: HTMLAudioElement;
-  
+
 
   // constructor(private sanitizer: DomSanitizer) {
-  //   this.audioMar = new Audio('/assets/audios/audioMar.mp3');  
+  //   this.audioMar = new Audio('/assets/audios/audioMar.mp3');
   //   //No deja hacerlo aquí, tenemos que hacerlo en el afterViewInit, para que pille el cambio del volumen por defecto
   //   // this.audioMar.volume = 0.2;
-  //   // this.audioMar.play();    
+  //   // this.audioMar.play();
   // }
 
   // ngAfterViewInit() {

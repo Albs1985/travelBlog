@@ -19,6 +19,8 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
+import { FrasesComponent } from './pages/frases/frases.component';
+import { RelatosComponent } from './pages/relatos/relatos.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
     GaleriaComponent,
     PrincipalComponent,
     FavoritosComponent,
-    ContactQRComponent
+    ContactQRComponent,
+    FrasesComponent,
+    RelatosComponent
   ],
   imports: [
     BrowserModule,

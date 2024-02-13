@@ -9,17 +9,21 @@ import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
+import { RelatosComponent } from './pages/relatos/relatos.component';
+import { FrasesComponent } from './pages/frases/frases.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
   { path: 'home', component : HomeComponent},
   { path: 'about', component : AboutComponent},
-  { path: 'galeria', component : GaleriaComponent},  
-  { path: 'favoritos', component : FavoritosComponent},  
+  { path: 'galeria', component : GaleriaComponent},
+  { path: 'favoritos', component : FavoritosComponent},
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
-  { path: 'contactQR', component : ContactQRComponent},  
+  { path: 'contactQR', component : ContactQRComponent},
   { path: 'bookMode', component : BookModeComponent},
+  { path: 'relatos', component : RelatosComponent},
+  { path: 'frases', component : FrasesComponent},
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

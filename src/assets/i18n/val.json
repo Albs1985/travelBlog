@@ -38,7 +38,19 @@
     "volverAviajes": "Anar als viatges",
     "siguiente": "Següent",
     "anterior": "Anterior",
-    "sinResultados": "La cerca no troba resultats"
+    "sinResultados": "La cerca no troba resultats",
+    "frasesTitulo": "Frases per al record de la familia ...",
+    "frasesSubtitulo1": "No volem oblidar-ho"
+  },
+  "frases": {
+    "1": {
+      "frase": "Moltes gràcies papi, ha sigut molt divertit",
+      "explicacion": "Després de vindre al llit a les 2 del matí i estar 30 minuts pegant voltes damunt d'Albert, ha decidit portarlo al braç mig dormit al seu llit."
+    },
+    "2": {
+      "frase": "Saquetí",
+      "explicacion": "Calcetí"
+    }
   },
   "about": {
     "titulo": "Familia Serrador Casares",
@@ -93,7 +105,10 @@
     "palabra": "Filtrar",
     "mensajeCabeceraAnyos": "Viatges per any",
     "mensajeCabeceraAny": "Viatges en l'any",
-    "mensajeCabeceraFiltrar": "Filtrar per "
+    "mensajeCabeceraFiltrar": "Filtrar per ",
+    "relatosYfrases": "Relats i frases",
+    "relatos": "Relats",
+    "frases": "Frases"
   },
   "categoria": {
     "Nieve": "Neu",

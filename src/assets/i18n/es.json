@@ -38,7 +38,19 @@
     "volverAviajes": "Ir a los viajes",
     "siguiente": "Siguiente",
     "anterior": "Anterior",
-    "sinResultados": "La búsqueda no encuentra resultados"
+    "sinResultados": "La búsqueda no encuentra resultados",
+    "frasesTitulo": "Frases para el recuerdo de la familia ...",
+    "frasesSubtitulo1": "No queremos olvidarlo"
+  },
+  "frases": {
+    "1": {
+      "frase": "Muchas gracias papi, ha sido muy divertido",
+      "explicacion": "Después de venir a la cama a las 2 de la mañana y estar 30 minutos dando vueltas sobre Albert, él decide devolverlo a su cama en brazos medio dormido."
+    },
+    "2": {
+      "frase": "Saquetí",
+      "explicacion": "Calcetín"
+    }
   },
   "about": {
     "titulo": "Familia Serrador Casares",
@@ -93,7 +105,10 @@
     "palabra": "Filtrar",
     "mensajeCabeceraAnyos": "Viajes por año",
     "mensajeCabeceraAny": "Viajes en el año",
-    "mensajeCabeceraFiltrar": "Filtrar por "
+    "mensajeCabeceraFiltrar": "Filtrar por ",
+    "relatosYfrases": "Relatos y frases",
+    "relatos": "Relatos",
+    "frases": "Frases"
   },
   "categoria": {
     "Nieve": "Nieve",
