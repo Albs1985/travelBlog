@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 .cuerpo {
-  margin: 20px !important;
+  margin: -100px -180px !important;
   padding: 80px !important;
-  height: 125vh !important;
+  /* height: 125vh !important; */
   display: inline-block !important;
   justify-content: flex-end !important;
   font-family: "Roboto", sans-serif !important;
@@ -77,7 +77,7 @@
   z-index: 99 !important;
   transform: rotateY(180deg) !important;
   backface-visibility: hidden !important;
-  background-color: #000 !important;
+  background-color: #cfcfcf !important;
 }
 
 .next-btn {
@@ -124,4 +124,13 @@
 #c4:checked ~ .flip-book #p4 {
   transform: rotateY(-180deg) !important;
   z-index: 4 !important;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(252, 218, 157);
+  border-radius: 15px;
+  cursor: pointer;
 }
