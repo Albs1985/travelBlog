@@ -47,8 +47,8 @@
 .bloqueFrase {
   margin-left: 25px;
   margin-right: 25px;
-  border-radius: 25px;
-  box-shadow: 0px 5px 5px 5px #888888;
+  /* border-radius: 25px;
+  box-shadow: 0px 5px 5px 5px #888888; */
 }
 
 .letraExplicacion {
@@ -58,4 +58,65 @@
 
 .frasePersona {
   margin-left: 25px;
+}
+
+.paginacion {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-left: -25px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination :hover {
+  background: rgb(255, 233, 194);
+  border-radius: 15px;
+}
+
+.iconosImg {
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+#botonLupa {
+  background: transparent;
+  border-color: transparent;
+}
+
+.filtrado {
+  margin-left: 35px;
+  margin-right: 0px;
+}
+
+#myInput {
+  width: 350px !important;
+}
+
+#busquedaForm {
+  display: inline-flex !important;
+  width: 100% !important;
+  margin-right: 25px;
+}
+
+.fotosPerfiles {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
+}
+
+.center {
+  text-align: center;
 }

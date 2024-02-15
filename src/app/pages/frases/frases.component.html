@@ -7,9 +7,9 @@
     <img src="assets/icons/great.png" alt="" class="iconosImgFav animated rollIn">
    {{ 'app.frasesSubtitulo1' | translate }}
 </h3>
-<!-- <h4 class="subTituloFrases">
+<h4 class="subTituloFrases">
     {{ 'app.frasesSubtitulo2' | translate }}
-</h4> -->
+</h4>
 <br>
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
@@ -20,13 +20,57 @@
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 <br><br>
+<div class="row fotosPerfiles">
+  <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
+      <figure>
+          <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
+          <figcaption>{{viajero.nombreCompleto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
+      </figure>
+  </div>
+</div>
+<br>
+<div class="filtrado animated rollIn">
+  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
+    <form id="busquedaForm">
+      <div id="busquedaForm" class="form-group">
+          <input id="myInputFrase" type="text" class="form-control gradiente" placeholder="{{ 'app.frasesFiltrado' | translate }}">
+              <button id="botonLupa" (click)="buscarFrases()">
+                  <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
+              </button>
+      </div>
+  </form>
+</div>
+
+<div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
+  <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+</div>
+
 <div *ngFor="let frase of servicioFrases.frases" class="bloqueFrase">
-    <figure>
+    <!-- <figure>
         <h4 class="frasePersona">{{frase.persona}} - {{frase.anyo}}</h4>
-        <!-- <blockquote> -->
           <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
           <br>
           <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
-      <!-- </blockquote> -->
-    </figure>
+    </figure> -->
+
+    <figure>
+      <h4 class="frasePersona">{{frase.persona}}: ({{frase.anyo}})</h4>
+      <blockquote>
+        <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
+        <br>
+        <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
+    </blockquote>
+  </figure>
+</div>
+
+<div class="center">
+  <span *ngIf="servicioFrases.frases.length == 0"> {{ 'app.sinResultados' | translate}}</span>
+</div>
+
+<div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
+  <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/home"><a routerLink="/home">{{ 'viaje.volver' | translate}}</a>
 </div>

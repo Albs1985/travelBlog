@@ -47,7 +47,7 @@
 </div>
 
 <br>
-<pagination-controls *ngIf="servicioFotos.fotosFavLista.length > 0" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+<pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
 
 <!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
 <div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
@@ -64,7 +64,7 @@
   <span *ngIf="servicioFotos.fotosFavLista.length == 0"> {{ 'app.sinResultados' | translate}}</span>
 </div>
 
-<pagination-controls *ngIf="servicioFotos.fotosFavLista.length > 0" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+<pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
 
 
 <div class="clearfix"></div>

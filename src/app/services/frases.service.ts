@@ -9,6 +9,7 @@ import { Frase } from '../interfaces/frase.interface';
 export class FrasesService {
 
   cargandoFrases$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  frasesFiltrado: Frase[] = [];
   frases: Frase[] = [];
   frase : Frase = {
     anyo: '',
@@ -56,6 +57,51 @@ export class FrasesService {
         });
 
     });
+
+  }
+
+  buscarFrases(termino : any){
+    var palabra = '';
+    this.cargandoFrases$.next(true);
+    if (termino.filtro != undefined){
+      palabra = termino.filtro;
+    }else{
+      palabra = termino;
+    }
+
+    return new Promise( (resolve, reject) => {
+      if (this.frases.length === 0){
+        this.cargarFrases().then(() => {
+          resolve(this.filtrarFrases(palabra));
+        });
+      }else{
+        resolve(this.filtrarFrases(palabra));
+      }
+
+    });
+
+
+  }
+
+  private filtrarFrases(termino : string){
+
+    this.frasesFiltrado = [];
+
+    const terminoLower = termino.toString().toLocaleLowerCase();
+    this.frases.forEach(fras => {
+
+      let anyoLower = fras.anyo.toLocaleLowerCase();
+      let personaLower = fras.persona.toLocaleLowerCase();
+
+      if (anyoLower.indexOf(terminoLower) >=0 || personaLower.indexOf(terminoLower) >=0){
+        this.frasesFiltrado.push(fras);
+      }
+    });
+
+    this.frases = this.frasesFiltrado;
+
+    this.cargandoFrases$.next(false);
+    console.log(this.frases);
 
   }
 

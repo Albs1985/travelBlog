@@ -39,8 +39,10 @@
     "siguiente": "Siguiente",
     "anterior": "Anterior",
     "sinResultados": "La búsqueda no encuentra resultados",
-    "frasesTitulo": "Frases para el recuerdo de la familia ...",
-    "frasesSubtitulo1": "No queremos olvidarlo"
+    "frasesTitulo": "Frases para el recuerdo de la familia",
+    "frasesSubtitulo1": "No queremos olvidarlo",
+    "frasesSubtitulo2": "Palabras ...",
+    "frasesFiltrado": "Año / Persona"
   },
   "frases": {
     "1": {
@@ -50,6 +52,10 @@
     "2": {
       "frase": "Saquetí",
       "explicacion": "Calcetín"
+    },
+    "3": {
+      "frase": "Mapi",
+      "explicacion": "Conjunción de Mamá y Papá"
     }
   },
   "about": {

@@ -40,7 +40,9 @@
     "anterior": "Anterior",
     "sinResultados": "La cerca no troba resultats",
     "frasesTitulo": "Frases per al record de la familia ...",
-    "frasesSubtitulo1": "No volem oblidar-ho"
+    "frasesSubtitulo1": "No volem oblidar-ho",
+    "frasesSubtitulo2": "Paraules ...",
+    "frasesFiltrado": "Any / Persona"
   },
   "frases": {
     "1": {
@@ -50,6 +52,10 @@
     "2": {
       "frase": "Saquetí",
       "explicacion": "Calcetí"
+    },
+    "3": {
+      "frase": "Mapi",
+      "explicacion": "Unión de Mama i Papa"
     }
   },
   "about": {
