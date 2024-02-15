@@ -1,142 +1,137 @@
-.idiomas{
-    justify-content: space-between !important;
-    display: inline-block !important;
+.idiomas {
+  justify-content: space-between !important;
+  display: inline-block !important;
 }
 
-.idioma{
-    background: transparent;    
-    border-color: transparent;
+.idioma {
+  background: transparent;
+  border-color: transparent;
 }
 
-.imagenPerfil{
-    margin-top: -20px;
-    margin-right: 10px;
-    width: 40%;
-    height: 40%;
-    align-self: center;
-    border-radius: 55px;
-    box-shadow: 5px 10px 8px #888888;
-    float: right;
-
+.imagenPerfil {
+  margin-top: -20px;
+  margin-right: 10px;
+  width: 40%;
+  height: 40%;
+  align-self: center;
+  border-radius: 55px;
+  box-shadow: 5px 10px 8px #888888;
+  float: right;
 }
 
 .iconoChancla {
-   width: 30px;
-   height: 30px;
-   padding: 1px;
-   /* background-color : rgb(247, 200, 115); */
-   /* border-radius: 15px; */
-   cursor: pointer;
- }
-
- .iconoViajeros {
-   width: 30px;
-   height: 30px;
-   padding: 1px;
-   cursor: pointer;
-   margin-top: -60px;
-   margin-left: 30px;
- } 
-
-.seleccionado{
-    /* border: 10px solid transparent; *//*PARA HACER LA IMAGEN MÁS PEQUEÑA, LA QUE ESTÉ SELECCIONADA*/
-    border-radius: 30px;    
-    border: 2px solid grey;
-    background-color : rgb(255, 228, 177);
- }
-
- .iconosImg{
-    padding: 2px;
-    width: 30px;
-    height: 30px;
-    align-self: center;
-    cursor: pointer;
-    margin-top: -5px;
- }
-
- .iconosImgFav{   
-   padding: 0px;
-   width: 30px;
-   height: 30px;
-   align-self: center;
-   cursor: pointer;
-   
-}
- 
-
- .liViajes{
-   margin-top: 15px !important;
- }
-
- #botonLupa{
-    background: transparent;
-    border-color: transparent;
- }
-
- #myInput{
-    width: 200px !important;
-
- }
-
- #busquedaForm{
-    display: inline-flex !important;
- }
-
- #fh5co-offcanvas{
-    width: 300px !important;    
- }
-
- #fh5co-offcanvas .fh5co-menu, #fh5co-offcanvas .fh5co-bio{
-    width: 100%;
- }
-
-.menuBloques{
-   margin-top: -30px;
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  /* background-color : rgb(247, 200, 115); */
+  /* border-radius: 15px; */
+  cursor: pointer;
 }
 
+.iconoViajeros {
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  cursor: pointer;
+  margin-top: -60px;
+  margin-left: 30px;
+}
+
+.seleccionado {
+  /* border: 10px solid transparent; */ /*PARA HACER LA IMAGEN MÁS PEQUEÑA, LA QUE ESTÉ SELECCIONADA*/
+  border-radius: 30px;
+  border: 2px solid grey;
+  background-color: rgb(255, 228, 177);
+}
+
+.iconosImg {
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.liViajes {
+  margin-top: 15px !important;
+}
+
+#botonLupa {
+  background: transparent;
+  border-color: transparent;
+}
+
+#myInput {
+  width: 200px !important;
+}
+
+#busquedaForm {
+  display: inline-flex !important;
+}
+
+#fh5co-offcanvas {
+  width: 300px !important;
+}
+
+#fh5co-offcanvas .fh5co-menu,
+#fh5co-offcanvas .fh5co-bio {
+  width: 100%;
+}
+
+.menuBloques {
+  margin-top: -30px;
+}
 
 @keyframes pulse {
-   from {
-     transform: scale3d(1, 1, 1);
-   }
- 
-   50% {
-     transform: scale3d(1.05, 1.05, 1.05);
-   }
- 
-   to {
-     transform: scale3d(1, 1, 1);
-   }
- }
- 
- .pulse {
-   animation-name: pulse;
-   animation-timing-function: linear;
-   animation-iteration-count: 2;
- }
+  from {
+    transform: scale3d(1, 1, 1);
+  }
 
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
 
- @keyframes pulseInfinito {
-   from {
-     transform: scale3d(1, 1, 1);
-   }
- 
-   50% {
-     transform: scale3d(1.15, 1.15, 1.15);
-   }
- 
-   to {
-     transform: scale3d(1, 1, 1);
-   }
- }
- 
- .pulseInfinito {
-   animation-name: pulseInfinito;
-   animation-timing-function: linear;
-   animation-iteration-count: infinite;
- }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
 
- @keyframes gradient {
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
+}
+
+@keyframes pulseInfinito {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 1.15, 1.15);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulseInfinito {
+  animation-name: pulseInfinito;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -148,9 +143,8 @@
   }
 }
 
-
 .gradiente {
-  background: linear-gradient(-45deg, #c3deeb, #abd6eb, #7dc3e4, #66c7f5);
+  background: linear-gradient(-45deg, #c3deeb, #abd6eb, #96d9f8, #84d6fc);
   background-size: 400% 400%;
-  animation: gradient 10s ease infinite;  
+  animation: gradient 10s ease infinite;
 }
