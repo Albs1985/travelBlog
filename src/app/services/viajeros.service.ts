@@ -20,6 +20,7 @@ export class ViajerosService {
     nacimiento : new Date(),
     nombreCompleto : '',
     nombreCorto : '',
+    aka: [],
     fotoPerfil : '',
     edad : 0
   }
@@ -48,6 +49,7 @@ export class ViajerosService {
               nacimiento : new Date(),
               nombreCompleto : '',
               nombreCorto : '',
+              aka: [],
               fotoPerfil : '',
               edad : 0
             };
@@ -55,8 +57,8 @@ export class ViajerosService {
             this.viajero.nombreCompleto = response[key].nombreCompleto;
             this.viajero.nombreCorto = response[key].nombreCorto;
             this.viajero.fotoPerfil = response[key].fotoPerfil;
-
             this.viajero.edad = this.anyo - Number.parseInt(response[key].nacimiento.substring(0, 4));
+            this.viajero.aka = response[key].aka;
 
             array.push(this.viajero);
 

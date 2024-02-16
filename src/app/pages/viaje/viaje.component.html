@@ -35,6 +35,12 @@
                     <ul>{{ 'viaje.estancia' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].estancia}}</b></ul>
                     <ul>{{ 'viaje.tipoEstancia' | translate }}: <b>{{'tipoEstancia.'+ servicioViajes.viajesDetalleLista[0].tipoEstancia | translate}}</b></ul>
                     <ul>{{ 'app.viajeros' | translate }}: <b>{{servicioViajes.viajesDetalleLista[0].personas}}</b></ul>
+                    <!-- <div class="row listaPersonas">
+                      <ul>{{ 'app.viajeros' | translate }}:</ul>
+                      <div *ngFor="let persona of servicioViajes.viajesDetalleLista[0].personas">
+                        <b>{{persona}}&nbsp;</b>
+                      </div>
+                    </div> -->
                 </div>
             </span>
 

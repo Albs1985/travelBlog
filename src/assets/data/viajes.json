@@ -1,7 +1,7 @@
 {
   "2024": {
-    "Ibiza": {
-      "fechaInicio": "2024-04-01",
+    "Valle del Cabriel": {
+      "fechaInicio": "2024-04-02",
       "fechaFin": "2024-04-05",
       "categoria": "Montaña",
       "destino": "Valle del Cabriel",
@@ -197,7 +197,7 @@
       "provincia": "Girona",
       "pais": "España",
       "idAnteriorViaje": "2023-06-01_Formentera",
-      "idSiguienteViaje": "2024-03-29_Cabriel",
+      "idSiguienteViaje": "2024-04-02_Cabriel",
       "year": 2023,
       "precio": 850,
       "numFotos": 10,

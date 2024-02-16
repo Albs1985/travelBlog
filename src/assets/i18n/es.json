@@ -56,6 +56,10 @@
     "3": {
       "frase": "Mapi",
       "explicacion": "Conjunción de Mamá y Papá"
+    },
+    "4": {
+      "frase": "Tacaleja",
+      "explicacion": "Catalejo"
     }
   },
   "about": {
@@ -115,7 +119,7 @@
     "relatosYfrases": "Relatos y frases",
     "relatos": "Relatos",
     "frases": "Frases",
-    "iaiaAna": "Yaya Ana"
+    "iaiaAna": "Historia de la Yaya Ana"
   },
   "categoria": {
     "Nieve": "Nieve",

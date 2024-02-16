@@ -55,7 +55,11 @@
     },
     "3": {
       "frase": "Mapi",
-      "explicacion": "Unión de Mama i Papa"
+      "explicacion": "Unió de Mama i Papa"
+    },
+    "4": {
+      "frase": "Tacaleja",
+      "explicacion": "Ullera"
     }
   },
   "about": {
@@ -115,7 +119,7 @@
     "relatosYfrases": "Relats i frases",
     "relatos": "Relats",
     "frases": "Frases",
-    "iaiaAna": "Iaia Anna"
+    "iaiaAna": "Història de la Iaia Anna"
   },
   "categoria": {
     "Nieve": "Neu",
