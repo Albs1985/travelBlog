@@ -96,20 +96,33 @@
   color: #fff !important;
 }
 
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(252, 218, 157);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.barraPaginas {
+  margin-left: -350px !important;
+}
+
 #p1 {
-  z-index: 4 !important;
+  z-index: 6 !important;
 }
 #p2 {
-  z-index: 3 !important;
+  z-index: 5 !important;
 }
 #p3 {
-  z-index: 2 !important;
+  z-index: 4 !important;
 }
 #p4 {
-  z-index: 1 !important;
+  z-index: 3 !important;
 }
 #p5 {
-  z-index: 1 !important;
+  z-index: 2 !important;
 }
 #p6 {
   z-index: 1 !important;
@@ -138,17 +151,4 @@
 #c6:checked ~ .flip-book #p6 {
   transform: rotateY(-180deg) !important;
   z-index: 6 !important;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(252, 218, 157);
-  border-radius: 15px;
-  cursor: pointer;
-}
-
-.barraPaginas {
-  margin-left: -350px !important;
 }
