@@ -108,6 +108,12 @@
 #p4 {
   z-index: 1 !important;
 }
+#p5 {
+  z-index: 1 !important;
+}
+#p6 {
+  z-index: 1 !important;
+}
 
 #c1:checked ~ .flip-book #p1 {
   transform: rotateY(-180deg) !important;
@@ -124,6 +130,14 @@
 #c4:checked ~ .flip-book #p4 {
   transform: rotateY(-180deg) !important;
   z-index: 4 !important;
+}
+#c5:checked ~ .flip-book #p5 {
+  transform: rotateY(-180deg) !important;
+  z-index: 5 !important;
+}
+#c6:checked ~ .flip-book #p6 {
+  transform: rotateY(-180deg) !important;
+  z-index: 6 !important;
 }
 
 .iconoFlecha {
