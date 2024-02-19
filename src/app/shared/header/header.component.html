@@ -18,51 +18,64 @@
         <div class="fh5co-box">
             <ul>
                 <li class="liViajes">
-                    <a class="js-fh5co-close-offcanvas" routerLink="/home/">
+                  <div class="col-lg-12 col-md-12 text-center animated">
+                    <h3 id="fh5co-logo">
+                      <a href="#">&nbsp;
+                        <img src="assets/icons/chancletas.png" class="animated fadeIn iconoChancla" routerLink="/principal/">{{ 'app.viajes' | translate }}
+                          <sup>Serrador Casares</sup>
+                          <sub>
+                              <img src="assets/icons/sol.png" class="animated fadeIn iconoViajeros" routerLink="/principal/">
+                          </sub>
+                      </a>
+                    </h3>
+                  </div>
+                    <!-- <a class="js-fh5co-close-offcanvas" routerLink="/home/">
                         <img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.viajes' | translate }}
                     </a>
-                    <img class="imagenPerfil animated bounceInUp" src="assets/images/perfiles/fotoMiniPerfilFamilia.jpg" alt="">
+                    <img class="imagenPerfil animated bounceInUp" src="assets/images/perfiles/fotoMiniPerfilFamilia.jpg" alt="">-->
+                    <img class="imagenPerfil animated bounceInUp" src="assets/images/inicio.jpg" alt="fondo">
                 </li>
             </ul>
         </div>
         <div class="fh5co-box menuBloques">
-          <h3 class="heading"><b>{{ 'header.informacion' | translate }}</b></h3>
+          <h3 class="heading"><b>{{ 'app.viajes' | translate }}</b></h3>
           <ul>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/about/"> <img src="assets/icons/familia.png" alt="" class="iconosImg animated rollIn"> &nbsp;{{ 'app.historia' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.galeria' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="" class="iconosImgFav animated rollIn">  &nbsp;{{ 'app.galeriaFav' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/frases"><img src="assets/icons/frases.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.frases' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/home/"><img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.viajes' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/frases"><img src="assets/icons/frases.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.frases' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="" class="iconosImgFav animated rollIn">  &nbsp;{{ 'app.galeriaFav' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.galeria' | translate }}</a></li>
           </ul>
       </div>
       <div class="fh5co-box menuBloques">
         <h3 class="heading"><b>{{ 'header.relatos' | translate }}</b></h3>
         <ul>
-            <li><a class="js-fh5co-close-offcanvas" routerLink="/relatos"><img src="assets/icons/relatos.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.iaiaAna' | translate }}</a></li>
-            <li><a class="js-fh5co-close-offcanvas" routerLink="/bookMode/"><img src="assets/icons/libro.png" alt="" class="iconosImg">  &nbsp;{{ 'app.modoLibro' | translate }}</a></li>
+          <li><a class="js-fh5co-close-offcanvas" routerLink="/about/"> <img src="assets/icons/familia.png" alt="" class="iconosImg animated rollIn"> &nbsp;{{ 'app.historia' | translate }}</a></li>
+          <li><a class="js-fh5co-close-offcanvas" routerLink="/relatos"><img src="assets/icons/relatos.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.iaiaAna' | translate }}</a></li>
+          <li><a class="js-fh5co-close-offcanvas" routerLink="/bookMode/"><img src="assets/icons/libro.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.modoLibro' | translate }}</a></li>
         </ul>
     </div>
     <div class="fh5co-box menuBloques">
       <h3 class="heading"><b>{{ 'header.categoria' | translate }}</b></h3>
       <ul>
-          <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/playa"><img src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.playa' | translate }}</a></li>
-          <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/montanya"><img src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.montanya' | translate }}</a></li>
-          <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/ciudad"><img src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.ciudad' | translate }}</a></li>
-          <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/nieve"><img src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.nieve' | translate }}</a></li>
+        <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/playa"><img src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.playa' | translate }}</a></li>
+        <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/montanya"><img src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.montanya' | translate }}</a></li>
+        <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/ciudad"><img src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.ciudad' | translate }}</a></li>
+        <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/nieve"><img src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.nieve' | translate }}</a></li>
       </ul>
     </div>
     <div class="fh5co-box menuBloques">
-        <h3 class="heading"><b>{{ 'header.buscar' | translate }}</b></h3>
-        <form id="busquedaForm">
-            <div id="busquedaForm" class="form-group">
-                <input id="myInput" type="text" class="form-control gradiente" placeholder="{{ 'header.palabra' | translate }}">
-                    <button id="botonLupa" (touchstart)="buscar()" (click)="buscar()">
-                        <img src="assets/icons/lupa.gif" alt="" class="iconosImg js-fh5co-close-offcanvas">
-                    </button>
-            </div>
-        </form>
+      <h3 class="heading"><b>{{ 'header.buscar' | translate }}</b></h3>
+      <form id="busquedaForm">
+        <div id="busquedaForm" class="form-group">
+            <input id="myInput" type="text" class="form-control gradiente" placeholder="{{ 'header.palabra' | translate }}">
+            <button id="botonLupa" (touchstart)="buscar()" (click)="buscar()">
+              <img src="assets/icons/lupa.gif" alt="" class="iconosImg js-fh5co-close-offcanvas">
+            </button>
+        </div>
+      </form>
     </div>
     <div class="fh5co-box menuBloques">
-      <!-- <h3 class="heading">{{ 'header.contactoQR' | translate }}</h3> -->
+      <!-- <h3 class="heading">{{ 'app.contactoQR' | translate }}</h3> -->
       <ul>
           <li><a class="js-fh5co-close-offcanvas" routerLink="/contactQR/"><img src="assets/icons/correo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.contactoQR' | translate }}</a></li>
       </ul>

@@ -1,32 +1,32 @@
-.textoEnVideo{
-    position: absolute;
-    bottom: 15px; /* Ajusta la posición vertical */
-    right: 15px; /* Ajusta la posición horizontal */
-    color: rgba(255, 255, 255, 0.6);; /* Color del texto */
-    font-size: 16px; /* Tamaño de fuente */
-    background-color: rgba(0, 0, 0, 0.4); /*Color de fondo del texto*/
-    padding: 5px; /* Espacio interno del texto */
-    cursor: pointer;
-    border-radius: 5px;
- }
+.textoEnVideo {
+  position: absolute;
+  bottom: 15px; /* Ajusta la posición vertical */
+  right: 15px; /* Ajusta la posición horizontal */
+  color: rgba(255, 255, 255, 0.6); /* Color del texto */
+  font-size: 16px; /* Tamaño de fuente */
+  background-color: rgba(0, 0, 0, 0.4); /*Color de fondo del texto*/
+  padding: 5px; /* Espacio interno del texto */
+  cursor: pointer;
+  border-radius: 5px;
+}
 
- .iconoFlechaPeque{
-    width: 25px;
-    height: 25px;
-    padding: 5px;
-    background-color : rgba(247, 200, 115, 0.6);
-    border-radius: 15px;
+.iconoFlechaPeque {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  background-color: rgba(247, 200, 115, 0.6);
+  border-radius: 15px;
 }
 
 .videoContenedor {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Este valor se calcula como el alto dividido por el ancho, en este caso, 9/16 */
-    height: 0;
-    overflow: hidden;
-    box-shadow: 5px 10px 8px #888888;
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Este valor se calcula como el alto dividido por el ancho, en este caso, 9/16 */
+  height: 0;
+  overflow: hidden;
+  box-shadow: 5px 10px 8px #888888;
 }
-  
+
 .videoContenedor video {
   position: absolute;
   top: 0;
@@ -35,22 +35,29 @@
   height: 100%;
 }
 
-
-@media(min-width: 992px){
-  .textoEnVideo{    
+@media (min-width: 992px) {
+  .textoEnVideo {
     bottom: 45px; /* Ajusta la posición vertical */
     right: 45px; /* Ajusta la posición horizontal */
     font-size: 26px; /* Tamaño de fuente */
-  } 
+  }
 }
 
 @keyframes pulse {
   from {
     transform: scale3d(1, 1, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    -o-transform: scale3d(1, 1, 1);
   }
 
   50% {
-    transform: scale3d(1.25, 1.25, 1.25);
+    transform: scale3d(1.05, 1.05, 1.05);
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    -moz-transform: scale3d(1.05, 1.05, 1.05);
+    -ms-transform: scale3d(1.05, 1.05, 1.05);
+    -o-transform: scale3d(1.05, 1.05, 1.05);
   }
 
   to {
@@ -62,4 +69,39 @@
   animation-name: pulse;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+.cuerpoImagenes {
+  margin-top: 25px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+.icon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: lightblue; */
+  /* border-radius: 50%; */
+}
+
+@media screen and (max-width: 600px) {
+  .icon {
+    width: 50px;
+    height: 50px;
+  }
 }
