@@ -24,8 +24,10 @@
   <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
       <figure>
           <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-          <figcaption>{{viajero.aka[0]}}</figcaption>
-          <figcaption>({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
+          <div *ngFor="let apodo of viajero.aka" class="row">
+            <p>{{apodo}}</p>
+          </div>
+          <!-- <figcaption>({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption> -->
       </figure>
   </div>
 </div>

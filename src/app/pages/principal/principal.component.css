@@ -1,13 +1,42 @@
-.textoEnVideo {
+/* .textoEnVideo {
   position: absolute;
-  bottom: 15px; /* Ajusta la posición vertical */
-  right: 15px; /* Ajusta la posición horizontal */
-  color: rgba(255, 255, 255, 0.6); /* Color del texto */
-  font-size: 16px; /* Tamaño de fuente */
-  background-color: rgba(0, 0, 0, 0.4); /*Color de fondo del texto*/
-  padding: 5px; /* Espacio interno del texto */
+  bottom: 15px;
+  right: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 5px;
   cursor: pointer;
   border-radius: 5px;
+} */
+
+a {
+  color: black;
+}
+
+.textoEnImg {
+  position: absolute;
+  bottom: 5vh;
+  right: 5vh;
+  font-size: 36px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.iconoChancla {
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  cursor: pointer;
+}
+
+.iconoViajeros {
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  cursor: pointer;
+  margin-top: -60px;
+  margin-left: 30px;
 }
 
 .iconoFlechaPeque {
@@ -37,9 +66,14 @@
 
 @media (min-width: 992px) {
   .textoEnVideo {
-    bottom: 45px; /* Ajusta la posición vertical */
-    right: 45px; /* Ajusta la posición horizontal */
-    font-size: 26px; /* Tamaño de fuente */
+    bottom: 45px;
+    right: 45px;
+    font-size: 26px;
+  }
+  .textoEnImg {
+    bottom: 45px;
+    right: 45px;
+    font-size: 26px;
   }
 }
 
