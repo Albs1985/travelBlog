@@ -38,6 +38,10 @@
   -webkit-border-radius: 5px;
 }
 
+.margenTop {
+  margin-top: -25px;
+}
+
 .iconoChancla {
   width: 30px;
   height: 30px;

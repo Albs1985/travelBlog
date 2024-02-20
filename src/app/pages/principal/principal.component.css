@@ -9,7 +9,10 @@
   cursor: pointer;
   border-radius: 5px;
 } */
-
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
 a {
   color: black;
 }
@@ -18,25 +21,27 @@ a {
   position: absolute;
   bottom: 5vh;
   right: 5vh;
-  font-size: 36px;
+  font-size: 16px;
   padding: 15px;
   cursor: pointer;
 }
 
 .iconoChancla {
-  width: 30px;
-  height: 30px;
-  padding: 1px;
+  width: 30px !important;
+  height: 30px !important;
+  padding: 1px !important;
   cursor: pointer;
+  margin-top: 35px !important;
+  margin-left: -30px !important;
 }
 
 .iconoViajeros {
-  width: 30px;
-  height: 30px;
-  padding: 1px;
+  width: 30px !important;
+  height: 30px !important;
+  padding: 1px !important;
   cursor: pointer;
-  margin-top: -60px;
-  margin-left: 30px;
+  /* margin-top: -60px !important;
+  margin-left: 30px !important; */
 }
 
 .iconoFlechaPeque {
@@ -49,14 +54,15 @@ a {
 
 .videoContenedor {
   position: relative;
-  width: 100%;
+  width: 90%;
   padding-bottom: 56.25%; /* Este valor se calcula como el alto dividido por el ancho, en este caso, 9/16 */
   height: 0;
+  margin: 15px;
   overflow: hidden;
   box-shadow: 5px 10px 8px #888888;
 }
 
-.videoContenedor video {
+.videoContenedor img {
   position: absolute;
   top: 0;
   left: 0;
@@ -64,16 +70,14 @@ a {
   height: 100%;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 692px) {
   .textoEnVideo {
     bottom: 45px;
     right: 45px;
     font-size: 26px;
   }
-  .textoEnImg {
-    bottom: 45px;
-    right: 45px;
-    font-size: 26px;
+  .videoContenedor {
+    margin: 45px;
   }
 }
 

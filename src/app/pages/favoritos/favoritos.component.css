@@ -10,6 +10,13 @@
   justify-content: space-between;
 }
 
+.paginacion {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-left: -25px;
+}
+
 .fotosPerfiles {
   margin-right: 20px;
   margin-left: 20px;

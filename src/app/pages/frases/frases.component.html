@@ -19,18 +19,18 @@
   <div class="spinner"></div>
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
-<br><br>
-<div class="row fotosPerfiles">
+<!-- <br><br> -->
+<!-- <div class="row fotosPerfiles">
   <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
       <figure>
           <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
           <div *ngFor="let apodo of viajero.aka" class="row">
             <p>{{apodo}}</p>
           </div>
-          <!-- <figcaption>({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption> -->
+          <figcaption>({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
       </figure>
   </div>
-</div>
+</div> -->
 <br>
 <div class="filtrado animated rollIn">
   <h3 class="heading">{{ 'header.buscar' | translate }}</h3>

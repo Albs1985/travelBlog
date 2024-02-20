@@ -35,7 +35,7 @@
 <div *ngIf="(servicioViajes.cargandoViajes$ | async) === false" class="container-fluid animated fadeIn">
     <div class="row fh5co-post-entry">
         <div *ngFor="let viajes of servicioViajes.viajesDetalleLista">
-            <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12">
+            <article class="">
 
                 <div *ngIf="(servicioViajes.cargandoViajes$ | async) === false" id="theCarousel{{viajes.identificadorFotos}}" class="carousel slide">
                     <!-- Indicadores  data-ride="carousel"-->
@@ -119,7 +119,10 @@
                 </div>
             </article>
         </div>
-        <div class="clearfix visible-xs-block"></div>
+
+    </div>
+</div>
+<div class="clearfix visible-xs-block"></div>
         <div *ngIf="mensajeCabeceraAnyo">
             <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoInicio" class="divLeft">
                 <img src="assets/icons/flechaIzq.png" class="animated fadeIn pulseGrande iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">&nbsp;
@@ -131,5 +134,3 @@
 
             </div>
         </div>
-    </div>
-</div>
