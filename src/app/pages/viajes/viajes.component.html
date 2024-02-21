@@ -1,16 +1,16 @@
-<!-- <div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal" class="animated zoomInDown">{{ 'viaje.volver' | translate}}</a>
-</div> -->
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal"  class="animated zoomInDown">{{ 'viaje.volver' | translate}}</a>
+</div>
 
-<div class="tituloOrdenar">
-  <button *ngIf="!orderDesc" class="botonOrdenar" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
-  <button *ngIf="orderDesc" class="botonOrdenar " (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
-  <h2 class="fh5co-article-title subtitulo ">
+<!-- <div class="tituloOrdenar">
+  <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
+  <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
+  <h2 class="fh5co-article-title subtitulo animated fadeIn">
       <a>{{ 'header.mensajeCabeceraAnyos' | translate }}
-          <img src="assets/icons/viajes.png" alt="" class="iconosImg">
+          <img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">
       </a>
   </h2>
-</div>
+</div> -->
 
 <div *ngIf="(servicioViajes.cargandoViajes$ | async) === true" class="spinner-container">
   <div class="spinner"></div>

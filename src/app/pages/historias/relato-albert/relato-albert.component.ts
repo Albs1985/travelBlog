@@ -21,6 +21,7 @@ export class RelatoAlbertComponent implements OnDestroy {
   }
 
   public onClickCambiaModo(): void{
+    console.log(this.esModoLibro)
     this.esModoLibro = !this.esModoLibro;
     this.commonService.modoLibro$.next(this.esModoLibro);
   }

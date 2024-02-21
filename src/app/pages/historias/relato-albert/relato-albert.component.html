@@ -189,7 +189,7 @@
 <div *ngIf="esModoLibro === true">
 
   <div class="divRightLibro">
-    <img  src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()"><a (touchstart)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</a>
+    <button class="botonVersionWeb" (touchstart)="onClickCambiaModo()" (click)="onClickCambiaModo()"><img src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</button>
   </div>
 
   <div class="cuerpo">

@@ -34,6 +34,13 @@
   font-size: 14px !important;
 }
 
+.botonVersionWeb {
+  background: transparent;
+  border-color: transparent;
+  font-size: 16px;
+  margin-left: 20px;
+}
+
 .iconoFlecha {
   width: 30px;
   height: 30px;
