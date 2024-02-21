@@ -1,5 +1,5 @@
 <div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>
 
 <div class="tituloOrdenar">
@@ -19,7 +19,7 @@
 
 <div *ngIf="(servicioViajes.cargandoViajes$ | async) === false" class="row fh5co-post-entry">
   <div *ngFor="let viajes of servicioViajes.viajesLista">
-    <article class="bloqueAnyo">
+    <article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 bloqueAnyo">
       <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
       <figure class="contenedor-imagen">
           <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive" loading="lazy"></a>
@@ -36,5 +36,5 @@
 </div>
 
 <div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>
