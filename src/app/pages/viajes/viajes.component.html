@@ -17,12 +17,12 @@
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 
-<div class="row fh5co-post-entry animated fadeInDown">
+<div *ngIf="(servicioViajes.cargandoViajes$ | async) === false" class="row fh5co-post-entry animated fadeInDown">
   <div *ngFor="let viajes of servicioViajes.viajesLista">
     <article class="bloqueAnyo">
       <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp">{{viajes.anyo}}</span>
       <figure class="contenedor-imagen">
-          <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" alt="Image" class="img img-responsive"></a>
+          <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive"></a>
           <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsiveAnyo">{{viajes.anyo}}
               <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque " routerLink="/viajesFiltrados/{{viajes.anyo}}">
           </div>

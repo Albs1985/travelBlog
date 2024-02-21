@@ -17,20 +17,18 @@
   max-width: 100%;
   height: auto;
   width: -webkit-fill-available;
+  margin: 15px !important;
+  border-radius: 15px !important;
+  /* -webkit-border-radius: 15px !important;
+  -moz-border-radius: 15px !important;
+  -ms-border-radius: 15px !important;
+  -o-border-radius: 15px !important; */
+  box-shadow: 5px 10px 8px #888888;
 }
 .img-responsiveAnyo {
   display: block;
   max-width: 100%;
   height: auto;
-}
-.img {
-  margin: 15px !important;
-  border-radius: 15px !important;
-  -webkit-border-radius: 15px !important;
-  -moz-border-radius: 15px !important;
-  -ms-border-radius: 15px !important;
-  -o-border-radius: 15px !important;
-  box-shadow: 5px 10px 8px #888888;
 }
 
 .subtitulo {
