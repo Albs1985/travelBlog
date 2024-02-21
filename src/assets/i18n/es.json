@@ -31,7 +31,7 @@
     "viaje": "Viaje",
     "cerrar": "Cerrar",
     "destinos": "Destinos",
-    "modoLibro": "Formato libro",
+    "versionLibro": "Versión libro",
     "versionWeb": "Versión web",
     "historia": "Historia de los viajeros",
     "ordenar": "Ordenar",
@@ -43,7 +43,8 @@
     "frasesTitulo": "Frases para el recuerdo de la familia",
     "frasesSubtitulo1": "No queremos olvidarlo",
     "frasesSubtitulo2": "Palabras ...",
-    "frasesFiltrado": "Año / Persona"
+    "frasesFiltrado": "Año / Persona",
+    "familiaApodos": "Familia Serrador Casares (Apodos)"
   },
   "frases": {
     "1": {
@@ -65,6 +66,18 @@
     "5": {
       "frase": "Vaaaaale, CoTuQuieeeeras",
       "explicacion": "Vale, como tu quieras"
+    },
+    "6": {
+      "frase": "¡No me vaig a tranquilar!",
+      "explicacion": "Fue su respuesta a su madre cuando le dijo, ves a tu cuarto y te tranquilizas"
+    },
+    "7": {
+      "frase": "Papá",
+      "explicacion": "Su primera palabra, el día del cumple de su padre"
+    },
+    "8": {
+      "frase": "Papá",
+      "explicacion": "Su primera palabra"
     }
   },
   "about": {

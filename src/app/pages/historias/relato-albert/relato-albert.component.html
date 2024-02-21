@@ -3,11 +3,11 @@
     <div class="row fh5co-post-entry single-entry">
         <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
           <div class="divRight">
-            <img src="assets/icons/libro.png" class="animated fadeIn iconoLibro" (click)="onClickCambiaModo()"><a (click)="onClickCambiaModo()"><b>{{ 'app.modoLibro' | translate}}</b></a>
+            <span class="fh5co-meta"><img src="assets/icons/libro.png" class="animated fadeIn pulse iconoLibro" (click)="onClickCambiaModo()"><a (click)="onClickCambiaModo()">{{ 'app.versionLibro' | translate}}</a></span>
           </div>
           <div class="divVolver">
-                <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
-            </div>
+            <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+          </div>
 
             <figure class="animated zoomInDown">
                 <a target="_blank" href="assets/images/perfiles/fotoPerfilFamilia.jpg"><img src="assets/images/perfiles/fotoPerfilFamilia.jpg" alt="Image" class="img-responsive"></a>
@@ -189,7 +189,7 @@
 <div *ngIf="esModoLibro === true">
 
   <div class="divRightLibro">
-    <img  src="assets/icons/sitioWeb.png" class="animated fadeIn iconoFlecha" (click)="onClickCambiaModo()"><a (click)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</a>
+    <img  src="assets/icons/sitioWeb.png" class="animated fadeIn iconoFlecha" (click)="onClickCambiaModo()"><a (touchstart)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</a>
   </div>
 
   <div class="cuerpo">

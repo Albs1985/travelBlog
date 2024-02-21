@@ -31,7 +31,7 @@
     "viaje": "Viatge",
     "cerrar": "Tancar",
     "destinos": "Destins",
-    "modoLibro": "Format llibre",
+    "versionLibro": "Versió llibre",
     "versionWeb": "Versió web",
     "historia": "Història dels viatgers",
     "ordenar": "Ordenar",
@@ -40,10 +40,11 @@
     "siguiente": "Següent",
     "anterior": "Anterior",
     "sinResultados": "La cerca no troba resultats",
-    "frasesTitulo": "Frases per al record de la familia ...",
+    "frasesTitulo": "Frases per al record de la família ...",
     "frasesSubtitulo1": "No volem oblidar-ho",
     "frasesSubtitulo2": "Paraules ...",
-    "frasesFiltrado": "Any / Persona"
+    "frasesFiltrado": "Any / Persona",
+    "familiaApodos": "Família Serrador Casares (Malnoms)"
   },
   "frases": {
     "1": {
@@ -65,10 +66,22 @@
     "5": {
       "frase": "Vaaaaale, CoTuQuieeeeras",
       "explicacion": "Val, com vulguis"
+    },
+    "6": {
+      "frase": "¡No me vaig a tranquilar!",
+      "explicacion": "Va ser la seua respuesta a sa mare quan li va dir: ves a la teua habitació i te tranquilitzes"
+    },
+    "7": {
+      "frase": "Papà",
+      "explicacion": "La seua primera paraula, el día del cumple del seu pare"
+    },
+    "8": {
+      "frase": "Papà",
+      "explicacion": "La seua primera paraula"
     }
   },
   "about": {
-    "titulo": "Familia Serrador Casares",
+    "titulo": "Família Serrador Casares",
     "edad": "anys",
     "subtitulo": "",
     "fecha": "Història contada en Juny de 2023",

@@ -77,12 +77,14 @@
 .divLeft {
   float: left;
   margin-left: 15px;
+  margin-bottom: 25px;
   font-size: 14px !important;
 }
 
 .divRight {
   float: right;
   margin-right: 15px;
+  margin-bottom: 25px;
   font-size: 14px !important;
 }
 

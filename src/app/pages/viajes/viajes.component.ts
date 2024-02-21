@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViajesService } from '../../services/viajes.service';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './viajes.component.html',
   styleUrls: ['./viajes.component.css']
 })
-export class ViajesComponent {
+export class ViajesComponent implements OnInit{
 
   orderDesc : boolean;
   ejecutarSoloTouch: boolean;
@@ -17,10 +17,12 @@ export class ViajesComponent {
     private route: ActivatedRoute,
     private translate: TranslateService){
 
-    this.servicioViajes.cargarViajes();
     this.orderDesc = true;
     this.ejecutarSoloTouch = false;
 
+  }
+  ngOnInit(): void {
+    this.servicioViajes.cargarViajes();
   }
 
   public ordenar(eventType: string): void {

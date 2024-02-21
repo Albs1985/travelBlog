@@ -13,11 +13,11 @@ export class FrasesComponent {
 
   p: number = 1; // Página inicial
   pageSize: number = 10; // Elementos por página
-  maxSizeDisplay: number = 5;
+  maxSizeDisplay: number = 10;
   palabra : any = '';
 
   constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService, public viajerosService: ViajerosService){
-    this.maxSizeDisplay = 5;
+    this.maxSizeDisplay = 10;
     this.palabra = '';
     this.servicioFrases.cargarFrases();
     this.viajerosService.cargarViajeros();

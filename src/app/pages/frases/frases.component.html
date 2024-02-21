@@ -19,18 +19,21 @@
   <div class="spinner"></div>
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
-<!-- <br><br> -->
-<!-- <div class="row fotosPerfiles">
-  <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
-      <figure>
-          <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-          <div *ngFor="let apodo of viajero.aka" class="row">
-            <p>{{apodo}}</p>
-          </div>
-          <figcaption>({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
-      </figure>
-  </div>
-</div> -->
+<br><br>
+
+<div class="divAka">
+  <h3>{{ 'app.familiaApodos' | translate}}</h3>
+  <ul>
+    <div *ngFor="let viajero of viajerosService.viajerosLista">
+      <li>
+        <span class="nombre">{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</span>
+        <div *ngFor="let apodo of viajero.aka">
+          <span class="apodos">{{apodo}}</span>
+        </div>
+      </li>
+    </div>
+  </ul>
+</div>
 <br>
 <div class="filtrado animated rollIn">
   <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
@@ -48,20 +51,13 @@
   <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
 </div>
 
-<div *ngFor="let frase of servicioFrases.frases" class="bloqueFrase">
-    <!-- <figure>
-        <h4 class="frasePersona">{{frase.persona}} - {{frase.anyo}}</h4>
-          <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
-          <br>
-          <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
-    </figure> -->
-
-    <figure>
-      <h4 class="frasePersona">{{frase.persona}} ({{frase.anyo}})</h4>
-      <blockquote>
-        <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
-        <br>
-        <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
+<div *ngFor="let frase of servicioFrases.frases | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase">
+  <figure>
+    <h4 class="frasePersona">{{frase.persona}} ({{frase.anyo}})</h4>
+    <blockquote>
+      <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
+      <br>
+      <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
     </blockquote>
   </figure>
 </div>

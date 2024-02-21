@@ -1,3 +1,27 @@
+.divAka {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+/* h4 {
+  text-align: center;
+} */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin-bottom: 10px;
+}
+.nombre {
+  font-weight: bold;
+}
+.apodos {
+  margin-left: 20px;
+  color: #666;
+}
+
 .tituloFrases {
   margin-left: 25px;
 }
