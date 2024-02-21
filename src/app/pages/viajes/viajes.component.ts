@@ -9,7 +9,7 @@ import { Viajes } from 'src/app/interfaces/viajes.interface';
   templateUrl: './viajes.component.html',
   styleUrls: ['./viajes.component.css']
 })
-export class ViajesComponent implements OnInit{
+export class ViajesComponent{
 
   orderDesc : boolean;
   ejecutarSoloTouch: boolean;
@@ -21,11 +21,11 @@ export class ViajesComponent implements OnInit{
 
     this.orderDesc = true;
     this.ejecutarSoloTouch = false;
-
-  }
-  ngOnInit(): void {
     this.servicioViajes.cargarViajes();
   }
+  // ngOnInit(): void {
+  //   this.servicioViajes.cargarViajes();
+  // }
 
   public ordenar(eventType: string): void {
 
