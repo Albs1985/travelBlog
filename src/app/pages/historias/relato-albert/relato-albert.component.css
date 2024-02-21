@@ -45,6 +45,14 @@
   -webkit-filter: blur(1px); */
 }
 
+.iconoSitioWeb {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
 .iconoLibro {
   width: 40px;
   height: 40px;

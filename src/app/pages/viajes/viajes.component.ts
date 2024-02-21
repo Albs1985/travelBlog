@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViajesService } from '../../services/viajes.service';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
+import { Viajes } from 'src/app/interfaces/viajes.interface';
 
 @Component({
   selector: 'app-viajes',
@@ -12,6 +13,7 @@ export class ViajesComponent implements OnInit{
 
   orderDesc : boolean;
   ejecutarSoloTouch: boolean;
+  viajesListado : Viajes[] = [];
 
   constructor(public servicioViajes : ViajesService,
     private route: ActivatedRoute,
