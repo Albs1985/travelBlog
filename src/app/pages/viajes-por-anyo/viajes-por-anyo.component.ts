@@ -21,7 +21,7 @@ export class ViajesPorAnyoComponent implements OnInit{
 
   constructor (private route: ActivatedRoute,
                 public servicioViajes : ViajesService){
-                  
+
                   this.orderDesc = false;
                   this.ejecutarSoloTouch = false;
   }
@@ -29,7 +29,7 @@ export class ViajesPorAnyoComponent implements OnInit{
   ngOnInit(){
 
     this.route.params.subscribe(params =>{
-      
+
       // console.log(params);
       var isNum = Number.isInteger(Number(params['filtro']));
       this.palabra = params['filtro'];
@@ -38,8 +38,8 @@ export class ViajesPorAnyoComponent implements OnInit{
         console.log('Filtramos por anyo');
         this.mensajeCabeceraAnyo = true;
         this.mensajeCabeceraFiltrar = false;
-        this.mensajeCabeceraFiltrarSinTranslate = false;  
-        this.servicioViajes.cargarViajesPorAnyo(params);        
+        this.mensajeCabeceraFiltrarSinTranslate = false;
+        this.servicioViajes.cargarViajesPorAnyo(params);
       }else{
         console.log('Filtramos por palabra');
 
@@ -70,29 +70,29 @@ export class ViajesPorAnyoComponent implements OnInit{
             this.mensajeCabeceraFiltrar = false;
             break;
         }
-        
+
         this.servicioViajes.buscarViajes(params);
 
       }
 
     });
-    
+
     // this.viajesCargados = true;
 
   }
 
   public ordenar(eventType: string): void {
-    
+
     //Para ejecutar sólo uno de los dos
     this.orderDesc = !this.orderDesc;
-    if (eventType === 'click' && !this.ejecutarSoloTouch) { 
+    if (eventType === 'click' && !this.ejecutarSoloTouch) {
       if (this.servicioViajes.viajesDetalleLista != null && this.servicioViajes.viajesDetalleLista.length > 0){
         this.servicioViajes.viajesDetalleLista.reverse();
       }else if (this.servicioViajes.viajesFiltrado != null && this.servicioViajes.viajesFiltrado.length > 0){
         this.servicioViajes.viajesFiltrado.reverse();
-      }    
+      }
     }else if (eventType === 'touchstart') {
-      this.ejecutarSoloTouch  = true; 
+      this.ejecutarSoloTouch  = true;
       if (this.servicioViajes.viajesDetalleLista != null && this.servicioViajes.viajesDetalleLista.length > 0){
         this.servicioViajes.viajesDetalleLista.reverse();
       }else if (this.servicioViajes.viajesFiltrado != null && this.servicioViajes.viajesFiltrado.length > 0){
