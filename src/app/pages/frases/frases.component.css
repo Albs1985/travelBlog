@@ -1,0 +1,147 @@
+.divAka {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+/* h4 {
+  text-align: center;
+} */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin-bottom: 10px;
+}
+.nombre {
+  font-weight: bold;
+}
+.apodos {
+  margin-left: 20px;
+  color: #666;
+}
+
+.tituloFrases {
+  margin-left: 25px;
+}
+
+.subTituloFrases {
+  margin-left: 50px;
+  margin-right: 15px;
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ajusta la altura del contenedor según necesites */
+}
+
+.bloqueFrase {
+  margin-left: 25px;
+  margin-right: 25px;
+  /* border-radius: 25px;
+  box-shadow: 0px 5px 5px 5px #888888; */
+}
+
+.letraExplicacion {
+  font-size: small;
+  margin-left: 25px;
+}
+
+.frasePersona {
+  margin-left: 25px;
+}
+
+.paginacion {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-left: -25px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.my-pagination ::ng-deep .ngx-pagination :hover {
+  background: rgb(255, 233, 194);
+  border-radius: 15px;
+}
+
+.iconosImg {
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+#botonLupa {
+  background: transparent;
+  border-color: transparent;
+}
+
+.filtrado {
+  margin-left: 35px;
+  margin-right: 0px;
+  margin-top: -40px;
+}
+
+#myInput {
+  width: 350px !important;
+}
+
+#busquedaForm {
+  display: inline-flex !important;
+  width: 100% !important;
+  margin-right: 25px;
+}
+
+.fotosPerfiles {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
+}
+
+.center {
+  text-align: center;
+}

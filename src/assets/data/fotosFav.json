@@ -1,580 +1,594 @@
 {
-    "fotoFav74":{
-        "idDesc" : "fotoFav74",
-        "id": "fotoFav74.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
-        "personas": "Marina"
-    },
-    "fotoFav73":{
-        "idDesc" : "fotoFav73",
-        "id": "fotoFav73.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
-        "personas": "Marina"
-    },
-    "fotoFav72":{
-        "idDesc" : "fotoFav72",
-        "id": "fotoFav72.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
-        "personas": "Marina"
-    },
-    "fotoFav71":{
-        "idDesc" : "fotoFav71",
-        "id": "fotoFav71.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
-        "personas": "Marina"
-    },
-    "fotoFav70":{
-        "idDesc" : "fotoFav70",
-        "id": "fotoFav70.jpg",        
-        "anyo": "2023",
-        "lugar": "Paterna",
-        "categoria": "iaio, iaia, iaios",
-        "personas": "Ana, Pepe"
-    },
-    "fotoFav69":{
-        "idDesc" : "fotoFav69",
-        "id": "fotoFav69.jpg",        
-        "anyo": "2023",
-        "lugar": "Benicalap",
-        "categoria": "xiquet, niño, pequeño, iaio, iaia, iaios",
-        "personas": "Mateu, Pepe"
-    },
-    "fotoFav68":{
-        "idDesc" : "fotoFav68",
-        "id": "fotoFav68.jpg",        
-        "anyo": "2023",
-        "lugar": "Benicalap",
-        "categoria": "xiquet, niño, pequeño, iaio, iaia, iaios",
-        "personas": "Mateu, Ana"
-    },
-    "fotoFav67":{
-        "idDesc" : "fotoFav67",
-        "id": "fotoFav67.jpg",        
-        "anyo": "2023",
-        "lugar": "Cine Kinepolis",
-        "categoria": "xiquet, niño, pequeño",
-        "personas": "Mateu, Alba, Albert"
-    },
-    "fotoFav66":{
-        "idDesc" : "fotoFav66",
-        "id": "fotoFav66.jpg",        
-        "anyo": "2023",
-        "lugar": "Hospital 9 Octubre",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina, Alba, Albert"
-    },
-    "fotoFav65":{
-        "idDesc" : "fotoFav65",
-        "id": "fotoFav65.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Cumpleaños, Aniversari, Casa",
-        "personas": "Mateu"
-    },
-    "fotoFav64":{
-        "idDesc" : "fotoFav64",
-        "id": "fotoFav64.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Cumpleaños, Aniversari, Casa",
-        "personas": "Mateu"
-    },
-    "fotoFav63":{
-        "idDesc" : "fotoFav63",
-        "id": "fotoFav63.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu"
-    },
-    "fotoFav62":{
-        "idDesc" : "fotoFav62",
-        "id": "fotoFav62.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina"
-    },
-    "fotoFav61":{
-        "idDesc" : "fotoFav61",
-        "id": "fotoFav61.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina"
-    },
-    "fotoFav60":{
-        "idDesc" : "fotoFav60",
-        "id": "fotoFav60.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina"
-    },
-    "fotoFav59":{
-        "idDesc" : "fotoFav59",
-        "id": "fotoFav59.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina"
-    },
-    "fotoFav58":{
-        "idDesc" : "fotoFav58",
-        "id": "fotoFav58.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina"
-    },
-    "fotoFav57":{
-        "idDesc" : "fotoFav57",
-        "id": "fotoFav57.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Marina"
-    },
-    "fotoFav50":{
-        "idDesc" : "fotoFav50",
-        "id": "fotoFav50.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Parque La Concordia",
-        "categoria": "Parque, Parc, Deporte, Esport, Basket, Baloncesto, balón, bola",
-        "personas": "Mateu"
-    },
-    "fotoFav1":{
-        "idDesc" : "fotoFav1",
-        "id": "fotoFav1.jpg",        
-        "anyo": "2023",
-        "lugar": "Malvarrosa",
-        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
-        "personas": "Esteve, Mateu"        
-    },    
-    "fotoFav4":{
-        "idDesc" : "fotoFav4",
-        "id": "fotoFav4.jpeg",        
-        "anyo": "2023",
-        "lugar": "Burjassot",
-        "categoria": "Casa, Salon, Salo, Mesa, Taula, Treball, Trabajo",
-        "personas": "Mateu"
-    },
-    "fotoFav5":{
-        "idDesc" : "fotoFav5",
-        "id": "fotoFav5.jpg",        
-        "anyo": "2023",
-        "lugar": "Puertomingalvo",
-        "categoria": "Puerto, Montaña, Muntanya, Iglesia",
-        "personas": "Mateu, Gerard"
-    },
-    "fotoFav52":{
-        "idDesc" : "fotoFav52",
-        "id": "fotoFav52.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot",
-        "categoria": "Moto, Garaje, Garatge",
-        "personas": "Mateu"
-    },   
-    "fotoFav51":{
-        "idDesc" : "fotoFav51",
-        "id": "fotoFav51.jpg",        
-        "anyo": "2023",
-        "lugar": "Valencia, Ruzafa",
-        "categoria": "Parque, Parc, Niños, xiquets",
-        "personas": "Mateu, Joan, Emma, Lola, Pau"
-    },    
-    "fotoFav6":{
-        "idDesc" : "fotoFav6",
-        "id": "fotoFav6.jpg",        
-        "anyo": "2023",
-        "lugar": "Puertomingalvo, Merendero Las Truchas",
-        "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
-        "personas": "Mateu"
-    },
-    "fotoFav7":{
-        "idDesc" : "fotoFav7",
-        "id": "fotoFav7.jpg",        
-        "anyo": "2023",
-        "lugar": "Puertomingalvo, Merendero Las Truchas",
-        "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, Familia, natura, naturaleza",
-        "personas": "Mateu, Alba, Albert"
-    },    
-    "fotoFav26":{
-        "idDesc" : "fotoFav26",
-        "id": "fotoFav26.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Caja, jugar",
-        "personas": "Mateu, Gerard"
-    } ,    
-    "fotoFav9":{
-        "idDesc" : "fotoFav9",
-        "id": "fotoFav9.jpg",        
-        "anyo": "2023",
-        "lugar": "Burjassot, Parque La granja",
-        "categoria": "Parque, Parc, Deporte, Esport, Skate, Patin, patinete, rampas",
-        "personas": "Mateu, Albert"
-    },    
-    "fotoFav8":{
-        "idDesc" : "fotoFav8",
-        "id": "fotoFav8.jpg",        
-        "anyo": "2022",
-        "lugar": "Paterna, Casa iaios",
-        "categoria": "Cumpleaños, Aniversari, Casa, iaios",
-        "personas": "Mateu, Gerard, Ana, Pepe"
-    },  
-    "fotoFav10":{
-        "idDesc" : "fotoFav10",
-        "id": "fotoFav10.jpg",        
-        "anyo": "2022",
-        "lugar": "Puertomingalvo, Fuente la Penilla",
-        "categoria": "Puerto, Montaña, muntaña, natura, naturaleza, font, Merendero",
-        "personas": "Mateu"
-    },    
-    "fotoFav11":{
-        "idDesc" : "fotoFav11",
-        "id": "fotoFav11.jpg",        
-        "anyo": "2022",
-        "lugar": "Puertomingalvo, Fuente la Penilla",
-        "categoria": "Puerto, Montaña, muntaña, natura, naturaleza, font, Merendero",
-        "personas": "Mateu"
-    },    
-    "fotoFav12":{
-        "idDesc" : "fotoFav12",
-        "id": "fotoFav12.jpg",        
-        "anyo": "2022",
-        "lugar": "Villahermosa",
-        "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza, Puertomingalvo, Puerto",
-        "personas": "Mateu, Pau, Martí, Marti"
-    },    
-    "fotoFav13":{
-        "idDesc" : "fotoFav13",
-        "id": "fotoFav13.jpg",        
-        "anyo": "2022",
-        "lugar": "Puertomingalvo, Merendero Las Truchas",
-        "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
-        "personas": "Mateu, Pau, Martí, Marti"
-    },    
-    "fotoFav14":{
-        "idDesc" : "fotoFav14",
-        "id": "fotoFav14.jpg",        
-        "anyo": "2022",
-        "lugar": "Valencia, Ruzafa",
-        "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati",
-        "personas": "Mateu, Gerard"
-    },    
-    "fotoFav15":{
-        "idDesc" : "fotoFav15",
-        "id": "fotoFav15.jpg",        
-        "anyo": "2022",
-        "lugar": "Burjassot, Eixereta",
-        "categoria": "Cumpleaños, Aniversari, Familia, Parc, Parque",
-        "personas": "Mateu, Alba, Albert, Ana, Pepe"
-    },    
-    "fotoFav16":{
-        "idDesc" : "fotoFav16",
-        "id": "fotoFav16.jpg",        
-        "anyo": "2022",
-        "lugar": "Burjassot, Eixereta",
-        "categoria": "Cumpleaños, Aniversari, Familia, Parc, Parque",
-        "personas": "Mateu, Alba, Gerard"
-    },    
-    "fotoFav17":{
-        "idDesc" : "fotoFav17",
-        "id": "fotoFav17.jpg",        
-        "anyo": "2022",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Deporte, Esport, Basket, Baloncesto",
-        "personas": "Mateu"
-    }, 
-    "fotoFav44":{
-        "idDesc" : "fotoFav44",
-        "id": "fotoFav44.jpg",        
-        "anyo": "2022",
-        "lugar": "Pirineos",
-        "categoria": "Montaña, Muntanya, natura, naturaleza, llac, lago",
-        "personas": "Gerard"
-    },   
-    "fotoFav45":{
-        "idDesc" : "fotoFav45",
-        "id": "fotoFav45.jpg",        
-        "anyo": "2022",
-        "lugar": "La Pobla de Farnals",
-        "categoria": "Platja, Playa, Familia, niños, xiquets",
-        "personas": "Mateu, Emili"
-    },   
-    "fotoFav18":{
-        "idDesc" : "fotoFav18",
-        "id": "fotoFav18.jpg",        
-        "anyo": "2022",
-        "lugar": "Godella",
-        "categoria": "Boda, Ceremonia, Iglesia, Esglesia",
-        "personas": "Mateu, Gerard"
-    },    
-    "fotoFav19":{
-        "idDesc" : "fotoFav19",
-        "id": "fotoFav19.jpg",        
-        "anyo": "2022",
-        "lugar": "Puertomingalvo",
-        "categoria": "Puerto, Montaña, Muntanya, natura, naturaleza, rio, río, riu, cuñis, broders",
-        "personas": "Mateu, Blai, Gerard, Albert"
-    },    
-    "fotoFav20":{
-        "idDesc" : "fotoFav20",
-        "id": "fotoFav20.jpg",        
-        "anyo": "2022",
-        "lugar": "Valencia, Vivers",
-        "categoria": "Gelat, Helado, Viveros",
-        "personas": "Mateu, Alba"
-    },    
-    "fotoFav21":{
-        "idDesc" : "fotoFav21",
-        "id": "fotoFav21.jpg",        
-        "anyo": "2022",
-        "lugar": "Alboraia, Sequer lo blanc",
-        "categoria": "Amagatall, Escondite, Alboraya",
-        "personas": "Mateu"
-    },    
-    "fotoFav22":{
-        "idDesc" : "fotoFav22",
-        "id": "fotoFav22.jpg",        
-        "anyo": "2022",
-        "lugar": "Alboraia, Sequer lo blanc",
-        "categoria": "Grupo, Amigos, Amics, grup, gent, gente, Alboraya ",
-        "personas": "Putipanda"
-    },    
-    "fotoFav23":{
-        "idDesc" : "fotoFav23",
-        "id": "fotoFav23.jpg",        
-        "anyo": "2022",
-        "lugar": "Godella",
-        "categoria": "Familia, cuñis, broders",
-        "personas": "Alba, Mateu, Gerard, Marta"
-    },    
-    "fotoFav24":{
-        "idDesc" : "fotoFav24",
-        "id": "fotoFav24.jpg",        
-        "anyo": "2022",
-        "lugar": "Burjassot, Eixereta",
-        "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati, Parc, Parque",
-        "personas": "Mateu, Gerard"
-    } ,    
-    "fotoFav25":{
-        "idDesc" : "fotoFav25",
-        "id": "fotoFav25.jpg",        
-        "anyo": "2022",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Casa, Sofa, amor, dormido, dormit, dormir",
-        "personas": "Mateu, Alba"
-    },    
-    "fotoFav27":{
-        "idDesc" : "fotoFav27",
-        "id": "fotoFav27.jpg",        
-        "anyo": "2021",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, biberón, bibe, bebé, xicotet",
-        "personas": "Mateu"
-    } ,    
-    "fotoFav28":{
-        "idDesc" : "fotoFav28",
-        "id": "fotoFav28.jpg",        
-        "anyo": "2021",
-        "lugar": "Malvarrosa",
-        "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
-        "personas": "Mateu, Blai, Gerard"
-    }, 
-    "fotoFav39":{
-        "idDesc" : "fotoFav39",
-        "id": "fotoFav39.jpg",        
-        "anyo": "2021",
-        "lugar": "Altea",
-        "categoria": "Platja, Playa, Altea, Paisatge, Paisaje, Mar, Amanecer, Amaneixer",
-        "personas": ""
-    },    
-    "fotoFav40":{
-        "idDesc" : "fotoFav40",
-        "id": "fotoFav40.jpg",        
-        "anyo": "2021",
-        "lugar": "Altea",
-        "categoria": "Platja, Playa, Altea, Paisatge, Paisaje, Mar, Amanecer, Amaneixer",
-        "personas": ""
-    },    
-    "fotoFav41":{
-        "idDesc" : "fotoFav41",
-        "id": "fotoFav41.jpg",        
-        "anyo": "2021",
-        "lugar": "Valdelinares, Teruel",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Estación Esquí, Paisatge, Paisaje",
-        "personas": ""
-    } ,
-    "fotoFav46":{
-        "idDesc" : "fotoFav46",
-        "id": "fotoFav46.jpg",        
-        "anyo": "2021",
-        "lugar": "Godella",
-        "categoria": "Boda, Ceremonia, Iglesia, Esglesia, Cuñis, Broders, Germà, Hermano",
-        "personas": "Blai, Marta"
-    },   
-    "fotoFav49":{
-        "idDesc" : "fotoFav49",
-        "id": "fotoFav49.jpg",        
-        "anyo": "2021",
-        "lugar": "Burjassot, Escoleta Llumenetes",
-        "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, Escoleta Llumenetes, cumple, aniversari, cumpleaños",
-        "personas": "Mateu"
-    },
-    "fotoFav47":{
-        "idDesc" : "fotoFav47",
-        "id": "fotoFav47.jpg",        
-        "anyo": "2021",
-        "lugar": "Burjassot, Parque María Marzo",
-        "categoria": "Parque, Parc, Niños, xiquets, escoleta",
-        "personas": "Omar, Onai, Darío, Mateu"
-    },
-    "fotoFav32":{
-        "idDesc" : "fotoFav32",
-        "id": "fotoFav32.jpg",        
-        "anyo": "2020",
-        "lugar": "Estanys d'Almenara",
-        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
-        "personas": ""
-    } ,    
-    "fotoFav43":{
-        "idDesc" : "fotoFav43",
-        "id": "fotoFav43.jpg",        
-        "anyo": "2020",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
-        "personas": "Mateu, Albert"
-    },  
-    "fotoFav33":{
-        "idDesc" : "fotoFav33",
-        "id": "fotoFav33.jpg",        
-        "anyo": "2020",
-        "lugar": "Estanys d'Almenara",
-        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
-        "personas": ""
-    },    
-    "fotoFav34":{
-        "idDesc" : "fotoFav34",
-        "id": "fotoFav34.jpg",        
-        "anyo": "2020",
-        "lugar": "Estanys d'Almenara",
-        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
-        "personas": ""
-    },  
-    "fotoFav53":{
-        "idDesc" : "fotoFav53",
-        "id": "fotoFav53.jpg",        
-        "anyo": "2020",
-        "lugar": "Formentera",
-        "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre, Balears, Baleares, Isla, Illa",
-        "personas": "Alba, Albert"
-    },  
-    "fotoFav54":{
-        "idDesc" : "fotoFav54",
-        "id": "fotoFav54.jpg",        
-        "anyo": "2020",
-        "lugar": "Formentera",
-        "categoria": "Embarcadero, bruji, novios, Balears, Baleares, Isla, Illa",
-        "personas": "Alba, Albert"
-    },  
-    "fotoFav55":{
-        "idDesc" : "fotoFav55",
-        "id": "fotoFav55.jpg",        
-        "anyo": "2020",
-        "lugar": "Formentera",
-        "categoria": "Embarcadero, bruji, blanco y negro, blanc i negre, novios, Balears, Baleares, Isla, Illa",
-        "personas": "Sarita, Alba, Albert"
-    },  
-    "fotoFav56":{
-        "idDesc" : "fotoFav56",
-        "id": "fotoFav56.jpg",        
-        "anyo": "2020",
-        "lugar": "Formentera",
-        "categoria": "Embarcadero, bruji, novios, Balears, Baleares, Isla, Illa",
-        "personas": "Sarita, Alba, Albert"
-    },      
-    "fotoFav35":{
-        "idDesc" : "fotoFav35",
-        "id": "fotoFav35.jpg",        
-        "anyo": "2020",
-        "lugar": "Burjassot, Casa",
-        "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, pijama",
-        "personas": "Mateu"
-    },  
-    "fotoFav48":{
-        "idDesc" : "fotoFav48",
-        "id": "fotoFav48.jpg",        
-        "anyo": "2020",
-        "lugar": "Burjassot, Escoleta Llumenetes",
-        "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, Escoleta Llumenetes, cumple, aniversari, cumpleaños",
-        "personas": "Mateu"
-    },  
-    "fotoFav36":{
-        "idDesc" : "fotoFav36",
-        "id": "fotoFav36.jpg",        
-        "anyo": "2020",
-        "lugar": "Horta de Godella",
-        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Horta, Huerta",
-        "personas": ""
-    },    
-    "fotoFav37":{
-        "idDesc" : "fotoFav37",
-        "id": "fotoFav37.jpg",        
-        "anyo": "2020",
-        "lugar": "Horta de Godella",
-        "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Horta, Huerta",
-        "personas": ""
-    },    
-    "fotoFav38":{
-        "idDesc" : "fotoFav38",
-        "id": "fotoFav38.jpg",        
-        "anyo": "2020",
-        "lugar": "Platja de Massalfassar",
-        "categoria": "Platja, Playa, Valencia, Paisatge, Paisaje, Mar",
-        "personas": ""
-    },   
-    "fotoFav42":{
-        "idDesc" : "fotoFav42",
-        "id": "fotoFav42.jpg",        
-        "anyo": "2019",
-        "lugar": "Bali, Indonesia",
-        "categoria": "Río, Riu, Rio, Cascadas",
-        "personas": ""
-    }   ,    
-    "fotoFav29":{
-        "idDesc" : "fotoFav29",
-        "id": "fotoFav29.jpg",        
-        "anyo": "2016",
-        "lugar": "Les Deux Alps, Alpes Franceses",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
-        "personas": "Albert"
-    } ,    
-    "fotoFav30":{
-        "idDesc" : "fotoFav30",
-        "id": "fotoFav30.jpg",        
-        "anyo": "2016",
-        "lugar": "Les Deux Alps, Alpes Franceses",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
-        "personas": "Albert"
-    } ,    
-    "fotoFav31":{
-        "idDesc" : "fotoFav31",
-        "id": "fotoFav31.jpg",        
-        "anyo": "2016",
-        "lugar": "Les Deux Alps, Alpes Franceses",
-        "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
-        "personas": "Albert"
-    }
-    
+  "fotoFav76": {
+    "idDesc": "fotoFav76",
+    "id": "favoritos/fotoFav76.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña, germans, hermanos",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav75": {
+    "idDesc": "fotoFav75",
+    "id": "favoritos/fotoFav75.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña, germans, hermanos",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav74": {
+    "idDesc": "fotoFav74",
+    "id": "favoritos/fotoFav74.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
+    "personas": "Marina"
+  },
+  "fotoFav73": {
+    "idDesc": "fotoFav73",
+    "id": "favoritos/fotoFav73.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
+    "personas": "Marina"
+  },
+  "fotoFav72": {
+    "idDesc": "fotoFav72",
+    "id": "favoritos/fotoFav72.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
+    "personas": "Marina"
+  },
+  "fotoFav71": {
+    "idDesc": "fotoFav71",
+    "id": "favoritos/fotoFav71.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicoteta, xiqueta, niña, pequeña",
+    "personas": "Marina"
+  },
+  "fotoFav70": {
+    "idDesc": "fotoFav70",
+    "id": "favoritos/fotoFav70.jpg",
+    "anyo": "2023",
+    "lugar": "Paterna",
+    "categoria": "iaio, iaia, iaios",
+    "personas": "Ana, Pepe"
+  },
+  "fotoFav69": {
+    "idDesc": "fotoFav69",
+    "id": "favoritos/fotoFav69.jpg",
+    "anyo": "2023",
+    "lugar": "Benicalap",
+    "categoria": "xiquet, niño, pequeño, iaio, iaia, iaios",
+    "personas": "Mateu, Pepe"
+  },
+  "fotoFav68": {
+    "idDesc": "fotoFav68",
+    "id": "favoritos/fotoFav68.jpg",
+    "anyo": "2023",
+    "lugar": "Benicalap",
+    "categoria": "xiquet, niño, pequeño, iaio, iaia, iaios",
+    "personas": "Mateu, Ana"
+  },
+  "fotoFav67": {
+    "idDesc": "fotoFav67",
+    "id": "favoritos/fotoFav67.jpg",
+    "anyo": "2023",
+    "lugar": "Cine Kinepolis",
+    "categoria": "xiquet, niño, pequeño",
+    "personas": "Mateu, Alba, Albert"
+  },
+  "fotoFav66": {
+    "idDesc": "fotoFav66",
+    "id": "favoritos/fotoFav66.jpg",
+    "anyo": "2023",
+    "lugar": "Hospital 9 Octubre",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina, Alba, Albert"
+  },
+  "fotoFav65": {
+    "idDesc": "fotoFav65",
+    "id": "favoritos/fotoFav65.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Cumpleaños, Aniversari, Casa",
+    "personas": "Mateu"
+  },
+  "fotoFav64": {
+    "idDesc": "fotoFav64",
+    "id": "favoritos/fotoFav64.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Cumpleaños, Aniversari, Casa",
+    "personas": "Mateu"
+  },
+  "fotoFav63": {
+    "idDesc": "fotoFav63",
+    "id": "favoritos/fotoFav63.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu"
+  },
+  "fotoFav62": {
+    "idDesc": "fotoFav62",
+    "id": "favoritos/fotoFav62.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav61": {
+    "idDesc": "fotoFav61",
+    "id": "favoritos/fotoFav61.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav60": {
+    "idDesc": "fotoFav60",
+    "id": "favoritos/fotoFav60.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav59": {
+    "idDesc": "fotoFav59",
+    "id": "favoritos/fotoFav59.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav58": {
+    "idDesc": "fotoFav58",
+    "id": "favoritos/fotoFav58.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav57": {
+    "idDesc": "fotoFav57",
+    "id": "favoritos/fotoFav57.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav50": {
+    "idDesc": "fotoFav50",
+    "id": "favoritos/fotoFav50.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Parque La Concordia",
+    "categoria": "Parque, Parc, Deporte, Esport, Basket, Baloncesto, balón, bola",
+    "personas": "Mateu"
+  },
+  "fotoFav1": {
+    "idDesc": "fotoFav1",
+    "id": "favoritos/fotoFav1.jpg",
+    "anyo": "2023",
+    "lugar": "Malvarrosa",
+    "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
+    "personas": "Esteve, Mateu"
+  },
+  "fotoFav4": {
+    "idDesc": "fotoFav4",
+    "id": "favoritos/fotoFav4.jpeg",
+    "anyo": "2023",
+    "lugar": "Burjassot",
+    "categoria": "Casa, Salon, Salo, Mesa, Taula, Treball, Trabajo",
+    "personas": "Mateu"
+  },
+  "fotoFav5": {
+    "idDesc": "fotoFav5",
+    "id": "favoritos/fotoFav5.jpg",
+    "anyo": "2023",
+    "lugar": "Puertomingalvo",
+    "categoria": "Puerto, Montaña, Muntanya, Iglesia",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav52": {
+    "idDesc": "fotoFav52",
+    "id": "favoritos/fotoFav52.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot",
+    "categoria": "Moto, Garaje, Garatge",
+    "personas": "Mateu"
+  },
+  "fotoFav51": {
+    "idDesc": "fotoFav51",
+    "id": "favoritos/fotoFav51.jpg",
+    "anyo": "2023",
+    "lugar": "Valencia, Ruzafa",
+    "categoria": "Parque, Parc, Niños, xiquets",
+    "personas": "Mateu, Joan, Emma, Lola, Pau"
+  },
+  "fotoFav6": {
+    "idDesc": "fotoFav6",
+    "id": "favoritos/fotoFav6.jpg",
+    "anyo": "2023",
+    "lugar": "Puertomingalvo, Merendero Las Truchas",
+    "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
+    "personas": "Mateu"
+  },
+  "fotoFav7": {
+    "idDesc": "fotoFav7",
+    "id": "favoritos/fotoFav7.jpg",
+    "anyo": "2023",
+    "lugar": "Puertomingalvo, Merendero Las Truchas",
+    "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, Familia, natura, naturaleza",
+    "personas": "Mateu, Alba, Albert"
+  },
+  "fotoFav26": {
+    "idDesc": "fotoFav26",
+    "id": "favoritos/fotoFav26.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Caja, jugar",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav9": {
+    "idDesc": "fotoFav9",
+    "id": "favoritos/fotoFav9.jpg",
+    "anyo": "2023",
+    "lugar": "Burjassot, Parque La granja",
+    "categoria": "Parque, Parc, Deporte, Esport, Skate, Patin, patinete, rampas",
+    "personas": "Mateu, Albert"
+  },
+  "fotoFav8": {
+    "idDesc": "fotoFav8",
+    "id": "favoritos/fotoFav8.jpg",
+    "anyo": "2022",
+    "lugar": "Paterna, Casa iaios",
+    "categoria": "Cumpleaños, Aniversari, Casa, iaios",
+    "personas": "Mateu, Gerard, Ana, Pepe"
+  },
+  "fotoFav10": {
+    "idDesc": "fotoFav10",
+    "id": "favoritos/fotoFav10.jpg",
+    "anyo": "2022",
+    "lugar": "Puertomingalvo, Fuente la Penilla",
+    "categoria": "Puerto, Montaña, muntaña, natura, naturaleza, font, Merendero",
+    "personas": "Mateu"
+  },
+  "fotoFav11": {
+    "idDesc": "fotoFav11",
+    "id": "favoritos/fotoFav11.jpg",
+    "anyo": "2022",
+    "lugar": "Puertomingalvo, Fuente la Penilla",
+    "categoria": "Puerto, Montaña, muntaña, natura, naturaleza, font, Merendero",
+    "personas": "Mateu"
+  },
+  "fotoFav12": {
+    "idDesc": "fotoFav12",
+    "id": "favoritos/fotoFav12.jpg",
+    "anyo": "2022",
+    "lugar": "Villahermosa",
+    "categoria": "Montaña, Muntanya, Paseo, Paseig, natura, naturaleza, Puertomingalvo, Puerto",
+    "personas": "Mateu, Pau, Martí, Marti"
+  },
+  "fotoFav13": {
+    "idDesc": "fotoFav13",
+    "id": "favoritos/fotoFav13.jpg",
+    "anyo": "2022",
+    "lugar": "Puertomingalvo, Merendero Las Truchas",
+    "categoria": "Puerto, Montaña, Muntanya, Paseo, Paseig, natura, naturaleza",
+    "personas": "Mateu, Pau, Martí, Marti"
+  },
+  "fotoFav14": {
+    "idDesc": "fotoFav14",
+    "id": "favoritos/fotoFav14.jpg",
+    "anyo": "2022",
+    "lugar": "Valencia, Ruzafa",
+    "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav15": {
+    "idDesc": "fotoFav15",
+    "id": "favoritos/fotoFav15.jpg",
+    "anyo": "2022",
+    "lugar": "Burjassot, Eixereta",
+    "categoria": "Cumpleaños, Aniversari, Familia, Parc, Parque",
+    "personas": "Mateu, Alba, Albert, Ana, Pepe"
+  },
+  "fotoFav16": {
+    "idDesc": "fotoFav16",
+    "id": "favoritos/fotoFav16.jpg",
+    "anyo": "2022",
+    "lugar": "Burjassot, Eixereta",
+    "categoria": "Cumpleaños, Aniversari, Familia, Parc, Parque",
+    "personas": "Mateu, Alba, Gerard"
+  },
+  "fotoFav17": {
+    "idDesc": "fotoFav17",
+    "id": "favoritos/fotoFav17.jpg",
+    "anyo": "2022",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Deporte, Esport, Basket, Baloncesto",
+    "personas": "Mateu"
+  },
+  "fotoFav44": {
+    "idDesc": "fotoFav44",
+    "id": "favoritos/fotoFav44.jpg",
+    "anyo": "2022",
+    "lugar": "Pirineos",
+    "categoria": "Montaña, Muntanya, natura, naturaleza, llac, lago",
+    "personas": "Gerard"
+  },
+  "fotoFav45": {
+    "idDesc": "fotoFav45",
+    "id": "favoritos/fotoFav45.jpg",
+    "anyo": "2022",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "Platja, Playa, Familia, niños, xiquets",
+    "personas": "Mateu, Emili"
+  },
+  "fotoFav18": {
+    "idDesc": "fotoFav18",
+    "id": "favoritos/fotoFav18.jpg",
+    "anyo": "2022",
+    "lugar": "Godella",
+    "categoria": "Boda, Ceremonia, Iglesia, Esglesia",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav19": {
+    "idDesc": "fotoFav19",
+    "id": "favoritos/fotoFav19.jpg",
+    "anyo": "2022",
+    "lugar": "Puertomingalvo",
+    "categoria": "Puerto, Montaña, Muntanya, natura, naturaleza, rio, río, riu, cuñis, broders",
+    "personas": "Mateu, Blai, Gerard, Albert"
+  },
+  "fotoFav20": {
+    "idDesc": "fotoFav20",
+    "id": "favoritos/fotoFav20.jpg",
+    "anyo": "2022",
+    "lugar": "Valencia, Vivers",
+    "categoria": "Gelat, Helado, Viveros",
+    "personas": "Mateu, Alba"
+  },
+  "fotoFav21": {
+    "idDesc": "fotoFav21",
+    "id": "favoritos/fotoFav21.jpg",
+    "anyo": "2022",
+    "lugar": "Alboraia, Sequer lo blanc",
+    "categoria": "Amagatall, Escondite, Alboraya",
+    "personas": "Mateu"
+  },
+  "fotoFav22": {
+    "idDesc": "fotoFav22",
+    "id": "favoritos/fotoFav22.jpg",
+    "anyo": "2022",
+    "lugar": "Alboraia, Sequer lo blanc",
+    "categoria": "Grupo, Amigos, Amics, grup, gent, gente, Alboraya ",
+    "personas": "Putipanda"
+  },
+  "fotoFav23": {
+    "idDesc": "fotoFav23",
+    "id": "favoritos/fotoFav23.jpg",
+    "anyo": "2022",
+    "lugar": "Godella",
+    "categoria": "Familia, cuñis, broders",
+    "personas": "Alba, Mateu, Gerard, Marta"
+  },
+  "fotoFav24": {
+    "idDesc": "fotoFav24",
+    "id": "favoritos/fotoFav24.jpg",
+    "anyo": "2022",
+    "lugar": "Burjassot, Eixereta",
+    "categoria": "Deporte, Esport, Patinete, Patín, Patí, Patin, Pati, Parc, Parque",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav25": {
+    "idDesc": "fotoFav25",
+    "id": "favoritos/fotoFav25.jpg",
+    "anyo": "2022",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Casa, Sofa, amor, dormido, dormit, dormir",
+    "personas": "Mateu, Alba"
+  },
+  "fotoFav27": {
+    "idDesc": "fotoFav27",
+    "id": "favoritos/fotoFav27.jpg",
+    "anyo": "2021",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, biberón, bibe, bebé, xicotet",
+    "personas": "Mateu"
+  },
+  "fotoFav28": {
+    "idDesc": "fotoFav28",
+    "id": "favoritos/fotoFav28.jpg",
+    "anyo": "2021",
+    "lugar": "Malvarrosa",
+    "categoria": "Platja, Playa, Familia, niños, xiquets, Patacona, Valencia",
+    "personas": "Mateu, Blai, Gerard"
+  },
+  "fotoFav39": {
+    "idDesc": "fotoFav39",
+    "id": "favoritos/fotoFav39.jpg",
+    "anyo": "2021",
+    "lugar": "Altea",
+    "categoria": "Platja, Playa, Altea, Paisatge, Paisaje, Mar, Amanecer, Amaneixer",
+    "personas": ""
+  },
+  "fotoFav40": {
+    "idDesc": "fotoFav40",
+    "id": "favoritos/fotoFav40.jpg",
+    "anyo": "2021",
+    "lugar": "Altea",
+    "categoria": "Platja, Playa, Altea, Paisatge, Paisaje, Mar, Amanecer, Amaneixer",
+    "personas": ""
+  },
+  "fotoFav41": {
+    "idDesc": "fotoFav41",
+    "id": "favoritos/fotoFav41.jpg",
+    "anyo": "2021",
+    "lugar": "Valdelinares, Teruel",
+    "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Estación Esquí, Paisatge, Paisaje",
+    "personas": ""
+  },
+  "fotoFav46": {
+    "idDesc": "fotoFav46",
+    "id": "favoritos/fotoFav46.jpg",
+    "anyo": "2021",
+    "lugar": "Godella",
+    "categoria": "Boda, Ceremonia, Iglesia, Esglesia, Cuñis, Broders, Germà, Hermano",
+    "personas": "Blai, Marta"
+  },
+  "fotoFav49": {
+    "idDesc": "fotoFav49",
+    "id": "favoritos/fotoFav49.jpg",
+    "anyo": "2021",
+    "lugar": "Burjassot, Escoleta Llumenetes",
+    "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, Escoleta Llumenetes, cumple, aniversari, cumpleaños",
+    "personas": "Mateu"
+  },
+  "fotoFav47": {
+    "idDesc": "fotoFav47",
+    "id": "favoritos/fotoFav47.jpg",
+    "anyo": "2021",
+    "lugar": "Burjassot, Parque María Marzo",
+    "categoria": "Parque, Parc, Niños, xiquets, escoleta",
+    "personas": "Omar, Onai, Darío, Mateu"
+  },
+  "fotoFav32": {
+    "idDesc": "fotoFav32",
+    "id": "favoritos/fotoFav32.jpg",
+    "anyo": "2020",
+    "lugar": "Estanys d'Almenara",
+    "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
+    "personas": ""
+  },
+  "fotoFav43": {
+    "idDesc": "fotoFav43",
+    "id": "favoritos/fotoFav43.jpg",
+    "anyo": "2020",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Bebe, bebé, xicotet, xiquet, niño, pequeño",
+    "personas": "Mateu, Albert"
+  },
+  "fotoFav33": {
+    "idDesc": "fotoFav33",
+    "id": "favoritos/fotoFav33.jpg",
+    "anyo": "2020",
+    "lugar": "Estanys d'Almenara",
+    "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
+    "personas": ""
+  },
+  "fotoFav34": {
+    "idDesc": "fotoFav34",
+    "id": "favoritos/fotoFav34.jpg",
+    "anyo": "2020",
+    "lugar": "Estanys d'Almenara",
+    "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Lago, Llac",
+    "personas": ""
+  },
+  "fotoFav53": {
+    "idDesc": "fotoFav53",
+    "id": "favoritos/fotoFav53.jpg",
+    "anyo": "2020",
+    "lugar": "Formentera",
+    "categoria": "Embarcadero, bruji, novios, blanco y negro, blanc i negre, Balears, Baleares, Isla, Illa",
+    "personas": "Alba, Albert"
+  },
+  "fotoFav54": {
+    "idDesc": "fotoFav54",
+    "id": "favoritos/fotoFav54.jpg",
+    "anyo": "2020",
+    "lugar": "Formentera",
+    "categoria": "Embarcadero, bruji, novios, Balears, Baleares, Isla, Illa",
+    "personas": "Alba, Albert"
+  },
+  "fotoFav55": {
+    "idDesc": "fotoFav55",
+    "id": "favoritos/fotoFav55.jpg",
+    "anyo": "2020",
+    "lugar": "Formentera",
+    "categoria": "Embarcadero, bruji, blanco y negro, blanc i negre, novios, Balears, Baleares, Isla, Illa",
+    "personas": "Sarita, Alba, Albert"
+  },
+  "fotoFav56": {
+    "idDesc": "fotoFav56",
+    "id": "favoritos/fotoFav56.jpg",
+    "anyo": "2020",
+    "lugar": "Formentera",
+    "categoria": "Embarcadero, bruji, novios, Balears, Baleares, Isla, Illa",
+    "personas": "Sarita, Alba, Albert"
+  },
+  "fotoFav35": {
+    "idDesc": "fotoFav35",
+    "id": "favoritos/fotoFav35.jpg",
+    "anyo": "2020",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, pijama",
+    "personas": "Mateu"
+  },
+  "fotoFav48": {
+    "idDesc": "fotoFav48",
+    "id": "favoritos/fotoFav48.jpg",
+    "anyo": "2020",
+    "lugar": "Burjassot, Escoleta Llumenetes",
+    "categoria": "Primer plano, Bebe, Niño, Xiquet, Primer pla, Escoleta Llumenetes, cumple, aniversari, cumpleaños",
+    "personas": "Mateu"
+  },
+  "fotoFav36": {
+    "idDesc": "fotoFav36",
+    "id": "favoritos/fotoFav36.jpg",
+    "anyo": "2020",
+    "lugar": "Horta de Godella",
+    "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Horta, Huerta",
+    "personas": ""
+  },
+  "fotoFav37": {
+    "idDesc": "fotoFav37",
+    "id": "favoritos/fotoFav37.jpg",
+    "anyo": "2020",
+    "lugar": "Horta de Godella",
+    "categoria": "Paisatge, Paisaje, Natura, Naturaleza, Horta, Huerta",
+    "personas": ""
+  },
+  "fotoFav38": {
+    "idDesc": "fotoFav38",
+    "id": "favoritos/fotoFav38.jpg",
+    "anyo": "2020",
+    "lugar": "Platja de Massalfassar",
+    "categoria": "Platja, Playa, Valencia, Paisatge, Paisaje, Mar",
+    "personas": ""
+  },
+  "fotoFav42": {
+    "idDesc": "fotoFav42",
+    "id": "favoritos/fotoFav42.jpg",
+    "anyo": "2019",
+    "lugar": "Bali, Indonesia",
+    "categoria": "Río, Riu, Rio, Cascadas",
+    "personas": ""
+  },
+  "fotoFav29": {
+    "idDesc": "fotoFav29",
+    "id": "favoritos/fotoFav29.jpg",
+    "anyo": "2016",
+    "lugar": "Les Deux Alps, Alpes Franceses",
+    "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
+    "personas": "Albert"
+  },
+  "fotoFav30": {
+    "idDesc": "fotoFav30",
+    "id": "favoritos/fotoFav30.jpg",
+    "anyo": "2016",
+    "lugar": "Les Deux Alps, Alpes Franceses",
+    "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
+    "personas": "Albert"
+  },
+  "fotoFav31": {
+    "idDesc": "fotoFav31",
+    "id": "favoritos/fotoFav31.jpg",
+    "anyo": "2016",
+    "lugar": "Les Deux Alps, Alpes Franceses",
+    "categoria": "Deporte, Esport, Nieve, Neu, Snowboard, Ski, Salto, Salt, Bot, Volar, Francia, Estación Esquí",
+    "personas": "Albert"
+  }
 }
-    

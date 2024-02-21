@@ -1,8 +1,11 @@
-.mapa{
+.mapa {
   width: 100%;
   height: 300px;
 }
 
+.listaPersonas {
+  margin-left: 25px !important;
+}
 .custom-tooltip {
   position: fixed;
   top: 30%;
@@ -13,60 +16,62 @@
   background-repeat: no-repeat;
   background-size: cover; */
   /* filter: brightness(3.5); Aumenta el brillo en un 20% */
-  /* -webkit-text-stroke-width: 0.5px; Ancho del borde de la letra 
+  /* -webkit-text-stroke-width: 0.5px; Ancho del borde de la letra
   -webkit-text-stroke-color: black; Color del borde  de la letra */
   background-color: rgb(255, 233, 194);
   width: auto;
   height: auto;
-  color: rgb(0, 0, 0);  
+  color: rgb(0, 0, 0);
   padding: 5px;
   border-radius: 15px;
   z-index: 9999;
   box-shadow: 5px 10px 8px #888888;
-  text-align: left; 
-  
+  text-align: left;
 }
 
-.infoButton{
+.infoButton {
   background: transparent;
   border-color: transparent;
 }
 
-.divLeft{
+.divLeft {
   float: left;
   margin-left: 5px;
   font-size: 14px !important;
 }
 
-.divRight{
+.divRight {
   float: right;
   margin-right: 5px;
   font-size: 14px !important;
 }
 
-.estiloNota{
-  font-style: italic !important;  
+.estiloNota {
+  font-style: italic !important;
   font-family: "sans-serif" !important;
 }
 
-.video-container{
+.video-container {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);/*Para hacer 3 columnas y que tengan el mismo tamaño*/
+  grid-template-columns: repeat(
+    1,
+    1fr
+  ); /*Para hacer 3 columnas y que tengan el mismo tamaño*/
   padding: 20px;
-  grid-gap: 20px;  
+  grid-gap: 20px;
 }
 
-.textoFoto{
+.textoFoto {
   text-align: center;
 }
-  
-.video-item{
-    position: relative;
-    width: 100% !important;
-    height: 100% !important;    
+
+.video-item {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
 }
-  
-.vid-border{
+
+.vid-border {
   position: relative;
   height: 260px;
   width: 340px;
@@ -77,39 +82,39 @@
   margin-bottom: 50px;
 }
 
-.trioFotos{
+.trioFotos {
   width: 35%;
   height: 35%;
   display: -webkit-inline-box;
 }
-.dobleFotos{
+.dobleFotos {
   width: 50%;
   height: 50%;
   display: table-cell;
 }
-  
+
 .iconos {
-    width: 50px;
-    height: 50px;
-    padding: 5px;    
+  width: 50px;
+  height: 50px;
+  padding: 5px;
 }
 
 .iconoFlecha {
   width: 30px;
   height: 30px;
   padding: 5px;
-  background-color : rgb(247, 200, 115);
+  background-color: rgb(247, 200, 115);
   border-radius: 15px;
   cursor: pointer;
   /* filter: blur(1px);
   -webkit-filter: blur(1px); */
 }
 
-.disposicion{
-    display: inline-flex;
+.disposicion {
+  display: inline-flex;
 }
 
-.mueveTransporte{
+.mueveTransporte {
   position: relative;
   animation-name: muevePorPantalla;
   /* animation-delay: 0s;      */
@@ -117,150 +122,161 @@
   animation-iteration-count: infinite;
 }
 
-.fotoPerfil{
-    border-radius: 25px;
-    width: 50px;
-    height: 50px;
-    padding: 5px;   
+.fotoPerfil {
+  border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
 }
 
 .fh5co-post-entry article .fh5co-meta {
   font-size: 20px;
 }
 
-.iconosImg{
+.iconosImg {
   padding: 2px;
   width: 30px;
   height: 30px;
   align-self: center;
   cursor: pointer;
-  margin-top: -10px;  
+  margin-top: -10px;
 }
-    
-@media(min-width: 992px){
-  .trioFotos{    
+
+@media (min-width: 992px) {
+  .trioFotos {
     width: 100%;
     height: 100%;
-  } 
+  }
 }
 
+/*ESTE TAMAÑO ES EL DE TABLE, ES DECIR, CON PANTALLA MEDIANA*/
+@media (min-width: 850px) {
+  .video-container {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /*Para hacer 3 columnas y que tengan el mismo tamaño*/
+    padding: 20px;
+    grid-gap: 10px;
+  }
+}
 
+@media (min-width: 850px) {
+  .mapa {
+    /* width: 600px; */
+    height: 500px;
+  }
+}
+@media (min-width: 1150px) {
+  .mapa {
+    /* width: 100%; */
+    height: 600px;
+  }
+}
 
-  /*ESTE TAMAÑO ES EL DE TABLE, ES DECIR, CON PANTALLA MEDIANA*/
-  @media(min-width: 850px){
-    .video-container{    
-      grid-template-columns: repeat(2, 1fr);/*Para hacer 3 columnas y que tengan el mismo tamaño*/
-      padding: 20px;
-      grid-gap: 10px;
-    }
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ajusta la altura del contenedor según necesites */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
   }
 
-  @media(min-width: 850px){
-    .mapa{    
-      /* width: 600px; */
-      height: 500px;
-    }
-  }
-  @media(min-width: 1150px){
-    .mapa{    
-      /* width: 100%; */
-      height: 600px;
-    }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
   }
 
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
 
-  .spinner {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    animation: spin 1s linear infinite;
-  }
-  
-  .spinner-container {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Ajusta la altura del contenedor según necesites */
-  }
-    
-  @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rubberBand {
+  from {
+    transform: scale3d(1, 1, 1);
   }
 
-
-
-  @keyframes pulse {
-    from {
-      transform: scale3d(1, 1, 1);
-    }
-  
-    50% {
-      transform: scale3d(1.05, 1.05, 1.05);
-    }
-  
-    to {
-      transform: scale3d(1, 1, 1);
-    }
-  }
-  
-  .pulse {
-    animation-name: pulse;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
   }
 
-
-
-  @keyframes rubberBand {
-    from {
-      transform: scale3d(1, 1, 1);
-    }
-  
-    30% {
-      transform: scale3d(1.25, 0.75, 1);
-    }
-  
-    40% {
-      transform: scale3d(0.75, 1.25, 1);
-    }
-  
-    50% {
-      transform: scale3d(1.15, 0.85, 1);
-    }
-  
-    65% {
-      transform: scale3d(0.95, 1.05, 1);
-    }
-  
-    75% {
-      transform: scale3d(1.05, 0.95, 1);
-    }
-  
-    to {
-      transform: scale3d(1, 1, 1);
-    }
-  }
-  
-  .rubberBand {
-    animation-name: rubberBand;
-    animation-iteration-count: infinite;
-    /* animation-delay: 1s;      */
-    animation-duration: 1.5s;
-    animation-timing-function: ease-in;
-    /* animation-direction: alternate; */
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
   }
 
-  @keyframes muevePorPantalla {
-    0%   {left:0px; top:0px;}
-    25%  {left:200%; top:0px;}
-    50%  {left:0px; top:0px;}
-    75%  {left:-200%; top:0px;}
-    100% {left:0px; top:0px;}
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  animation-name: rubberBand;
+  animation-iteration-count: infinite;
+  /* animation-delay: 1s;      */
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  /* animation-direction: alternate; */
+}
+
+@keyframes muevePorPantalla {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 200%;
+    top: 0px;
+  }
+  50% {
+    left: 0px;
+    top: 0px;
+  }
+  75% {
+    left: -200%;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Viajero } from '../interfaces/viajero.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class ViajerosService {
   viajerosJSON = "assets/data/viajeros.json";
   viajerosLista : Viajero[] = [];
 
-  cargando = true;
+  // cargando = true;
+  cargando$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   anyo : number = new Date().getFullYear();
 
 
@@ -18,20 +20,22 @@ export class ViajerosService {
     nacimiento : new Date(),
     nombreCompleto : '',
     nombreCorto : '',
+    aka: [],
     fotoPerfil : '',
     edad : 0
   }
 
   constructor(private http: HttpClient) {
-    
+
   }
 
 
   cargarViajeros(){
 
+    this.cargando$.next(true);
     //Añadimos el PROMISE para esperar a que se carguen los viajeros
     return new Promise( (resolve, reject) => {
-      
+
       this.http.get(this.viajerosJSON)
         .subscribe( (response: any ) => {
 
@@ -45,6 +49,7 @@ export class ViajerosService {
               nacimiento : new Date(),
               nombreCompleto : '',
               nombreCorto : '',
+              aka: [],
               fotoPerfil : '',
               edad : 0
             };
@@ -52,22 +57,22 @@ export class ViajerosService {
             this.viajero.nombreCompleto = response[key].nombreCompleto;
             this.viajero.nombreCorto = response[key].nombreCorto;
             this.viajero.fotoPerfil = response[key].fotoPerfil;
-            
             this.viajero.edad = this.anyo - Number.parseInt(response[key].nacimiento.substring(0, 4));
+            this.viajero.aka = response[key].aka;
 
-            array.push(this.viajero);           
-            
-          } 
+            array.push(this.viajero);
 
-          this.viajerosLista = array; 
+          }
 
-          this.cargando = false;
+          this.viajerosLista = array;
+
+          this.cargando$.next(false);
 
           resolve(this.viajerosLista);
-          
+
         });
-      
+
     });
-    
+
   }
 }

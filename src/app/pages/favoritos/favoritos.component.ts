@@ -13,7 +13,7 @@ export class FavoritosComponent implements OnInit{
   // numeroFotosFavoritos : number = 15;
   palabra : any = '';
   orderDesc : boolean = false;
-  
+
   //PARA LA PAGINACIÓN
   p: number = 1; // Página inicial
   pageSize: number = 10; // Elementos por página
@@ -29,12 +29,12 @@ export class FavoritosComponent implements OnInit{
   }
   ngOnInit(): void {
     this.servicioFotos.cargarFotosFav();
-    this.viajerosService.cargarViajeros();  
-    
+    this.viajerosService.cargarViajeros();
+
   }
 
   buscar(){
-    
+
     if($('#myInputFav').val() == ''){
       this.servicioFotos.cargarFotosFav();
     } else {
@@ -48,6 +48,6 @@ export class FavoritosComponent implements OnInit{
   public ordenar(): void {
     this.servicioFotos.fotosFavLista.reverse();
     this.orderDesc = !this.orderDesc;
-  }  
+  }
 
 }

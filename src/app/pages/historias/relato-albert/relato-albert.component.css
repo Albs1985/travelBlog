@@ -1,0 +1,244 @@
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
+}
+
+.divVolver {
+  text-align: left;
+  margin-top: 0px;
+  margin-left: 15px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+.divRight {
+  float: right;
+  margin-right: 5px;
+  margin-bottom: 15px;
+  font-size: 14px !important;
+  cursor: pointer;
+}
+
+.divRightLibro {
+  float: right;
+  margin-right: 25px;
+  font-size: 14px !important;
+  margin-top: -35px;
+  cursor: pointer;
+}
+
+.divLeft {
+  float: left;
+  margin-left: 5px;
+  font-size: 14px !important;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+  cursor: pointer;
+  /* filter: blur(1px);
+  -webkit-filter: blur(1px); */
+}
+
+.iconoLibro {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  /* border-radius: 15px; */
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* MODO LIBRO CSS */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+.cuerpo {
+  margin: -100px -360px !important;
+  padding: 110px !important;
+  /* height: 125vh !important; */
+  display: inline-block !important;
+  justify-content: flex-end !important;
+  font-family: "Roboto", sans-serif !important;
+  align-items: center !important;
+  /* background: linear-gradient(90deg , #fff 50% , #4a1010 50% ) !important; */
+  object-fit: cover;
+}
+
+.input {
+  display: none !important;
+}
+
+.img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.book {
+  display: flex !important;
+  max-width: 75% !important;
+}
+
+#cover {
+  width: 350px !important;
+  height: 600px !important;
+}
+
+.flip-book {
+  width: 250px !important;
+  height: 400px !important;
+  position: relative !important;
+  perspective: 1500px !important;
+}
+
+.flip {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform-origin: left !important;
+  transform-style: preserve-3d !important;
+  transform: rotateY(0deg) !important;
+  transition: 2.5s !important;
+  color: #000 !important;
+}
+
+.p {
+  font-size: 14px !important;
+  line-height: 14px !important;
+}
+
+.front {
+  position: absolute !important;
+  width: 180% !important;
+  height: 170% !important;
+  top: 0 !important;
+  left: 0 !important;
+  background-color: #fafafa !important;
+  box-sizing: border-box !important;
+  padding: 0 13px !important;
+  /* box-shadow: inset 20px 0 50px r !important; */
+}
+
+.back {
+  position: absolute !important;
+  width: 200% !important;
+  height: 200% !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 99 !important;
+  transform: rotateY(180deg) !important;
+  backface-visibility: hidden !important;
+  background-color: #ffffff !important;
+}
+
+.next-btn {
+  position: absolute !important;
+  bottom: 13px !important;
+  right: 13px !important;
+  cursor: pointer !important;
+  color: #000 !important;
+}
+
+.back-btn {
+  position: absolute !important;
+  bottom: 13px !important;
+  right: 13px !important;
+  cursor: pointer !important;
+  color: #fff !important;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(252, 218, 157);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.barraPaginas {
+  margin-left: -310px !important;
+  margin-bottom: -5px !important;
+}
+
+#p1 {
+  z-index: 6 !important;
+}
+#p2 {
+  z-index: 5 !important;
+}
+#p3 {
+  z-index: 4 !important;
+}
+#p4 {
+  z-index: 3 !important;
+}
+#p5 {
+  z-index: 2 !important;
+}
+#p6 {
+  z-index: 1 !important;
+}
+
+#c1:checked ~ .flip-book #p1 {
+  transform: rotateY(-180deg) !important;
+  z-index: 1 !important;
+}
+#c2:checked ~ .flip-book #p2 {
+  transform: rotateY(-180deg) !important;
+  z-index: 2 !important;
+}
+#c3:checked ~ .flip-book #p3 {
+  transform: rotateY(-180deg) !important;
+  z-index: 3 !important;
+}
+#c4:checked ~ .flip-book #p4 {
+  transform: rotateY(-180deg) !important;
+  z-index: 4 !important;
+}
+#c5:checked ~ .flip-book #p5 {
+  transform: rotateY(-180deg) !important;
+  z-index: 5 !important;
+}
+#c6:checked ~ .flip-book #p6 {
+  transform: rotateY(-180deg) !important;
+  z-index: 6 !important;
+}
+
+@media only screen and (min-width: 650px) {
+  .divRightLibro {
+    margin-top: 0px;
+  }
+  .cuerpo {
+    margin: 0px 0px !important;
+  }
+  .back {
+    background-color: #d4d4d4 !important;
+  }
+}

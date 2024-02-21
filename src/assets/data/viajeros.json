@@ -1,28 +1,47 @@
 {
-    "Marina":{
-        "nacimiento": "2023-07-26",        
-        "nombreCompleto": "Marina Serrador Casares",
-        "nombreCorto": "Marina",
-        "fotoPerfil" : "assets/images/perfiles/fotoPerfilMarina.jpg"
-    },
-    "Mateu":{
-        "nacimiento": "2020-09-04",        
-        "nombreCompleto": "Mateu Serrador Casares",
-        "nombreCorto": "Mateu",
-        "fotoPerfil" : "assets/images/perfiles/fotoPerfilMateu.jpg"
-    },
-    "Alba":{
-        "nacimiento": "1985-05-10",        
-        "nombreCompleto": "Alba Casares Català",
-        "nombreCorto": "Alba",
-        "fotoPerfil" : "assets/images/perfiles/fotoPerfilAlba.jpg"
-    },
-    "Albert":{
-        "nacimiento": "1985-06-06",        
-        "nombreCompleto": "Albert Serrador Sánchez",
-        "nombreCorto": "Albert",
-        "fotoPerfil" : "assets/images/perfiles/fotoPerfilAlbert.jpg"
-    }    
-    
+  "Marina": {
+    "nacimiento": "2023-07-26",
+    "nombreCompleto": "Marina Serrador Casares",
+    "nombreCorto": "Marina",
+    "fotoPerfil": "assets/images/perfiles/fotoPerfilMarina.jpg",
+    "aka": [
+      "Marinuski",
+      "Truskilina",
+      "Filleta Pinyol",
+      "Truski Muski",
+      "Xicaleta"
+    ]
+  },
+  "Mateu": {
+    "nacimiento": "2020-09-04",
+    "nombreCompleto": "Mateu Serrador Casares",
+    "nombreCorto": "Mateu",
+    "fotoPerfil": "assets/images/perfiles/fotoPerfilMateu.jpg",
+    "aka": [
+      "Mateuito",
+      "Matotis",
+      "Xiriwini/o",
+      "Luka Matotić"
+    ]
+  },
+  "Alba": {
+    "nacimiento": "1985-05-10",
+    "nombreCompleto": "Alba Casares Català",
+    "nombreCorto": "Alba",
+    "fotoPerfil": "assets/images/perfiles/fotoPerfilAlba.jpg",
+    "aka": [
+      "Albeta"
+    ]
+  },
+  "Albert": {
+    "nacimiento": "1985-06-06",
+    "nombreCompleto": "Albert Serrador Sánchez",
+    "nombreCorto": "Albert",
+    "fotoPerfil": "assets/images/perfiles/fotoPerfilAlbert.jpg",
+    "aka": [
+      "Papi Papowski",
+      "Berto",
+      "Bertolico"
+    ]
+  }
 }
-    

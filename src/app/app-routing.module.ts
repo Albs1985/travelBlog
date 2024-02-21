@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -9,17 +8,24 @@ import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
+import { FrasesComponent } from './pages/frases/frases.component';
+import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
+import { ViajesComponent } from './pages/viajes/viajes.component';
+import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
-  { path: 'home', component : HomeComponent},
+  { path: 'viajes', component : ViajesComponent},
   { path: 'about', component : AboutComponent},
-  { path: 'galeria', component : GaleriaComponent},  
-  { path: 'favoritos', component : FavoritosComponent},  
+  { path: 'galeria', component : GaleriaComponent},
+  { path: 'favoritos', component : FavoritosComponent},
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
-  { path: 'contactQR', component : ContactQRComponent},  
+  { path: 'contactQR', component : ContactQRComponent},
   { path: 'bookMode', component : BookModeComponent},
+  { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
+  { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
+  { path: 'frases', component : FrasesComponent},
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

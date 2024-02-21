@@ -1,9 +1,43 @@
-<div class="videoContenedor animated fadeIn" routerLink="/about/">
-    <video autoplay loop >
-        <source src="assets/videos/inicio.mp4">
-        {{ 'app.videoNoSoportado' | translate }}
-    </video>
-    <div class="textoEnVideo" routerLink="/about/">{{ 'viaje.conocerHistoria' | translate}}        
-        <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque" routerLink="/about/"> 
-    </div>
+<div class="videoContenedor animated fadeIn">
+  <!-- <video loop poster="assets/images/inicio.jpg">
+    <source src="assets/videos/inicio.mp4" type="video/mp4">
+    <source src="assets/videos/inicio.webm" type="video/webm">
+    <source src="assets/videos/inicio.ogg" type="video/ogg">
+    {{ 'app.videoNoSoportado' | translate }}
+  </video> -->
+  <img src="assets/images/inicio.jpg" alt="inicio" class="">
+  <!-- <div class="textoEnVideo" routerLink="/about/">{{ 'viaje.conocerHistoria' | translate}}
+    <img src="assets/icons/flechaDer.png" class="animated fadeIn iconoFlechaPeque" routerLink="/about/">
+  </div> -->
+  <div class="textoEnImg">
+    <h3>
+      <!-- <a href="#">&nbsp; -->
+        <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla">
+          <b>{{ 'app.viajes' | translate }}</b>
+          <sup><b>Serrador Casares</b></sup>
+          <sub><img src="assets/icons/sol.png" class="animated fadeIn pulseInfinito iconoViajeros"></sub>
+      <!-- </a> -->
+    </h3>
+  </div>
+
 </div>
+<div class="cuerpoImagenes">
+  <div class="icon-container">
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/viajes/"><img src="assets/icons/viajes.png" alt="viajes" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/frases/"><img src="assets/icons/frases.png" alt="frases" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="favorito" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="galeria" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoAlbert/"><img src="assets/icons/familia.png" alt="familia" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoIaiaAna/"><img src="assets/icons/relatos.png" alt="relatos" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/contactQR/"><img src="assets/icons/correo.png" alt="" class="icon animated fadeIn pulse"></a></div>
+
+    <!-- <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/viajes/"><img src="assets/icons/viajes.png" alt="viajes" class="icon animated fadeIn pulse"><br>{{ 'app.viajes' | translate }}</a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/frases/"><img src="assets/icons/frases.png" alt="frases" class="icon animated fadeIn pulse"><br>{{ 'header.frases' | translate }}</a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="favorito" class="icon animated fadeIn pulse"><br>{{ 'app.galeriaFav' | translate }}</a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="galeria" class="icon animated fadeIn pulse"><br>{{ 'app.galeria' | translate }}</a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoAlbert/"><img src="assets/icons/familia.png" alt="familia" class="icon animated fadeIn pulse"><br>{{ 'app.historia' | translate }}</a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoIaiaAna/"><img src="assets/icons/relatos.png" alt="relatos" class="icon animated fadeIn pulse"><br>{{ 'header.iaiaAna' | translate }}</a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/contactQR/"><img src="assets/icons/correo.png" alt="" class="icon animated fadeIn pulse"><br>{{ 'app.contactoQR' | translate }}</a></div> -->
+  </div>
+</div>
+
