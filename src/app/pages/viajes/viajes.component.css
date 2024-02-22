@@ -35,7 +35,7 @@
 
 .contenedor-imagen {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .textoEnImagen {
