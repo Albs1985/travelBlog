@@ -13,17 +13,17 @@
     display: inline-block !important;
 } */
 .img-responsive {
-  display: block !important;
-  max-width: 100% !important;
-  height: auto !important;
+  /* display: block !important; */
+  /* max-width: 100% !important; */
+  /* height: auto !important; */
   width: -webkit-fill-available !important;
   margin: 15px !important;
   border-radius: 15px !important;
   box-shadow: 5px 10px 8px #888888;
 }
 .img-responsiveAnyo {
-  display: block !important;
-  max-width: 100% !important;
+  /* display: block !important; */
+  /* max-width: 100% !important; */
   height: auto !important;
 }
 
