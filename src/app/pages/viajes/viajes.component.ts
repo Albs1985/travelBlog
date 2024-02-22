@@ -15,8 +15,6 @@ export class ViajesComponent implements OnInit{
   ejecutarSoloTouch: boolean;
   viajesListado : Viajes[] = [];
 
-  imageLoaded: boolean = false;
-
   constructor(public servicioViajes : ViajesService,
     private route: ActivatedRoute,
     private translate: TranslateService){
@@ -25,11 +23,25 @@ export class ViajesComponent implements OnInit{
     this.ejecutarSoloTouch = false;
     this.servicioViajes.cargarViajes();
   }
-
   ngOnInit(): void {
-    // if (this.servicioViajes.viajesLista.length === 0)
-    //   this.servicioViajes.cargarViajes();
-    this.imageLoaded = true;
+    // Pre cargar imágenes
+    this.preloadImages();
+  }
+
+  preloadImages(): void {
+    const imagesToPreload: string[] = [
+      'assets/images/2019/Portada2019.jpg',
+      'assets/images/2020/Portada2020.jpg',
+      'assets/images/2021/Portada2021.jpg',
+      'assets/images/2022/Portada2022.jpg',
+      'assets/images/2023/Portada2023.jpg',
+      'assets/images/2024/Portada2024.jpg'
+    ];
+
+    imagesToPreload.forEach(imageUrl => {
+      const img = new Image();
+      img.src = imageUrl;
+    });
   }
 
   public ordenar(eventType: string): void {

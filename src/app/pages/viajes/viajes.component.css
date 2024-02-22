@@ -9,6 +9,11 @@
   margin-bottom: 15px;
 }
 
+.subtitulo {
+  text-align: right !important;
+  font-size: 26px !important;
+  margin-right: 25px !important;
+}
 /* .fh5co-post-entry article {
     display: inline-block !important;
 } */
@@ -27,10 +32,8 @@
   height: auto !important;
 }
 
-.subtitulo {
-  text-align: right !important;
-  font-size: 26px !important;
-  margin-right: 25px !important;
+.bloqueAnyo {
+  display: inline-block !important;
 }
 
 .contenedor-imagen {
@@ -84,9 +87,6 @@
   border-color: transparent;
   font-size: 16px;
   margin-left: 20px;
-}
-.bloqueAnyo {
-  display: inline-block !important;
 }
 
 .spinner {
