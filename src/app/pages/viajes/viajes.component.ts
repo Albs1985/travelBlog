@@ -15,6 +15,8 @@ export class ViajesComponent implements OnInit{
   ejecutarSoloTouch: boolean;
   viajesListado : Viajes[] = [];
 
+  imageLoaded: boolean = false;
+
   constructor(public servicioViajes : ViajesService,
     private route: ActivatedRoute,
     private translate: TranslateService){
@@ -23,9 +25,11 @@ export class ViajesComponent implements OnInit{
     this.ejecutarSoloTouch = false;
     this.servicioViajes.cargarViajes();
   }
+
   ngOnInit(): void {
-    if (this.servicioViajes.viajesLista.length === 0)
-      this.servicioViajes.cargarViajes();
+    // if (this.servicioViajes.viajesLista.length === 0)
+    //   this.servicioViajes.cargarViajes();
+    this.imageLoaded = true;
   }
 
   public ordenar(eventType: string): void {

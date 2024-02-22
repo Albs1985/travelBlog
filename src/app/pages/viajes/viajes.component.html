@@ -17,14 +17,14 @@
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 <!-- col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12  -->
-<div class="row fh5co-post-entry">
+<div *ngIf="imageLoaded" class="row fh5co-post-entry">
   <div *ngFor="let viajes of servicioViajes.viajesLista">
 
     <article class="bloqueAnyo">
       <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
       <div class="contenedor-imagen">
           <a routerLink="/viajesFiltrados/{{viajes.anyo}}">
-            <img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive">
+            <img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive" loading="lazy">
           </a>
           <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsiveAnyo">{{viajes.anyo}}
               <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque " routerLink="/viajesFiltrados/{{viajes.anyo}}">
