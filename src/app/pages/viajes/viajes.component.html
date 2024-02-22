@@ -22,14 +22,14 @@
 
     <article class="bloqueAnyo">
       <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
-      <!-- <div class="contenedor-imagen"> -->
-      <a routerLink="/viajesFiltrados/{{viajes.anyo}}">
-        <img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive" loading="lazy">
-      </a>
-      <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsiveAnyo">{{viajes.anyo}}
-          <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque " routerLink="/viajesFiltrados/{{viajes.anyo}}">
+      <div class="contenedor-imagen">
+          <a routerLink="/viajesFiltrados/{{viajes.anyo}}">
+            <img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive" loading="lazy">
+          </a>
+          <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsiveAnyo">{{viajes.anyo}}
+              <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque " routerLink="/viajesFiltrados/{{viajes.anyo}}">
+          </div>
       </div>
-      <!-- </div> -->
 
       <div *ngFor="let destino of viajes.destinos">
           <h2 class="fh5co-article-title"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{destino}}</a></h2>
