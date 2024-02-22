@@ -19,9 +19,10 @@ export class ViajesComponent implements OnInit{
     private route: ActivatedRoute,
     private translate: TranslateService){
 
-    this.orderDesc = true;
-    this.ejecutarSoloTouch = false;
-    this.servicioViajes.cargarViajes();
+      this.preloadImages();
+      this.orderDesc = true;
+      this.ejecutarSoloTouch = false;
+      this.servicioViajes.cargarViajes();
   }
   ngOnInit(): void {
     // Pre cargar imágenes
