@@ -4,7 +4,7 @@
         <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
     </div>
     <div class="divVolver">
-        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated pulsePeque zoomInDown" routerLink="/principal"><a routerLink="/principal">  {{ 'viaje.volver' | translate}}</a></span>
+        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated pulsePeque zoomInDown" routerLink="/viajes"><a routerLink="/viajes">  {{ 'viaje.volver' | translate}}</a></span>
     </div>
 </div>
 
@@ -48,7 +48,7 @@
 
                     <div class="carousel-inner" role="listbox">
                         <div class="item active">
-                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}Principal.jpg" alt="" > </a>
+                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}Principal.jpg" loading="lazy" alt="" > </a>
                             <!-- <div class="carousel-caption d-none d-md-block">
                                 <h3>Gusti Ilustración</h3>
                                 <p>Exposición</p>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="item">
-                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}1.jpg" alt=""> </a>
+                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}1.jpg" loading="lazy" alt=""> </a>
                             <!-- <div class="carousel-caption d-none d-md-block">
                                 <h3> Xataka Fotografía</h3>
                                 <p>Concurso</p>
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="item">
-                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}2.jpg" alt=""></a>
+                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}2.jpg" loading="lazy" alt=""></a>
                             <!-- <div class="carousel-caption d-none d-md-block">
                                 <h3>DoArt Pintura</h3>
                                 <p>Curso</p>
@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="item">
-                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}3.jpg" alt=""> </a>
+                            <a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}"><img src="assets/images/{{viajes.year}}/{{viajes.identificadorFotos}}3.jpg" loading="lazy" alt=""> </a>
                             <!-- <div class="carousel-caption d-none d-md-block">
                                 <h3>UX UI Diseño Gráfico</h3>
                                 <p>Curso</p>
@@ -99,7 +99,7 @@
 
                 <br>
                 <div *ngFor="let persona of viajes.personas" class="disposicion">
-                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" alt="Image" class="img-responsive fotoPerfil animated bounceInRight backInLeft">
+                    <img src="assets/images/perfiles/fotoPerfil{{persona}}.jpg" loading="lazy" alt="Image" class="img-responsive fotoPerfil animated bounceInRight backInLeft">
                 </div>
                 <span class="fh5co-meta"><a routerLink="/viaje/{{viajes.fechaInicio}}_{{viajes.destino}}">
                     <img *ngIf="viajes.categoria == 'Playa'" src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">

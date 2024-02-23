@@ -34,6 +34,13 @@
   font-size: 14px !important;
 }
 
+.botonVersionWeb {
+  background: transparent;
+  border-color: transparent;
+  font-size: 16px;
+  margin-left: 20px;
+}
+
 .iconoFlecha {
   width: 30px;
   height: 30px;
@@ -43,6 +50,14 @@
   cursor: pointer;
   /* filter: blur(1px);
   -webkit-filter: blur(1px); */
+}
+
+.iconoSitioWeb {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
 }
 
 .iconoLibro {

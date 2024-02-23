@@ -9,45 +9,45 @@
   margin-bottom: 15px;
 }
 
-/* .fh5co-post-entry article {
-    display: inline-block !important;
-} */
-.img-responsive {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  width: -webkit-fill-available;
-}
-.img-responsiveAnyo {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-.img {
-  margin: 15px !important;
-  border-radius: 15px !important;
-  -webkit-border-radius: 15px !important;
-  -moz-border-radius: 15px !important;
-  -ms-border-radius: 15px !important;
-  -o-border-radius: 15px !important;
-  box-shadow: 5px 10px 8px #888888;
-}
-
 .subtitulo {
   text-align: right !important;
   font-size: 26px !important;
   margin-right: 25px !important;
 }
+/* .fh5co-post-entry article {
+    display: inline-block !important;
+} */
+.img-responsive {
+  /*display: block !important;
+  */ /*max-width: 100% !important;
+  */ /*height: auto !important;
+  */ /*width:;
+  -webkit-fill-availableERROR!!NO FUNCIONA EN IPHONE*/
+  width: auto !important;
+  margin: 15px !important;
+  border-radius: 15px !important;
+  box-shadow: 5px 10px 8px #888888;
+}
+.img-responsiveAnyo {
+  /* display: block !important; */
+  /* max-width: 100% !important; */
+  height: auto !important;
+}
+
+.bloqueAnyo {
+  display: inline-block !important;
+}
 
 .contenedor-imagen {
-  position: relative;
-  display: inline-block;
+  position: relative !important;
+  margin-right: 35px !important;
+  /* display: inline-block; */
 }
 
 .textoEnImagen {
   position: absolute;
-  bottom: 18px; /* Ajusta la posición vertical */
-  right: 18px; /* Ajusta la posición horizontal */
+  bottom: 5px; /* Ajusta la posición vertical */
+  right: -10px; /* Ajusta la posición horizontal */
   color: rgba(255, 255, 255, 0.6); /* Color del texto */
   font-size: 16px; /* Tamaño de fuente */
   background-color: rgba(0, 0, 0, 0.8); /*Color de fondo del texto */
@@ -91,22 +91,6 @@
   font-size: 16px;
   margin-left: 20px;
 }
-.bloqueAnyo {
-  display: inline-block;
-}
-
-/* .bloqueAnyo {
-  border: 2px inset #000;
-  padding: 5px;
-  margin: 15px;
-}
-
-@media only screen and (min-width: 480px) {
-  .bloqueAnyo {
-    padding: 4px;
-    border: 0px;
-  }
-} */
 
 .spinner {
   width: 40px;

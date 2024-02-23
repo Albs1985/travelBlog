@@ -1,5 +1,5 @@
 <div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal"  class="animated zoomInDown">{{ 'viaje.volver' | translate}}</a>
 </div>
 
 <div class="tituloOrdenar">
@@ -16,17 +16,20 @@
   <div class="spinner"></div>
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
-
-<div class="row fh5co-post-entry animated fadeInDown">
+<!-- col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12  -->
+<div class="row fh5co-post-entry">
   <div *ngFor="let viajes of servicioViajes.viajesLista">
+
     <article class="bloqueAnyo">
-      <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date animated bounceInUp">{{viajes.anyo}}</span>
-      <figure class="contenedor-imagen">
-          <a routerLink="/viajesFiltrados/{{viajes.anyo}}"><img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" alt="Image" class="img img-responsive"></a>
+      <span routerLink="/viajesFiltrados/{{viajes.anyo}}" class="fh5co-meta fh5co-date">{{viajes.anyo}}</span>
+      <div class="contenedor-imagen">
+          <a routerLink="/viajesFiltrados/{{viajes.anyo}}">
+            <img src="assets/images/{{viajes.anyo}}/Portada{{viajes.anyo}}.jpg" class="img-responsive" loading="lazy">
+          </a>
           <div routerLink="/viajesFiltrados/{{viajes.anyo}}" class="textoEnImagen img-responsiveAnyo">{{viajes.anyo}}
               <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlechaPeque " routerLink="/viajesFiltrados/{{viajes.anyo}}">
           </div>
-      </figure>
+      </div>
 
       <div *ngFor="let destino of viajes.destinos">
           <h2 class="fh5co-article-title"><a routerLink="/viajesFiltrados/{{viajes.anyo}}">{{destino}}</a></h2>
@@ -36,5 +39,5 @@
 </div>
 
 <div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>
