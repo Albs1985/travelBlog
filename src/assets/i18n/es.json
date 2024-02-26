@@ -45,7 +45,23 @@
     "frasesSubtitulo1": "No queremos olvidarlo",
     "frasesSubtitulo2": "Palabras ...",
     "frasesFiltrado": "Año / Persona",
-    "familiaApodos": "Familia Serrador Casares (Apodos)"
+    "familiaApodos": "Familia Serrador Casares (Apodos)",
+    "dibujosTitulo": "El arte es cosa de familia",
+    "dibujosSubtitulo1": "Pintura, arcilla, manualidades...",
+    "dibujosSubtitulo2": "Para el recuerdo",
+    "dibujosFiltrado": "Año / Persona",
+    "dibujos": "Arte infantil"
+  },
+  "dibujos": {
+    "1": {
+      "detalle": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos"
+    },
+    "2": {
+      "detalle": "Dibujos en la clase de Paula, 1º Infantil"
+    },
+    "3": {
+      "detalle": "Manualidades en la clase de Murta, 2º Escoleta"
+    }
   },
   "frases": {
     "1": {

@@ -22,6 +22,7 @@ import { FrasesComponent } from './pages/frases/frases.component';
 import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
 import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
+import { DibujosComponent } from './pages/dibujos/dibujos.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ViajesComponent } from './pages/viajes/viajes.component';
     FrasesComponent,
     RelatoAlbertComponent,
     RelatoIaiaAnaComponent,
-    ViajesComponent
+    ViajesComponent,
+    DibujosComponent
   ],
   imports: [
     BrowserModule,

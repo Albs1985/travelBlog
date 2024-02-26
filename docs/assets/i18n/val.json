@@ -45,7 +45,23 @@
     "frasesSubtitulo1": "No volem oblidar-ho",
     "frasesSubtitulo2": "Paraules ...",
     "frasesFiltrado": "Any / Persona",
-    "familiaApodos": "Família Serrador Casares (Malnoms)"
+    "familiaApodos": "Família Serrador Casares (Malnoms)",
+    "dibujosTitulo": "L'art és cosa de família",
+    "dibujosSubtitulo1": "Pintura, fang, manualitats...",
+    "dibujosSubtitulo2": "Per al record",
+    "dibujosFiltrado": "Any / Persona",
+    "dibujos": "Art infantil"
+  },
+  "dibujos": {
+    "1": {
+      "detalle": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos"
+    },
+    "2": {
+      "detalle": "Dibujos en la clase de Paula, 1º Infantil"
+    },
+    "3": {
+      "detalle": "Manualidades en la clase de Murta, 2º Escoleta"
+    }
   },
   "frases": {
     "1": {
