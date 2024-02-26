@@ -1,0 +1,57 @@
+.divAka {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin-bottom: 10px;
+}
+.nombre {
+  font-weight: bold;
+}
+.apodos {
+  margin-left: 20px;
+  color: #666;
+}
+
+.tituloApodos {
+  margin-left: 25px;
+}
+
+.subTituloApodos {
+  margin-left: 50px;
+  margin-right: 15px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.iconoApodo {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}

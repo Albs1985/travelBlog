@@ -15,6 +15,7 @@
     "galeria": "Galería",
     "galeriaFav": "Favoritos",
     "contactoQR": "Contacto",
+    "familia": "Familia",
     "nombre": "Nombre",
     "email": "Email",
     "enviaMensaje": "Envía el mensaje",
@@ -50,7 +51,10 @@
     "dibujosSubtitulo1": "Pintura, arcilla, manualidades...",
     "dibujosSubtitulo2": "Para el recuerdo",
     "dibujosFiltrado": "Año / Persona",
-    "dibujos": "Arte infantil"
+    "dibujos": "Arte infantil",
+    "apodosTitulo": "Apodos: El arte de la improvisación",
+    "apodosSubtitulo1": "¿Cómo llamar a tus hijos sin decir su nombre?",
+    "apodosSubtitulo2": "Con todo el cariño y amor del mundo"
   },
   "dibujos": {
     "1": {
@@ -154,6 +158,7 @@
     "relatosYfrases": "Relatos y frases",
     "relatos": "Relatos",
     "frases": "Frases",
+    "apodos": "Apodos",
     "iaiaAna": "Historia de la Yaya Ana"
   },
   "categoria": {

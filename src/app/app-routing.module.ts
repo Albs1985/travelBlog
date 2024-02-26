@@ -13,6 +13,7 @@ import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
+import { ApodosComponent } from './pages/apodos/apodos.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -27,6 +28,7 @@ const app_routes: Routes = [
   { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
   { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
   { path: 'frases', component : FrasesComponent},
+  { path: 'apodos', component : ApodosComponent},
   { path: 'dibujos', component : DibujosComponent},
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
