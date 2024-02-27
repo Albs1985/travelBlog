@@ -58,13 +58,25 @@
   },
   "dibujos": {
     "1": {
-      "detalle": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos"
+      "detalle": "Manualitats a la clase de Murta, 2º Escoleta"
     },
     "2": {
-      "detalle": "Dibujos en la clase de Paula, 1º Infantil"
+      "detalle": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
     },
     "3": {
-      "detalle": "Manualidades en la clase de Murta, 2º Escoleta"
+      "detalle": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
+    },
+    "4": {
+      "detalle": "Dibuixos a la clase de Paula, 1º Infantil"
+    },
+    "5": {
+      "detalle": "Manualitats a la clase de Paula, 1º Infantil"
+    },
+    "6": {
+      "detalle": "Dibuixos a la clase de Paula, 1º Infantil"
+    },
+    "7": {
+      "detalle": "Dibuix en aquarel·la a la clase de Paula, 1º Infantil"
     }
   },
   "frases": {
@@ -298,7 +310,10 @@
     "fotoFav75": "Mateu (3 anys) i Marina (6 mesos)",
     "fotoFav76": "Mateu (3 anys) i Marina (6 mesos)",
     "fotoFav77": "Iaio Paco, amb 43 anys",
-    "fotoFav78": "Iaio Paco, amb 37 anys"
+    "fotoFav78": "Iaio Paco, amb 37 anys",
+    "fotoFav79": "Vesprada de cosins pintant-se la cara a casa",
+    "fotoFav80": "Vesprada de cosins pintant-se la cara a casa",
+    "fotoFav81": "Vesprada de cosins pintant-se la cara a casa"
   },
   "2023-06-10": {
     "tituloParte1": "Últim viatge abans de la gran tempesta",

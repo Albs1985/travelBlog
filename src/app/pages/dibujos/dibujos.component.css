@@ -7,6 +7,17 @@
   margin-right: 15px;
 }
 
+.textoFoto {
+  /* background-color: rgb(255, 247, 232);     */
+  background: linear-gradient(
+    rgba(255, 247, 232, -1),
+    rgb(255, 227, 174)
+  ); /*Para un degradado de colores*/
+  font-size: small;
+  text-align: center;
+  color: rgb(36, 36, 36);
+}
+
 .iconosImgNinos {
   padding: 0px;
   width: 60px;

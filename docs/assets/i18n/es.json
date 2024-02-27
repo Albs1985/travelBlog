@@ -58,13 +58,25 @@
   },
   "dibujos": {
     "1": {
-      "detalle": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos"
+      "detalle": "Manualidades en la clase de Murta, 2º Escoleta"
     },
     "2": {
-      "detalle": "Dibujos en la clase de Paula, 1º Infantil"
+      "detalle": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos"
     },
     "3": {
-      "detalle": "Manualidades en la clase de Murta, 2º Escoleta"
+      "detalle": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos"
+    },
+    "4": {
+      "detalle": "Dibujos en la clase de Paula, 1º Infantil"
+    },
+    "5": {
+      "detalle": "Manualidades en la clase de Paula, 1º Infantil"
+    },
+    "6": {
+      "detalle": "Dibujos en la clase de Paula, 1º Infantil"
+    },
+    "7": {
+      "detalle": "Dibujo en acuarela en la clase de Paula, 1º Infantil"
     }
   },
   "frases": {
@@ -298,7 +310,10 @@
     "fotoFav75": "Mateu (3 años) y Marina (6 meses)",
     "fotoFav76": "Mateu (3 años) y Marina (6 meses)",
     "fotoFav77": "Iaio Paco, con 43 años",
-    "fotoFav78": "Iaio Paco, con 37 años"
+    "fotoFav78": "Iaio Paco, con 37 años",
+    "fotoFav79": "Tarde de primos en casa, pintándose la cara",
+    "fotoFav80": "Tarde de primos en casa, pintándose la cara",
+    "fotoFav81": "Tarde de primos en casa, pintándose la cara"
   },
   "2023-06-10": {
     "tituloParte1": "Último viaje antes de la gran tormenta",

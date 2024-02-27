@@ -8,6 +8,7 @@
    {{ 'app.dibujosSubtitulo1' | translate }}
 </h3>
 <h4 class="subTituloDibujos">
+  <img src="assets/icons/dibujo.png" alt="" class="iconosImgFav animated rollIn">
     {{ 'app.dibujosSubtitulo2' | translate }}
 </h4>
 <br>
@@ -36,11 +37,11 @@
 </div>
 
 <div *ngFor="let dibujo of servicioDibujos.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase">
-  <h4 class="dibujoPersona">{{dibujo.persona}} ({{dibujo.anyo}})</h4>
+  <!-- <h4 class="dibujoPersona">{{dibujo.persona}} ({{dibujo.anyo}})</h4> -->
   <div class="gallery">
     <a target="_blank" href="assets/images/dibujos/dibujo{{dibujo.id}}.jpg">
       <img src="assets/images/dibujos/dibujo{{dibujo.id}}.jpg" loading="lazy" alt="" width="600" height="400">
-      <cite class="dibujoPersona">{{ dibujo.edad}} {{'about.edad' | translate}} - {{'dibujos.'+dibujo.id+'.detalle' | translate}}</cite>
+      <figcaption class="textoFoto"><b>{{dibujo.persona}} ({{dibujo.anyo}})</b>: {{ dibujo.edad}} {{'about.edad' | translate}} - {{'dibujos.'+dibujo.id+'.detalle' | translate}} </figcaption>
     </a>
   </div>
 </div>
