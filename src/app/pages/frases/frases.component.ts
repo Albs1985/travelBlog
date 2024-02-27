@@ -30,7 +30,7 @@ export class FrasesComponent {
     } else {
       this.palabra = $('#myInputFrase').val();
     }
-    console.log("Busca frase por "+this.palabra);
+    // console.log("Busca frase por "+this.palabra);
     this.servicioFrases.buscarFrases(this.palabra);
   }
 

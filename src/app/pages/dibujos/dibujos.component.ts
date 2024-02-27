@@ -30,7 +30,6 @@ export class DibujosComponent {
     } else {
       this.palabra = $('#myInputDibujo').val();
     }
-    console.log("Busca dibujo por "+this.palabra);
     this.servicioDibujos.buscarDibujos(this.palabra);
   }
 

@@ -10,7 +10,7 @@ import { FotosService } from 'src/app/services/fotos.service';
 })
 export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
   // @ViewChild('container') containerRef!: ElementRef;
-  
+
   showMsg : boolean = false;
 
   constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService){
@@ -21,20 +21,20 @@ export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
   ngOnInit(){
 
     this.route.params.subscribe(params =>{
-      
-      console.log(params['ciudad']);
-      
+
+      // console.log(params['ciudad']);
+
       this.servicioViajes.cargarViaje(params);
       this.servicioFotos.cargarFotos(params);
-      
-    }); 
+
+    });
 
   }
 
   showTooltip(){
 
     this.showMsg = !this.showMsg;
-    console.log(this.showMsg);
+    // console.log(this.showMsg);
   }
 
   // ngAfterViewInit() {

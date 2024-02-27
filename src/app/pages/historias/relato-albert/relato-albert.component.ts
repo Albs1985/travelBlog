@@ -13,15 +13,15 @@ export class RelatoAlbertComponent implements OnDestroy {
   // esModoLibro$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   esModoLibro : boolean = false;
 
-  constructor (private route: ActivatedRoute,public viajerosService : ViajerosService, public commonService : CommonService){
-    viajerosService.cargarViajeros();
+  constructor (private route: ActivatedRoute, public commonService : CommonService){
+    // viajerosService.cargarViajeros(); public viajerosService : ViajerosService,
   }
   ngOnDestroy(): void {
     this.commonService.modoLibro$.next(false);
   }
 
   public onClickCambiaModo(): void{
-    console.log(this.esModoLibro)
+    // console.log(this.esModoLibro)
     this.esModoLibro = !this.esModoLibro;
     this.commonService.modoLibro$.next(this.esModoLibro);
   }

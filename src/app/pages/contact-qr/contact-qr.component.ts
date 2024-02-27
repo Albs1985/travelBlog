@@ -12,11 +12,11 @@ export class ContactQRComponent {
   nom : any = '';
   mail : any = '';
   mensajeCorreo : any = '';
-  asuntoES : string = 'Hola, me interesa tu blog de viajes';
-  asuntoVAL : string = 'Hola, m\'interesa el teu blog de viatges';
+  asuntoES : string = 'Blog de viajes Familia Serrador Casares';
+  asuntoVAL : string = 'Blog de viatges Familia Serrador Casares';
   correo : string = '';
 
-  constructor(private translate: TranslateService) {    
+  constructor(private translate: TranslateService) {
   }
 
   calculaCorreo() {
@@ -32,32 +32,36 @@ export class ContactQRComponent {
     } else {
       this.mail = $('#emailTxt').val();
     }
-    
+
     if($('#mensajeTxt').val() == ''){
       this.mensajeCorreo = '';
     } else {
       this.mensajeCorreo = $('#mensajeTxt').val();
     }
 
-    //Construimos el mensaje    
+    //Construimos el mensaje
     this.correo = 'mailto:albertserrador@gmail.com?subject=';
     if (this.translate.currentLang == 'es'){
       this.correo = this.correo + this.asuntoES;
-    }else{
+    }else if (this.translate.currentLang == 'val'){
       this.correo = this.correo + this.asuntoVAL;
-    }        
+    }
     if (this.mensajeCorreo != null && this.mensajeCorreo != ''){
       this.correo = this.correo +'&body='+this.mensajeCorreo;
     }
     if (this.nom != null && this.nom != ''){
-      this.correo = this.correo +'%0D%0AFirmado: '+ this.nom;
+      if (this.translate.currentLang == 'es'){
+        this.correo = this.correo +'%0D%0AFirmado: '+ this.nom;
+      }else if (this.translate.currentLang == 'val'){
+        this.correo = this.correo +'%0D%0AFirmat: '+ this.nom;
+      }
     }
     if (this.mail != null && this.mail != ''){
       this.correo = this.correo + '&cc='+ this.mail;
     }
 
     // console.log(this.correo);
-    
+
   }
 
 }

@@ -30,11 +30,11 @@ export class FrasesService {
       this.http.get(this.frasesJSON)
         .subscribe( (response: any ) => {
 
-          console.log(response);
+          // console.log(response);
           var array = [];
           for(let key in response){
-            console.log(key);
-            console.log(response[key]);
+            // console.log(key);
+            // console.log(response[key]);
             this.frase = {
               anyo: '',
               persona: '',
@@ -101,7 +101,7 @@ export class FrasesService {
     this.frases = this.frasesFiltrado;
 
     this.cargandoFrases$.next(false);
-    console.log(this.frases);
+    // console.log(this.frases);
 
   }
 

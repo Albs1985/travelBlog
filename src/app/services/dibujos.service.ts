@@ -31,11 +31,11 @@ export class DibujosService {
       this.http.get(this.DibujosJSON)
         .subscribe( (response: any ) => {
 
-          console.log(response);
+          // console.log(response);
           var array = [];
           for(let key in response){
-            console.log(key);
-            console.log(response[key]);
+            // console.log(key);
+            // console.log(response[key]);
             this.dibujo = {
               anyo: '',
               persona: '',
@@ -104,7 +104,7 @@ export class DibujosService {
     this.dibujos = this.dibujosFiltrado;
 
     this.cargandoDibujos$.next(false);
-    console.log(this.dibujos);
+    // console.log(this.dibujos);
 
   }
 }

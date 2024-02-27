@@ -35,13 +35,13 @@ export class ViajesPorAnyoComponent implements OnInit{
       this.palabra = params['filtro'];
       // console.log(this.palabra);
       if (isNum){
-        console.log('Filtramos por anyo');
+        // console.log('Filtramos por anyo');
         this.mensajeCabeceraAnyo = true;
         this.mensajeCabeceraFiltrar = false;
         this.mensajeCabeceraFiltrarSinTranslate = false;
         this.servicioViajes.cargarViajesPorAnyo(params);
       }else{
-        console.log('Filtramos por palabra');
+        // console.log('Filtramos por palabra');
 
         switch (this.palabra) {
           case 'playa':
