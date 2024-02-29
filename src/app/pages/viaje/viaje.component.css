@@ -3,6 +3,41 @@
   height: 300px;
 }
 
+.bodyUrl {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.aUrl {
+  font-size: 12px;
+  text-decoration: none;
+  color: #007bff; /* Cambia el color según tus preferencias */
+}
+
+.aUrl:hover {
+  text-decoration: underline;
+}
+
 .listaPersonas {
   margin-left: 25px !important;
 }

@@ -25,6 +25,7 @@
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].tipoEstancia == 'Cabaña'" src="assets/icons/cabanya.png" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].tipoEstancia == 'Airbnb'" src="assets/icons/airbnb.png" alt="" class="iconosImg animated rollIn">
                 &nbsp;{{servicioViajes.viajesDetalleLista[0].year}}
                 <button type="button" class="infoButton" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rubberBand"></button>
                 <div class="custom-tooltip" (click)="showTooltip()" *ngIf="showMsg">
@@ -43,7 +44,6 @@
                     </div> -->
                 </div>
             </span>
-
 
             <!-- <span class="fh5co-meta fh5co-date">March 6th, 2016</span> -->
             <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaInicio}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesInicio | translate }}</b> {{ 'viaje.hasta' | translate }} <b>{{servicioViajes.viajesDetalleLista[0].diaFin}} de {{'mesAnyo.'+servicioViajes.viajesDetalleLista[0].mesFin | translate }}</b></span>
@@ -240,10 +240,19 @@
                     </div>
                 </div>
                  -->
+              <br>
+              <div class="bodyUrl" *ngIf="servicioViajes.viajesDetalleLista[0].infoInteres[0] != ''">
+                <div class="container">
+                  <h1>{{ 'app.infoInteres' | translate}}</h1>
+                  <br>
+                  <ul>
+                    <div *ngFor="let info of servicioViajes.viajesDetalleLista[0].infoInteres">
+                      <li><a href="{{info}}" class="aUrl">{{info}}</a></li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
 
-                 <!-- <div class="col-lg-4">
-                    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><a routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><b>{{ 'viaje.volver' | translate}}</b></a></span>
-                </div> -->
                 <div *ngIf="servicioViajes.viajesDetalleLista[0].idAnteriorViaje != ''" class="divLeft">
                   <img src="assets/icons/flechaIzq.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viaje/{{servicioViajes.viajesDetalleLista[0].idAnteriorViaje}}">&nbsp;
                     <a routerLink="/viaje/{{servicioViajes.viajesDetalleLista[0].idAnteriorViaje}}">  {{ 'viaje.anterior' | translate}}</a>

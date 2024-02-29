@@ -55,7 +55,8 @@
     "dibujos": "Arte infantil",
     "apodosTitulo": "Apodos: El arte de la improvisación",
     "apodosSubtitulo1": "¿Cómo llamar a tus hijos sin decir su nombre?",
-    "apodosSubtitulo2": "Con todo el cariño y amor del mundo"
+    "apodosSubtitulo2": "Con todo el cariño y amor del mundo",
+    "infoInteres": "Información de interés"
   },
   "dibujos": {
     "1": {
@@ -314,7 +315,9 @@
     "fotoFav78": "Iaio Paco, con 37 años",
     "fotoFav79": "Tarde de primos en casa, pintándose la cara",
     "fotoFav80": "Tarde de primos en casa, pintándose la cara",
-    "fotoFav81": "Tarde de primos en casa, pintándose la cara"
+    "fotoFav81": "Tarde de primos en casa, pintándose la cara",
+    "fotoFav82": "Marina, 7 meses",
+    "fotoFav83": "Marina, 7 meses"
   },
   "2023-06-10": {
     "tituloParte1": "Último viaje antes de la gran tormenta",
