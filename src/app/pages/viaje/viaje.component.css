@@ -20,12 +20,14 @@ h1 {
 }
 
 ul {
-  list-style-type: none;
+  list-style-type: "\1F44D";
+  list-style-position: outside;
   padding: 0;
 }
 
 li {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .aUrl {
@@ -173,8 +175,14 @@ li {
   width: 30px;
   height: 30px;
   align-self: center;
-  cursor: pointer;
   margin-top: -10px;
+}
+
+.iconoAirbnb {
+  padding: 2px;
+  width: 50px;
+  height: 50px;
+  align-self: center;
 }
 
 @media (min-width: 992px) {
