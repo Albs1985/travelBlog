@@ -1,48 +1,332 @@
-<div class="divVolver">
-  <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated pulsePeque zoomInDown" routerLink="/principal/"><a routerLink="/principal/">  {{ 'viaje.volver' | translate}}</a></span>
-</div>
-<div class="container">
-  <div class="page">
-      <h1>Título 1</h1>
-      <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat ante a sapien condimentum posuere.
-          Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque nec leo vel augue posuere ultrices.
-      </p>
-      <p>
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris fringilla ipsum vel augue aliquet, eget convallis velit fringilla.
-          Nulla tincidunt justo at nisl vehicula lacinia.
-      </p>
-  </div>
-  <div class="page">
-      <!-- <h1>Página 2</h1> -->
-      <p>
-          Mauris accumsan lorem vel massa feugiat, non cursus ipsum viverra. Integer auctor lobortis mi, eget mattis lectus feugiat non.
-          Etiam nec tincidunt ligula. Ut tempor lectus sit amet orci laoreet rutrum.
-      </p>
-      <p>
-          Nunc auctor ex id gravida efficitur. Curabitur scelerisque libero at arcu ultricies, ut laoreet mauris tempus. Sed hendrerit mauris ut tristique venenatis.
-      </p>
-  </div>
-  <div class="page">
-    <!-- <h1>Página 3</h1> -->
-    <p>
-        Mauris accumsan lorem vel massa feugiat, non cursus ipsum viverra. Integer auctor lobortis mi, eget mattis lectus feugiat non.
-        Etiam nec tincidunt ligula. Ut tempor lectus sit amet orci laoreet rutrum.
-    </p>
-    <p>
-        Nunc auctor ex id gravida efficitur. Curabitur scelerisque libero at arcu ultricies, ut laoreet mauris tempus. Sed hendrerit mauris ut tristique venenatis.
-    </p>
-  </div>
-  <div class="page">
-    <h1>Título 2</h1>
-    <p>
-        Mauris accumsan lorem vel massa feugiat, non cursus ipsum viverra. Integer auctor lobortis mi, eget mattis lectus feugiat non.
-        Etiam nec tincidunt ligula. Ut tempor lectus sit amet orci laoreet rutrum.
-    </p>
-    <p>
-        Nunc auctor ex id gravida efficitur. Curabitur scelerisque libero at arcu ultricies, ut laoreet mauris tempus. Sed hendrerit mauris ut tristique venenatis.
-    </p>
+<div *ngIf="this.esModoLibro === false">
+  <div class="container-fluid">
+    <div class="row fh5co-post-entry single-entry">
+        <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+          <!-- <div class="divRight">
+            <span class="fh5co-meta"><img src="assets/icons/libro.png" class="animated fadeIn pulse iconoLibro" (click)="onClickCambiaModo()"><a (click)="onClickCambiaModo()">{{ 'app.versionLibro' | translate}}</a></span>
+          </div> -->
+          <div class="divVolver">
+            <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+          </div>
+
+            <figure class="animated zoomInDown">
+                <a target="_blank" href="assets/images/favoritos/fotoFav8.jpg"><img src="assets/images/favoritos/fotoFav8.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+            </figure>
+            <span class="fh5co-meta "><a>{{ 'relatoIaiaAna.titulo' | translate }}</a></span>
+            <h2 class="fh5co-article-title "><a>{{ 'relatoIaiaAna.subtitulo' | translate }}</a></h2>
+            <span class="fh5co-meta fh5co-date ">{{ 'relatoIaiaAna.fecha' | translate }}</span>
+            <div class="row">
+                <div class="col-md-12 ">
+                    <h2>{{ 'relatoIaiaAna.tituloParte1' | translate}}</h2>
+                    <p>{{ 'relatoIaiaAna.bloque1_parrafo1' | translate}}</p>
+                </div>
+            </div>
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about1.jpg"><img src="assets/images/PENDIENTE/about/about1.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto1' | translate}}</figcaption>
+            </figure>
+
+            <div class="row">
+                <div class="col-md-12 ">
+                    <p>{{ 'relatoIaiaAna.bloque1_parrafo2' | translate}}</p>
+                    <p>{{ 'relatoIaiaAna.bloque1_parrafo3' | translate}}</p>
+                    <p>{{ 'relatoIaiaAna.bloque1_parrafo4' | translate}}</p>
+                </div>
+            </div>
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about2.jpg"><img src="assets/images/PENDIENTE/about/about2.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto2' | translate}}</figcaption>
+            </figure>
+
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-8 cp-r ">
+                        <h2>{{ 'relatoIaiaAna.tituloParte2' | translate}}</h2>
+                        <p>{{ 'relatoIaiaAna.bloque2_parrafo1' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about3.jpg"><img src="assets/images/PENDIENTE/about/about3.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto3' | translate}}</figcaption>
+            </figure>
+
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-8 cp-r ">
+                        <p>{{ 'relatoIaiaAna.bloque2_parrafo2' | translate}}</p>
+                        <p>{{ 'relatoIaiaAna.bloque2_parrafo3' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about4.jpg"><img src="assets/images/PENDIENTE/about/about4.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto4' | translate}}</figcaption>
+            </figure>
+
+
+
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-8 cp-r ">
+                        <p>{{ 'relatoIaiaAna.bloque4_parrafo1' | translate}}</p>
+                        <p>{{ 'relatoIaiaAna.bloque4_parrafo2' | translate}}</p>
+
+                    </div>
+                </div>
+                <div class="row rp-b">
+                    <div class="col-md-12 ">
+                        <blockquote>
+                            <p>{{ 'relatoIaiaAna.cita2' | translate }}<cite>{{ 'relatoIaiaAna.personaCita2' | translate }}</cite></p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about5.jpg"><img src="assets/images/PENDIENTE/about/about5.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto5' | translate}}</figcaption>
+            </figure>
+
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-8 cp-r ">
+                      <p>{{ 'relatoIaiaAna.bloque4_parrafo3' | translate}}</p>
+                      <p>{{ 'relatoIaiaAna.bloque4_parrafo4' | translate}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about6.jpg"><img src="assets/images/PENDIENTE/about/about6.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto6' | translate}}</figcaption>
+            </figure>
+
+            <!-- <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-8 cp-r ">
+                        <p>{{ 'relatoIaiaAna.bloque6_parrafo1' | translate}}</p>
+                        <p>{{ 'relatoIaiaAna.bloque6_parrafo2' | translate}}</p>
+                    </div>
+                </div>
+            </div> -->
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about7.jpg"><img src="assets/images/PENDIENTE/about/about7.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto7' | translate}}</figcaption>
+            </figure>
+
+            <!-- <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                <div class="row">
+                    <div class="col-lg-8 cp-r ">
+                        <h2>{{ 'relatoIaiaAna.tituloParte3' | translate}}</h2>
+                        <p>{{ 'relatoIaiaAna.bloque7_parrafo1' | translate}}</p>
+                        <figure>
+                            <a target="_blank" href="assets/images/PENDIENTE/about/about8.jpg"><img src="assets/images/PENDIENTE/about/about8.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                            <figcaption>{{ 'relatoIaiaAna.descFoto8' | translate}}</figcaption>
+                        </figure>
+                        <p>{{ 'relatoIaiaAna.bloque7_parrafo2' | translate}}</p>
+                    </div>
+                </div>
+            </div> -->
+
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about9.jpg"><img src="assets/images/PENDIENTE/about/about9.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto9' | translate}}</figcaption>
+            </figure>
+            <figure>
+                <a target="_blank" href="assets/images/PENDIENTE/about/about10.jpg"><img src="assets/images/PENDIENTE/about/about10.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                <figcaption>{{ 'relatoIaiaAna.descFoto10' | translate}}</figcaption>
+            </figure>
+            <br><br><br>
+
+            <!-- <div class="row">
+                <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
+                    <figure>
+                        <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
+                        <figcaption>{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'app.edad' | translate}})</figcaption>
+                    </figure>
+                </div>
+            </div> -->
+
+            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+              <div class="row rp-b">
+                  <div class="col-md-12 ">
+                      <blockquote>
+                          <p>{{ 'relatoIaiaAna.cita1' | translate }}<cite>{{ 'relatoIaiaAna.personaCita1' | translate }}</cite></p>
+                      </blockquote>
+                  </div>
+              </div>
+          </div>
+          <div class="bodyUrl">
+            <div class="container">
+              <h1>{{ 'relatoIaiaAna.tituloRefranes' | translate}}</h1>
+              <br>
+              <h3>{{ 'relatoIaiaAna.personaRefranMaria' | translate}}</h3>
+              <ul>
+                <li>{{ 'relatoIaiaAna.refranMaria1' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria2' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria3' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria4' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria5' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria6' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria7' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria8' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria9' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria10' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria11' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria12' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria13' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria14' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria15' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria16' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranMaria17' | translate}}</li>
+              </ul>
+              <h3>{{ 'relatoIaiaAna.personaRefranPaco' | translate}}</h3>
+              <ul>
+                <li>{{ 'relatoIaiaAna.refranPaco1' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranPaco2' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranPaco3' | translate}}</li>
+              </ul>
+              <h3>{{ 'relatoIaiaAna.personaRefranCarmen' | translate}}</h3>
+              <ul>
+                <li>{{ 'relatoIaiaAna.refranCarmen1' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranCarmen2' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranCarmen3' | translate}}</li>
+                <li>{{ 'relatoIaiaAna.refranCarmen4' | translate}}</li>
+              </ul>
+            </div>
+          </div>
+
+            <div class="divLeft">
+                <span class=""><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+            </div>
+            <div class="divRight">
+                <a routerLink="/viaje/2019-04-06_Fanzara">{{ 'viaje.empezar' | translate}}</a>&nbsp;
+                <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viaje/2019-04-06_Fanzara">
+            </div>
+
+        </article>
+    </div>
   </div>
 
-  <!-- Agrega más páginas según sea necesario -->
-</div>
+</div><!-- fin modo web -->
+
+
+
+
+
+
+
+
+
+<!-- MODO LIBRO -->
+
+<!-- <div *ngIf="esModoLibro === true">
+
+  <div class="divRightLibro">
+    <span class="fh5co-meta"><img src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()"><a class="animated fadeIn pulse" (click)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</a></span>
+  </div>
+
+  <div class="cuerpo">
+    <div class="book">
+      <input class = "input" type="checkbox" id="c1">
+      <input class = "input" type="checkbox" id="c2">
+      <input class = "input" type="checkbox" id="c3">
+      <input class = "input" type="checkbox" id="c4">
+      <input class = "input" type="checkbox" id="c5">
+
+      <div id="cover">
+      </div>
+      <div class="flip-book">
+        <div class="flip" id="p1">
+          <div class="back">
+          </div>
+          <div class="front">
+            <h2>{{ 'relatoIaiaAna.titulo' | translate }}</h2>
+            <h4>{{ 'relatoIaiaAna.subtitulo' | translate }} - {{ 'relatoIaiaAna.fecha' | translate }}</h4>
+            <h3>{{ 'relatoIaiaAna.tituloParte1' | translate}}</h3>
+            <p class="p">{{ 'relatoIaiaAna.bloque1_parrafo1' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque1_parrafo2' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque1_parrafo3' | translate}}</p>
+          <div>
+            <label for="c1" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+          </div>
+        </div>
+      </div>
+
+        <div class="flip" id="p2">
+          <div class="back">
+          </div>
+          <div class="front">
+            <p class="p">{{ 'relatoIaiaAna.bloque2_parrafo1' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque2_parrafo2' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque2_parrafo3' | translate}}</p>
+            <div>
+              <label for="c1" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+              <label for="c2" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip" id="p3">
+          <div class="back">
+          </div>
+          <div class="front">
+            <h2>{{ 'relatoIaiaAna.tituloParte2' | translate}}</h2>
+            <p class="p">{{ 'relatoIaiaAna.bloque4_parrafo1' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque4_parrafo2' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque4_parrafo3' | translate}}</p>
+            <div>
+              <label for="c2" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+              <label for="c3" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip" id="p4">
+          <div class="back">
+          </div>
+          <div class="front">
+            <p class="p">{{ 'relatoIaiaAna.bloque5_parrafo1' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque5_parrafo2' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque6_parrafo1' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque6_parrafo2' | translate}}</p>
+            <div>
+              <label for="c3" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+              <label for="c4" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip" id="p5">
+          <div class="back">
+          </div>
+          <div class="front">
+            <h2>{{ 'relatoIaiaAna.tituloParte3' | translate}}</h2>
+            <p class="p">{{ 'relatoIaiaAna.bloque7_parrafo1' | translate}}</p>
+            <p class="p">{{ 'relatoIaiaAna.bloque7_parrafo2' | translate}}</p>
+            <div>
+              <label for="c4" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+              <label for="c5" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip" id="p6">
+            <div class="back">
+            </div>
+            <div class="front">
+              <label for="c5" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div> -->

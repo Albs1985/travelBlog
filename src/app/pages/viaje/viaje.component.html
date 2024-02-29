@@ -243,14 +243,14 @@
                     </div>
                 </div>
                  -->
-              <br>
+              <!-- <br> -->
               <div class="bodyUrl" *ngIf="servicioViajes.viajesDetalleLista[0].infoInteres[0]">
                 <div class="container">
                   <h1>{{ 'app.infoInteres' | translate}}</h1>
                   <br>
                   <ul>
                     <div *ngFor="let info of servicioViajes.viajesDetalleLista[0].infoInteres">
-                      <li><a href="{{info}}" class="aUrl">{{info}}</a></li>
+                      <li><a target="_blank" href="{{info}}" class="aUrl">{{info}}</a></li>
                     </div>
                   </ul>
                 </div>

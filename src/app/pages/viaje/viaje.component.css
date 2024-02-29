@@ -31,6 +31,7 @@ li {
 }
 
 .aUrl {
+  text-align: center;
   font-size: 12px;
   text-decoration: none;
   color: #007bff; /* Cambia el color según tus preferencias */

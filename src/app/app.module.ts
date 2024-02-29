@@ -7,7 +7,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
-import { AboutComponent } from './pages/about/about.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -32,7 +31,6 @@ import { ApodosComponent } from './pages/apodos/apodos.component';
     FooterComponent,
     ViajeComponent,
     ViajesPorAnyoComponent,
-    AboutComponent,
     SafePipe,
     BookModeComponent,
     GaleriaComponent,

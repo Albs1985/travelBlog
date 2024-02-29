@@ -10,11 +10,9 @@ import { ViajerosService } from 'src/app/services/viajeros.service';
 })
 export class RelatoAlbertComponent implements OnDestroy {
 
-  // esModoLibro$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   esModoLibro : boolean = false;
 
   constructor (private route: ActivatedRoute, public commonService : CommonService){
-    // viajerosService.cargarViajeros(); public viajerosService : ViajerosService,
   }
   ngOnDestroy(): void {
     this.commonService.modoLibro$.next(false);

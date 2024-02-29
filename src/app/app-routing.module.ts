@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
-import { AboutComponent } from './pages/about/about.component';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
@@ -18,7 +17,6 @@ import { ApodosComponent } from './pages/apodos/apodos.component';
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
   { path: 'viajes', component : ViajesComponent},
-  { path: 'about', component : AboutComponent},
   { path: 'galeria', component : GaleriaComponent},
   { path: 'favoritos', component : FavoritosComponent},
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},

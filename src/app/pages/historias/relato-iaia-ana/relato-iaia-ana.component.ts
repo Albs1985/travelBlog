@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RelatosService } from 'src/app/services/relatos.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-relato-iaia-ana',
@@ -8,7 +8,17 @@ import { RelatosService } from 'src/app/services/relatos.service';
   styleUrls: ['./relato-iaia-ana.component.css']
 })
 export class RelatoIaiaAnaComponent {
-  constructor(private route: ActivatedRoute, public servicioRelatos : RelatosService){
+  esModoLibro : boolean = false;
 
+  constructor (private route: ActivatedRoute, public commonService : CommonService){
+  }
+  ngOnDestroy(): void {
+    this.commonService.modoLibro$.next(false);
+  }
+
+  public onClickCambiaModo(): void{
+    // console.log(this.esModoLibro)
+    this.esModoLibro = !this.esModoLibro;
+    this.commonService.modoLibro$.next(this.esModoLibro);
   }
 }
