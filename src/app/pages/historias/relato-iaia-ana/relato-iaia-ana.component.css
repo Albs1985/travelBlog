@@ -88,6 +88,12 @@
   animation-iteration-count: infinite;
 }
 
+.icon {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
 .bodyUrl {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -100,11 +106,12 @@
   padding: 0 20px;
 }
 
-h1 {
+h3 {
   text-align: center;
 }
 
 ul {
+  list-style-type: none;
   list-style-position: outside;
   padding: 0;
 }

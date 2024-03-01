@@ -48,6 +48,12 @@ li {
   padding: 5px;
 }
 
+.icon {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
 .iconosImgFav {
   padding: 0px;
   width: 40px;
