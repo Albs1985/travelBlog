@@ -9,11 +9,18 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class RelatoIaiaAnaComponent {
   esModoLibro : boolean = false;
+  edadIaia : number = 0;
 
   constructor (private route: ActivatedRoute, public commonService : CommonService){
+    //Cálculo de la edad en años
+    let date = new Date('1953-11-16');
+    let timeDiff = Math.abs(Date.now() - date.getTime());
+    this.edadIaia = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    this.commonService.sinIdioma$.next(true);
   }
   ngOnDestroy(): void {
     this.commonService.modoLibro$.next(false);
+    this.commonService.sinIdioma$.next(false);
   }
 
   public onClickCambiaModo(): void{

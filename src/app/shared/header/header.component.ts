@@ -20,6 +20,7 @@ export class HeaderComponent {
   constructor(/*private route: ActivatedRoute, */
               public servicioViajes : ViajesService,
               private translate: TranslateService,
+              protected commonService : CommonService,
               private router: Router){
 
                 // this.mensajeCabeceraAnyo = true;

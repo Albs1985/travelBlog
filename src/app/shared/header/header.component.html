@@ -96,7 +96,7 @@
                 <li><a href="#"><i class="icon-facebook"></i></a></li>
                 <li><a href="#"><i class="icon-instagram"></i></a></li>
             </ul> -->
-            <ul class="fh5co-social">
+            <ul *ngIf="(this.commonService.sinIdioma$ | async) === false" class="fh5co-social">
                 <li *ngIf="isSelectedValenciano"><button class="idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
                 <li *ngIf="!isSelectedValenciano"><button class="idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
                 <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado  animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>

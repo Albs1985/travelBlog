@@ -16,11 +16,11 @@ export class FrasesComponent {
   maxSizeDisplay: number = 10;
   palabra : any = '';
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService, public viajerosService: ViajerosService){
+  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService){
     this.maxSizeDisplay = 10;
     this.palabra = '';
     this.servicioFrases.cargarFrases();
-    this.viajerosService.cargarViajeros();
+    //this.viajerosService.cargarViajeros(); , public viajerosService: ViajerosService
   }
 
 
