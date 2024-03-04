@@ -23,7 +23,8 @@ import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -43,12 +44,14 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     RelatoIaiaAnaComponent,
     ViajesComponent,
     DibujosComponent,
-    ApodosComponent
+    ApodosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     NgxPaginationModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),

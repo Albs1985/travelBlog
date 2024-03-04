@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
 
@@ -12,7 +13,7 @@ export class RelatoAlbertComponent implements OnDestroy {
 
   esModoLibro : boolean = false;
 
-  constructor (private route: ActivatedRoute, public commonService : CommonService){
+  constructor (private route: ActivatedRoute, public commonService : CommonService, public authenticationService: AutenticationService){
   }
   ngOnDestroy(): void {
     this.commonService.modoLibro$.next(false);

@@ -19,54 +19,54 @@
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 
-<!-- <div class="divAka">
-  <h3>{{ 'app.familiaApodos' | translate}}<img src="assets/icons/apodo.png" class="animated fadeIn iconoApodo"></h3>
-  <ul>
-    <div *ngFor="let viajero of viajerosService.viajerosLista">
-      <li>
-        <span class="nombre">{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'app.edad' | translate}})</span>
-        <div *ngFor="let apodo of viajero.aka">
-          <span class="apodos">{{apodo}}</span>
+<!-- Para autenticarse en la aplicación -->
+<div *ngIf="authenticationService.isLoggedIn() === false">
+  <br><br><br>
+  <app-login></app-login>
+  <br>
+</div>
+
+
+<div *ngIf="authenticationService.isLoggedIn()">
+
+  <br><br>
+  <div class="filtrado animated rollIn">
+    <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
+      <form id="busquedaForm">
+        <div id="busquedaForm" class="form-group">
+            <input id="myInputFrase" type="text" class="form-control gradiente" placeholder="{{ 'app.frasesFiltrado' | translate }}">
+                <button id="botonLupa" (click)="buscarFrases()">
+                    <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
+                </button>
         </div>
-      </li>
-    </div>
-  </ul>
-</div>-->
-<br><br>
-<div class="filtrado animated rollIn">
-  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
-    <form id="busquedaForm">
-      <div id="busquedaForm" class="form-group">
-          <input id="myInputFrase" type="text" class="form-control gradiente" placeholder="{{ 'app.frasesFiltrado' | translate }}">
-              <button id="botonLupa" (click)="buscarFrases()">
-                  <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
-              </button>
-      </div>
-  </form>
-</div>
+    </form>
+  </div>
 
-<div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
-  <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-</div>
+  <div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
+    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+  </div>
 
-<div *ngFor="let frase of servicioFrases.frases | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase">
-  <figure>
-    <h4 class="frasePersona">{{frase.persona}} ({{frase.anyo}})</h4>
-    <blockquote>
-      <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
-      <br>
-      <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
-    </blockquote>
-  </figure>
-</div>
+  <div *ngFor="let frase of servicioFrases.frases | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase">
+    <figure>
+      <h4 class="frasePersona">{{frase.persona}} ({{frase.anyo}})</h4>
+      <blockquote>
+        <cite class="frasePersona">«{{ 'frases.'+frase.id+'.frase' | translate}}»</cite>
+        <br>
+        <p class="letraExplicacion">{{ 'frases.'+frase.id+'.explicacion' | translate}}</p>
+      </blockquote>
+    </figure>
+  </div>
 
-<div class="center">
-  <span *ngIf="servicioFrases.frases.length == 0"> {{ 'app.sinResultados' | translate}}</span>
-</div>
+  <div class="center">
+    <span *ngIf="servicioFrases.frases.length == 0"> {{ 'app.sinResultados' | translate}}</span>
+  </div>
 
-<div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
-  <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-</div>
+  <div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
+    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+</div><!-- de la autenticacion -->
+
 <br>
 <br>
 <div class="divRight">

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { FrasesService } from 'src/app/services/frases.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
+import { AutenticationService } from '../../services/autentication.service';
 
 @Component({
   selector: 'app-frases',
@@ -16,7 +17,7 @@ export class FrasesComponent {
   maxSizeDisplay: number = 10;
   palabra : any = '';
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService){
+  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService, public authenticationService: AutenticationService){
     this.maxSizeDisplay = 10;
     this.palabra = '';
     this.servicioFrases.cargarFrases();

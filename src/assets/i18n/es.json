@@ -60,7 +60,11 @@
     "infoInteres": "Información de interés",
     "nombreControlMsj": "El nombre es obligatorio, revíselo",
     "emailControlMsj": "El email es obligatorio, revise si es correcto",
-    "mensajeControlMsj": "El mensaje es obligatorio, revíselo"
+    "mensajeControlMsj": "El mensaje es obligatorio, revíselo",
+    "contrasenya": "Contraseña",
+    "contrasenyaKO": "Contraseña incorrecta",
+    "contrasenyaVisible": "Mostrar/ocultar contraseña",
+    "login": "Inicia la sesión"
   },
   "dibujos": {
     "1": {

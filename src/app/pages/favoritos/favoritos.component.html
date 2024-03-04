@@ -18,61 +18,74 @@
     <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a class="animated zoomInDown" routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
   </div>
 </div>
-<br>
-<div class="row fotosPerfiles">
-  <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
-      <figure>
-          <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-          <figcaption>{{viajero.nombreCompleto}} </figcaption>
-          <figcaption>({{viajero.edad}} {{ 'app.edad' | translate}})</figcaption>
-      </figure>
+
+<!-- Para autenticarse en la aplicación -->
+<div *ngIf="authenticationService.isLoggedIn() === false">
+  <br><br><br>
+  <app-login></app-login>
+  <br>
+</div>
+
+
+<div *ngIf="authenticationService.isLoggedIn()">
+
+  <br>
+  <div class="row fotosPerfiles">
+    <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
+        <figure>
+            <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
+            <figcaption>{{viajero.nombreCompleto}} </figcaption>
+            <figcaption>({{viajero.edad}} {{ 'app.edad' | translate}})</figcaption>
+        </figure>
+    </div>
   </div>
-</div>
-<br>
-<div class="filtrado animated rollIn">
-  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
-    <form id="busquedaForm">
-      <div id="busquedaForm" class="form-group">
-          <input id="myInputFav" type="text" class="form-control gradiente" placeholder="{{ 'favoritos.filtrado' | translate }}">
-              <button id="botonLupa" (click)="buscar()">
-                  <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
-              </button>
-      </div>
-  </form>
-</div>
-
-<div *ngIf="(servicioFotos.cargandoFotosFav$ | async) === true" class="spinner-container">
-  <div class="spinner">
+  <br>
+  <div class="filtrado animated rollIn">
+    <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
+      <form id="busquedaForm">
+        <div id="busquedaForm" class="form-group">
+            <input id="myInputFav" type="text" class="form-control gradiente" placeholder="{{ 'favoritos.filtrado' | translate }}">
+                <button id="botonLupa" (click)="buscar()">
+                    <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
+                </button>
+        </div>
+    </form>
   </div>
-  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
-</div>
 
-<br>
-<div class="paginacion">
-  <pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-</div>
-<!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
-<div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
-  <div class="gallery">
-    <!-- <figure class=""> -->
-    <a target="_blank" href="assets/images/{{foto.id}}">
-        <img src="assets/images/{{foto.id}}" loading="lazy" alt="" width="600" height="400">
-        <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}}. {{ 'favoritos.'+foto.idDesc | translate}}</figcaption>
-    </a>
-    <!-- </figure> -->
+  <div *ngIf="(servicioFotos.cargandoFotosFav$ | async) === true" class="spinner-container">
+    <div class="spinner">
+    </div>
+    <span> &nbsp; {{ 'app.cargando' | translate}}</span>
   </div>
-</div>
 
-<div class="center">
-  <span *ngIf="servicioFotos.fotosFavLista.length == 0"> {{ 'app.sinResultados' | translate}}</span>
-</div>
+  <br>
+  <div class="paginacion">
+    <pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
+  <div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
+    <div class="gallery">
+      <!-- <figure class=""> -->
+      <a target="_blank" href="assets/images/{{foto.id}}">
+          <img src="assets/images/{{foto.id}}" loading="lazy" alt="" width="600" height="400">
+          <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}}. {{ 'favoritos.'+foto.idDesc | translate}}</figcaption>
+      </a>
+      <!-- </figure> -->
+    </div>
+  </div>
 
-<div class="clearfix"></div>
-<br>
-<br>
-<div class="paginacion">
-  <pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-</div>
+  <div class="center">
+    <span *ngIf="servicioFotos.fotosFavLista.length == 0"> {{ 'app.sinResultados' | translate}}</span>
+  </div>
+
+  <div class="clearfix"></div>
+  <br>
+  <br>
+  <div class="paginacion">
+    <pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div> <!-- de la autenticacion -->
+
 <br>
 <br>
 <div class="divRight">

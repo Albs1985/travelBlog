@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { ViajesService } from 'src/app/services/viajes.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ViajesPorAnyoComponent implements OnInit{
   // viajesCargados : boolean = false;
 
   constructor (private route: ActivatedRoute,
-                public servicioViajes : ViajesService){
+                public servicioViajes : ViajesService, public authenticationService: AutenticationService){
 
                   this.orderDesc = false;
                   this.ejecutarSoloTouch = false;

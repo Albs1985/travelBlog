@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { DibujosService } from 'src/app/services/dibujos.service';
 import { FrasesService } from 'src/app/services/frases.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
@@ -17,7 +18,7 @@ export class DibujosComponent {
   maxSizeDisplay: number = 10;
   palabra : any = '';
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioDibujos: DibujosService){
+  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioDibujos: DibujosService, public authenticationService: AutenticationService){
     this.maxSizeDisplay = 10;
     this.palabra = '';
     this.servicioDibujos.cargarDibujos();

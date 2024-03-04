@@ -2,6 +2,7 @@ import { Component, OnInit/*, ElementRef, ViewChild, AfterViewInit*/ } from '@an
 import { ActivatedRoute } from '@angular/router';
 import { ViajesService } from '../../services/viajes.service';
 import { FotosService } from 'src/app/services/fotos.service';
+import { AutenticationService } from 'src/app/services/autentication.service';
 
 @Component({
   selector: 'app-viaje',
@@ -13,7 +14,7 @@ export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
 
   showMsg : boolean = false;
 
-  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService){
+  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService, public authenticationService: AutenticationService){
 
   }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ApodosComponent {
   // maxSizeDisplay: number = 10;
 
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public viajerosService: ViajerosService){
+  constructor(private route: ActivatedRoute, private translate: TranslateService, public viajerosService: ViajerosService, public authenticationService: AutenticationService){
     // this.maxSizeDisplay = 10;
     this.viajerosService.cargarViajeros();
   }

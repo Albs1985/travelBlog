@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class RelatoIaiaAnaComponent {
   esModoLibro : boolean = false;
   edadIaia : number = 0;
 
-  constructor (private route: ActivatedRoute, public commonService : CommonService){
+  constructor (private route: ActivatedRoute, public commonService : CommonService, public authenticationService: AutenticationService){
     //Cálculo de la edad en años
     let date = new Date('1953-11-16');
     let timeDiff = Math.abs(Date.now() - date.getTime());

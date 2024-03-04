@@ -1,0 +1,35 @@
+.authLogin {
+  margin-left: 25px;
+  justify-content: center;
+  position: absolute;
+}
+
+.boton {
+  /* background-color: rgb(247, 200, 115); */
+  background: transparent;
+  border-color: transparent;
+  border-radius: 30px;
+  border: 2px solid grey;
+  background-color: rgb(255, 228, 177);
+}
+
+.passIncorrecta {
+  font-size: small;
+}
+
+.inputPass {
+  width: 20vh;
+}
+
+.iconoVer {
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.botonVer {
+  background: transparent;
+  border-color: transparent;
+}

@@ -3,6 +3,7 @@ import { ViajesService } from '../../services/viajes.service';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
 import { Viajes } from 'src/app/interfaces/viajes.interface';
+import { AutenticationService } from 'src/app/services/autentication.service';
 
 @Component({
   selector: 'app-viajes',
@@ -18,7 +19,7 @@ export class ViajesComponent{
 
   constructor(public servicioViajes : ViajesService,
     private route: ActivatedRoute,
-    private translate: TranslateService){
+    private translate: TranslateService, public authenticationService: AutenticationService){
 
       // this.preloadImages();
       this.orderDesc = true;
