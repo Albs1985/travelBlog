@@ -72,6 +72,19 @@
   margin-top: -5px;
 }
 
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
 @keyframes cambiaColor {
   from {
     background-color: rgb(250, 242, 228);
