@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,13 +9,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ContactQRComponent {
 
-  // contactForm: FormGroup;
   nom : any = '';
   mail : any = '';
   mensajeCorreo : any = '';
   asuntoES : string = 'Blog de viajes Familia Serrador Casares';
   asuntoVAL : string = 'Blog de viatges Familia Serrador Casares';
   correo : string = '';
+  controlNombre = new FormControl(null, [Validators.required, Validators.pattern(/[\S]/), Validators.maxLength(80)]);
+  controlEmail = new FormControl(null, [Validators.required, Validators.email, Validators.pattern(/[\S]/)]);
+  controlMensaje = new FormControl(null, [Validators.required, Validators.pattern(/[\S]/)]);
 
   constructor(private translate: TranslateService) {
   }
@@ -60,8 +63,16 @@ export class ContactQRComponent {
       this.correo = this.correo + '&cc='+ this.mail;
     }
 
+    // this.limpiaForm();
+
     // console.log(this.correo);
 
   }
+
+  // limpiaForm(){
+  //   this.controlNombre.reset();
+  //   this.controlEmail.reset();
+  //   this.controlMensaje.reset();
+  // }
 
 }

@@ -57,7 +57,10 @@
     "apodosTitulo": "Apodos: El arte de la improvisación",
     "apodosSubtitulo1": "¿Cómo llamar a tus hijos sin decir su nombre?",
     "apodosSubtitulo2": "Con todo el cariño y amor del mundo",
-    "infoInteres": "Información de interés"
+    "infoInteres": "Información de interés",
+    "nombreControlMsj": "El nombre es obligatorio, revíselo",
+    "emailControlMsj": "El email es obligatorio, revise si es correcto",
+    "mensajeControlMsj": "El mensaje es obligatorio, revíselo"
   },
   "dibujos": {
     "1": {
@@ -118,6 +121,10 @@
     "9": {
       "frase": "Sicato Botón",
       "explicacion": "Aspirador marca Conga ... nunca supimos por qué le llamaba así (lo de botón era para encenderlo)"
+    },
+    "10": {
+      "frase": "Sicaua",
+      "explicacion": "Secadora"
     }
   },
   "relatoAlbaiAlbert": {

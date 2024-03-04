@@ -23,6 +23,7 @@ import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ApodosComponent } from './pages/apodos/apodos.component';
     BrowserModule,
     NgxPaginationModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
     TranslateModule.forRoot({

@@ -41,6 +41,10 @@
   transform: translate(-50%, -50%);
 }
 
+.msjError {
+  font-size: small;
+}
+
 .centraTexto {
   position: absolute;
   top: 10%;
@@ -52,6 +56,7 @@
 .form-group {
   margin-left: 35px;
   margin-right: 35px;
+  color: rgb(250, 185, 65);
 }
 
 .tituloContacto {

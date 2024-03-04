@@ -57,7 +57,10 @@
     "apodosTitulo": "Malnoms: L'art de la improvisació",
     "apodosSubtitulo1": "¿Com cridar als teus fills sense dir el seu nom?",
     "apodosSubtitulo2": "Amb tot l'amor i carinyo del món",
-    "infoInteres": "Informació d'interés"
+    "infoInteres": "Informació d'interés",
+    "nombreControlMsj": "El nom és obligatori, revise'l",
+    "emailControlMsj": "L'email és obligatori, revise si és correcte",
+    "mensajeControlMsj": "El missatge és obligatori, revise'l"
   },
   "dibujos": {
     "1": {
@@ -118,6 +121,10 @@
     "9": {
       "frase": "Sicato Botón",
       "explicacion": "Aspirador marca Conga ... mai vam saber per què li deia així (això de botó era per a encendre-ho)"
+    },
+    "10": {
+      "frase": "Sicaua",
+      "explicacion": "Secadora"
     }
   },
   "relatoAlbaiAlbert": {
