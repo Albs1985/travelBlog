@@ -8,9 +8,10 @@
 
     <!-- Para autenticarse en la aplicación -->
     <div *ngIf="authenticationService.isLoggedIn() === false">
-      <br><br><br>
+      <br><br><br><br><br><br>
       <app-login></app-login>
-      <br>
+      <br><br><br>
+      <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}"><a routerLink="/viajesFiltrados/{{servicioViajes.anyoViaje}}">  {{ 'viaje.volver' | translate}}</a></span>
     </div>
 
 
