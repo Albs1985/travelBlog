@@ -79,6 +79,11 @@
   background-color: rgb(255, 228, 177);
 }
 
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.5; /* Puedes ajustar este valor para cambiar la opacidad */
+}
+
 .iconosImg {
   padding: 2px;
   width: 30px;

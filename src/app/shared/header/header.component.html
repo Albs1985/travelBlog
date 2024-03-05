@@ -20,13 +20,13 @@
                 <li class="liViajes">
                   <div class="margenTop col-lg-12 col-md-12 text-center animated">
                     <h3 id="fh5co-logo">
-                      <a class="js-fh5co-close-offcanvas" routerLink="/principal/">&nbsp;
-                        <img src="assets/icons/chancletas.png" class="animated fadeIn iconoChancla" routerLink="/principal/">{{ 'app.viajes' | translate }}
+                      <!-- <a class="js-fh5co-close-offcanvas" routerLink="/principal/">&nbsp; -->
+                        <img src="assets/icons/chancletas.png" class="animated fadeIn iconoChancla">{{ 'app.viajes' | translate }}
                           <sup>Serrador Casares</sup>
                           <sub>
                               <img src="assets/icons/sol.png" class="animated fadeIn iconoViajeros" routerLink="/principal/">
                           </sub>
-                      </a>
+                      <!-- </a> -->
                     </h3>
                   </div>
                     <!-- <a class="js-fh5co-close-offcanvas" routerLink="/viajes/">
@@ -96,16 +96,25 @@
                 <li><a href="#"><i class="icon-facebook"></i></a></li>
                 <li><a href="#"><i class="icon-instagram"></i></a></li>
             </ul> -->
+
             <ul *ngIf="(this.commonService.sinIdioma$ | async) === false" class="fh5co-social">
                 <li *ngIf="isSelectedValenciano"><button class="idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
                 <li *ngIf="!isSelectedValenciano"><button class="idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
-                <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado  animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
-                <li *ngIf="!isSelectedSpanish"><button class="idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
+                <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
+                <li *ngIf="!isSelectedSpanish"><button  class="idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
             </ul>
+            <ul *ngIf="(this.commonService.sinIdioma$ | async) === true" class="fh5co-social">
+              <li><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
+              <li><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
+              <!-- <li *ngIf="isSelectedValenciano"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
+              <!-- <li *ngIf="!isSelectedValenciano"><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
+              <!-- <li *ngIf="isSelectedSpanish"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
+              <!-- <li *ngIf="!isSelectedSpanish"><button  class="disabled-button idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
+          </ul>
             <div class="col-lg-12 col-md-12 text-center animated pulse">
                 <h3 id="fh5co-logo">
-                    <a href="#">&nbsp;
-                        <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla" routerLink="/principal/">
+                    <!-- <a href="#"> -->&nbsp;
+                        <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla">
                             {{ 'app.viajes' | translate }}
                             <sup>Serrador Casares</sup>
                             <sub>
@@ -113,7 +122,7 @@
                                 <img src="assets/icons/sol.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/">
                                 <!-- <img src="assets/icons/viajeros.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
                             </sub>
-                    </a>
+                    <!-- </a> -->
                 </h3>
             </div>
 

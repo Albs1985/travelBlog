@@ -16,13 +16,11 @@ export class LoginComponent {
   login() {
     this.clicado = true;
     this.authenticationService.login(this.password);
-    // if () {
-      // Redirigir al usuario a la página protegida
-      // Puedes usar Angular Router para esto
-    // }
-    // else {
-    //   alert('Contraseña incorrecta');
-    // }
+  }
+
+  loginRelatoIaia() {
+    this.clicado = true;
+    this.authenticationService.loginRelatoIaia(this.password);
   }
 
   togglePasswordVisibility() {
