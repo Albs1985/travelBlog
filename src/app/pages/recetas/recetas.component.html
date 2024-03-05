@@ -1,0 +1,108 @@
+<br>
+<h2 class="tituloRecetas">
+    <img src="assets/icons/hambre.png" alt="" class="iconosImgFav animated rollIn">
+   {{ 'app.recetasTitulo' | translate }}
+</h2>
+<h3 class="subTituloRecetas">
+    <img src="assets/icons/frito.png" alt="" class="iconosImgFav animated rollIn">
+   {{ 'app.recetasSubtitulo1' | translate }}
+</h3>
+<h4 class="subTituloRecetas">
+  <img src="assets/icons/babear.png" alt="" class="iconosImgFav animated rollIn">
+    {{ 'app.recetasSubtitulo2' | translate }}
+</h4>
+<br>
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+</div>
+<div *ngIf="(servicioRecetas.cargandoRecetas$ | async) === true" class="spinner-container">
+  <div class="spinner"></div>
+  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+</div>
+
+<!-- Para autenticarse en la aplicación -->
+<div *ngIf="authenticationService.isLoggedIn() === false">
+  <br><br><br>
+  <app-login></app-login>
+  <br>
+</div>
+
+
+<div *ngIf="authenticationService.isLoggedIn()">
+
+  <br><br>
+  <div class="filtrado animated rollIn">
+    <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
+      <form id="busquedaForm">
+        <div id="busquedaForm" class="form-group">
+            <input id="myInputReceta" type="text" class="form-control gradiente" placeholder="{{ 'app.recetasFiltrado' | translate }}">
+                <button id="botonLupa" (click)="buscarRecetas()">
+                    <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
+                </button>
+        </div>
+    </form>
+  </div>
+
+  <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
+    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+  <div *ngFor="let receta of servicioRecetas.recetas | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueReceta">
+
+    <figure>
+      <h3 class="recetaTitulo">{{receta.nombre}}</h3>
+      <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
+      <br><br>
+      <img src={{receta.imagen}} alt="{{receta.imagen}}" class="img-responsive">
+      <br>
+      <blockquote>
+        <h4 class="recetaTitulo">{{receta.porciones}} {{ 'app.porciones' | translate}}</h4>
+        <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
+        <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
+        <h4 class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
+      </blockquote>
+      <blockquote>
+        <h3 class="recetaTitulo">{{ 'app.ingredientes' | translate}}</h3>
+        <div *ngFor="let ingredient of receta.ingredientes" class="bloqueReceta">
+          <ul class="ingrediente">
+            <li>&nbsp;{{ingredient}}</li>
+          </ul>
+        </div>
+      </blockquote>
+
+      <!-- <blockquote>
+        <h3 class="recetaTitulo">{{ 'app.utensilios' | translate}}</h3>
+        <div *ngFor="let utensilio of receta.utensilios" class="bloqueReceta">
+          <ul class="utensilio">
+            <li>&nbsp;{{utensilio}}</li>
+          </ul>
+        </div>
+      </blockquote> -->
+
+      <blockquote>
+        <h3 class="recetaTitulo">{{ 'app.pasos' | translate}}</h3>
+        <div *ngFor="let paso of receta.numPasos" class="bloqueReceta">
+          <ul class="pasos">
+            <h4 class="center">{{paso}}</h4>
+            <li>&nbsp;{{ 'recetas.'+receta.id+'.paso'+paso | translate}}</li>
+          </ul>
+        </div>
+      </blockquote>
+    </figure>
+  </div>
+
+  <div class="center">
+    <span *ngIf="servicioRecetas.recetas.length == 0"> {{ 'app.sinResultados' | translate}}</span>
+  </div>
+
+  <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
+    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+</div><!-- de la autenticacion -->
+
+<br>
+<br>
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+</div>

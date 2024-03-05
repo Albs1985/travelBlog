@@ -1,18 +1,3 @@
-/* .authLogin {
-  margin-left: 35px;
-  justify-content: center;
-
-} */
-
-.divAka {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-}
-/* h4 {
-  text-align: center;
-} */
 ul {
   list-style-type: none;
   padding: 0;
@@ -28,11 +13,11 @@ li {
   color: #666;
 }
 
-.tituloFrases {
+.tituloRecetas {
   margin-left: 25px;
 }
 
-.subTituloFrases {
+.subTituloRecetas {
   margin-left: 50px;
   margin-right: 15px;
 }
@@ -58,12 +43,6 @@ li {
   border-radius: 15px;
 }
 
-.iconoApodo {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-}
-
 .spinner {
   width: 40px;
   height: 40px;
@@ -80,11 +59,9 @@ li {
   height: 100vh; /* Ajusta la altura del contenedor según necesites */
 }
 
-.bloqueFrase {
+.bloqueReceta {
   margin-left: 25px;
   margin-right: 25px;
-  /* border-radius: 25px;
-  box-shadow: 0px 5px 5px 5px #888888; */
 }
 
 .letraExplicacion {
@@ -92,7 +69,7 @@ li {
   margin-left: 25px;
 }
 
-.frasePersona {
+.recetaTitulo {
   margin-left: 25px;
 }
 
@@ -132,9 +109,16 @@ li {
   margin-right: 0px;
   margin-top: -40px;
 }
+.ingrediente {
+  list-style-type: "🍮";
+  list-style-position: outside;
+  padding: 0;
+}
 
-#myInput {
-  width: 350px !important;
+.utensilio {
+  list-style-type: "🥄";
+  list-style-position: outside;
+  padding: 0;
 }
 
 #busquedaForm {

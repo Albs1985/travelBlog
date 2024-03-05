@@ -64,7 +64,19 @@
     "contrasenya": "Contraseña",
     "contrasenyaKO": "Contraseña incorrecta",
     "contrasenyaVisible": "Mostrar/ocultar contraseña",
-    "login": "Inicia la sesión"
+    "login": "Inicia la sesión",
+    "recetasTitulo": "Recetas para repetir y disfrutar",
+    "recetasSubtitulo1": "Para toda la familia",
+    "recetasSubtitulo2": "Tartas, Cenas, Postres ...",
+    "recetasFiltrado": "Nombre / Categoria / Dificultad ... ",
+    "ingredientes": "Ingredientes",
+    "utensilios": "Utensilios",
+    "pasos": "Pasos",
+    "porciones": "Porciones",
+    "dificultad": "Dificultad",
+    "tiempoPreparacion": "Tiempo de Preparación",
+    "tiempoHorno": "Tiempo de Horno",
+    "minutos": "minutos"
   },
   "dibujos": {
     "1": {
@@ -252,6 +264,7 @@
     "relatos": "Relatos",
     "frases": "Frases",
     "apodos": "Apodos",
+    "recetas": "Recetas",
     "iaiaAna": "Historia de la Yaya Ana"
   },
   "categoria": {
@@ -400,6 +413,16 @@
     "fotoFav84": "Emili y Mateu jugando en casa de los iaios",
     "fotoFav85": "Mateu y Bruno en la Trobada de escoles, en el Comarcal IES, Burjassot",
     "fotoFav86": "Los amigos de Mateu (Bruno, Onai, Santi) en la Trobada de escoles, en el Comarcal IES, Burjassot"
+  },
+  "recetas": {
+    "1": {
+      "frase": "Para los amantes del chocolate",
+      "paso1": "Cogemos un bol y ponemos el chocolate y la mantequilla, y los metemos en el microondas en tandas de 1 minuto, para no quemar el chocolate. Ir sacando y remover hasta conseguir una masa uniforme.",
+      "paso2": "Cogemos otro bol y vamos poniendo los huevos, los batimos con el tenedor, y poco a poco vamos añadiendo: primero la harina, y después el azúcar.",
+      "paso3": "Una vez tengamos las dos masas uniformes, los juntamos en un único bol. Ahora añadimos las nueces. Importante trocearlas (con las mismas manos).",
+      "paso4": "Removemos bien y ya podemos ponerlo en la bandeja, que previamente la habremos huntado con un poco de aceite con las manos.",
+      "paso5": "Por último, ya podremos meterlo en el horno en el tiempo indicado. Cada horno es diferente, asegúrate que no se cuece demasiado, si no, se convertirá en bizcocho."
+    }
   },
   "2023-06-10": {
     "tituloParte1": "Último viaje antes de la gran tormenta",

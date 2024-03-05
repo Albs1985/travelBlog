@@ -25,6 +25,7 @@ import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { RecetasComponent } from './pages/recetas/recetas.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LoginComponent } from './components/login/login.component';
     ViajesComponent,
     DibujosComponent,
     ApodosComponent,
-    LoginComponent
+    LoginComponent,
+    RecetasComponent
   ],
   imports: [
     BrowserModule,

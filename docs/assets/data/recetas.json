@@ -1,0 +1,37 @@
+{
+  "1": {
+    "id": 1,
+    "nombre": "Brownie de chocolate",
+    "categoria": "Postre",
+    "dificultad": "2/10",
+    "frase": "",
+    "ingredientes": [
+      "Chocolate negro para fundir: 300gr",
+      "Mantequilla con sal: 150gr",
+      "Huevos: 4",
+      "Azúcar: Un vaso",
+      "Harina: Medio vaso",
+      "Nueces: 100 gr (al gusto)",
+      "Aceite: (para huntar el molde)"
+    ],
+    "utensilios": [
+      "Tenedor",
+      "Bandeja metal",
+      "2 Bols grandes",
+      "Horno",
+      "Microondas"
+    ],
+    "tiempoPreparacion": 20,
+    "tiempoHorno": 18,
+    "temperatura": "180 C",
+    "numPasos": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "imagen": "assets/images/recetas/brownie.jpg",
+    "porciones": 12
+  }
+}
