@@ -130,3 +130,11 @@ li {
 .center {
   text-align: center;
 }
+
+.separator {
+  height: 1px; /* Altura de la línea */
+  background-color: #000; /* Color de la línea (en este caso, negro) */
+  margin: 10px 0; /* Espacio alrededor de la línea */
+  margin-left: 25px;
+  margin-right: 25px;
+}

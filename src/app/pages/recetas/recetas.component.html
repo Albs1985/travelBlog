@@ -42,6 +42,8 @@
         </div>
     </form>
   </div>
+  <br>
+  <div class="separator"></div>
 
   <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
@@ -50,7 +52,7 @@
   <div *ngFor="let receta of servicioRecetas.recetas | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueReceta">
 
     <figure>
-      <h3 class="recetaTitulo">{{receta.nombre}}</h3>
+      <h2 class="recetaTitulo">{{receta.nombre}}</h2>
       <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
       <br><br>
       <img src={{receta.imagen}} alt="{{receta.imagen}}" class="img-responsive">
@@ -61,6 +63,9 @@
         <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
         <h4 class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
       </blockquote>
+
+      <div class="separator"></div>
+
       <blockquote>
         <h3 class="recetaTitulo">{{ 'app.ingredientes' | translate}}</h3>
         <div *ngFor="let ingredient of receta.ingredientes" class="bloqueReceta">
@@ -90,6 +95,8 @@
       </blockquote>
     </figure>
   </div>
+
+  <div class="separator"></div>
 
   <div class="center">
     <span *ngIf="servicioRecetas.recetas.length == 0"> {{ 'app.sinResultados' | translate}}</span>
