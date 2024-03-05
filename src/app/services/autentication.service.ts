@@ -10,7 +10,7 @@ export class AutenticationService {
   autenticado$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);//SI PONEMOS A TRUE ESTE OBJETO ESTAREMOS AUTENTICADOS SIEMPRE, SIN NECESIDAD DE VALIDAR NADA.
 
   //Forzamos el autenticado para el relato de la iaia Ana
-  autenticadoRelatoIaia$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);//SI PONEMOS A TRUE ESTE OBJETO ESTAREMOS AUTENTICADOS SIEMPRE, SIN NECESIDAD DE VALIDAR NADA.
+  autenticadoRelatoIaia$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);//SI PONEMOS A TRUE ESTE OBJETO ESTAREMOS AUTENTICADOS SIEMPRE, SIN NECESIDAD DE VALIDAR NADA.
 
   private pass : string = 'familia2019';
 
