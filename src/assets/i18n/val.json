@@ -68,14 +68,15 @@
     "recetasTitulo": "Receptes per a repetir i gaudir",
     "recetasSubtitulo1": "Per a tota la família",
     "recetasSubtitulo2": "Pastissos, Sopars, Postres ...",
-    "recetasFiltrado": "Nom / Categoria ... ",
+    "recetasFiltrado": "Nom / Categoria / Cuiner ... ",
     "ingredientes": "Ingredients",
     "utensilios": "Utensilis",
-    "pasos": "Pasos",
+    "pasos": "Passos",
     "dificultad": "Dificultat",
     "porciones": "Porcions",
     "tiempoPreparacion": "Temps de Preparació",
     "tiempoHorno": "Temps de Forn",
+    "tiempoTotal": "Temps Total",
     "minutos": "minuts"
   },
   "dibujos": {
@@ -434,7 +435,7 @@
       "paso1": "Precalfar el forn a 180 C. Agafem un bol i posem el xocolate i la mantega, i els fiquem en el microones en tandes d'1 minut, per a no cremar el xocolate. Anar traient i remoure fins a aconseguir una massa uniforme.",
       "paso2": "Agafem un altre bol i anem posant els ous, els batem amb la forqueta, i a poc a poc anem afegint: primer la farina, i després el sucre.",
       "paso3": "Una vegada tinguem les dos masses uniformes, els ajuntem en un únic bol. Ara afegim les anous. Important trossejar-les (amb les mateixes mans).",
-      "paso4": "Removem bé i ja podem posar-ho en la safata, que prèviament l'haurem *huntado amb un poc d'oli amb les mans.",
+      "paso4": "Removem bé i ja podem posar-ho en la safata, que prèviament l'haurem untat amb un poc d'oli amb les mans.",
       "paso5": "Finalment, ja podrem ficar-ho en el forn en el temps indicat. Cada forn és diferent, assegura't que no es cou massa, si no, es convertirà en bescuit."
     }
   },

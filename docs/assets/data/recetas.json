@@ -3,6 +3,7 @@
     "id": 1,
     "nombre": "Brownie, chocolate, xocolate, xocolata",
     "categoria": "Postre, dulce, dolç, pastisset, pastis, pastel, desayuno, merienda, bizcocho, biscuit",
+    "cocinero": "Albert",
     "dificultad": "2/10",
     "ingredientes": [
       1,

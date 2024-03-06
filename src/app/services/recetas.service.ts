@@ -15,6 +15,7 @@ export class RecetasService {
     id: 0,
     nombre: '',
     categoria: '',
+    cocinero: '',
     dificultad: '',
     ingredientes: [],
     utensilios: [],
@@ -48,6 +49,7 @@ export class RecetasService {
               id: 0,
               nombre: '',
               categoria: '',
+              cocinero: '',
               dificultad: '',
               ingredientes: [],
               utensilios: [],
@@ -61,6 +63,7 @@ export class RecetasService {
             this.receta.id = response[key].id;
             this.receta.nombre = response[key].nombre;
             this.receta.categoria = response[key].categoria;
+            this.receta.cocinero = response[key].cocinero;
             this.receta.dificultad = response[key].dificultad;
             this.receta.ingredientes = response[key].ingredientes;
             this.receta.utensilios = response[key].utensilios;
@@ -118,8 +121,9 @@ export class RecetasService {
     this.recetas.forEach(rec => {
       let nombreLower = rec.nombre.toLocaleLowerCase();
       let categoriaLower = rec.categoria.toLocaleLowerCase();
+      let cocineroLower = rec.cocinero.toLocaleLowerCase();
 
-      if (nombreLower.indexOf(terminoLower) >=0 || categoriaLower.indexOf(terminoLower) >=0){
+      if (nombreLower.indexOf(terminoLower) >=0 || categoriaLower.indexOf(terminoLower) >=0 || cocineroLower.indexOf(terminoLower) >=0){
         this.recetasFiltrado.push(rec);
       }
     });

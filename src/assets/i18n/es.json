@@ -68,7 +68,7 @@
     "recetasTitulo": "Recetas para repetir y disfrutar",
     "recetasSubtitulo1": "Para toda la familia",
     "recetasSubtitulo2": "Tartas, Cenas, Postres ...",
-    "recetasFiltrado": "Nombre / Categoria ... ",
+    "recetasFiltrado": "Nombre / Categoria / Cocinero ... ",
     "ingredientes": "Ingredientes",
     "utensilios": "Utensilios",
     "pasos": "Pasos",
@@ -76,6 +76,7 @@
     "dificultad": "Dificultad",
     "tiempoPreparacion": "Tiempo de Preparación",
     "tiempoHorno": "Tiempo de Horno",
+    "tiempoTotal": "Tiempo Total",
     "minutos": "minutos"
   },
   "dibujos": {
