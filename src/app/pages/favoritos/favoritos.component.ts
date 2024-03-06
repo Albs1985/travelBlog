@@ -41,8 +41,9 @@ export class FavoritosComponent implements OnInit{
     } else {
       this.palabra = $('#myInputFav').val();
     }
-    // console.log("Busca favorito por "+this.palabra);
+
     this.servicioFotos.filtrarFotosFav(this.palabra);
+    this.palabra = '';
 
   }
 

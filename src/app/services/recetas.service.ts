@@ -16,7 +16,6 @@ export class RecetasService {
     nombre: '',
     categoria: '',
     dificultad: '',
-    frase: '',
     ingredientes: [],
     utensilios: [],
     tiempoPreparacion: 0,
@@ -50,7 +49,6 @@ export class RecetasService {
               nombre: '',
               categoria: '',
               dificultad: '',
-              frase: '',
               ingredientes: [],
               utensilios: [],
               tiempoPreparacion: 0,
@@ -64,7 +62,6 @@ export class RecetasService {
             this.receta.nombre = response[key].nombre;
             this.receta.categoria = response[key].categoria;
             this.receta.dificultad = response[key].dificultad;
-            this.receta.frase = response[key].frase;
             this.receta.ingredientes = response[key].ingredientes;
             this.receta.utensilios = response[key].utensilios;
             this.receta.tiempoPreparacion = response[key].tiempoPreparacion;
@@ -117,13 +114,12 @@ export class RecetasService {
     this.recetasFiltrado = [];
 
     const terminoLower = termino.toString().toLocaleLowerCase();
+    debugger;
     this.recetas.forEach(rec => {
       let nombreLower = rec.nombre.toLocaleLowerCase();
       let categoriaLower = rec.categoria.toLocaleLowerCase();
-      let dificultadLower = rec.dificultad.toLocaleLowerCase();
-      let ingredientesLower = rec.ingredientes.toString().toLocaleLowerCase();
 
-      if (nombreLower.indexOf(terminoLower) >=0 || categoriaLower.indexOf(terminoLower) >=0 || dificultadLower.indexOf(terminoLower) >=0 || ingredientesLower.indexOf(terminoLower) >=0){
+      if (nombreLower.indexOf(terminoLower) >=0 || categoriaLower.indexOf(terminoLower) >=0){
         this.recetasFiltrado.push(rec);
       }
     });

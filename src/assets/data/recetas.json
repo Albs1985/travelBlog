@@ -1,27 +1,26 @@
 {
   "1": {
     "id": 1,
-    "nombre": "Brownie de chocolate",
-    "categoria": "Postre",
+    "nombre": "Brownie, chocolate, xocolate, xocolata",
+    "categoria": "Postre, dulce, dolç, pastisset, pastis, pastel, desayuno, merienda, bizcocho, biscuit",
     "dificultad": "2/10",
-    "frase": "",
     "ingredientes": [
-      "Chocolate negro para fundir: 300gr",
-      "Mantequilla con sal: 150gr",
-      "Huevos: 4",
-      "Azúcar: Un vaso",
-      "Harina: Medio vaso",
-      "Nueces: 100 gr (al gusto)",
-      "Aceite: (para huntar el molde)"
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
     ],
     "utensilios": [
-      "Tenedor",
-      "Bandeja metal",
-      "2 Bols grandes",
-      "Horno",
-      "Microondas"
+      1,
+      2,
+      3,
+      4,
+      5
     ],
-    "tiempoPreparacion": 20,
+    "tiempoPreparacion": 15,
     "tiempoHorno": 18,
     "temperatura": "180 C",
     "numPasos": [

@@ -5,13 +5,13 @@ ul {
 li {
   margin-bottom: 10px;
 }
-.nombre {
+/* .nombre {
   font-weight: bold;
 }
 .apodos {
   margin-left: 20px;
   color: #666;
-}
+} */
 
 .tituloRecetas {
   margin-left: 25px;
@@ -26,6 +26,14 @@ li {
   padding: 0px;
   width: 30px;
   height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}
+
+.iconosCategoria {
+  padding: 0px;
+  width: 50px;
+  height: 50px;
   align-self: center;
   margin-top: -10px;
 }
@@ -137,4 +145,10 @@ li {
   margin: 10px 0; /* Espacio alrededor de la línea */
   margin-left: 25px;
   margin-right: 25px;
+}
+
+.imagenCentrada {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
 }

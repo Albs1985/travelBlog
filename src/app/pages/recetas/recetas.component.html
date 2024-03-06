@@ -52,51 +52,59 @@
   <div *ngFor="let receta of servicioRecetas.recetas | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueReceta">
 
     <figure>
-      <h2 class="recetaTitulo">{{receta.nombre}}</h2>
-      <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
-      <br><br>
-      <img src={{receta.imagen}} alt="{{receta.imagen}}" class="img-responsive">
-      <br>
-      <blockquote>
-        <h4 class="recetaTitulo">{{receta.porciones}} {{ 'app.porciones' | translate}}</h4>
-        <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
-        <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
-        <h4 class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
-      </blockquote>
+      <div class="center">
+        <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
+        <img src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
+        <br>
+        <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
+        <br><br>
+        <div class="imagenCentrada">
+          <img src={{receta.imagen}} alt="{{receta.imagen}}" class="img-responsive">
+        </div>
+        <br>
+        <blockquote>
+          <h4 class="recetaTitulo">{{receta.porciones}} {{ 'app.porciones' | translate}}</h4>
+          <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
+          <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
+          <h4 class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
+        </blockquote>
+      </div>
 
       <div class="separator"></div>
 
       <blockquote>
         <h3 class="recetaTitulo">{{ 'app.ingredientes' | translate}}</h3>
-        <div *ngFor="let ingredient of receta.ingredientes" class="bloqueReceta">
+        <div *ngFor="let numIngrediente of receta.ingredientes" class="bloqueReceta">
           <ul class="ingrediente">
-            <li>&nbsp;{{ingredient}}</li>
+            <li>&nbsp;{{ 'recetas.'+receta.id+'.ingrediente'+numIngrediente | translate}}</li>
           </ul>
         </div>
       </blockquote>
 
       <!-- <blockquote>
         <h3 class="recetaTitulo">{{ 'app.utensilios' | translate}}</h3>
-        <div *ngFor="let utensilio of receta.utensilios" class="bloqueReceta">
+        <div *ngFor="let numUtensilio of receta.utensilios" class="bloqueReceta">
           <ul class="utensilio">
-            <li>&nbsp;{{utensilio}}</li>
+            <li>&nbsp;{{ 'recetas.'+receta.id+'.utensilio'+numUtensilio | translate}}</li>
           </ul>
         </div>
       </blockquote> -->
 
-      <blockquote>
-        <h3 class="recetaTitulo">{{ 'app.pasos' | translate}}</h3>
-        <div *ngFor="let paso of receta.numPasos" class="bloqueReceta">
-          <ul class="pasos">
-            <h4 class="center">{{paso}}</h4>
-            <li>&nbsp;{{ 'recetas.'+receta.id+'.paso'+paso | translate}}</li>
-          </ul>
-        </div>
-      </blockquote>
+      <div class="center">
+        <blockquote>
+          <h3 class="recetaTitulo">{{ 'app.pasos' | translate}}</h3>
+          <div *ngFor="let paso of receta.numPasos" class="bloqueReceta">
+            <ul class="pasos">
+              <h4 class="center">{{paso}}</h4>
+              <li>&nbsp;{{ 'recetas.'+receta.id+'.paso'+paso | translate}}</li>
+            </ul>
+          </div>
+        </blockquote>
+      </div>
     </figure>
   </div>
 
-  <div class="separator"></div>
+  <div *ngIf="servicioRecetas.recetas.length > 0" class="separator"></div>
 
   <div class="center">
     <span *ngIf="servicioRecetas.recetas.length == 0"> {{ 'app.sinResultados' | translate}}</span>

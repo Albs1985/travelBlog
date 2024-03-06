@@ -3,7 +3,6 @@ export interface Receta{
     nombre: string;
     categoria: string;
     dificultad: string;
-    frase: string;
     ingredientes: string[];
     utensilios: string[];
     tiempoPreparacion: number;

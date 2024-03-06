@@ -30,6 +30,7 @@ export class RecetasComponent {
       this.palabra = $('#myInputReceta').val();
     }
     this.servicioRecetas.buscarRecetas(this.palabra);
+    this.palabra = '';
   }
 
 }
