@@ -79,7 +79,8 @@
     "tiempoTotal": "Tiempo Total",
     "minutos": "minutos",
     "especialidad": "Especialista",
-    "categoriaRecetas": "Selecciona una categoría"
+    "categoriaRecetas": "Selecciona una categoría",
+    "listaRecetas": "O mira la lista"
   },
   "dibujos": {
     "1": {
@@ -258,6 +259,7 @@
     "ciudad": "Ciudad",
     "nieve": "Nieve",
     "buscar": "Buscar",
+    "buscarViajes": "Buscar Viajes",
     "informacion": "Información",
     "palabra": "Filtrar",
     "mensajeCabeceraAnyos": "Viajes por año",

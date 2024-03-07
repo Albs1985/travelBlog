@@ -79,7 +79,8 @@
     "tiempoTotal": "Temps Total",
     "minutos": "minuts",
     "especialidad": "Especialista",
-    "categoriaRecetas": "Selecciona una categoria"
+    "categoriaRecetas": "Selecciona una categoria",
+    "listaRecetas": "O mira la llista"
   },
   "dibujos": {
     "1": {
@@ -258,6 +259,7 @@
     "ciudad": "Ciutat",
     "nieve": "Neu",
     "buscar": "Busca",
+    "buscarViajes": "Buscar Viatges",
     "informacion": "Informació",
     "palabra": "Filtrar",
     "mensajeCabeceraAnyos": "Viatges per any",
