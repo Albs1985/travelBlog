@@ -67,7 +67,7 @@
     "login": "Inicia la sessió",
     "recetasTitulo": "Receptes per a repetir i gaudir",
     "recetasSubtitulo1": "Per a tota la família",
-    "recetasSubtitulo2": "Pastissos, Sopars, Postres ...",
+    "recetasSubtitulo2": "Dolços, Freds, Calents ...",
     "recetasFiltrado": "Nom / Categoria / Cuiner ... ",
     "ingredientes": "Ingredients",
     "utensilios": "Utensilis",
@@ -77,7 +77,9 @@
     "tiempoPreparacion": "Temps de Preparació",
     "tiempoHorno": "Temps de Forn",
     "tiempoTotal": "Temps Total",
-    "minutos": "minuts"
+    "minutos": "minuts",
+    "especialidad": "Especialista",
+    "categoriaRecetas": "Selecciona una categoria"
   },
   "dibujos": {
     "1": {

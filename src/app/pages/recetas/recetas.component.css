@@ -5,13 +5,6 @@ ul {
 li {
   margin-bottom: 10px;
 }
-/* .nombre {
-  font-weight: bold;
-}
-.apodos {
-  margin-left: 20px;
-  color: #666;
-} */
 
 .tituloRecetas {
   margin-left: 25px;
@@ -24,10 +17,17 @@ li {
 
 .iconosImgFav {
   padding: 0px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   align-self: center;
-  margin-top: -10px;
+}
+
+.iconosImgFav2 {
+  padding: 0px;
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  margin-top: -20px;
 }
 
 .iconosCategoria {
@@ -151,4 +151,59 @@ li {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
+}
+
+.cuerpoImagenes {
+  margin-top: 25px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+}
+
+.icon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    -o-transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    -moz-transform: scale3d(1.05, 1.05, 1.05);
+    -ms-transform: scale3d(1.05, 1.05, 1.05);
+    -o-transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }

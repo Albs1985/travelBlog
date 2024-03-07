@@ -117,7 +117,6 @@ export class RecetasService {
     this.recetasFiltrado = [];
 
     const terminoLower = termino.toString().toLocaleLowerCase();
-    debugger;
     this.recetas.forEach(rec => {
       let nombreLower = rec.nombre.toLocaleLowerCase();
       let categoriaLower = rec.categoria.toLocaleLowerCase();

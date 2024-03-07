@@ -4,7 +4,7 @@
    {{ 'app.recetasTitulo' | translate }}
 </h2>
 <h3 class="subTituloRecetas">
-    <img src="assets/icons/frito.png" alt="" class="iconosImgFav animated rollIn">
+    <img src="assets/icons/magdalena.png" alt="" class="iconosImgFav2 animated rollIn">
    {{ 'app.recetasSubtitulo1' | translate }}
 </h3>
 <h4 class="subTituloRecetas">
@@ -36,13 +36,26 @@
       <form id="busquedaForm">
         <div id="busquedaForm" class="form-group">
             <input id="myInputReceta" type="text" class="form-control gradiente" placeholder="{{ 'app.recetasFiltrado' | translate }}">
-                <button id="botonLupa" (click)="buscarRecetas()">
+                <button id="botonLupa" (click)="buscarRecetas('lupa')">
                     <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
                 </button>
         </div>
     </form>
   </div>
   <br>
+
+  <h3 class="center">
+    {{'app.categoriaRecetas' | translate}}
+  </h3>
+  <div class="cuerpoImagenes">
+    <div class="icon-container">
+      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
+      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frío')"><img src="assets/icons/ingrediente.png" alt="cena" class="icon animated fadeIn pulse"></a></div>
+      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/frito.png" alt="ensalada" class="icon animated fadeIn pulse"></a></div>
+    </div>
+  </div>
+  <br><br>
+
   <div class="separator"></div>
 
   <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
@@ -54,7 +67,9 @@
     <figure>
       <div class="center">
         <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
-        <img src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('postre') >= 0" src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('cena') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('ensalada') >= 0" src="assets/icons/ingredientes.png" alt="" class="iconosCategoria animated rollIn">
         <br>
         <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
         <br><br>
@@ -63,11 +78,12 @@
         </div>
         <br>
         <blockquote>
+          <h4 class="recetaTitulo">{{ 'app.especialidad' | translate}}: <b>{{receta.cocinero}}</b></h4>
           <h4 class="recetaTitulo">{{receta.porciones}} {{ 'app.porciones' | translate}}</h4>
           <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
-          <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: {{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
+          <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
         </blockquote>
       </div>
 
@@ -93,7 +109,7 @@
 
       <div class="center">
         <blockquote>
-          <h3 class="recetaTitulo">{{ 'app.pasos' | translate}}</h3>
+          <h3>{{ 'app.pasos' | translate}}</h3>
           <div *ngFor="let paso of receta.numPasos" class="bloqueReceta">
             <ul class="pasos">
               <h4 class="center">{{paso}}</h4>

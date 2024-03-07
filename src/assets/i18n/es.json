@@ -67,7 +67,7 @@
     "login": "Inicia la sesión",
     "recetasTitulo": "Recetas para repetir y disfrutar",
     "recetasSubtitulo1": "Para toda la familia",
-    "recetasSubtitulo2": "Tartas, Cenas, Postres ...",
+    "recetasSubtitulo2": "Dulces, Fríos, Calientes ...",
     "recetasFiltrado": "Nombre / Categoria / Cocinero ... ",
     "ingredientes": "Ingredientes",
     "utensilios": "Utensilios",
@@ -77,7 +77,9 @@
     "tiempoPreparacion": "Tiempo de Preparación",
     "tiempoHorno": "Tiempo de Horno",
     "tiempoTotal": "Tiempo Total",
-    "minutos": "minutos"
+    "minutos": "minutos",
+    "especialidad": "Especialista",
+    "categoriaRecetas": "Selecciona una categoría"
   },
   "dibujos": {
     "1": {

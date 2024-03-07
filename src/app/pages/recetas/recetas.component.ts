@@ -23,12 +23,18 @@ export class RecetasComponent {
     this.servicioRecetas.cargarRecetas();
   }
 
-  buscarRecetas(){
-    if($('#myInputReceta').val() == ''){
-      this.servicioRecetas.cargarRecetas();
-    } else {
-      this.palabra = $('#myInputReceta').val();
+  buscarRecetas(tipo: any){
+    console.log(tipo);
+    if (tipo === 'lupa'){
+      if($('#myInputReceta').val() == ''){
+        this.servicioRecetas.cargarRecetas();
+      } else {
+        this.palabra = $('#myInputReceta').val();
+      }
+    }else{
+      this.palabra = tipo;
     }
+
     this.servicioRecetas.buscarRecetas(this.palabra);
     this.palabra = '';
   }
