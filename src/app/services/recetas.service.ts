@@ -79,7 +79,7 @@ export class RecetasService {
 
           this.recetas = array;
 
-          // this.cargandoRecetas$.next(false);
+          this.cargandoRecetas$.next(false);
 
           resolve(this.recetas);
 
@@ -129,7 +129,7 @@ export class RecetasService {
 
     this.recetas = this.recetasFiltrado;
 
-    // this.cargandoRecetas$.next(false);
+    this.cargandoRecetas$.next(false);
 
   }
 }
