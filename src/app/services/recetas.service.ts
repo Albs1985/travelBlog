@@ -24,7 +24,7 @@ export class RecetasService {
     temperatura: 0,
     numPasos: [],
     imagen: '',
-    porciones: 0
+    raciones: 0
   };
 
   recetasJSON = "assets/data/recetas.json";
@@ -58,7 +58,7 @@ export class RecetasService {
               temperatura: 0,
               numPasos: [],
               imagen: '',
-              porciones: 0
+              raciones: 0
             };
             this.receta.id = response[key].id;
             this.receta.nombre = response[key].nombre;
@@ -71,7 +71,7 @@ export class RecetasService {
             this.receta.tiempoHorno = response[key].tiempoHorno;
             this.receta.temperatura = response[key].temperatura;
             this.receta.numPasos = response[key].numPasos;
-            this.receta.porciones = response[key].porciones;
+            this.receta.raciones = response[key].raciones;
             this.receta.imagen = response[key].imagen;
 
             array.push(this.receta);

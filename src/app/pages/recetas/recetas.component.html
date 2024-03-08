@@ -50,8 +50,8 @@
   <div class="cuerpoImagenes">
     <div class="icon-container">
       <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>&nbsp;
-      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frío')"><img src="assets/icons/ingrediente.png" alt="cena" class="icon animated fadeIn pulse"></a></div>&nbsp;
-      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/frito.png" alt="ensalada" class="icon animated fadeIn pulse"></a></div>
+      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>&nbsp;
+      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
     </div>
   </div>
   <br>
@@ -72,7 +72,7 @@
       <div class="center">
         <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
         <img *ngIf="receta.categoria.indexOf('postre') >= 0" src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('cena') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
         <img *ngIf="receta.categoria.indexOf('ensalada') >= 0" src="assets/icons/ingredientes.png" alt="" class="iconosCategoria animated rollIn">
         <br>
         <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
@@ -83,10 +83,10 @@
         <br>
         <blockquote>
           <h4 class="recetaTitulo">{{ 'app.especialidad' | translate}}: <b>{{receta.cocinero}}</b></h4>
-          <h4 class="recetaTitulo">{{receta.porciones}} {{ 'app.porciones' | translate}}</h4>
+          <h4 class="recetaTitulo">{{receta.raciones}} {{ 'app.raciones' | translate}}</h4>
           <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
-          <h4 class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
+          <h4 *ngIf="receta.tiempoHorno > 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
         </blockquote>
       </div>

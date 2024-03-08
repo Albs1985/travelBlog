@@ -72,7 +72,7 @@
     "ingredientes": "Ingredientes",
     "utensilios": "Utensilios",
     "pasos": "Pasos",
-    "porciones": "Porciones",
+    "raciones": "Raciones",
     "dificultad": "Dificultad",
     "tiempoPreparacion": "Tiempo de Preparación",
     "tiempoHorno": "Tiempo de Horno",
@@ -442,6 +442,21 @@
       "paso4": "Removemos bien y ya podemos ponerlo en la bandeja, que previamente la habremos huntado con un poco de aceite con las manos.",
       "paso5": "Por último, ya podremos meterlo en el horno en el tiempo indicado. Cada horno es diferente, asegúrate que no se cuece demasiado, si no, se convertirá en bizcocho.",
       "paso6": "Extra: Si quieres sorprender a tus comensales, añade una bola de helado de vainilla, ponla sobre el cuadrado de brownie, y échale chocolate caliente fundido por encima. La combinación de frío-calor es alucinante..."
+    },
+    "2": {
+      "frase": "Para los días de calor",
+      "nombre": "Ensalada de queso Feta",
+      "categoria": "Ensalada",
+      "ingrediente1": "Rúcula (1 bolsa)",
+      "ingrediente2": "Garbanzos: 1/2 bote pequeño",
+      "ingrediente3": "Queso Feta (unos 16-20 dados)",
+      "ingrediente4": "Aceite, sal y pimienta",
+      "ingrediente5": "Extra: 1/2 calabacín plancha",
+      "utensilio1": "Bol",
+      "paso1": "Sacar la rúcula de la bolsa y separar el contenido en dos platos hondos.",
+      "paso2": "Vaciar medio bote de garbanzos en un colador para limpiarlos bajo el grifo. Después de escurrirlos, depositar la mitad en cada plato.",
+      "paso3": "Coger los dados de queso feta y trozearlos sobre la rúcula y los garbanzos, la mitad en cada plato. Y listo! Solo falta aliñar con sal, aceite y pimienta.",
+      "paso4": "Extra: Si queremos darle más consistencia al plato podemos añadir el calabacín plancha, en rodajas finas, para dar ese efecto de frío-calor."
     }
   },
   "2023-06-10": {

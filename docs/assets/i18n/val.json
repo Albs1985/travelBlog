@@ -73,7 +73,7 @@
     "utensilios": "Utensilis",
     "pasos": "Passos",
     "dificultad": "Dificultat",
-    "porciones": "Porcions",
+    "raciones": "Racions",
     "tiempoPreparacion": "Temps de Preparació",
     "tiempoHorno": "Temps de Forn",
     "tiempoTotal": "Temps Total",
@@ -442,6 +442,21 @@
       "paso4": "Removem bé i ja podem posar-ho en la safata, que prèviament l'haurem untat amb un poc d'oli amb les mans.",
       "paso5": "Finalment, ja podrem ficar-ho en el forn en el temps indicat. Cada forn és diferent, assegura't que no es cou massa, si no, es convertirà en bescuit.",
       "paso6": "Extra: Si vols sorprendre els teus comensals, afig una bola de gelat de vainilla, posa-la sobre el quadrat de brownie, i tira-li xocolate calent fos per damunt. La combinació de freda-calor és al·lucinant..."
+    },
+    "2": {
+      "frase": "Per als dies de calor",
+      "nombre": "Amanida de formatge feta",
+      "categoria": "Amanida",
+      "ingrediente1": "Ruca (1 bossa)",
+      "ingrediente2": "Cigrons: 1/2 pot xicotet",
+      "ingrediente3": "Formatge feta (uns 16-20 daus)",
+      "ingrediente4": "Oli, sal i pebre",
+      "ingrediente5": "Extra: 1/2 carabasseta planxa",
+      "utensilio1": "Bol",
+      "paso1": "Traure la ruca de la bossa i separar el contingut en dos plats profunds.",
+      "paso2": "Buidar mig pot de cigrons en un colador per a netejar-los sota l'aixeta. Després d'escórrer-los, depositar la mitat en cada plat.",
+      "paso3": "Agafar els daus de formatge feta i *trozearlos sobre la ruca i els cigrons, la mitat en cada plat. I llest! Només falta amanir amb sal, oli i pebre.",
+      "paso4": "Extra: Si volem donar-li més consistència al plat podem afegir la carabasseta planxa, en rodanxes fines, per a donar eixe efecte de freda-calor."
     }
   },
   "2023-06-10": {

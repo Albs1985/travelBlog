@@ -4,7 +4,7 @@
     "nombre": "Brownie, chocolate, xocolate, xocolata",
     "categoria": "postre, dulce, dolç, pastisset, pastis, pastel, desayuno, desdejuny, merienda, berenar, bizcocho, biscuit, tarta",
     "cocinero": "Albert",
-    "dificultad": "2/10",
+    "dificultad": "4/10",
     "ingredientes": [
       1,
       2,
@@ -33,6 +33,34 @@
       6
     ],
     "imagen": "assets/images/recetas/brownie.jpg",
-    "porciones": 12
+    "raciones": 12
+  },
+  "2": {
+    "id": 2,
+    "nombre": "ensalada, amanida, garbanzos, cigrons, rúcula, rucula, ruca, queso, feta, formatge",
+    "categoria": "ensalada, frío, frio, fría, fria, fred, freda, amanida, dinar, sopar, lleuger, ligero, fresco, fresca",
+    "cocinero": "Alba",
+    "dificultad": "3/10",
+    "ingredientes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "utensilios": [
+      1
+    ],
+    "tiempoPreparacion": 10,
+    "tiempoHorno": 0,
+    "temperatura": 0,
+    "numPasos": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "imagen": "assets/images/recetas/ensaladaGarbanzosRuculaFeta.jpg",
+    "raciones": 2
   }
 }

@@ -11,5 +11,5 @@ export interface Receta{
     temperatura: number;
     numPasos: string[];
     imagen: string;
-    porciones: number;
+    raciones: number;
 }
