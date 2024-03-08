@@ -62,21 +62,16 @@
   <br>
 
   <div class="separator"></div>
-
-  <div *ngIf="this.palabra !== ''">
-    <h3 class="center">
-      {{'app.recetas' | translate}}
-    </h3>
-    <div *ngIf="this.palabra === 'dulce'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
-    <div *ngIf="this.palabra === 'frio'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
-    <div *ngIf="this.palabra === 'caliente'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
-    <div *ngIf="this.palabra === ''" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/lista.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
-  </div>
   <br>
 
   <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
   </div>
+  <br>
+
+  <div *ngIf="this.categoria === 'dulce'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
+  <div *ngIf="this.categoria === 'frio'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
+  <div *ngIf="this.categoria === 'caliente'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
 
   <div *ngFor="let receta of servicioRecetas.recetas | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueReceta">
 
@@ -99,9 +94,9 @@
           <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
           <h4 *ngIf="receta.tiempoHorno > 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
-          <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
           <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
           <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
+          <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
         </blockquote>
       </div>
 

@@ -16,6 +16,7 @@ export class RecetasComponent {
   pageSize: number = 1; // Elementos por página
   maxSizeDisplay: number = 1;
   palabra : any = '';
+  categoria : any = '';
 
   constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioRecetas: RecetasService, public authenticationService: AutenticationService){
     this.maxSizeDisplay = 1;
@@ -25,6 +26,7 @@ export class RecetasComponent {
 
   buscarRecetas(tipo: any){
     console.log(tipo);
+    this.categoria = tipo;
     if (tipo === ''){
       if($('#myInputReceta').val() == ''){
         this.servicioRecetas.cargarRecetas();
