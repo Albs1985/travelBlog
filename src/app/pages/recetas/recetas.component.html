@@ -49,9 +49,12 @@
   </h3>
   <div class="cuerpoImagenes">
     <div class="icon-container">
-      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>&nbsp;
-      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>&nbsp;
-      <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria === 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastelSelected.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria !== 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria === 'frio'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingredienteSelected.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria !== 'frio'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria === 'caliente'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/fritoSelected.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria !== 'caliente'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
     </div>
   </div>
   <br>
@@ -68,17 +71,18 @@
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
   </div>
   <br>
-
-  <div *ngIf="this.categoria === 'dulce'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
-  <div *ngIf="this.categoria === 'frio'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
-  <div *ngIf="this.categoria === 'caliente'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+  <!-- <div class="imagenCentrada">
+    <div *ngIf="this.categoria === 'dulce'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
+    <div *ngIf="this.categoria === 'frio'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
+    <div *ngIf="this.categoria === 'caliente'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+  </div> -->
 
   <div *ngFor="let receta of servicioRecetas.recetas | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueReceta">
 
     <figure>
       <div class="center">
         <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
-        <img *ngIf="receta.categoria.indexOf('postre') >= 0" src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
         <img *ngIf="receta.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
         <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="" class="iconosCategoria animated rollIn">
         <br>

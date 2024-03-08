@@ -172,13 +172,17 @@ li {
 }
 
 .icon {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.separaImagen {
+  margin: 15px;
 }
 
 @keyframes pulse {
