@@ -82,9 +82,9 @@
     <figure>
       <div class="center">
         <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
-        <img *ngIf="receta.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="dulce" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="frio" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="caliente" class="iconosCategoria animated rollIn">
         <br>
         <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
         <br><br>
@@ -137,20 +137,21 @@
       </div>
     </figure>
   </div>
-
+  <br>
   <div *ngIf="servicioRecetas.recetas.length > 0" class="separator"></div>
 
   <div class="center">
+    <br>
     <span *ngIf="servicioRecetas.recetas.length == 0"> {{ 'app.sinResultados' | translate}}</span>
   </div>
-
+  <br>
   <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
   </div>
 
 </div><!-- de la autenticacion -->
 
-<br>
+
 <br>
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>

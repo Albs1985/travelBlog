@@ -25,7 +25,8 @@ export class RecetasComponent {
   }
 
   buscarRecetas(tipo: any){
-    console.log(tipo);
+    this.p = 1; // Inicializo la página
+
     this.categoria = tipo;
     if (tipo === ''){
       if($('#myInputReceta').val() == ''){
@@ -37,10 +38,8 @@ export class RecetasComponent {
       this.palabra = tipo;
     }
 
-    console.log(this.palabra);
     this.servicioRecetas.buscarRecetas(this.palabra);
     this.palabra = '';
-    console.log(this.palabra);
   }
 
 }
