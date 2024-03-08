@@ -65,6 +65,7 @@
     "contrasenyaKO": "Contraseña incorrecta",
     "contrasenyaVisible": "Mostrar/ocultar contraseña",
     "login": "Inicia la sesión",
+    "recetas": "Recetas",
     "recetasTitulo": "Recetas para repetir y disfrutar",
     "recetasSubtitulo1": "Para toda la familia",
     "recetasSubtitulo2": "Dulces, Fríos, Calientes ...",
@@ -455,7 +456,7 @@
       "utensilio1": "Bol",
       "paso1": "Sacar la rúcula de la bolsa y separar el contenido en dos platos hondos.",
       "paso2": "Vaciar medio bote de garbanzos en un colador para limpiarlos bajo el grifo. Después de escurrirlos, depositar la mitad en cada plato.",
-      "paso3": "Coger los dados de queso feta y trozearlos sobre la rúcula y los garbanzos, la mitad en cada plato. Y listo! Solo falta aliñar con sal, aceite y pimienta.",
+      "paso3": "Coger los dados de queso feta y trocearlos sobre la rúcula y los garbanzos, la mitad en cada plato. Y listo! Solo falta aliñar con sal, aceite y pimienta.",
       "paso4": "Extra: Si queremos darle más consistencia al plato podemos añadir el calabacín plancha, en rodajas finas, para dar ese efecto de frío-calor."
     }
   },

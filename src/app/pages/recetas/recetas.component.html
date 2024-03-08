@@ -36,7 +36,7 @@
       <form id="busquedaForm">
         <div id="busquedaForm" class="form-group">
             <input id="myInputReceta" type="text" class="form-control gradiente" placeholder="{{ 'app.recetasFiltrado' | translate }}">
-                <button id="botonLupa" (click)="buscarRecetas('lupa')">
+                <button id="botonLupa" (click)="buscarRecetas('')">
                     <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
                 </button>
         </div>
@@ -58,9 +58,21 @@
   <h3 class="center">
     {{'app.listaRecetas' | translate}}
   </h3>
-  <br><br>
+  <!-- <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('lupa')"><img src="assets/icons/lista.png" alt="caliente" class="icon animated fadeIn pulse"></a></div> -->
+  <br>
 
   <div class="separator"></div>
+
+  <div *ngIf="this.palabra !== ''">
+    <h3 class="center">
+      {{'app.recetas' | translate}}
+    </h3>
+    <div *ngIf="this.palabra === 'dulce'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
+    <div *ngIf="this.palabra === 'frio'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
+    <div *ngIf="this.palabra === 'caliente'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+    <div *ngIf="this.palabra === ''" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/lista.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+  </div>
+  <br>
 
   <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
@@ -72,8 +84,8 @@
       <div class="center">
         <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
         <img *ngIf="receta.categoria.indexOf('postre') >= 0" src="assets/icons/pastel.png" alt="" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('ensalada') >= 0" src="assets/icons/ingredientes.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="" class="iconosCategoria animated rollIn">
         <br>
         <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
         <br><br>
@@ -88,6 +100,8 @@
           <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
           <h4 *ngIf="receta.tiempoHorno > 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
+          <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
+          <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
         </blockquote>
       </div>
 

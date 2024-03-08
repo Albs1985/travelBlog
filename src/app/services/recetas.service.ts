@@ -98,14 +98,16 @@ export class RecetasService {
       palabra = termino;
     }
 
+    console.log(palabra);
+
     return new Promise( (resolve, reject) => {
-      if (this.recetas.length === 0){
+      // if (this.recetas.length === 0){
         this.cargarRecetas().then(() => {
           resolve(this.filtrarRecetas(palabra));
         });
-      }else{
-        resolve(this.filtrarRecetas(palabra));
-      }
+      // }else{
+        // resolve(this.filtrarRecetas(palabra));
+      // }
 
     });
 
@@ -121,6 +123,10 @@ export class RecetasService {
       let nombreLower = rec.nombre.toLocaleLowerCase();
       let categoriaLower = rec.categoria.toLocaleLowerCase();
       let cocineroLower = rec.cocinero.toLocaleLowerCase();
+
+      console.log(nombreLower);
+      console.log(categoriaLower);
+      console.log(cocineroLower);
 
       if (nombreLower.indexOf(terminoLower) >=0 || categoriaLower.indexOf(terminoLower) >=0 || cocineroLower.indexOf(terminoLower) >=0){
         this.recetasFiltrado.push(rec);

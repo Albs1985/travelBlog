@@ -25,7 +25,7 @@ export class RecetasComponent {
 
   buscarRecetas(tipo: any){
     console.log(tipo);
-    if (tipo === 'lupa'){
+    if (tipo === ''){
       if($('#myInputReceta').val() == ''){
         this.servicioRecetas.cargarRecetas();
       } else {
@@ -35,8 +35,10 @@ export class RecetasComponent {
       this.palabra = tipo;
     }
 
+    console.log(this.palabra);
     this.servicioRecetas.buscarRecetas(this.palabra);
     this.palabra = '';
+    console.log(this.palabra);
   }
 
 }
