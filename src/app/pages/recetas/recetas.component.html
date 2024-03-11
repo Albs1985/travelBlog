@@ -49,12 +49,12 @@
   </h3>
   <div class="cuerpoImagenes">
     <div class="icon-container">
-      <div *ngIf="this.categoria === 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastelSelected.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
-      <div *ngIf="this.categoria !== 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
-      <div *ngIf="this.categoria === 'frio'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingredienteSelected.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria === 'frio'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingredienteSelected.png" alt="frio" class="iconosCategoriaSelec animated fadeIn pulse"></a></div>
       <div *ngIf="this.categoria !== 'frio'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('frio')"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
-      <div *ngIf="this.categoria === 'caliente'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/fritoSelected.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria === 'caliente'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/fritoSelected.png" alt="caliente" class="iconosCategoriaSelec animated fadeIn pulse"></a></div>
       <div *ngIf="this.categoria !== 'caliente'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('caliente')"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria === 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastelSelected.png" alt="postre" class="iconosCategoriaSelec animated fadeIn pulse"></a></div>
+      <div *ngIf="this.categoria !== 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
     </div>
   </div>
   <br>
@@ -82,9 +82,9 @@
     <figure>
       <div class="center">
         <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
-        <img *ngIf="receta.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="dulce" class="iconosCategoria animated rollIn">
         <img *ngIf="receta.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="frio" class="iconosCategoria animated rollIn">
         <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="caliente" class="iconosCategoria animated rollIn">
+        <img *ngIf="receta.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="dulce" class="iconosCategoria animated rollIn">
         <br>
         <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
         <br><br>
@@ -97,9 +97,11 @@
           <h4 class="recetaTitulo">{{receta.raciones}} {{ 'app.raciones' | translate}}</h4>
           <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
           <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
-          <h4 *ngIf="receta.tiempoHorno > 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
+          <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
           <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
+          <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" class="recetaTitulo">{{ 'app.tiempoMicro' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
           <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
+          <img *ngIf="receta.tiempoHorno < 0 && receta.categoria.indexOf('frio') >= 0" src="assets/icons/frio.png" alt="frio" class="iconosCategoria animated rollIn">
           <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
         </blockquote>
       </div>

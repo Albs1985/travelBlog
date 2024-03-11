@@ -36,7 +36,14 @@ li {
   height: 50px;
   align-self: center;
   margin-left: 25px;
-  /* margin-top: -10px; */
+}
+
+.iconosCategoriaSelec {
+  padding: 0px;
+  width: 90px;
+  height: 90px;
+  align-self: center;
+  margin-left: 25px;
 }
 
 .divRight {

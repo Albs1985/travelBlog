@@ -77,6 +77,7 @@
     "raciones": "Racions",
     "tiempoPreparacion": "Temps de Preparació",
     "tiempoHorno": "Temps de Forn",
+    "tiempoMicro": "Temps de Microones",
     "tiempoTotal": "Temps Total",
     "minutos": "minuts",
     "especialidad": "Especialista",
@@ -146,6 +147,10 @@
     "10": {
       "frase": "Sicaua",
       "explicacion": "Secadora"
+    },
+    "11": {
+      "frase": "A mil colora papi!",
+      "explicacion": "A mil por hora papi! Para que acelerase."
     }
   },
   "relatoAlbaiAlbert": {
@@ -458,6 +463,51 @@
       "paso2": "Buidar mig pot de cigrons en un colador per a netejar-los sota l'aixeta. Després d'escórrer-los, depositar la mitat en cada plat.",
       "paso3": "Agafar els daus de formatge feta i trossejar-los sobre la ruca i els cigrons, la mitat en cada plat. I llest! Només falta amanir amb sal, oli i pebre.",
       "paso4": "Extra: Si volem donar-li més consistència al plat podem afegir la carabasseta planxa, en rodanxes fines, per a donar eixe efecte de freda-calor."
+    },
+    "3": {
+      "frase": "Per als més viciosos del dolcet!",
+      "nombre": "Dònut Vegà",
+      "categoria": "Postres dolces",
+      "ingrediente1": "2 cullerades de farina d'ametlla",
+      "ingrediente2": "1 cullerada de iogurt de coco",
+      "ingrediente3": "1 cullerada de cacau en *pols 0%",
+      "ingrediente4": "2 culleradetes de erititrol",
+      "ingrediente5": "1 culleradeta de rent",
+      "utensilio1": "Bol",
+      "paso1": "Remoure tot junt en l'orde que apareixen els ingredients.",
+      "paso2": "Posar sobre un motle en forma de dònut redó.",
+      "paso3": "Calfar en el microones durant el temps indicat.",
+      "paso4": "I llest per a menjar!"
+    },
+    "4": {
+      "frase": "Per als berenars de la família",
+      "nombre": "Coca de Llanda",
+      "categoria": "Berenar dolç",
+      "ingrediente1": "2 iogurts",
+      "ingrediente2": "4 ous",
+      "ingrediente3": "2 d'oli de gira-sol",
+      "ingrediente4": "4 farina integral",
+      "ingrediente5": "2 sucre de canya",
+      "utensilio1": "Bol",
+      "paso1": "Precalfar el forn a la temperatura indicada. Batre bé els ous en un bol gran, i posar després els iogurts, i continuar removent.",
+      "paso2": "Prenent com a referència l'envàs del iogurt, posar 4 gotets de farina integral, i remoure fins a aconseguir una massa uniforme.",
+      "paso3": "Afegir ara el sucre de canya, i remoure bé, per a finalment afegir les dos d'oli, que permetran que siga més blana la massa.",
+      "paso4": "Una vegada remogut, podem acabar de remoure amb la batedora, perquè quede millor.",
+      "paso5": "Quan tinguem la massa ben remoguda, la posarem en la safata de metall.",
+      "paso6": "Extra: Se li pot afegir llavors de xocolate a la massa, o sucre o canyella per damunt una vegada la tinguem per a ficar en el forn."
+    },
+    "5": {
+      "frase": "Per als que sempre tenen un lloc per al postre",
+      "nombre": "Tòfones",
+      "categoria": "Postre dulce",
+      "ingrediente1": "Una tassa de xocolata crua",
+      "ingrediente2": "Mitja tassa de iogurt de coco",
+      "ingrediente3": "Cobertura coco ratllat",
+      "utensilio1": "Bol",
+      "paso1": "Fondre el xocolate i barrejar amb el iogurt",
+      "paso2": "Refredar i donar forma.",
+      "paso3": "Posar el coco ratllat per damunt",
+      "paso4": "I a gaudir!!"
     }
   },
   "2023-06-10": {

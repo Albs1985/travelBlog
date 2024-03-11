@@ -77,6 +77,7 @@
     "dificultad": "Dificultad",
     "tiempoPreparacion": "Tiempo de Preparación",
     "tiempoHorno": "Tiempo de Horno",
+    "tiempoMicro": "Tiempo de Microondas",
     "tiempoTotal": "Tiempo Total",
     "minutos": "minutos",
     "especialidad": "Especialista",
@@ -146,6 +147,10 @@
     "10": {
       "frase": "Sicaua",
       "explicacion": "Secadora"
+    },
+    "11": {
+      "frase": "A mil colora papi!",
+      "explicacion": "A mil por hora papi! Para que acelerase."
     }
   },
   "relatoAlbaiAlbert": {
@@ -458,6 +463,51 @@
       "paso2": "Vaciar medio bote de garbanzos en un colador para limpiarlos bajo el grifo. Después de escurrirlos, depositar la mitad en cada plato.",
       "paso3": "Coger los dados de queso feta y trocearlos sobre la rúcula y los garbanzos, la mitad en cada plato. Y listo! Solo falta aliñar con sal, aceite y pimienta.",
       "paso4": "Extra: Si queremos darle más consistencia al plato podemos añadir el calabacín plancha, en rodajas finas, para dar ese efecto de frío-calor."
+    },
+    "3": {
+      "frase": "Para los más viciosos del dulce!",
+      "nombre": "Donut Vegano",
+      "categoria": "Postre dulce",
+      "ingrediente1": "2 cucharadas de harina de almendra",
+      "ingrediente2": "1 cucharada de yogur de coco",
+      "ingrediente3": "1 cucharada de cacao en polvo 0%",
+      "ingrediente4": "2 cucharaditas de erititrol",
+      "ingrediente5": "1 cucharaditas de levadura",
+      "utensilio1": "Bol",
+      "paso1": "Remover todo junto en el orden que aparecen los ingredientes.",
+      "paso2": "Poner sobre un molde en forma de donut redondo.",
+      "paso3": "Calentar en el microondas durante el tiempo indicado.",
+      "paso4": "Y listo para comer!"
+    },
+    "4": {
+      "frase": "Para las meriendas de la familia",
+      "nombre": "Coca de Llanda",
+      "categoria": "Merienda dulce",
+      "ingrediente1": "2 yogures",
+      "ingrediente2": "4 huevos",
+      "ingrediente3": "2 de aceite de girasol",
+      "ingrediente4": "4 harina integral",
+      "ingrediente5": "2 azúcar de caña",
+      "utensilio1": "Bol",
+      "paso1": "Precalentar el horno a la temperatura indicada. Batir bien los huevos en un bol grande, y poner después los yogures, y seguir removiendo.",
+      "paso2": "Tomando como referencia el envase del yogurt, poner 4 vasitos de harina integral, y remover hasta conseguir una masa uniforme.",
+      "paso3": "Añadir ahora el azúcar de caña, y remover bien, para finalmente añadir las dos de aceite, que permitirán que sea más blanda la masa.",
+      "paso4": "Una vez removido, podemos acabar de remover con la batidora, para que quede mejor.",
+      "paso5": "Cuando tengamos la masa bien removida, la pondremos en la bandeja de metal.",
+      "paso6": "Extra: Se le puede añadir pepitas de chocolate a la masa, o azúcar o canela por encima una vez la tengamos para meter en el horno."
+    },
+    "5": {
+      "frase": "Para los que siempre tienen un lugar para el *postre",
+      "nombre": "Trufas",
+      "categoria": "Postre dulce",
+      "ingrediente1": "Una taza de chocolate crudo",
+      "ingrediente2": "Media taza de yogur de coco",
+      "ingrediente3": "Cobertura coco rayado",
+      "utensilio1": "Bol",
+      "paso1": "Derretir el chocolate y mezclar con el yogur",
+      "paso2": "Enfriar y dar forma.",
+      "paso3": "Poner el coco rayado por encima",
+      "paso4": "Y a disfrutar!!"
     }
   },
   "2023-06-10": {

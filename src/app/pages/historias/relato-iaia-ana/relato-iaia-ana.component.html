@@ -1,6 +1,10 @@
 <!-- Para autenticarse en la aplicación -->
 <div *ngIf="authenticationService.isLoggedInRelatoIaia() === false">
   <br><br><br><br><br><br><br>
+  <div class="imagenCentrada">
+    <img src="assets/icons/seguridad.png" class="iconSeguridad animated fadeIn pulse">
+  </div>
+  <br><br>
   <app-login></app-login>
   <div class="divVolver">
     <br><br><br><br>

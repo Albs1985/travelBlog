@@ -62,5 +62,89 @@
     ],
     "imagen": "assets/images/recetas/ensaladaGarbanzosRuculaFeta.jpg",
     "raciones": 2
+  },
+  "3": {
+    "id": 3,
+    "nombre": "Donut, Chocolate, Xocolate",
+    "categoria": "postre, dulce, dolç, pastisset, pastis, pastel, desayuno, desdejuny, merienda, berenar, bizcocho, biscuit, tarta, microondas, microones, micro",
+    "cocinero": "Alba",
+    "dificultad": "2/10",
+    "ingredientes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "utensilios": [
+      1
+    ],
+    "tiempoPreparacion": 5,
+    "tiempoHorno": 2.20,
+    "temperatura": "800 W (ó max)",
+    "numPasos": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "imagen": "assets/images/recetas/donutVegano.jpg",
+    "raciones": 6
+  },
+  "4": {
+    "id": 4,
+    "nombre": "Coca de Llanda, bizcocho",
+    "categoria": "postre, dulce, dolç, pastisset, pastis, pastel, desayuno, desdejuny, merienda, berenar, bizcocho, biscuit, tarta, horno, forn",
+    "cocinero": "Albert",
+    "dificultad": "4/10",
+    "ingredientes": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "utensilios": [
+      1
+    ],
+    "tiempoPreparacion": 15,
+    "tiempoHorno": 25,
+    "temperatura": "180 C",
+    "numPasos": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "imagen": "assets/images/recetas/cocaLlanda.jpg",
+    "raciones": 24
+  },
+  "5": {
+    "id": 5,
+    "nombre": "Trufas, boles de xocolate, bolas de chocolate",
+    "categoria": "postre, dulce, dolç, pastisset, pastis, pastel, desayuno, desdejuny, merienda, berenar, bizcocho, biscuit, tarta",
+    "cocinero": "Alba",
+    "dificultad": "1/10",
+    "ingredientes": [
+      1,
+      2,
+      3
+    ],
+    "utensilios": [
+      1
+    ],
+    "tiempoPreparacion": 5,
+    "tiempoHorno": -1,
+    "temperatura": "",
+    "numPasos": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "imagen": "assets/images/recetas/trufas.jpg",
+    "raciones": 6
   }
 }
