@@ -78,6 +78,7 @@
     "tiempoPreparacion": "Temps de Preparació",
     "tiempoHorno": "Temps de Forn",
     "tiempoMicro": "Temps de Microones",
+    "tiempoOlla": "Temps d'Olla",
     "tiempoTotal": "Temps Total",
     "minutos": "minuts",
     "especialidad": "Especialista",
@@ -512,7 +513,7 @@
     },
     "6": {
       "frase": "Per als donar-se un homenatge",
-      "nom": "Galta al vi negre",
+      "nombre": "Galta al vi negre",
       "categoria": "Menjar, sopar",
       "ingrediente1": "Galtes de vedella 2",
       "ingrediente2": "Ceba 200 g",
