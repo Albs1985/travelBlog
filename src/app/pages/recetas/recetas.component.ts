@@ -14,12 +14,11 @@ export class RecetasComponent {
 
   p: number = 1; // Página inicial
   pageSize: number = 1; // Elementos por página
-  maxSizeDisplay: number = 1;
+  maxSizeDisplay: number = 5;
   palabra : any = '';
   categoria : any = '';
 
   constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioRecetas: RecetasService, public authenticationService: AutenticationService){
-    this.maxSizeDisplay = 1;
     this.palabra = '';
     this.servicioRecetas.cargarRecetas();
   }

@@ -82,7 +82,8 @@
     "minutos": "minuts",
     "especialidad": "Especialista",
     "categoriaRecetas": "Selecciona una categoria",
-    "listaRecetas": "O mira la llista"
+    "listaRecetas": "O mira la llista",
+    "lista": "llista"
   },
   "dibujos": {
     "1": {
@@ -470,7 +471,7 @@
       "categoria": "Postres dolces",
       "ingrediente1": "2 cullerades de farina d'ametlla",
       "ingrediente2": "1 cullerada de iogurt de coco",
-      "ingrediente3": "1 cullerada de cacau en *pols 0%",
+      "ingrediente3": "1 cullerada de cacau en pols 0%",
       "ingrediente4": "2 culleradetes de erititrol",
       "ingrediente5": "1 culleradeta de rent",
       "utensilio1": "Bol",
@@ -508,6 +509,25 @@
       "paso2": "Refredar i donar forma.",
       "paso3": "Posar el coco ratllat per damunt",
       "paso4": "I a gaudir!!"
+    },
+    "6": {
+      "frase": "Per als donar-se un homenatge",
+      "nom": "Galta al vi negre",
+      "categoria": "Menjar, sopar",
+      "ingrediente1": "Galtes de vedella 2",
+      "ingrediente2": "Ceba 200 g",
+      "ingrediente3": "Carlota 2",
+      "ingrediente4": "Gra d'all 2",
+      "ingrediente5": "Vi negre 200 ml",
+      "ingrediente6": "Caldo de carn 450 ml",
+      "ingrediente7": "Oli d'oliva verge extra 100 ml",
+      "ingrediente8": "Sal i pebre al gust",
+      "ingrediente9": "Llorer",
+      "utensilio1": "Olla",
+      "paso1": "Començarem netejant les galtes, eliminant la pell que les cobrix, encara que el normal és que este pas, encara que no és massa complicat, el realitze el propi carnisser. No les tallem en trossos, sinó que les deixem senceres. Seguidament les salpebrem, les enfarinem i procedim a segellar-les en una cassola a foc fort. Reservem.",
+      "paso2": "Piquem la ceba i la carlota, així com els grans d'all. Saltem les hortalisses en oli d'oliva, afegim la fulla de llorer. Agreguem de nou la carn juntament amb les hortalisses, afegim el vi negre i les herbes aromàtiques.",
+      "paso3": "Deixem 10 minuts coent perquè s'evapore l'alcohol del vi, i afegim el caldo de carn reservat. Cuinem durant 30 minuts en la cassola tapada, li donem la volta a les peces de carn i cuinem durant 20 minutos més. Comprovem la tendresa de les galtes i deixem que es reduïsca la salsa durant 15 minuts més, ara amb l'olla destapada. Retirem les galtes i passem la salsa pel passapuré.",
+      "paso4": "Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."
     }
   },
   "2023-06-10": {

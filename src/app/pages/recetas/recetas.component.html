@@ -59,7 +59,7 @@
   </div>
   <br>
   <h3 class="center">
-    {{'app.listaRecetas' | translate}}
+    {{'app.listaRecetas' | translate}} <a (click)="buscarRecetas('')">{{'app.lista' | translate}}</a>
   </h3>
   <!-- <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('lupa')"><img src="assets/icons/lista.png" alt="caliente" class="icon animated fadeIn pulse"></a></div> -->
   <br>
@@ -101,6 +101,8 @@
           <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
           <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" class="recetaTitulo">{{ 'app.tiempoMicro' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
           <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
+          <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('olla') >= 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}}</h4>
+          <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('olla') >= 0" src="assets/icons/olla.png" alt="olla" class="iconosCategoria animated rollIn">
           <img *ngIf="receta.tiempoHorno < 0 && receta.categoria.indexOf('frio') >= 0" src="assets/icons/frio.png" alt="frio" class="iconosCategoria animated rollIn">
           <h4 class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
         </blockquote>

@@ -82,7 +82,8 @@
     "minutos": "minutos",
     "especialidad": "Especialista",
     "categoriaRecetas": "Selecciona una categoría",
-    "listaRecetas": "O mira la lista"
+    "listaRecetas": "O mira la ",
+    "lista": "lista"
   },
   "dibujos": {
     "1": {
@@ -497,7 +498,7 @@
       "paso6": "Extra: Se le puede añadir pepitas de chocolate a la masa, o azúcar o canela por encima una vez la tengamos para meter en el horno."
     },
     "5": {
-      "frase": "Para los que siempre tienen un lugar para el *postre",
+      "frase": "Para los que siempre tienen un lugar para el postre",
       "nombre": "Trufas",
       "categoria": "Postre dulce",
       "ingrediente1": "Una taza de chocolate crudo",
@@ -508,6 +509,25 @@
       "paso2": "Enfriar y dar forma.",
       "paso3": "Poner el coco rayado por encima",
       "paso4": "Y a disfrutar!!"
+    },
+    "6": {
+      "frase": "Para los darse un homenaje",
+      "nombre": "Carrillera al vino tinto",
+      "categoria": "Comida, cena",
+      "ingrediente1": "Carrilleras de ternera 2",
+      "ingrediente2": "Cebolla 200 g",
+      "ingrediente3": "Zanahoria 2",
+      "ingrediente4": "Diente de ajo 2",
+      "ingrediente5": "Vino tinto 200 ml",
+      "ingrediente6": "Caldo de carne 450 ml",
+      "ingrediente7": "Aceite de oliva virgen extra 100 ml",
+      "ingrediente8": "Sal y pimienta al gusto",
+      "ingrediente9": "Laurel",
+      "utensilio1": "Olla",
+      "paso1": "Comenzaremos limpiando las carrilleras, eliminando la piel que las cubre, aunque lo normal es que este paso, aunque no es demasiado complicado, lo realice el propio carnicero. No las cortamos en trozos, sino que las dejamos enteras. Seguidamente las salpimentamos, las enharinamos y procedemos a sellarlas en una cazuela a fuego fuerte. Reservamos.",
+      "paso2": "Picamos la cebolla y la zanahoria, así como los dientes de ajo. Salteamos las hortalizas en aceite de oliva, añadimos la hoja de laurel. Agregamos de nuevo la carne junto con las hortalizas, añadimos el vino tinto y las hierbas aromáticas.",
+      "paso3": "Dejamos 10 minutos cociendo para que se evapore el alcohol del vino, y añadimos el caldo de carne reservado. Cocinamos durante 30 minutos en la cazuela tapada, le damos la vuelta a las piezas de carne y cocinamos durante 20 minutos más. Comprobamos la ternura de las carrilleras y dejamos que se reduzca la salsa durante 15 minutos más, ahora con la olla destapada. Retiramos las carrilleras y pasamos la salsa por el pasapuré.",
+      "paso4": "Las carrilleras de ternera guisadas con vino tinto se sirven loncheadas y acompañadas de su salsa a la que podemos espolvorear un poco de perejil picado. Unas patatas nuevas semiasadas o puré de patata casero, es la guarnición ideal para este plato tradicional."
     }
   },
   "2023-06-10": {
