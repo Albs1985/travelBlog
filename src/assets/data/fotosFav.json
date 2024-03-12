@@ -1,9 +1,73 @@
 {
+  "fotoFav86": {
+    "idDesc": "fotoFav86",
+    "id": "favoritos/fotoFav86.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, IES Comarcal",
+    "categoria": "niños, xiquets, cole, escola, disfraz, disfraces, disfresses, batman, superman, spiderman",
+    "personas": "Mateu, Bruno, Onai, Santi"
+  },
+  "fotoFav85": {
+    "idDesc": "fotoFav85",
+    "id": "favoritos/fotoFav85.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, IES Comarcal",
+    "categoria": "niños, xiquets, cole, escola, disfraz, disfraces, disfresses, batman, superman, spiderman",
+    "personas": "Mateu, Bruno"
+  },
+  "fotoFav84": {
+    "idDesc": "fotoFav84",
+    "id": "favoritos/fotoFav84.jpg",
+    "anyo": "2024",
+    "lugar": "Valencia, Casa iaios",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Emili"
+  },
+  "fotoFav83": {
+    "idDesc": "fotoFav83",
+    "id": "favoritos/fotoFav83.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, xiqueta, bebe, bebé, niña",
+    "personas": "Marina"
+  },
+  "fotoFav82": {
+    "idDesc": "fotoFav82",
+    "id": "favoritos/fotoFav82.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, xiqueta, bebe, bebé, niña",
+    "personas": "Marina"
+  },
+  "fotoFav81": {
+    "idDesc": "fotoFav81",
+    "id": "favoritos/fotoFav81.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Primos, cosins, casa, pintura, cara, retrato, niños, xiquets",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav80": {
+    "idDesc": "fotoFav80",
+    "id": "favoritos/fotoFav80.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Primos, cosins, casa, pintura, cara, retrato, niños, xiquets",
+    "personas": "Mateu, Marina, Gerard"
+  },
+  "fotoFav79": {
+    "idDesc": "fotoFav79",
+    "id": "favoritos/fotoFav79.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "Primos, cosins, casa, pintura, cara, retrato, niños, xiquets",
+    "personas": "Mateu, Marina, Gerard"
+  },
   "fotoFav78": {
     "idDesc": "fotoFav78",
     "id": "favoritos/fotoFav78.jpg",
     "anyo": "2024",
-    "lugar": "Burjassot, Casa",
+    "lugar": "",
     "categoria": "Iaio, Paco, Abuelo",
     "personas": "Iaio Paco"
   },
@@ -11,7 +75,7 @@
     "idDesc": "fotoFav77",
     "id": "favoritos/fotoFav77.jpg",
     "anyo": "2024",
-    "lugar": "Burjassot, Casa",
+    "lugar": "",
     "categoria": "Iaio, Paco, Abuelo",
     "personas": "Iaio Paco"
   },

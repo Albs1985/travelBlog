@@ -51,6 +51,18 @@
   cursor: pointer;
 }
 
+.iconRelatos {
+  width: 20px;
+  height: 20px;
+  margin-top: -5px;
+}
+
+.iconFamilia {
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+}
+
 .iconoViajeros {
   width: 30px;
   height: 30px;
@@ -65,6 +77,11 @@
   border-radius: 30px;
   border: 2px solid grey;
   background-color: rgb(255, 228, 177);
+}
+
+.disabled-button {
+  pointer-events: none;
+  opacity: 0.5; /* Puedes ajustar este valor para cambiar la opacidad */
 }
 
 .iconosImg {

@@ -1,0 +1,21 @@
+<div class="authLogin">
+  <div *ngIf="!this.authenticationService.soloIaiaAutenticado">
+    <input class="inputPass" type="{{ hidePassword ? 'password' : 'text' }}" [(ngModel)]="password" placeholder="{{'app.contrasenya' | translate}}" (keyup.enter)="login()">
+    <button (click)="togglePasswordVisibility()" class="botonVer">
+      <img *ngIf="hidePassword" src="assets/icons/ojo.png" class="iconoVer" alt="{{'app.contrasenyaVisible' | translate}}">
+      <img *ngIf="!hidePassword" src="assets/icons/ojo2.png" class="iconoVer" alt="{{'app.contrasenyaVisible' | translate}}">
+    </button>
+    <button *ngIf="this.authenticationService.soloIaiaAutenticado" class="boton" (click)="loginRelatoIaia()">{{'app.login' | translate}}</button>
+    <p class="passIncorrecta" *ngIf="!this.authenticationService.isLoggedIn() && clicado">{{'app.contrasenyaKO' | translate}}</p>
+  </div>
+
+  <div *ngIf="this.authenticationService.soloIaiaAutenticado">
+    <input class="inputPass" type="{{ hidePassword ? 'password' : 'text' }}" [(ngModel)]="password" placeholder="{{'app.contrasenya' | translate}}" (keyup.enter)="loginRelatoIaia()">
+    <button (click)="togglePasswordVisibility()" class="botonVer">
+      <img *ngIf="hidePassword" src="assets/icons/ojo.png" class="iconoVer" alt="{{'app.contrasenyaVisible' | translate}}">
+      <img *ngIf="!hidePassword" src="assets/icons/ojo2.png" class="iconoVer" alt="{{'app.contrasenyaVisible' | translate}}">
+    </button>
+    <button *ngIf="this.authenticationService.soloIaiaAutenticado" class="boton" (click)="loginRelatoIaia()">{{'app.login' | translate}}</button>
+    <p class="passIncorrecta" *ngIf="!this.authenticationService.isLoggedInRelatoIaia() && clicado">{{'app.contrasenyaKO' | translate}}</p>
+  </div>
+</div>

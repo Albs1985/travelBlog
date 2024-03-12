@@ -14,7 +14,7 @@ export class BookModeComponent implements AfterViewInit, OnDestroy{
 
   }
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit BookModeComponent');
+    // console.log('ngAfterViewInit BookModeComponent');
     this.commonService.modoLibro$.next(true);
   }
   ngOnDestroy(): void {

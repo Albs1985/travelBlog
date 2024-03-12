@@ -1,181 +1,197 @@
-<div *ngIf="this.esModoLibro === false">
-  <div class="container-fluid">
-    <div class="row fh5co-post-entry single-entry">
-        <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-          <div class="divRight">
-            <span class="fh5co-meta"><img src="assets/icons/libro.png" class="animated fadeIn pulse iconoLibro" (click)="onClickCambiaModo()"><a (click)="onClickCambiaModo()">{{ 'app.versionLibro' | translate}}</a></span>
-          </div>
-          <div class="divVolver">
-            <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
-          </div>
 
-            <figure class="animated zoomInDown">
-                <a target="_blank" href="assets/images/perfiles/fotoPerfilFamilia.jpg"><img src="assets/images/perfiles/fotoPerfilFamilia.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
-            </figure>
-            <span class="fh5co-meta "><a>{{ 'about.titulo' | translate }}</a></span>
-            <h2 class="fh5co-article-title "><a>{{ 'about.subtitulo' | translate }}</a></h2>
-            <span class="fh5co-meta fh5co-date ">{{ 'about.fecha' | translate }}</span>
-
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row rp-b">
-                    <div class="col-md-12 ">
-                        <blockquote>
-                            <p>{{ 'about.cita1' | translate }}<cite>{{ 'about.personaCita1' | translate }}</cite></p>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 ">
-                    <h2>{{ 'about.tituloParte1' | translate}}</h2>
-                    <p>{{ 'about.bloque1_parrafo1' | translate}}</p>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about1.jpg"><img src="assets/images/about/about1.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto1' | translate}}</figcaption>
-            </figure>
-
-            <div class="row">
-                <div class="col-md-12 ">
-                    <p>{{ 'about.bloque1_parrafo2' | translate}}</p>
-                    <p>{{ 'about.bloque1_parrafo3' | translate}}</p>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about2.jpg"><img src="assets/images/about/about2.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto2' | translate}}</figcaption>
-            </figure>
-
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row">
-                    <div class="col-lg-8 cp-r ">
-                        <p>{{ 'about.bloque2_parrafo1' | translate}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about3.jpg"><img src="assets/images/about/about3.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto3' | translate}}</figcaption>
-            </figure>
-
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row">
-                    <div class="col-lg-8 cp-r ">
-                        <p>{{ 'about.bloque2_parrafo2' | translate}}</p>
-                        <p>{{ 'about.bloque2_parrafo3' | translate}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about4.jpg"><img src="assets/images/about/about4.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto4' | translate}}</figcaption>
-            </figure>
+<!-- Para autenticarse en la aplicación -->
+<div *ngIf="authenticationService.isLoggedIn() === false">
+  <br><br><br><br><br><br>
+  <app-login></app-login>
+  <br><br><br>
+  <div class="divVolver">
+    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+  </div>
+  <br>
+</div>
 
 
+<div *ngIf="authenticationService.isLoggedIn()">
 
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row">
-                    <div class="col-lg-8 cp-r ">
-                        <h2>{{ 'about.tituloParte2' | translate}}</h2>
-                        <p>{{ 'about.bloque4_parrafo1' | translate}}</p>
-                        <p>{{ 'about.bloque4_parrafo2' | translate}}</p>
-                        <p>{{ 'about.bloque4_parrafo3' | translate}}</p>
-                    </div>
-                </div>
-                <div class="row rp-b">
-                    <div class="col-md-12 ">
-                        <blockquote>
-                            <p>{{ 'about.cita2' | translate }}<cite>{{ 'about.personaCita2' | translate }}</cite></p>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about5.jpg"><img src="assets/images/about/about5.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto5' | translate}}</figcaption>
-            </figure>
-
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row">
-                    <div class="col-lg-8 cp-r ">
-                        <p>{{ 'about.bloque5_parrafo1' | translate}}</p>
-                        <p>{{ 'about.bloque5_parrafo2' | translate}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about6.jpg"><img src="assets/images/about/about6.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto6' | translate}}</figcaption>
-            </figure>
-
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row">
-                    <div class="col-lg-8 cp-r ">
-                        <p>{{ 'about.bloque6_parrafo1' | translate}}</p>
-                        <p>{{ 'about.bloque6_parrafo2' | translate}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about7.jpg"><img src="assets/images/about/about7.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto7' | translate}}</figcaption>
-            </figure>
-
-            <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
-                <div class="row">
-                    <div class="col-lg-8 cp-r ">
-                        <h2>{{ 'about.tituloParte3' | translate}}</h2>
-                        <p>{{ 'about.bloque7_parrafo1' | translate}}</p>
-                        <figure>
-                            <a target="_blank" href="assets/images/about/about8.jpg"><img src="assets/images/about/about8.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                            <figcaption>{{ 'about.descFoto8' | translate}}</figcaption>
-                        </figure>
-                        <p>{{ 'about.bloque7_parrafo2' | translate}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <figure>
-                <a target="_blank" href="assets/images/about/about9.jpg"><img src="assets/images/about/about9.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto9' | translate}}</figcaption>
-            </figure>
-            <figure>
-                <a target="_blank" href="assets/images/about/about10.jpg"><img src="assets/images/about/about10.jpg" loading="lazy" alt="" class="img-responsive"></a>
-                <figcaption>{{ 'about.descFoto10' | translate}}</figcaption>
-            </figure>
-            <br><br><br>
-
-            <!-- <div class="row">
-                <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
-                    <figure>
-                        <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-                        <figcaption>{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'about.edad' | translate}})</figcaption>
-                    </figure>
-                </div>
-            </div> -->
-
-            <div class="divLeft">
-                <span class=""><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
-            </div>
+  <div *ngIf="this.esModoLibro === false">
+    <div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
             <div class="divRight">
-                <a routerLink="/viaje/2019-04-06_Fanzara">{{ 'viaje.empezar' | translate}}</a>&nbsp;
-                <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viaje/2019-04-06_Fanzara">
+              <span class="fh5co-meta"><img src="assets/icons/libro.png" class="animated fadeIn pulse iconoLibro" (click)="onClickCambiaModo()"><a (click)="onClickCambiaModo()">{{ 'app.versionLibro' | translate}}</a></span>
+            </div>
+            <div class="divVolver">
+              <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
             </div>
 
-        </article>
+              <figure class="animated zoomInDown">
+                  <a target="_blank" href="assets/images/perfiles/fotoPerfilFamilia.jpg"><img src="assets/images/perfiles/fotoPerfilFamilia.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+              </figure>
+              <span class="fh5co-meta "><a>{{ 'relatoAlbaiAlbert.titulo' | translate }}</a></span>
+              <img src="assets/icons/relacion.png" alt="familia" class="icon animated fadeIn">
+              <img src="assets/icons/relatos.png" alt="relatos" class="icon animated fadeIn">
+              <h2 class="fh5co-article-title "><a>{{ 'relatoAlbaiAlbert.subtitulo' | translate }}</a></h2>
+              <span class="fh5co-meta fh5co-date ">{{ 'relatoAlbaiAlbert.fecha' | translate }}</span>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row rp-b">
+                      <div class="col-md-12 ">
+                          <blockquote>
+                              <p>{{ 'relatoAlbaiAlbert.cita1' | translate }}<cite>{{ 'relatoAlbaiAlbert.personaCita1' | translate }}</cite></p>
+                          </blockquote>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12 ">
+                      <h2>{{ 'relatoAlbaiAlbert.tituloParte1' | translate}}</h2>
+                      <p>{{ 'relatoAlbaiAlbert.bloque1_parrafo1' | translate}}</p>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about1.jpg"><img src="assets/images/about/about1.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto1' | translate}}</figcaption>
+              </figure>
+
+              <div class="row">
+                  <div class="col-md-12 ">
+                      <p>{{ 'relatoAlbaiAlbert.bloque1_parrafo2' | translate}}</p>
+                      <p>{{ 'relatoAlbaiAlbert.bloque1_parrafo3' | translate}}</p>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about2.jpg"><img src="assets/images/about/about2.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto2' | translate}}</figcaption>
+              </figure>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                          <p>{{ 'relatoAlbaiAlbert.bloque2_parrafo1' | translate}}</p>
+                      </div>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about3.jpg"><img src="assets/images/about/about3.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto3' | translate}}</figcaption>
+              </figure>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                          <p>{{ 'relatoAlbaiAlbert.bloque2_parrafo2' | translate}}</p>
+                          <p>{{ 'relatoAlbaiAlbert.bloque2_parrafo3' | translate}}</p>
+                      </div>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about4.jpg"><img src="assets/images/about/about4.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto4' | translate}}</figcaption>
+              </figure>
+
+
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                          <h2>{{ 'relatoAlbaiAlbert.tituloParte2' | translate}}</h2>
+                          <p>{{ 'relatoAlbaiAlbert.bloque4_parrafo1' | translate}}</p>
+                          <p>{{ 'relatoAlbaiAlbert.bloque4_parrafo2' | translate}}</p>
+                          <p>{{ 'relatoAlbaiAlbert.bloque4_parrafo3' | translate}}</p>
+                      </div>
+                  </div>
+                  <div class="row rp-b">
+                      <div class="col-md-12 ">
+                          <blockquote>
+                              <p>{{ 'relatoAlbaiAlbert.cita2' | translate }}<cite>{{ 'relatoAlbaiAlbert.personaCita2' | translate }}</cite></p>
+                          </blockquote>
+                      </div>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about5.jpg"><img src="assets/images/about/about5.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto5' | translate}}</figcaption>
+              </figure>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                          <p>{{ 'relatoAlbaiAlbert.bloque5_parrafo1' | translate}}</p>
+                          <p>{{ 'relatoAlbaiAlbert.bloque5_parrafo2' | translate}}</p>
+                      </div>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about6.jpg"><img src="assets/images/about/about6.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto6' | translate}}</figcaption>
+              </figure>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                          <p>{{ 'relatoAlbaiAlbert.bloque6_parrafo1' | translate}}</p>
+                          <p>{{ 'relatoAlbaiAlbert.bloque6_parrafo2' | translate}}</p>
+                      </div>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about7.jpg"><img src="assets/images/about/about7.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto7' | translate}}</figcaption>
+              </figure>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                          <h2>{{ 'relatoAlbaiAlbert.tituloParte3' | translate}}</h2>
+                          <p>{{ 'relatoAlbaiAlbert.bloque7_parrafo1' | translate}}</p>
+                          <figure>
+                              <a target="_blank" href="assets/images/about/about8.jpg"><img src="assets/images/about/about8.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                              <figcaption>{{ 'relatoAlbaiAlbert.descFoto8' | translate}}</figcaption>
+                          </figure>
+                          <p>{{ 'relatoAlbaiAlbert.bloque7_parrafo2' | translate}}</p>
+                      </div>
+                  </div>
+              </div>
+
+              <figure>
+                  <a target="_blank" href="assets/images/about/about9.jpg"><img src="assets/images/about/about9.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto9' | translate}}</figcaption>
+              </figure>
+              <figure>
+                  <a target="_blank" href="assets/images/about/about10.jpg"><img src="assets/images/about/about10.jpg" loading="lazy" alt="" class="img-responsive"></a>
+                  <figcaption>{{ 'relatoAlbaiAlbert.descFoto10' | translate}}</figcaption>
+              </figure>
+              <br><br><br>
+
+              <!-- <div class="row">
+                  <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
+                      <figure>
+                          <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
+                          <figcaption>{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'app.edad' | translate}})</figcaption>
+                      </figure>
+                  </div>
+              </div> -->
+
+              <div class="divLeft">
+                  <span class=""><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+              </div>
+              <div class="divRight">
+                  <a routerLink="/viaje/2019-04-06_Fanzara">{{ 'viaje.empezar' | translate}}</a>&nbsp;
+                  <img src="assets/icons/flechaDer.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viaje/2019-04-06_Fanzara">
+              </div>
+
+          </article>
+      </div>
     </div>
-  </div>
 
-</div><!-- fin modo web -->
-
+  </div><!-- fin modo web -->
 
 
 
@@ -184,110 +200,113 @@
 
 
 
-<!-- MODO LIBRO -->
 
-<div *ngIf="esModoLibro === true">
+  <!-- MODO LIBRO -->
 
-  <div class="divRightLibro">
-    <!-- <button class="botonVersionWeb" (touchstart)="onClickCambiaModo()" (click)="onClickCambiaModo()"><img src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</button> -->
-    <span class="fh5co-meta"><img src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()"><a class="animated fadeIn pulse" (click)="onClickCambiaModo()">{{ 'app.versionLibro' | translate}}</a></span>
-  </div>
+  <div *ngIf="esModoLibro === true">
 
-  <div class="cuerpo">
-    <div class="book">
-      <input class = "input" type="checkbox" id="c1">
-      <input class = "input" type="checkbox" id="c2">
-      <input class = "input" type="checkbox" id="c3">
-      <input class = "input" type="checkbox" id="c4">
-      <input class = "input" type="checkbox" id="c5">
+    <div class="divRightLibro">
+      <!-- <button class="botonVersionWeb" (touchstart)="onClickCambiaModo()" (click)="onClickCambiaModo()"><img src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</button> -->
+      <span class="fh5co-meta"><img src="assets/icons/sitioWeb.png" class="animated fadeIn pulse iconoSitioWeb" (click)="onClickCambiaModo()"><a class="animated fadeIn pulse" (click)="onClickCambiaModo()">{{ 'app.versionWeb' | translate}}</a></span>
+    </div>
 
-      <div id="cover">
-      </div>
-      <div class="flip-book">
-        <div class="flip" id="p1">
-          <div class="back">
-          </div>
-          <div class="front">
-            <h2>{{ 'about.titulo' | translate }}</h2>
-            <h4>{{ 'about.subtitulo' | translate }} - {{ 'about.fecha' | translate }}</h4>
-            <h3>{{ 'about.tituloParte1' | translate}}</h3>
-            <p class="p">{{ 'about.bloque1_parrafo1' | translate}}</p>
-            <p class="p">{{ 'about.bloque1_parrafo2' | translate}}</p>
-            <p class="p">{{ 'about.bloque1_parrafo3' | translate}}</p>
-          <div>
-            <label for="c1" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
-          </div>
+    <div class="cuerpo">
+      <div class="book">
+        <input class = "input" type="checkbox" id="c1">
+        <input class = "input" type="checkbox" id="c2">
+        <input class = "input" type="checkbox" id="c3">
+        <input class = "input" type="checkbox" id="c4">
+        <input class = "input" type="checkbox" id="c5">
+
+        <div id="cover">
         </div>
-      </div>
-
-        <div class="flip" id="p2">
-          <div class="back">
-          </div>
-          <div class="front">
-            <p class="p">{{ 'about.bloque2_parrafo1' | translate}}</p>
-            <p class="p">{{ 'about.bloque2_parrafo2' | translate}}</p>
-            <p class="p">{{ 'about.bloque2_parrafo3' | translate}}</p>
-            <div>
-              <label for="c1" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
-              <label for="c2" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip" id="p3">
-          <div class="back">
-          </div>
-          <div class="front">
-            <h2>{{ 'about.tituloParte2' | translate}}</h2>
-            <p class="p">{{ 'about.bloque4_parrafo1' | translate}}</p>
-            <p class="p">{{ 'about.bloque4_parrafo2' | translate}}</p>
-            <p class="p">{{ 'about.bloque4_parrafo3' | translate}}</p>
-            <div>
-              <label for="c2" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
-              <label for="c3" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip" id="p4">
-          <div class="back">
-          </div>
-          <div class="front">
-            <p class="p">{{ 'about.bloque5_parrafo1' | translate}}</p>
-            <p class="p">{{ 'about.bloque5_parrafo2' | translate}}</p>
-            <p class="p">{{ 'about.bloque6_parrafo1' | translate}}</p>
-            <p class="p">{{ 'about.bloque6_parrafo2' | translate}}</p>
-            <div>
-              <label for="c3" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
-              <label for="c4" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip" id="p5">
-          <div class="back">
-          </div>
-          <div class="front">
-            <h2>{{ 'about.tituloParte3' | translate}}</h2>
-            <p class="p">{{ 'about.bloque7_parrafo1' | translate}}</p>
-            <p class="p">{{ 'about.bloque7_parrafo2' | translate}}</p>
-            <div>
-              <label for="c4" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
-              <label for="c5" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="flip" id="p6">
+        <div class="flip-book">
+          <div class="flip" id="p1">
             <div class="back">
             </div>
             <div class="front">
-              <label for="c5" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+              <h2>{{ 'relatoAlbaiAlbert.titulo' | translate }}</h2>
+              <h4>{{ 'relatoAlbaiAlbert.subtitulo' | translate }} - {{ 'relatoAlbaiAlbert.fecha' | translate }}</h4>
+              <h3>{{ 'relatoAlbaiAlbert.tituloParte1' | translate}}</h3>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque1_parrafo1' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque1_parrafo2' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque1_parrafo3' | translate}}</p>
+            <div>
+              <label for="c1" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
             </div>
+          </div>
+        </div>
+
+          <div class="flip" id="p2">
+            <div class="back">
+            </div>
+            <div class="front">
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque2_parrafo1' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque2_parrafo2' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque2_parrafo3' | translate}}</p>
+              <div>
+                <label for="c1" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+                <label for="c2" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" id="p3">
+            <div class="back">
+            </div>
+            <div class="front">
+              <h2>{{ 'relatoAlbaiAlbert.tituloParte2' | translate}}</h2>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque4_parrafo1' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque4_parrafo2' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque4_parrafo3' | translate}}</p>
+              <div>
+                <label for="c2" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+                <label for="c3" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" id="p4">
+            <div class="back">
+            </div>
+            <div class="front">
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque5_parrafo1' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque5_parrafo2' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque6_parrafo1' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque6_parrafo2' | translate}}</p>
+              <div>
+                <label for="c3" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+                <label for="c4" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" id="p5">
+            <div class="back">
+            </div>
+            <div class="front">
+              <h2>{{ 'relatoAlbaiAlbert.tituloParte3' | translate}}</h2>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque7_parrafo1' | translate}}</p>
+              <p class="p">{{ 'relatoAlbaiAlbert.bloque7_parrafo2' | translate}}</p>
+              <div>
+                <label for="c4" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+                <label for="c5" class="next-btn"><img src="assets/icons/flechaDer.png" class="iconoFlecha"></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip" id="p6">
+              <div class="back">
+              </div>
+              <div class="front">
+                <label for="c5" class="back-btn"><img src="assets/icons/flechaIzq.png" class="barraPaginas iconoFlecha"></label>
+              </div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 
 
-</div>
+</div> <!-- de la autenticacion -->

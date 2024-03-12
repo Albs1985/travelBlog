@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
-import { AboutComponent } from './pages/about/about.component';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
@@ -12,11 +11,13 @@ import { FrasesComponent } from './pages/frases/frases.component';
 import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
+import { DibujosComponent } from './pages/dibujos/dibujos.component';
+import { ApodosComponent } from './pages/apodos/apodos.component';
+import { RecetasComponent } from './pages/recetas/recetas.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
   { path: 'viajes', component : ViajesComponent},
-  { path: 'about', component : AboutComponent},
   { path: 'galeria', component : GaleriaComponent},
   { path: 'favoritos', component : FavoritosComponent},
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
@@ -26,6 +27,9 @@ const app_routes: Routes = [
   { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
   { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
   { path: 'frases', component : FrasesComponent},
+  { path: 'recetas', component : RecetasComponent},
+  { path: 'apodos', component : ApodosComponent},
+  { path: 'dibujos', component : DibujosComponent},
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

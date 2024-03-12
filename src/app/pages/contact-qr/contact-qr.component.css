@@ -1,75 +1,97 @@
-.anclaEnviar{
-    color: black;
+.anclaEnviar {
+  color: black;
 }
 
-.color{
-    background-color: rgb(250, 185, 65);
+.color {
+  background-color: rgb(250, 185, 65);
 }
 
-.botonEnviar{
-    background: transparent;    
-    border-color: transparent;    
+.botonEnviar {
+  background: transparent;
+  border-color: transparent;
 }
 
-.divQR{
-    /* Asegura que el contenedor ocupe el ancho del padre */
-    /* width: 100%; */
-    /* Define una altura para el contenedor (puedes ajustarla según tus necesidades) */
-    height: 300px;
-    /* Asegura que el contenedor sea un bloque con posición relativa */
-    position: relative;
-    border-radius: 25px;
-    margin-left: 35px;
-    margin-right: 35px;
-    animation-name: cambiaColor; 
-    /* animation-name: muevePorPantalla;   */
-    /* animation-delay: 2s;      */
-    animation-duration: 8s;
-    animation-iteration-count: 1;
+.divQR {
+  /* Asegura que el contenedor ocupe el ancho del padre */
+  /* width: 100%; */
+  /* Define una altura para el contenedor (puedes ajustarla según tus necesidades) */
+  height: 300px;
+  /* Asegura que el contenedor sea un bloque con posición relativa */
+  position: relative;
+  border-radius: 25px;
+  margin-left: 35px;
+  margin-right: 35px;
+  animation-name: cambiaColor;
+  /* animation-name: muevePorPantalla;   */
+  /* animation-delay: 2s;      */
+  animation-duration: 8s;
+  animation-iteration-count: 1;
 }
 
-.imagenQR{
-    /* Asegura que la imagen no supere el tamaño del contenedor */
-    max-width: 60%;
-    /* Asegura que la imagen no supere la altura del contenedor */
-    max-height: 60%;
-    /* Centra la imagen horizontalmente dentro del contenedor */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* Desplaza la imagen hacia arriba y hacia la izquierda la mitad de su ancho y altura para centrarla */
-    transform: translate(-50%, -50%);    
+.imagenQR {
+  /* Asegura que la imagen no supere el tamaño del contenedor */
+  max-width: 60%;
+  /* Asegura que la imagen no supere la altura del contenedor */
+  max-height: 60%;
+  /* Centra la imagen horizontalmente dentro del contenedor */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Desplaza la imagen hacia arriba y hacia la izquierda la mitad de su ancho y altura para centrarla */
+  transform: translate(-50%, -50%);
 }
 
-.centraTexto{
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    /* Desplaza el texto hacia arriba y hacia la izquierda la mitad de su ancho y altura para centrarla */
-    transform: translate(-50%, -50%);
+.msjError {
+  font-size: small;
 }
 
-.form-group{
-    margin-left: 35px;
-    margin-right: 35px;
+.centraTexto {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  /* Desplaza el texto hacia arriba y hacia la izquierda la mitad de su ancho y altura para centrarla */
+  transform: translate(-50%, -50%);
 }
 
-.tituloContacto{
-    margin-left: 45px;    
+.form-group {
+  margin-left: 35px;
+  margin-right: 35px;
+  color: rgb(250, 185, 65);
 }
 
-.iconosImg{
-    padding: 2px;
-    width: 30px;
-    height: 30px;
-    align-self: center;
-    cursor: pointer;
-    margin-top: -5px;
+.tituloContacto {
+  margin-left: 45px;
+}
+
+.iconosImg {
+  padding: 2px;
+  width: 50px;
+  height: 50px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
 }
 
 @keyframes cambiaColor {
-   from {background-color: rgb(250, 242, 228)}
-   to {background-color: rgb(250, 185, 65)}
+  from {
+    background-color: rgb(250, 242, 228);
+  }
+  to {
+    background-color: rgb(250, 185, 65);
+  }
 }
 
 /* @keyframes muevePorPantalla {

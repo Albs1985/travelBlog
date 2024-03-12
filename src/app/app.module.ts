@@ -7,7 +7,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
-import { AboutComponent } from './pages/about/about.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -22,6 +21,11 @@ import { FrasesComponent } from './pages/frases/frases.component';
 import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
 import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
+import { DibujosComponent } from './pages/dibujos/dibujos.component';
+import { ApodosComponent } from './pages/apodos/apodos.component';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { RecetasComponent } from './pages/recetas/recetas.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,6 @@ import { ViajesComponent } from './pages/viajes/viajes.component';
     FooterComponent,
     ViajeComponent,
     ViajesPorAnyoComponent,
-    AboutComponent,
     SafePipe,
     BookModeComponent,
     GaleriaComponent,
@@ -40,12 +43,18 @@ import { ViajesComponent } from './pages/viajes/viajes.component';
     FrasesComponent,
     RelatoAlbertComponent,
     RelatoIaiaAnaComponent,
-    ViajesComponent
+    ViajesComponent,
+    DibujosComponent,
+    ApodosComponent,
+    LoginComponent,
+    RecetasComponent
   ],
   imports: [
     BrowserModule,
     NgxPaginationModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     TranslateModule.forRoot(),
     TranslateModule.forRoot({

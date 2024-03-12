@@ -3,35 +3,53 @@
         <div class="row">
             <div class="col-md-offset-2">
                 <!-- <div class="fh5co-spacer fh5co-spacer-sm"></div> -->
-                <h3 class="tituloContacto"><img src="assets/icons/correo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.contactoQR' | translate }}</h3>
+                <h2 class="tituloContacto"><img src="assets/icons/correo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.contactoQR' | translate }}</h2>
+                <br>
+                <div class="divRight">
+                  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+                </div>
+                <br>
                 <br>
                 <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input id="nombreTxt" type="text" class="form-control" placeholder="{{ 'app.nombre' | translate }}">
-                            </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input id="nombreTxt" [formControl]="controlNombre" type="text" class="form-control" placeholder="{{ 'app.nombre' | translate }}">
+                        <div *ngIf="controlNombre.invalid || controlNombre.errors">
+                          <p class="msjError">&nbsp; {{'app.nombreControlMsj' | translate}}</p>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input id="emailTxt" type="email" class="form-control" placeholder="{{ 'app.email' | translate }}">
-                            </div>
-                            <div class="form-group">
-                                <textarea id="mensajeTxt" cols="30" class="form-control" rows="5" (input)="calculaCorreo()"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <!-- <button class="botonEnviar"> -->
-                                    <a class="btn btn-primary anclaEnviar" href="{{correo}}" target="_top"><b>{{ 'app.enviaMensaje' | translate }}</b></a>
-                                <!-- </button> -->
-
-                            </div>
-                        </div>
+                      </div>
                     </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input id="emailTxt" [formControl]="controlEmail" type="email" class="form-control" placeholder="{{ 'app.email' | translate }}">
+                        <div *ngIf="controlEmail.invalid || controlEmail.errors">
+                          <p class="msjError">&nbsp; {{'app.emailControlMsj' | translate}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <textarea id="mensajeTxt" [formControl]="controlMensaje" cols="30" class="form-control" placeholder="{{ 'app.textoMensaje' | translate }}" rows="5"></textarea>
+                        <!-- (input)="calculaCorreo()" -->
+                        <div *ngIf="controlMensaje.invalid || controlMensaje.errors">
+                          <p class="msjError">&nbsp; {{'app.mensajeControlMsj' | translate}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <a *ngIf="!controlNombre.invalid && !controlNombre.errors && !controlEmail.invalid && !controlEmail.errors && !controlMensaje.invalid && !controlMensaje.errors" [class.disabled]="false" class="btn btn-primary anclaEnviar" href="{{correo}}" target="_top" (click)="calculaCorreo()"><b>{{ 'app.enviaMensaje' | translate }}</b></a>
+                        <a *ngIf="controlNombre.invalid || controlNombre.errors || controlEmail.invalid || controlEmail.errors || controlMensaje.invalid || controlMensaje.errors" [class.disabled]="true" class="btn btn-primary anclaEnviar"><b>{{ 'app.enviaMensaje' | translate }}</b></a>
+                      </div>
+                    </div>
+                  </div>
                 </form>
                 <div class="divQR color">
                     <h5 class="centraTexto">{{ 'app.comparte' | translate }}</h5>
-                    <img src="assets/images/TravelQR.png" loading="lazy" alt="" class="imagenQR">
+                    <img src="assets/images/qr.png" loading="lazy" alt="" class="imagenQR">
                 </div>
+                <br>
+                <div class="divRight">
+                  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+                </div>
+                <br>
             </div>
         </div>
     </div>

@@ -38,6 +38,7 @@ export class ViajesService {
     tipoEstancia: '',
     transporte: [],
     personas: [],
+    infoInteres: [],
     mapaSrc: []
   }
 
@@ -149,6 +150,7 @@ export class ViajesService {
       tipoEstancia: '',
       transporte: [],
       personas: [] ,
+      infoInteres: [],
       mapaSrc: []
     };
 
@@ -207,6 +209,11 @@ export class ViajesService {
     for (let i=0; i < viajesAnyo[viatge].personas.length; i++){
       var persona = viajesAnyo[viatge].personas[i];
       this.viaje.personas[i] = persona;
+    }
+
+    for (let i=0; i < viajesAnyo[viatge].infoInteres.length; i++){
+      var infoInteres = viajesAnyo[viatge].infoInteres[i];
+      this.viaje.infoInteres[i] = infoInteres;
     }
 
     for (let i=0; i < viajesAnyo[viatge].mapaSrc.length; i++){

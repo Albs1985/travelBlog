@@ -20,13 +20,13 @@
                 <li class="liViajes">
                   <div class="margenTop col-lg-12 col-md-12 text-center animated">
                     <h3 id="fh5co-logo">
-                      <a href="#">&nbsp;
-                        <img src="assets/icons/chancletas.png" class="animated fadeIn iconoChancla" routerLink="/principal/">{{ 'app.viajes' | translate }}
+                      <!-- <a class="js-fh5co-close-offcanvas" routerLink="/principal/">&nbsp; -->
+                        <img src="assets/icons/chancletas.png" class="animated fadeIn iconoChancla">{{ 'app.viajes' | translate }}
                           <sup>Serrador Casares</sup>
                           <sub>
                               <img src="assets/icons/sol.png" class="animated fadeIn iconoViajeros" routerLink="/principal/">
                           </sub>
-                      </a>
+                      <!-- </a> -->
                     </h3>
                   </div>
                     <!-- <a class="js-fh5co-close-offcanvas" routerLink="/viajes/">
@@ -38,24 +38,27 @@
             </ul>
         </div>
         <div class="fh5co-box menuBloques">
-          <h3 class="heading"><b>{{ 'app.viajes' | translate }}</b></h3>
+          <h3 class="heading"><img src="assets/icons/iconoFamiliar.png" alt="familia" class="iconFamilia animated fadeIn"><b>&nbsp;{{ 'app.familia' | translate }}</b></h3>
           <ul>
             <li><a class="js-fh5co-close-offcanvas" routerLink="/viajes/"><img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.viajes' | translate }}</a></li>
-            <li><a class="js-fh5co-close-offcanvas" routerLink="/frases"><img src="assets/icons/frases.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.frases' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/frases/"><img src="assets/icons/frases.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.frases' | translate }}</a></li>
             <li><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="" class="iconosImgFav animated rollIn">  &nbsp;{{ 'app.galeriaFav' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/dibujos/"><img src="assets/icons/dibujo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.dibujos' | translate }}</a></li>
             <li><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.galeria' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/apodos/"><img src="assets/icons/apodo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.apodos' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/recetas/"><img src="assets/icons/cocina.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.recetas' | translate }}</a></li>
           </ul>
       </div>
       <div class="fh5co-box menuBloques">
-        <h3 class="heading"><b>{{ 'header.relatos' | translate }}</b></h3>
+        <h3 class="heading"><img src="assets/icons/relatos.png" alt="familia" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'header.relatos' | translate }}</b></h3>
         <ul>
-          <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoAlbert/"> <img src="assets/icons/familia.png" alt="" class="iconosImg animated rollIn"> &nbsp;{{ 'app.historiaAlbaAlbert' | translate }}</a></li>
-          <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoIaiaAna/"><img src="assets/icons/relatos.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.iaiaAna' | translate }}</a></li>
+          <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoAlbert/"> <img src="assets/icons/relacion.png" alt="" class="iconosImg animated rollIn"> &nbsp;{{ 'app.historiaAlbaAlbert' | translate }}</a></li>
+          <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoIaiaAna/"><img src="assets/icons/anciana.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.iaiaAna' | translate }}</a></li>
           <!-- <li><a class="js-fh5co-close-offcanvas" routerLink="/bookMode/"><img src="assets/icons/libro.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.modoLibro' | translate }}</a></li> -->
         </ul>
     </div>
     <div class="fh5co-box menuBloques">
-      <h3 class="heading"><b>{{ 'header.categoria' | translate }}</b></h3>
+      <h3 class="heading"><img src="assets/icons/categoria.png" alt="categoria" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'header.categoria' | translate }}</b></h3>
       <ul>
         <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/playa"><img src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.playa' | translate }}</a></li>
         <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/montanya"><img src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.montanya' | translate }}</a></li>
@@ -64,7 +67,7 @@
       </ul>
     </div>
     <div class="fh5co-box menuBloques">
-      <h3 class="heading"><b>{{ 'header.buscar' | translate }}</b></h3>
+      <h3 class="heading"><img src="assets/icons/buscar.png" alt="busca" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'header.buscarViajes' | translate }}</b></h3>
       <form id="busquedaForm">
         <div id="busquedaForm" class="form-group">
             <input id="myInput" type="text" class="form-control gradiente" placeholder="{{ 'header.palabra' | translate }}">
@@ -94,16 +97,25 @@
                 <li><a href="#"><i class="icon-facebook"></i></a></li>
                 <li><a href="#"><i class="icon-instagram"></i></a></li>
             </ul> -->
-            <ul class="fh5co-social">
+
+            <ul *ngIf="(this.commonService.sinIdioma$ | async) === false" class="fh5co-social">
                 <li *ngIf="isSelectedValenciano"><button class="idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
                 <li *ngIf="!isSelectedValenciano"><button class="idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
-                <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado  animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
-                <li *ngIf="!isSelectedSpanish"><button class="idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
+                <li *ngIf="isSelectedSpanish"><button class="idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
+                <li *ngIf="!isSelectedSpanish"><button  class="idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
             </ul>
+            <ul *ngIf="(this.commonService.sinIdioma$ | async) === true" class="fh5co-social">
+              <li><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
+              <li><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
+              <!-- <li *ngIf="isSelectedValenciano"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
+              <!-- <li *ngIf="!isSelectedValenciano"><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
+              <!-- <li *ngIf="isSelectedSpanish"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
+              <!-- <li *ngIf="!isSelectedSpanish"><button  class="disabled-button idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
+          </ul>
             <div class="col-lg-12 col-md-12 text-center animated pulse">
                 <h3 id="fh5co-logo">
-                    <a href="#">&nbsp;
-                        <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla" routerLink="/principal/">
+                    <a>&nbsp;
+                        <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla">
                             {{ 'app.viajes' | translate }}
                             <sup>Serrador Casares</sup>
                             <sub>

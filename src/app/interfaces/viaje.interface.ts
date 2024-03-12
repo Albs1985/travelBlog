@@ -8,7 +8,7 @@ export interface Viaje{
     year: number;
     idAnteriorViaje: string;
     idSiguienteViaje: string;
-    diaInicio : number,    
+    diaInicio : number,
     mesInicio : number;
     diaFin : number,
     mesFin : number;
@@ -18,6 +18,7 @@ export interface Viaje{
     estancia: string;
     tipoEstancia: string;
     transporte: string[];
-    personas: string[];    
-    mapaSrc: string[];    
+    personas: string[];
+    infoInteres: string[];
+    mapaSrc: string[];
 }

@@ -20,6 +20,7 @@ export class HeaderComponent {
   constructor(/*private route: ActivatedRoute, */
               public servicioViajes : ViajesService,
               private translate: TranslateService,
+              protected commonService : CommonService,
               private router: Router){
 
                 // this.mensajeCabeceraAnyo = true;
@@ -33,7 +34,7 @@ export class HeaderComponent {
     // this.translate.use('es');/*ESTO IGUAL NO HACE FALTA HACERLO DOS VECES*/
     this.isSelectedSpanish = true;
     this.isSelectedValenciano = false;
-    console.log('Idioma cambiado al Español');
+    // console.log('Idioma cambiado al Español');
     // this.mensajeCabecera = 'Viajes por año';
   }
   // Se cambia el idioma a Valenciano
@@ -41,7 +42,7 @@ export class HeaderComponent {
     this.translate.use('val');
     this.isSelectedSpanish = false;
     this.isSelectedValenciano = true;
-    console.log('Idioma cambiado al Valenciano');
+    // console.log('Idioma cambiado al Valenciano');
     // this.mensajeCabecera = 'Viatges per any';
   }
 
@@ -52,7 +53,7 @@ export class HeaderComponent {
     } else {
       this.palabra = $('#myInput').val();
     }
-    console.log("Busca por "+this.palabra);
+    // console.log("Busca por "+this.palabra);
 
     // this.mensajeCabeceraAnyo = false;
     // this.mensajeCabeceraFiltrar = true;

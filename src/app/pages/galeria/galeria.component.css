@@ -1,32 +1,30 @@
-
-.dobleFotos{
-    width: 25%;
-    height: 25%;
-    display: table-cell;
-    padding: 5px;    
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
 }
 
-
-.fotosPerfiles{
-    margin-right: 20px;
-    margin-left: 20px;
+.fotosPerfiles {
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
-.tituloGaleria{
+.tituloGaleria {
   margin-left: 25px;
 }
 
-.subTituloGaleria{
-    margin-left: 50px;
-    margin-right: 15px;
+.subTituloGaleria {
+  margin-left: 50px;
+  margin-right: 15px;
 }
 
-.divRight{
+.divRight {
   float: right;
   margin-right: 15px;
 }
 
-.iconosImg{
+.iconosImg {
   padding: 2px;
   width: 30px;
   height: 30px;
@@ -35,69 +33,69 @@
   margin-top: -5px;
 }
 
-.iconosImgFav{   
+.iconosImgFav {
   padding: 0px;
   width: 30px;
   height: 30px;
-  align-self: center;     
-  margin-top: -10px;       
+  align-self: center;
+  margin-top: -10px;
 }
 
 .iconoFlecha {
   width: 30px;
   height: 30px;
   padding: 5px;
-  background-color : rgb(247, 200, 115);
-  border-radius: 15px;  
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
 }
- div.gallery {
-    /* border: 1px solid #ccc; */
-    margin: 30px;
-    box-shadow: 5px 10px 8px #888888;
-  }
-  
-  div.gallery:hover {
-    border: 1px solid #777;
-  }
-  
-  div.gallery img {
-    width: 100%;
-    height: auto;    
-  }
-  
-  div.desc {
-    padding: 15px;
-    text-align: center;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
+div.gallery {
+  /* border: 1px solid #ccc; */
+  margin: 30px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
   .responsive {
-    padding: 0 6px;
-    float: left;
-    width: 24.99999%;
+    width: 49.99999%;
+    margin: 6px 0;
   }
-  
-  @media only screen and (max-width: 700px) {
-    .responsive {
-      width: 49.99999%;
-      margin: 6px 0;
-    }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
   }
-  
-  @media only screen and (max-width: 500px) {
-    .responsive {
-      width: 100%;
-    }
-  }
-  
-  .clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 .spinner {
   width: 40px;
@@ -113,19 +111,19 @@
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
   height: 100vh; /* Ajusta la altura del contenedor según necesites */
+  width: 50vh;
 }
-  
+
 @keyframes spin {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
-
-.paginacion{
+.paginacion {
   width: 100%;
   display: inline-block;
   text-align: center;

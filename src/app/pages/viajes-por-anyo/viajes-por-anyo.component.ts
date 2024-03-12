@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { ViajesService } from 'src/app/services/viajes.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ViajesPorAnyoComponent implements OnInit{
   // viajesCargados : boolean = false;
 
   constructor (private route: ActivatedRoute,
-                public servicioViajes : ViajesService){
+                public servicioViajes : ViajesService, public authenticationService: AutenticationService){
 
                   this.orderDesc = false;
                   this.ejecutarSoloTouch = false;
@@ -35,13 +36,13 @@ export class ViajesPorAnyoComponent implements OnInit{
       this.palabra = params['filtro'];
       // console.log(this.palabra);
       if (isNum){
-        console.log('Filtramos por anyo');
+        // console.log('Filtramos por anyo');
         this.mensajeCabeceraAnyo = true;
         this.mensajeCabeceraFiltrar = false;
         this.mensajeCabeceraFiltrarSinTranslate = false;
         this.servicioViajes.cargarViajesPorAnyo(params);
       }else{
-        console.log('Filtramos por palabra');
+        // console.log('Filtramos por palabra');
 
         switch (this.palabra) {
           case 'playa':

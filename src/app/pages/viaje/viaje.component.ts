@@ -2,6 +2,7 @@ import { Component, OnInit/*, ElementRef, ViewChild, AfterViewInit*/ } from '@an
 import { ActivatedRoute } from '@angular/router';
 import { ViajesService } from '../../services/viajes.service';
 import { FotosService } from 'src/app/services/fotos.service';
+import { AutenticationService } from 'src/app/services/autentication.service';
 
 @Component({
   selector: 'app-viaje',
@@ -10,10 +11,10 @@ import { FotosService } from 'src/app/services/fotos.service';
 })
 export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
   // @ViewChild('container') containerRef!: ElementRef;
-  
+
   showMsg : boolean = false;
 
-  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService){
+  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService, public authenticationService: AutenticationService){
 
   }
 
@@ -21,20 +22,20 @@ export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
   ngOnInit(){
 
     this.route.params.subscribe(params =>{
-      
-      console.log(params['ciudad']);
-      
+
+      // console.log(params['ciudad']);
+
       this.servicioViajes.cargarViaje(params);
       this.servicioFotos.cargarFotos(params);
-      
-    }); 
+
+    });
 
   }
 
   showTooltip(){
 
     this.showMsg = !this.showMsg;
-    console.log(this.showMsg);
+    // console.log(this.showMsg);
   }
 
   // ngAfterViewInit() {

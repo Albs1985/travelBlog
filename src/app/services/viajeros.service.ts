@@ -15,7 +15,6 @@ export class ViajerosService {
   cargando$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   anyo : number = new Date().getFullYear();
 
-
   viajero : Viajero = {
     nacimiento : new Date(),
     nombreCompleto : '',
@@ -57,8 +56,12 @@ export class ViajerosService {
             this.viajero.nombreCompleto = response[key].nombreCompleto;
             this.viajero.nombreCorto = response[key].nombreCorto;
             this.viajero.fotoPerfil = response[key].fotoPerfil;
-            this.viajero.edad = this.anyo - Number.parseInt(response[key].nacimiento.substring(0, 4));
             this.viajero.aka = response[key].aka;
+
+            //Cálculo de la edad en años
+            let date = new Date(response[key].nacimiento);
+            let timeDiff = Math.abs(Date.now() - date.getTime());
+            this.viajero.edad = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
 
             array.push(this.viajero);
 
