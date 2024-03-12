@@ -57,20 +57,17 @@
       <div *ngIf="this.categoria !== 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
     </div>
   </div>
-  <br>
   <h3 class="center">
     {{'app.listaRecetas' | translate}} <a (click)="buscarRecetas('')">{{'app.lista' | translate}}</a>
   </h3>
-
   <br>
-
   <div class="separator"></div>
   <br>
 
   <div *ngIf="servicioRecetas.recetas.length > 1" class="cuerpoIndice">
     <div class="recipe-container">
       <div *ngFor="let receta of servicioRecetas.recetas" class="recipe-item">
-        <a (click)="buscarRecetas(receta.nombre)">
+        <a class="full-link" (click)="buscarRecetas(receta.nombre)">
           <img class="recipe-image" src="{{receta.imagen}}" alt="{{receta.nombre}}">
           <div class="recipe-title">{{'recetas.'+receta.id+'.nombre' | translate}}</div>
         </a>
@@ -111,8 +108,8 @@
     <div class="separator"></div>
 
     <blockquote>
-      <h3 class="recetaTitulo">{{ 'app.ingredientes' | translate}}</h3>
-      <div *ngFor="let numIngrediente of recetaMostrada.ingredientes" class="bloqueReceta">
+      <h3 class="recetaTituloIngred">{{ 'app.ingredientes' | translate}}</h3>
+      <div *ngFor="let numIngrediente of recetaMostrada.ingredientes" class="bloqueReceta recetaTituloIngred">
         <ul class="ingrediente">
           <li>&nbsp;{{ 'recetas.'+recetaMostrada.id+'.ingrediente'+numIngrediente | translate}}</li>
         </ul>

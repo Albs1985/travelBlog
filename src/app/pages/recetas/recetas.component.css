@@ -90,6 +90,10 @@ li {
   margin-left: 25px;
 }
 
+.recetaTituloIngred {
+  margin-left: 50px;
+}
+
 .paginacion {
   width: 100%;
   display: inline-block;
@@ -160,6 +164,7 @@ li {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
+  padding: 20px;
 }
 
 .cuerpoImagenes {
@@ -239,18 +244,17 @@ li {
 /* Estilos para cada receta */
 .recipe-item {
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   width: 100%;
+  box-shadow: 5px 10px 8px #888888;
 }
 
 /* Estilos para la imagen de la receta */
 .recipe-image {
   width: auto;
-  /* height: auto;   */
   height: 125px;
   object-fit: cover;
-  /* max-width: 100%; */
   display: block;
 }
 
@@ -258,5 +262,15 @@ li {
 .recipe-title {
   font-weight: bold;
   padding: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #f2f2f2; */
+}
+
+.full-link {
+  display: block;
+  width: 100%;
+  height: 100%;
   background-color: #f2f2f2;
 }
