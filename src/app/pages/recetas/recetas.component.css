@@ -233,7 +233,6 @@ li {
   cursor: pointer;
 }
 .cuerpoIndice {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -280,6 +279,7 @@ li {
   align-items: center;
   justify-content: center;
   color: #000;
+  font-family: "Playfair Display", times, serif;
   /* background-color: #f2f2f2; */
 }
 
