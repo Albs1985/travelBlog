@@ -432,7 +432,7 @@
     "fotoFav86": "Els amics de Mateu (Bruno, Onai, Santi) a la Trobada de escoles, al Comarcal IES, Burjassot"
   },
   "recetas": {
-    "1": {
+    "6": {
       "frase": "Per als amants del xocolate",
       "nombre": "Brownie de xocolate",
       "categoria": "Postre",
@@ -455,7 +455,7 @@
       "paso5": "Finalment, ja podrem ficar-ho en el forn en el temps indicat. Cada forn és diferent, assegura't que no es cou massa, si no, es convertirà en bescuit.",
       "paso6": "Extra: Si vols sorprendre els teus comensals, afig una bola de gelat de vainilla, posa-la sobre el quadrat de brownie, i tira-li xocolate calent fos per damunt. La combinació de freda-calor és al·lucinant..."
     },
-    "2": {
+    "1": {
       "frase": "Per als dies de calor",
       "nombre": "Amanida de formatge feta",
       "categoria": "Amanida",
@@ -515,7 +515,7 @@
       "paso3": "Posar el coco ratllat per damunt",
       "paso4": "I a gaudir!!"
     },
-    "6": {
+    "2": {
       "frase": "Per a donar-se un homenatge",
       "nombre": "Galta al vi negre",
       "categoria": "Menjar, sopar",

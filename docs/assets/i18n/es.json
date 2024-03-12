@@ -432,7 +432,7 @@
     "fotoFav86": "Los amigos de Mateu (Bruno, Onai, Santi) en la Trobada de escoles, en el Comarcal IES, Burjassot"
   },
   "recetas": {
-    "1": {
+    "6": {
       "frase": "Para los amantes del chocolate",
       "nombre": "Brownie de chocolate",
       "categoria": "Postre",
@@ -455,7 +455,7 @@
       "paso5": "Por último, ya podremos meterlo en el horno en el tiempo indicado. Cada horno es diferente, asegúrate que no se cuece demasiado, si no, se convertirá en bizcocho.",
       "paso6": "Extra: Si quieres sorprender a tus comensales, añade una bola de helado de vainilla, ponla sobre el cuadrado de brownie, y échale chocolate caliente fundido por encima. La combinación de frío-calor es alucinante..."
     },
-    "2": {
+    "1": {
       "frase": "Para los días de calor",
       "nombre": "Ensalada de queso Feta",
       "categoria": "Ensalada",
@@ -515,7 +515,7 @@
       "paso3": "Poner el coco rayado por encima",
       "paso4": "Y a disfrutar!!"
     },
-    "6": {
+    "2": {
       "frase": "Para darse un homenaje",
       "nombre": "Carrillera al vino tinto",
       "categoria": "Comida, cena",
