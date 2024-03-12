@@ -41,11 +41,12 @@
         </div>
     </form>
   </div>
-
+  <br>
   <div *ngIf="servicioFrases.frases.length > maxSizeDisplay" class="paginacion">
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
   </div>
-
+  <br>
+  <br>
   <div *ngFor="let frase of servicioFrases.frases | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase">
     <figure>
       <h4 class="frasePersona">{{frase.persona}} ({{frase.anyo}})</h4>

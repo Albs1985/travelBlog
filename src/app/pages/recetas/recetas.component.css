@@ -220,3 +220,43 @@ li {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
+
+.cuerpoIndice {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para el contenedor de las recetas */
+.recipe-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Estilos para cada receta */
+.recipe-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Estilos para la imagen de la receta */
+.recipe-image {
+  width: auto;
+  /* height: auto;   */
+  height: 125px;
+  object-fit: cover;
+  /* max-width: 100%; */
+  display: block;
+}
+
+/* Estilos para el título de la receta */
+.recipe-title {
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f2f2f2;
+}

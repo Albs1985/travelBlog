@@ -83,7 +83,7 @@
     "minutos": "minuts",
     "especialidad": "Especialista",
     "categoriaRecetas": "Selecciona una categoria",
-    "listaRecetas": "O mira la llista",
+    "listaRecetas": "O mira la",
     "lista": "llista"
   },
   "dibujos": {
@@ -512,7 +512,7 @@
       "paso4": "I a gaudir!!"
     },
     "6": {
-      "frase": "Per als donar-se un homenatge",
+      "frase": "Per a donar-se un homenatge",
       "nombre": "Galta al vi negre",
       "categoria": "Menjar, sopar",
       "ingrediente1": "Galtes de vedella 2",
