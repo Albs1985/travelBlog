@@ -41,15 +41,19 @@ export class RecetasComponent {
 
   buscarRecetas(tipo: any){
     // this.p = 1;
-    this.categoria = tipo;
-    if (tipo === ''){
-      if($('#myInputReceta').val() == ''){
-        this.servicioRecetas.cargarRecetas();
-      } else {
-        this.palabra = $('#myInputReceta').val();
+    if (tipo !== 'lista'){
+      this.categoria = tipo;
+      if (tipo === ''){
+        if($('#myInputReceta').val() == ''){
+          this.servicioRecetas.cargarRecetas();
+        } else {
+          this.palabra = $('#myInputReceta').val();
+        }
+      }else{
+        this.palabra = tipo;
       }
     }else{
-      this.palabra = tipo;
+      this.categoria = '';
     }
 
     this.servicioRecetas.buscarRecetas(this.palabra).then(()=>{
@@ -74,7 +78,6 @@ export class RecetasComponent {
         };
       }
 
-      // console.log(this.recetaMostrada);
     });
 
     this.palabra = '';

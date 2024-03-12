@@ -58,7 +58,11 @@
     </div>
   </div>
   <h3 class="center">
-    {{'app.listaRecetas' | translate}} <a (click)="buscarRecetas('')">{{'app.lista' | translate}}</a>
+    <div *ngIf="this.categoria === 'frio'" class="letraPequenya">{{'app.recetas' | translate}} {{'app.categoriaFrio' | translate}}</div>
+    <div *ngIf="this.categoria === 'caliente'" class="letraPequenya">{{'app.recetas' | translate}} {{'app.categoriaCaliente' | translate}}</div>
+    <div *ngIf="this.categoria === 'dulce'" class="letraPequenya">{{'app.recetas' | translate}} {{'app.categoriaDulce' | translate}}</div>
+    <br>
+    {{'app.listaRecetas' | translate}} <a class="cursorPointer" (click)="buscarRecetas('lista')">{{'app.lista' | translate}}</a>
   </h3>
   <br>
   <div class="separator"></div>
@@ -68,7 +72,7 @@
     <div class="recipe-container">
       <div *ngFor="let receta of servicioRecetas.recetas" class="recipe-item">
         <a class="full-link" (click)="buscarRecetas(receta.nombre)">
-          <img class="recipe-image" src="{{receta.imagen}}" alt="{{receta.nombre}}">
+          <img class="recipe-image " src="{{receta.imagen}}" alt="{{receta.nombre}}">
           <div class="recipe-title">{{'recetas.'+receta.id+'.nombre' | translate}}</div>
         </a>
       </div>
@@ -87,7 +91,6 @@
       <div class="imagenCentrada">
         <img src={{recetaMostrada.imagen}} alt="{{recetaMostrada.imagen}}" class="img-responsive">
       </div>
-      <br>
       <blockquote>
         <h4 class="recetaTitulo">{{ 'app.especialidad' | translate}}: <b>{{recetaMostrada.cocinero}}</b></h4>
         <h4 class="recetaTitulo">{{recetaMostrada.raciones}} {{ 'app.raciones' | translate}}</h4>
@@ -95,7 +98,7 @@
         <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{recetaMostrada.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
         <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('horno') >= 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}} a {{recetaMostrada.temperatura}}</h4>
         <img *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
-        <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('microondas') >= 0" class="recetaTitulo">{{ 'app.tiempoMicro' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}} a {{recetaMostrada.temperatura}}</h4>
+        <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('microondas') >= 0" class="recetaTitulo">{{ 'app.tiempoMicro' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}}.{{ 'app.segundos' | translate}} a {{recetaMostrada.temperatura}}</h4>
         <img *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
         <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('olla') >= 0" class="recetaTitulo">{{ 'app.tiempoOlla' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}}</h4>
         <img *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('olla') >= 0" src="assets/icons/olla.png" alt="olla" class="iconosCategoria animated rollIn">

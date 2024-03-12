@@ -152,6 +152,9 @@ li {
   text-align: center;
 }
 
+.letraPequenya {
+  font-size: medium !important;
+}
 .separator {
   height: 1px; /* Altura de la línea */
   background-color: #000; /* Color de la línea (en este caso, negro) */
@@ -226,6 +229,9 @@ li {
   animation-iteration-count: infinite;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
 .cuerpoIndice {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -243,6 +249,10 @@ li {
 
 /* Estilos para cada receta */
 .recipe-item {
+  display: flex; /* Usar flexbox */
+  flex-direction: column; /* Apilar elementos verticalmente */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
@@ -253,9 +263,10 @@ li {
 /* Estilos para la imagen de la receta */
 .recipe-image {
   width: auto;
-  height: 125px;
+  height: 115px;
   object-fit: cover;
   display: block;
+  margin: auto; /* Centrar la imagen */
 }
 
 /* Estilos para el título de la receta */
@@ -273,4 +284,14 @@ li {
   width: 100%;
   height: 100%;
   background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 860px) {
+  .recetaTituloIngred {
+    text-align: center;
+  }
+  .ingrediente {
+    list-style-type: none;
+  }
 }

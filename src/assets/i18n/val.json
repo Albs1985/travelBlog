@@ -81,10 +81,14 @@
     "tiempoOlla": "Temps d'Olla",
     "tiempoTotal": "Temps Total",
     "minutos": "minuts",
+    "segundos": "segons",
     "especialidad": "Especialista",
     "categoriaRecetas": "Selecciona una categoria",
     "listaRecetas": "O mira la",
-    "lista": "llista"
+    "lista": "llista",
+    "categoriaDulce": "dolces",
+    "categoriaFrio": "fredes",
+    "categoriaCaliente": "calentes"
   },
   "dibujos": {
     "1": {
