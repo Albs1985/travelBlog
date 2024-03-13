@@ -1,0 +1,190 @@
+.game-wrapper {
+  padding: 10px; /* Ajusta el espacio alrededor del juego */
+}
+
+.imagenCentrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconJuego {
+  width: 60px;
+  height: 60px;
+  /* margin: 10px; */
+}
+
+.settings {
+  /* display: inline-flex; */
+  /* justify-content: space-between; */
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+.select-container {
+  display: block; /* Opcionalmente puedes usar 'flex' en lugar de 'block' */
+  margin-bottom: 10px; /* Espacio entre los dos divs */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.btnRestart {
+  background: transparent;
+  border-radius: 30px;
+  border: 4px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+}
+
+.selector {
+  border-radius: 10px;
+  width: 300px;
+  background-color: rgb(247, 200, 115);
+}
+
+.fotosPerfiles {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
+}
+
+.listaJugadores {
+  justify-content: space-between;
+  margin-left: 30px;
+}
+
+.imagen {
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+.jugadorSeleccionado {
+  border: 5px solid rgb(247, 200, 115);
+  border-radius: 10px;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.winnerMessage {
+  text-align: center;
+}
+
+.winnerLabel {
+  font-size: 2em;
+  color: rgb(247, 200, 115);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.memory-game-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.memory-card {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Evita que la cara trasera sea visible durante la rotación */
+}
+
+.card-back {
+  transform: rotateY(180deg); /* Inicia la parte trasera de la carta girada */
+}
+
+.memory-card.flipped .card-front {
+  transform: rotateY(180deg); /* Gira la carta a su posición normal */
+  transition: transform 0.5s ease; /* Agrega una transición suave al giro */
+}
+
+.memory-card.flipped .card-back {
+  transform: rotateY(360deg); /* Gira la parte trasera a su posición normal */
+  transition: transform 0.5s ease; /* Agrega una transición suave al giro */
+}
+
+.memory-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.player-name {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.25, 1.25, 1.25);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 3s;
+}

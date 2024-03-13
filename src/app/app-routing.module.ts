@@ -14,6 +14,7 @@ import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-al
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
+import { MemoryComponent } from './pages/games/memory/memory.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -26,6 +27,7 @@ const app_routes: Routes = [
   { path: 'bookMode', component : BookModeComponent},
   { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
   { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
+  { path: 'games/memory', component : MemoryComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},

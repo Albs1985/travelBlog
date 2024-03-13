@@ -88,7 +88,17 @@
     "lista": "lista",
     "categoriaDulce": "dulces",
     "categoriaFrio": "frías",
-    "categoriaCaliente": "calientes"
+    "categoriaCaliente": "calientes",
+    "juegos": "Juegos",
+    "memory": "Memory",
+    "facil": "Fácil",
+    "medio": "Medio",
+    "dificil": "Difícil",
+    "deLocos": "De locos!",
+    "tipoFotos": "Selecciona las imágenes del juego",
+    "jugadores": "Selecciona los jugadores, y finalmente clica sobre quien debe empezar",
+    "restart": "Volver a jugar",
+    "ganador": "Ganador"
   },
   "dibujos": {
     "1": {

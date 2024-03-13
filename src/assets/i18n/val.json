@@ -88,7 +88,17 @@
     "lista": "llista",
     "categoriaDulce": "dolces",
     "categoriaFrio": "fredes",
-    "categoriaCaliente": "calentes"
+    "categoriaCaliente": "calentes",
+    "juegos": "Jocs",
+    "memory": "Memory",
+    "facil": "Fàcil",
+    "medio": "Mitjà",
+    "dificil": "Difícil",
+    "deLocos": "De locos!",
+    "tipoFotos": "Selecciona les imatges del joc",
+    "jugadores": "Selecciona els jugadors, i finalment clica sobre qui ha de començar",
+    "restart": "Tornar a jugar",
+    "ganador": "Guanyador"
   },
   "dibujos": {
     "1": {

@@ -8,7 +8,7 @@ import { ViajesService } from './services/viajes.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'travelBlog';
+  title = 'Familia Serrador Casares';
 
   constructor(servicioViajes : ViajesService, translate: TranslateService){
     translate.setDefaultLang('val');
@@ -18,6 +18,6 @@ export class AppComponent {
     //     this.titleService.setTitle(res);
     //   });
     // });
-    
+
   }
 }

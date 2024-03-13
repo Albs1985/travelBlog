@@ -26,6 +26,7 @@ import { ApodosComponent } from './pages/apodos/apodos.component';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
+import { MemoryComponent } from './pages/games/memory/memory.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { RecetasComponent } from './pages/recetas/recetas.component';
     DibujosComponent,
     ApodosComponent,
     LoginComponent,
-    RecetasComponent
+    RecetasComponent,
+    MemoryComponent
   ],
   imports: [
     BrowserModule,
