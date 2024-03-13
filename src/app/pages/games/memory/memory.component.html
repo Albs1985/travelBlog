@@ -17,14 +17,13 @@
       </select>
     </div>
 
-    <div class="select-container">
-      <label for="imagesType">{{ 'app.tipoFotos' | translate }}</label>
-      <select class="selector" id="imagesType" [(ngModel)]="fotosJuegoSeleccionado" (change)="onSelectImagesGameChange()">
-        <option class="centerText" value="2019/Bali">Bali</option>
-        <option class="centerText" value="2019/Boda">Boda</option>
-        <option class="centerText" value="2022/Menorca">Menorca</option>
-      </select>
-    </div>
+    <label for="imagesType">{{ 'app.tipoFotos' | translate }}</label>
+    <select class="selector" id="imagesType" [(ngModel)]="fotosJuegoSeleccionado" (change)="onSelectImagesGameChange()">
+      <option class="centerText" value="2019/Bali">Bali</option>
+      <option class="centerText" value="2019/Boda">Boda</option>
+      <option class="centerText" value="2022/Menorca">Menorca</option>
+    </select>
+
   </div>
 
   <div *ngIf="(finDelJuego | async) === true" class="overlay">
