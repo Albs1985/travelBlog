@@ -110,7 +110,7 @@ export class MemoryComponent implements OnInit {
 
     switch(this.difficulty){
       case 'facil':
-        this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2));
+        this.level = 1;//Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2));
         break;
       case 'medio':
         this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2));
