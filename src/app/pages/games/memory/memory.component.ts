@@ -59,7 +59,7 @@ export class MemoryComponent implements OnInit {
   }
 
   onDifficultyChange(): void {
-    this.generateCards();
+    this.restartGame();
   }
 
   onSelectImagesGameChange(): void {
@@ -75,7 +75,7 @@ export class MemoryComponent implements OnInit {
         this.numFotosJuegoSeleccionado = this.numMaxFotosMenorca;
         break;
     }
-    this.generateCards();
+    this.restartGame();
   }
 
   seleccionarJugador(nombre: string): void {

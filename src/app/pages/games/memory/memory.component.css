@@ -164,12 +164,17 @@
 
 .player-name {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  background-color: rgba(255, 255, 255, 0.7);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.4);
+  text-align: center;
   padding: 5px;
   font-weight: bold;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes pulse {
