@@ -110,7 +110,7 @@ export class MemoryComponent implements OnInit {
 
     switch(this.difficulty){
       case 'facil':
-        this.level = 1;//Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2));
+        this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2));
         break;
       case 'medio':
         this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2));
@@ -141,7 +141,9 @@ export class MemoryComponent implements OnInit {
   }
 
   checkForMatch(flippedCards: MemoryCard[]): void {
+    let hayQueAvanzarJugador;
     if (flippedCards[0].image === flippedCards[1].image) {
+      hayQueAvanzarJugador = false;
       flippedCards.forEach(card => {
         card.isMatched = true;
         card.player = this.selectedPlayer ?? 'defaultPlayerName';
@@ -157,16 +159,21 @@ export class MemoryComponent implements OnInit {
         if (this.selectedPlayer === 'Albert') {
           this.albertScore++;
         }
+        return;
       });
     } else {
+      hayQueAvanzarJugador = true;
       setTimeout(() => {
         flippedCards.forEach(card => card.isFlipped = false);
       }, 1000);
     }
+
     if (!this.areAllCardsFlipped()){
-      setTimeout(() => {
-        this.avanzarJugador();
-      }, 1000);
+      if (hayQueAvanzarJugador){
+        setTimeout(() => {
+          this.avanzarJugador();
+        }, 1000);
+      }
     }else{
       this.calculaWinner();
       this.finDelJuego.next(true);
