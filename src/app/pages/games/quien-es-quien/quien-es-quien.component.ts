@@ -102,7 +102,7 @@ export class QuienEsQuienComponent implements OnInit{
         return;
       }
     });
-    if (!allDiscarded) {
+    if (allDiscarded) {
       this.finDelJuego.next(true); // Emite el evento finDelJuego si todos los personajes están descartados
     }
   }
