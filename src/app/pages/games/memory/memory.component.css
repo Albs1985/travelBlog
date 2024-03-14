@@ -1,3 +1,64 @@
+.mueveIconos {
+  position: relative;
+  animation-name: mueveIconosPorPantalla;
+  animation-delay: 1s;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes mueveIconosPorPantalla {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 30%;
+    top: 0px;
+  }
+  50% {
+    left: 0px;
+    top: 0px;
+  }
+  75% {
+    left: -30%;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.tituloJuego {
+  margin-left: 25px;
+}
+
+.subTituloJuego {
+  margin-left: 50px;
+  margin-right: 15px;
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
 .game-wrapper {
   padding: 10px; /* Ajusta el espacio alrededor del juego */
 }
@@ -38,6 +99,17 @@
   border-radius: 30px;
   border: 4px solid rgb(33, 33, 33);
   background-color: rgb(255, 228, 177);
+}
+
+.btnStart {
+  text-align: center;
+  background: transparent;
+  border-radius: 30px;
+  border: 4px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+  margin-left: 60px;
+  width: 230px;
+  height: 50px;
 }
 
 .selector {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, max } from 'rxjs';
 import { Viajero } from 'src/app/interfaces/viajero.interface';
 import { ViajerosService } from 'src/app/services/viajeros.service';
+import { ViajesService } from 'src/app/services/viajes.service';
 
 interface MemoryCard {
   image: string;
@@ -21,12 +22,8 @@ export class MemoryComponent implements OnInit {
   level: number = 0;
   cards: MemoryCard[] = [];
   difficulty: string = 'facil';
-  fotosDisponibles: string[] = ['Bali', 'Boda', 'Menorca'];
-  numMaxFotosBali: number = 32;
-  numMaxFotosBoda: number = 22;
-  numMaxFotosMenorca: number = 26;
-  numFotosJuegoSeleccionado : number = this.numMaxFotosBali;
-  fotosJuegoSeleccionado : string = '2019/Bali';
+  numFotosJuegoSeleccionado : number = 0;
+  fotosJuegoSeleccionado : string = '';
   marinaScore: number = 0;
   mateuScore: number = 0;
   albaScore: number = 0;
@@ -38,22 +35,42 @@ export class MemoryComponent implements OnInit {
   jugadoresDisponibles: Viajero[] = [];
 
   finDelJuego = new BehaviorSubject(true);
+  jugadorInicialNoSeleccionado = new BehaviorSubject(true);
+  inicioDelJuego = new BehaviorSubject(false);
 
-  constructor(public servicioJugadores: ViajerosService) { }
+
+  constructor(public servicioJugadores: ViajerosService, public viajesService : ViajesService) {   }
 
   ngOnInit(): void {
+    this.viajesService.cargarViajesTotales().then(()=>{
+      if (this.viajesService.viajesTotales && this.viajesService.viajesTotales.length > 0){
+        this.fotosJuegoSeleccionado = this.viajesService.viajesTotales[0].year+'/'+this.viajesService.viajesTotales[0].identificadorFotos;
+        this.numFotosJuegoSeleccionado = this.viajesService.viajesTotales[0].numFotos;
+      }
+    });
     this.servicioJugadores.cargarViajeros().then(()=>{
       this.jugadoresDisponibles = this.servicioJugadores.viajerosLista.filter(jugador => this.jugadoresSeleccionados.includes(jugador));
     });
     this.generateCards();
   }
 
+  startGame(){
+    if (!this.selectedPlayer){
+      this.jugadorInicialNoSeleccionado.next(true);
+    }else{
+      this.jugadorInicialNoSeleccionado.next(false);
+      this.inicioDelJuego.next(true);
+      this.restartGame();
+    }
+  }
+
   restartGame(){
-    this.selectedPlayer = null;
+    // this.selectedPlayer = null;
     this.marinaScore = 0;
     this.mateuScore = 0;
     this.albaScore = 0;
     this.albertScore = 0;
+    this.winnerPlayer = '';
     this.currentIndex = 0;
     this.generateCards();
   }
@@ -63,18 +80,11 @@ export class MemoryComponent implements OnInit {
   }
 
   onSelectImagesGameChange(): void {
-    console.log(this.fotosJuegoSeleccionado)
-    switch(this.fotosJuegoSeleccionado){
-      case '2019/Bali':
-        this.numFotosJuegoSeleccionado = this.numMaxFotosBali;
-        break;
-      case '2019/Boda':
-        this.numFotosJuegoSeleccionado = this.numMaxFotosBoda;
-        break;
-      case '2022/Menorca':
-        this.numFotosJuegoSeleccionado = this.numMaxFotosMenorca;
-        break;
-    }
+    this.viajesService.viajesTotales.forEach((viaje)=>{
+      if (viaje.year+'/'+viaje.identificadorFotos === this.fotosJuegoSeleccionado){
+        this.numFotosJuegoSeleccionado = viaje.numFotos;
+      }
+    });
     this.restartGame();
   }
 
@@ -110,7 +120,11 @@ export class MemoryComponent implements OnInit {
 
     switch(this.difficulty){
       case 'facil':
-        this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2));
+        if (Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2)) <=1){
+          this.level = 2;
+        }else{
+          this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2/2));
+        }
         break;
       case 'medio':
         this.level = Math.round(Math.abs(this.numFotosJuegoSeleccionado/2/2));
