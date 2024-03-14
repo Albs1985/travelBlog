@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { MemoryComponent } from './pages/games/memory/memory.component';
 import { GamesComponent } from './pages/games/games.component';
+import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-quien.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { GamesComponent } from './pages/games/games.component';
     LoginComponent,
     RecetasComponent,
     MemoryComponent,
-    GamesComponent
+    GamesComponent,
+    QuienEsQuienComponent
   ],
   imports: [
     BrowserModule,

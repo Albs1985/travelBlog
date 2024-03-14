@@ -103,7 +103,12 @@
     "selectPlayer": "Selecciona sobre quien debe empezar (haz clic sobre la imagen)",
     "restart": "Volver a jugar",
     "startGame": "Empieza a jugar!",
-    "ganador": "Ganador/a"
+    "ganador": "Ganador/a",
+    "quienEsQuien": "¿Quién es quién?",
+    "quienEs": "¿Quién es este?",
+    "incTurno": "Incrementar Turno",
+    "turno": "Turno",
+    "finDelJuego": "¡Game Over!"
   },
   "dibujos": {
     "1": {

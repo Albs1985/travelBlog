@@ -16,6 +16,7 @@ import { ApodosComponent } from './pages/apodos/apodos.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { MemoryComponent } from './pages/games/memory/memory.component';
 import { GamesComponent } from './pages/games/games.component';
+import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-quien.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -30,6 +31,7 @@ const app_routes: Routes = [
   { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
   { path: 'games', component : GamesComponent},
   { path: 'games/memory', component : MemoryComponent},
+  { path: 'games/quien-es-quien', component : QuienEsQuienComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},

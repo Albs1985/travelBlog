@@ -1,0 +1,202 @@
+.mueveIconos {
+  position: relative;
+  animation-name: mueveIconosPorPantalla;
+  animation-delay: 1s;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes mueveIconosPorPantalla {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 30%;
+    top: 0px;
+  }
+  50% {
+    left: 0px;
+    top: 0px;
+  }
+  75% {
+    left: -30%;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.tituloJuego {
+  margin-left: 25px;
+}
+
+.subTituloJuego {
+  margin-left: 50px;
+  margin-right: 15px;
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.quien-es-quien-container {
+  text-align: center;
+}
+
+.adversary-character {
+  text-align: center;
+}
+
+.adversary-character img {
+  border: 4px solid #333;
+  border-radius: 10px;
+  padding: 5px;
+  max-width: 200px;
+  filter: brightness(0.4);
+  transition: filter 0.3s ease;
+}
+
+/* Cambia el brillo de la imagen cuando se coloca el ratón sobre ella */
+.adversary-character img:hover {
+  filter: brightness(1);
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.character-card {
+  position: relative;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 8px;
+  width: 100px;
+  height: 120px;
+  text-align: center;
+}
+
+.character-card img {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+/* Estilos para la etiqueta de turno */
+.turn-label {
+  margin-top: 10px; /* Espaciado superior */
+  font-size: 18px; /* Tamaño del texto */
+  font-weight: bold; /* Negrita */
+  color: #333; /* Color del texto */
+}
+
+/* Estilos para el botón de incrementar turno */
+.turn-button {
+  margin-top: 10px; /* Espaciado superior */
+  padding: 10px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño del texto */
+  background-color: rgb(247, 200, 115); /* Color de fondo */
+  color: #000000; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero */
+  /* transition: background-color 0.3s ease; Transición suave */
+}
+
+/* .turn-button:hover {
+  background-color: rgb(255, 228, 177); /* Cambio de color al pasar el ratón
+} */
+
+.btnRestart {
+  background: transparent;
+  border-radius: 30px;
+  border: 4px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.endGameMessage {
+  text-align: center;
+  position: relative;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.endGameLabel {
+  font-size: 2em;
+  color: rgb(247, 200, 115);
+  animation: blink 1s infinite;
+}
+
+.cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  font-size: 24px; /* Tamaño de la X */
+  color: rgba(255, 255, 255, 0.7); /* Color de la X semitransparente */
+  pointer-events: none; /* Evita que la cruz interfiera con los eventos de clic en la imagen */
+}
+
+/* Crea la forma de la X */
+.cross::before,
+.cross::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5px; /* Grosor de la línea de la X */
+  background-color: currentColor; /* Utiliza el color definido para la X */
+  top: 50%;
+  left: 0;
+  transform-origin: center;
+}
+
+/* Rotación de 45 grados para la parte superior de la X */
+.cross::before {
+  transform: rotate(45deg);
+}
+
+/* Rotación de -45 grados para la parte inferior de la X */
+.cross::after {
+  transform: rotate(-45deg);
+}
