@@ -90,6 +90,10 @@ li {
   margin-left: 25px;
 }
 
+.recetaTituloIngred {
+  margin-left: 50px;
+}
+
 .paginacion {
   width: 100%;
   display: inline-block;
@@ -148,6 +152,9 @@ li {
   text-align: center;
 }
 
+.letraPequenya {
+  font-size: medium !important;
+}
 .separator {
   height: 1px; /* Altura de la línea */
   background-color: #000; /* Color de la línea (en este caso, negro) */
@@ -160,6 +167,7 @@ li {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
+  padding: 20px;
 }
 
 .cuerpoImagenes {
@@ -219,4 +227,75 @@ li {
   animation-name: pulse;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+.cuerpoIndice {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para el contenedor de las recetas */
+.recipe-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Estilos para cada receta */
+.recipe-item {
+  display: flex; /* Usar flexbox */
+  flex-direction: column; /* Apilar elementos verticalmente */
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+/* Estilos para la imagen de la receta */
+.recipe-image {
+  width: auto;
+  height: 115px;
+  object-fit: cover;
+  display: block;
+  margin: auto; /* Centrar la imagen */
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Estilos para el título de la receta */
+.recipe-title {
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-family: "Playfair Display", times, serif;
+  /* background-color: #f2f2f2; */
+}
+
+.full-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 860px) {
+  .recetaTituloIngred {
+    text-align: center;
+  }
+  .ingrediente {
+    list-style-type: none;
+  }
 }

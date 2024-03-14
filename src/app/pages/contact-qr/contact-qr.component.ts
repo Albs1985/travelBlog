@@ -12,8 +12,8 @@ export class ContactQRComponent {
   nom : any = '';
   mail : any = '';
   mensajeCorreo : any = '';
-  asuntoES : string = 'Blog de viajes Familia Serrador Casares';
-  asuntoVAL : string = 'Blog de viatges Familia Serrador Casares';
+  asuntoES : string = 'Diario de la Familia Serrador Casares';
+  asuntoVAL : string = 'Diari de la Familia Serrador Casares';
   correo : string = '';
   controlNombre = new FormControl(null, [Validators.required, Validators.pattern(/[\S]/), Validators.maxLength(80)]);
   controlEmail = new FormControl(null, [Validators.required, Validators.email, Validators.pattern(/[\S]/)]);

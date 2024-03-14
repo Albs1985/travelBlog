@@ -81,10 +81,34 @@
     "tiempoOlla": "Temps d'Olla",
     "tiempoTotal": "Temps Total",
     "minutos": "minuts",
+    "segundos": "segons",
     "especialidad": "Especialista",
     "categoriaRecetas": "Selecciona una categoria",
-    "listaRecetas": "O mira la llista",
-    "lista": "llista"
+    "listaRecetas": "O mira la",
+    "lista": "llista",
+    "categoriaDulce": "dolces",
+    "categoriaFrio": "fredes",
+    "categoriaCaliente": "calentes",
+    "juegos": "Jocs",
+    "juegosTitulo": "Jocs per a tota la família",
+    "juegosSubtitulo1": "Gaudix de les fotos dels viatges jugant",
+    "juegosSubtitulo2": "Tots els nivells de dificultat",
+    "memory": "Memory",
+    "facil": "Fàcil",
+    "medio": "Mitjà",
+    "dificil": "Difícil",
+    "deLocos": "De locos!",
+    "tipoFotos": "Selecciona les imatges del joc",
+    "jugadores": "Selecciona els jugadors",
+    "selectPlayer": "Selecciona qui ha de començar (fes clic sobre la imatge)",
+    "restart": "Tornar a jugar",
+    "startGame": "Comença a jugar!",
+    "ganador": "Guanyador/a",
+    "quienEsQuien": "¿Qui és qui?",
+    "quienEs": "¿Qui és este?",
+    "incTurno": "Aumentar torn",
+    "turno": "Torn",
+    "finDelJuego": "¡Game Over!"
   },
   "dibujos": {
     "1": {
@@ -428,7 +452,7 @@
     "fotoFav86": "Els amics de Mateu (Bruno, Onai, Santi) a la Trobada de escoles, al Comarcal IES, Burjassot"
   },
   "recetas": {
-    "1": {
+    "6": {
       "frase": "Per als amants del xocolate",
       "nombre": "Brownie de xocolate",
       "categoria": "Postre",
@@ -451,7 +475,7 @@
       "paso5": "Finalment, ja podrem ficar-ho en el forn en el temps indicat. Cada forn és diferent, assegura't que no es cou massa, si no, es convertirà en bescuit.",
       "paso6": "Extra: Si vols sorprendre els teus comensals, afig una bola de gelat de vainilla, posa-la sobre el quadrat de brownie, i tira-li xocolate calent fos per damunt. La combinació de freda-calor és al·lucinant..."
     },
-    "2": {
+    "1": {
       "frase": "Per als dies de calor",
       "nombre": "Amanida de formatge feta",
       "categoria": "Amanida",
@@ -511,8 +535,8 @@
       "paso3": "Posar el coco ratllat per damunt",
       "paso4": "I a gaudir!!"
     },
-    "6": {
-      "frase": "Per als donar-se un homenatge",
+    "2": {
+      "frase": "Per a donar-se un homenatge",
       "nombre": "Galta al vi negre",
       "categoria": "Menjar, sopar",
       "ingrediente1": "Galtes de vedella 2",

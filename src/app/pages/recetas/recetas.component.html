@@ -57,102 +57,80 @@
       <div *ngIf="this.categoria !== 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
     </div>
   </div>
-  <br>
   <h3 class="center">
-    {{'app.listaRecetas' | translate}} <a (click)="buscarRecetas('')">{{'app.lista' | translate}}</a>
+    <div *ngIf="this.categoria === 'frio'" class="letraPequenya">{{'app.recetas' | translate}} <b>{{'app.categoriaFrio' | translate}}</b></div>
+    <div *ngIf="this.categoria === 'caliente'" class="letraPequenya">{{'app.recetas' | translate}} <b>{{'app.categoriaCaliente' | translate}}</b></div>
+    <div *ngIf="this.categoria === 'dulce'" class="letraPequenya">{{'app.recetas' | translate}} <b>{{'app.categoriaDulce' | translate}}</b></div>
+    <br>
+    {{'app.listaRecetas' | translate}} <a class="cursorPointer" (click)="buscarRecetas('lista')">{{'app.lista' | translate}}</a>
   </h3>
-  <!-- <div class="icon"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('lupa')"><img src="assets/icons/lista.png" alt="caliente" class="icon animated fadeIn pulse"></a></div> -->
   <br>
-
   <div class="separator"></div>
   <br>
 
-  <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
-  <br>
-  <!-- <div class="imagenCentrada">
-    <div *ngIf="this.categoria === 'dulce'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
-    <div *ngIf="this.categoria === 'frio'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/ingrediente.png" alt="frio" class="icon animated fadeIn pulse"></a></div>
-    <div *ngIf="this.categoria === 'caliente'" class="icon"><a class="js-fh5co-close-offcanvas"><img src="assets/icons/frito.png" alt="caliente" class="icon animated fadeIn pulse"></a></div>
-  </div> -->
-
-  <div *ngFor="let receta of servicioRecetas.recetas | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueReceta">
-
-    <figure>
-      <div class="center">
-        <h2 class="recetaTitulo">{{'recetas.'+receta.id+'.nombre' | translate}}</h2>
-        <img *ngIf="receta.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="frio" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="caliente" class="iconosCategoria animated rollIn">
-        <img *ngIf="receta.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="dulce" class="iconosCategoria animated rollIn">
-        <br>
-        <cite class="recetaTitulo">«{{ 'recetas.'+receta.id+'.frase' | translate}}»</cite>
-        <br><br>
-        <div class="imagenCentrada">
-          <img src={{receta.imagen}} alt="{{receta.imagen}}" class="img-responsive">
-        </div>
-        <br>
-        <blockquote>
-          <h4 class="recetaTitulo">{{ 'app.especialidad' | translate}}: <b>{{receta.cocinero}}</b></h4>
-          <h4 class="recetaTitulo">{{receta.raciones}} {{ 'app.raciones' | translate}}</h4>
-          <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{receta.dificultad}}</h4>
-          <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
-          <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
-          <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
-          <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" class="recetaTitulo">{{ 'app.tiempoMicro' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}} a {{receta.temperatura}}</h4>
-          <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
-          <h4 *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('olla') >= 0" class="recetaTitulo">{{ 'app.tiempoOlla' | translate}}: {{receta.tiempoHorno}} {{ 'app.minutos' | translate}}</h4>
-          <img *ngIf="receta.tiempoHorno > 0 && receta.categoria.indexOf('olla') >= 0" src="assets/icons/olla.png" alt="olla" class="iconosCategoria animated rollIn">
-          <img *ngIf="receta.tiempoHorno < 0 && receta.categoria.indexOf('nevera') >= 0" src="assets/icons/frio.png" alt="frio" class="iconosCategoria animated rollIn">
-          <h4 *ngIf="receta.tiempoHorno > 0" class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoHorno+receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
-          <h4 *ngIf="receta.tiempoHorno < 0" class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{receta.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
-        </blockquote>
+  <div *ngIf="servicioRecetas.recetas.length > 1" class="cuerpoIndice">
+    <div class="recipe-container">
+      <div *ngFor="let receta of servicioRecetas.recetas" class="recipe-item">
+        <a class="full-link" (click)="buscarRecetas(receta.nombre)">
+          <img class="recipe-image " src="{{receta.imagen}}" alt="{{receta.nombre}}">
+          <div class="recipe-title">{{'recetas.'+receta.id+'.nombre' | translate}}</div>
+        </a>
       </div>
+    </div>
+  </div>
 
-      <div class="separator"></div>
-
+  <figure *ngIf="this.recetaMostrada.id > 0 ">
+    <div class="center">
+      <h2 class="recetaTitulo">{{'recetas.'+recetaMostrada.id+'.nombre' | translate}}</h2>
+      <img *ngIf="recetaMostrada.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="frio" class="iconosCategoria animated rollIn">
+      <img *ngIf="recetaMostrada.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="caliente" class="iconosCategoria animated rollIn">
+      <img *ngIf="recetaMostrada.categoria.indexOf('dulce') >= 0" src="assets/icons/pastel.png" alt="dulce" class="iconosCategoria animated rollIn">
+      <br>
+      <cite class="recetaTitulo">«{{ 'recetas.'+recetaMostrada.id+'.frase' | translate}}»</cite>
+      <br><br>
+      <div class="imagenCentrada">
+        <img src={{recetaMostrada.imagen}} alt="{{recetaMostrada.imagen}}" class="img-responsive">
+      </div>
       <blockquote>
-        <h3 class="recetaTitulo">{{ 'app.ingredientes' | translate}}</h3>
-        <div *ngFor="let numIngrediente of receta.ingredientes" class="bloqueReceta">
-          <ul class="ingrediente">
-            <li>&nbsp;{{ 'recetas.'+receta.id+'.ingrediente'+numIngrediente | translate}}</li>
+        <h4 class="recetaTitulo">{{ 'app.especialidad' | translate}}: <b>{{recetaMostrada.cocinero}}</b></h4>
+        <h4 class="recetaTitulo">{{recetaMostrada.raciones}} {{ 'app.raciones' | translate}}</h4>
+        <h4 class="recetaTitulo">{{ 'app.dificultad' | translate}}: {{recetaMostrada.dificultad}}</h4>
+        <h4 class="recetaTitulo">{{ 'app.tiempoPreparacion' | translate}}:  {{recetaMostrada.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
+        <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('horno') >= 0" class="recetaTitulo">{{ 'app.tiempoHorno' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}} a {{recetaMostrada.temperatura}}</h4>
+        <img *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('horno') >= 0" src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
+        <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('microondas') >= 0" class="recetaTitulo">{{ 'app.tiempoMicro' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}}/{{ 'app.segundos' | translate}} a {{recetaMostrada.temperatura}}</h4>
+        <img *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('microondas') >= 0" src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
+        <h4 *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('olla') >= 0" class="recetaTitulo">{{ 'app.tiempoOlla' | translate}}: {{recetaMostrada.tiempoHorno}} {{ 'app.minutos' | translate}}</h4>
+        <img *ngIf="recetaMostrada.tiempoHorno > 0 && recetaMostrada.categoria.indexOf('olla') >= 0" src="assets/icons/olla.png" alt="olla" class="iconosCategoria animated rollIn">
+        <img *ngIf="recetaMostrada.tiempoHorno < 0 && recetaMostrada.categoria.indexOf('nevera') >= 0" src="assets/icons/frio.png" alt="frio" class="iconosCategoria animated rollIn">
+        <h4 *ngIf="recetaMostrada.tiempoHorno > 0" class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{recetaMostrada.tiempoHorno+recetaMostrada.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
+        <h4 *ngIf="recetaMostrada.tiempoHorno < 0" class="recetaTitulo">{{ 'app.tiempoTotal' | translate}}: <b>{{recetaMostrada.tiempoPreparacion}} {{ 'app.minutos' | translate}}</b></h4>
+      </blockquote>
+    </div>
+
+    <div class="separator"></div>
+
+    <blockquote>
+      <h3 class="recetaTituloIngred">{{ 'app.ingredientes' | translate}}</h3>
+      <div *ngFor="let numIngrediente of recetaMostrada.ingredientes" class="bloqueReceta recetaTituloIngred">
+        <ul class="ingrediente">
+          <li>&nbsp;{{ 'recetas.'+recetaMostrada.id+'.ingrediente'+numIngrediente | translate}}</li>
+        </ul>
+      </div>
+    </blockquote>
+
+    <div class="center">
+      <blockquote>
+        <h3>{{ 'app.pasos' | translate}}</h3>
+        <div *ngFor="let paso of recetaMostrada.numPasos" class="bloqueReceta">
+          <ul class="pasos">
+            <h4 class="center">{{paso}}</h4>
+            <li>&nbsp;{{ 'recetas.'+recetaMostrada.id+'.paso'+paso | translate}}</li>
           </ul>
         </div>
       </blockquote>
-
-      <!-- <blockquote>
-        <h3 class="recetaTitulo">{{ 'app.utensilios' | translate}}</h3>
-        <div *ngFor="let numUtensilio of receta.utensilios" class="bloqueReceta">
-          <ul class="utensilio">
-            <li>&nbsp;{{ 'recetas.'+receta.id+'.utensilio'+numUtensilio | translate}}</li>
-          </ul>
-        </div>
-      </blockquote> -->
-
-      <div class="center">
-        <blockquote>
-          <h3>{{ 'app.pasos' | translate}}</h3>
-          <div *ngFor="let paso of receta.numPasos" class="bloqueReceta">
-            <ul class="pasos">
-              <h4 class="center">{{paso}}</h4>
-              <li>&nbsp;{{ 'recetas.'+receta.id+'.paso'+paso | translate}}</li>
-            </ul>
-          </div>
-        </blockquote>
-      </div>
-    </figure>
-  </div>
-  <br>
-  <div *ngIf="servicioRecetas.recetas.length > 0" class="separator"></div>
-
-  <div class="center">
-    <br>
-    <span *ngIf="servicioRecetas.recetas.length == 0"> {{ 'app.sinResultados' | translate}}</span>
-  </div>
-  <br>
-  <div *ngIf="servicioRecetas.recetas.length > maxSizeDisplay" class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
+    </div>
+  </figure>
 
 </div><!-- de la autenticacion -->
 

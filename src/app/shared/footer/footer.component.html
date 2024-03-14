@@ -18,15 +18,17 @@
 
     <footer id="fh5co-footer" *ngIf="(this.commonService.modoLibro$ | async) === false">
         <div class="col-lg-12 col-md-12 text-center animated pulse">
-            <h3 id="fh5co-logo"><a><img src="assets/icons/puestaSol.png" class="animated fadeIn pulseInfinito icono" routerLink="/principal/">{{ 'app.viajes' | translate }} <sup>Serrador Casares</sup></a></h3>
+            <h3 id="fh5co-logo"><a><img src="assets/icons/puestaSol.png" class="animated fadeIn pulseInfinito icono" routerLink="/principal/">{{ 'app.familia' | translate }} <sup>Serrador Casares</sup></a></h3>
         </div>
-        <br><br>
+        <br>
         <p>
             <b>
                 <small>&copy; {{anyo}}. All Rights Reserved
                     <br>
-                    <img src="assets/icons/viajarPlaneta.png" class="animated fadeIn icono" routerLink="/principal/"> &nbsp;
-                    <img src="assets/icons/viajeros.png" class="animated fadeIn icono" routerLink="/principal/">
+                    <img *ngIf="(this.commonService.modoJuegos$ | async) === false" src="assets/icons/viajarPlaneta.png" class="animated fadeIn icono" routerLink="/principal/"> &nbsp;
+                    <img *ngIf="(this.commonService.modoJuegos$ | async) === false" src="assets/icons/viajeros.png" class="animated fadeIn icono" routerLink="/principal/">
+                    <img *ngIf="(this.commonService.modoJuegos$ | async) === true" src="assets/icons/juegosMesa.png" class="animated fadeIn icono" routerLink="/principal/"> &nbsp;
+                    <img *ngIf="(this.commonService.modoJuegos$ | async) === true" src="assets/icons/juegoArcade.png" class="animated fadeIn icono" routerLink="/principal/">
                     <!-- <img src="assets/icons/viajarMundo.png" class="animated fadeIn icono" routerLink="/principal/">  -->
                     <br>
                     <!-- Albert Serrador Sánchez -->

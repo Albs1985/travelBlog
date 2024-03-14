@@ -1,0 +1,48 @@
+<br>
+<h2 class="tituloJuego">
+    <img src="assets/icons/dados.png" alt="" class="iconosImgFav animated rollIn">
+  {{ 'app.juegosTitulo' | translate }}
+</h2>
+<h3 class="subTituloJuego">
+    <img src="assets/icons/fantasma.png" alt="" class="iconosImgFav animated rollIn">
+  {{ 'app.juegosSubtitulo1' | translate }}
+</h3>
+<h4 class="subTituloJuego">
+    {{ 'app.juegosSubtitulo2' | translate }}
+</h4>
+<br>
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games/"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
+</div>
+
+<div *ngIf="(inicioDelJuego | async) === true" class="quien-es-quien-container">
+  <br><br>
+  <div class="imagenCentrada">
+    <img src="assets/icons/quien.png" class="iconJuego animated mueveIconos">
+  </div>
+  <h1>{{'app.quienEsQuien' | translate}}</h1>
+  <br>
+  <div class="adversary-character">
+    <br>
+    <img [src]="adversaryPersonaje?.imagen" alt="Personaje a adivinar">
+    <br>
+    <h2>{{'app.quienEs' | translate}}</h2>
+    <br>
+    <button class="turn-button" (click)="incrementTurn()">{{ 'app.incTurno'|translate}}</button>
+    <div class="turn-label">{{ 'app.turno'|translate}} {{numTurno}}</div>
+  </div>
+  <br><br>
+  <div class="board">
+    <div class="character-card" *ngFor="let personaje of personajes" (click)="markAsDiscarded(personaje)">
+      <img [src]="personaje.imagen" alt="{{ personaje.nombre }}">
+      <p>{{ personaje.nombre }}</p>
+      <div class="cross" *ngIf="personaje.descartado"></div>
+    </div>
+  </div>
+  <div *ngIf="(finDelJuego | async) === true" class="overlay">
+    <div class="endGameMessage">
+      <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
+      <label class="endGameLabel">{{ 'app.finDelJuego' | translate }}!!</label>
+    </div>
+  </div>
+</div>

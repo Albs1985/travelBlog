@@ -45,6 +45,7 @@ export class ViajesService {
   viajesLista : Viajes[] = [];
   viajesDetalleLista : Viaje[] = [];
   viajesFiltrado : Viaje[] = [];
+  viajesTotales : Viaje[] = [];
 
   viajes : Viajes = {
     anyo: 0,
@@ -398,6 +399,29 @@ export class ViajesService {
 
     });
 
+  }
+
+
+  cargarViajesTotales(){
+    return new Promise( (resolve, reject) => {
+
+      this.http.get(this.viajesJSON)
+        .subscribe( (response: any ) => {
+
+          var array = [];
+          for(let key in response){
+            var viajesAnyo = response[key];
+            for (let viatge in response[key]){
+              this.viaje = this.addViajeEnArray(viatge, viajesAnyo);
+              array.push(this.viaje);
+            }
+          }
+
+          this.viajesTotales = array.sort();
+          this.cargandoViajes$.next(false);
+          resolve(this.viajesTotales);
+        });
+    });
   }
 
 
