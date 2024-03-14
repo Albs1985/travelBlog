@@ -1,7 +1,8 @@
 // memory-game.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, max } from 'rxjs';
 import { Viajero } from 'src/app/interfaces/viajero.interface';
+import { CommonService } from 'src/app/services/common.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
 import { ViajesService } from 'src/app/services/viajes.service';
 
@@ -17,7 +18,7 @@ interface MemoryCard {
   templateUrl: './memory.component.html',
   styleUrls: ['./memory.component.css']
 })
-export class MemoryComponent implements OnInit {
+export class MemoryComponent implements OnInit, OnDestroy {
 
   level: number = 0;
   cards: MemoryCard[] = [];
@@ -39,7 +40,13 @@ export class MemoryComponent implements OnInit {
   inicioDelJuego = new BehaviorSubject(false);
 
 
-  constructor(public servicioJugadores: ViajerosService, public viajesService : ViajesService) {   }
+  constructor(public commonService: CommonService, public servicioJugadores: ViajerosService, public viajesService : ViajesService) {
+    this.commonService.modoJuegos$.next(true);
+  }
+
+  ngOnDestroy(): void {
+    this.commonService.modoJuegos$.next(false);
+  }
 
   ngOnInit(): void {
     this.viajesService.cargarViajesTotales().then(()=>{

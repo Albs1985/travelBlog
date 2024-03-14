@@ -11,6 +11,7 @@ export class CommonService {
 
   modoLibro$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   sinIdioma$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  modoJuegos$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
 
   constructor(private http: HttpClient) {

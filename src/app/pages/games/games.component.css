@@ -71,8 +71,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: lightblue; */
-  /* border-radius: 50%; */
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
 }
 
 @media screen and (max-width: 600px) {

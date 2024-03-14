@@ -51,6 +51,17 @@
   margin-right: 15px;
 }
 
+.imagenCentrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconJuego {
+  width: 60px;
+  height: 60px;
+}
+
 .iconoFlecha {
   width: 30px;
   height: 30px;

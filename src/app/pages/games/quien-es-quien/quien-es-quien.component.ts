@@ -1,6 +1,7 @@
 // quien-es-quien.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service';
 import { ViajesService } from 'src/app/services/viajes.service';
 
 interface Personaje {
@@ -16,7 +17,7 @@ interface Personaje {
 })
 
 
-export class QuienEsQuienComponent implements OnInit{
+export class QuienEsQuienComponent implements OnInit, OnDestroy{
 
   personajes: Personaje[] = [];
   adversaryPersonaje: Personaje | null = null;
@@ -24,12 +25,16 @@ export class QuienEsQuienComponent implements OnInit{
   finDelJuego = new BehaviorSubject(false);
   numTurno: number = 0;
 
-  constructor(public viajesService : ViajesService){
+  constructor(public commonService: CommonService, public viajesService : ViajesService){
+    this.commonService.modoJuegos$.next(true);
     this.adversaryPersonaje = {
       nombre : '',
       imagen: '',
       descartado: false
     };
+  }
+  ngOnDestroy(): void {
+    this.commonService.modoJuegos$.next(false);
   }
 
   ngOnInit(): void {
