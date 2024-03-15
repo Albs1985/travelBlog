@@ -97,7 +97,7 @@
 <div *ngIf="(finDelJuego | async) === true" class="overlay">
   <div class="winnerMessage">
     <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
-    <label class="winnerLabel">{{ 'app.ganador' | translate }} {{winnerPlayer}}!!</label>
+    <label class="winnerLabel">{{ 'app.ganador' | translate }} {{winnerPlayer}}</label>
   </div>
 </div>
 

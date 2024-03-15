@@ -109,7 +109,9 @@
     "incTurno": "Incrementar Turno",
     "turno": "Turno",
     "finDelJuego": "¡End Game!",
-    "youLose": "¡Game Over!"
+    "youLose": "¡Game Over!",
+    "juegoAdivina": "Adivina el viaje",
+    "comprobar": "Comprobar"
   },
   "dibujos": {
     "1": {

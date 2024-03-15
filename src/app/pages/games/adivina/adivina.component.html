@@ -1,0 +1,16 @@
+<div class="game-container">
+  <h1>{{ 'app.juegoAdivina' | translate }}</h1>
+  <div class="image-container" (click)="revealImage()">
+    <img src="{{urlImagen}}" alt="Imagen Borrosa" [style.filter]="blurFilter">
+  </div>
+  <div class="turn-counter">{{ 'app.turno' | translate }}: {{ turnCount }}</div>
+  <button class="restart-button" (click)="comprobar()">{{ 'app.restart' | translate }}</button>
+  <button class="restart-button" (click)="restartGame()">{{ 'app.comprobar' | translate }}</button>
+  <label class="winnerLabel" *ngIf="(showNomViaje | async) === true">{{nomViaje}}</label>
+</div>
+<div *ngIf="(finDelJuego | async) === true" class="overlay">
+  <div class="winnerMessage">
+    <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
+    <label class="winnerLabel">{{ 'app.finDelJuego' | translate }}</label>
+  </div>
+</div>
