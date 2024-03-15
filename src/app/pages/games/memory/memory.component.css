@@ -130,20 +130,20 @@
 .dobleFotos {
   width: 25%;
   height: 25%;
-  max-width: 50%;
-  max-height: 50%;
   display: table-cell;
   padding: 5px;
 }
 
-.listaJugadores {
+/* .listaJugadores {
   justify-content: space-between;
   margin-left: 30px;
-}
+} */
 
 .imagen {
   border: 1px solid #000000;
   border-radius: 10px;
+  max-width: 90%;
+  max-height: 80%;
 }
 
 .jugadorSeleccionado {
@@ -155,19 +155,25 @@
   text-align: center;
 }
 
-.centraChecks {
-  display: flex;
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
-  justify-content: center; /* Centra horizontalmente los elementos */
+.listaJugadores {
+  margin-left: 30px;
+  text-align: center;
 }
 
-.centraChecks input[type="checkbox"],
-.centraChecks a {
-  flex: 0 0 calc(25% - 20px); /* El 25% representa las 4 columnas, se resta el espacio entre elementos */
-  max-width: calc(
-    25% - 20px
-  ); /* Ancho máximo para evitar que el texto sea demasiado ancho */
-  margin: 10px; /* Espacio entre los elementos */
+.centraChecks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.playerCheckbox {
+  display: flex;
+  align-items: center;
+  margin: 5px; /* Espacio entre las checkboxes */
+}
+
+.playerCheckbox input[type="checkbox"] {
+  margin-right: 5px; /* Espacio entre el checkbox y el texto */
 }
 
 .overlay {

@@ -21,12 +21,14 @@
     <img src="assets/icons/quien.png" class="iconJuego animated mueveIconos">
   </div>
   <h1>{{'app.quienEsQuien' | translate}}</h1>
-  <br>
+
   <div class="adversary-character">
     <br>
-    <img [src]="adversaryPersonaje?.imagen" alt="Personaje a adivinar">
-    <div class="label">{{adversaryPersonaje?.nombre}}</div>
-    <br>
+    <div class="adversary-container">
+      <img [src]="adversaryPersonaje?.imagen" alt="Personaje a adivinar">
+      <div class="labelNomRival">{{adversaryPersonaje?.nombre}}</div>
+    </div>
+
     <h2>{{'app.quienEs' | translate}}</h2>
     <button class="turn-button" (click)="restartGame()">{{ 'app.restart'|translate}}</button>
     <!-- <div class="turn-label">{{ 'app.turno'|translate}} {{numTurno}}</div> -->

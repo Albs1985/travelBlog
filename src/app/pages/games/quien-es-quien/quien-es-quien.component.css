@@ -117,6 +117,21 @@
   padding: 5px;
 }
 
+.adversary-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+/* .adversary-container img {
+  max-width: 100%;
+  height: auto;
+} */
+
+.labelNomRival {
+  margin-top: 10px; /* Ajusta el espacio entre la imagen y el texto */
+}
+
 /* Estilos para la etiqueta de turno */
 .label {
   margin-top: 10px; /* Espaciado superior */

@@ -40,14 +40,27 @@
 
 </div>
 
-<div class="listaJugadores centerText">
+<!-- <div class="listaJugadores centerText">
   <label for="jugadores">{{ 'app.jugadores' | translate }}</label>
-  <div *ngFor="let jugador of servicioJugadores.viajerosLista" class="">
-    <div class="centraChecks">
+  <div *ngFor="let jugador of servicioJugadores.viajerosLista" class="centraChecks">
+    <div style="display: inline-block;">
       <input type="checkbox" (change)="togglePlayerSelection(jugador)" [checked]="isPlayerSelected(jugador)"><a (click)="togglePlayerSelection(jugador)">&nbsp;{{jugador.nombreCorto}}</a>
     </div>
   </div>
+</div> -->
+
+<div class="listaJugadores centerText">
+  <label for="jugadores">{{ 'app.jugadores' | translate }}</label>
+  <div class="centraChecks">
+    <ng-container *ngFor="let jugador of servicioJugadores.viajerosLista">
+      <div class="playerCheckbox">
+        <input type="checkbox" (change)="togglePlayerSelection(jugador)" [checked]="isPlayerSelected(jugador)">
+        <a (click)="togglePlayerSelection(jugador)">{{ jugador.nombreCorto }}</a>
+      </div>
+    </ng-container>
+  </div>
 </div>
+
 
 <div class="row fotosPerfiles">
   <div *ngFor="let jugador of jugadoresSeleccionados" class="row dobleFotos">
@@ -62,7 +75,7 @@
   </div>
 </div>
 
-<div>
+<div class="centerText">
   <br>
   <button  class="btnStart" (click)="startGame()">{{ 'app.startGame' | translate }}</button>
   <br><br>
