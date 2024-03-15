@@ -78,8 +78,12 @@
 .settings {
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
   margin-bottom: 20px;
-  margin-left: 30px;
+  margin-left: auto; /* Mueve el contenedor a la derecha */
+  margin-right: auto; /* Mueve el contenedor a la izquierda */
+  width: fit-content; /* Ajusta el ancho del contenedor al contenido */
 }
 
 .select-container {
@@ -126,6 +130,8 @@
 .dobleFotos {
   width: 25%;
   height: 25%;
+  max-width: 50%;
+  max-height: 50%;
   display: table-cell;
   padding: 5px;
 }
@@ -147,6 +153,21 @@
 
 .centerText {
   text-align: center;
+}
+
+.centraChecks {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
+  justify-content: center; /* Centra horizontalmente los elementos */
+}
+
+.centraChecks input[type="checkbox"],
+.centraChecks a {
+  flex: 0 0 calc(25% - 20px); /* El 25% representa las 4 columnas, se resta el espacio entre elementos */
+  max-width: calc(
+    25% - 20px
+  ); /* Ancho máximo para evitar que el texto sea demasiado ancho */
+  margin: 10px; /* Espacio entre los elementos */
 }
 
 .overlay {

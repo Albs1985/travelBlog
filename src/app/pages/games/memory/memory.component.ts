@@ -36,7 +36,7 @@ export class MemoryComponent implements OnInit, OnDestroy {
   jugadoresDisponibles: Viajero[] = [];
 
   finDelJuego = new BehaviorSubject(true);
-  jugadorInicialNoSeleccionado = new BehaviorSubject(true);
+  jugadorInicialNoSeleccionado = new BehaviorSubject(false);
   inicioDelJuego = new BehaviorSubject(false);
 
 
@@ -112,6 +112,13 @@ export class MemoryComponent implements OnInit, OnDestroy {
   togglePlayerSelection(jugador: Viajero): void {
     if (this.isPlayerSelected(jugador)) {
       this.jugadoresSeleccionados = this.jugadoresSeleccionados.filter(item => item !== jugador);
+      if (this.selectedPlayer === jugador.nombreCorto){
+        if (this.jugadoresSeleccionados.length > 0){
+          this.selectedPlayer = this.jugadoresSeleccionados[0].nombreCorto;
+        }else{
+          this.selectedPlayer = null;
+        }
+      }
     } else {
       this.jugadoresSeleccionados.push(jugador);
     }

@@ -108,7 +108,8 @@
     "quienEs": "¿Qui és este?",
     "incTurno": "Aumentar torn",
     "turno": "Torn",
-    "finDelJuego": "¡Game Over!"
+    "finDelJuego": "¡End Game!",
+    "youLose": "¡Game Over!"
   },
   "dibujos": {
     "1": {

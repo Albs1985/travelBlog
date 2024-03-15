@@ -118,7 +118,7 @@
 }
 
 /* Estilos para la etiqueta de turno */
-.turn-label {
+.label {
   margin-top: 10px; /* Espaciado superior */
   font-size: 18px; /* Tamaño del texto */
   font-weight: bold; /* Negrita */
