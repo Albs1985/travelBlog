@@ -100,6 +100,7 @@ export class MemoryComponent implements OnInit, OnDestroy {
     for (const [index, player] of this.jugadoresSeleccionados.entries()) {
       if (this.selectedPlayer === player.nombreCorto){
         this.currentIndex = index;
+        this.jugadorInicialNoSeleccionado.next(false);
       }
     }
   }
