@@ -1,5 +1,33 @@
-/* [style. */
+.mueveIconos {
+  position: relative;
+  animation-name: mueveIconosPorPantalla;
+  animation-delay: 1s;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
 
+@keyframes mueveIconosPorPantalla {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 30%;
+    top: 0px;
+  }
+  50% {
+    left: 0px;
+    top: 0px;
+  }
+  75% {
+    left: -30%;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
 .select-container {
   display: block; /* Opcionalmente puedes usar 'flex' en lugar de 'block' */
   margin-bottom: 10px; /* Espacio entre los dos divs */
@@ -15,6 +43,30 @@
   text-align: center;
 }
 
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.imagenCentrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconJuego {
+  width: 60px;
+  height: 60px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
 .check-button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -23,17 +75,6 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 .container {
