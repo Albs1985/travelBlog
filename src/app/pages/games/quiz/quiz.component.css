@@ -1,0 +1,143 @@
+/* [style. */
+
+.select-container {
+  display: block; /* Opcionalmente puedes usar 'flex' en lugar de 'block' */
+  margin-bottom: 10px; /* Espacio entre los dos divs */
+}
+
+.selector {
+  border-radius: 10px;
+  width: 300px;
+  background-color: rgb(247, 200, 115);
+}
+
+.centerText {
+  text-align: center;
+}
+
+.check-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+li {
+  list-style-type: "";
+  display: block;
+  /* [style.display]="i % 2 === 0 ? 'block' : 'inline-block'" */
+}
+
+h1 {
+  color: #333;
+}
+
+#question {
+  margin: 20px 0;
+}
+
+#options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.option {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.option:hover {
+  background-color: #0056b3;
+}
+
+#nextBtn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#nextBtn:hover {
+  background-color: #218838;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.winnerMessage {
+  text-align: center;
+  position: relative;
+  z-index: 10000;
+}
+
+.btnRestart {
+  background: transparent;
+  border-radius: 30px;
+  border: 4px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+}
+
+.winnerLabel {
+  font-size: 2em;
+  color: rgb(247, 200, 115);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

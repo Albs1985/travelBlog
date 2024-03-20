@@ -94,6 +94,7 @@
     "juegosSubtitulo1": "Disfruta de las fotos de los viajes jugando",
     "juegosSubtitulo2": "Todos los niveles de dificultad",
     "memory": "Memory",
+    "selecciona": "Selecciona un nivel",
     "facil": "Fácil",
     "medio": "Medio",
     "dificil": "Difícil",
@@ -113,7 +114,10 @@
     "youLose": "¡Game Over!",
     "juegoAdivina": "Adivina el viaje",
     "explicaAdivina": "Pulsa sobre la imagen hasta adivinar de qué viaje se trata. ¡Cuantos menos turnos utilices mejor! ¡Trata de superar tu récord!",
-    "comprobar": "Comprobar"
+    "comprobar": "Comprobar",
+    "juegoQuiz": "Trivial viajero",
+    "quiz": "Juego de Preguntas y Respuestas",
+    "puntuacion": "Puntuación"
   },
   "dibujos": {
     "1": {

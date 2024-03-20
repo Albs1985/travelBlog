@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>{{'app.quiz' |translate}}</h1>
+  <br>
+  <label for="difficulty">{{ 'app.dificultad' | translate }}</label>
+  <div class="select-container">
+    <select class="selector" id="difficulty" [(ngModel)]="difficulty" (change)="startGame()">
+      <option class="centerText" value="selecciona">{{ 'app.selecciona' | translate }}</option>
+      <option class="centerText" value="facil">{{ 'app.facil' | translate }}</option>
+      <option class="centerText" value="medio">{{ 'app.medio' | translate }}</option>
+      <option class="centerText" value="dificil">{{ 'app.dificil' | translate }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="(finDelJuego | async) === false">
+    <div class="question-container" *ngFor="let question of questions">
+      <br>
+      <p>{{ question.Pregunta }}</p>
+      <ul>
+        <li *ngFor="let option of question.Otras_respuestas; let i=index">
+          <label>
+            <input type="radio" [attr.name]="'option' + question.Pregunta" (ngModel)="question.selectedOption" [value]="option" (change)="selectAnswer(question, option)" > {{ option }}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button *ngIf="(inicioDelJuego |async) === true" class="check-button" (click)="submitAnswers()">Verificar Respuestas</button>
+  </div>
+
+  <div *ngIf="(finDelJuego | async) === true" class="overlay">
+    <div class="winnerMessage">
+      <button class="btnRestart" (click)="startGame()">{{ 'app.restart' | translate }}</button>
+      <label class="winnerLabel">{{ 'app.finDelJuego' | translate }} {{ 'app.puntuacion' | translate }}: {{ score }}</label>
+    </div>
+  </div>
+</div>

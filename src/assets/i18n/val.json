@@ -94,6 +94,7 @@
     "juegosSubtitulo1": "Gaudix de les fotos dels viatges jugant",
     "juegosSubtitulo2": "Tots els nivells de dificultat",
     "memory": "Memory",
+    "selecciona": "Selecciona un nivell",
     "facil": "Fàcil",
     "medio": "Mitjà",
     "dificil": "Difícil",
@@ -113,7 +114,10 @@
     "youLose": "¡Game Over!",
     "juegoAdivina": "Endevina el viatge",
     "explicaAdivina": "Polsa sobre la imatge fins a endevinar de quin viatge es tracta. ¡Quants menys torns utilitzes millor! ¡Tracta de superar el teu rècord!",
-    "comprobar": "Comprobar"
+    "comprobar": "Comprobar",
+    "juegoQuiz": "Trivial viatger",
+    "quiz": "Joc de Preguntes y Respostes",
+    "puntuacion": "Puntuació"
   },
   "dibujos": {
     "1": {
