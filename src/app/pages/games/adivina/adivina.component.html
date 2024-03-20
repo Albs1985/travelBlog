@@ -3,10 +3,13 @@
 </div>
 <br><br><br><br><br><br><br><br>
 <div class="game-container">
+  <div class="imagenCentrada">
+    <img src="assets/icons/rompecabezas.png" class="iconJuego animated mueveIconos">
+  </div>
   <h1>{{ 'app.juegoAdivina' | translate }}</h1>
   <br>
   <label>{{ 'app.explicaAdivina' | translate }}</label>
-  <br><br><br><br>
+  <br><br>
   <div class="image-container" (click)="revealImage()">
     <img src="{{urlImagen}}" alt="Imagen Borrosa" [style.filter]="blurFilter">
   </div>

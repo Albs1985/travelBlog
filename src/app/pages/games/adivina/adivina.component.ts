@@ -48,7 +48,9 @@ export class AdivinaComponent implements OnInit, OnDestroy{
     this.blurAmount = 0;
     this.blurFilter = `blur(${this.blurAmount}px)`;
     setTimeout(()=>{
-      this.finDelJuego.next(true);
+      if (this.turnCount != this.numMaxTurnos/2){
+        this.finDelJuego.next(true);
+      }
     }, 2000);
   }
 

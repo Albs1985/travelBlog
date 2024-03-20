@@ -1,4 +1,28 @@
 {
+  "fotoFav89": {
+    "idDesc": "fotoFav89",
+    "id": "favoritos/fotoFav89.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, dia del pare, día del padre, conjunt, calcetines, calcetins, calcetí, calcentín",
+    "personas": "Mateu, Marina, Albert"
+  },
+  "fotoFav88": {
+    "idDesc": "fotoFav88",
+    "id": "favoritos/fotoFav88.jpg",
+    "anyo": "2024",
+    "lugar": "Valdelinares, Teruel",
+    "categoria": "niños, xiquets, Deporte, Esport, Nieve, Neu, Snowboard, Ski, Estación Esquí, Paisatge, Paisaje",
+    "personas": "Mateu, Marina, Alba, Albert"
+  },
+  "fotoFav87": {
+    "idDesc": "fotoFav87",
+    "id": "favoritos/fotoFav87.jpg",
+    "anyo": "2024",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, montaña, muntanya, puerto, xiqueta",
+    "personas": "Marina, Albert"
+  },
   "fotoFav86": {
     "idDesc": "fotoFav86",
     "id": "favoritos/fotoFav86.jpg",
