@@ -1,3 +1,16 @@
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
 .game-container {
   text-align: center;
 }
@@ -21,6 +34,16 @@ img {
 .restart-button {
   margin-top: 20px;
   padding: 10px 20px;
+  background-color: rgb(247, 200, 115);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check-button {
+  margin-top: 20px;
+  padding: 10px 20px;
   background-color: #4caf50;
   color: white;
   border: none;
@@ -29,7 +52,7 @@ img {
 }
 
 .restart-button:hover {
-  background-color: #45a049;
+  background-color: rgb(248, 191, 86);
 }
 
 .overlay {

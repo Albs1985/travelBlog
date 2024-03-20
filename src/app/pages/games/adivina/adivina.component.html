@@ -1,16 +1,23 @@
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games/"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
+</div>
+<br><br><br><br><br><br><br><br>
 <div class="game-container">
   <h1>{{ 'app.juegoAdivina' | translate }}</h1>
+  <br>
+  <label>{{ 'app.explicaAdivina' | translate }}</label>
+  <br><br><br><br>
   <div class="image-container" (click)="revealImage()">
     <img src="{{urlImagen}}" alt="Imagen Borrosa" [style.filter]="blurFilter">
   </div>
   <div class="turn-counter">{{ 'app.turno' | translate }}: {{ turnCount }}</div>
-  <button class="restart-button" (click)="comprobar()">{{ 'app.restart' | translate }}</button>
-  <button class="restart-button" (click)="restartGame()">{{ 'app.comprobar' | translate }}</button>
-  <label class="winnerLabel" *ngIf="(showNomViaje | async) === true">{{nomViaje}}</label>
+  <div><button class="check-button" (click)="comprobar()">{{ 'app.comprobar' | translate }}</button></div>
+  <div><label class="winnerLabel" *ngIf="(showNomViaje | async) === true">{{nomViaje}}</label></div>
+  <div><button class="restart-button" (click)="restartGame()">{{ 'app.restart' | translate }}</button></div>
 </div>
 <div *ngIf="(finDelJuego | async) === true" class="overlay">
   <div class="winnerMessage">
-    <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
-    <label class="winnerLabel">{{ 'app.finDelJuego' | translate }}</label>
+    <div><button class="btnRestart" (click)="close()">{{ 'app.cerrar' | translate }}</button></div>
+    <div><label class="winnerLabel">{{ 'app.finDelJuego' | translate }}</label></div>
   </div>
 </div>

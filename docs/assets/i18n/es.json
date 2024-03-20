@@ -106,11 +106,13 @@
     "ganador": "Ganador/a",
     "quienEsQuien": "¿Quién es quién?",
     "quienEs": "¿Quién es este?",
+    "explicaQuien": "Pulsa sobre la imagen para verla mejor (y fuera de la imagen para volver a oscurecerla)",
     "incTurno": "Incrementar Turno",
     "turno": "Turno",
     "finDelJuego": "¡End Game!",
     "youLose": "¡Game Over!",
     "juegoAdivina": "Adivina el viaje",
+    "explicaAdivina": "Pulsa sobre la imagen hasta adivinar de qué viaje se trata. ¡Cuantos menos turnos utilices mejor! ¡Trata de superar tu récord!",
     "comprobar": "Comprobar"
   },
   "dibujos": {

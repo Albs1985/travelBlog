@@ -45,6 +45,11 @@ export class AdivinaComponent implements OnInit, OnDestroy{
 
   comprobar(){
     this.showNomViaje.next(true);
+    this.blurAmount = 0;
+    this.blurFilter = `blur(${this.blurAmount}px)`;
+    setTimeout(()=>{
+      this.finDelJuego.next(true);
+    }, 2000);
   }
 
   revealImage() {
@@ -52,8 +57,10 @@ export class AdivinaComponent implements OnInit, OnDestroy{
       this.blurAmount -= 2; // Reduce la cantidad de desenfoque en cada clic
       this.blurFilter = `blur(${this.blurAmount}px)`; // Actualiza el filtro CSS
       this.turnCount++;
-      if (this.turnCount === this.numMaxTurnos){
-        this.finDelJuego.next(true);
+      if (this.turnCount === this.numMaxTurnos/2){
+        setTimeout(()=>{
+          this.finDelJuego.next(true);
+        }, 2000);
       }
     }
   }
@@ -64,5 +71,9 @@ export class AdivinaComponent implements OnInit, OnDestroy{
     this.turnCount = 0;
     this.blurAmount = 30;
     this.ngOnInit();
+  }
+
+  close(){
+    this.finDelJuego.next(false);
   }
 }

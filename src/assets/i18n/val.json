@@ -106,11 +106,13 @@
     "ganador": "Guanyador/a",
     "quienEsQuien": "¿Qui és qui?",
     "quienEs": "¿Qui és este?",
+    "explicaQuien": "Polsa sobre la imatge per a veure-la millor (i fora de la imatge per a tornar a enfosquir-la)",
     "incTurno": "Aumentar torn",
     "turno": "Torn",
     "finDelJuego": "¡End Game!",
     "youLose": "¡Game Over!",
     "juegoAdivina": "Endevina el viatge",
+    "explicaAdivina": "Polsa sobre la imatge fins a endevinar de quin viatge es tracta. ¡Quants menys torns utilitzes millor! ¡Tracta de superar el teu rècord!",
     "comprobar": "Comprobar"
   },
   "dibujos": {
