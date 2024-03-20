@@ -5,7 +5,7 @@
 <div class="container">
   <br><br>
   <div class="imagenCentrada">
-    <img src="assets/icons/interrogacion.png" class="iconJuego animated mueveIconos">
+    <img src="assets/icons/quizas.png" class="iconJuego animated mueveIconos">
   </div>
   <h1>{{'app.quiz' |translate}}</h1>
   <br>
@@ -31,7 +31,7 @@
         </li>
       </ul>
     </div>
-    <button *ngIf="(inicioDelJuego |async) === true" class="check-button" (click)="submitAnswers()">Verificar Respuestas</button>
+    <button *ngIf="(inicioDelJuego |async) === true" class="check-button" (click)="submitAnswers()">{{ 'app.verificarRespuestas' | translate }}</button>
   </div>
 
   <div *ngIf="(finDelJuego | async) === true" class="overlay">
