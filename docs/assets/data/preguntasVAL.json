@@ -1288,5 +1288,445 @@
       "Jaume I d'Aragó"
     ],
     "Nivel": "dificil"
+  },
+  "120": {
+    "Pregunta": "Quin estret separa Ceuta de la Península Ibèrica?",
+    "Respuesta": "Estret de Gibraltar",
+    "Otras_respuestas": [
+      "Estret de Gibraltar",
+      "Estret de Ceuta",
+      "Estret d'Alborán",
+      "Estret de Tarifa"
+    ],
+    "Nivel": "medio"
+  },
+  "121": {
+    "Pregunta": "Quin és l'idioma oficial de Ceuta?",
+    "Respuesta": "Espanyol",
+    "Otras_respuestas": [
+      "Espanyol",
+      "Àrab",
+      "Anglès",
+      "Francès"
+    ],
+    "Nivel": "medio"
+  },
+  "122": {
+    "Pregunta": "A quin continent es troba ubicada Ceuta?",
+    "Respuesta": "Àfrica",
+    "Otras_respuestas": [
+      "Àfrica",
+      "Europa",
+      "Àsia",
+      "Oceania"
+    ],
+    "Nivel": "medio"
+  },
+  "123": {
+    "Pregunta": "Quina és la principal activitat econòmica de Ceuta?",
+    "Respuesta": "Comerç i turisme",
+    "Otras_respuestas": [
+      "Comerç i turisme",
+      "Pesca",
+      "Agricultura",
+      "Indústria manufacturera"
+    ],
+    "Nivel": "medio"
+  },
+  "124": {
+    "Pregunta": "Quina muntanya es troba al territori de Ceuta?",
+    "Respuesta": "Muntanya Hacho",
+    "Otras_respuestas": [
+      "Muntanya Hacho",
+      "Muntanya Jebel Musa",
+      "Muntanya Gurugu",
+      "Muntanya Anyera"
+    ],
+    "Nivel": "medio"
+  },
+  "125": {
+    "Pregunta": "Quin és l'origen històric de Ceuta com a ciutat?",
+    "Respuesta": "Fundada pels fenicis al segle VIII a.C.",
+    "Otras_respuestas": [
+      "Fundada pels fenicis al segle VIII a.C.",
+      "Fundada pels romans al segle I a.C.",
+      "Fundada pels cartaginesos al segle IV a.C.",
+      "Fundada pels àrabs al segle VII d.C."
+    ],
+    "Nivel": "dificil"
+  },
+  "126": {
+    "Pregunta": "Quina important batalla va tenir lloc a les rodalies de Ceuta l'any 1415?",
+    "Respuesta": "La Batalla de Ceuta",
+    "Otras_respuestas": [
+      "La Batalla de Ceuta",
+      "La Batalla de Tànger",
+      "La Batalla d'Alcazarquivir",
+      "La Batalla de les Naves de Tolosa"
+    ],
+    "Nivel": "dificil"
+  },
+  "127": {
+    "Pregunta": "Quina rellevància va tenir Ceuta durant l'edat mitjana en el context de la reconquesta espanyola?",
+    "Respuesta": "Va ser una plaça forta d'importància estratègica a la lluita contra els musulmans.",
+    "Otras_respuestas": [
+      "Va ser una plaça forta d'importància estratègica a la lluita contra els musulmans.",
+      "Va ser un centre cultural i religiós prominent.",
+      "Va ser un enclavament comercial clau a la Mediterrània.",
+      "Fou la capital d'un petit regne cristià."
+    ],
+    "Nivel": "dificil"
+  },
+  "128": {
+    "Pregunta": "Quin va ser l'estatus de Ceuta durant la majoria del segle XX?",
+    "Respuesta": "Ciutat autònoma espanyola",
+    "Otras_respuestas": [
+      "Ciutat autònoma espanyola",
+      "Territori espanyol d'ultramar",
+      "Colònia espanyola",
+      "Ciutat-estat independent"
+    ],
+    "Nivel": "dificil"
+  },
+  "129": {
+    "Pregunta": "Quin any Espanya va incorporar definitivament Ceuta al seu territori?",
+    "Respuesta": "1640",
+    "Otras_respuestas": [
+      "1640",
+      "1580",
+      "1492",
+      "1713"
+    ],
+    "Nivel": "dificil"
+  },
+  "130": {
+    "Pregunta": "Quin és el plat típic més conegut d'Alboraia?",
+    "Respuesta": "L'orxata amb fartons",
+    "Otras_respuestas": [
+      "L'orxata amb fartons",
+      "La paella valenciana",
+      "L'arròs al forn",
+      "La fideuà"
+    ],
+    "Nivel": "medio"
+  },
+  "131": {
+    "Pregunta": "Quin riu travessa el terme d'Alboraia?",
+    "Respuesta": "Riu Hort",
+    "Otras_respuestas": [
+      "Riu Hort",
+      "Riu Túria",
+      "Riu Xúquer",
+      "Riu Segura"
+    ],
+    "Nivel": "medio"
+  },
+  "132": {
+    "Pregunta": "Quina és la festivitat més important d'Alboraia?",
+    "Respuesta": "Festes Patronals en honor a la Verge del Carme",
+    "Otras_respuestas": [
+      "Festes Patronals en honor a la Verge del Carme",
+      "Les Falles",
+      "Les Fogueres de Sant Joan",
+      "La Tomatina"
+    ],
+    "Nivel": "medio"
+  },
+  "133": {
+    "Pregunta": "Quin és l'origen històric de l'orxata?",
+    "Respuesta": "L'orxata té l'origen a la València musulmana de l'Edat Mitjana.",
+    "Otras_respuestas": [
+      "L'orxata té l'origen a la València musulmana de l'Edat Mitjana.",
+      "L'orxata és una beguda prehispànica originària d'Amèrica.",
+      "L'orxata va ser inventada pels romans.",
+      "L'orxata és una beguda d'origen xinès."
+    ],
+    "Nivel": "medio"
+  },
+  "134": {
+    "Pregunta": "Quin és el nom del barri mariner d'Alboraia?",
+    "Respuesta": "Port Saplaya",
+    "Otras_respuestas": [
+      "Port Saplaya",
+      "El Cabanyal",
+      "La Malva-rosa",
+      "La Marina Reial"
+    ],
+    "Nivel": "medio"
+  },
+  "135": {
+    "Pregunta": "Quin és l'origen del nom 'Alboraya'?",
+    "Respuesta": "Deriva de l'àrab الشربيات (al-shurubiyat), que significa 'els bevedors' o 'els pous'.",
+    "Otras_respuestas": [
+      "Deriva de l'àrab الشربيات (al-shurubiyat), que significa 'els bevedors' o 'els pous'.",
+      "És d'origen llatí i vol dir 'lloc d'abundància'.",
+      "Prové del grec antic i significa 'terra fèrtil'.",
+      "Té arrels cèltiques i significa 'poble al costat del riu'."
+    ],
+    "Nivel": "dificil"
+  },
+  "136": {
+    "Pregunta": "Quin paper va tenir Alboraia durant la Reconquesta cristiana de València?",
+    "Respuesta": "Alboraia va ser un important bastió defensiu davant les incursions musulmanes.",
+    "Otras_respuestas": [
+      "Alboraia va ser un important bastió defensiu davant les incursions musulmanes.",
+      "Alboraia va ser un enclavament cultural i religiós clau durant la Reconquesta.",
+      "Alboraia va romandre neutral durant la Reconquesta.",
+      "Alboraia va ser annexada pel Regne d'Aragó al començament de la Reconquesta."
+    ],
+    "Nivel": "dificil"
+  },
+  "137": {
+    "Pregunta": "Quin és l'edifici més emblemàtic d'Alboraia?",
+    "Respuesta": "La Parròquia de l'Assumpció de La nostra Senyora",
+    "Otras_respuestas": [
+      "La Parròquia de l'Assumpció de La nostra Senyora",
+      "L'Ajuntament",
+      "La Casa Consistorial",
+      "El Palau dels Comtes d'Alboraia"
+    ],
+    "Nivel": "dificil"
+  },
+  "138": {
+    "Pregunta": "Quin és el cultiu més tradicional d'Alboraia?",
+    "Respuesta": "La xufa",
+    "Otras_respuestas": [
+      "La xufa",
+      "L'arròs",
+      "Les taronges",
+      "El raïm"
+    ],
+    "Nivel": "dificil"
+  },
+  "139": {
+    "Pregunta": "En quin segle es va construir la Parròquia de l'Assumpció de la Mare de Déu a Alboraia?",
+    "Respuesta": "Segle XVII",
+    "Otras_respuestas": [
+      "Segle XVII",
+      "Segle XIII",
+      "Segle XIX",
+      "Segle XV"
+    ],
+    "Nivel": "dificil"
+  },
+  "140": {
+    "Pregunta": "A quina comarca es troba situat Godella?",
+    "Respuesta": "Horta Nord",
+    "Otras_respuestas": [
+      "Horta Nord",
+      "Camp de Túria",
+      "La Plana d'Utiel-Requena",
+      "La Ribera Alta"
+    ],
+    "Nivel": "medio"
+  },
+  "141": {
+    "Pregunta": "Quin artista plàstic va néixer a Godella i és conegut pel seu estil surrealista?",
+    "Respuesta": "José Royo Gómez",
+    "Otras_respuestas": [
+      "José Royo Gómez",
+      "Joaquín Sorolla",
+      "Salvador Dalí",
+      "Antonio López García"
+    ],
+    "Nivel": "medio"
+  },
+  "142": {
+    "Pregunta": "Quin és l?edifici més emblemàtic de Godella?",
+    "Respuesta": "La Torre de Santa Bàrbara",
+    "Otras_respuestas": [
+      "La Torre de Santa Bàrbara",
+      "L'Ajuntament",
+      "La Casa Consistorial",
+      "L'Església Parroquial de Sant Bartomeu Apòstol"
+    ],
+    "Nivel": "medio"
+  },
+  "143": {
+    "Pregunta": "Quin és l'origen històric del nom Godella?",
+    "Respuesta": "Deriva de l'àrab قوضالة (Qudala), que significa 'terres baixes' o 'pantans'.",
+    "Otras_respuestas": [
+      "Deriva de l'àrab قوضالة (Qudala), que significa 'terres baixes' o 'pantans'.",
+      "És d'origen llatí i vol dir 'lloc de déus'.",
+      "Prové del grec antic i significa 'vall diví'.",
+      "Té arrels cèltiques i significa 'poble al costat del riu'."
+    ],
+    "Nivel": "medio"
+  },
+  "144": {
+    "Pregunta": "Quin riu travessa el terme municipal de Godella?",
+    "Respuesta": "Riu Túria",
+    "Otras_respuestas": [
+      "Riu Túria",
+      "Riu Xúquer",
+      "Riu Segura",
+      "Riu Ebre"
+    ],
+    "Nivel": "medio"
+  },
+  "145": {
+    "Pregunta": "Quina és la festivitat més important de Godella?",
+    "Respuesta": "Festes Patronals en honor a Santa Bàrbara",
+    "Otras_respuestas": [
+      "Festes Patronals en honor a Santa Bàrbara",
+      "Les Falles",
+      "Les Fogueres de Sant Joan",
+      "La Tomatina"
+    ],
+    "Nivel": "dificil"
+  },
+  "146": {
+    "Pregunta": "Quina important figura política i militar del segle XIX va néixer a Godella?",
+    "Respuesta": "Juan Prim i Prats",
+    "Otras_respuestas": [
+      "Juan Prim i Prats",
+      "Francisco Franco",
+      "Miguel Primo de Rivera",
+      "Emilio Mola"
+    ],
+    "Nivel": "dificil"
+  },
+  "147": {
+    "Pregunta": "Quin és el nom del parc més gran de Godella?",
+    "Respuesta": "Parc de Sant Llorenç",
+    "Otras_respuestas": [
+      "Parc de Sant Llorenç",
+      "Parc de la Font del Passeig",
+      "Parc de la Constitució",
+      "Parc del Sequiol"
+    ],
+    "Nivel": "dificil"
+  },
+  "148": {
+    "Pregunta": "Quin any es va produir la independència de Godella respecte a Burjassot?",
+    "Respuesta": "1802",
+    "Otras_respuestas": [
+      "1802",
+      "1707",
+      "1812",
+      "1900"
+    ],
+    "Nivel": "dificil"
+  },
+  "149": {
+    "Pregunta": "Quina activitat econòmica ha estat tradicionalment important a Godella?",
+    "Respuesta": "L'agricultura",
+    "Otras_respuestas": [
+      "L'agricultura",
+      "La mineria",
+      "La pesca",
+      "La indústria tèxtil"
+    ],
+    "Nivel": "dificil"
+  },
+  "150": {
+    "Pregunta": "A quina província es troba ubicat Burjassot?",
+    "Respuesta": "València",
+    "Otras_respuestas": [
+      "València",
+      "Alacant",
+      "Castelló",
+      "Múrcia"
+    ],
+    "Nivel": "medio"
+  },
+  "151": {
+    "Pregunta": "Quin és l'origen històric del nom Burjassot?",
+    "Respuesta": "Deriva de l'àrab برج الشوط (Burj al-Shawt), que vol dir 'torre dels gats'.",
+    "Otras_respuestas": [
+      "Deriva de l'àrab برج الشوط (Burj al-Shawt), que vol dir 'torre dels gats'.",
+      "Prové del llatí i significa 'torre dels mussols'.",
+      "És d'origen grec i significa 'fortalesa de la saviesa'.",
+      "Té arrels romanes i significa 'ciutat dels llorers'."
+    ],
+    "Nivel": "medio"
+  },
+  "152": {
+    "Pregunta": "Quin és el monument més emblemàtic de Burjassot?",
+    "Respuesta": "La Torre de Paterna",
+    "Otras_respuestas": [
+      "La Torre de Paterna",
+      "L'Ajuntament",
+      "L'Església de Sant Miquel",
+      "El Palau de Congressos"
+    ],
+    "Nivel": "medio"
+  },
+  "153": {
+    "Pregunta": "Quin rei va atorgar la carta de població a Burjassot al segle XIII?",
+    "Respuesta": "Jaume I d'Aragó",
+    "Otras_respuestas": [
+      "Jaume I d'Aragó",
+      "Alfons X el Savi",
+      "Ferran III de Castella",
+      "Pere II d'Aragó"
+    ],
+    "Nivel": "medio"
+  },
+  "154": {
+    "Pregunta": "Quina institució educativa de renom es troba a Burjassot?",
+    "Respuesta": "Universitat de València",
+    "Otras_respuestas": [
+      "Universitat de València",
+      "Universitat Politècnica de València",
+      "Universitat Catòlica de València",
+      "Universitat Internacional de València"
+    ],
+    "Nivel": "medio"
+  },
+  "155": {
+    "Pregunta": "Quin va ser el paper de Burjassot durant la Guerra de Successió Espanyola?",
+    "Respuesta": "Va ser escenari de la Batalla d'Almenara el 1710.",
+    "Otras_respuestas": [
+      "Va ser escenari de la Batalla d'Almenara el 1710.",
+      "Va ser el lloc de residència del rei Felip V durant el conflicte.",
+      "Es va convertir a la capital provisional d'Espanya per un període breu.",
+      "Va ser annexat per França durant la guerra."
+    ],
+    "Nivel": "dificil"
+  },
+  "156": {
+    "Pregunta": "Quin és el nom de la festivitat més important de Burjassot?",
+    "Respuesta": "Festes Patronals en honor a Sant Roc",
+    "Otras_respuestas": [
+      "Festes Patronals en honor a Sant Roc",
+      "Les Falles",
+      "Les Fogueres de Sant Joan",
+      "La Tomatina"
+    ],
+    "Nivel": "dificil"
+  },
+  "157": {
+    "Pregunta": "Quin segle es va construir la Torre de Paterna, un dels principals monuments de Burjassot?",
+    "Respuesta": "Segle XIII",
+    "Otras_respuestas": [
+      "Segle XIII",
+      "Segle XV",
+      "Segle XVII",
+      "Segle XIX"
+    ],
+    "Nivel": "dificil"
+  },
+  "158": {
+    "Pregunta": "Quin és el nom del parc més gran de Burjassot?",
+    "Respuesta": "Parc de la Granja",
+    "Otras_respuestas": [
+      "Parc de la Granja",
+      "Parc de Marxalenes",
+      "Parc de Benicalap",
+      "Parc de la Rambleta"
+    ],
+    "Nivel": "dificil"
+  },
+  "159": {
+    "Pregunta": "Quin va ser l'esdeveniment històric que va marcar la conversió de Burjassot a un municipi independent de València?",
+    "Respuesta": "La independència de Burjassot es va produir a l'any 1238.",
+    "Otras_respuestas": [
+      "La independència de Burjassot es va produir a l'any 1238.",
+      "La construcció de la Torre de Paterna al segle XIII.",
+      "La visita de Jaume I d'Aragó a l'any 1260.",
+      "La signatura de la Carta de Població a l'any 1297."
+    ],
+    "Nivel": "dificil"
   }
 }
