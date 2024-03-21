@@ -19,7 +19,7 @@ export class QuizComponent implements OnInit {
   inicioDelJuego = new BehaviorSubject(false);
   comprobarResultados = new BehaviorSubject(false);
 
-  constructor(private preguntasService: PreguntasService, public translate : TranslateService) {}
+  constructor(public preguntasService: PreguntasService, public translate : TranslateService) {}
 
   ngOnInit() {
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -45,6 +45,8 @@ export class QuizComponent implements OnInit {
       this.questions.forEach(question => {
         question.selectedOption = '';
       });
+      debugger
+      this.preguntasService.cargandoPreguntas$.next(false);
     });
   }
 

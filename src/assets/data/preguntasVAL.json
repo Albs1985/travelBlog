@@ -1189,5 +1189,104 @@
       "1492"
     ],
     "Nivel": "medio"
+  },
+  "111": {
+    "Pregunta": "Quina estructura medieval domina el paisatge de Puertomingalvo?",
+    "Respuesta": "Castell de Puertomingalvo",
+    "Otras_respuestas": [
+      "Castell de Puertomingalvo",
+      "Castell de Mosqueruela",
+      "Castell de Mora de Rubielos",
+      "Castell d'Albarracín"
+    ],
+    "Nivel": "medio"
+  },
+  "112": {
+    "Pregunta": "Quin riu travessa el terme municipal de Puertomingalvo?",
+    "Respuesta": "Riu Palomita",
+    "Otras_respuestas": [
+      "Riu Palomita",
+      "Riu Millars",
+      "Riu Túria",
+      "Riu Alfambra"
+    ],
+    "Nivel": "medio"
+  },
+  "113": {
+    "Pregunta": "A quina comarca es troba situat Puertomingalvo?",
+    "Respuesta": "Comarca de Gúdar-Javalambre",
+    "Otras_respuestas": [
+      "Comarca de Gúdar-Javalambre",
+      "Comarca del Maestrat",
+      "Comarca de l'Alt Millars",
+      "Comarca del Jiloca"
+    ],
+    "Nivel": "medio"
+  },
+  "114": {
+    "Pregunta": "Quina és l'alçada aproximada de Puertomingalvo sobre el nivell del mar?",
+    "Respuesta": "Al voltant de 1.200 metres",
+    "Otras_respuestas": [
+      "Al voltant de 1.200 metres",
+      "Al voltant de 800 metres",
+      "Al voltant de 1.500 metres",
+      "Al voltant de 2.000 metres"
+    ],
+    "Nivel": "medio"
+  },
+  "115": {
+    "Pregunta": "Quina construcció defensiva s'erigeix ​​a l'entrada del nucli urbà de Puertomingalvo?",
+    "Respuesta": "Portal de Sant Vicent",
+    "Otras_respuestas": [
+      "Portal de Sant Vicent",
+      "Portal de Sant Miquel",
+      "Portal de Sant Pere",
+      "Portal de Sant Joan"
+    ],
+    "Nivel": "medio"
+  },
+  "116": {
+    "Pregunta": "Quin any s'esmenta per primera vegada Puertomingalvo en un document escrit?",
+    "Respuesta": "Segle XIII",
+    "Otras_respuestas": [
+      "Segle XIII",
+      "Segle X",
+      "Segle XI",
+      "Segle XII"
+    ],
+    "Nivel": "dificil"
+  },
+  "117": {
+    "Pregunta": "Quina importància va tenir Puertomingalvo durant la Reconquesta espanyola?",
+    "Respuesta": "Va ser un enclavament estratègic a la frontera amb els regnes musulmans.",
+    "Otras_respuestas": [
+      "Va ser un enclavament estratègic a la frontera amb els regnes musulmans.",
+      "Va ser una ciutat important per al comerç.",
+      "Va ser la capital d'un petit regne.",
+      "Va ser un centre religiós destacat."
+    ],
+    "Nivel": "dificil"
+  },
+  "118": {
+    "Pregunta": "Quin era el nom original de Puertomingalvo durant l?època musulmana?",
+    "Respuesta": "Almudayna d'Azahar",
+    "Otras_respuestas": [
+      "Almudayna d'Azahar",
+      "Alcassar de Mosquera",
+      "Alcúdia de la Mosquera",
+      "Almudaina d'Azahara"
+    ],
+    "Nivel": "dificil"
+  },
+  "119": {
+    "Pregunta": "Qui va ser el primer senyor feudal de Puertomingalvo després de la conquesta cristiana?",
+    "Respuesta": "Arnaldo de Bellera",
+    "Otras_respuestas": [
+      "Arnaldo de Bellera",
+      "Ramon Berenguer IV",
+      "Alfons II d'Aragó",
+      "Jaume I d'Aragó"
+    ],
+    "Nivel": "dificil"
   }
 }

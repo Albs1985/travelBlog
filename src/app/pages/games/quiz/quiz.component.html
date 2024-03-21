@@ -19,7 +19,11 @@
     </select>
   </div>
 
-  <!-- *ngIf="(finDelJuego | async) === false" -->
+  <div *ngIf="(preguntasService.cargandoPreguntas$ | async) === true" class="spinner-container">
+    <div class="spinner"></div>
+    <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+  </div>
+
   <div >
     <div class="question-container" *ngFor="let question of questions">
       <br>
