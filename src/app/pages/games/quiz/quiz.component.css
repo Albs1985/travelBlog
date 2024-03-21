@@ -28,6 +28,15 @@
     top: 0px;
   }
 }
+
+.colorRojo {
+  color: red !important;
+}
+
+.colorVerde {
+  color: green !important;
+}
+
 .select-container {
   display: block; /* Opcionalmente puedes usar 'flex' en lugar de 'block' */
   margin-bottom: 10px; /* Espacio entre los dos divs */

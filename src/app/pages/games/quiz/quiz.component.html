@@ -19,14 +19,16 @@
     </select>
   </div>
 
-  <div *ngIf="(finDelJuego | async) === false">
+  <!-- *ngIf="(finDelJuego | async) === false" -->
+  <div >
     <div class="question-container" *ngFor="let question of questions">
       <br>
       <p>{{ question.Pregunta }}</p>
       <ul>
         <li *ngFor="let option of question.Otras_respuestas; let i=index">
-          <label>
-            <input type="radio" [attr.name]="'option' + question.Pregunta" (ngModel)="question.selectedOption" [value]="option" (change)="selectAnswer(question, option)" > {{ option }}
+          <label [style.color]="(comprobarResultados | async) === true ? (question.selectedOption === option && question.selectedOption === question.Respuesta) ? 'green' : (question.selectedOption === option && question.selectedOption !== question.Respuesta) ? 'red' : 'inherit' : 'inherit'">
+
+            <input type="radio" [attr.name]="'option' + question.Pregunta" (ngModel)="question.selectedOption" [value]="option" (change)="selectAnswer(question, option)"> {{ option }}
           </label>
         </li>
       </ul>
@@ -36,7 +38,7 @@
 
   <div *ngIf="(finDelJuego | async) === true" class="overlay">
     <div class="winnerMessage">
-      <button class="btnRestart" (click)="startGame()">{{ 'app.restart' | translate }}</button>
+      <button class="btnRestart" (click)="close()">{{ 'app.cerrar' | translate }}</button>
       <label class="winnerLabel">{{ 'app.finDelJuego' | translate }} {{ 'app.puntuacion' | translate }}: {{ score }}</label>
     </div>
   </div>

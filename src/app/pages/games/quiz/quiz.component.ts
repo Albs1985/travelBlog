@@ -17,6 +17,7 @@ export class QuizComponent implements OnInit {
   score: number = 0;
   finDelJuego = new BehaviorSubject(false);
   inicioDelJuego = new BehaviorSubject(false);
+  comprobarResultados = new BehaviorSubject(false);
 
   constructor(private preguntasService: PreguntasService, public translate : TranslateService) {}
 
@@ -30,6 +31,7 @@ export class QuizComponent implements OnInit {
     if (this.difficulty != 'selecciona'){
       this.inicioDelJuego.next(true);
       this.finDelJuego.next(false);
+      this.comprobarResultados.next(false);
     }else{
       this.inicioDelJuego.next(false);
     }
@@ -53,7 +55,7 @@ export class QuizComponent implements OnInit {
     return randomQuestions;
   }
 
-  selectAnswer(question: any, selectedOption: string) {
+  selectAnswer(question: Pregunta, selectedOption: string) {
     question.selectedOption = selectedOption;
   }
 
@@ -68,9 +70,13 @@ export class QuizComponent implements OnInit {
 
   submitAnswers() {
     this.score = 0;
-
+    this.comprobarResultados.next(true);
     this.score = this.questions.filter(question => question.selectedOption === question.Respuesta).length;
     this.finDelJuego.next(true);
+  }
+
+  close(){
+    this.finDelJuego.next(false);
   }
 
 }
