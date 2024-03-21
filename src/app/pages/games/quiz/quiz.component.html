@@ -33,7 +33,8 @@
         </li>
       </ul>
     </div>
-    <button *ngIf="(inicioDelJuego |async) === true" class="check-button" (click)="submitAnswers()">{{ 'app.verificarRespuestas' | translate }}</button>
+    <button *ngIf="(inicioDelJuego |async) === true && (comprobarResultados | async) === false" class="check-button" (click)="submitAnswers()">{{ 'app.verificarRespuestas' | translate }}</button>
+    <button *ngIf="(inicioDelJuego |async) === true && (comprobarResultados | async) === true" class="check-button" (click)="startGame()">{{ 'app.restart' | translate }}</button>
   </div>
 
   <div *ngIf="(finDelJuego | async) === true" class="overlay">
