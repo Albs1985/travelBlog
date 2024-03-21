@@ -22,9 +22,11 @@ export class QuizComponent implements OnInit {
   constructor(public preguntasService: PreguntasService, public translate : TranslateService) {}
 
   ngOnInit() {
+
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.startGame();
     });
+    this.preguntasService.cargandoPreguntas$.next(false);
   }
 
   startGame(){
@@ -45,7 +47,6 @@ export class QuizComponent implements OnInit {
       this.questions.forEach(question => {
         question.selectedOption = '';
       });
-      debugger
       this.preguntasService.cargandoPreguntas$.next(false);
     });
   }
