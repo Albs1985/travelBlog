@@ -94,6 +94,7 @@
     "juegosSubtitulo1": "Gaudix de les fotos dels viatges jugant",
     "juegosSubtitulo2": "Tots els nivells de dificultat",
     "memory": "Memory",
+    "selecciona": "Selecciona un nivell",
     "facil": "Fàcil",
     "medio": "Mitjà",
     "dificil": "Difícil",
@@ -106,9 +107,18 @@
     "ganador": "Guanyador/a",
     "quienEsQuien": "¿Qui és qui?",
     "quienEs": "¿Qui és este?",
+    "explicaQuien": "Polsa sobre la imatge per a veure-la millor (i fora de la imatge per a tornar a enfosquir-la)",
     "incTurno": "Aumentar torn",
     "turno": "Torn",
-    "finDelJuego": "¡Game Over!"
+    "finDelJuego": "¡End Game!",
+    "youLose": "¡Game Over!",
+    "juegoAdivina": "Endevina el viatge",
+    "explicaAdivina": "Polsa sobre la imatge fins a endevinar de quin viatge es tracta. ¡Quants menys torns utilitzes millor! ¡Tracta de superar el teu rècord!",
+    "comprobar": "Comprobar",
+    "juegoQuiz": "Trivial viatger",
+    "quiz": "Joc de Preguntes y Respostes",
+    "puntuacion": "Puntuació",
+    "verificarRespuestas": "Verificar Respostes"
   },
   "dibujos": {
     "1": {
@@ -177,6 +187,10 @@
     "11": {
       "frase": "A mil colora papi!",
       "explicacion": "A mil por hora papi! Para que acelerase."
+    },
+    "12": {
+      "frase": "Mamà",
+      "explicacion": "Primera vegada que Marina deia Mamà"
     }
   },
   "relatoAlbaiAlbert": {
@@ -438,18 +452,21 @@
     "fotoFav72": "",
     "fotoFav73": "",
     "fotoFav74": "",
-    "fotoFav75": "Mateu (3 anys) i Marina (6 mesos)",
-    "fotoFav76": "Mateu (3 anys) i Marina (6 mesos)",
-    "fotoFav77": "Iaio Paco, amb 43 anys",
-    "fotoFav78": "Iaio Paco, amb 37 anys",
-    "fotoFav79": "Vesprada de cosins pintant-se la cara a casa",
-    "fotoFav80": "Vesprada de cosins pintant-se la cara a casa",
-    "fotoFav81": "Vesprada de cosins pintant-se la cara a casa",
-    "fotoFav82": "Marina, 7 mesos",
-    "fotoFav83": "Marina, 7 mesos",
-    "fotoFav84": "Emili i Mateu jugando a casa dels iaios",
-    "fotoFav85": "Mateu i Bruno a la Trobada d'escoles, al Comarcal IES, Burjassot",
-    "fotoFav86": "Els amics de Mateu (Bruno, Onai, Santi) a la Trobada de escoles, al Comarcal IES, Burjassot"
+    "fotoFav75": " - Mateu (3 anys) i Marina (6 mesos)",
+    "fotoFav76": " - Mateu (3 anys) i Marina (6 mesos)",
+    "fotoFav77": " - Iaio Paco, amb 43 anys",
+    "fotoFav78": " - Iaio Paco, amb 37 anys",
+    "fotoFav79": " - Vesprada de cosins pintant-se la cara a casa",
+    "fotoFav80": " - Vesprada de cosins pintant-se la cara a casa",
+    "fotoFav81": " - Vesprada de cosins pintant-se la cara a casa",
+    "fotoFav82": " - Marina, 7 mesos",
+    "fotoFav83": " - Marina, 7 mesos",
+    "fotoFav84": " - Emili i Mateu jugando a casa dels iaios",
+    "fotoFav85": " - Mateu i Bruno a la Trobada d'escoles, al Comarcal IES, Burjassot",
+    "fotoFav86": " - Els amics de Mateu (Bruno, Onai, Santi) a la Trobada de escoles, al Comarcal IES, Burjassot",
+    "fotoFav87": " - Puertomingalvo, paseig amb tota la família. (Marina, quasi 8 mesos).",
+    "fotoFav88": " - Valdelinares, primera visita de Marina a la neu",
+    "fotoFav89": " - Día del pare, regal de la mamà"
   },
   "recetas": {
     "6": {

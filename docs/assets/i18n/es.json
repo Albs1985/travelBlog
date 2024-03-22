@@ -94,6 +94,7 @@
     "juegosSubtitulo1": "Disfruta de las fotos de los viajes jugando",
     "juegosSubtitulo2": "Todos los niveles de dificultad",
     "memory": "Memory",
+    "selecciona": "Selecciona un nivel",
     "facil": "Fácil",
     "medio": "Medio",
     "dificil": "Difícil",
@@ -106,9 +107,18 @@
     "ganador": "Ganador/a",
     "quienEsQuien": "¿Quién es quién?",
     "quienEs": "¿Quién es este?",
+    "explicaQuien": "Pulsa sobre la imagen para verla mejor (y fuera de la imagen para volver a oscurecerla)",
     "incTurno": "Incrementar Turno",
     "turno": "Turno",
-    "finDelJuego": "¡Game Over!"
+    "finDelJuego": "¡End Game!",
+    "youLose": "¡Game Over!",
+    "juegoAdivina": "Adivina el viaje",
+    "explicaAdivina": "Pulsa sobre la imagen hasta adivinar de qué viaje se trata. ¡Cuantos menos turnos utilices mejor! ¡Trata de superar tu récord!",
+    "comprobar": "Comprobar",
+    "juegoQuiz": "Trivial viajero",
+    "quiz": "Juego de Preguntas y Respuestas",
+    "puntuacion": "Puntuación",
+    "verificarRespuestas": "Verificar Respuestas"
   },
   "dibujos": {
     "1": {
@@ -177,6 +187,10 @@
     "11": {
       "frase": "A mil colora papi!",
       "explicacion": "A mil por hora papi! Para que acelerase."
+    },
+    "12": {
+      "frase": "Mamá",
+      "explicacion": "Primera vez que Marina decía Mamá"
     }
   },
   "relatoAlbaiAlbert": {
@@ -449,7 +463,10 @@
     "fotoFav83": "Marina, 7 meses",
     "fotoFav84": "Emili y Mateu jugando en casa de los iaios",
     "fotoFav85": "Mateu y Bruno en la Trobada de escoles, en el Comarcal IES, Burjassot",
-    "fotoFav86": "Los amigos de Mateu (Bruno, Onai, Santi) en la Trobada de escoles, en el Comarcal IES, Burjassot"
+    "fotoFav86": "Los amigos de Mateu (Bruno, Onai, Santi) en la Trobada de escoles, en el Comarcal IES, Burjassot",
+    "fotoFav87": "Puertomingalvo, paseo con toda la familia. (Marina, casi 8 meses).",
+    "fotoFav88": "Valdelinares, primera visita de Marina a la nieve",
+    "fotoFav89": "Día del padre, regalo de la mamá"
   },
   "recetas": {
     "6": {

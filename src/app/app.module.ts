@@ -29,6 +29,8 @@ import { RecetasComponent } from './pages/recetas/recetas.component';
 import { MemoryComponent } from './pages/games/memory/memory.component';
 import { GamesComponent } from './pages/games/games.component';
 import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-quien.component';
+import { AdivinaComponent } from './pages/games/adivina/adivina.component';
+import { QuizComponent } from './pages/games/quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-qui
     RecetasComponent,
     MemoryComponent,
     GamesComponent,
-    QuienEsQuienComponent
+    QuienEsQuienComponent,
+    AdivinaComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

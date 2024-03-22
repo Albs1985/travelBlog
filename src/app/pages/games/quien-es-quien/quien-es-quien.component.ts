@@ -66,9 +66,9 @@ export class QuienEsQuienComponent implements OnInit, OnDestroy{
     }
   }
 
-  incrementTurn(){
-    this.numTurno++;
-  }
+  // incrementTurn(){
+  //   this.numTurno++;
+  // }
 
   restartGame(){
     this.numTurno = 0;
@@ -90,7 +90,7 @@ export class QuienEsQuienComponent implements OnInit, OnDestroy{
   markAsDiscarded(personaje?: Personaje): void {
     this.personajes.forEach((pers)=>{
       if (pers === personaje){
-        pers.descartado = true;
+        pers.descartado = !pers.descartado;
         let indexToUpdate = this.personajes.findIndex(personaje => personaje.nombre === pers.nombre);
         this.personajes[indexToUpdate] = pers;
         this.personajes = Object.assign([], this.personajes);
@@ -100,14 +100,16 @@ export class QuienEsQuienComponent implements OnInit, OnDestroy{
   }
 
   checkAllDiscarded(): void {
-    let allDiscarded = true;
+    // let allDiscarded = true;
+    let contOnlyOneUndiscarted = 0;
     this.personajes.forEach((pers)=>{
       if (!pers.descartado){
-        allDiscarded = false;
+        // allDiscarded = false;
+        contOnlyOneUndiscarted++;
         return;
       }
     });
-    if (allDiscarded) {
+    if (contOnlyOneUndiscarted === 1) {
       this.finDelJuego.next(true); // Emite el evento finDelJuego si todos los personajes están descartados
     }
   }

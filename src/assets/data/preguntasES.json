@@ -1,0 +1,1732 @@
+{
+  "1": {
+    "Pregunta": "¿En qué país se encuentra el Valle del Cabriel?",
+    "Respuesta": "España",
+    "Otras_respuestas": [
+      "España",
+      "Italia",
+      "Francia",
+      "Portugal"
+    ],
+    "Nivel": "facil"
+  },
+  "2": {
+    "Pregunta": "¿Cuál es la capital de la comarca del Valle de Arán donde se encuentra Vielha?",
+    "Respuesta": "Vielha e Mijaran",
+    "Otras_respuestas": [
+      "Vielha e Mijaran",
+      "Lleida",
+      "Barcelona",
+      "Madrid"
+    ],
+    "Nivel": "facil"
+  },
+  "3": {
+    "Pregunta": "¿En qué comunidad autónoma española se sitúa la estación de esquí de Valdelinares?",
+    "Respuesta": "Aragón",
+    "Otras_respuestas": [
+      "Aragón",
+      "Cataluña",
+      "Andalucía",
+      "Asturias"
+    ],
+    "Nivel": "facil"
+  },
+  "4": {
+    "Pregunta": "¿Qué país alberga la localidad de Les Escaldes, conocida por sus aguas termales?",
+    "Respuesta": "Andorra",
+    "Otras_respuestas": [
+      "Andorra",
+      "Suiza",
+      "Austria",
+      "Italia"
+    ],
+    "Nivel": "facil"
+  },
+  "5": {
+    "Pregunta": "¿En qué comunidad autónoma española se encuentra la localidad costera de Oliva?",
+    "Respuesta": "Comunidad Valenciana",
+    "Otras_respuestas": [
+      "Comunidad Valenciana",
+      "Andalucía",
+      "Cataluña",
+      "Galicia"
+    ],
+    "Nivel": "facil"
+  },
+  "6": {
+    "Pregunta": "¿Cuál es la isla más pequeña de las Islas Baleares?",
+    "Respuesta": "Formentera",
+    "Otras_respuestas": [
+      "Formentera",
+      "Mallorca",
+      "Ibiza",
+      "Menorca"
+    ],
+    "Nivel": "facil"
+  },
+  "7": {
+    "Pregunta": "¿En qué provincia española se encuentra la localidad costera de Tossa De Mar?",
+    "Respuesta": "Girona",
+    "Otras_respuestas": [
+      "Girona",
+      "Barcelona",
+      "Alicante",
+      "Valencia"
+    ],
+    "Nivel": "facil"
+  },
+  "8": {
+    "Pregunta": "¿Cuál es la capital de Menorca?",
+    "Respuesta": "Mahón",
+    "Otras_respuestas": [
+      "Mahón",
+      "Ciudadela",
+      "Palma",
+      "Barcelona"
+    ],
+    "Nivel": "facil"
+  },
+  "9": {
+    "Pregunta": "¿En qué país se encuentra la estación de esquí de Soldeu, muy conocida en invierno?",
+    "Respuesta": "Andorra",
+    "Otras_respuestas": [
+      "Andorra",
+      "Suiza",
+      "Austria",
+      "Francia"
+    ],
+    "Nivel": "facil"
+  },
+  "10": {
+    "Pregunta": "¿En qué comunidad autónoma española se sitúa la ciudad de Getafe?",
+    "Respuesta": "Comunidad de Madrid",
+    "Otras_respuestas": [
+      "Comunidad de Madrid",
+      "Andalucía",
+      "Cataluña",
+      "Castilla-La Mancha"
+    ],
+    "Nivel": "facil"
+  },
+  "11": {
+    "Pregunta": "¿Poble Mascarat es una ciudad costera? (Verdadero/Falso)",
+    "Respuesta": "Verdadero",
+    "Otras_respuestas": [
+      "Verdadero",
+      "Falso"
+    ],
+    "Nivel": "facil"
+  },
+  "12": {
+    "Pregunta": "¿Montanejos es conocido por sus playas? (Verdadero/Falso)",
+    "Respuesta": "Falso",
+    "Otras_respuestas": [
+      "Falso",
+      "Verdadero"
+    ],
+    "Nivel": "facil"
+  },
+  "13": {
+    "Pregunta": "¿Altea se encuentra en la costa mediterránea? (Verdadero/Falso)",
+    "Respuesta": "Verdadero",
+    "Otras_respuestas": [
+      "Verdadero",
+      "Falso"
+    ],
+    "Nivel": "facil"
+  },
+  "14": {
+    "Pregunta": "¿Ibiza es conocida por su vida nocturna animada? (Verdadero/Falso)",
+    "Respuesta": "Verdadero",
+    "Otras_respuestas": [
+      "Verdadero",
+      "Falso"
+    ],
+    "Nivel": "facil"
+  },
+  "15": {
+    "Pregunta": "¿Gilet es una ciudad situada en una llanura? (Verdadero/Falso)",
+    "Respuesta": "Falso",
+    "Otras_respuestas": [
+      "Falso",
+      "Verdadero"
+    ],
+    "Nivel": "facil"
+  },
+  "16": {
+    "Pregunta": "¿Fanzara es famosa por sus museos de arte moderno? (Verdadero/Falso)",
+    "Respuesta": "Falso",
+    "Otras_respuestas": [
+      "Falso",
+      "Verdadero"
+    ],
+    "Nivel": "facil"
+  },
+  "17": {
+    "Pregunta": "¿Madrid es la capital de España? (Verdadero/Falso)",
+    "Respuesta": "Verdadero",
+    "Otras_respuestas": [
+      "Verdadero",
+      "Falso"
+    ],
+    "Nivel": "facil"
+  },
+  "18": {
+    "Pregunta": "¿El Molino Galán es un sitio del Patrimonio Mundial de la UNESCO? (Verdadero/Falso)",
+    "Respuesta": "Falso",
+    "Otras_respuestas": [
+      "Falso",
+      "Verdadero"
+    ],
+    "Nivel": "facil"
+  },
+  "19": {
+    "Pregunta": "¿Bali es una isla de Indonesia? (Verdadero/Falso)",
+    "Respuesta": "Verdadero",
+    "Otras_respuestas": [
+      "Verdadero",
+      "Falso"
+    ]
+  },
+  "20": {
+    "Pregunta": "¿Cuál es el río principal que atraviesa el Valle del Cabriel?",
+    "Respuesta": "Cabriel",
+    "Otras_respuestas": [
+      "Cabriel",
+      "Tajo",
+      "Duero",
+      "Ebro"
+    ],
+    "Nivel": "medio"
+  },
+  "21": {
+    "Pregunta": "¿Qué río cruza la ciudad de Vielha?",
+    "Respuesta": "Garona",
+    "Otras_respuestas": [
+      "Garona",
+      "Ebro",
+      "Duero",
+      "Tajo"
+    ],
+    "Nivel": "medio"
+  },
+  "22": {
+    "Pregunta": "¿Qué altitud máxima alcanza la estación de esquí de Valdelinares?",
+    "Respuesta": "2.028 metros",
+    "Otras_respuestas": [
+      "2.028 metros",
+      "1.500 metros",
+      "1.800 metros",
+      "2.500 metros"
+    ],
+    "Nivel": "medio"
+  },
+  "23": {
+    "Pregunta": "¿Qué siglo marcó el inicio del desarrollo turístico en Les Escaldes?",
+    "Respuesta": "Siglo XIX",
+    "Otras_respuestas": [
+      "Siglo XIX",
+      "Siglo XVIII",
+      "Siglo XX",
+      "Siglo XVII"
+    ],
+    "Nivel": "medio"
+  },
+  "24": {
+    "Pregunta": "¿Cuál es el nombre de la montaña más alta cerca de Oliva?",
+    "Respuesta": "Montgó",
+    "Otras_respuestas": [
+      "Montgó",
+      "Puig Campana",
+      "Aitana",
+      "Benicadell"
+    ],
+    "Nivel": "medio"
+  },
+  "25": {
+    "Pregunta": "¿Cuál es el nombre de la playa más larga de Formentera?",
+    "Respuesta": "Playa de Migjorn",
+    "Otras_respuestas": [
+      "Playa de Migjorn",
+      "Playa de Ses Illetes",
+      "Playa de Levante",
+      "Playa de Llevant"
+    ],
+    "Nivel": "medio"
+  },
+  "26": {
+    "Pregunta": "¿Cuál es el nombre de la antigua muralla que rodea Tossa De Mar?",
+    "Respuesta": "Vila Vella",
+    "Otras_respuestas": [
+      "Vila Vella",
+      "Muralla Antigua",
+      "Forte de Tossa",
+      "Castillo de Tossa"
+    ],
+    "Nivel": "medio"
+  },
+  "27": {
+    "Pregunta": "¿Qué importante yacimiento arqueológico se encuentra en Menorca?",
+    "Respuesta": "Talayots",
+    "Otras_respuestas": [
+      "Talayots",
+      "Acueducto de Menorca",
+      "Anfiteatro de Menorca",
+      "Castillo de Menorca"
+    ],
+    "Nivel": "medio"
+  },
+  "28": {
+    "Pregunta": "¿Qué competición de esquí alpino ha acogido Soldeu?",
+    "Respuesta": "Copa del Mundo de Esquí Alpino",
+    "Otras_respuestas": [
+      "Copa del Mundo de Esquí Alpino",
+      "Campeonato de Europa de Esquí Alpino",
+      "Copa del Mundo de Snowboard",
+      "Copa del Mundo de Esquí de Fondo"
+    ],
+    "Nivel": "medio"
+  },
+  "29": {
+    "Pregunta": "¿Qué importante empresa de tecnología tiene su sede central en Getafe?",
+    "Respuesta": "Airbus Defence and Space",
+    "Otras_respuestas": [
+      "Airbus Defence and Space",
+      "Telefónica",
+      "Indra",
+      "Amadeus IT Group"
+    ],
+    "Nivel": "medio"
+  },
+  "30": {
+    "Pregunta": "¿Cuál es el principal atractivo natural del Valle del Cabriel?",
+    "Respuesta": "Los cañones",
+    "Otras_respuestas": [
+      "Los cañones",
+      "Los valles",
+      "Los bosques",
+      "Las montañas"
+    ],
+    "Nivel": "medio"
+  },
+  "31": {
+    "Pregunta": "¿Qué río se une al Garona cerca de Vielha?",
+    "Respuesta": "El río Noguera Pallaresa",
+    "Otras_respuestas": [
+      "El río Noguera Pallaresa",
+      "El río Esera",
+      "El río Segre",
+      "El río Llobregat"
+    ],
+    "Nivel": "medio"
+  },
+  "32": {
+    "Pregunta": "¿Cuál es la altitud promedio de las pistas de esquí en Valdelinares?",
+    "Respuesta": "Alrededor de 2.000 metros",
+    "Otras_respuestas": [
+      "Alrededor de 2.000 metros",
+      "Alrededor de 1.500 metros",
+      "Alrededor de 1.800 metros",
+      "Alrededor de 2.500 metros"
+    ],
+    "Nivel": "medio"
+  },
+  "33": {
+    "Pregunta": "¿Qué otros atractivos turísticos se encuentran en Les Escaldes además de sus aguas termales?",
+    "Respuesta": "Su arquitectura moderna",
+    "Otras_respuestas": [
+      "Su arquitectura moderna",
+      "Sus museos de historia",
+      "Sus festivales culturales",
+      "Sus parques naturales"
+    ],
+    "Nivel": "medio"
+  },
+  "34": {
+    "Pregunta": "¿Cuál es el nombre de la montaña más emblemática cerca de Oliva?",
+    "Respuesta": "Montgó",
+    "Otras_respuestas": [
+      "Montgó",
+      "Puig Campana",
+      "Aitana",
+      "Benicadell"
+    ],
+    "Nivel": "medio"
+  },
+  "35": {
+    "Pregunta": "¿Qué actividad turística es especialmente popular en Formentera además de sus playas?",
+    "Respuesta": "El ciclismo",
+    "Otras_respuestas": [
+      "El ciclismo",
+      "El senderismo",
+      "El buceo",
+      "La observación de aves"
+    ],
+    "Nivel": "medio"
+  },
+  "36": {
+    "Pregunta": "¿Qué ruina histórica se encuentra cerca de Tossa De Mar y ofrece vistas panorámicas al mar?",
+    "Respuesta": "El castillo de Tossa De Mar",
+    "Otras_respuestas": [
+      "El castillo de Tossa De Mar",
+      "El acueducto romano de Tossa De Mar",
+      "La fortaleza de Tossa De Mar",
+      "La muralla antigua de Tossa De Mar"
+    ],
+    "Nivel": "medio"
+  },
+  "37": {
+    "Pregunta": "¿Qué evidencias arqueológicas de la prehistoria se encuentran en Menorca además de los talayots?",
+    "Respuesta": "Las navetas",
+    "Otras_respuestas": [
+      "Las navetas",
+      "Los dólmenes",
+      "Las cuevas pintadas",
+      "Las estelas de piedra"
+    ],
+    "Nivel": "medio"
+  },
+  "38": {
+    "Pregunta": "¿Qué competiciones deportivas de invierno se celebran en Soldeu además de la Copa del Mundo de Esquí Alpino?",
+    "Respuesta": "La Copa del Mundo de Snowboard",
+    "Otras_respuestas": [
+      "La Copa del Mundo de Snowboard",
+      "El Campeonato de Europa de Esquí Alpino",
+      "La Copa del Mundo de Esquí de Fondo",
+      "La Copa del Mundo de Saltos de Esquí"
+    ],
+    "Nivel": "medio"
+  },
+  "39": {
+    "Pregunta": "¿Cuál es la principal industria en Getafe además de la tecnología?",
+    "Respuesta": "La aeronáutica",
+    "Otras_respuestas": [
+      "La aeronáutica",
+      "La agricultura",
+      "El turismo",
+      "La automoción"
+    ],
+    "Nivel": "medio"
+  },
+  "40": {
+    "Pregunta": "¿Cuál es la longitud total del río Cabriel, que atraviesa el Valle del Cabriel?",
+    "Respuesta": "178 kilómetros",
+    "Otras_respuestas": [
+      "178 kilómetros",
+      "215 kilómetros",
+      "142 kilómetros",
+      "199 kilómetros"
+    ],
+    "Nivel": "dificil"
+  },
+  "41": {
+    "Pregunta": "¿Qué importante batalla medieval ocurrió cerca de Vielha?",
+    "Respuesta": "La Batalla de El Puig",
+    "Otras_respuestas": [
+      "La Batalla de El Puig",
+      "La Batalla de las Navas de Tolosa",
+      "La Batalla de Bailén",
+      "La Batalla de Guadalete"
+    ],
+    "Nivel": "dificil"
+  },
+  "42": {
+    "Pregunta": "¿Qué récord de temperatura mínima se ha registrado en Valdelinares?",
+    "Respuesta": "-25.6°C",
+    "Otras_respuestas": [
+      "-25.6°C",
+      "-20.3°C",
+      "-30.1°C",
+      "-18.9°C"
+    ],
+    "Nivel": "dificil"
+  },
+  "43": {
+    "Pregunta": "¿Cuál es la historia detrás de la fundación de Les Escaldes como destino termal?",
+    "Respuesta": "El descubrimiento accidental de aguas termales durante la construcción de una carretera",
+    "Otras_respuestas": [
+      "El descubrimiento accidental de aguas termales durante la construcción de una carretera",
+      "La influencia de la realeza en la promoción de sus aguas curativas",
+      "El asentamiento de una antigua civilización romana cerca de manantiales de agua caliente",
+      "El desarrollo planificado de un complejo turístico termal en el siglo XIX"
+    ],
+    "Nivel": "dificil"
+  },
+  "44": {
+    "Pregunta": "¿Qué evento geológico provocó la formación del Montgó cerca de Oliva?",
+    "Respuesta": "El plegamiento de la corteza terrestre durante el período geológico del Mioceno",
+    "Otras_respuestas": [
+      "El plegamiento de la corteza terrestre durante el período geológico del Mioceno",
+      "La erosión causada por glaciaciones pasadas",
+      "La actividad volcánica submarina durante el Jurásico",
+      "La sedimentación de sedimentos marinos durante millones de años"
+    ],
+    "Nivel": "dificil"
+  },
+  "45": {
+    "Pregunta": "¿Qué especie de flora endémica se encuentra en Formentera y en ninguna otra parte del mundo?",
+    "Respuesta": "La posidonia oceánica",
+    "Otras_respuestas": [
+      "La posidonia oceánica",
+      "La sabina balear",
+      "El lentisco de las Pitiusas",
+      "La encina de Formentera"
+    ],
+    "Nivel": "dificil"
+  },
+  "46": {
+    "Pregunta": "¿Cuál fue el propósito principal de la construcción de la muralla de Tossa De Mar?",
+    "Respuesta": "Defender la ciudad de los ataques de piratas y corsarios",
+    "Otras_respuestas": [
+      "Defender la ciudad de los ataques de piratas y corsarios",
+      "Controlar el comercio marítimo en la región",
+      "Proteger la ciudad de las inundaciones",
+      "Servir como residencia real para los monarcas locales"
+    ],
+    "Nivel": "dificil"
+  },
+  "47": {
+    "Pregunta": "¿Qué cultura prehistórica dejó su huella más distintiva en Menorca?",
+    "Respuesta": "La cultura talayótica",
+    "Otras_respuestas": [
+      "La cultura talayótica",
+      "La cultura megalítica",
+      "La cultura íbera",
+      "La cultura romana"
+    ],
+    "Nivel": "dificil"
+  },
+  "48": {
+    "Pregunta": "¿Cuál es el evento deportivo de mayor prestigio que ha albergado Soldeu?",
+    "Respuesta": "La Copa del Mundo de Esquí Alpino",
+    "Otras_respuestas": [
+      "La Copa del Mundo de Esquí Alpino",
+      "Los Juegos Olímpicos de Invierno",
+      "El Campeonato Mundial de Esquí Alpino",
+      "La Copa del Mundo de Snowboard"
+    ],
+    "Nivel": "dificil"
+  },
+  "49": {
+    "Pregunta": "¿Qué empresa multinacional estableció su sede en Getafe en el siglo XXI?",
+    "Respuesta": "Airbus Defence and Space",
+    "Otras_respuestas": [
+      "Airbus Defence and Space",
+      "Telefónica",
+      "Indra",
+      "Amadeus IT Group"
+    ],
+    "Nivel": "dificil"
+  },
+  "50": {
+    "Pregunta": "¿Cuál es el nombre de la principal deidad hindú asociada a la isla de Bali?",
+    "Respuesta": "Dewi Sri",
+    "Otras_respuestas": [
+      "Dewi Sri",
+      "Shiva",
+      "Vishnu",
+      "Brahma"
+    ],
+    "Nivel": "dificil"
+  },
+  "51": {
+    "Pregunta": "¿Qué importante acontecimiento histórico tuvo lugar en el entorno del Molino Galán?",
+    "Respuesta": "La Batalla de Alarcos en el año 1195",
+    "Otras_respuestas": [
+      "La Batalla de Alarcos en el año 1195",
+      "La Batalla de las Navas de Tolosa en el año 1212",
+      "La Conquista de Granada en el año 1492",
+      "La Guerra de Sucesión Española en el siglo XVIII"
+    ],
+    "Nivel": "dificil"
+  },
+  "52": {
+    "Pregunta": "¿Cuál es el nombre de uno de los principales festivales de arte urbano que se celebra en Fanzara?",
+    "Respuesta": "MIAU (Museo Inacabado de Arte Urbano)",
+    "Otras_respuestas": [
+      "MIAU (Museo Inacabado de Arte Urbano)",
+      "Fanzara Street Art Festival",
+      "Graffiti Fest Fanzara",
+      "Fanzara Urban Art Encounter"
+    ],
+    "Nivel": "dificil"
+  },
+  "53": {
+    "Pregunta": "¿Qué importante batalla medieval se libró cerca de Gilet?",
+    "Respuesta": "La Batalla de Puig en el año 1237",
+    "Otras_respuestas": [
+      "La Batalla de Puig en el año 1237",
+      "La Batalla de las Navas de Tolosa en el año 1212",
+      "La Conquista de Granada en el año 1492",
+      "La Guerra de Sucesión Española en el siglo XVIII"
+    ],
+    "Nivel": "dificil"
+  },
+  "54": {
+    "Pregunta": "¿Cuál era el nombre original de la fortaleza que protegía Tossa De Mar durante la Edad Media?",
+    "Respuesta": "Castrum Tursas",
+    "Otras_respuestas": [
+      "Castrum Tursas",
+      "Forte de Tossa",
+      "Castillo de Tossa",
+      "Murallas de Tossa"
+    ],
+    "Nivel": "dificil"
+  },
+  "55": {
+    "Pregunta": "¿Qué importante yacimiento arqueológico se encuentra en Menorca, conocido por sus construcciones megalíticas?",
+    "Respuesta": "El poblado talayótico de Torre d'en Galmés",
+    "Otras_respuestas": [
+      "El poblado talayótico de Torre d'en Galmés",
+      "La Naveta des Tudons",
+      "El poblado talayótico de Talatí de Dalt",
+      "La Taula de Trepuco"
+    ],
+    "Nivel": "dificil"
+  },
+  "56": {
+    "Pregunta": "¿Cuál es el nombre del volcán más alto de Bali y uno de los puntos más altos de Indonesia?",
+    "Respuesta": "Monte Agung",
+    "Otras_respuestas": [
+      "Monte Agung",
+      "Monte Batur",
+      "Monte Rinjani",
+      "Monte Merapi"
+    ],
+    "Nivel": "dificil"
+  },
+  "57": {
+    "Pregunta": "¿Qué famoso pintor moderno dejó su marca en Fanzara a través de una intervención artística?",
+    "Respuesta": "Okuda San Miguel",
+    "Otras_respuestas": [
+      "Okuda San Miguel",
+      "Banksy",
+      "Keith Haring",
+      "Jean-Michel Basquiat"
+    ],
+    "Nivel": "dificil"
+  },
+  "58": {
+    "Pregunta": "¿En qué famosa novela española se menciona el paisaje de Gilet y su entorno?",
+    "Respuesta": "Cañas y Barro de Vicente Blasco Ibáñez",
+    "Otras_respuestas": [
+      "Cañas y Barro de Vicente Blasco Ibáñez",
+      "La Regenta de Leopoldo Alas Clarín",
+      "Don Quijote de la Mancha de Miguel de Cervantes",
+      "Fortunata y Jacinta de Benito Pérez Galdós"
+    ],
+    "Nivel": "dificil"
+  },
+  "59": {
+    "Pregunta": "¿Qué famoso artista español realizó una serie de pinturas inspiradas en Tossa De Mar?",
+    "Respuesta": "Marc Chagall",
+    "Otras_respuestas": [
+      "Marc Chagall",
+      "Salvador Dalí",
+      "Joan Miró",
+      "Pablo Picasso"
+    ],
+    "Nivel": "dificil"
+  },
+  "60": {
+    "Pregunta": "¿Qué importante asedio durante la Reconquista tuvo lugar cerca de Menorca?",
+    "Respuesta": "El asedio de Mahón en 1287",
+    "Otras_respuestas": [
+      "El asedio de Mahón en 1287",
+      "El asedio de Algeciras en 1344",
+      "El asedio de Badajoz en 1228",
+      "El asedio de Granada en 1491"
+    ],
+    "Nivel": "dificil"
+  },
+  "61": {
+    "Pregunta": "¿Cuál es el nombre de la famosa cascada ubicada en el norte de Bali?",
+    "Respuesta": "Cascada Gitgit",
+    "Otras_respuestas": [
+      "Cascada Gitgit",
+      "Cascada Tegenungan",
+      "Cascada Sekumpul",
+      "Cascada Nungnung"
+    ],
+    "Nivel": "medio"
+  },
+  "62": {
+    "Pregunta": "¿Cuál es el nombre de la montaña más alta de la Comunidad Valenciana, cerca de Valdelinares?",
+    "Respuesta": "Pico Peñarroya",
+    "Otras_respuestas": [
+      "Pico Peñarroya",
+      "Pico Cerler",
+      "Pico Aneto",
+      "Pico Veleta"
+    ],
+    "Nivel": "medio"
+  },
+  "63": {
+    "Pregunta": "¿Qué importante evento deportivo se celebra anualmente en Soldeu?",
+    "Respuesta": "La Copa del Mundo de Esquí Alpino",
+    "Otras_respuestas": [
+      "La Copa del Mundo de Esquí Alpino",
+      "Los Juegos Olímpicos de Invierno",
+      "El Campeonato Mundial de Snowboard",
+      "La Copa del Mundo de Biatlón"
+    ],
+    "Nivel": "medio"
+  },
+  "64": {
+    "Pregunta": "¿Qué famoso pintor español estuvo relacionado con la ciudad de Getafe?",
+    "Respuesta": "Francisco de Goya",
+    "Otras_respuestas": [
+      "Francisco de Goya",
+      "Diego Velázquez",
+      "Pablo Picasso",
+      "Salvador Dalí"
+    ],
+    "Nivel": "medio"
+  },
+  "65": {
+    "Pregunta": "¿Qué importante vestigio romano se encuentra cerca de Tossa De Mar?",
+    "Respuesta": "La villa romana de Els Ametllers",
+    "Otras_respuestas": [
+      "La villa romana de Els Ametllers",
+      "El acueducto de Tarragona",
+      "El anfiteatro de Tarragona",
+      "La muralla romana de Tarragona"
+    ],
+    "Nivel": "medio"
+  },
+  "66": {
+    "Pregunta": "¿Qué festividad tradicional se celebra en Menorca durante el mes de junio?",
+    "Respuesta": "Las fiestas de Sant Joan",
+    "Otras_respuestas": [
+      "Las fiestas de Sant Joan",
+      "La Semana Santa",
+      "Las fiestas de San Fermín",
+      "La feria de abril"
+    ],
+    "Nivel": "medio"
+  },
+  "67": {
+    "Pregunta": "¿Cuál es el nombre del río que atraviesa Bali y es fundamental para la agricultura de la isla?",
+    "Respuesta": "Río Ayung",
+    "Otras_respuestas": [
+      "Río Ayung",
+      "Río Kapuas",
+      "Río Brantas",
+      "Río Musi"
+    ],
+    "Nivel": "medio"
+  },
+  "68": {
+    "Pregunta": "¿Qué nombre recibe el estilo arquitectónico predominante en las casas de pueblo de Gilet?",
+    "Respuesta": "Arquitectura popular valenciana",
+    "Otras_respuestas": [
+      "Arquitectura popular valenciana",
+      "Arquitectura mudéjar",
+      "Arquitectura gótica",
+      "Arquitectura modernista"
+    ],
+    "Nivel": "medio"
+  },
+  "69": {
+    "Pregunta": "¿Cuál es el nombre de la torre defensiva construida en el siglo XVI cerca de Tossa De Mar?",
+    "Respuesta": "La Torre del Codolar",
+    "Otras_respuestas": [
+      "La Torre del Codolar",
+      "La Torre de Sant Joan",
+      "La Torre de la Selva",
+      "La Torre de les Hores"
+    ],
+    "Nivel": "medio"
+  },
+  "70": {
+    "Pregunta": "¿Qué actividad económica tradicional es importante en la isla de Menorca?",
+    "Respuesta": "La fabricación de calzado y marroquinería",
+    "Otras_respuestas": [
+      "La fabricación de calzado y marroquinería",
+      "La pesca",
+      "La agricultura",
+      "La minería"
+    ],
+    "Nivel": "medio"
+  },
+  "71": {
+    "Pregunta": "¿En qué continente se encuentra Bali?",
+    "Respuesta": "Asia",
+    "Otras_respuestas": [
+      "Asia",
+      "Oceanía",
+      "África",
+      "Europa"
+    ],
+    "Nivel": "facil"
+  },
+  "72": {
+    "Pregunta": "¿Qué importante pueblo se encuentra cerca del Molino Galán?",
+    "Respuesta": "Buñol",
+    "Otras_respuestas": [
+      "Buñol",
+      "Torrent",
+      "Burjassot",
+      "Requena"
+    ],
+    "Nivel": "facil"
+  },
+  "73": {
+    "Pregunta": "¿En qué comunidad autónoma se encuentra Fanzara?",
+    "Respuesta": "Comunidad Valenciana",
+    "Otras_respuestas": [
+      "Comunidad Valenciana",
+      "Cataluña",
+      "Andalucía",
+      "Madrid"
+    ],
+    "Nivel": "facil"
+  },
+  "74": {
+    "Pregunta": "¿Cuál es la capital de Menorca?",
+    "Respuesta": "Mahón",
+    "Otras_respuestas": [
+      "Mahón",
+      "Ciudadela",
+      "Palma",
+      "Barcelona"
+    ],
+    "Nivel": "facil"
+  },
+  "75": {
+    "Pregunta": "¿En qué provincia española se encuentra Tossa De Mar?",
+    "Respuesta": "Girona",
+    "Otras_respuestas": [
+      "Girona",
+      "Barcelona",
+      "Alicante",
+      "Valencia"
+    ],
+    "Nivel": "facil"
+  },
+  "76": {
+    "Pregunta": "¿Qué actividad es popular en Gilet?",
+    "Respuesta": "El senderismo",
+    "Otras_respuestas": [
+      "El senderismo",
+      "El surf",
+      "El esquí",
+      "La escalada"
+    ],
+    "Nivel": "facil"
+  },
+  "77": {
+    "Pregunta": "¿Cuál es el nombre oficial de la capital de España?",
+    "Respuesta": "Madrid",
+    "Otras_respuestas": [
+      "Madrid",
+      "Barcelona",
+      "Valencia",
+      "Sevilla"
+    ],
+    "Nivel": "facil"
+  },
+  "78": {
+    "Pregunta": "¿En qué localidad se encuentra el Molino Galán?",
+    "Respuesta": "Alborache",
+    "Otras_respuestas": [
+      "Utiel",
+      "Alborache",
+      "Requena",
+      "Buñol"
+    ],
+    "Nivel": "facil"
+  },
+  "79": {
+    "Pregunta": "¿Qué tipo de transporte es común en Fanzara?",
+    "Respuesta": "El coche",
+    "Otras_respuestas": [
+      "El coche",
+      "El barco",
+      "El tren",
+      "El avión"
+    ],
+    "Nivel": "facil"
+  },
+  "80": {
+    "Pregunta": "¿Cuál es el nombre completo de la antigua muralla que rodea Tossa De Mar?",
+    "Respuesta": "Vila Vella",
+    "Otras_respuestas": [
+      "Vila Vella",
+      "Muralla Antigua",
+      "Forte de Tossa",
+      "Castillo de Tossa"
+    ],
+    "Nivel": "facil"
+  },
+  "81": {
+    "Pregunta": "¿Cuál es la ciudad más grande de Menorca?",
+    "Respuesta": "Maó",
+    "Otras_respuestas": [
+      "Maó",
+      "Ciudadela",
+      "Fornells",
+      "Es Mercadal"
+    ],
+    "Nivel": "facil"
+  },
+  "82": {
+    "Pregunta": "¿En qué parte de Mallorca se encuentra la famosa playa de Es Trenc?",
+    "Respuesta": "Sur",
+    "Otras_respuestas": [
+      "Sur",
+      "Norte",
+      "Este",
+      "Oeste"
+    ],
+    "Nivel": "facil"
+  },
+  "83": {
+    "Pregunta": "¿Cuál es la capital de Bali?",
+    "Respuesta": "Denpasar",
+    "Otras_respuestas": [
+      "Denpasar",
+      "Ubud",
+      "Kuta",
+      "Seminyak"
+    ],
+    "Nivel": "medio"
+  },
+  "84": {
+    "Pregunta": "¿Qué tipo de gobierno tiene Andorra?",
+    "Respuesta": "Principado",
+    "Otras_respuestas": [
+      "Principado",
+      "República",
+      "Monarquía",
+      "Dictadura"
+    ],
+    "Nivel": "facil"
+  },
+  "85": {
+    "Pregunta": "¿Cuál es el nombre de la montaña más alta de Andorra?",
+    "Respuesta": "Coma Pedrosa",
+    "Otras_respuestas": [
+      "Coma Pedrosa",
+      "Pic de Casamanya",
+      "Pic dels Pessons",
+      "Pic de l'Estanyó"
+    ],
+    "Nivel": "medio"
+  },
+  "86": {
+    "Pregunta": "¿En qué región se encuentra la localidad de Valdelinares?",
+    "Respuesta": "Aragón",
+    "Otras_respuestas": [
+      "Aragón",
+      "Cataluña",
+      "Comunidad Valenciana",
+      "Castilla y León"
+    ],
+    "Nivel": "facil"
+  },
+  "87": {
+    "Pregunta": "¿Cuál es la capital de Menorca?",
+    "Respuesta": "Mahón",
+    "Otras_respuestas": [
+      "Mahón",
+      "Ciutadella",
+      "Fornells",
+      "Es Mercadal"
+    ],
+    "Nivel": "facil"
+  },
+  "88": {
+    "Pregunta": "¿En qué mar se encuentra la isla de Formentera?",
+    "Respuesta": "Mar Mediterráneo",
+    "Otras_respuestas": [
+      "Mar Mediterráneo",
+      "Mar Cantábrico",
+      "Mar de Alborán",
+      "Mar de Liguria"
+    ],
+    "Nivel": "facil"
+  },
+  "89": {
+    "Pregunta": "¿Qué famosa fortaleza se encuentra en Tossa de Mar?",
+    "Respuesta": "Vila Vella",
+    "Otras_respuestas": [
+      "Vila Vella",
+      "Castillo de Tossa",
+      "Castillo de San Miguel",
+      "Fortaleza de la Selva"
+    ],
+    "Nivel": "medio"
+  },
+  "90": {
+    "Pregunta": "¿Cuál es el nombre oficial de la isla de Bali?",
+    "Respuesta": "Isla de los Dioses",
+    "Otras_respuestas": [
+      "Isla de los Dioses",
+      "Isla de las Flores",
+      "Isla de los Templos",
+      "Isla de las Especias"
+    ],
+    "Nivel": "medio"
+  },
+  "91": {
+    "Pregunta": "¿Cuál es el nombre oficial de la isla de Menorca en catalán?",
+    "Respuesta": "Menorca",
+    "Otras_respuestas": [
+      "Menorca",
+      "Mallorca",
+      "Eivissa",
+      "Formentera"
+    ],
+    "Nivel": "medio"
+  },
+  "92": {
+    "Pregunta": "¿En qué país se encuentra la localidad de Oliva?",
+    "Respuesta": "España",
+    "Otras_respuestas": [
+      "España",
+      "Francia",
+      "Italia",
+      "Portugal"
+    ],
+    "Nivel": "facil"
+  },
+  "93": {
+    "Pregunta": "¿Qué es el 'Fetge de Bou', un plato típico de la cocina de Tossa de Mar?",
+    "Respuesta": "Hígado de buey",
+    "Otras_respuestas": [
+      "Hígado de buey",
+      "Pescado a la brasa",
+      "Paella",
+      "Ternera a la plancha"
+    ],
+    "Nivel": "medio"
+  },
+  "94": {
+    "Pregunta": "¿Qué tipo de transporte es característico en Formentera?",
+    "Respuesta": "Bicicleta",
+    "Otras_respuestas": [
+      "Bicicleta",
+      "Coche",
+      "Autobús",
+      "Barco"
+    ],
+    "Nivel": "facil"
+  },
+  "95": {
+    "Pregunta": "¿Cuál es el punto más alto de la isla de Menorca?",
+    "Respuesta": "Monte Toro",
+    "Otras_respuestas": [
+      "Monte Toro",
+      "Montaña del Rey",
+      "Cova d'en Xoroi",
+      "Punta Nati"
+    ],
+    "Nivel": "medio"
+  },
+  "96": {
+    "Pregunta": "¿En qué provincia se encuentra la localidad de Molino Galán?",
+    "Respuesta": "Valencia",
+    "Otras_respuestas": [
+      "Valencia",
+      "Alicante",
+      "Castellón",
+      "Teruel"
+    ],
+    "Nivel": "facil"
+  },
+  "97": {
+    "Pregunta": "¿Cuál es la estación de esquí más alta de España?",
+    "Respuesta": "Valdelinares",
+    "Otras_respuestas": [
+      "Valdelinares",
+      "Sierra Nevada",
+      "Formigal",
+      "Baqueira Beret"
+    ],
+    "Nivel": "medio"
+  },
+  "98": {
+    "Pregunta": "¿Cuál es la moneda oficial de Andorra?",
+    "Respuesta": "Euro",
+    "Otras_respuestas": [
+      "Euro",
+      "Dólar",
+      "Libra esterlina",
+      "Franco suizo"
+    ],
+    "Nivel": "facil"
+  },
+  "99": {
+    "Pregunta": "¿Qué idioma se habla mayoritariamente en Andorra?",
+    "Respuesta": "Catalán",
+    "Otras_respuestas": [
+      "Catalán",
+      "Español",
+      "Francés",
+      "Inglés"
+    ],
+    "Nivel": "medio"
+  },
+  "100": {
+    "Pregunta": "¿Qué playa de Oliva es conocida por su extensa área de dunas?",
+    "Respuesta": "Playa de Pau-Pi",
+    "Otras_respuestas": [
+      "Playa de Pau-Pi",
+      "Playa de Oliva",
+      "Playa de Rabdells",
+      "Playa de Terranova"
+    ],
+    "Nivel": "medio"
+  },
+  "101": {
+    "Pregunta": "¿Cuál es la longitud aproximada de la costa de Menorca?",
+    "Respuesta": "216 kilómetros",
+    "Otras_respuestas": [
+      "216 kilómetros",
+      "150 kilómetros",
+      "280 kilómetros",
+      "350 kilómetros"
+    ],
+    "Nivel": "medio"
+  },
+  "102": {
+    "Pregunta": "¿Qué río atraviesa la ciudad de Oliva en la provincia de Valencia?",
+    "Respuesta": "Río Racons",
+    "Otras_respuestas": [
+      "Río Racons",
+      "Río Júcar",
+      "Río Turia",
+      "Río Segura"
+    ],
+    "Nivel": "medio"
+  },
+  "103": {
+    "Pregunta": "¿Qué importante edificio se encuentra en la Plaza del Mercado de València?",
+    "Respuesta": "La Lonja de la Seda",
+    "Otras_respuestas": [
+      "La Lonja de la Seda",
+      "La Catedral de València",
+      "El Palacio del Marqués de Dos Aguas",
+      "El Mercado Central"
+    ],
+    "Nivel": "medio"
+  },
+  "104": {
+    "Pregunta": "¿Cuál es la altitud máxima de la estación de esquí de Valdelinares?",
+    "Respuesta": "2,028 metros",
+    "Otras_respuestas": [
+      "2,028 metros",
+      "2,345 metros",
+      "1,810 metros",
+      "1,925 metros"
+    ],
+    "Nivel": "dificil"
+  },
+  "105": {
+    "Pregunta": "¿Qué país limita al norte con Andorra?",
+    "Respuesta": "Francia",
+    "Otras_respuestas": [
+      "Francia",
+      "España",
+      "Suiza",
+      "Portugal"
+    ],
+    "Nivel": "facil"
+  },
+  "106": {
+    "Pregunta": "¿Cuál es el nombre de la lengua oficial de Andorra?",
+    "Respuesta": "Catalán",
+    "Otras_respuestas": [
+      "Catalán",
+      "Español",
+      "Francés",
+      "Portugués"
+    ],
+    "Nivel": "facil"
+  },
+  "107": {
+    "Pregunta": "¿En qué región de España se encuentra la ciudad de Tossa de Mar?",
+    "Respuesta": "Cataluña",
+    "Otras_respuestas": [
+      "Cataluña",
+      "Comunidad Valenciana",
+      "Islas Baleares",
+      "Galicia"
+    ],
+    "Nivel": "facil"
+  },
+  "108": {
+    "Pregunta": "¿Cuál es el nombre oficial de la montaña más alta de Andorra?",
+    "Respuesta": "Coma Pedrosa",
+    "Otras_respuestas": [
+      "Coma Pedrosa",
+      "Pic de Casamanya",
+      "Pic dels Pessons",
+      "Pic de l'Estanyó"
+    ],
+    "Nivel": "medio"
+  },
+  "109": {
+    "Pregunta": "¿Cuál es la moneda oficial de Andorra?",
+    "Respuesta": "Euro",
+    "Otras_respuestas": [
+      "Euro",
+      "Dólar",
+      "Libra esterlina",
+      "Franco suizo"
+    ],
+    "Nivel": "facil"
+  },
+  "110": {
+    "Pregunta": "¿En qué año se concedió la independencia a Andorra?",
+    "Respuesta": "1278",
+    "Otras_respuestas": [
+      "1278",
+      "1349",
+      "1425",
+      "1492"
+    ],
+    "Nivel": "medio"
+  },
+  "111": {
+    "Pregunta": "¿Qué estructura medieval domina el paisaje de Puertomingalvo?",
+    "Respuesta": "Castillo de Puertomingalvo",
+    "Otras_respuestas": [
+      "Castillo de Puertomingalvo",
+      "Castillo de Mosqueruela",
+      "Castillo de Mora de Rubielos",
+      "Castillo de Albarracín"
+    ],
+    "Nivel": "medio"
+  },
+  "112": {
+    "Pregunta": "¿Qué río atraviesa el término municipal de Puertomingalvo?",
+    "Respuesta": "Río Palomita",
+    "Otras_respuestas": [
+      "Río Palomita",
+      "Río Mijares",
+      "Río Turia",
+      "Río Alfambra"
+    ],
+    "Nivel": "medio"
+  },
+  "113": {
+    "Pregunta": "¿En qué comarca se encuentra situado Puertomingalvo?",
+    "Respuesta": "Comarca de Gúdar-Javalambre",
+    "Otras_respuestas": [
+      "Comarca de Gúdar-Javalambre",
+      "Comarca del Maestrazgo",
+      "Comarca del Alto Mijares",
+      "Comarca del Jiloca"
+    ],
+    "Nivel": "medio"
+  },
+  "114": {
+    "Pregunta": "¿Cuál es la altitud aproximada de Puertomingalvo sobre el nivel del mar?",
+    "Respuesta": "Alrededor de 1.200 metros",
+    "Otras_respuestas": [
+      "Alrededor de 1.200 metros",
+      "Alrededor de 800 metros",
+      "Alrededor de 1.500 metros",
+      "Alrededor de 2.000 metros"
+    ],
+    "Nivel": "medio"
+  },
+  "115": {
+    "Pregunta": "¿Qué construcción defensiva se erige en la entrada del casco urbano de Puertomingalvo?",
+    "Respuesta": "Portal de San Vicente",
+    "Otras_respuestas": [
+      "Portal de San Vicente",
+      "Portal de San Miguel",
+      "Portal de San Pedro",
+      "Portal de San Juan"
+    ],
+    "Nivel": "medio"
+  },
+  "116": {
+    "Pregunta": "¿En qué año se menciona por primera vez Puertomingalvo en un documento escrito?",
+    "Respuesta": "Siglo XIII",
+    "Otras_respuestas": [
+      "Siglo XIII",
+      "Siglo X",
+      "Siglo XI",
+      "Siglo XII"
+    ],
+    "Nivel": "dificil"
+  },
+  "117": {
+    "Pregunta": "¿Qué importancia tuvo Puertomingalvo durante la Reconquista española?",
+    "Respuesta": "Fue un enclave estratégico en la frontera con los reinos musulmanes.",
+    "Otras_respuestas": [
+      "Fue un enclave estratégico en la frontera con los reinos musulmanes.",
+      "Fue una ciudad importante para el comercio.",
+      "Fue la capital de un reino pequeño.",
+      "Fue un centro religioso destacado."
+    ],
+    "Nivel": "dificil"
+  },
+  "118": {
+    "Pregunta": "¿Cuál era el nombre original de Puertomingalvo durante la época musulmana?",
+    "Respuesta": "Almudayna de Azahar",
+    "Otras_respuestas": [
+      "Almudayna de Azahar",
+      "Alcazar de Mosquera",
+      "Alcudia de la Mosquera",
+      "Almudaina de Azahara"
+    ],
+    "Nivel": "dificil"
+  },
+  "119": {
+    "Pregunta": "¿Quién fue el primer señor feudal de Puertomingalvo tras la conquista cristiana?",
+    "Respuesta": "Arnaldo de Bellera",
+    "Otras_respuestas": [
+      "Arnaldo de Bellera",
+      "Ramón Berenguer IV",
+      "Alfonso II de Aragón",
+      "Jaime I de Aragón"
+    ],
+    "Nivel": "dificil"
+  },
+  "120": {
+    "Pregunta": "¿Qué estrecho separa Ceuta de la Península Ibérica?",
+    "Respuesta": "Estrecho de Gibraltar",
+    "Otras_respuestas": [
+      "Estrecho de Gibraltar",
+      "Estrecho de Ceuta",
+      "Estrecho de Alborán",
+      "Estrecho de Tarifa"
+    ],
+    "Nivel": "medio"
+  },
+  "121": {
+    "Pregunta": "¿Cuál es el idioma oficial de Ceuta?",
+    "Respuesta": "Español",
+    "Otras_respuestas": [
+      "Español",
+      "Árabe",
+      "Inglés",
+      "Francés"
+    ],
+    "Nivel": "medio"
+  },
+  "122": {
+    "Pregunta": "¿En qué continente se encuentra ubicada Ceuta?",
+    "Respuesta": "África",
+    "Otras_respuestas": [
+      "África",
+      "Europa",
+      "Asia",
+      "Oceanía"
+    ],
+    "Nivel": "medio"
+  },
+  "123": {
+    "Pregunta": "¿Cuál es la principal actividad económica de Ceuta?",
+    "Respuesta": "Comercio y turismo",
+    "Otras_respuestas": [
+      "Comercio y turismo",
+      "Pesca",
+      "Agricultura",
+      "Industria manufacturera"
+    ],
+    "Nivel": "medio"
+  },
+  "124": {
+    "Pregunta": "¿Qué montaña se encuentra en el territorio de Ceuta?",
+    "Respuesta": "Monte Hacho",
+    "Otras_respuestas": [
+      "Monte Hacho",
+      "Monte Jebel Musa",
+      "Monte Gurugu",
+      "Monte Anyera"
+    ],
+    "Nivel": "medio"
+  },
+  "125": {
+    "Pregunta": "¿Cuál es el origen histórico de Ceuta como ciudad?",
+    "Respuesta": "Fundada por los fenicios en el siglo VIII a.C.",
+    "Otras_respuestas": [
+      "Fundada por los fenicios en el siglo VIII a.C.",
+      "Fundada por los romanos en el siglo I a.C.",
+      "Fundada por los cartagineses en el siglo IV a.C.",
+      "Fundada por los árabes en el siglo VII d.C."
+    ],
+    "Nivel": "dificil"
+  },
+  "126": {
+    "Pregunta": "¿Qué importante batalla tuvo lugar en las cercanías de Ceuta en el año 1415?",
+    "Respuesta": "La Batalla de Ceuta",
+    "Otras_respuestas": [
+      "La Batalla de Ceuta",
+      "La Batalla de Tánger",
+      "La Batalla de Alcazarquivir",
+      "La Batalla de las Navas de Tolosa"
+    ],
+    "Nivel": "dificil"
+  },
+  "127": {
+    "Pregunta": "¿Qué relevancia tuvo Ceuta durante la Edad Media en el contexto de la Reconquista española?",
+    "Respuesta": "Fue una plaza fuerte de importancia estratégica en la lucha contra los musulmanes.",
+    "Otras_respuestas": [
+      "Fue una plaza fuerte de importancia estratégica en la lucha contra los musulmanes.",
+      "Fue un centro cultural y religioso prominente.",
+      "Fue un enclave comercial clave en el Mediterráneo.",
+      "Fue la capital de un pequeño reino cristiano."
+    ],
+    "Nivel": "dificil"
+  },
+  "128": {
+    "Pregunta": "¿Cuál fue el estatus de Ceuta durante la mayor parte del siglo XX?",
+    "Respuesta": "Ciudad autónoma española",
+    "Otras_respuestas": [
+      "Ciudad autónoma española",
+      "Territorio español de ultramar",
+      "Colonia española",
+      "Ciudad-estado independiente"
+    ],
+    "Nivel": "dificil"
+  },
+  "129": {
+    "Pregunta": "¿En qué año España incorporó definitivamente Ceuta a su territorio?",
+    "Respuesta": "1640",
+    "Otras_respuestas": [
+      "1640",
+      "1580",
+      "1492",
+      "1713"
+    ],
+    "Nivel": "dificil"
+  },
+  "130": {
+    "Pregunta": "¿Cuál es el plato típico más conocido de Alboraya?",
+    "Respuesta": "La horchata con fartons",
+    "Otras_respuestas": [
+      "La horchata con fartons",
+      "La paella valenciana",
+      "El arroz al horno",
+      "La fideuà"
+    ],
+    "Nivel": "medio"
+  },
+  "131": {
+    "Pregunta": "¿Qué río atraviesa el término municipal de Alboraya?",
+    "Respuesta": "Río Huerto",
+    "Otras_respuestas": [
+      "Río Huerto",
+      "Río Turia",
+      "Río Júcar",
+      "Río Segura"
+    ],
+    "Nivel": "medio"
+  },
+  "132": {
+    "Pregunta": "¿Cuál es la festividad más importante de Alboraya?",
+    "Respuesta": "Fiestas Patronales en honor a la Virgen del Carmen",
+    "Otras_respuestas": [
+      "Fiestas Patronales en honor a la Virgen del Carmen",
+      "Las Fallas",
+      "Las Hogueras de San Juan",
+      "La Tomatina"
+    ],
+    "Nivel": "medio"
+  },
+  "133": {
+    "Pregunta": "¿Cuál es el origen histórico de la horchata?",
+    "Respuesta": "La horchata tiene su origen en la Valencia musulmana de la Edad Media.",
+    "Otras_respuestas": [
+      "La horchata tiene su origen en la Valencia musulmana de la Edad Media.",
+      "La horchata es una bebida prehispánica originaria de América.",
+      "La horchata fue inventada por los romanos.",
+      "La horchata es una bebida de origen chino."
+    ],
+    "Nivel": "medio"
+  },
+  "134": {
+    "Pregunta": "¿Cuál es el nombre del barrio marinero de Alboraya?",
+    "Respuesta": "Port Saplaya",
+    "Otras_respuestas": [
+      "Port Saplaya",
+      "El Cabanyal",
+      "La Malvarrosa",
+      "La Marina Real"
+    ],
+    "Nivel": "medio"
+  },
+  "135": {
+    "Pregunta": "¿Cuál es el origen del nombre 'Alboraya'?",
+    "Respuesta": "Deriva del árabe الشربيات (al-shurubiyat), que significa 'los bebedores' o 'los pozos'.",
+    "Otras_respuestas": [
+      "Deriva del árabe الشربيات (al-shurubiyat), que significa 'los bebedores' o 'los pozos'.",
+      "Es de origen latino y significa 'lugar de abundancia'.",
+      "Proviene del griego antiguo y significa 'tierra fértil'.",
+      "Tiene raíces celtas y significa 'pueblo junto al río'."
+    ],
+    "Nivel": "dificil"
+  },
+  "136": {
+    "Pregunta": "¿Qué papel desempeñó Alboraya durante la Reconquista cristiana de Valencia?",
+    "Respuesta": "Alboraya fue un importante bastión defensivo frente a las incursiones musulmanas.",
+    "Otras_respuestas": [
+      "Alboraya fue un importante bastión defensivo frente a las incursiones musulmanas.",
+      "Alboraya fue un enclave cultural y religioso clave durante la Reconquista.",
+      "Alboraya permaneció neutral durante la Reconquista.",
+      "Alboraya fue anexada por el Reino de Aragón al comienzo de la Reconquista."
+    ],
+    "Nivel": "dificil"
+  },
+  "137": {
+    "Pregunta": "¿Cuál es el edificio más emblemático de Alboraya?",
+    "Respuesta": "La Parroquia de la Asunción de Nuestra Señora",
+    "Otras_respuestas": [
+      "La Parroquia de la Asunción de Nuestra Señora",
+      "El Ayuntamiento",
+      "La Casa Consistorial",
+      "El Palacio de los Condes de Alboraya"
+    ],
+    "Nivel": "dificil"
+  },
+  "138": {
+    "Pregunta": "¿Cuál es el cultivo más tradicional de Alboraya?",
+    "Respuesta": "La chufa",
+    "Otras_respuestas": [
+      "La chufa",
+      "El arroz",
+      "Las naranjas",
+      "La uva"
+    ],
+    "Nivel": "dificil"
+  },
+  "139": {
+    "Pregunta": "¿En qué siglo se construyó la Parroquia de la Asunción de Nuestra Señora en Alboraya?",
+    "Respuesta": "Siglo XVII",
+    "Otras_respuestas": [
+      "Siglo XVII",
+      "Siglo XIII",
+      "Siglo XIX",
+      "Siglo XV"
+    ],
+    "Nivel": "dificil"
+  },
+  "140": {
+    "Pregunta": "¿En qué comarca se encuentra situado Godella?",
+    "Respuesta": "Horta Nord",
+    "Otras_respuestas": [
+      "Horta Nord",
+      "Camp de Túria",
+      "La Plana de Utiel-Requena",
+      "La Ribera Alta"
+    ],
+    "Nivel": "medio"
+  },
+  "141": {
+    "Pregunta": "¿Qué artista plástico nació en Godella y es conocido por su estilo surrealista?",
+    "Respuesta": "José Royo Gómez",
+    "Otras_respuestas": [
+      "José Royo Gómez",
+      "Joaquín Sorolla",
+      "Salvador Dalí",
+      "Antonio López García"
+    ],
+    "Nivel": "medio"
+  },
+  "142": {
+    "Pregunta": "¿Cuál es el edificio más emblemático de Godella?",
+    "Respuesta": "La Torre de Santa Bàrbara",
+    "Otras_respuestas": [
+      "La Torre de Santa Bàrbara",
+      "El Ayuntamiento",
+      "La Casa Consistorial",
+      "La Iglesia Parroquial de San Bartolomé Apóstol"
+    ],
+    "Nivel": "medio"
+  },
+  "143": {
+    "Pregunta": "¿Cuál es el origen histórico del nombre 'Godella'?",
+    "Respuesta": "Deriva del árabe قوضالة (Qudala), que significa 'tierras bajas' o 'pantanos'.",
+    "Otras_respuestas": [
+      "Deriva del árabe قوضالة (Qudala), que significa 'tierras bajas' o 'pantanos'.",
+      "Es de origen latino y significa 'lugar de dioses'.",
+      "Proviene del griego antiguo y significa 'valle divino'.",
+      "Tiene raíces celtas y significa 'pueblo junto al río'."
+    ],
+    "Nivel": "medio"
+  },
+  "144": {
+    "Pregunta": "¿Qué río atraviesa el término municipal de Godella?",
+    "Respuesta": "Río Turia",
+    "Otras_respuestas": [
+      "Río Turia",
+      "Río Júcar",
+      "Río Segura",
+      "Río Ebro"
+    ],
+    "Nivel": "medio"
+  },
+  "145": {
+    "Pregunta": "¿Cuál es la festividad más importante de Godella?",
+    "Respuesta": "Fiestas Patronales en honor a Santa Bàrbara",
+    "Otras_respuestas": [
+      "Fiestas Patronales en honor a Santa Bàrbara",
+      "Las Fallas",
+      "Las Hogueras de San Juan",
+      "La Tomatina"
+    ],
+    "Nivel": "dificil"
+  },
+  "146": {
+    "Pregunta": "¿Qué importante figura política y militar del siglo XIX nació en Godella?",
+    "Respuesta": "Juan Prim y Prats",
+    "Otras_respuestas": [
+      "Juan Prim y Prats",
+      "Francisco Franco",
+      "Miguel Primo de Rivera",
+      "Emilio Mola"
+    ],
+    "Nivel": "dificil"
+  },
+  "147": {
+    "Pregunta": "¿Cuál es el nombre del parque colindante a la huerta de Godella?",
+    "Respuesta": "Parc del Molí",
+    "Otras_respuestas": [
+      "Parc del Molí",
+      "Parc de la Fuente del Paseo",
+      "Parc de la Constitució",
+      "Parc del Sequiol"
+    ],
+    "Nivel": "facil"
+  },
+  "148": {
+    "Pregunta": "¿En qué año se produjo la independencia de Godella respecto a Burjassot?",
+    "Respuesta": "1802",
+    "Otras_respuestas": [
+      "1802",
+      "1707",
+      "1812",
+      "1900"
+    ],
+    "Nivel": "dificil"
+  },
+  "149": {
+    "Pregunta": "¿Qué actividad económica ha sido tradicionalmente importante en Godella?",
+    "Respuesta": "La agricultura",
+    "Otras_respuestas": [
+      "La agricultura",
+      "La minería",
+      "La pesca",
+      "La industria textil"
+    ],
+    "Nivel": "dificil"
+  },
+  "150": {
+    "Pregunta": "¿En qué provincia se encuentra ubicado Burjassot?",
+    "Respuesta": "Valencia",
+    "Otras_respuestas": [
+      "Valencia",
+      "Alicante",
+      "Castellón",
+      "Murcia"
+    ],
+    "Nivel": "facil"
+  },
+  "151": {
+    "Pregunta": "¿Cuál es el origen histórico del nombre 'Burjassot'?",
+    "Respuesta": "Deriva del árabe برج الشوط (Burj al-Shawt), que significa 'torre de los gatos'.",
+    "Otras_respuestas": [
+      "Deriva del árabe برج الشوط (Burj al-Shawt), que significa 'torre de los gatos'.",
+      "Proviene del latín y significa 'torre de los búhos'.",
+      "Es de origen griego y significa 'fortaleza de la sabiduría'.",
+      "Tiene raíces romanas y significa 'ciudad de los laureles'."
+    ],
+    "Nivel": "medio"
+  },
+  "152": {
+    "Pregunta": "¿Cuál es el monumento más emblemático de Burjassot?",
+    "Respuesta": "Patio de Los Silos",
+    "Otras_respuestas": [
+      "Patio de Los Silos",
+      "El Ayuntamiento",
+      "La Iglesia de San Miguel",
+      "El Palacio de Congresos"
+    ],
+    "Nivel": "medio"
+  },
+  "153": {
+    "Pregunta": "¿Qué rey otorgó la carta de población a Burjassot en el siglo XIII?",
+    "Respuesta": "Jaime I de Aragón",
+    "Otras_respuestas": [
+      "Jaime I de Aragón",
+      "Alfonso X el Sabio",
+      "Fernando III de Castilla",
+      "Pedro II de Aragón"
+    ],
+    "Nivel": "medio"
+  },
+  "154": {
+    "Pregunta": "¿Qué institución educativa de renombre se encuentra en Burjassot?",
+    "Respuesta": "Universidad de Valencia",
+    "Otras_respuestas": [
+      "Universidad de Valencia",
+      "Universidad Politécnica de Valencia",
+      "Universidad Católica de Valencia",
+      "Universidad Internacional de Valencia"
+    ],
+    "Nivel": "medio"
+  },
+  "155": {
+    "Pregunta": "¿Cuál fue el papel de Burjassot durante la Guerra de Sucesión Española?",
+    "Respuesta": "Fue escenario de la Batalla de Almenara en 1710.",
+    "Otras_respuestas": [
+      "Fue escenario de la Batalla de Almenara en 1710.",
+      "Fue el lugar de residencia del rey Felipe V durante el conflicto.",
+      "Se convirtió en la capital provisional de España por un breve período.",
+      "Fue anexionado por Francia durante la guerra."
+    ],
+    "Nivel": "dificil"
+  },
+  "156": {
+    "Pregunta": "¿Cuál es el nombre de la festividad más importante de Burjassot?",
+    "Respuesta": "Fiestas Patronales en honor a San Roque",
+    "Otras_respuestas": [
+      "Fiestas Patronales en honor a San Roque",
+      "Las Fallas",
+      "Las Hogueras de San Juan",
+      "La Tomatina"
+    ],
+    "Nivel": "dificil"
+  },
+  "157": {
+    "Pregunta": "¿En qué siglo se construyó la Torre de Paterna, uno de los principales monumentos de Burjassot?",
+    "Respuesta": "Siglo XIII",
+    "Otras_respuestas": [
+      "Siglo XIII",
+      "Siglo XV",
+      "Siglo XVII",
+      "Siglo XIX"
+    ],
+    "Nivel": "dificil"
+  },
+  "158": {
+    "Pregunta": "¿Cuál es el nombre del parque más grande de Burjassot?",
+    "Respuesta": "Parque de la Granja",
+    "Otras_respuestas": [
+      "Parque de la Granja",
+      "Parque de Marxalenes",
+      "Parque de Benicalap",
+      "Parque de la Rambleta"
+    ],
+    "Nivel": "facil"
+  },
+  "159": {
+    "Pregunta": "¿Cuál fue el evento histórico que marcó la conversión de Burjassot en un municipio independiente de Valencia?",
+    "Respuesta": "La independencia de Burjassot se produjo en el año 1238.",
+    "Otras_respuestas": [
+      "La independencia de Burjassot se produjo en el año 1238.",
+      "La construcción de la Torre de Paterna en el siglo XIII.",
+      "La visita de Jaime I de Aragón en el año 1260.",
+      "La firma de la Carta de Población en el año 1297."
+    ],
+    "Nivel": "dificil"
+  }
+}

@@ -1,0 +1,49 @@
+<br>
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
+</div>
+<br><br><br><br>
+<div class="container">
+  <div class="imagenCentrada">
+    <img src="assets/icons/quizas.png" class="iconJuego animated mueveIconos">
+  </div>
+  <h1>{{'app.quiz' |translate}}</h1>
+  <br>
+  <label for="difficulty">{{ 'app.dificultad' | translate }}</label>
+  <div class="select-container">
+    <select class="selector" id="difficulty" [(ngModel)]="difficulty" (change)="startGame()">
+      <option class="centerText" value="selecciona">{{ 'app.selecciona' | translate }}</option>
+      <option class="centerText" value="facil">{{ 'app.facil' | translate }}</option>
+      <option class="centerText" value="medio">{{ 'app.medio' | translate }}</option>
+      <option class="centerText" value="dificil">{{ 'app.dificil' | translate }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="(preguntasService.cargandoPreguntas$ | async) === true" class="spinner-container">
+    <div class="spinner"></div>
+    <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+  </div>
+
+  <div >
+    <div class="question-container" *ngFor="let question of questions">
+      <br>
+      <p>{{ question.Pregunta }}</p>
+      <ul>
+        <li *ngFor="let option of question.Otras_respuestas; let i=index">
+          <label [style.color]="(comprobarResultados | async) === true ? (question.selectedOption === option && question.selectedOption === question.Respuesta) ? 'green' : (question.selectedOption === option && question.selectedOption !== question.Respuesta) ? 'red' : 'inherit' : 'inherit'">
+            <input type="radio" [attr.name]="'option' + question.Pregunta" (ngModel)="question.selectedOption" [value]="option" (change)="selectAnswer(question, option)"> {{ option }}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button *ngIf="(inicioDelJuego |async) === true && (comprobarResultados | async) === false" class="check-button" (click)="submitAnswers()">{{ 'app.verificarRespuestas' | translate }}</button>
+    <button *ngIf="(inicioDelJuego |async) === true && (comprobarResultados | async) === true" class="check-button" (click)="startGame()">{{ 'app.restart' | translate }}</button>
+  </div>
+
+  <div *ngIf="(finDelJuego | async) === true" class="overlay">
+    <div class="winnerMessage">
+      <button class="btnRestart" (click)="close()">{{ 'app.cerrar' | translate }}</button>
+      <label class="winnerLabel">{{ 'app.finDelJuego' | translate }} {{ 'app.puntuacion' | translate }}: {{ score }}</label>
+    </div>
+  </div>
+</div>
