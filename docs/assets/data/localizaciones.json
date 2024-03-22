@@ -85,7 +85,7 @@
       1.308069,
       38.864397
     ],
-    "personas": "Mateu",
+    "personas": "Alba-Albert",
     "año": 2020,
     "lugar": "Ibiza"
   },
@@ -286,5 +286,68 @@
     "personas": "Albert",
     "año": 2011,
     "lugar": "Malta"
+  },
+  {
+    "coordinates": [
+      1.456815,
+      38.697929
+    ],
+    "personas": "Alba-Albert",
+    "año": 2011,
+    "lugar": "Formentera"
+  },
+  {
+    "coordinates": [
+      2.647152,
+      39.574739
+    ],
+    "personas": "Alba-Albert",
+    "año": 2017,
+    "lugar": "Mallorca"
+  },
+  {
+    "coordinates": [
+      -15.430234,
+      28.103733
+    ],
+    "personas": "Albert",
+    "año": 2015,
+    "lugar": "Islas Canarias (Las Palmas)"
+  },
+  {
+    "coordinates": [
+      -13.877192,
+      28.709799
+    ],
+    "personas": "Albert",
+    "año": 2015,
+    "lugar": "Islas Canarias (Fuerteventura)"
+  },
+  {
+    "coordinates": [
+      -16.716785,
+      28.104072
+    ],
+    "personas": "Albert",
+    "año": 2013,
+    "lugar": "Islas Canarias (Tenerife)"
+  },
+  {
+    "coordinates": [
+      -4.398284,
+      36.723168
+    ],
+    "personas": "Albert",
+    "año": 2013,
+    "lugar": "Málaga"
+  },
+  {
+    "coordinates": [
+      -2.108201,
+      36.760741
+    ],
+    "personas": "Alba-Albert",
+    "año": 2013,
+    "lugar": "Almería (San José)"
   }
 ]
