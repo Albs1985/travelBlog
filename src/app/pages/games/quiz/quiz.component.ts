@@ -46,6 +46,7 @@ export class QuizComponent implements OnInit {
       this.questions = this.getQuestionsByLevel(data);
       this.questions.forEach(question => {
         question.selectedOption = '';
+        question.Otras_respuestas = this.shuffleArray(question.Otras_respuestas);
       });
       this.preguntasService.cargandoPreguntas$.next(false);
     });

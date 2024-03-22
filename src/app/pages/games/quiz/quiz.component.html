@@ -31,7 +31,6 @@
       <ul>
         <li *ngFor="let option of question.Otras_respuestas; let i=index">
           <label [style.color]="(comprobarResultados | async) === true ? (question.selectedOption === option && question.selectedOption === question.Respuesta) ? 'green' : (question.selectedOption === option && question.selectedOption !== question.Respuesta) ? 'red' : 'inherit' : 'inherit'">
-
             <input type="radio" [attr.name]="'option' + question.Pregunta" (ngModel)="question.selectedOption" [value]="option" (change)="selectAnswer(question, option)"> {{ option }}
           </label>
         </li>

@@ -1587,15 +1587,15 @@
     "Nivel": "dificil"
   },
   "147": {
-    "Pregunta": "¿Cuál es el nombre del parque más grande de Godella?",
-    "Respuesta": "Parc de Sant Llorenç",
+    "Pregunta": "¿Cuál es el nombre del parque colindante a la huerta de Godella?",
+    "Respuesta": "Parc del Molí",
     "Otras_respuestas": [
-      "Parc de Sant Llorenç",
+      "Parc del Molí",
       "Parc de la Fuente del Paseo",
       "Parc de la Constitució",
       "Parc del Sequiol"
     ],
-    "Nivel": "dificil"
+    "Nivel": "facil"
   },
   "148": {
     "Pregunta": "¿En qué año se produjo la independencia de Godella respecto a Burjassot?",
@@ -1628,7 +1628,7 @@
       "Castellón",
       "Murcia"
     ],
-    "Nivel": "medio"
+    "Nivel": "facil"
   },
   "151": {
     "Pregunta": "¿Cuál es el origen histórico del nombre 'Burjassot'?",
@@ -1643,9 +1643,9 @@
   },
   "152": {
     "Pregunta": "¿Cuál es el monumento más emblemático de Burjassot?",
-    "Respuesta": "La Torre de Paterna",
+    "Respuesta": "Patio de Los Silos",
     "Otras_respuestas": [
-      "La Torre de Paterna",
+      "Patio de Los Silos",
       "El Ayuntamiento",
       "La Iglesia de San Miguel",
       "El Palacio de Congresos"
@@ -1716,7 +1716,7 @@
       "Parque de Benicalap",
       "Parque de la Rambleta"
     ],
-    "Nivel": "dificil"
+    "Nivel": "facil"
   },
   "159": {
     "Pregunta": "¿Cuál fue el evento histórico que marcó la conversión de Burjassot en un municipio independiente de Valencia?",
