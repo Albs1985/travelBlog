@@ -118,7 +118,10 @@
     "juegoQuiz": "Trivial viajero",
     "quiz": "Juego de Preguntas y Respuestas",
     "puntuacion": "Puntuación",
-    "verificarRespuestas": "Verificar Respuestas"
+    "verificarRespuestas": "Verificar Respuestas",
+    "tituloMapa": "Lugares visitados por la familia",
+    "subtituloMapa1": "Para disfrutar...",
+    "mapa": "Mapa"
   },
   "dibujos": {
     "1": {

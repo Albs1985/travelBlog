@@ -118,7 +118,10 @@
     "juegoQuiz": "Trivial viatger",
     "quiz": "Joc de Preguntes y Respostes",
     "puntuacion": "Puntuació",
-    "verificarRespuestas": "Verificar Respostes"
+    "verificarRespuestas": "Verificar Respostes",
+    "tituloMapa": "Llocs visitats per la família",
+    "subtituloMapa1": "Per a disfrutar...",
+    "mapa": "Mapa"
   },
   "dibujos": {
     "1": {
