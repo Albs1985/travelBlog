@@ -93,3 +93,13 @@
 .leyenda-texto {
   font-size: 10px;
 }
+
+.tooltip {
+  background-color: rgb(255, 228, 177);
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px;
+  position: absolute;
+  z-index: 9999;
+  opacity: 1;
+}

@@ -6,16 +6,16 @@
     ],
     "personas": "Todos",
     "año": 2023,
-    "lugar": "Burjassot"
+    "descripcion": "Burjassot"
   },
   {
     "coordinates": [
       2.933318,
       41.722136
     ],
-    "personas": "Mateu-Alba-Albert",
+    "personas": "Mateu,Alba,Albert",
     "año": 2023,
-    "lugar": "Tossa de Mar"
+    "descripcion": "Tossa de Mar"
   },
   {
     "coordinates": [
@@ -24,34 +24,34 @@
     ],
     "personas": "Todos",
     "año": 2023,
-    "lugar": "Puertomingalvo"
+    "descripcion": "Puertomingalvo"
   },
   {
     "coordinates": [
       -3.7038,
       40.4168
     ],
-    "personas": "Mateu-Alba-Albert",
+    "personas": "Mateu,Alba,Albert",
     "año": 2022,
-    "lugar": "Madrid"
+    "descripcion": "Madrid"
   },
   {
     "coordinates": [
       115.208819,
       -8.415205
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2019,
-    "lugar": "Bali"
+    "descripcion": "Bali"
   },
   {
     "coordinates": [
       115.455539,
       -8.678877
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2019,
-    "lugar": "Nusa Lembongan"
+    "descripcion": "Nusa Lembongan"
   },
   {
     "coordinates": [
@@ -60,34 +60,34 @@
     ],
     "personas": "Todos",
     "año": 2022,
-    "lugar": "Menorca"
+    "descripcion": "Menorca"
   },
   {
     "coordinates": [
       -9.198531,
       38.700277
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2018,
-    "lugar": "Lisboa"
+    "descripcion": "Lisboa"
   },
   {
     "coordinates": [
       1.536603,
       42.512278
     ],
-    "personas": "Mateu-Alba-Albert",
+    "personas": "Mateu,Alba,Albert",
     "año": 2022,
-    "lugar": "Andorra (Les Escaldes)"
+    "descripcion": "Andorra (Les Escaldes)"
   },
   {
     "coordinates": [
       1.308069,
       38.864397
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2020,
-    "lugar": "Ibiza"
+    "descripcion": "Ibiza"
   },
   {
     "coordinates": [
@@ -96,7 +96,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "lugar": "Miami"
+    "descripcion": "Miami"
   },
   {
     "coordinates": [
@@ -105,7 +105,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "lugar": "Cayos de Florida"
+    "descripcion": "Cayos de Florida"
   },
   {
     "coordinates": [
@@ -114,7 +114,7 @@
     ],
     "personas": "Albert",
     "año": 2012,
-    "lugar": "Nueva York"
+    "descripcion": "Nueva York"
   },
   {
     "coordinates": [
@@ -123,7 +123,7 @@
     ],
     "personas": "Albert",
     "año": 2016,
-    "lugar": "Filipinas"
+    "descripcion": "Filipinas"
   },
   {
     "coordinates": [
@@ -132,7 +132,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "lugar": "Marruecos"
+    "descripcion": "Marruecos"
   },
   {
     "coordinates": [
@@ -141,7 +141,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "lugar": "Berlin"
+    "descripcion": "Berlin"
   },
   {
     "coordinates": [
@@ -150,7 +150,7 @@
     ],
     "personas": "Albert",
     "año": 2003,
-    "lugar": "Amsterdam"
+    "descripcion": "Amsterdam"
   },
   {
     "coordinates": [
@@ -159,7 +159,7 @@
     ],
     "personas": "Albert",
     "año": 2013,
-    "lugar": "Croacia"
+    "descripcion": "Croacia"
   },
   {
     "coordinates": [
@@ -168,7 +168,7 @@
     ],
     "personas": "Albert",
     "año": 2009,
-    "lugar": "Sicilia"
+    "descripcion": "Sicilia"
   },
   {
     "coordinates": [
@@ -177,7 +177,7 @@
     ],
     "personas": "Albert",
     "año": 1993,
-    "lugar": "Londres"
+    "descripcion": "Londres"
   },
   {
     "coordinates": [
@@ -186,7 +186,7 @@
     ],
     "personas": "Albert",
     "año": 2008,
-    "lugar": "Suecia (Malmo)"
+    "descripcion": "Suecia (Malmo)"
   },
   {
     "coordinates": [
@@ -195,7 +195,7 @@
     ],
     "personas": "Albert",
     "año": 2008,
-    "lugar": "Suecia (Estocolmo)"
+    "descripcion": "Suecia (Estocolmo)"
   },
   {
     "coordinates": [
@@ -204,7 +204,7 @@
     ],
     "personas": "Albert",
     "año": 2000,
-    "lugar": "Ceuta"
+    "descripcion": "Ceuta"
   },
   {
     "coordinates": [
@@ -213,7 +213,7 @@
     ],
     "personas": "Albert",
     "año": 2024,
-    "lugar": "Galicia"
+    "descripcion": "Galicia"
   },
   {
     "coordinates": [
@@ -222,7 +222,7 @@
     ],
     "personas": "Albert",
     "año": 2016,
-    "lugar": "Les Deux Alps"
+    "descripcion": "Les Deux Alps"
   },
   {
     "coordinates": [
@@ -231,7 +231,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "lugar": "Polonia (Poznan)"
+    "descripcion": "Polonia (Poznan)"
   },
   {
     "coordinates": [
@@ -240,7 +240,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "lugar": "Republica Checa (Praga)"
+    "descripcion": "Republica Checa (Praga)"
   },
   {
     "coordinates": [
@@ -249,7 +249,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "lugar": "Eslovaquia (Bratislava)"
+    "descripcion": "Eslovaquia (Bratislava)"
   },
   {
     "coordinates": [
@@ -258,7 +258,7 @@
     ],
     "personas": "Albert",
     "año": 2009,
-    "lugar": "Italia (Bolonia)"
+    "descripcion": "Italia (Bolonia)"
   },
   {
     "coordinates": [
@@ -267,7 +267,7 @@
     ],
     "personas": "Albert",
     "año": 1994,
-    "lugar": "Francia (Paris)"
+    "descripcion": "Francia (Paris)"
   },
   {
     "coordinates": [
@@ -276,7 +276,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "lugar": "Lituania (Vilnus)"
+    "descripcion": "Lituania (Vilnus)"
   },
   {
     "coordinates": [
@@ -285,25 +285,25 @@
     ],
     "personas": "Albert",
     "año": 2011,
-    "lugar": "Malta"
+    "descripcion": "Malta"
   },
   {
     "coordinates": [
       1.456815,
       38.697929
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2011,
-    "lugar": "Formentera"
+    "descripcion": "Formentera"
   },
   {
     "coordinates": [
       2.647152,
       39.574739
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2017,
-    "lugar": "Mallorca"
+    "descripcion": "Mallorca"
   },
   {
     "coordinates": [
@@ -312,7 +312,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "lugar": "Islas Canarias (Las Palmas)"
+    "descripcion": "Islas Canarias (Las Palmas)"
   },
   {
     "coordinates": [
@@ -321,7 +321,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "lugar": "Islas Canarias (Fuerteventura)"
+    "descripcion": "Islas Canarias (Fuerteventura)"
   },
   {
     "coordinates": [
@@ -330,7 +330,7 @@
     ],
     "personas": "Albert",
     "año": 2013,
-    "lugar": "Islas Canarias (Tenerife)"
+    "descripcion": "Islas Canarias (Tenerife)"
   },
   {
     "coordinates": [
@@ -339,15 +339,15 @@
     ],
     "personas": "Albert",
     "año": 2013,
-    "lugar": "Málaga"
+    "descripcion": "Málaga"
   },
   {
     "coordinates": [
       -2.108201,
       36.760741
     ],
-    "personas": "Alba-Albert",
+    "personas": "Alba,Albert",
     "año": 2013,
-    "lugar": "Almería (San José)"
+    "descripcion": "Almería (San José)"
   }
 ]
