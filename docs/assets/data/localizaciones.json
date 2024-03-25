@@ -15,7 +15,7 @@
     ],
     "personas": "Mateu,Alba,Albert",
     "año": 2023,
-    "descripcion": "Tossa de Mar"
+    "descripcion": "Tossa de Mar. Último viaje de 3, con Marina en la pancha."
   },
   {
     "coordinates": [
@@ -33,7 +33,7 @@
     ],
     "personas": "Mateu,Alba,Albert",
     "año": 2022,
-    "descripcion": "Madrid"
+    "descripcion": "Madrid. Visita de despedida de los compañeros de Albert de trabajo."
   },
   {
     "coordinates": [
@@ -42,7 +42,7 @@
     ],
     "personas": "Alba,Albert",
     "año": 2019,
-    "descripcion": "Bali"
+    "descripcion": "Bali, Indonesia"
   },
   {
     "coordinates": [
@@ -51,16 +51,16 @@
     ],
     "personas": "Alba,Albert",
     "año": 2019,
-    "descripcion": "Nusa Lembongan"
+    "descripcion": "Nusa Lembongan, Indonesia. Viaje de novios."
   },
   {
     "coordinates": [
       3.800238,
       40.001379
     ],
-    "personas": "Todos",
+    "personas": "Mateu,Alba,Albert",
     "año": 2022,
-    "descripcion": "Menorca"
+    "descripcion": "Menorca. Road Trip con la furgoneta camper."
   },
   {
     "coordinates": [
@@ -69,7 +69,7 @@
     ],
     "personas": "Alba,Albert",
     "año": 2018,
-    "descripcion": "Lisboa"
+    "descripcion": "Lisboa. Road Trip con la furgoneta camper."
   },
   {
     "coordinates": [
@@ -78,7 +78,7 @@
     ],
     "personas": "Mateu,Alba,Albert",
     "año": 2022,
-    "descripcion": "Andorra (Les Escaldes)"
+    "descripcion": "Andorra (Les Escaldes). Visitando a los tíos de Alba, Ana y Benjamín."
   },
   {
     "coordinates": [
@@ -87,7 +87,7 @@
     ],
     "personas": "Alba,Albert",
     "año": 2020,
-    "descripcion": "Ibiza"
+    "descripcion": "Ibiza. Con Mateu en la pancha, y de ruta por la isla en furgoneta."
   },
   {
     "coordinates": [
@@ -96,7 +96,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "descripcion": "Miami"
+    "descripcion": "Miami, USA."
   },
   {
     "coordinates": [
@@ -105,7 +105,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "descripcion": "Cayos de Florida"
+    "descripcion": "Cayos de Florida, USA."
   },
   {
     "coordinates": [
@@ -114,7 +114,7 @@
     ],
     "personas": "Albert",
     "año": 2012,
-    "descripcion": "Nueva York"
+    "descripcion": "Nueva York, USA. Visitando a Blanca."
   },
   {
     "coordinates": [
@@ -123,7 +123,7 @@
     ],
     "personas": "Albert",
     "año": 2016,
-    "descripcion": "Filipinas"
+    "descripcion": "Filipinas. Visitando a Fede, de ruta por las islas"
   },
   {
     "coordinates": [
@@ -141,7 +141,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "descripcion": "Berlin"
+    "descripcion": "Berlin. Erasmus de Albert, 2009-2010"
   },
   {
     "coordinates": [
@@ -150,7 +150,7 @@
     ],
     "personas": "Albert",
     "año": 2003,
-    "descripcion": "Amsterdam"
+    "descripcion": "Interrail: Amsterdam, Holanda. Camping Gasper Park. "
   },
   {
     "coordinates": [
@@ -159,7 +159,16 @@
     ],
     "personas": "Albert",
     "año": 2013,
-    "descripcion": "Croacia"
+    "descripcion": "Croacia. Road Trip desde norte de italia hasta Dubrovnik, por toda la costa."
+  },
+  {
+    "coordinates": [
+      15.230560,
+      44.110415
+    ],
+    "personas": "Albert",
+    "año": 2013,
+    "descripcion": "Croacia. Road Trip desde norte de italia hasta Dubrovnik, por toda la costa."
   },
   {
     "coordinates": [
@@ -168,7 +177,7 @@
     ],
     "personas": "Albert",
     "año": 2009,
-    "descripcion": "Sicilia"
+    "descripcion": "Sicilia. Visitando los erasmus, Laura, mujer de Esteve."
   },
   {
     "coordinates": [
@@ -177,7 +186,7 @@
     ],
     "personas": "Albert",
     "año": 1993,
-    "descripcion": "Londres"
+    "descripcion": "Londres. Visitando amigos de los iaios Ana y Pepe."
   },
   {
     "coordinates": [
@@ -186,7 +195,7 @@
     ],
     "personas": "Albert",
     "año": 2008,
-    "descripcion": "Suecia (Malmo)"
+    "descripcion": "Suecia (Malmo). Visitando a Blai, de erasmus en la ciudad de Malmo."
   },
   {
     "coordinates": [
@@ -195,7 +204,7 @@
     ],
     "personas": "Albert",
     "año": 2008,
-    "descripcion": "Suecia (Estocolmo)"
+    "descripcion": "Suecia (Estocolmo). Visitando a Blai, de erasmus en la ciudad de Malmo."
   },
   {
     "coordinates": [
@@ -204,7 +213,7 @@
     ],
     "personas": "Albert",
     "año": 2000,
-    "descripcion": "Ceuta"
+    "descripcion": "Ceuta. Visitando la tierra natal de la iaia Ana."
   },
   {
     "coordinates": [
@@ -213,7 +222,7 @@
     ],
     "personas": "Albert",
     "año": 2024,
-    "descripcion": "Galicia"
+    "descripcion": "Galicia. De niño, visitando la familia de la iaia María (madre de la iaia Ana)."
   },
   {
     "coordinates": [
@@ -222,7 +231,7 @@
     ],
     "personas": "Albert",
     "año": 2016,
-    "descripcion": "Les Deux Alps"
+    "descripcion": "Les Deux Alps. Visitando a Fede, dos viajes de snowboard con Berliners."
   },
   {
     "coordinates": [
@@ -231,7 +240,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "descripcion": "Polonia (Poznan)"
+    "descripcion": "Polonia (Poznan). Visitando la ciudad de Mateuzs (Berliner), en uyn festival."
   },
   {
     "coordinates": [
@@ -240,7 +249,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "descripcion": "Republica Checa (Praga)"
+    "descripcion": "Republica Checa (Praga). Road trip desde Berlín."
   },
   {
     "coordinates": [
@@ -249,7 +258,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "descripcion": "Eslovaquia (Bratislava)"
+    "descripcion": "Bratislava, Eslovaquia. Visitando a Felipe, en el road trip desde Berlín."
   },
   {
     "coordinates": [
@@ -258,7 +267,7 @@
     ],
     "personas": "Albert",
     "año": 2009,
-    "descripcion": "Italia (Bolonia)"
+    "descripcion": "Bolonia, Italia. Visitando a los erasmus. Dani y Jordi."
   },
   {
     "coordinates": [
@@ -267,7 +276,7 @@
     ],
     "personas": "Albert",
     "año": 1994,
-    "descripcion": "Francia (Paris)"
+    "descripcion": "Francia (Paris). Visita de niños con la familia Serrador Sánchez."
   },
   {
     "coordinates": [
@@ -276,7 +285,7 @@
     ],
     "personas": "Albert",
     "año": 2010,
-    "descripcion": "Lituania (Vilnus)"
+    "descripcion": "Lituania (Vilnus). De viaje desde Berlín en el erasmus."
   },
   {
     "coordinates": [
@@ -294,7 +303,7 @@
     ],
     "personas": "Alba,Albert",
     "año": 2011,
-    "descripcion": "Formentera"
+    "descripcion": "Formentera. De visita a Sarita, con Mateu en la pancha."
   },
   {
     "coordinates": [
@@ -303,7 +312,7 @@
     ],
     "personas": "Alba,Albert",
     "año": 2017,
-    "descripcion": "Mallorca"
+    "descripcion": "Mallorca. De novios, primer viaje en furgoneta a las islas."
   },
   {
     "coordinates": [
@@ -312,7 +321,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "descripcion": "Islas Canarias (Las Palmas)"
+    "descripcion": "Islas Canarias (Las Palmas). De visita a Carlos, Berliner."
   },
   {
     "coordinates": [
@@ -321,7 +330,7 @@
     ],
     "personas": "Albert",
     "año": 2015,
-    "descripcion": "Islas Canarias (Fuerteventura)"
+    "descripcion": "Islas Canarias (Fuerteventura). Festival FuerteMúsica, para ver Calle 13"
   },
   {
     "coordinates": [
@@ -330,7 +339,7 @@
     ],
     "personas": "Albert",
     "año": 2013,
-    "descripcion": "Islas Canarias (Tenerife)"
+    "descripcion": "Islas Canarias (Tenerife). Carnavales con los Berliners."
   },
   {
     "coordinates": [
@@ -339,7 +348,7 @@
     ],
     "personas": "Albert",
     "año": 2013,
-    "descripcion": "Málaga"
+    "descripcion": "Málaga. Despedida de soltero de los Berliner."
   },
   {
     "coordinates": [
@@ -348,6 +357,150 @@
     ],
     "personas": "Alba,Albert",
     "año": 2013,
-    "descripcion": "Almería (San José)"
+    "descripcion": "Almería (San José). De novios, poniendo a prueba la furgoneta camperizada."
+  },
+  {
+    "coordinates": [
+      11.254262,
+      43.771612
+    ],
+    "personas": "Albert",
+    "año": 1995,
+    "descripcion": "Florencia (Italia). Viaje con la familia Serrador Sánchez, de niños"
+  },
+  {
+    "coordinates": [
+      12.338398,
+      45.434064
+    ],
+    "personas": "Albert",
+    "año": 1995,
+    "descripcion": "Venecia (Italia). Viaje con la familia Serrador Sánchez, de niños"
+  },
+  {
+    "coordinates": [
+      10.396646,
+      43.722864
+    ],
+    "personas": "Albert",
+    "año": 1995,
+    "descripcion": "Pisa (Italia). Viaje con la familia Serrador Sánchez, de niños"
+  },
+  {
+    "coordinates": [
+      8.130267,
+      47.885805
+    ],
+    "personas": "Albert",
+    "año": 2003,
+    "descripcion": "Interrail: Titisee, Selva Negra (Alemania)"
+  },
+  {
+    "coordinates": [
+      11.564258,
+      48.126756
+    ],
+    "personas": "Albert",
+    "año": 2003,
+    "descripcion": "Interrail: Munich (Alemania)"
+  },
+  {
+    "coordinates": [
+      9.191412,
+      45.463753
+    ],
+    "personas": "Albert",
+    "año": 2008,
+    "descripcion": "Milán (Italia). Visitando a los erasmus. Esteve."
+  },
+  {
+    "coordinates": [
+      9.970417,
+      53.565601
+    ],
+    "personas": "Albert",
+    "año": 2008,
+    "descripcion": "Hamburgo (Alemania). Visitando a Blanca."
+  },
+  {
+    "coordinates": [
+      -3.589386,
+      37.176295
+    ],
+    "personas": "Alba,Albert",
+    "año": 2012,
+    "descripcion": "Granada y Sierra Nevada."
+  },
+  {
+    "coordinates": [
+      -5.605388,
+      36.012112
+    ],
+    "personas": "Alba,Albert",
+    "año": 1999,
+    "descripcion": "Tarifa. Viaje con los iaios y Albert. Y Alba de joven con las amigas"
+  },
+  {
+    "coordinates": [
+      -6.990769,
+      38.874233
+    ],
+    "personas": "Albert",
+    "año": 2016,
+    "descripcion": "Badajoz. De visita a Diego Berliner."
+  },
+  {
+    "coordinates": [
+      -5.900373,
+      42.298212
+    ],
+    "personas": "Albert",
+    "año": 2016,
+    "descripcion": "La Bañeza. De visita a Toño Berliner."
+  },
+  {
+    "coordinates": [
+      -4.289866,
+      43.391785
+    ],
+    "personas": "Albert",
+    "año": 2012,
+    "descripcion": "Comillas"
+  },
+  {
+    "coordinates": [
+      2.183102,
+      41.407833
+    ],
+    "personas": "Alba,Albert",
+    "año": 2002,
+    "descripcion": "Barcelona."
+  },
+  {
+    "coordinates": [
+      -0.051228,
+      38.598930
+    ],
+    "personas": "Mateu,Alba,Albert",
+    "año": 2002,
+    "descripcion": "Altea. Primeros viajes con Mateu."
+  },
+  {
+    "coordinates": [
+      -9.771469,
+      31.510723
+    ],
+    "personas": "Albert",
+    "año": 2014,
+    "descripcion": "Esauira"
+  },
+  {
+    "coordinates": [
+      0.797539,
+      42.701634
+    ],
+    "personas": "Alba,Albert",
+    "año": 2018,
+    "descripcion": "Vielha, de ruta por el pirineo con la furgoneta."
   }
 ]

@@ -18,18 +18,21 @@
   <span> &nbsp; {{ 'app.cargando' | translate}}</span>
 </div>
 
-<div class="leyenda">
+<!-- <div class="leyenda">
   <div class="leyenda-item" *ngFor="let persona of personas">
     <div class="leyenda-color" [style.background-color]="colores[persona]"></div>
     <div class="leyenda-texto">{{ persona }}</div>
   </div>
-</div>
+</div> -->
+<br>
 
 <div class="contenedor-mapa">
-  <div id="map" class="map"></div>
+  <div id="map" class="map">
+    <button class="buttonCentrar" (click)="centrarMapa()"><img src="assets/icons/casa2.png" alt="" class="iconoCasa animated rollIn"></button>
+  </div>
 </div>
 
-<div id="tooltip" class="tooltip"></div>
+<div id="tooltip" class="tooltip" (click)="buttonCloseTooltip()"></div>
 
 <br><br>
 <div class="divRight">
