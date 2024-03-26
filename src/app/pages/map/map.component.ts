@@ -10,13 +10,12 @@ import { fromLonLat } from 'ol/proj';
 import Style from 'ol/style/Style';
 import CircleStyle from 'ol/style/Circle';
 import Fill from 'ol/style/Fill';
-import { Coordinate } from 'ol/coordinate';
-import { FormsModule } from '@angular/forms';
 
 
 
 import { LocalizacionesService } from 'src/app/services/localizaciones.service';
-import { Subject, map, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import Icon from 'ol/style/Icon';
 
 @Component({
   selector: 'app-map',
@@ -28,7 +27,7 @@ export class MapComponent implements OnInit, OnDestroy {
   public map!: Map |null;
   destroy$: Subject<void> = new Subject<void>();
   public vectorLayer = new VectorLayer();
-  personas = ['Mateu', 'Marina', 'Alba', 'Albert', 'Todos', 'Mateu,Alba,Albert', 'Alba,Albert' ]; // Suponiendo que estas son tus personas
+  personas = ['Mateu', 'Marina', 'Alba', 'Albert', 'Todos', 'Mateu,Alba,Albert', 'Alba,Albert' ];
   colores: { [key: string]: string } = {
     'Mateu': 'red',
     'Marina': 'pink',
@@ -81,13 +80,6 @@ export class MapComponent implements OnInit, OnDestroy {
               features: localizaciones.map(loc => {
                 return this.getFeature(loc);
               })
-              // .filter(feature => {
-              //   // Aplicar filtros si hay valores en los campos de búsqueda
-              //   if (this.filtro.trim() != '') {
-              //     return String(feature.get('año')).toLowerCase().indexOf(this.filtro) >= 0  || String(feature.get('persona')).toLowerCase().indexOf(this.filtro) >= 0 || String(feature.get('descripcion')).toLowerCase().indexOf(this.filtro) >= 0;
-              //   }
-              //   return true; // Mostrar todos si no hay filtros aplicados
-              // })
             })
           })
         ],
@@ -110,13 +102,8 @@ export class MapComponent implements OnInit, OnDestroy {
       });
       this.map.addOverlay(this.overlay);
 
-      // Escuchar evento de clic en el mapa para mostrar el tooltip
-      // const radiusDegrees = 999999; // Por ejemplo, aproximadamente 200 kilómetro en latitud/longitud
-
-
       this.map.on('click', (event) => {
       const pixel = event.pixel;
-      // const coordinate = this.map.getCoordinateFromPixel(pixel);
 
       // Iterar sobre las características del vector en el radio especificado
       this.map!.forEachFeatureAtPixel(pixel, (feature) => {
@@ -125,12 +112,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
             if (geometry instanceof Point) {
               const featureCoord = geometry.getCoordinates();
-              // const distance = this.calculateDistance(coordinate, featureCoord);
-
-              // Verificar si la característica está dentro del radio definido
-              // if (distance <= radiusDegrees) {
               const tooltipElement = this.overlay.getElement();
-              // <button class="buttonTooltip" (click)="buttonCloseTooltip()"><b>X</b></button>
               tooltipElement!.innerHTML = `
                 <div><strong>Viajeros:</strong> ${feature.get('persona')}</div>
                 <div><strong>Año:</strong> ${feature.get('año')}</div>
@@ -145,7 +127,6 @@ export class MapComponent implements OnInit, OnDestroy {
       });
 
       this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
-      console.log(this.paisesVisitados);
 
     });
   }
@@ -165,21 +146,19 @@ export class MapComponent implements OnInit, OnDestroy {
 
     // Aplicar estilo al círculo según la persona
     feature.setStyle(new Style({
-      image: new CircleStyle({
-        radius: 5,
+      // image: new CircleStyle({
+      //   radius: 5,
         // fill: new Fill({ color: this.colores[loc.personas] }) // Usar el color asociado a la persona
-        fill: new Fill({ color: 'red' }) // Usar el color FIJO
+      //   fill: new Fill({ color: 'red' }) // Usar el color FIJO
+      // })
+      image: new Icon({
+        src: 'assets/icons/ubicacionAmarillo.png',
+        scale: 0.040,
+        rotation: 0
       })
     }));
     return feature;
   }
-
-  // Función para calcular la distancia entre dos coordenadas
-  // calculateDistance(coord1: Coordinate, coord2: Coordinate): number {
-  //   const dx = coord1[0] - coord2[0];
-  //   const dy = coord1[1] - coord2[1];
-  //   return Math.sqrt(dx * dx + dy * dy);
-  // }
 
   buttonCloseTooltip(){
     this.overlay.setPosition(undefined);

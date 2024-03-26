@@ -117,10 +117,7 @@
             <ul *ngIf="(this.commonService.sinIdioma$ | async) === true" class="fh5co-social">
               <li><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
               <li><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
-              <!-- <li *ngIf="isSelectedValenciano"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
-              <!-- <li *ngIf="!isSelectedValenciano"><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
-              <!-- <li *ngIf="isSelectedSpanish"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
-              <!-- <li *ngIf="!isSelectedSpanish"><button  class="disabled-button idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
+
           </ul>
             <div class="col-lg-12 col-md-12 text-center animated pulse">
                 <h3 id="fh5co-logo">
@@ -129,9 +126,7 @@
                             {{ 'app.familia' | translate }}
                             <sup>Serrador Casares</sup>
                             <sub>
-                                <!-- <img src="assets/icons/viajarMundo.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
                                 <img src="assets/icons/sol.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/">
-                                <!-- <img src="assets/icons/viajeros.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
                             </sub>
                     </a>
                 </h3>
