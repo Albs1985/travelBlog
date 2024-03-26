@@ -16,7 +16,7 @@ export class LocalizacionesService {
 
   }
 
-  getLocations(): Observable<{ coordinates: [number, number], personas: string, año: string, descripcion:string}[]> {
+  getLocations(): Observable<{ coordinates: [number, number], personas: string, año: string, descripcion:string, pais: string}[]> {
     this.cargandoLocalizaciones$.next(true);
 
     return this.http.get<any[]>(this.jsonLocalizaciones).pipe(
@@ -26,7 +26,8 @@ export class LocalizacionesService {
           coordinates: item.coordinates,
           personas: item.personas,
           año: item.año,
-          descripcion: item.descripcion
+          descripcion: item.descripcion,
+          pais: item.pais
         }));
       })
     );

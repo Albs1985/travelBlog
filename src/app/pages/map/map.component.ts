@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { OSM, Vector as VectorSource } from 'ol/source';
@@ -11,17 +11,21 @@ import Style from 'ol/style/Style';
 import CircleStyle from 'ol/style/Circle';
 import Fill from 'ol/style/Fill';
 import { Coordinate } from 'ol/coordinate';
+import { FormsModule } from '@angular/forms';
+
+
 
 import { LocalizacionesService } from 'src/app/services/localizaciones.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
-  public map!: Map;
+  public map!: Map |null;
   public vectorLayer = new VectorLayer();
   personas = ['Mateu', 'Marina', 'Alba', 'Albert', 'Todos', 'Mateu,Alba,Albert', 'Alba,Albert' ]; // Suponiendo que estas son tus personas
   colores: { [key: string]: string } = {
@@ -38,13 +42,24 @@ export class MapComponent implements OnInit {
 
   overlay!: Overlay;
 
-  datoBusqueda: string = '';
+  filtro: string = '';
+
+  paisesVisitados: { [key: string]: number } = {};
 
   constructor(public servicioLocalizaciones: LocalizacionesService) {
     this.coordenadasIniciales = [0,0];
   }
 
   ngOnInit(): void {
+    this.crearMapa();
+  }
+
+  ngOnDestroy(): void {
+    this.destruirMapa();
+  }
+
+
+  crearMapa(): void {
 
     this.servicioLocalizaciones.getLocations().subscribe((localizaciones) => {
 
@@ -65,6 +80,13 @@ export class MapComponent implements OnInit {
               features: localizaciones.map(loc => {
                 return this.getFeature(loc);
               })
+              // .filter(feature => {
+              //   // Aplicar filtros si hay valores en los campos de búsqueda
+              //   if (this.filtro.trim() != '') {
+              //     return String(feature.get('año')).toLowerCase().indexOf(this.filtro) >= 0  || String(feature.get('persona')).toLowerCase().indexOf(this.filtro) >= 0 || String(feature.get('descripcion')).toLowerCase().indexOf(this.filtro) >= 0;
+              //   }
+              //   return true; // Mostrar todos si no hay filtros aplicados
+              // })
             })
           })
         ],
@@ -96,7 +118,7 @@ export class MapComponent implements OnInit {
       // const coordinate = this.map.getCoordinateFromPixel(pixel);
 
       // Iterar sobre las características del vector en el radio especificado
-      this.map.forEachFeatureAtPixel(pixel, (feature) => {
+      this.map!.forEachFeatureAtPixel(pixel, (feature) => {
         if (feature) {
             const geometry = feature.getGeometry();
 
@@ -122,6 +144,7 @@ export class MapComponent implements OnInit {
       });
 
       this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
+      console.log(this.paisesVisitados);
 
     });
   }
@@ -133,8 +156,11 @@ export class MapComponent implements OnInit {
       geometry: new Point(fromLonLat(loc.coordinates)),
       persona: loc.personas, // Asignar la persona a la propiedad 'persona' del Feature
       año: loc.año,
-      descripcion: loc.descripcion
+      descripcion: loc.descripcion,
+      pais: loc.pais
     });
+
+    this.actualizarVisitas(String(feature.get('pais')));
 
     // Aplicar estilo al círculo según la persona
     feature.setStyle(new Style({
@@ -158,19 +184,57 @@ export class MapComponent implements OnInit {
     this.overlay.setPosition(undefined);
   }
 
+  actualizarVisitas(pais: string): void {
+    if (this.paisesVisitados[pais] !== undefined) {
+      // Si el país ya está en el mapa, se incrementa el contador de visitas
+      this.paisesVisitados[pais]++;
+    } else {
+      // Si el país no está en el mapa, se agrega con un contador de visitas inicializado en 1
+      this.paisesVisitados[pais] = 1;
+    }
+  }
 
   centrarMapa(): void {
     const initialCenter = fromLonLat(this.coordenadasIniciales);
-    this.map.getView().setCenter(initialCenter);
-    this.map.getView().setZoom(4);
+    this.map!.getView().setCenter(initialCenter);
+    this.map!.getView().setRotation(0);
+    this.map!.getView().setZoom(4);
+  }
+
+
+  destruirMapa(): void {
+    if (this.map) {
+      this.map.setTarget(undefined);
+      this.map = null;
+    }
   }
 
   buscar(): void {
-    // Realizar la lógica de búsqueda aquí
-    // console.log('Año:', this.filtroAño);
-    // console.log('Persona:', this.filtroPersona);
-    // // Puedes filtrar los datos en el servicio o directamente en el componente,
-    // dependiendo de tu preferencia y estructura de la aplicación.
+
+    this.servicioLocalizaciones.getLocations().subscribe((localizaciones) => {
+      // Limpiar la capa vectorial para eliminar todas las características del mapa actual
+      this.vectorLayer.getSource()!.clear();
+
+      // Filtrar y agregar características según los criterios de búsqueda
+      localizaciones.forEach(loc => {
+        const feature = this.getFeature(loc);
+        if (this.filtro.trim() === '' ||
+            String(feature.get('año')).toLowerCase().includes(this.filtro.toLowerCase()) ||
+            String(feature.get('persona')).toLowerCase().includes(this.filtro.toLowerCase()) ||
+            String(feature.get('descripcion')).toLowerCase().includes(this.filtro.toLowerCase())) {
+          this.vectorLayer.getSource()!.addFeature(feature);
+        }
+      });
+
+      // Actualizar el mapa
+      this.map!.updateSize();
+
+      this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
+    });
+
+
   }
+
+
 
 }

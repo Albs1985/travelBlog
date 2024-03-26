@@ -29,6 +29,12 @@
 <div class="contenedor-mapa">
   <div id="map" class="map">
     <button class="buttonCentrar" (click)="centrarMapa()"><img src="assets/icons/casa2.png" alt="" class="iconoCasa animated rollIn"></button>
+    <div class="buscador">
+      <form (submit)="buscar()">
+        <input type="text" placeholder="{{ 'app.frasesFiltrado' | translate }}" [(ngModel)]="filtro" name="filtro">
+        <button type="submit">{{'header.buscar' | translate }}</button>
+      </form>
+    </div>
   </div>
 </div>
 
