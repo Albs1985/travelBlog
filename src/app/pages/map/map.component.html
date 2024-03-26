@@ -32,7 +32,10 @@
     <div class="buscador">
       <form (submit)="buscar()">
         <input type="text" placeholder="{{ 'app.frasesFiltrado' | translate }}" [(ngModel)]="filtro" name="filtro">
-        <button type="submit">{{'header.buscar' | translate }}</button>
+        <button type="submit">
+          <!-- {{'header.buscar' | translate }} -->
+          <img src="assets/icons/buscarMapa.png" alt="" class="iconosImg">
+        </button>
       </form>
     </div>
   </div>

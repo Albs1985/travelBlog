@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 
 
 import { LocalizacionesService } from 'src/app/services/localizaciones.service';
-import { map } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -26,6 +26,7 @@ import { map } from 'rxjs';
 export class MapComponent implements OnInit, OnDestroy {
 
   public map!: Map |null;
+  destroy$: Subject<void> = new Subject<void>();
   public vectorLayer = new VectorLayer();
   personas = ['Mateu', 'Marina', 'Alba', 'Albert', 'Todos', 'Mateu,Alba,Albert', 'Alba,Albert' ]; // Suponiendo que estas son tus personas
   colores: { [key: string]: string } = {
@@ -61,7 +62,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   crearMapa(): void {
 
-    this.servicioLocalizaciones.getLocations().subscribe((localizaciones) => {
+    this.servicioLocalizaciones.getLocations().pipe(takeUntil(this.destroy$)).subscribe((localizaciones) => {
 
       this.coordenadasIniciales = localizaciones[0].coordinates;
 
@@ -165,7 +166,7 @@ export class MapComponent implements OnInit, OnDestroy {
     // Aplicar estilo al círculo según la persona
     feature.setStyle(new Style({
       image: new CircleStyle({
-        radius: 3,
+        radius: 5,
         // fill: new Fill({ color: this.colores[loc.personas] }) // Usar el color asociado a la persona
         fill: new Fill({ color: 'red' }) // Usar el color FIJO
       })
@@ -207,11 +208,12 @@ export class MapComponent implements OnInit, OnDestroy {
       this.map.setTarget(undefined);
       this.map = null;
     }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   buscar(): void {
-
-    this.servicioLocalizaciones.getLocations().subscribe((localizaciones) => {
+    this.servicioLocalizaciones.getLocations().pipe(takeUntil(this.destroy$)).subscribe((localizaciones) => {
       // Limpiar la capa vectorial para eliminar todas las características del mapa actual
       this.vectorLayer.getSource()!.clear();
 
@@ -231,10 +233,6 @@ export class MapComponent implements OnInit, OnDestroy {
 
       this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
     });
-
-
   }
-
-
 
 }

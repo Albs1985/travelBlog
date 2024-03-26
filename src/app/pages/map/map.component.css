@@ -117,7 +117,7 @@
   position: absolute;
   background-color: rgb(255, 228, 177);
   border-radius: 15px;
-  top: 10px;
+  top: 25px;
   right: 10px;
   z-index: 9999;
 }
@@ -152,14 +152,14 @@
 }
 
 .buscador button {
-  padding: 5px 10px;
-  background-color: #007bff;
+  background-color: transparent;
   color: #fff;
-  border: none;
+  border: #0056b3;
   border-radius: 3px;
   cursor: pointer;
 }
 
 .buscador button:hover {
+  padding: 2px;
   background-color: #0056b3;
 }
