@@ -120,9 +120,12 @@
     "puntuacion": "Puntuació",
     "verificarRespuestas": "Verificar Respostes",
     "tituloMapa": "Llocs visitats per la família",
-    "subtituloMapa1": "Per a disfrutar...",
+    "subtituloMapa1": "¡Continuem viatjant!",
     "mapa": "Mapa",
-    "centrarCasa": "Centrar a casa"
+    "centrarCasa": "Centrar a casa",
+    "graficaDetalle": "Destins més visitats",
+    "graficoBarras": "Gràfic de barres",
+    "graficoTarta": "Gràfic circular"
   },
   "dibujos": {
     "1": {

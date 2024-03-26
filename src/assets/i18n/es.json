@@ -120,9 +120,12 @@
     "puntuacion": "Puntuación",
     "verificarRespuestas": "Verificar Respuestas",
     "tituloMapa": "Lugares visitados por la familia",
-    "subtituloMapa1": "Para disfrutar...",
+    "subtituloMapa1": "¡Continuamos viajando!",
     "mapa": "Mapa",
-    "centrarCasa": "Centrar en casa"
+    "centrarCasa": "Centrar en casa",
+    "graficaDetalle": "Destinos más visitados",
+    "graficoBarras": "Gráfico de barras",
+    "graficoTarta": "Gráfico circular"
   },
   "dibujos": {
     "1": {

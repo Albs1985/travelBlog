@@ -34,7 +34,7 @@
         <input type="text" placeholder="{{ 'app.frasesFiltrado' | translate }}" [(ngModel)]="filtro" name="filtro">
         <button type="submit">
           <!-- {{'header.buscar' | translate }} -->
-          <img src="assets/icons/buscarMapa.png" alt="" class="iconosImg">
+          <img src="assets/icons/buscarUbi.png" alt="" class="iconosImg">
         </button>
       </form>
     </div>
@@ -43,7 +43,27 @@
 
 <div id="tooltip" class="tooltip" (click)="buttonCloseTooltip()"></div>
 
-<br><br>
+<h3 class="tituloMapa">
+  <img src="assets/icons/grafico.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+ {{ 'app.graficaDetalle' | translate }}
+</h3>
+<br>
+
+<div *ngIf="tipoGrafico === 'barras'" class="divRight">
+  <img  src="assets/icons/grafico.png" class="animated fadeIn iconoGrafico" (click)="cambiaGrafico('barras')"><a (click)="cambiaGrafico('barras')">&nbsp;{{ 'app.graficoBarras' | translate}}</a>
+</div>
+
+<div *ngIf="tipoGrafico === 'tarta'" class="divRight">
+  <img src="assets/icons/graficoTarta.png" class="animated fadeIn iconoGrafico" (click)="cambiaGrafico('tarta')"><a (click)="cambiaGrafico('tarta')">&nbsp;{{ 'app.graficoTarta' | translate}}</a>
+</div>
+
+<div *ngIf="(finCargaPaises|async)===true">
+    <app-grafica *ngIf="tipoGrafico === 'barras'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
+    <app-grafica *ngIf="tipoGrafico === 'tarta'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
+</div>
+
+
+<!-- <br><br> -->
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>

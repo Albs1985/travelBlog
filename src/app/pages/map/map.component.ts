@@ -14,7 +14,7 @@ import Fill from 'ol/style/Fill';
 
 
 import { LocalizacionesService } from 'src/app/services/localizaciones.service';
-import { Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import Icon from 'ol/style/Icon';
 
 @Component({
@@ -25,8 +25,13 @@ import Icon from 'ol/style/Icon';
 export class MapComponent implements OnInit, OnDestroy {
 
   public map!: Map |null;
-  destroy$: Subject<void> = new Subject<void>();
   public vectorLayer = new VectorLayer();
+  overlay!: Overlay;
+
+
+  destroy$: Subject<void> = new Subject<void>();
+  finCargaPaises: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   personas = ['Mateu', 'Marina', 'Alba', 'Albert', 'Todos', 'Mateu,Alba,Albert', 'Alba,Albert' ];
   colores: { [key: string]: string } = {
     'Mateu': 'red',
@@ -38,13 +43,13 @@ export class MapComponent implements OnInit, OnDestroy {
     'Alba,Albert': 'orange'
   };
 
-  coordenadasIniciales: [number, number]
-
-  overlay!: Overlay;
+  coordenadasIniciales: [number, number];
 
   filtro: string = '';
 
   paisesVisitados: { [key: string]: number } = {};
+  dataGrafica: { country: string, visits: number }[] = Object.entries(this.paisesVisitados).map(([country, visits]) => ({ country, visits }));
+  tipoGrafico: string = 'barras';
 
   constructor(public servicioLocalizaciones: LocalizacionesService) {
     this.coordenadasIniciales = [0,0];
@@ -105,6 +110,10 @@ export class MapComponent implements OnInit, OnDestroy {
       this.map.on('click', (event) => {
       const pixel = event.pixel;
 
+      if (this.overlay){
+        this.overlay.setPosition(undefined);
+      }
+
       // Iterar sobre las características del vector en el radio especificado
       this.map!.forEachFeatureAtPixel(pixel, (feature) => {
         if (feature) {
@@ -126,6 +135,8 @@ export class MapComponent implements OnInit, OnDestroy {
         });
       });
 
+      this.dataGrafica = Object.entries(this.paisesVisitados).map(([country, visits]) => ({ country, visits }));
+      this.finCargaPaises.next(true);
       this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
 
     });
@@ -153,7 +164,7 @@ export class MapComponent implements OnInit, OnDestroy {
       // })
       image: new Icon({
         src: 'assets/icons/ubicacionAmarillo.png',
-        scale: 0.040,
+        scale: 0.045,
         rotation: 0
       })
     }));
@@ -179,6 +190,9 @@ export class MapComponent implements OnInit, OnDestroy {
     this.map!.getView().setCenter(initialCenter);
     this.map!.getView().setRotation(0);
     this.map!.getView().setZoom(4);
+    if (this.overlay){
+      this.overlay.setPosition(undefined);
+    }
   }
 
 
@@ -214,4 +228,12 @@ export class MapComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  cambiaGrafico(valor: string){
+    if (valor === 'barras'){
+      this.tipoGrafico = 'tarta';
+    }else if (valor === 'tarta'){
+      this.tipoGrafico = 'barras';
+    }
+  }
 }

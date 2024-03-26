@@ -32,6 +32,7 @@ import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-qui
 import { AdivinaComponent } from './pages/games/adivina/adivina.component';
 import { QuizComponent } from './pages/games/quiz/quiz.component';
 import { MapComponent } from './pages/map/map.component';
+import { GraficaComponent } from './pages/map/grafica/grafica.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { MapComponent } from './pages/map/map.component';
     QuienEsQuienComponent,
     AdivinaComponent,
     QuizComponent,
-    MapComponent
+    MapComponent,
+    GraficaComponent
   ],
   imports: [
     BrowserModule,

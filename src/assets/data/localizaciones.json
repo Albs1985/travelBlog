@@ -66,7 +66,7 @@
     ],
     "personas": "Mateu,Alba,Albert",
     "año": 2022,
-    "descripcion": "Menorca. Road Trip con la furgoneta camper.",
+    "descripcion": "Menorca. Para enseñarle a Mateu las mejores playas",
     "pais": "España"
   },
   {
@@ -101,13 +101,23 @@
   },
   {
     "coordinates": [
+      17.108526,
+      48.143292
+    ],
+    "personas": "Albert",
+    "año": 2010,
+    "descripcion": "Bratislava. Visitando a Felipe, en el road trip desde Berlín.",
+    "pais": "Eslovaquia"
+  },
+  {
+    "coordinates": [
       -80.227743,
       25.763233
     ],
     "personas": "Albert",
     "año": 2015,
     "descripcion": "Miami",
-    "pais": "Estados Unidos"
+    "pais": "USA"
   },
   {
     "coordinates": [
@@ -117,7 +127,7 @@
     "personas": "Albert",
     "año": 2015,
     "descripcion": "Cayos de Florida",
-    "pais": "Estados Unidos"
+    "pais": "USA"
   },
   {
     "coordinates": [
@@ -127,7 +137,7 @@
     "personas": "Albert",
     "año": 2012,
     "descripcion": "Nueva York. Visitando a Blanca.",
-    "pais": "Estados Unidos"
+    "pais": "USA"
   },
   {
     "coordinates": [
@@ -277,17 +287,7 @@
     "personas": "Albert",
     "año": 2010,
     "descripcion": "Praga. Road trip desde Berlín.",
-    "pais": "Republica Checa"
-  },
-  {
-    "coordinates": [
-      17.108526,
-      48.143292
-    ],
-    "personas": "Albert",
-    "año": 2010,
-    "descripcion": "Bratislava. Visitando a Felipe, en el road trip desde Berlín.",
-    "pais": "Eslovaquia"
+    "pais": "Rep.Checa"
   },
   {
     "coordinates": [
