@@ -126,7 +126,14 @@
     "graficaDetalle": "Destinos más visitados",
     "graficoBarras": "Gráfico de barras",
     "graficoBurbujas": "Gráfico de burbujas",
-    "graficoTarta": "Gráfico circular"
+    "graficoTarta": "Gráfico circular",
+    "juegoMesa": "Juegos de mesa",
+    "selecJuegoMesa": "Selecciona el Juego de mesa",
+    "numDados": "Selecciona el número de dados",
+    "numJugadores": "Número de jugadores",
+    "lanzarDados": "Lanzar dados",
+    "dado": "Dado",
+    "dados": "Dados"
   },
   "dibujos": {
     "1": {
@@ -211,6 +218,10 @@
     "15": {
       "frase": "Supereue",
       "explicacion": "superhéroe"
+    },
+    "16": {
+      "frase": "Huevos de Pacsua",
+      "explicacion": "Huevos de Pascua"
     }
   },
   "relatoAlbaiAlbert": {

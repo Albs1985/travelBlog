@@ -1,0 +1,51 @@
+<br>
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
+</div>
+<br><br><br><br><br><br>
+<div class="game-wrapper">
+  <div class="imagenCentrada">
+    <img src="assets/icons/juegos-de-mesa.png" class="iconJuego animated mueveIconos">
+  </div>
+  <div class="centerText">
+    <h1>{{'app.juegoMesa' | translate}}</h1>
+  </div>
+</div>
+
+<div class="settings">
+  <label for="selectorJuego">{{ 'app.selecJuegoMesa' | translate }}</label>
+  <div class="select-container">
+    <select id="selectorJuego" class="selector" (change)="seleccionarJuego($event)">
+      <option class="centerText" value="" disabled selected>{{ 'app.selecJuegoMesa' | translate}}</option>
+      <option class="centerText" *ngFor="let juego of listaJuegos">{{ juego.nombre }}</option>
+    </select>
+  </div>
+
+  <label *ngIf="juegoSeleccionado" for="numDados">{{'app.numJugadores' | translate }}: {{juegoSeleccionado.numJugadores}}</label>
+
+  <label for="numDados">{{'app.numDados' | translate }}</label>
+  <div class="select-container">
+    <select class="selector" [(ngModel)]="numDados" name="numDados" id="numDados">
+      <option class="centerText" value="1">1 {{'app.dado' | translate }}</option>
+      <option class="centerText" value="2">2 {{'app.dados' | translate }}</option>
+    </select>&nbsp;
+    <div>
+      <button class="selector buttonDados" (click)="lanzarDados()">{{'app.lanzarDados' | translate }}</button>
+    </div>
+  </div>
+</div>
+
+<div class="settings" *ngIf="(lanzandoDados | async) === true">
+  <img *ngIf="numDados == 2" src="assets/images/games/2dados.gif" alt="Dados en movimiento">
+  <img *ngIf="numDados == 1" src="assets/images/games/1dado.gif" alt="Dados en movimiento">
+</div>
+
+<div *ngIf="(lanzandoDados | async) === false && resultadoDados !== null" class="dadosRes">
+  <img src="assets/images/games/dado{{resultadoDados[0]}}.jpg" alt="" class="resultDados">
+  <img *ngIf="resultadoDados[1]" src="assets/images/games/dado{{resultadoDados[1]}}.jpg" alt="" class="resultDados">
+</div>
+
+<div class="settings">
+  <br>
+  <img class="tablero" src="{{juegoSeleccionado?.rutaImagen}}" alt="">
+</div>

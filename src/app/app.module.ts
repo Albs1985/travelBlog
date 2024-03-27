@@ -33,6 +33,7 @@ import { AdivinaComponent } from './pages/games/adivina/adivina.component';
 import { QuizComponent } from './pages/games/quiz/quiz.component';
 import { MapComponent } from './pages/map/map.component';
 import { GraficaComponent } from './pages/map/grafica/grafica.component';
+import { TablerosComponent } from './pages/games/tableros/tableros.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { GraficaComponent } from './pages/map/grafica/grafica.component';
     AdivinaComponent,
     QuizComponent,
     MapComponent,
-    GraficaComponent
+    GraficaComponent,
+    TablerosComponent
   ],
   imports: [
     BrowserModule,

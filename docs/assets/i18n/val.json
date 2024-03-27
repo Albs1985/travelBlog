@@ -126,7 +126,14 @@
     "graficaDetalle": "Destins més visitats",
     "graficoBarras": "Gràfic de barres",
     "graficoBurbujas": "Gràfic de bambolles",
-    "graficoTarta": "Gràfic circular"
+    "graficoTarta": "Gràfic circular",
+    "juegoMesa": "Jocs de taula",
+    "selecJuegoMesa": "Selecciona el Joc de taula",
+    "numDados": "Selecciona el nombre de daus",
+    "numJugadores": "Nombre de jugadors",
+    "lanzarDados": "Llançar daus",
+    "dado": "Dau",
+    "dados": "Daus"
   },
   "dibujos": {
     "1": {
@@ -211,6 +218,10 @@
     "15": {
       "frase": "Supereue",
       "explicacion": "Superheroi"
+    },
+    "16": {
+      "frase": "Ous de Pacsua",
+      "explicacion": "Ous de Pascua"
     }
   },
   "relatoAlbaiAlbert": {

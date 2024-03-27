@@ -20,6 +20,7 @@ import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-qui
 import { AdivinaComponent } from './pages/games/adivina/adivina.component';
 import { QuizComponent } from './pages/games/quiz/quiz.component';
 import { MapComponent } from './pages/map/map.component';
+import { TablerosComponent } from './pages/games/tableros/tableros.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -37,6 +38,7 @@ const app_routes: Routes = [
   { path: 'games/quien-es-quien', component : QuienEsQuienComponent},
   { path: 'games/adivina', component : AdivinaComponent},
   { path: 'games/quiz', component : QuizComponent},
+  { path: 'games/tableros', component : TablerosComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},
