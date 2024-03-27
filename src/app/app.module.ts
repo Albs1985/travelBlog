@@ -34,6 +34,7 @@ import { QuizComponent } from './pages/games/quiz/quiz.component';
 import { MapComponent } from './pages/map/map.component';
 import { GraficaComponent } from './pages/map/grafica/grafica.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
+import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { TablerosComponent } from './pages/games/tableros/tableros.component';
     QuizComponent,
     MapComponent,
     GraficaComponent,
-    TablerosComponent
+    TablerosComponent,
+    MisionCumplidaComponent
   ],
   imports: [
     BrowserModule,

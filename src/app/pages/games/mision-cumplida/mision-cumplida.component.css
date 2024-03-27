@@ -1,0 +1,56 @@
+.container {
+  text-align: center;
+}
+
+.portadaJuego {
+  width: 60%;
+  height: 40%;
+}
+
+.tablero {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.cartas-mision,
+.cartas-boca-arriba,
+.cartas-jugador {
+  margin-top: 20px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.carta-mision,
+.carta-boca-arriba,
+.carta-jugador {
+  border: 1px solid black;
+  width: 50px;
+  height: 80px;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-small;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cartaSeleccionada {
+  border: 2px solid red;
+}
+
+.misionCumplida {
+  border: 5px solid green;
+}
+
+.espacio {
+  width: 150px;
+  height: 150px;
+}

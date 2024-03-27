@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>{{'app.juegoMisionCumplida' | translate}}</h1>
+  <img src="assets/images/games/portadaMisionCumplida.jpg" alt="" class="portadaJuego">
+  <h3>{{'app.numJugadores' | translate}}: 1-4</h3>
+  <h3>{{'app.duracion' | translate}}: 20 min</h3>
+  <h3>{{'app.literalEdad' | translate}}: 8+</h3>
+  <!-- Aquí va el tablero con las cartas de Misión y las cartas boca arriba -->
+  <div class="tablero">
+
+    <!-- Cartas de Misión -->
+    <div class="cartas-mision">
+      <div class="carta-mision" *ngFor="let carta of mazoMisiones; let i = index"
+          [ngClass]="{'misionCumplida': this.indexMisionCumplida.includes(i)}">
+        {{ carta }}
+      </div>
+    </div>
+
+    <!-- Cartas boca arriba -->
+    <br>
+    <div class="cartas-boca-arriba">
+      <div class="carta-boca-arriba" *ngFor="let carta of cartasEnMesa; let i = index"
+          (click)="seleccionaCartaEnMesa(carta, i)"
+          [ngClass]="{'cartaSeleccionada': i === indexCartaMesaSelec}">
+        {{ carta }}
+      </div>
+    </div>
+
+    <div class="espacio"></div>
+
+    <!-- Cartas de los jugadores -->
+    <div class="cartas-jugador">
+      <div class="carta-jugador" *ngFor="let carta of cartasJugador; let i = index"
+           (click)="seleccionaCartaJugador(carta, i)"
+           [ngClass]="{'cartaSeleccionada': i === indexCartaJugadorSelec}">
+        {{ carta }}
+      </div>
+    </div>
+
+
+    <div class="numCartasJugadorRestantes">{{'app.numCartasMazo' | translate}}: {{this.cartasNumeradas.length}} </div>
+
+  </div>
+
+</div>

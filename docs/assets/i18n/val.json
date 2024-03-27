@@ -133,7 +133,11 @@
     "numJugadores": "Nombre de jugadors",
     "lanzarDados": "Llançar daus",
     "dado": "Dau",
-    "dados": "Daus"
+    "dados": "Daus",
+    "juegoMisionCumplida": "Missió Complida",
+    "duracion": "Duració",
+    "literalEdad": "Edat",
+    "numCartasMazo": "Nombre de Cartes Restants"
   },
   "dibujos": {
     "1": {

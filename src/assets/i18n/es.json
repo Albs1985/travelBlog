@@ -133,7 +133,11 @@
     "numJugadores": "Número de jugadores",
     "lanzarDados": "Lanzar dados",
     "dado": "Dado",
-    "dados": "Dados"
+    "dados": "Dados",
+    "juegoMisionCumplida": "Misión Cumplida",
+    "duracion": "Duración",
+    "literalEdad": "Edad",
+    "numCartasMazo": "Número de Cartas Restantes"
   },
   "dibujos": {
     "1": {
