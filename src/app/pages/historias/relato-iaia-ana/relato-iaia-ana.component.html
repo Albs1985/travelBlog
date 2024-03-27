@@ -1,11 +1,13 @@
 <!-- Para autenticarse en la aplicación -->
 <div *ngIf="authenticationService.isLoggedInRelatoIaia() === false">
   <br><br><br><br><br><br><br>
-  <div class="imagenCentrada">
+  <div class="centrada">
     <img src="assets/icons/seguridad.png" class="iconSeguridad animated fadeIn pulse">
   </div>
   <br><br>
-  <app-login></app-login>
+  <div class="centrada">
+    <app-login></app-login>
+  </div>
   <div class="divVolver">
     <br><br><br><br>
     <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>

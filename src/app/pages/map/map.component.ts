@@ -231,9 +231,11 @@ export class MapComponent implements OnInit, OnDestroy {
 
   cambiaGrafico(valor: string){
     if (valor === 'barras'){
-      this.tipoGrafico = 'tarta';
-    }else if (valor === 'tarta'){
       this.tipoGrafico = 'barras';
+    }else if (valor === 'tarta'){
+      this.tipoGrafico = 'tarta';
+    }else if (valor === 'burbuja'){
+      this.tipoGrafico = 'burbuja';
     }
   }
 }

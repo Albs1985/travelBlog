@@ -108,7 +108,7 @@
   padding: 0;
 }
 
-.imagenCentrada {
+.centrada {
   display: flex;
   justify-content: center;
   align-items: center;

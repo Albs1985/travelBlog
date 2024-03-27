@@ -43,23 +43,36 @@
 
 <div id="tooltip" class="tooltip" (click)="buttonCloseTooltip()"></div>
 
-<h3 class="tituloMapa">
-  <img src="assets/icons/grafico.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+<h2 class="tituloMapa">
+  <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
  {{ 'app.graficaDetalle' | translate }}
+</h2>
+
+
+<h3 *ngIf="tipoGrafico === 'barras'" class="tituloMapa">
+  <img src="assets/icons/grafico.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+  {{ 'app.graficoBarras' | translate }}
+</h3>
+<h3 *ngIf="tipoGrafico === 'tarta'" class="tituloMapa">
+  <img src="assets/icons/graficoTarta.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+  {{ 'app.graficoTarta' | translate }}
+</h3>
+<h3 *ngIf="tipoGrafico === 'burbuja'" class="tituloMapa">
+  <img src="assets/icons/graficoBurbujas.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+  {{ 'app.graficoBurbujas' | translate }}
 </h3>
 <br>
 
-<div *ngIf="tipoGrafico === 'barras'" class="divRight">
-  <img  src="assets/icons/grafico.png" class="animated fadeIn iconoGrafico" (click)="cambiaGrafico('barras')"><a (click)="cambiaGrafico('barras')">&nbsp;{{ 'app.graficoBarras' | translate}}</a>
-</div>
-
-<div *ngIf="tipoGrafico === 'tarta'" class="divRight">
-  <img src="assets/icons/graficoTarta.png" class="animated fadeIn iconoGrafico" (click)="cambiaGrafico('tarta')"><a (click)="cambiaGrafico('tarta')">&nbsp;{{ 'app.graficoTarta' | translate}}</a>
+<div class="divRight">
+  <img *ngIf="tipoGrafico !== 'barras'" src="assets/icons/grafico.png" class="animated fadeIn pulse iconoGrafico" (click)="cambiaGrafico('barras')">&nbsp;
+  <img *ngIf="tipoGrafico !== 'tarta'" src="assets/icons/graficoTarta.png" class="animated fadeIn pulse iconoGrafico" (click)="cambiaGrafico('tarta')">&nbsp;
+  <img *ngIf="tipoGrafico !== 'burbuja'" src="assets/icons/graficoBurbujas.png" class="animated fadeIn pulse iconoGrafico" (click)="cambiaGrafico('burbuja')">&nbsp;
 </div>
 
 <div *ngIf="(finCargaPaises|async)===true">
     <app-grafica *ngIf="tipoGrafico === 'barras'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
     <app-grafica *ngIf="tipoGrafico === 'tarta'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
+    <app-grafica *ngIf="tipoGrafico === 'burbuja'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
 </div>
 
 

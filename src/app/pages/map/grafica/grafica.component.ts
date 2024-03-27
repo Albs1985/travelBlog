@@ -11,6 +11,7 @@ export class GraficaComponent implements OnInit {
   @Input() data: { country: string, visits: number }[] = [];
   @Input() tipoGrafico: string = '';
   dataPie : { name: string, value: number }[] = [];
+  dataBubble: { name: string, value: number, radius: number }[] = [];
 
   constructor(private elementRef: ElementRef){}
 
@@ -22,11 +23,13 @@ export class GraficaComponent implements OnInit {
   }
 
   createChart(){
-    console.log('CREAR GRAFICO: '+this.tipoGrafico)
+    // console.log('CREAR GRAFICO: '+this.tipoGrafico)
     if (this.tipoGrafico === 'barras'){
       this.createChartBarras();
     }else if (this.tipoGrafico === 'tarta'){
       this.createChartTarta();
+    }else if (this.tipoGrafico === 'burbuja'){
+      this.crearChartBurbujas();
     }
   }
 
@@ -35,7 +38,7 @@ export class GraficaComponent implements OnInit {
 
     const margin = { top: 50, right: 20, bottom: 90, left: 60 };
     const width = window.innerWidth * 0.8 - margin.left - margin.right;
-    const height = window.innerHeight * 0.6 - margin.top - margin.bottom;
+    const height = window.innerHeight * 0.35 - margin.top - margin.bottom;
 
     const svg = d3.select("#chart")
       .attr("width", width + margin.left + margin.right)
@@ -87,6 +90,75 @@ export class GraficaComponent implements OnInit {
 
   }
 
+  crearChartBurbujas(){
+    // Datos para el gráfico de burbujas
+    this.dataBubble = this.data.map(item => {
+      // Calcula el radio como una proporción de las visitas
+      const radius = item.visits * 0.8; // Puedes ajustar el factor de escala según tus necesidades
+
+      // Retorna un nuevo objeto con la estructura deseada
+      return {
+        name: item.country,
+        value: item.visits,
+        radius: radius
+      };
+    });
+
+    // Dimensiones del gráfico
+    const margin = { top: 50, right: 20, bottom: 90, left: 60 };
+    const width = window.innerWidth * 0.8 - margin.left - margin.right;
+    const height = window.innerHeight * 0.6 - margin.top - margin.bottom;
+
+    const svg = d3.select("#chart")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom);
+
+    // Escala para los radios de las burbujas
+    const radiusScale = d3.scaleLinear()
+      .domain([0, d3.max(this.dataBubble.map(d => d.value || 0)) as number]) // Asegurarse de manejar valores undefined
+      .range([5, 50]);
+
+    // Escala de colores
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    // Crear las burbujas
+    const bubbles = svg.selectAll("circle")
+        .data(this.dataBubble)
+        .enter()
+        .append("circle")
+        .attr("cx", d => Math.random() * (width - 100) + 50)
+        .attr("cy", d => Math.random() * (height - 100) + 50)
+        .attr("r", d => radiusScale(d.value || 0)) // Asegurarse de manejar valores undefined
+        .attr("fill", (d, i) => colorScale(String(i))) // Asignar color de relleno basado en el índice de los datos
+        .attr("class", "bubble")
+        // .on("mouseover", (event, d) => {
+        //     tooltip.style("visibility", "visible").text(d.name + ": " + d.value);
+        // })
+        // .on("mousemove", (event) => {
+        //     tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+        // })
+        // .on("mouseout", () => {
+        //     tooltip.style("visibility", "hidden");
+        // })
+        .on("click", (event, d) => {
+          tooltip.style("visibility", "visible").text(d.name + ": " + d.value);
+      });
+
+
+    // Crear el elemento de tooltip con la clase y estilos deseados
+    const tooltip = d3.select(".chart-container").append("div")
+      .attr("class", "tooltipBubble")
+      .style("visibility", "hidden")
+      .style("position", "absolute")
+      .style("text-align", "center")
+      .style("padding", "6px")
+      .style("font", "12px sans-serif")
+      .style("background", "lightsteelblue")
+      .style("border", "0.5px solid steelblue")
+      .style("border-radius", "5px")
+      .style("pointer-events", "none")
+      .style("opacity", "1");
+  }
 
   createChartTarta() {
 
@@ -119,9 +191,10 @@ export class GraficaComponent implements OnInit {
 
     const arcs = pie(this.dataPie);
 
-    const svg = d3.select(this.elementRef.nativeElement).select('.chart-container')
+    // const svg = d3.select(this.elementRef.nativeElement).select('.chart-container')
+    const svg = d3.select("#chart")
 
-      .append('svg')
+      // .append('svg')
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', [-width / 2, -height / 2, width, height])

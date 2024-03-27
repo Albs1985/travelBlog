@@ -125,6 +125,7 @@
     "centrarCasa": "Centrar en casa",
     "graficaDetalle": "Destinos más visitados",
     "graficoBarras": "Gráfico de barras",
+    "graficoBurbujas": "Gráfico de burbujas",
     "graficoTarta": "Gráfico circular"
   },
   "dibujos": {
@@ -206,6 +207,10 @@
     "14": {
       "frase": "¡Papi, no m'has cinturat!",
       "explicacion": "¡Papá, no me has puesto el cinturón!"
+    },
+    "15": {
+      "frase": "Supereue",
+      "explicacion": "superhéroe"
     }
   },
   "relatoAlbaiAlbert": {

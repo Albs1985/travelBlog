@@ -49,3 +49,25 @@ svg {
   font-size: 8px;
   text-anchor: middle;
 }
+
+/*PARA EL GRÁFICO DE BURBUJAS*/
+.bubble {
+  fill: steelblue;
+}
+
+.bubble:hover {
+  fill: orange;
+}
+
+.tooltipBubble {
+  margin-top: 50px;
+  position: absolute;
+  text-align: center;
+  padding: 6px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0.5px solid steelblue;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 1;
+}
