@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Viajero } from 'src/app/interfaces/viajero.interface';
+import { CommonService } from 'src/app/services/common.service';
+import { ViajerosService } from 'src/app/services/viajeros.service';
 
 @Component({
   selector: 'app-mision-cumplida',
@@ -9,10 +12,10 @@ import { BehaviorSubject } from 'rxjs';
 export class MisionCumplidaComponent implements OnInit {
 
   dificultad: number = 0;
-  dificultades: string[] = ['Fácil (6 misiones)', 'Medio (12 misiones)','Difícil (18 misiones)','¡De locos! (24 misiones)']
+  dificultades: string[] = ['Fácil (6 misiones)', 'Medio (12 misiones)','Difícil (18 misiones)','¡De locos! (24 misiones)'];
   misiones: string[] = [];
   cartasNumeradas: string[] = [];
-  cartasJugador: string[] = [];
+  cartasJugadorActivo: string[] = [];
   cartasEnMesa: string[] = [];
   mazoMisiones: string[] = [];
   mazoNumeros: string[] = [];
@@ -22,13 +25,30 @@ export class MisionCumplidaComponent implements OnInit {
   indexCartaMesaSelec: number = -1;
   indexMisionCumplida: number[] = [];
 
+  //Multiplayer
+  jugadoresDisponibles: Viajero[] = [];
+  jugadoresSeleccionados: Viajero[] = [];
+  selectedPlayer: string | null = null;
+  currentIndexPlayer: number = -1;
+  cartasJugadores: Map<number, string[]> = new Map<number, string[]>();
+  jugadorInicialNoSeleccionado = new BehaviorSubject(true);
+  crono: number = 5;
+
+
   motivoFinPartida: string = '';
+  // inicioPartida: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   finPartida: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   robaCarta: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  ocultarCartas: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor() {  }
+  constructor(public commonService: CommonService, public servicioJugadores: ViajerosService) {  }
 
   ngOnInit(){
+    this.commonService.modoJuegos$.next(true);
+
+    this.servicioJugadores.cargarViajeros().then(()=>{
+      this.jugadoresDisponibles = this.servicioJugadores.viajerosLista.filter(jugador => this.jugadoresSeleccionados.includes(jugador));
+    });
     // this.prepararPartida();
     // setTimeout(()=>{
     //   // this.motivoFinPartida = '¡Se terminaron las cartas! ¡Has perdido!'
@@ -37,16 +57,29 @@ export class MisionCumplidaComponent implements OnInit {
     // },2000);
   }
 
+  ngOnDestroy(): void {
+    this.commonService.modoJuegos$.next(false);
+  }
+
   startGame(){
-    this.finPartida.next(false);
+    if (this.currentIndexPlayer == -1){
+      this.jugadorInicialNoSeleccionado.next(true);
+    }else{
+      this.finPartida.next(false);
+      // this.inicioPartida.next(true);
+      this.prepararPartida();
+    }
+  }
+
+  restartGame(){
     this.resetData();
-    this.prepararPartida();
+    this.startGame();
   }
 
   resetData(){
     this.misiones = [];
     this.cartasNumeradas = [];
-    this.cartasJugador = [];
+    this.cartasJugadorActivo = [];
     this.cartasEnMesa = [];
     this.mazoMisiones = [];
     this.mazoNumeros = [];
@@ -56,7 +89,17 @@ export class MisionCumplidaComponent implements OnInit {
     this.indexCartaMesaSelec = -1;
     this.indexMisionCumplida = [];
     this.motivoFinPartida = '';
+
+    this.jugadoresDisponibles = [];
+    this.jugadoresSeleccionados = [];
+    this.selectedPlayer = null;
+    this.currentIndexPlayer = -1;
+    this.jugadorInicialNoSeleccionado.next(true);
+
+    this.cartasJugadores.clear();
   }
+
+
 
   prepararPartida(): void {
     this.prepararMisiones();
@@ -67,7 +110,16 @@ export class MisionCumplidaComponent implements OnInit {
   }
 
   repartirCartas(): void {
-    this.cartasJugador = this.cartasNumeradas.splice(0, 4);
+
+    for (let i=0; i < this.jugadoresSeleccionados.length; i++){
+      this.cartasJugadores.set(i, this.cartasNumeradas.splice(0, 4));
+    }
+    if (this.jugadoresSeleccionados.length!=0){
+      this.cartasJugadorActivo = this.cartasJugadores.get(this.currentIndexPlayer)!;
+    }else{
+      this.jugadorInicialNoSeleccionado.next(true);
+    }
+
   }
 
   colocarCartasEnMesa(cantidad: number): void {
@@ -97,8 +149,80 @@ export class MisionCumplidaComponent implements OnInit {
     }else if (dificultadSelec.includes('24')){
       this.dificultad = 24;
     }
-
     this.startGame();
+  }
+
+  pasaTurno(){
+    this.ocultarCartasJugador();
+    this.iniciaTemporizador();
+    setTimeout(()=>{
+      this.currentIndexPlayer = (this.currentIndexPlayer + 1) % this.jugadoresSeleccionados.length;
+      this.selectedPlayer = this.jugadoresSeleccionados[this.currentIndexPlayer].nombreCorto;
+      this.cartasJugadorActivo = this.cartasJugadores.get(this.currentIndexPlayer)!;
+      this.mostrarCartasJugador();
+    }, 5000);
+  }
+
+  iniciaTemporizador(){
+    this.crono = 5;
+    setTimeout(()=>{
+      this.crono = this.crono-1;
+      setTimeout(()=>{
+        this.crono = this.crono-1;
+        setTimeout(()=>{
+          this.crono = this.crono-1;
+          setTimeout(()=>{
+            this.crono = this.crono-1;
+            setTimeout(()=>{
+              this.crono = this.crono-1;
+            },1000);
+          },1000);
+        },1000);
+      },1000);
+    },1000);
+  }
+
+  // Método para ocultar las cartas
+  ocultarCartasJugador() {
+    this.ocultarCartas.next(true);
+  }
+
+  // Método para mostrar las cartas
+  mostrarCartasJugador() {
+    this.ocultarCartas.next(false);
+  }
+
+  togglePlayerSelection(jugador: Viajero): void {
+
+    if (this.isPlayerSelected(jugador)) {
+      this.jugadoresSeleccionados = this.jugadoresSeleccionados.filter(item => item !== jugador);
+      if (this.selectedPlayer === jugador.nombreCorto){
+        if (this.jugadoresSeleccionados.length > 0){
+          this.selectedPlayer = this.jugadoresSeleccionados[0].nombreCorto;
+        }else{
+          this.selectedPlayer = null;
+        }
+      }
+    } else {
+      this.jugadoresSeleccionados.push(jugador);
+    }
+  }
+
+  isPlayerSelected(jugador: Viajero): boolean {
+    return this.jugadoresSeleccionados.includes(jugador);
+  }
+
+  seleccionarJugador(nombre: string): void {
+
+    if (this.selectedPlayer== null){
+      this.selectedPlayer = nombre === this.selectedPlayer ? null : nombre;
+      for (const [index, player] of this.jugadoresSeleccionados.entries()) {
+        if (this.selectedPlayer === player.nombreCorto){
+          this.currentIndexPlayer = index;
+          this.jugadorInicialNoSeleccionado.next(false);
+        }
+      }
+    }
 
   }
 
@@ -143,9 +267,9 @@ export class MisionCumplidaComponent implements OnInit {
       });
 
       //Eliminamos la carta del jugador
-      const indice = this.cartasJugador.indexOf(this.cartaJugadorSeleccionada);
+      const indice = this.cartasJugadorActivo.indexOf(this.cartaJugadorSeleccionada);
       if (indice !== -1) { // Verificamos si el valor existe en el array
-        this.cartasJugador.splice(indice, 1); // Eliminamos el valor del array
+        this.cartasJugadorActivo.splice(indice, 1); // Eliminamos el valor del array
       }
 
       this.cartaJugadorSeleccionada = '';
@@ -174,7 +298,7 @@ export class MisionCumplidaComponent implements OnInit {
     setTimeout(()=>{
       this.robaCarta.next(true);
       if (this.cartasNumeradas.length > 0){
-        this.cartasJugador.push(this.cartasNumeradas[0]);
+        this.cartasJugadorActivo.push(this.cartasNumeradas[0]);
         this.cartasNumeradas.splice(0, 1); // Eliminamos la primera carta del array
       }else{
         this.motivoFinPartida = '¡Se terminaron las cartas! ¡Has perdido!'

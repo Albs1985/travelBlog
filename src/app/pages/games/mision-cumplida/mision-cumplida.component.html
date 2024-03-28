@@ -10,14 +10,38 @@
   <h3>{{'app.literalEdad' | translate}}: 8+</h3>
 
   <div class="settings">
-    <label for="selectorDificultad">{{ 'app.dificultad' | translate }}</label>
-    <div>
+
+    <div class="listaJugadores centerText">
+      <label for="jugadores">{{ 'app.jugadores' | translate }}</label>
+      <div class="centraChecks">
+        <ng-container *ngFor="let jugador of servicioJugadores.viajerosLista">
+          <div class="playerCheckbox">
+            <input type="checkbox" [disabled]="currentIndexPlayer >= 0" (change)="togglePlayerSelection(jugador)" [checked]="isPlayerSelected(jugador)">
+            <a (click)="togglePlayerSelection(jugador)">{{ jugador.nombreCorto }}</a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row fotosPerfiles">
+      <div *ngFor="let jugador of jugadoresSeleccionados" class="row dobleFotos">
+        <figure [ngClass]="{ 'jugadorSeleccionado': jugador.nombreCorto === selectedPlayer }">
+          <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
+          <figcaption class="centerText">{{jugador.nombreCorto}} </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <label class="tituloJuego" *ngIf="(this.jugadorInicialNoSeleccionado | async) === true">{{ 'app.selectPlayer' | translate }}</label>
+
+    <label *ngIf="(this.jugadorInicialNoSeleccionado | async) === false" for="selectorDificultad">{{ 'app.dificultad' | translate }}</label>
+    <div *ngIf="(this.jugadorInicialNoSeleccionado | async) === false">
       <select id="selectorDificultad" class="selector" (change)="seleccionarDificultad($event)">
         <option class="centerText" value="" disabled selected>{{ 'app.selecciona' | translate}}</option>
         <option class="centerText" *ngFor="let dificultad of dificultades">{{ dificultad }}</option>
       </select>
     </div>
-    <button *ngIf="dificultad != 0" class="btnRestart" (click)="startGame()">{{ 'app.restart' | translate }}</button>
+    <button *ngIf="dificultad != 0" class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
   </div>
 
   <div *ngIf="dificultad != 0" class="tablero">
@@ -52,10 +76,13 @@
 
     <!-- Cartas de los jugadores -->
     <div class="titulosCartas">
-      <label for="">{{ 'app.tusCartas' | translate }} ({{cartasJugador.length}}/{{this.cartasNumeradas.length}})</label>
+      <label for="">{{ 'app.tusCartas' | translate }} {{selectedPlayer}} ({{cartasJugadorActivo.length}}/{{this.cartasNumeradas.length}})
+        <button *ngIf="jugadoresSeleccionados.length > 1" class="btnTurno animated pulseInfinito" (click)="pasaTurno()">{{ 'app.pasaTurno' | translate }}</button>
+      </label>
     </div>
-    <div class="cartas-jugador">
-      <div class="carta-jugador" *ngFor="let carta of cartasJugador; let i = index"
+
+    <div *ngIf="(ocultarCartas|async)===false" class="cartas-jugador">
+      <div class="carta-jugador" *ngFor="let carta of cartasJugadorActivo; let i = index"
            (click)="seleccionaCartaJugador(carta, i)"
            [ngClass]="{
             'cartaSeleccionada animated pulseInfinito': i === indexCartaJugadorSelec
@@ -67,7 +94,11 @@
           {{ carta.substring(carta.length-1, carta.length) }}
       </div>
     </div>
+    <div *ngIf="(ocultarCartas|async)===true" class="temporizador">
+      {{crono}}
+    </div>
 
+    <!-- Mazo para simular robar las cartas -->
     <div class="cartas-mazo">
       <div class="mazoDeCartas inclinadoIzquierda"></div>
       <div class="mazoDeCartas inclinadoDerecha"></div>
@@ -77,8 +108,8 @@
         <img src="assets/images/games/portadaMisionCumplida.jpg" class="imgCarta">
       </div>
       <label class="numCartasRestantes">{{this.cartasNumeradas.length}}</label>
-
     </div>
+    <!-- <div class="pasaTurno"></div> -->
 
 
   </div> <!-- del tablero -->

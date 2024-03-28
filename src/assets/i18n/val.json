@@ -140,7 +140,8 @@
     "numCartasMazo": "Nombre de Cartes Restants",
     "misiones": "Missions",
     "tusCartas": "Les teues Cartes",
-    "misionesCompletadas": "Missions completades"
+    "misionesCompletadas": "Missions completades",
+    "pasaTurno": "Pasa Torn"
   },
   "dibujos": {
     "1": {
