@@ -1,5 +1,19 @@
 .container {
   text-align: center;
+  font-family: "Comic Sans MS", arial, sans-serif;
+}
+
+.divRight {
+  float: right;
+  margin-right: 25px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
 }
 
 .portadaJuego {
@@ -27,12 +41,26 @@
   margin-bottom: 10px;
 }
 
-.carta-mision,
+.carta-mision {
+  border: 1px solid black;
+  width: 65px;
+  height: 90px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-small;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+
 .carta-boca-arriba,
 .carta-jugador {
   border: 1px solid black;
-  width: 50px;
-  height: 80px;
+  width: 55px;
+  height: 90px;
   margin-right: 5px;
   display: flex;
   justify-content: center;
@@ -40,17 +68,113 @@
   font-size: xx-small;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 50px;
+  font-style: bold;
+  color: whitesmoke;
+}
+
+.titulosCartas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 80%;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: rgb(255, 228, 177);
 }
 
 .cartaSeleccionada {
-  border: 2px solid red;
+  border: 2px solid rgb(247, 200, 115);
 }
 
 .misionCumplida {
-  border: 5px solid green;
+  border: 3px solid rgb(89, 89, 89);
+  background-color: rgb(164, 236, 140);
 }
 
 .espacio {
-  width: 150px;
-  height: 150px;
+  width: 50px;
+  height: 50px;
+}
+.espacio2 {
+  width: 250px;
+  height: 250px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.winnerMessage {
+  text-align: center;
+  position: relative;
+  z-index: 10000;
+}
+
+.winnerLabel {
+  font-size: 2em;
+  color: rgb(247, 200, 115);
+  animation: blink 1s infinite;
+}
+
+.btnRestart {
+  background: transparent;
+  border-radius: 30px;
+  border: 4px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+}
+
+@keyframes pulseInfinito {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 1.15, 1.15);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulseInfinito {
+  animation-name: pulseInfinito;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  margin-bottom: 20px;
+  margin-left: auto; /* Mueve el contenedor a la derecha */
+  margin-right: auto; /* Mueve el contenedor a la izquierda */
+  width: fit-content; /* Ajusta el ancho del contenedor al contenido */
+}
+
+.selector {
+  border-radius: 10px;
+  width: 300px;
+  background-color: rgb(247, 200, 115);
 }

@@ -137,7 +137,10 @@
     "juegoMisionCumplida": "Misión Cumplida",
     "duracion": "Duración",
     "literalEdad": "Edad",
-    "numCartasMazo": "Número de Cartas Restantes"
+    "numCartasMazo": "Número de Cartas Restantes",
+    "misiones": "Misiones",
+    "tusCartas": "Tus Cartas",
+    "misionesCompletadas": "Misiones completadas"
   },
   "dibujos": {
     "1": {
