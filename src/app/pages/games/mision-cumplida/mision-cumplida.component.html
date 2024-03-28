@@ -17,9 +17,10 @@
         <option class="centerText" *ngFor="let dificultad of dificultades">{{ dificultad }}</option>
       </select>
     </div>
+    <button *ngIf="dificultad != 0" class="btnRestart" (click)="startGame()">{{ 'app.restart' | translate }}</button>
   </div>
 
-  <div class="tablero">
+  <div *ngIf="dificultad != 0" class="tablero">
 
     <!-- Cartas de Misión -->
     <div class="titulosCartas">
@@ -67,10 +68,20 @@
       </div>
     </div>
 
+    <div class="cartas-mazo">
+      <div class="mazoDeCartas inclinadoIzquierda"></div>
+      <div class="mazoDeCartas inclinadoDerecha"></div>
+      <div class="mazoDeCartas inclinadoIzquierda2"></div>
+      <div class="mazoDeCartas inclinadoDerecha2"></div>
+      <div class="mazoDeCartas mazoTop" [ngClass]="{'animated fadeOutUp': (robaCarta | async) === true}">
+        <img src="assets/images/games/portadaMisionCumplida.jpg" class="imgCarta">
+      </div>
+      <label class="numCartasRestantes">{{this.cartasNumeradas.length}}</label>
 
-    <!-- <div class="numCartasJugadorRestantes">{{'app.numCartasMazo' | translate}}:  </div> -->
+    </div>
 
-  </div>
+
+  </div> <!-- del tablero -->
 
 
   <div *ngIf="(finPartida | async) === true" class="overlay">

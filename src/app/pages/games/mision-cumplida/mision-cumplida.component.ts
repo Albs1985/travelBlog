@@ -24,11 +24,17 @@ export class MisionCumplidaComponent implements OnInit {
 
   motivoFinPartida: string = '';
   finPartida: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  robaCarta: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() {  }
 
   ngOnInit(){
     // this.prepararPartida();
+    // setTimeout(()=>{
+    //   // this.motivoFinPartida = '¡Se terminaron las cartas! ¡Has perdido!'
+    //   this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones';
+    //   this.finPartida.next(true);
+    // },2000);
   }
 
   startGame(){
@@ -53,21 +59,12 @@ export class MisionCumplidaComponent implements OnInit {
   }
 
   prepararPartida(): void {
-    // Preparación de las cartas de misión y cartas numeradas
-
     this.prepararMisiones();
     this.prepararCartasNumeradas();
-
-    // Repartir 4 cartas al jugador
     this.repartirCartas();
-
-    // Colocar las primeras 4 cartas numeradas en la mesa
     this.colocarCartasEnMesa(4);
-
-    // Preparar mazo de misiones y colocar las primeras cartas de misión
     this.prepararMazoMisiones();
   }
-
 
   repartirCartas(): void {
     this.cartasJugador = this.cartasNumeradas.splice(0, 4);
@@ -171,15 +168,22 @@ export class MisionCumplidaComponent implements OnInit {
     this.indexCartaMesaSelec = -1;
 
     setTimeout(()=>{
+      this.robaCarta.next(true);
+    }, 1500);
 
+    setTimeout(()=>{
+      this.robaCarta.next(true);
       if (this.cartasNumeradas.length > 0){
         this.cartasJugador.push(this.cartasNumeradas[0]);
         this.cartasNumeradas.splice(0, 1); // Eliminamos la primera carta del array
       }else{
         this.motivoFinPartida = '¡Se terminaron las cartas! ¡Has perdido!'
         this.finPartida.next(true);
-        console.log(this.motivoFinPartida);
       }
+
+      setTimeout(()=>{
+        this.robaCarta.next(false);
+      }, 2000);
 
     }, 2000);
 
@@ -652,7 +656,7 @@ export class MisionCumplidaComponent implements OnInit {
     }
 
     if (this.indexMisionCumplida.length == this.mazoMisiones.length){
-      this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones :)';
+      this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones';
       this.finPartida.next(true);
     }
 
@@ -661,7 +665,7 @@ export class MisionCumplidaComponent implements OnInit {
   prepararMisiones(): void {
     // Definimos las misiones posibles
     const misiones = [
-      "Ningún <b>número</b> repetido",
+      "Ningún número repetido",
       "Todos del mismo color",
       "Una secuencia ascendente o descendente",
       "Dos números pares y dos impares",
