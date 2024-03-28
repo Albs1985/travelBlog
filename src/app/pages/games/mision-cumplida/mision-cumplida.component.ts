@@ -575,10 +575,10 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Dos números rojos y dos negros":
+        case "Dos números rojos y dos azules":
           if (!this.indexMisionCumplida.includes(i)) {
             const rojos = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'rojo').length;
-            const negros = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'negro').length;
+            const negros = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'azul').length;
             if (rojos === 2 && negros === 2) {
               this.indexMisionCumplida.push(i);
             }
@@ -595,20 +595,20 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Tres cartas de palos rojos y una negra":
+        case "Tres cartas de palos rojos y una azul":
           if (!this.indexMisionCumplida.includes(i)) {
             const rojos = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'rojo').length;
-            const negras = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'negro').length;
+            const negras = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'azul').length;
             if (rojos === 3 && negras === 1) {
               this.indexMisionCumplida.push(i);
             }
           }
         break;
 
-        case "Tres cartas de palos negros y una roja":
+        case "Tres cartas de palos verdes y una roja":
           if (!this.indexMisionCumplida.includes(i)) {
             const rojos = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'rojo').length;
-            const negras = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'negro').length;
+            const negras = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'verde').length;
             if (rojos === 1 && negras === 3) {
               this.indexMisionCumplida.push(i);
             }
@@ -624,10 +624,10 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Dos cartas rojas y dos negras":
+        case "Dos cartas rojas y dos amarillas":
           if (!this.indexMisionCumplida.includes(i)) {
             const rojos = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'rojo').length;
-            const negros = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'negro').length;
+            const negros = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'amarillo').length;
             if (rojos === 2 && negros === 2) {
               this.indexMisionCumplida.push(i);
             }
@@ -700,12 +700,12 @@ export class MisionCumplidaComponent implements OnInit {
       "Dos cartas del mismo color y dos diferentes",
       "Una secuencia ascendente de cuatro cartas",
       "Una secuencia descendente de cuatro cartas",
-      "Dos números rojos y dos negros",
+      "Dos números rojos y dos azules",
       "Dos números impares y dos pares",
-      "Tres cartas de palos rojos y una negra",
-      "Tres cartas de palos negros y una roja",
+      "Tres cartas de palos rojos y una azul",
+      "Tres cartas de palos verdes y una roja",
       "Una carta de cada color",
-      "Dos cartas rojas y dos negras",
+      "Dos cartas rojas y dos amarillas",
       "Todas las cartas del mismo palo",
       "Todas las cartas de distinto palo",
       "Cuatro cartas del mismo palo"
