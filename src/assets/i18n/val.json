@@ -141,7 +141,14 @@
     "misiones": "Missions",
     "tusCartas": "Les teues Cartes",
     "misionesCompletadas": "Missions completades",
-    "pasaTurno": "Pasa Torn"
+    "pasaTurno": "Pasa Torn",
+    "comoJugar": "¿Com jugar?",
+    "instrucionesMisionTitulo1": "Mecànica del Joc",
+    "instrucionesMision2": "El torn d'un jugador es resumix en: jugar una carta sobre una de les 4 piles. La carta que es juga ha de ser del mateix color, el mateix número, o totes dues coses, que la carta superior de la pila que es vol jugar. Quan no queden cartes per a robar en la pila, els jugadors continuen jugant les cartes que tenen a la mà, mentres puguen. Una altra norma important és que els jugadors no poden dir en cap moment quins números o colors tenen a la mà.",
+    "instrucionesMisionTitulo3": "Final de la Partida",
+    "instrucionesMision4": "La partida de Missió Complida acaba quan ocorre una de les següents situacions:",
+    "instrucionesMision5": "Victoria dels jugadors: S'han completat totes les missions amb èxit.",
+    "instrucionesMision6": "Derrota dels jugadors: Un jugador no pot afegir cap carta a una pila durant el seu torn, ja siga perquè no té cartes a la mà o bé està bloquejat i no pot jugar cap carta seguint les normes."
   },
   "dibujos": {
     "1": {
@@ -570,6 +577,7 @@
       "ingrediente3": "2 d'oli de gira-sol",
       "ingrediente4": "4 farina integral",
       "ingrediente5": "2 sucre de canya",
+      "ingrediente6": "1 sobre de llevat",
       "utensilio1": "Bol",
       "paso1": "Precalfar el forn a la temperatura indicada. Batre bé els ous en un bol gran, i posar després els iogurts, i continuar removent.",
       "paso2": "Prenent com a referència l'envàs del iogurt, posar 4 gotets de farina integral, i remoure fins a aconseguir una massa uniforme.",

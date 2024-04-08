@@ -141,7 +141,14 @@
     "misiones": "Misiones",
     "tusCartas": "Tus Cartas",
     "misionesCompletadas": "Misiones completadas",
-    "pasaTurno": "Pasa Turno"
+    "pasaTurno": "Pasa Turno",
+    "comoJugar": "¿Cómo jugar?",
+    "instrucionesMisionTitulo1": "Mecánica del Juego",
+    "instrucionesMision2": "El turno de un jugador se resume en: jugar una carta sobre una de las 4 pilas. La carta que se juega debe ser del mismo color, el mismo número, o ambas cosas, que la carta superior de la pila que se quiere jugar. Cuando no queden cartas para robar en el mazo, los jugadores siguen jugando las cartas que tienen en la mano, mientras puedan. Otra norma importante es que los jugadores no pueden decir en ningún momento qué números o colores tienen en la mano.",
+    "instrucionesMisionTitulo3": "Final de la Partida",
+    "instrucionesMision4": "La partida de Misión Cumplida acaba cuando ocurre una de las siguientes situaciones:",
+    "instrucionesMision5": "Victoria de los jugadores: Se han completado todas las misiones con éxito.",
+    "instrucionesMision6": "Derrota de los jugadores: Un jugador no puede añadir ninguna carta a una pila durante su turno, ya sea porque no tiene cartas en la mano o bien está bloqueado y no puede jugar ninguna carta siguiendo las normas."
   },
   "dibujos": {
     "1": {
@@ -570,6 +577,7 @@
       "ingrediente3": "2 de aceite de girasol",
       "ingrediente4": "4 harina integral",
       "ingrediente5": "2 azúcar de caña",
+      "ingrediente6": "1 sobre de levadura",
       "utensilio1": "Bol",
       "paso1": "Precalentar el horno a la temperatura indicada. Batir bien los huevos en un bol grande, y poner después los yogures, y seguir removiendo.",
       "paso2": "Tomando como referencia el envase del yogurt, poner 4 vasitos de harina integral, y remover hasta conseguir una masa uniforme.",

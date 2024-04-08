@@ -8,6 +8,24 @@
   margin-right: 25px;
 }
 
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+  opacity: 1;
+  margin-bottom: 25px;
+}
+
+.tooltip p {
+  margin: 0;
+}
+
 .temporizador {
   font-size: 50px;
   color: rgb(0, 0, 0);
@@ -139,6 +157,10 @@
   border: 2px solid rgb(247, 200, 115);
 }
 
+.cartaSeleccionadaMesaError {
+  border: 5px solid rgb(192, 0, 0);
+}
+
 .misionCumplida {
   border: 3px solid rgb(89, 89, 89);
   background-color: rgb(164, 236, 140);
@@ -191,7 +213,14 @@
   background-color: rgb(252, 197, 95);
 }
 
-@keyframes pulseInfinito {
+.botonInstrucciones {
+  background: transparent;
+  border-radius: 30px;
+  border: 2px solid rgb(33, 33, 33);
+  background-color: rgb(252, 197, 95);
+}
+
+@keyframes pulse {
   from {
     transform: scale3d(1, 1, 1);
   }
@@ -206,9 +235,15 @@
 }
 
 .pulseInfinito {
-  animation-name: pulseInfinito;
+  animation-name: pulse;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+.pulseFinito {
+  animation-name: pulse;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
 }
 
 .centerText {
@@ -233,12 +268,20 @@
   margin-bottom: 15px;
 }
 
-.cartas-mazo {
-  margin-top: 100px;
+.cartas-mazo-jugador {
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 100px;
+}
+
+.cartas-mazo-mision {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .mazoDeCartas {
@@ -251,7 +294,16 @@
   color: whitesmoke;
 }
 
-.numCartasRestantes {
+.numCartasRestantesJugador {
+  z-index: 99;
+  margin-top: -60px;
+  font-size: 30px;
+  color: rgb(216, 216, 216);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.numCartasRestantesMision {
   z-index: 99;
   font-size: 40px;
   color: rgb(216, 216, 216);

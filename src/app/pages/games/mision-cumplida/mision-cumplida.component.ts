@@ -18,12 +18,16 @@ export class MisionCumplidaComponent implements OnInit {
   cartasJugadorActivo: string[] = [];
   cartasEnMesa: string[] = [];
   mazoMisiones: string[] = [];
+  mazoMisionesAMostrar: string[] = [];
   mazoNumeros: string[] = [];
+  contadorMisionesCompletadas: number = 0;
 
   cartaJugadorSeleccionada: string = '';
   indexCartaJugadorSelec: number = -1;
   indexCartaMesaSelec: number = -1;
   indexMisionCumplida: number[] = [];
+
+
 
   //Multiplayer
   jugadoresDisponibles: Viajero[] = [];
@@ -39,7 +43,9 @@ export class MisionCumplidaComponent implements OnInit {
   // inicioPartida: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   finPartida: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   robaCarta: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  robaCartaMision: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   ocultarCartas: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  mostrarInfo: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(public commonService: CommonService, public servicioJugadores: ViajerosService) {  }
 
@@ -59,6 +65,10 @@ export class MisionCumplidaComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.commonService.modoJuegos$.next(false);
+  }
+
+  mostrarTooltip(){
+    this.mostrarInfo.next(!this.mostrarInfo.value);
   }
 
   startGame(){
@@ -83,6 +93,9 @@ export class MisionCumplidaComponent implements OnInit {
     this.cartasEnMesa = [];
     this.mazoMisiones = [];
     this.mazoNumeros = [];
+    this.mazoMisionesAMostrar = [];
+    this.contadorMisionesCompletadas = 0;
+    this.dificultad = 0;
 
     this.cartaJugadorSeleccionada = '';
     this.indexCartaJugadorSelec = -1;
@@ -95,6 +108,11 @@ export class MisionCumplidaComponent implements OnInit {
     this.selectedPlayer = null;
     this.currentIndexPlayer = -1;
     this.jugadorInicialNoSeleccionado.next(true);
+    this.finPartida.next(false);
+    this.robaCarta.next(false);
+    this.robaCartaMision.next(false);
+    this.ocultarCartas.next(false);
+    this.mostrarInfo.next(false);
 
     this.cartasJugadores.clear();
   }
@@ -106,7 +124,7 @@ export class MisionCumplidaComponent implements OnInit {
     this.prepararCartasNumeradas();
     this.repartirCartas();
     this.colocarCartasEnMesa(4);
-    this.prepararMazoMisiones();
+    this.prepararMazoMisiones(4);
   }
 
   repartirCartas(): void {
@@ -128,9 +146,13 @@ export class MisionCumplidaComponent implements OnInit {
     }
   }
 
-  prepararMazoMisiones(): void {
+  prepararMazoMisiones(numCartasMazo: number): void {
     this.mazoMisiones = this.misiones.slice(0,this.dificultad);
     this.mazoMisiones.sort(() => Math.random() - 0.5);
+    for (let i=0; i < numCartasMazo; i++){
+      this.mazoMisionesAMostrar.push(this.mazoMisiones.shift()!);
+    }
+
   }
 
   seleccionaCartaJugador(carta: string, index: number){
@@ -254,33 +276,73 @@ export class MisionCumplidaComponent implements OnInit {
     }
   }
 
-  seleccionaCartaEnMesa(carta: string, indiceACambiar: number){
+  //Revisamos si el jugador puede hacer ese movimiento: solo se permite cambiar una carta por otra cuando son del mismo color o del mismo número:
+  puedeJugarCarta(indiceCambiar: number): boolean{
+    let juegaCarta = false;
+    const indiceEncontrado = this.cartasEnMesa.findIndex((valor, indice) => {
+      return ((this.cartaJugadorSeleccionada.includes(valor.substring(valor.length-1, valor.length)) ||
+              this.cartaJugadorSeleccionada.includes(valor.substring(0, valor.length-2))) &&
+              indice === indiceCambiar);
+    });
 
-    this.indexCartaMesaSelec = indiceACambiar;
-    if (this.cartaJugadorSeleccionada !== '' && indiceACambiar >= 0 && indiceACambiar < this.cartasEnMesa.length){
-      this.cartasEnMesa = this.cartasEnMesa.map((valor, indice) => {
-        if (indice === indiceACambiar) {
-          return this.cartaJugadorSeleccionada;
-        } else {
-          return valor;
+    if (indiceEncontrado !== -1) {
+      juegaCarta = true;
+    }
+
+    return juegaCarta;
+
+  }
+
+  noPuedeJugarNingunaCarta(): boolean {
+    for (let i = 0; i < this.cartasJugadorActivo.length; i++) {
+        const cartaJugador = this.cartasJugadorActivo[i];
+        const indiceEncontrado = this.cartasEnMesa.findIndex((cartaMesa) => {
+            return cartaJugador.includes(cartaMesa.substring(cartaMesa.length - 1)) ||
+                   cartaJugador.includes(cartaMesa.substring(0, cartaMesa.length - 2));
+        });
+        if (indiceEncontrado !== -1) {
+            return false; // Si puede jugar al menos una carta, retorna falso
         }
-      });
+    }
+    return true; // Si no puede jugar ninguna carta, retorna verdadero
+  }
 
-      //Eliminamos la carta del jugador
-      const indice = this.cartasJugadorActivo.indexOf(this.cartaJugadorSeleccionada);
-      if (indice !== -1) { // Verificamos si el valor existe en el array
-        this.cartasJugadorActivo.splice(indice, 1); // Eliminamos el valor del array
+  seleccionaCartaEnMesa(indiceACambiar: number){
+
+    if (this.cartaJugadorSeleccionada !== '' && indiceACambiar >= 0 && indiceACambiar < this.cartasEnMesa.length){
+      if (this.puedeJugarCarta(indiceACambiar)){
+
+        this.cartasEnMesa = this.cartasEnMesa.map((valor, indice) => {
+          if (indice === indiceACambiar) {
+            return this.cartaJugadorSeleccionada;
+          } else {
+            return valor;
+          }
+        });
+
+
+        //Eliminamos la carta del jugador
+        const indice = this.cartasJugadorActivo.indexOf(this.cartaJugadorSeleccionada);
+        if (indice !== -1) { // Verificamos si el valor existe en el array
+          this.cartasJugadorActivo.splice(indice, 1); // Eliminamos el valor del array
+        }
+
+        this.cartaJugadorSeleccionada = '';
+
+        this.comprobarMisiones();
+
+        //Si no se ha terminado la partida, robamos una carta
+        if (this.finPartida.value === false){
+          this.robarCarta();
+        }
+
+      }else{
+        //No se puede jugar la carta
+        this.indexCartaMesaSelec = indiceACambiar;
+        setTimeout(()=>{
+          this.indexCartaMesaSelec = -1;
+        }, 2000);
       }
-
-      this.cartaJugadorSeleccionada = '';
-
-      this.comprobarMisiones();
-
-      //Si no se ha terminado la partida, robamos una carta
-      if (this.finPartida.value === false){
-        this.robarCarta();
-      }
-
     }
 
   }
@@ -307,6 +369,10 @@ export class MisionCumplidaComponent implements OnInit {
 
       setTimeout(()=>{
         this.robaCarta.next(false);
+        if (this.noPuedeJugarNingunaCarta()){
+          this.motivoFinPartida = '¡No puedes hacer ningún movimiento! ¡Has perdido!'
+          this.finPartida.next(true);
+        }
       }, 2000);
 
     }, 2000);
@@ -351,8 +417,8 @@ export class MisionCumplidaComponent implements OnInit {
     let colorC3 = this.cartasEnMesa[2].substring(0, this.cartasEnMesa[2].length-2);
     let colorC4 = this.cartasEnMesa[3].substring(0, this.cartasEnMesa[3].length-2);
 
-    for (let i = 0; i < this.mazoMisiones.length; i++) {
-      const mision = this.mazoMisiones[i];
+    for (let i = 0; i < this.mazoMisionesAMostrar.length; i++) {
+      const mision = this.mazoMisionesAMostrar[i];
 
       switch(mision){
         case "Ningún número repetido":
@@ -410,15 +476,6 @@ export class MisionCumplidaComponent implements OnInit {
           if (!this.indexMisionCumplida.includes(i)) {
             const sumaNumeros = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].reduce((total, num) => total + num, 0);
             if (sumaNumeros === 20) {
-              this.indexMisionCumplida.push(i);
-            }
-          }
-        break;
-
-        case "Una carta de cada color":
-          if (!this.indexMisionCumplida.includes(i)) {
-            const coloresUnicos = new Set([colorC1, colorC2, colorC3, colorC4]);
-            if (coloresUnicos.size === 4) {
               this.indexMisionCumplida.push(i);
             }
           }
@@ -530,23 +587,28 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Dos números consecutivos y dos no consecutivos":
-          if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
-            if ((nums[0] + 1 === nums[1] && nums[2] + 1 === nums[3]) || (nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2])) {
-              this.indexMisionCumplida.push(i);
-            }
-          }
-        break;
-
         case "Tres números ascendentes y uno descendente":
           if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
-            if (nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2] && nums[2] + 1 === nums[3]) {
-              this.indexMisionCumplida.push(i);
-            }
+              const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+              const sortedNums = nums.sort((a, b) => a - b);
+              for (let j = 0; j < sortedNums.length - 1; j++) {
+                  if (sortedNums[j] + 1 === sortedNums[j + 1]) {
+                      let count = 0;
+                      for (let k = j + 1; k < sortedNums.length - 1; k++) {
+                          if (sortedNums[k] + 1 === sortedNums[k + 1]) {
+                              count++;
+                              if (count === 2) {
+                                  if (sortedNums[j] === sortedNums[k + 2] + 1) {
+                                      this.indexMisionCumplida.push(i);
+                                      break;
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
           }
-        break;
+          break;
 
         case "Cuatro cartas de palos diferentes":
           if (!this.indexMisionCumplida.includes(i)) {
@@ -569,21 +631,23 @@ export class MisionCumplidaComponent implements OnInit {
 
         case "Todas las cartas en orden ascendente":
           if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
-            if (nums[0] === nums[1] - 1 && nums[1] === nums[2] - 1 && nums[2] === nums[3] - 1) {
-              this.indexMisionCumplida.push(i);
-            }
+              const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+              const ascendentes = (nums[0] < nums[1] && nums[1] < nums[2] && nums[2] < nums[3]);
+              if (ascendentes) {
+                  this.indexMisionCumplida.push(i);
+              }
           }
-        break;
+          break;
 
-        case "Todas las cartas en orden descendente":
-          if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
-            if (nums[0] === nums[1] + 1 && nums[1] === nums[2] + 1 && nums[2] === nums[3] + 1) {
-              this.indexMisionCumplida.push(i);
+          case "Todas las cartas en orden descendente":
+            if (!this.indexMisionCumplida.includes(i)) {
+              const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+              const descendentes = (nums[0] > nums[1] && nums[1] > nums[2] && nums[2] > nums[3]);
+              if (descendentes) {
+                  this.indexMisionCumplida.push(i);
+              }
             }
-          }
-        break;
+            break;
 
         case "Cuatro números diferentes":
           if (!this.indexMisionCumplida.includes(i)) {
@@ -629,31 +693,33 @@ export class MisionCumplidaComponent implements OnInit {
 
         case "Dos números ascendentes y dos descendentes":
           if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
-            if ((nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2]) || (nums[1] + 1 === nums[2] && nums[2] + 1 === nums[3])) {
-              this.indexMisionCumplida.push(i);
-            }
+              const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+              const ascendentes = (nums[0] < nums[1] && nums[1] < nums[2]);
+              const descendentes = (nums[2] > nums[3] && nums[1] > nums[2]);
+              if ((ascendentes && descendentes)) {// || (ascendentes && !descendentes) || (!ascendentes && descendentes)
+                  this.indexMisionCumplida.push(i);
+              }
           }
-        break;
+          break;
 
         case "Dos números idénticos y dos diferentes":
           if (!this.indexMisionCumplida.includes(i)) {
             const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
             const unicos = new Set(nums);
-            if (unicos.size === 2) {
+            if (unicos.size === 3) {
               this.indexMisionCumplida.push(i);
             }
           }
         break;
 
-        case "Dos números consecutivos y dos no consecutivos":
-          if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
-            if ((nums[0] + 1 === nums[1] && nums[2] + 1 === nums[3]) || (nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2])) {
-              this.indexMisionCumplida.push(i);
-            }
-          }
-        break;
+        // case "Dos números consecutivos y dos no consecutivos":
+        //   if (!this.indexMisionCumplida.includes(i)) {
+        //     const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
+        //     if ((nums[0] + 1 === nums[1] && nums[2] + 1 === nums[3]) || (nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2])) {
+        //       this.indexMisionCumplida.push(i);
+        //     }
+        //   }
+        // break;
 
         case "Cuatro cartas del mismo color":
           if (!this.indexMisionCumplida.includes(i)) {
@@ -683,18 +749,20 @@ export class MisionCumplidaComponent implements OnInit {
 
         case "Una secuencia ascendente de cuatro cartas":
           if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
-            if (nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2] && nums[2] + 1 === nums[3]) {
-              this.indexMisionCumplida.push(i);
+            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+            const ascendentes = (nums[0] < nums[1] && nums[1] < nums[2] && nums[2] < nums[3]);
+            if (ascendentes) {
+                this.indexMisionCumplida.push(i);
             }
           }
         break;
 
         case "Una secuencia descendente de cuatro cartas":
           if (!this.indexMisionCumplida.includes(i)) {
-            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => b - a);
-            if (nums[0] + 1 === nums[1] && nums[1] + 1 === nums[2] && nums[2] + 1 === nums[3]) {
-              this.indexMisionCumplida.push(i);
+            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+            const descendentes = (nums[0] > nums[1] && nums[1] > nums[2] && nums[2] > nums[3]);
+            if (descendentes) {
+                this.indexMisionCumplida.push(i);
             }
           }
         break;
@@ -751,8 +819,8 @@ export class MisionCumplidaComponent implements OnInit {
         case "Dos cartas rojas y dos amarillas":
           if (!this.indexMisionCumplida.includes(i)) {
             const rojos = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'rojo').length;
-            const negros = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'amarillo').length;
-            if (rojos === 2 && negros === 2) {
+            const amarillos = [colorC1, colorC2, colorC3, colorC4].filter(color => color === 'amarillo').length;
+            if (rojos === 2 && amarillos === 2) {
               this.indexMisionCumplida.push(i);
             }
           }
@@ -760,8 +828,8 @@ export class MisionCumplidaComponent implements OnInit {
 
         case "Todas las cartas del mismo palo":
           if (!this.indexMisionCumplida.includes(i)) {
-            const palo = [colorC1, colorC2, colorC3, colorC4][0];
-            if ([colorC1, colorC2, colorC3, colorC4].every(color => color === palo)) {
+            const colores = new Set([colorC1, colorC2, colorC3, colorC4]);
+            if (colores.size === 1) {
               this.indexMisionCumplida.push(i);
             }
           }
@@ -779,10 +847,23 @@ export class MisionCumplidaComponent implements OnInit {
       }
     }
 
-    if (this.indexMisionCumplida.length == this.mazoMisiones.length){
+    if (this.indexMisionCumplida.length > 0){
+      for (let i=0; i < this.indexMisionCumplida.length; i++){
+        this.mazoMisionesAMostrar[this.indexMisionCumplida[i]] = this.mazoMisiones.shift()!;
+        this.contadorMisionesCompletadas++;
+      }
+      this.robaCartaMision.next(true);
+    }
+
+    if (this.mazoMisionesAMostrar.length == 0){
       this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones';
       this.finPartida.next(true);
     }
+
+    setTimeout(()=>{
+      this.indexMisionCumplida = [];
+      this.robaCartaMision.next(false);
+    }, 2000);
 
   }
 
@@ -807,7 +888,6 @@ export class MisionCumplidaComponent implements OnInit {
       "Todas las cartas del mismo palo",
       "Cuatro números impares",
       "Cuatro números pares",
-      "Dos números consecutivos y dos no consecutivos",
       "Tres números ascendentes y uno descendente",
       "Cuatro cartas de palos diferentes",
       "Todas las cartas en orden ascendente",
@@ -818,7 +898,6 @@ export class MisionCumplidaComponent implements OnInit {
       "Dos números impares y dos pares",
       "Dos números ascendentes y dos descendentes",
       "Dos números idénticos y dos diferentes",
-      "Dos números consecutivos y dos no consecutivos",
       "Cuatro cartas del mismo color",
       "Todas las cartas de distinto color",
       "Dos cartas del mismo color y dos diferentes",
@@ -828,7 +907,6 @@ export class MisionCumplidaComponent implements OnInit {
       "Dos números impares y dos pares",
       "Tres cartas de palos rojos y una azul",
       "Tres cartas de palos verdes y una roja",
-      "Una carta de cada color",
       "Dos cartas rojas y dos amarillas",
       "Todas las cartas del mismo palo",
       "Todas las cartas de distinto palo",
