@@ -1,0 +1,112 @@
+.mueveIconos {
+  position: relative;
+  animation-name: mueveIconosPorPantalla;
+  animation-delay: 1s;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes mueveIconosPorPantalla {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 30%;
+    top: 0px;
+  }
+  50% {
+    left: 0px;
+    top: 0px;
+  }
+  75% {
+    left: -30%;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}
+
+.divRight {
+  float: right;
+  margin-right: 15px;
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.imagenCentrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconJuego {
+  width: 60px;
+  height: 60px;
+  /* margin: 10px; */
+}
+
+.centerText {
+  text-align: center;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra los elementos verticalmente */
+  align-items: center; /* Centra los elementos horizontalmente */
+  margin-bottom: 20px;
+  margin-left: auto; /* Mueve el contenedor a la derecha */
+  margin-right: auto; /* Mueve el contenedor a la izquierda */
+  width: fit-content; /* Ajusta el ancho del contenedor al contenido */
+}
+
+.selector {
+  border-radius: 10px;
+  width: 300px;
+  background-color: rgb(247, 200, 115);
+}
+
+.tablero {
+  width: 100%;
+  padding: 5px;
+}
+
+.buttonDados {
+  margin-top: 20px;
+  padding: 10px 20px;
+  /* height: 5px; */
+  background-color: rgb(247, 200, 115);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dadosRes {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.resultDados {
+  width: 35px;
+  margin-left: 5px;
+  margin-right: 5px;
+}

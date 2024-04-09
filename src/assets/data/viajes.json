@@ -10,9 +10,9 @@
       "year": 2024,
       "idAnteriorViaje": "2023-06-10_Tossa De Mar",
       "idSiguienteViaje": "",
-      "precio": 340,
-      "numFotos": 12,
-      "identificadorFotos": "Cabriel",
+      "precio": 275,
+      "numFotos": 6,
+      "identificadorFotos": "cabriel",
       "estancia": "Cabañas y Bungalows Valle del Cabriel",
       "tipoEstancia": "Cabaña",
       "transporte": [
@@ -25,7 +25,9 @@
         "Mateu",
         "Dani",
         "Gloria",
-        "Marti"
+        "Marti",
+        "Jordi",
+        "Asier"
       ],
       "infoInteres": [
         "https://www.valledelcabriel.com"
@@ -300,7 +302,7 @@
       "idSiguienteViaje": "2023-01-29_Vielha",
       "year": 2022,
       "precio": 121.50,
-      "numFotos": 11,
+      "numFotos": 5,
       "identificadorFotos": "Madrid",
       "estancia": "Hostal Carlos III",
       "tipoEstancia": "Hotel",

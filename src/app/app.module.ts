@@ -31,6 +31,10 @@ import { GamesComponent } from './pages/games/games.component';
 import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-quien.component';
 import { AdivinaComponent } from './pages/games/adivina/adivina.component';
 import { QuizComponent } from './pages/games/quiz/quiz.component';
+import { MapComponent } from './pages/map/map.component';
+import { GraficaComponent } from './pages/map/grafica/grafica.component';
+import { TablerosComponent } from './pages/games/tableros/tableros.component';
+import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import { QuizComponent } from './pages/games/quiz/quiz.component';
     GamesComponent,
     QuienEsQuienComponent,
     AdivinaComponent,
-    QuizComponent
+    QuizComponent,
+    MapComponent,
+    GraficaComponent,
+    TablerosComponent,
+    MisionCumplidaComponent
   ],
   imports: [
     BrowserModule,

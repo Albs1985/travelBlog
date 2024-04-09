@@ -118,7 +118,38 @@
     "juegoQuiz": "Trivial viajero",
     "quiz": "Juego de Preguntas y Respuestas",
     "puntuacion": "Puntuación",
-    "verificarRespuestas": "Verificar Respuestas"
+    "verificarRespuestas": "Verificar Respuestas",
+    "tituloMapa": "Lugares visitados por la familia",
+    "subtituloMapa1": "¡Continuamos viajando!",
+    "mapa": "Mapa",
+    "centrarCasa": "Centrar en casa",
+    "graficaDetalle": "Destinos más visitados",
+    "graficoBarras": "Gráfico de barras",
+    "graficoBurbujas": "Gráfico de burbujas",
+    "graficoTarta": "Gráfico circular",
+    "juegoMesa": "Juegos de mesa",
+    "selecJuegoMesa": "Selecciona el Juego de mesa",
+    "numDados": "Selecciona el número de dados",
+    "numJugadores": "Número de jugadores",
+    "lanzarDados": "Lanzar dados",
+    "dado": "Dado",
+    "dados": "Dados",
+    "juegoMisionCumplida": "Misión Cumplida",
+    "duracion": "Duración",
+    "literalEdad": "Edad",
+    "numCartasMazo": "Número de Cartas Restantes",
+    "misiones": "Misiones",
+    "tusCartas": "Tus Cartas",
+    "misionesCompletadas": "Misiones completadas",
+    "pasaTurno": "Pasa Turno",
+    "comoJugar": "¿Cómo jugar?",
+    "instrucionesMisionTitulo1": "Mecánica del Juego",
+    "instrucionesMision2": "El turno de un jugador se resume en: jugar una carta sobre una de las 4 pilas. La carta que se juega debe ser del mismo color, el mismo número, o ambas cosas, que la carta superior de la pila que se quiere jugar. Cuando no queden cartas para robar en el mazo, los jugadores siguen jugando las cartas que tienen en la mano, mientras puedan. Otra norma importante es que los jugadores no pueden decir en ningún momento qué números o colores tienen en la mano.",
+    "instrucionesMisionTitulo3": "Final de la Partida",
+    "instrucionesMision4": "La partida de Misión Cumplida acaba cuando ocurre una de las siguientes situaciones:",
+    "instrucionesMision5": "Victoria de los jugadores: Se han completado todas las misiones con éxito.",
+    "instrucionesMision6": "Derrota de los jugadores: Un jugador no puede añadir ninguna carta a una pila durante su turno, ya sea porque no tiene cartas en la mano o bien está bloqueado y no puede jugar ninguna carta siguiendo las normas.",
+    "errorCartaNoPuedeJugar": "La carta que se juega debe ser del mismo color, el mismo número, o ambas cosas"
   },
   "dibujos": {
     "1": {
@@ -191,6 +222,22 @@
     "12": {
       "frase": "Mamá",
       "explicacion": "Primera vez que Marina decía Mamá"
+    },
+    "13": {
+      "frase": "Te pistolo o te voy a pistolar",
+      "explicacion": "Te disparo o te voy a disparar"
+    },
+    "14": {
+      "frase": "¡Papi, no m'has cinturat!",
+      "explicacion": "¡Papá, no me has puesto el cinturón!"
+    },
+    "15": {
+      "frase": "Supereue",
+      "explicacion": "superhéroe"
+    },
+    "16": {
+      "frase": "Huevos de Pacsua",
+      "explicacion": "Huevos de Pascua"
     }
   },
   "relatoAlbaiAlbert": {
@@ -466,7 +513,9 @@
     "fotoFav86": "Los amigos de Mateu (Bruno, Onai, Santi) en la Trobada de escoles, en el Comarcal IES, Burjassot",
     "fotoFav87": "Puertomingalvo, paseo con toda la familia. (Marina, casi 8 meses).",
     "fotoFav88": "Valdelinares, primera visita de Marina a la nieve",
-    "fotoFav89": "Día del padre, regalo de la mamá"
+    "fotoFav89": "Día del padre, regalo de la mamá",
+    "fotoFav90": "El iaio Pep, jugando con Marina",
+    "fotoFav91": "Los primos en el parque, como si de fiesta estuvieran"
   },
   "recetas": {
     "6": {
@@ -531,6 +580,7 @@
       "ingrediente3": "2 de aceite de girasol",
       "ingrediente4": "4 harina integral",
       "ingrediente5": "2 azúcar de caña",
+      "ingrediente6": "1 sobre de levadura",
       "utensilio1": "Bol",
       "paso1": "Precalentar el horno a la temperatura indicada. Batir bien los huevos en un bol grande, y poner después los yogures, y seguir removiendo.",
       "paso2": "Tomando como referencia el envase del yogurt, poner 4 vasitos de harina integral, y remover hasta conseguir una masa uniforme.",

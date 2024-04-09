@@ -47,6 +47,7 @@
             <li><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.galeria' | translate }}</a></li>
             <li><a class="js-fh5co-close-offcanvas" routerLink="/apodos/"><img src="assets/icons/apodo.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.apodos' | translate }}</a></li>
             <li><a class="js-fh5co-close-offcanvas" routerLink="/recetas/"><img src="assets/icons/cocina.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'header.recetas' | translate }}</a></li>
+            <li><a class="js-fh5co-close-offcanvas" routerLink="/mapa/"><img src="assets/icons/mapa.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.mapa' | translate }}</a></li>
           </ul>
       </div>
       <div class="fh5co-box menuBloques">
@@ -64,6 +65,8 @@
         <li><a class="js-fh5co-close-offcanvas" routerLink="/games/quien-es-quien/"><img src="assets/icons/quien.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.quienEsQuien' | translate }}</a></li>
         <li><a class="js-fh5co-close-offcanvas" routerLink="/games/adivina/"><img src="assets/icons/rompecabezas.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.juegoAdivina' | translate }}</a></li>
         <li><a class="js-fh5co-close-offcanvas" routerLink="/games/quiz/"><img src="assets/icons/prueba.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.juegoQuiz' | translate }}</a></li>
+        <li><a class="js-fh5co-close-offcanvas" routerLink="/games/tableros/"><img src="assets/icons/juego-de-mesa.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.juegoMesa' | translate }}</a></li>
+        <li><a class="js-fh5co-close-offcanvas" routerLink="/games/misionCumplida/"><img src="assets/icons/juegos-de-cartas.png" alt="" class="iconosImg animated rollIn">  &nbsp;{{ 'app.juegoMisionCumplida' | translate }}</a></li>
       </ul>
     </div>
     <div class="fh5co-box menuBloques">
@@ -116,10 +119,7 @@
             <ul *ngIf="(this.commonService.sinIdioma$ | async) === true" class="fh5co-social">
               <li><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li>
               <li><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li>
-              <!-- <li *ngIf="isSelectedValenciano"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
-              <!-- <li *ngIf="!isSelectedValenciano"><button class="disabled-button idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button> </li> -->
-              <!-- <li *ngIf="isSelectedSpanish"><button class="disabled-button idioma seleccionado animated pulse" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
-              <!-- <li *ngIf="!isSelectedSpanish"><button  class="disabled-button idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button> </li> -->
+
           </ul>
             <div class="col-lg-12 col-md-12 text-center animated pulse">
                 <h3 id="fh5co-logo">
@@ -128,9 +128,7 @@
                             {{ 'app.familia' | translate }}
                             <sup>Serrador Casares</sup>
                             <sub>
-                                <!-- <img src="assets/icons/viajarMundo.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
                                 <img src="assets/icons/sol.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/">
-                                <!-- <img src="assets/icons/viajeros.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/"> -->
                             </sub>
                     </a>
                 </h3>

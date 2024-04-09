@@ -1,0 +1,82 @@
+
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal">
+  <a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+</div>
+<h2 class="tituloMapa">
+  <img src="assets/icons/mapa.png" alt="" class="iconosImg animated rollIn">
+  &nbsp;{{ 'app.tituloMapa' | translate }}
+</h2>
+<h3 class="subTituloMapa">
+  <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">
+ {{ 'app.subtituloMapa1' | translate }}
+</h3>
+
+<div *ngIf="(servicioLocalizaciones.cargandoLocalizaciones$ | async) === true" class="spinner-container">
+  <div class="spinner">
+  </div>
+  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+</div>
+
+<!-- <div class="leyenda">
+  <div class="leyenda-item" *ngFor="let persona of personas">
+    <div class="leyenda-color" [style.background-color]="colores[persona]"></div>
+    <div class="leyenda-texto">{{ persona }}</div>
+  </div>
+</div> -->
+<br>
+
+<div class="contenedor-mapa">
+  <div id="map" class="map">
+    <button class="buttonCentrar" (click)="centrarMapa()"><img src="assets/icons/casa2.png" alt="" class="iconoCasa animated rollIn"></button>
+    <div class="buscador">
+      <form (submit)="buscar()">
+        <input type="text" placeholder="{{ 'app.frasesFiltrado' | translate }}" [(ngModel)]="filtro" name="filtro">
+        <button type="submit">
+          <!-- {{'header.buscar' | translate }} -->
+          <img src="assets/icons/buscarUbi.png" alt="" class="iconosImg">
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="tooltip" class="tooltip" (click)="buttonCloseTooltip()"></div>
+
+<h2 class="tituloMapa">
+  <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+ {{ 'app.graficaDetalle' | translate }}
+</h2>
+
+
+<h3 *ngIf="tipoGrafico === 'barras'" class="tituloMapa">
+  <img src="assets/icons/grafico.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+  {{ 'app.graficoBarras' | translate }}
+</h3>
+<h3 *ngIf="tipoGrafico === 'tarta'" class="tituloMapa">
+  <img src="assets/icons/graficoTarta.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+  {{ 'app.graficoTarta' | translate }}
+</h3>
+<h3 *ngIf="tipoGrafico === 'burbuja'" class="tituloMapa">
+  <img src="assets/icons/graficoBurbujas.png" alt="" class="iconosImgFav animated rollIn">&nbsp;
+  {{ 'app.graficoBurbujas' | translate }}
+</h3>
+<br>
+
+<div class="divRight">
+  <img *ngIf="tipoGrafico !== 'barras'" src="assets/icons/grafico.png" class="animated fadeIn pulse iconoGrafico" (click)="cambiaGrafico('barras')">&nbsp;
+  <img *ngIf="tipoGrafico !== 'tarta'" src="assets/icons/graficoTarta.png" class="animated fadeIn pulse iconoGrafico" (click)="cambiaGrafico('tarta')">&nbsp;
+  <img *ngIf="tipoGrafico !== 'burbuja'" src="assets/icons/graficoBurbujas.png" class="animated fadeIn pulse iconoGrafico" (click)="cambiaGrafico('burbuja')">&nbsp;
+</div>
+
+<div *ngIf="(finCargaPaises|async)===true">
+    <app-grafica *ngIf="tipoGrafico === 'barras'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
+    <app-grafica *ngIf="tipoGrafico === 'tarta'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
+    <app-grafica *ngIf="tipoGrafico === 'burbuja'" [data]="dataGrafica" [tipoGrafico]="tipoGrafico"></app-grafica>
+</div>
+
+
+<!-- <br><br> -->
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+</div>

@@ -1,0 +1,73 @@
+.chart-container {
+  width: 100%;
+  height: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  /* flex-direction: column-reverse; */
+  /* flex-wrap: wrap; */
+  align-content: center;
+  justify-content: center;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+
+.margenTarta {
+  margin-top: 20px;
+  width: 1px;
+  height: 1px;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: orange;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.label {
+  fill: #000;
+  font-size: 8px;
+  text-anchor: middle;
+}
+
+/*PARA EL GRÁFICO DE BURBUJAS*/
+.bubble {
+  fill: steelblue;
+}
+
+.bubble:hover {
+  fill: orange;
+}
+
+.tooltipBubble {
+  margin-top: 50px;
+  position: absolute;
+  text-align: center;
+  padding: 6px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0.5px solid steelblue;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 1;
+}

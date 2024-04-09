@@ -1,0 +1,37 @@
+[
+  {
+    "rutaImagen": "assets/images/games/JuegoOca.png",
+    "nombreJuego": "Juego de la Oca",
+    "numJugadores": "2-4"
+  },
+  {
+    "rutaImagen": "assets/images/games/tableroParchis.jpg",
+    "nombreJuego": "Parchís",
+    "numJugadores": "2-4"
+  },
+  {
+    "rutaImagen": "assets/images/games/juego-de-verano.jpg",
+    "nombreJuego": "Juego de Verano",
+    "numJugadores": "2-4"
+  },
+  {
+    "rutaImagen": "assets/images/games/juego-huevos-pascua.jpg",
+    "nombreJuego": "Juego Huevos de Pascua",
+    "numJugadores": "2-4"
+  },
+  {
+    "rutaImagen": "assets/images/games/dinoTablero.jpg",
+    "nombreJuego": "Juego Dinosaurios",
+    "numJugadores": "2-4"
+  },
+  {
+    "rutaImagen": "assets/images/games/reglas-juego-pascua.png",
+    "nombreJuego": "Reglas Juego Huevos de Pascua",
+    "numJugadores": "2-4"
+  },
+  {
+    "rutaImagen": "assets/images/games/reglas-juego-verano.png",
+    "nombreJuego": "Reglas del Juego de Verano",
+    "numJugadores": "2-4"
+  }
+]

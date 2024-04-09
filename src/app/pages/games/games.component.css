@@ -20,6 +20,14 @@
   margin-right: 15px;
 }
 
+.cuerpoImagenes {
+  margin-top: 25px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .iconosImgFav {
   padding: 0px;
   width: 30px;

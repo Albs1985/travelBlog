@@ -1,0 +1,398 @@
+.container {
+  text-align: center;
+  font-family: "Comic Sans MS", arial, sans-serif;
+}
+
+.divRight {
+  float: right;
+  margin-right: 25px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+  opacity: 1;
+  margin-bottom: 25px;
+}
+
+.tooltip p {
+  margin: 0;
+}
+
+.temporizador {
+  font-size: 50px;
+  color: rgb(0, 0, 0);
+}
+
+.iconoFlecha {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px;
+}
+
+.fotosPerfiles {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
+}
+
+.centraChecks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.playerCheckbox {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.imagen {
+  border: 1px solid #000000;
+  border-radius: 10px;
+  max-width: 98%;
+  max-height: 80%;
+}
+
+.jugadorSeleccionado {
+  border: 5px solid rgb(247, 200, 115);
+  border-radius: 10px;
+}
+
+.portadaJuego {
+  width: 60%;
+  height: 40%;
+}
+
+.tablero {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 15px;
+  background: linear-gradient(
+    to bottom left,
+    rgba(255, 255, 255, 0.2),
+    rgba(210, 210, 210, 0.5)
+  );
+}
+
+.cartas-mision,
+.cartas-boca-arriba,
+.cartas-jugador {
+  margin-top: 20px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.carta-mision {
+  border: 1px solid black;
+  width: 65px;
+  height: 90px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-small;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: aliceblue;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.carta-boca-arriba,
+.carta-jugador {
+  border: 1px solid black;
+  width: 55px;
+  height: 90px;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 50px;
+  color: whitesmoke;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.titulosCartas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 80%;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: rgb(255, 228, 177);
+}
+
+.cartaSeleccionada {
+  border: 2px solid rgb(247, 200, 115);
+}
+
+.cartaSeleccionadaMesaError {
+  border: 5px solid rgb(192, 0, 0);
+}
+
+.misionCumplida {
+  border: 3px solid rgb(89, 89, 89);
+  background-color: rgb(164, 236, 140);
+}
+
+.errorCartaNoValida {
+  font-size: 1em;
+  color: rgb(180, 0, 0);
+}
+
+.espacio {
+  width: 50px;
+  height: 50px;
+}
+.espacio2 {
+  width: 250px;
+  height: 250px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.winnerMessage {
+  text-align: center;
+  position: relative;
+  z-index: 10000;
+}
+
+.winnerLabel {
+  font-size: 2em;
+  color: rgb(247, 200, 115);
+  animation: blink 1s infinite;
+}
+
+.btnRestart {
+  background: rgb(255, 191, 73);
+  border-radius: 30px;
+  border: 2px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+}
+
+.btnTurno {
+  background: transparent;
+  border-radius: 30px;
+  border: 2px solid rgb(33, 33, 33);
+  background-color: rgb(252, 197, 95);
+}
+
+.botonInstrucciones {
+  background: transparent;
+  border-radius: 30px;
+  border: 2px solid rgb(33, 33, 33);
+  background-color: rgb(252, 197, 95);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.15, 1.15, 1.15);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulseInfinito {
+  animation-name: pulse;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.pulseFinito {
+  animation-name: pulse;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.selector {
+  border-radius: 10px;
+  width: 300px;
+  background-color: rgb(247, 200, 115);
+  margin-bottom: 15px;
+}
+
+.cartas-mazo-jugador {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.cartas-mazo-mision {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mazoDeCartas {
+  position: absolute;
+  border: 1px solid black;
+  width: 65px;
+  height: 95px;
+  border-radius: 5px;
+  font-size: 50px;
+  color: whitesmoke;
+}
+
+.numCartasRestantesJugador {
+  z-index: 99;
+  margin-top: -60px;
+  font-size: 30px;
+  color: rgb(216, 216, 216);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.numCartasRestantesMision {
+  z-index: 99;
+  font-size: 40px;
+  color: rgb(216, 216, 216);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.imgCarta {
+  width: 130%;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.mazoTop {
+  position: absolute;
+  border: 1px solid black;
+  z-index: 5;
+  width: 55px;
+  height: 90px;
+  border-radius: 5px;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to bottom left,
+    rgb(228, 3, 33),
+    rgba(180, 3, 33, 0.2)
+  );
+}
+
+.inclinadoIzquierda {
+  transform: rotate(-2deg);
+  z-index: 1;
+  background: linear-gradient(
+    to bottom left,
+    rgb(7, 164, 121),
+    rgba(7, 120, 121, 0.2)
+  );
+}
+
+.inclinadoIzquierda2 {
+  transform: rotate(-5deg);
+  z-index: 1;
+  background: linear-gradient(
+    to bottom left,
+    rgb(228, 3, 33),
+    rgba(180, 3, 33, 0.2)
+  );
+}
+
+.inclinadoDerecha {
+  transform: rotate(2deg);
+  z-index: 2;
+  background: linear-gradient(
+    to bottom left,
+    rgb(0, 172, 234),
+    rgba(0, 172, 200, 0.2)
+  );
+}
+
+.inclinadoDerecha2 {
+  transform: rotate(8deg);
+  z-index: 2;
+  background: linear-gradient(
+    to bottom left,
+    rgb(249, 155, 0),
+    rgba(190, 155, 0, 0.2)
+  );
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fadeOutUp {
+  animation-name: fadeOutUp;
+}

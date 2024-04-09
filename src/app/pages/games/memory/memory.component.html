@@ -37,7 +37,6 @@
 
   <label for="imagesType">{{ 'app.tipoFotos' | translate }}</label>
   <select class="selector" id="imagesType" [(ngModel)]="fotosJuegoSeleccionado" (change)="onSelectImagesGameChange()">
-    <div ></div>
     <option *ngFor="let viajes of viajesService.viajesTotales" class="centerText" value="{{viajes.year}}/{{viajes.identificadorFotos}}">{{viajes.destino}}</option>
   </select>
 

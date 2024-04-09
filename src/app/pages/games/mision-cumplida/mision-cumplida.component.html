@@ -1,0 +1,179 @@
+<div class="divRight">
+  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
+</div>
+<div class="espacio2"></div>
+<div class="container">
+  <h1>{{'app.juegoMisionCumplida' | translate}}</h1>
+  <img src="assets/images/games/portadaMisionCumplida.jpg" alt="" class="portadaJuego">
+  <h3>{{'app.numJugadores' | translate}}: 1-4</h3>
+  <h3>{{'app.duracion' | translate}}: 20 min</h3>
+  <h3>{{'app.literalEdad' | translate}}: 8+</h3>
+  <button class="botonInstrucciones" (click)="mostrarTooltip()">{{'app.comoJugar' | translate}}</button>
+  <div class="tooltip" *ngIf="(mostrarInfo |async) === true" (click)="mostrarTooltip()">
+    <div>
+      <h2>{{'app.instrucionesMisionTitulo1' | translate}}</h2>
+      <p>{{'app.instrucionesMision2' | translate}}</p>
+    </div>
+    <div>
+      <h2>{{'app.instrucionesMisionTitulo3' | translate}}</h2>
+      <p>{{'app.instrucionesMision4' | translate}}</p>
+      <ul>
+        <li>{{'app.instrucionesMision5' | translate}}</li>
+        <li>{{'app.instrucionesMision6' | translate}}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="settings">
+
+    <div class="listaJugadores centerText">
+      <label for="jugadores">{{ 'app.jugadores' | translate }}</label>
+      <div class="centraChecks">
+        <ng-container *ngFor="let jugador of servicioJugadores.viajerosLista">
+          <div class="playerCheckbox">
+            <input type="checkbox" [disabled]="currentIndexPlayer >= 0" (change)="togglePlayerSelection(jugador)" [checked]="isPlayerSelected(jugador)">
+            <a (click)="currentIndexPlayer >= 0 ? null : togglePlayerSelection(jugador)">{{ jugador.nombreCorto }}</a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="row fotosPerfiles">
+      <div *ngFor="let jugador of jugadoresSeleccionados" class="row dobleFotos">
+        <figure [ngClass]="{ 'jugadorSeleccionado': jugador.nombreCorto === selectedPlayer }">
+          <!-- <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)"> -->
+          <img src="assets/icons/avatar.png" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
+          <figcaption class="centerText">{{jugador.nombreCorto}} </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <label class="tituloJuego" *ngIf="(this.jugadorInicialNoSeleccionado | async) === true">{{ 'app.selectPlayer' | translate }}</label>
+
+    <label *ngIf="(this.jugadorInicialNoSeleccionado | async) === false" for="selectorDificultad">{{ 'app.dificultad' | translate }}</label>
+    <div *ngIf="(this.jugadorInicialNoSeleccionado | async) === false">
+      <select [disabled]="dificultad > 0" id="selectorDificultad" class="selector" (change)="seleccionarDificultad($event)">
+        <option class="centerText" value="" disabled selected>{{ 'app.selecciona' | translate}}</option>
+        <option class="centerText" *ngFor="let dificultad of dificultades">{{ dificultad }}</option>
+      </select>
+    </div>
+    <button *ngIf="dificultad != 0" class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
+  </div>
+
+  <div *ngIf="dificultad != 0" class="tablero">
+
+
+  <!-- Cartas de Misión -->
+
+    <div class="titulosCartas">
+      <label for="">{{ 'app.misionesCompletadas' | translate }}: ({{mazoMisionesCompletadas.length}})</label>
+      <label for="">({{ 'app.misiones' | translate }}/Total) ({{dificultad}}/{{misiones.length}})</label>
+    </div>
+
+    <div class="cartas-mision">
+      <div class="carta-mision misionCumplida animated bounceInUp" *ngFor="let carta of mazoMisionesCompletadas; let i = index">
+        {{ carta }}
+      </div>
+    </div>
+
+
+    <!-- <div class="titulosCartas">
+      <label for="">{{ 'app.misiones' | translate }} ({{dificultad}}/{{misiones.length}})</label>
+    </div> -->
+
+
+    <!-- Mazo para simular robar las cartas -->
+    <div class="cartas-mazo-mision">
+      <div class="mazoDeCartas inclinadoIzquierda"></div>
+      <div class="mazoDeCartas inclinadoDerecha"></div>
+      <div class="mazoDeCartas inclinadoIzquierda2"></div>
+      <div class="mazoDeCartas inclinadoDerecha2"></div>
+      <div class="mazoDeCartas mazoTop" [ngClass]="{'animated fadeOutDown': (robaCartaMision | async) === true}">
+        <img src="assets/images/games/CartasMision.jpg" class="imgCarta">
+      </div>
+      <label class="numCartasRestantesMision">{{this.mazoMisiones.length}}</label>
+    </div>
+
+    <div class="cartas-mision">
+      <div class="carta-mision animated bounceInDown" *ngFor="let carta of mazoMisionesAMostrar; let i = index"
+          [ngClass]="{'misionCumplida animated pulseFinito': indexMisionCumplida.includes(i)}">
+        {{ carta }}
+      </div>
+    </div>
+
+    <!-- Cartas boca arriba -->
+
+    <div class="cartas-boca-arriba">
+      <div class="carta-boca-arriba animated bounceInUp" *ngFor="let carta of cartasEnMesa; let i = index"
+          (click)="seleccionaCartaEnMesa(i)"
+          [ngClass]="{
+            'cartaSeleccionadaMesaError animated pulseFinito': i === indexCartaMesaSelec
+            }"
+          [ngStyle]="{
+            'background-color': obtenerColorCarta(carta),
+            'background': 'linear-gradient(to bottom left, ' + obtenerColorCarta(carta) + ', '+obtenerGradienteColorCarta(carta)+')'
+          }">
+          {{ carta.substring(carta.length-1, carta.length) }}
+      </div>
+    </div>
+
+    <div *ngIf="(noPuedeJugarCarta | async) === true">
+      <p class="errorCartaNoValida">{{'app.errorCartaNoPuedeJugar' | translate}}</p>
+    </div>
+
+    <div *ngIf="(noPuedeJugarCarta | async) === false" class="espacio"></div>
+
+    <!-- Cartas de los jugadores -->
+    <div class="titulosCartas">
+      <label for="">{{ 'app.tusCartas' | translate }} {{selectedPlayer}} ({{cartasJugadorActivo.length}}/{{this.cartasNumeradas.length}})
+        <button *ngIf="jugadoresSeleccionados.length > 1" class="btnTurno animated pulseInfinito" (click)="pasaTurno()">{{ 'app.pasaTurno' | translate }}</button>
+      </label>
+    </div>
+
+    <div *ngIf="(ocultarCartas|async)===false" class="cartas-jugador">
+      <div class="carta-jugador" *ngFor="let carta of cartasJugadorActivo; let i = index"
+           (click)="seleccionaCartaJugador(carta, i)"
+           [ngClass]="{
+            'cartaSeleccionada animated pulseInfinito': i === indexCartaJugadorSelec
+            }"
+           [ngStyle]="{
+            'background-color': obtenerColorCarta(carta),
+            'background': 'linear-gradient(to bottom left, ' + obtenerColorCarta(carta) + ', '+obtenerGradienteColorCarta(carta)+')'
+            }">
+          {{ carta.substring(carta.length-1, carta.length) }}
+      </div>
+    </div>
+
+    <div *ngIf="(ocultarCartas | async) === true">
+      <ng-container *ngFor="let numero of numerosTemporizador; let i = index">
+        <div class="temporizador animated fadeOut" *ngIf="i === numerosTemporizador.length - 1">
+          {{ numero }}
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Mazo para simular robar las cartas -->
+    <div class="cartas-mazo-jugador">
+      <div class="mazoDeCartas inclinadoIzquierda"></div>
+      <div class="mazoDeCartas inclinadoDerecha"></div>
+      <div class="mazoDeCartas inclinadoIzquierda2"></div>
+      <div class="mazoDeCartas inclinadoDerecha2"></div>
+      <div class="mazoDeCartas mazoTop" [ngClass]="{'animated fadeOutUp': (robaCarta | async) === true}">
+        <img src="assets/images/games/CartasJugador.jpg" class="imgCarta">
+      </div>
+      <label class="numCartasRestantesJugador">{{this.cartasNumeradas.length}}</label>
+    </div>
+
+
+
+  </div> <!-- del tablero -->
+
+
+  <div *ngIf="(finPartida | async) === true" class="overlay">
+    <div class="winnerMessage">
+      <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
+      <label class="winnerLabel">{{motivoFinPartida}}</label>
+    </div>
+  </div>
+
+</div>
