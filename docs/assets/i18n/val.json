@@ -148,7 +148,8 @@
     "instrucionesMisionTitulo3": "Final de la Partida",
     "instrucionesMision4": "La partida de Missió Complida acaba quan ocorre una de les següents situacions:",
     "instrucionesMision5": "Victoria dels jugadors: S'han completat totes les missions amb èxit.",
-    "instrucionesMision6": "Derrota dels jugadors: Un jugador no pot afegir cap carta a una pila durant el seu torn, ja siga perquè no té cartes a la mà o bé està bloquejat i no pot jugar cap carta seguint les normes."
+    "instrucionesMision6": "Derrota dels jugadors: Un jugador no pot afegir cap carta a una pila durant el seu torn, ja siga perquè no té cartes a la mà o bé està bloquejat i no pot jugar cap carta seguint les normes.",
+    "errorCartaNoPuedeJugar": "La carta que es juga ha de ser del mateix color, el mateix número, o totes dues coses"
   },
   "dibujos": {
     "1": {
@@ -512,7 +513,9 @@
     "fotoFav86": " - Els amics de Mateu (Bruno, Onai, Santi) a la Trobada de escoles, al Comarcal IES, Burjassot",
     "fotoFav87": " - Puertomingalvo, paseig amb tota la família. (Marina, quasi 8 mesos).",
     "fotoFav88": " - Valdelinares, primera visita de Marina a la neu",
-    "fotoFav89": " - Día del pare, regal de la mamà"
+    "fotoFav89": " - Día del pare, regal de la mamà",
+    "fotoFav90": "El iaio Pep, jugant amb Marina",
+    "fotoFav91": "Els cosins al parc, com si de festa estigueren"
   },
   "recetas": {
     "6": {

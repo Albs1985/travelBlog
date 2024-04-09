@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, interval } from 'rxjs';
 import { Viajero } from 'src/app/interfaces/viajero.interface';
 import { CommonService } from 'src/app/services/common.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
@@ -19,8 +19,9 @@ export class MisionCumplidaComponent implements OnInit {
   cartasEnMesa: string[] = [];
   mazoMisiones: string[] = [];
   mazoMisionesAMostrar: string[] = [];
+  mazoMisionesCompletadas: string[] = [];
   mazoNumeros: string[] = [];
-  contadorMisionesCompletadas: number = 0;
+  // contadorMisionesCompletadas: number = 0;
 
   cartaJugadorSeleccionada: string = '';
   indexCartaJugadorSelec: number = -1;
@@ -36,7 +37,9 @@ export class MisionCumplidaComponent implements OnInit {
   currentIndexPlayer: number = -1;
   cartasJugadores: Map<number, string[]> = new Map<number, string[]>();
   jugadorInicialNoSeleccionado = new BehaviorSubject(true);
-  crono: number = 5;
+
+  numerosTemporizador: number[] = [];
+  // crono: number = 5;
 
 
   motivoFinPartida: string = '';
@@ -46,6 +49,7 @@ export class MisionCumplidaComponent implements OnInit {
   robaCartaMision: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   ocultarCartas: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   mostrarInfo: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  noPuedeJugarCarta: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(public commonService: CommonService, public servicioJugadores: ViajerosService) {  }
 
@@ -94,7 +98,8 @@ export class MisionCumplidaComponent implements OnInit {
     this.mazoMisiones = [];
     this.mazoNumeros = [];
     this.mazoMisionesAMostrar = [];
-    this.contadorMisionesCompletadas = 0;
+    this.mazoMisionesCompletadas = [];
+    // this.contadorMisionesCompletadas = 0;
     this.dificultad = 0;
 
     this.cartaJugadorSeleccionada = '';
@@ -163,7 +168,7 @@ export class MisionCumplidaComponent implements OnInit {
   seleccionarDificultad(event: Event){
     const dificultadSelec = (event.target as HTMLSelectElement).value;
     if (dificultadSelec.includes('6')){
-      this.dificultad = 6;
+      this.dificultad = 4;
     }else if (dificultadSelec.includes('12')){
       this.dificultad = 12;
     }else if (dificultadSelec.includes('18')){
@@ -176,32 +181,26 @@ export class MisionCumplidaComponent implements OnInit {
 
   pasaTurno(){
     this.ocultarCartasJugador();
-    this.iniciaTemporizador();
+    this.iniciarTemporizador();
     setTimeout(()=>{
       this.currentIndexPlayer = (this.currentIndexPlayer + 1) % this.jugadoresSeleccionados.length;
       this.selectedPlayer = this.jugadoresSeleccionados[this.currentIndexPlayer].nombreCorto;
       this.cartasJugadorActivo = this.cartasJugadores.get(this.currentIndexPlayer)!;
       this.mostrarCartasJugador();
-    }, 5000);
+    }, 5500);
   }
 
-  iniciaTemporizador(){
-    this.crono = 5;
-    setTimeout(()=>{
-      this.crono = this.crono-1;
-      setTimeout(()=>{
-        this.crono = this.crono-1;
-        setTimeout(()=>{
-          this.crono = this.crono-1;
-          setTimeout(()=>{
-            this.crono = this.crono-1;
-            setTimeout(()=>{
-              this.crono = this.crono-1;
-            },1000);
-          },1000);
-        },1000);
-      },1000);
-    },1000);
+  iniciarTemporizador() {
+    let segundosRestantes = 5;
+    this.numerosTemporizador = [];
+    let intervalSubscription = interval(1000).subscribe(() => {
+      this.numerosTemporizador.push(segundosRestantes);
+      segundosRestantes--;
+      if (segundosRestantes === 0){
+        intervalSubscription.unsubscribe();
+      }
+    });
+
   }
 
   // Método para ocultar las cartas
@@ -339,8 +338,10 @@ export class MisionCumplidaComponent implements OnInit {
       }else{
         //No se puede jugar la carta
         this.indexCartaMesaSelec = indiceACambiar;
+        this.noPuedeJugarCarta.next(true);
         setTimeout(()=>{
           this.indexCartaMesaSelec = -1;
+          this.noPuedeJugarCarta.next(false);
         }, 2000);
       }
     }
@@ -849,16 +850,28 @@ export class MisionCumplidaComponent implements OnInit {
 
     if (this.indexMisionCumplida.length > 0){
       for (let i=0; i < this.indexMisionCumplida.length; i++){
-        this.mazoMisionesAMostrar[this.indexMisionCumplida[i]] = this.mazoMisiones.shift()!;
-        this.contadorMisionesCompletadas++;
+        setTimeout(()=>{
+          this.mazoMisionesCompletadas.push(this.mazoMisionesAMostrar[this.indexMisionCumplida[i]]);
+          this.mazoMisionesAMostrar[this.indexMisionCumplida[i]] = this.mazoMisiones.shift()!;
+        }, 2000);
       }
+
+      setTimeout(()=>{
+        //Eliminamos las misiones nulas, para no mostrar la tarjeta vacía
+        this.mazoMisionesAMostrar = this.mazoMisionesAMostrar.filter((mision: any) => {
+          return mision !== undefined && mision !== null;
+        });
+      }, 2000);
+
       this.robaCartaMision.next(true);
     }
 
-    if (this.mazoMisionesAMostrar.length == 0){
-      this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones';
-      this.finPartida.next(true);
-    }
+    setTimeout(()=>{
+      if (this.mazoMisionesAMostrar.length == 0){
+        this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones';
+        this.finPartida.next(true);
+      }
+    }, 2000);
 
     setTimeout(()=>{
       this.indexMisionCumplida = [];

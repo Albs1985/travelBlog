@@ -41,8 +41,8 @@
     <div class="row fotosPerfiles">
       <div *ngFor="let jugador of jugadoresSeleccionados" class="row dobleFotos">
         <figure [ngClass]="{ 'jugadorSeleccionado': jugador.nombreCorto === selectedPlayer }">
-          <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
-          <!-- <img src="assets/icons/avatar.png" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)"> -->
+          <!-- <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)"> -->
+          <img src="assets/icons/avatar.png" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
           <figcaption class="centerText">{{jugador.nombreCorto}} </figcaption>
         </figure>
       </div>
@@ -64,9 +64,23 @@
 
 
   <!-- Cartas de Misión -->
+
     <div class="titulosCartas">
-      <label for="">{{ 'app.misiones' | translate }} ({{dificultad}}/{{misiones.length}})</label>
+      <label for="">{{ 'app.misionesCompletadas' | translate }}: ({{mazoMisionesCompletadas.length}})</label>
+      <label for="">({{ 'app.misiones' | translate }}/Total) ({{dificultad}}/{{misiones.length}})</label>
     </div>
+
+    <div class="cartas-mision">
+      <div class="carta-mision misionCumplida animated bounceInUp" *ngFor="let carta of mazoMisionesCompletadas; let i = index">
+        {{ carta }}
+      </div>
+    </div>
+
+
+    <!-- <div class="titulosCartas">
+      <label for="">{{ 'app.misiones' | translate }} ({{dificultad}}/{{misiones.length}})</label>
+    </div> -->
+
 
     <!-- Mazo para simular robar las cartas -->
     <div class="cartas-mazo-mision">
@@ -88,9 +102,7 @@
     </div>
 
     <!-- Cartas boca arriba -->
-    <div class="titulosCartas">
-      <label for="">{{ 'app.misionesCompletadas' | translate }}: ({{contadorMisionesCompletadas}})</label>
-    </div>
+
     <div class="cartas-boca-arriba">
       <div class="carta-boca-arriba animated bounceInUp" *ngFor="let carta of cartasEnMesa; let i = index"
           (click)="seleccionaCartaEnMesa(i)"
@@ -105,7 +117,11 @@
       </div>
     </div>
 
-    <div class="espacio"></div>
+    <div *ngIf="(noPuedeJugarCarta | async) === true">
+      <p class="errorCartaNoValida">{{'app.errorCartaNoPuedeJugar' | translate}}</p>
+    </div>
+
+    <div *ngIf="(noPuedeJugarCarta | async) === false" class="espacio"></div>
 
     <!-- Cartas de los jugadores -->
     <div class="titulosCartas">
@@ -127,8 +143,13 @@
           {{ carta.substring(carta.length-1, carta.length) }}
       </div>
     </div>
-    <div *ngIf="(ocultarCartas|async)===true" class="temporizador animated fadeOut">
-      {{crono}}
+
+    <div *ngIf="(ocultarCartas | async) === true">
+      <ng-container *ngFor="let numero of numerosTemporizador; let i = index">
+        <div class="temporizador animated fadeOut" *ngIf="i === numerosTemporizador.length - 1">
+          {{ numero }}
+        </div>
+      </ng-container>
     </div>
 
     <!-- Mazo para simular robar las cartas -->

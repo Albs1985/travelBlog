@@ -148,7 +148,8 @@
     "instrucionesMisionTitulo3": "Final de la Partida",
     "instrucionesMision4": "La partida de Misión Cumplida acaba cuando ocurre una de las siguientes situaciones:",
     "instrucionesMision5": "Victoria de los jugadores: Se han completado todas las misiones con éxito.",
-    "instrucionesMision6": "Derrota de los jugadores: Un jugador no puede añadir ninguna carta a una pila durante su turno, ya sea porque no tiene cartas en la mano o bien está bloqueado y no puede jugar ninguna carta siguiendo las normas."
+    "instrucionesMision6": "Derrota de los jugadores: Un jugador no puede añadir ninguna carta a una pila durante su turno, ya sea porque no tiene cartas en la mano o bien está bloqueado y no puede jugar ninguna carta siguiendo las normas.",
+    "errorCartaNoPuedeJugar": "La carta que se juega debe ser del mismo color, el mismo número, o ambas cosas"
   },
   "dibujos": {
     "1": {
@@ -512,7 +513,9 @@
     "fotoFav86": "Los amigos de Mateu (Bruno, Onai, Santi) en la Trobada de escoles, en el Comarcal IES, Burjassot",
     "fotoFav87": "Puertomingalvo, paseo con toda la familia. (Marina, casi 8 meses).",
     "fotoFav88": "Valdelinares, primera visita de Marina a la nieve",
-    "fotoFav89": "Día del padre, regalo de la mamá"
+    "fotoFav89": "Día del padre, regalo de la mamá",
+    "fotoFav90": "El iaio Pep, jugando con Marina",
+    "fotoFav91": "Los primos en el parque, como si de fiesta estuvieran"
   },
   "recetas": {
     "6": {
