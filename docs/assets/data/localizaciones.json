@@ -568,5 +568,15 @@
     "año": 2010,
     "descripcion": "Dresden. Visita en el año de erasmus.",
     "pais": "Alemania"
+  },
+  {
+    "coordinates": [
+      -1.330497,
+      39.324067
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2024,
+    "descripcion": "Primera salida de Marina. Cabañas del Cabriel",
+    "pais": "España"
   }
 ]

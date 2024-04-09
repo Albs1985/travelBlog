@@ -41,8 +41,8 @@
     <div class="row fotosPerfiles">
       <div *ngFor="let jugador of jugadoresSeleccionados" class="row dobleFotos">
         <figure [ngClass]="{ 'jugadorSeleccionado': jugador.nombreCorto === selectedPlayer }">
-          <!-- <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)"> -->
-          <img src="assets/icons/avatar.png" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
+          <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
+          <!-- <img src="assets/icons/avatar.png" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)"> -->
           <figcaption class="centerText">{{jugador.nombreCorto}} </figcaption>
         </figure>
       </div>
@@ -76,12 +76,6 @@
       </div>
     </div>
 
-
-    <!-- <div class="titulosCartas">
-      <label for="">{{ 'app.misiones' | translate }} ({{dificultad}}/{{misiones.length}})</label>
-    </div> -->
-
-
     <!-- Mazo para simular robar las cartas -->
     <div class="cartas-mazo-mision">
       <div class="mazoDeCartas inclinadoIzquierda"></div>
@@ -100,6 +94,8 @@
         {{ carta }}
       </div>
     </div>
+
+    <div class="espacio1"></div>
 
     <!-- Cartas boca arriba -->
 

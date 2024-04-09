@@ -11,7 +11,7 @@
       "idAnteriorViaje": "2023-06-10_Tossa De Mar",
       "idSiguienteViaje": "",
       "precio": 275,
-      "numFotos": 6,
+      "numFotos": 9,
       "identificadorFotos": "cabriel",
       "estancia": "Cabañas y Bungalows Valle del Cabriel",
       "tipoEstancia": "Cabaña",
@@ -33,7 +33,7 @@
         "https://www.valledelcabriel.com"
       ],
       "mapaSrc": [
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167625.93782285458!2d1.3349882194167952!3d38.97444743489563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1299476385093943%3A0x9064725cd8426d6!2sIbiza!5e1!3m2!1ses!2ses!4v1688373149680!5m2!1ses!2ses"
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.3697630600086!2d-1.3359233892353424!3d39.32520722123143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd67283195837c87%3A0x6b4a84f3a27cb484!2sCaba%C3%B1as%20y%20Bungalows%20Valle%20del%20Cabriel!5e0!3m2!1ses!2ses!4v1712657628508!5m2!1ses!2ses"
       ]
     }
   },
@@ -112,7 +112,7 @@
       "idSiguienteViaje": "2023-05-19_Oliva",
       "year": 2023,
       "precio": 0,
-      "numFotos": 8,
+      "numFotos": 9,
       "identificadorFotos": "Andorra",
       "estancia": "Casa Tía Anna i Benjamín",
       "tipoEstancia": "Casa",

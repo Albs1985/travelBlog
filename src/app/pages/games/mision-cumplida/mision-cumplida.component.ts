@@ -59,12 +59,7 @@ export class MisionCumplidaComponent implements OnInit {
     this.servicioJugadores.cargarViajeros().then(()=>{
       this.jugadoresDisponibles = this.servicioJugadores.viajerosLista.filter(jugador => this.jugadoresSeleccionados.includes(jugador));
     });
-    // this.prepararPartida();
-    // setTimeout(()=>{
-    //   // this.motivoFinPartida = '¡Se terminaron las cartas! ¡Has perdido!'
-    //   this.motivoFinPartida = '¡Misión Cumplida! Has completado todas las misiones';
-    //   this.finPartida.next(true);
-    // },2000);
+
   }
 
   ngOnDestroy(): void {
@@ -128,8 +123,8 @@ export class MisionCumplidaComponent implements OnInit {
     this.prepararMisiones();
     this.prepararCartasNumeradas();
     this.repartirCartas();
-    this.colocarCartasEnMesa(4);
     this.prepararMazoMisiones(4);
+    this.colocarCartasEnMesa(4);
   }
 
   repartirCartas(): void {
@@ -149,6 +144,10 @@ export class MisionCumplidaComponent implements OnInit {
     for (let i = 0; i < cantidad; i++) {
       this.cartasEnMesa.push(this.cartasNumeradas.shift()!);
     }
+    setTimeout(()=>{
+      // console.log('colocarCartasEnMesa comprobarMisiones');
+      this.comprobarMisiones();
+    }, 2000);
   }
 
   prepararMazoMisiones(numCartasMazo: number): void {
@@ -168,7 +167,7 @@ export class MisionCumplidaComponent implements OnInit {
   seleccionarDificultad(event: Event){
     const dificultadSelec = (event.target as HTMLSelectElement).value;
     if (dificultadSelec.includes('6')){
-      this.dificultad = 4;
+      this.dificultad = 6;
     }else if (dificultadSelec.includes('12')){
       this.dificultad = 12;
     }else if (dificultadSelec.includes('18')){
@@ -328,6 +327,7 @@ export class MisionCumplidaComponent implements OnInit {
 
         this.cartaJugadorSeleccionada = '';
 
+        // console.log('seleccionaCartaEnMesa comprobarMisiones');
         this.comprobarMisiones();
 
         //Si no se ha terminado la partida, robamos una carta
@@ -367,6 +367,8 @@ export class MisionCumplidaComponent implements OnInit {
         this.motivoFinPartida = '¡Se terminaron las cartas! ¡Has perdido!'
         this.finPartida.next(true);
       }
+      // console.log('robarCarta comprobarMisiones');
+      this.comprobarMisiones();
 
       setTimeout(()=>{
         this.robaCarta.next(false);
@@ -377,7 +379,6 @@ export class MisionCumplidaComponent implements OnInit {
       }, 2000);
 
     }, 2000);
-
 
   }
 
@@ -418,9 +419,12 @@ export class MisionCumplidaComponent implements OnInit {
     let colorC3 = this.cartasEnMesa[2].substring(0, this.cartasEnMesa[2].length-2);
     let colorC4 = this.cartasEnMesa[3].substring(0, this.cartasEnMesa[3].length-2);
 
+    // console.log(numC1+' '+numC2+' '+numC3+' '+numC4+' '+colorC1+' '+colorC2+' '+colorC3+' '+colorC4);
+
     for (let i = 0; i < this.mazoMisionesAMostrar.length; i++) {
       const mision = this.mazoMisionesAMostrar[i];
-
+      // console.log(mision);
+      // console.log(i);
       switch(mision){
         case "Ningún número repetido":
           if (!this.indexMisionCumplida.includes(i)){
@@ -482,6 +486,15 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
+        case "Suma de números igual a 12":
+          if (!this.indexMisionCumplida.includes(i)) {
+            const sumaNumeros = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].reduce((total, num) => total + num, 0);
+            if (sumaNumeros === 12) {
+              this.indexMisionCumplida.push(i);
+            }
+          }
+        break;
+
         case "Cuatro cartas consecutivas del mismo color":
           if (!this.indexMisionCumplida.includes(i)) {
             const colores = [colorC1, colorC2, colorC3, colorC4];
@@ -501,6 +514,15 @@ export class MisionCumplidaComponent implements OnInit {
           if (!this.indexMisionCumplida.includes(i)) {
             const sumaNumeros = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].reduce((total, num) => total + num, 0);
             if (sumaNumeros === 15) {
+              this.indexMisionCumplida.push(i);
+            }
+          }
+        break;
+
+        case "Suma de números igual a 9":
+          if (!this.indexMisionCumplida.includes(i)) {
+            const sumaNumeros = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].reduce((total, num) => total + num, 0);
+            if (sumaNumeros === 9) {
               this.indexMisionCumplida.push(i);
             }
           }
@@ -588,25 +610,20 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
+        case "Cuatro números impares":
+          if (!this.indexMisionCumplida.includes(i)) {
+            const pares = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].filter(num => num % 2 != 0).length;
+            if (pares === 4) {
+              this.indexMisionCumplida.push(i);
+            }
+          }
+        break;
+
         case "Tres números ascendentes y uno descendente":
           if (!this.indexMisionCumplida.includes(i)) {
               const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
-              const sortedNums = nums.sort((a, b) => a - b);
-              for (let j = 0; j < sortedNums.length - 1; j++) {
-                  if (sortedNums[j] + 1 === sortedNums[j + 1]) {
-                      let count = 0;
-                      for (let k = j + 1; k < sortedNums.length - 1; k++) {
-                          if (sortedNums[k] + 1 === sortedNums[k + 1]) {
-                              count++;
-                              if (count === 2) {
-                                  if (sortedNums[j] === sortedNums[k + 2] + 1) {
-                                      this.indexMisionCumplida.push(i);
-                                      break;
-                                  }
-                              }
-                          }
-                      }
-                  }
+              if (nums[0] < nums[1] && nums[1] < nums[2] && nums[2] > nums[3]){
+                this.indexMisionCumplida.push(i);
               }
           }
           break;
@@ -848,11 +865,18 @@ export class MisionCumplidaComponent implements OnInit {
       }
     }
 
+    // console.log(this.indexMisionCumplida);
+
     if (this.indexMisionCumplida.length > 0){
       for (let i=0; i < this.indexMisionCumplida.length; i++){
         setTimeout(()=>{
           this.mazoMisionesCompletadas.push(this.mazoMisionesAMostrar[this.indexMisionCumplida[i]]);
           this.mazoMisionesAMostrar[this.indexMisionCumplida[i]] = this.mazoMisiones.shift()!;
+          // console.log('this.mazoMisionesCompletadas');
+          // console.log(this.mazoMisionesCompletadas);
+          // console.log('this.mazoMisionesAMostrar');
+          // console.log(this.mazoMisionesAMostrar);
+          this.comprobarMisiones();
         }, 2000);
       }
 
@@ -861,6 +885,11 @@ export class MisionCumplidaComponent implements OnInit {
         this.mazoMisionesAMostrar = this.mazoMisionesAMostrar.filter((mision: any) => {
           return mision !== undefined && mision !== null;
         });
+        this.mazoMisionesCompletadas = this.mazoMisionesCompletadas.filter((mision: any) =>{
+          return mision !== undefined && mision !== null;
+        });
+        // console.log('this.mazoMisionesAMostrar sin undefined');
+        // console.log(this.mazoMisionesAMostrar);
       }, 2000);
 
       this.robaCartaMision.next(true);
@@ -923,7 +952,9 @@ export class MisionCumplidaComponent implements OnInit {
       "Dos cartas rojas y dos amarillas",
       "Todas las cartas del mismo palo",
       "Todas las cartas de distinto palo",
-      "Cuatro cartas del mismo palo"
+      "Cuatro cartas del mismo palo",
+      "Suma de números igual a 12",
+      "Suma de números igual a 9"
     ];
 
     // Agregamos las misiones al array misiones
