@@ -327,9 +327,6 @@ export class MisionCumplidaComponent implements OnInit {
 
         this.cartaJugadorSeleccionada = '';
 
-        // console.log('seleccionaCartaEnMesa comprobarMisiones');
-        this.comprobarMisiones();
-
         //Si no se ha terminado la partida, robamos una carta
         if (this.finPartida.value === false){
           this.robarCarta();
@@ -876,7 +873,7 @@ export class MisionCumplidaComponent implements OnInit {
           // console.log(this.mazoMisionesCompletadas);
           // console.log('this.mazoMisionesAMostrar');
           // console.log(this.mazoMisionesAMostrar);
-          this.comprobarMisiones();
+          // this.comprobarMisiones();
         }, 2000);
       }
 
