@@ -50,14 +50,8 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: medium;
-  /* background-image: url('/assets/images/fondoPiedras.jpg'); /*nota: para produccion, añadir en la ruta "travelBlog/" para desarrollo, quitarlo
-  background-repeat: no-repeat;
-  background-size: cover; */
-  /* filter: brightness(3.5); Aumenta el brillo en un 20% */
-  /* -webkit-text-stroke-width: 0.5px; Ancho del borde de la letra
-  -webkit-text-stroke-color: black; Color del borde  de la letra */
   background-color: rgb(255, 233, 194);
-  width: auto;
+  width: 80%;
   height: auto;
   color: rgb(0, 0, 0);
   padding: 5px;
@@ -65,6 +59,10 @@ li {
   z-index: 9999;
   box-shadow: 5px 10px 8px #888888;
   text-align: left;
+}
+
+.custom-tooltip ul {
+  word-wrap: break-word;
 }
 
 .infoButton {
