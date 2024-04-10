@@ -696,16 +696,6 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Dos números impares y dos pares":
-          if (!this.indexMisionCumplida.includes(i)) {
-            const impares = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].filter(num => num % 2 !== 0).length;
-            const pares = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].filter(num => num % 2 === 0).length;
-            if (impares === 2 && pares === 2) {
-              this.indexMisionCumplida.push(i);
-            }
-          }
-        break;
-
         case "Dos números ascendentes y dos descendentes":
           if (!this.indexMisionCumplida.includes(i)) {
               const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
@@ -859,6 +849,55 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
+        case "Dos cartas del mismo número y dos cartas del mismo color":
+          if (!this.indexMisionCumplida.includes(i)) {
+            const colores = new Set([colorC1, colorC2, colorC3, colorC4]);
+            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+            const numsUnicos = new Set(nums);
+            const colorUnicos = new Set(colores);
+
+            if (numsUnicos.size === 3 && colorUnicos.size === 3) {
+              this.indexMisionCumplida.push(i);
+            }
+          }
+          break;
+
+        case "Sin repetir colores y dos números que sumen 10":
+          if (!this.indexMisionCumplida.includes(i)) {
+            const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+            // Generar todas las combinaciones posibles de pares de números
+            const pairs = [];
+            for (let i = 0; i < nums.length; i++) {
+              for (let j = i + 1; j < nums.length; j++) {
+                pairs.push([nums[i], nums[j]]);
+              }
+            }
+
+            // Verificar si alguna combinación suma 10
+            const hasPairSummingTen = pairs.some(pair => pair[0] + pair[1] === 10);
+
+            // Verificar si todas las cartas tienen diferentes colores
+            const colores = [colorC1, colorC2, colorC3, colorC4];
+            const uniqueColores = new Set(colores);
+            const hasDifferentColors = uniqueColores.size === 4;
+
+            if (hasPairSummingTen && hasDifferentColors) {
+              this.indexMisionCumplida.push(i);
+            }
+          }
+          break;
+
+        case "Tres cartas del mismo color":
+          if (!this.indexMisionCumplida.includes(i)) {
+            const colores = new Set([colorC1, colorC2, colorC3, colorC4]);
+            if (colores.size === 2) {
+              this.indexMisionCumplida.push(i);
+            }
+          }
+          break;
+
+
+
       }
     }
 
@@ -934,7 +973,6 @@ export class MisionCumplidaComponent implements OnInit {
       "Cuatro números diferentes",
       "Dos números primos y dos no primos",
       "Cuatro números consecutivos",
-      "Dos números impares y dos pares",
       "Dos números ascendentes y dos descendentes",
       "Dos números idénticos y dos diferentes",
       "Cuatro cartas del mismo color",
@@ -951,7 +989,10 @@ export class MisionCumplidaComponent implements OnInit {
       "Todas las cartas de distinto palo",
       "Cuatro cartas del mismo palo",
       "Suma de números igual a 12",
-      "Suma de números igual a 9"
+      "Suma de números igual a 9",
+      "Dos cartas del mismo número y dos cartas del mismo color",
+      "Sin repetir colores y dos números que sumen 10",
+      "Tres cartas del mismo color"
     ];
 
     // Agregamos las misiones al array misiones
