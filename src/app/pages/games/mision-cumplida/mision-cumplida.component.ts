@@ -673,20 +673,6 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Dos números primos y dos no primos":
-          if (!this.indexMisionCumplida.includes(i)) {
-            const primos = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].filter(num => {
-              for (let j = 2; j <= Math.sqrt(num); j++) {
-                if (num % j === 0) return false;
-              }
-              return num > 1;
-            }).length;
-            if (primos === 2) {
-              this.indexMisionCumplida.push(i);
-            }
-          }
-        break;
-
         case "Cuatro números consecutivos":
           if (!this.indexMisionCumplida.includes(i)) {
             const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)].sort((a, b) => a - b);
@@ -696,15 +682,15 @@ export class MisionCumplidaComponent implements OnInit {
           }
         break;
 
-        case "Dos números ascendentes y dos descendentes":
-          if (!this.indexMisionCumplida.includes(i)) {
-              const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
-              const ok = (nums[0] < nums[1] && nums[2] > nums[3]);
-              if (ok) {
-                  this.indexMisionCumplida.push(i);
-              }
-          }
-          break;
+        // case "Dos números ascendentes y dos descendentes":
+        //   if (!this.indexMisionCumplida.includes(i)) {
+        //       const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
+        //       const ok = (nums[0] < nums[1] && nums[2] > nums[3]);
+        //       if (ok) {
+        //           this.indexMisionCumplida.push(i);
+        //       }
+        //   }
+        //   break;
 
         case "Dos números idénticos y dos diferentes":
           if (!this.indexMisionCumplida.includes(i)) {
@@ -961,7 +947,6 @@ export class MisionCumplidaComponent implements OnInit {
       "Tres cartas azules y una roja",
       "Dos números repetidos y dos distintos",
       "Todas las cartas del mismo número",
-      "Dos números primos y dos no primos",
       "Todas las cartas del mismo palo",
       "Cuatro números impares",
       "Cuatro números pares",
@@ -972,7 +957,7 @@ export class MisionCumplidaComponent implements OnInit {
       "Cuatro números diferentes",
       "Dos números primos y dos no primos",
       "Cuatro números consecutivos",
-      "Dos números ascendentes y dos descendentes",
+      // "Dos números ascendentes y dos descendentes",
       "Dos números idénticos y dos diferentes",
       "Cuatro cartas del mismo color",
       "Todas las cartas de distinto color",
