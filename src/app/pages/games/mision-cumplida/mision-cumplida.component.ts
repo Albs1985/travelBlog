@@ -699,9 +699,8 @@ export class MisionCumplidaComponent implements OnInit {
         case "Dos números ascendentes y dos descendentes":
           if (!this.indexMisionCumplida.includes(i)) {
               const nums = [parseInt(numC1), parseInt(numC2), parseInt(numC3), parseInt(numC4)];
-              const ascendentes = (nums[0] < nums[1] && nums[1] < nums[2]);
-              const descendentes = (nums[2] > nums[3] && nums[1] > nums[2]);
-              if ((ascendentes && descendentes)) {// || (ascendentes && !descendentes) || (!ascendentes && descendentes)
+              const ok = (nums[0] < nums[1] && nums[2] > nums[3]);
+              if (ok) {
                   this.indexMisionCumplida.push(i);
               }
           }
