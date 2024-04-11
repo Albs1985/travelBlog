@@ -1,6 +1,6 @@
 .container {
   text-align: center;
-  font-family: "Comic Sans MS", arial, sans-serif;
+  font-family: "Comic Sans MS", arial, sans-serif I !important;
 }
 
 .divRight {
@@ -175,6 +175,11 @@
   width: 50px;
   height: 50px;
 }
+.espacio1 {
+  width: 30px;
+  height: 30px;
+}
+
 .espacio2 {
   width: 250px;
   height: 250px;
