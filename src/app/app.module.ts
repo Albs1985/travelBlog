@@ -35,6 +35,7 @@ import { MapComponent } from './pages/map/map.component';
 import { GraficaComponent } from './pages/map/grafica/grafica.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
+import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cu
     MapComponent,
     GraficaComponent,
     TablerosComponent,
-    MisionCumplidaComponent
+    MisionCumplidaComponent,
+    RelatoBodaEsteveComponent
   ],
   imports: [
     BrowserModule,

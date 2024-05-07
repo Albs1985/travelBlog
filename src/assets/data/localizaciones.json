@@ -578,5 +578,15 @@
     "año": 2024,
     "descripcion": "Primera salida de Marina. Cabañas del Cabriel",
     "pais": "España"
+  },
+  {
+    "coordinates": [
+      -1.106446,
+      39.729008
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2024,
+    "descripcion": "Embalse de Benageber. Salida con el Barranquet",
+    "pais": "España"
   }
 ]

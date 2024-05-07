@@ -162,16 +162,19 @@
       "detalle": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
     },
     "4": {
-      "detalle": "Dibuixos a la clase de Paula, 1º Infantil"
+      "detalle": "Dibuixos a la clase de Paula, 1r Infantil"
     },
     "5": {
-      "detalle": "Manualitats a la clase de Paula, 1º Infantil"
+      "detalle": "Manualitats a la clase de Paula, 1r Infantil"
     },
     "6": {
-      "detalle": "Dibuixos a la clase de Paula, 1º Infantil"
+      "detalle": "Dibuixos a la clase de Paula, 1r Infantil"
     },
     "7": {
-      "detalle": "Dibuix en aquarel·la a la clase de Paula, 1º Infantil"
+      "detalle": "Dibuix en aquarel·la a la clase de Paula, 1r Infantil"
+    },
+    "8": {
+      "detalle": "Dibuix del viatge dels iaios a veure les aurores boreals, 1r Infantil"
     }
   },
   "frases": {
@@ -345,6 +348,26 @@
     "descFoto10": "Mi Pepe y yo, en 2023",
     "descFoto11": ""
   },
+  "relatoBodaEsteve": {
+    "titulo": "Boda Esteve y Laura",
+    "fecha": "4 de Mayo de 2024",
+    "tituloParte1": "Discurso de Albert, para Esteve",
+    "bloque1_parrafo1": "Bon dia a tots, Em fa molta il·lusió estar ací avui amb vosaltres, Esteve i Laura, una parella de les de tota la vida. D'eixes que es fan l'una a l'altra, es van modelant com si es tractara d'un pitxer de fang.",
+    "bloque1_parrafo2": "I m'agrada eixa comparació per què crec que nosaltres, tu i jo Esteve, hem construït una cosa paregut (en un altre pla òbviament). Però ens coneguem des de que tenim memòria, des d’aquells primers volantins al jardí de ta casa, des d’aquells primers aniversaris amb els noms escrits a eixes tasses de plàstic de colors...",
+    "bloque1_parrafo3": "I és que hem viscut i seguim vivint una vida junts. Ens hem fet l'un a l'altre també. Hem crescut com a germans, i no és que ho pense jo només per dins, sinó que encara avui em diuen molt que si som germans, com l'altre dia a l'escoleta de Marina al conéixer a la seua mestra Núria. I és que em sent en l'obligació de dir que no som germans de sang, però que com si ho fórem. Però m'entren ganes de dir que sí, i prou, sense més explicacions.",
+    "bloque2_parrafo1": "Probablement, ets l'amic en el qual més temps he passat de viatge. Viatges per tot el món: Nova York, Croàcia, Milan i Berlín als respectius Erasmus, innumerables viatges a la neu, i mesos de convivència a Menorca... Segurament el millor estiu de la meua vida, i va ser amb tu, mà a mà des de l’inici, des de aquell dia 2 de juliol (no oblidaré mai la nostra arribada)… i un sense fi de viatges més, fets, i els que queden per vindre.",
+    "bloque2_parrafo2": "I també a les nits... estic segur que “el cojo i el manco” tornaran a pegar-se alguna festeta junts... Quin bon rato hem passat de nits i de matins deixant fluir les nostres tonteríes... com a aquell Iboga menjant paella amb tots eixos desconeguts...",
+    "bloque2_parrafo3": "Em fa molta il·lusió també veure les famílies que hem construït. Veig la il·lusió amb la qual heu portat al món a Lola, Emma i Joan, que em fa sentir més en sintonia encara amb vosaltres. Una decisió difícil de prendre, 3 ja són multitud (😊) però ara es veu el encertat que és, vore-vos tan feliços amb eixes tres criatures em fa veure la sort que tenen eixos xiquets. Us desitge una llarga vida en família bonicos. Us estime molt 😊",
+    "descFoto1": "",
+    "descFoto2": "",
+    "descFoto3": "",
+    "descFoto4": "",
+    "descFoto5": "",
+    "descFoto6": "",
+    "descFoto7": "",
+    "descFoto8": "",
+    "descFoto9": ""
+  },
   "header": {
     "categoria": "Categoríes",
     "playa": "Platja",
@@ -363,7 +386,8 @@
     "frases": "Frases",
     "apodos": "Malnoms",
     "recetas": "Receptes",
-    "iaiaAna": "Història de la Iaia Anna"
+    "iaiaAna": "Història de la Iaia Anna",
+    "bodaEsteve": "Boda Esteve i Laura"
   },
   "categoria": {
     "Nieve": "Neu",
@@ -385,7 +409,8 @@
     "Hostal": "Hostal",
     "Caravana": "Caravana",
     "Furgoneta": "Furgoneta Camper",
-    "Cabaña": "Cabaña"
+    "Cabaña": "Cabana",
+    "Albergue": "Alberg"
   },
   "mesAnyo": {
     "01": "Gener",
@@ -515,7 +540,16 @@
     "fotoFav88": " - Valdelinares, primera visita de Marina a la neu",
     "fotoFav89": " - Día del pare, regal de la mamà",
     "fotoFav90": "El iaio Pep, jugant amb Marina",
-    "fotoFav91": "Els cosins al parc, com si de festa estigueren"
+    "fotoFav91": "Els cosins al parc, com si de festa estigueren",
+    "fotoFav92": "Mateu, Gerard i Marina, a casa jugant.",
+    "fotoFav93": "Marina en Llumenetes, en la setmana de la fira d'Abril",
+    "fotoFav94": "Marina i Mateu jugant a casa",
+    "fotoFav95": "Boda Esteve i Laura",
+    "fotoFav96": "Marina jugant amb el paper del bany en el bany de casa",
+    "fotoFav97": "Marina en la Escoleta Llumenetes",
+    "fotoFav98": "Albert i fills jugant a casa",
+    "fotoFav99": "Mateu en el seu primer dia de piragua",
+    "fotoFav100": "Menjar el dia abans de la boda de Estve i Laura amb els testimonis"
   },
   "recetas": {
     "6": {
@@ -621,6 +655,37 @@
       "paso3": "Deixem 10 minuts coent perquè s'evapore l'alcohol del vi, i afegim el caldo de carn reservat. Cuinem durant 30 minuts en la cassola tapada, li donem la volta a les peces de carn i cuinem durant 20 minutos més. Comprovem la tendresa de les galtes i deixem que es reduïsca la salsa durant 15 minuts més, ara amb l'olla destapada. Retirem les galtes i passem la salsa pel passapuré.",
       "paso4": "Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."
     }
+  },
+  "2024-05-03": {
+    "tituloParte1": "De viatge amb el col·le",
+    "bloque1_parrafo1": "Mateu començava a entaular noves amistats en el nou col·legi, el CEIP Barranquet. Amistats que semblaven anar més enllà d'un colegueo d'una estona. Els seus amics Bruno, Onai, Julen i Santi eren una constant en el temps.",
+    "bloque1_parrafo2": "Al seu torn, els seus pares, feien els mateix, en les jornades de parc, on anaven coneixent a altres pares, especialment als pares dels amics de Mateu.",
+    "bloque1_parrafo3": "Bones amistats, que de moment, quedaven en un segon pla, però que per l'experiència dels pares d'Albert, podrien ser amistats per a tota la vida (els pares d'Esteve són molt amics dels pares d'Albert, i va ser perquè es van conéixer al parc amb els xiquets).",
+    "nota1": "Tingues en compte que els xiquets a la nit estan ja cansats, no li ho tingues en compte...",
+    "cita1": "“Jo vull el pal papà”",
+    "personaCita1": "— Mateu, en mode martell al seu pare, moments abans de tornar a casa",
+    "bloque2_parrafo1": "El cap de setmana anava a ser una cosa atípica, ja que, especialment per a Albert, anava a estar molt complet.",
+    "bloque2_parrafo2": "El divendres va començar amb un menjar a mig dia, en la Grossa i el Flac, a Bétera, per a celebrar la boda d'Esteve i Laura. Esta anava a ser molt familiar, sense tot just públic (com es pot veure en l'apartat de fotos Favorites).",
+    "bloque2_parrafo3": "En acabar el menjar, ràpidament Albert va marxar per a casa, on esperaven els xiquets i Alba impacients per a eixir (amb l'ajuda dels iaios Pep i Matilde).",
+    "bloque3_parrafo1": "A la seua arribada, van haver de descarregar el cotxe que portaven fins dalt d'andròmines, per a la seua comoditat i gaudi. Sota l'atenta mirada de la resta de viatgers, Alba va carregar amb totes les andròmines mentres Albert cuidava dels xicotets.",
+    "bloque3_parrafo2": "Ja estaven alguns amics allí, i Mateu no va tardar a socialitzar amb ells (encara que s'havia adormit durant el camí i al principi estava un poc reguinyós).",
+    "bloque3_parrafo3": "A la nit, els havien posat uns castells unflables, per al gaudi dels xicotets. Alba i Marina van anar prompte a dormir i Mateu i Albert es van quedar una estona més, fins a les 22.30.",
+    "tituloParte2": "Al matí següent...",
+    "bloque4_parrafo1": "L'endemà tenien preparada una activitat anomenada 'de pi a pi'. Un recorregut entre arbres una cosa perillosa per a xiquets de 3 anys. A Mateu no li agraden molt les altures, i va decidir no fer-ho. Es va quedar jugant amb altres xiquets en els llits elàstics.",
+    "bloque4_parrafo2": "Ací va ser quan Albert va haver de tornar sobre les 11.00 per a la celebració de la boda d'Esteve i Laura. Una cosa senzilla a l'ajuntament. Amb un emotiu discurs d'Albert, que no va poder evitar les llàgrimes d'emoció.",
+    "bloque4_parrafo3": "En acabar la cerimònia, va tornar ràpidament de nou al centre de vacacions de l'embassament de Benagéber, per a seguir amb la finalitat de setmana en família i amics. Ací seguien, encara que es notava que era l'hora de la migdiada ja que quasi tots eren a les habitacions descansant.",
+    "bloque5_parrafo1": "Després de jugar una estona amb la germana de Mar Carsí, Mireia, van tornar a la part de dalt, a jugar de nou i a organitzar una eixida per la muntanya. Havien dos opcions: una agafant el cotxe i anant a l'embassament (més apetitosa) i una altra que era donar-li la volta al recinte, que era la més còmoda, ja que no calia agafar cotxe i per als xiquets era millor.",
+    "bloque5_parrafo2": "Així va ser, van fer una ruta per la zona, on conegueren l'entorn i van intimar una mica més els pares, que s'anaven coneguent entre si (els pares dels bessons Mateu i Ferran, Julia i Joan, apuntaven a possibles bons amics d'Alba i Albert). ",
+    "bloque6_parrafo1": "En arribar la nit, Alba i Marina es van retirar prompte de nou, i esta vegada, Albert no li va donar tant de marge a Mateu, ja que el dia havia sigut llarg per als dos, i sobre les 22.00 ja estaven en el llit.",
+    "bloque6_parrafo2": "El diumenge al matí arribava l'activitat estrela: piragua en família. Albert tenia ganes de pujar-se a una (i fins i tot del bany en l'embassament) al costat de Mateu, que va gaudir com un nan acompanyat del seu pare, que remava com professional.",
+    "bloque7_parrafo1": "Al mig dia tenien inclosa el menjar, que va ser paella, ensalada cèsar i sépia, ben bona. En acabar tenien programat tornar ràpid per a aprofitar les migdiades dels xiquets.",
+    "bloque7_parrafo2": "Sens dubte, un viatge de cap de setmana molt profitós i per a disfrutar. Tornarien a repetir l'any següent (i qui sap si abans també).",
+    "descPrincipal": "Des d'una cantonada de l'alberg, únic punt de cobertura del lloc",
+    "descFoto1": "Durant l'excursió, tota la colla del Barranquet",
+    "descFoto2": "Durant l'excursió, tota la colla del Barranquet",
+    "descFoto3": "Dia de canoes, pare i fill",
+    "descFoto4": "Dia de canoes, pare i fill",
+    "descFoto5": "Vistes durant el passeig per la muntanya"
   },
   "2024-04-02": {
     "tituloParte1": "De tornada a la carretera",

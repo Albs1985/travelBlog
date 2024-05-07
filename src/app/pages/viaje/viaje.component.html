@@ -37,6 +37,7 @@
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Montaña'" src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].categoria == 'Nieve'" src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">
                 <img *ngIf="servicioViajes.viajesDetalleLista[0].tipoEstancia == 'Cabaña'" src="assets/icons/cabanya.png" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="servicioViajes.viajesDetalleLista[0].tipoEstancia == 'Albergue'" src="assets/icons/albergue.png" alt="" class="iconosImg animated rollIn">
                 &nbsp;{{servicioViajes.viajesDetalleLista[0].year}}
                 <button type="button" class="infoButton" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rubberBand"></button>
                 <div class="custom-tooltip" (click)="showTooltip()" *ngIf="showMsg">
