@@ -1,0 +1,95 @@
+<!-- Para autenticarse en la aplicación -->
+<div *ngIf="authenticationService.isLoggedInRelatoIaia() === false">
+  <br><br><br><br><br><br><br>
+  <div class="centrada">
+    <img src="assets/icons/seguridad.png" class="iconSeguridad animated fadeIn pulse">
+  </div>
+  <br><br>
+  <div class="centrada">
+    <app-login></app-login>
+  </div>
+  <div class="divVolver">
+    <br><br><br><br>
+    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+  </div>
+  <br>
+</div>
+<div *ngIf="authenticationService.isLoggedInRelatoIaia()">
+  <div>
+    <div class="container-fluid">
+      <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+            <div class="divVolver">
+              <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+            </div>
+              <img src="assets/icons/pareja.png" alt="pareja" class="icon animated fadeIn">
+              <img src="assets/icons/relatos.png" alt="relatos" class="icon animated fadeIn">
+              <h2 class="fh5co-article-title "><a>{{ 'relatoBodaEsteve.titulo' | translate }}</a></h2>
+              <span class="fh5co-meta fh5co-date ">{{ 'relatoBodaEsteve.fecha' | translate }}</span>
+              <br>
+              <figure class="animated zoomInDown">
+                <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve1.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve1.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                <figcaption>{{ 'relatoBodaEsteve.descFoto1' | translate}}</figcaption>
+              </figure>
+              <div class="row">
+                  <div class="col-md-12 ">
+                      <h2>{{ 'relatoBodaEsteve.tituloParte1' | translate}}</h2>
+                      <p>{{ 'relatoBodaEsteve.bloque1_parrafo1' | translate}}</p>
+                      <figure class="animated zoomInDown">
+                        <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve2.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve2.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                        <figcaption>{{ 'relatoBodaEsteve.descFoto2' | translate}}</figcaption>
+                      </figure>
+                      <p>{{ 'relatoBodaEsteve.bloque1_parrafo2' | translate}}</p>
+                      <figure class="animated zoomInDown">
+                        <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve3.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve3.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                        <figcaption>{{ 'relatoBodaEsteve.descFoto3' | translate}}</figcaption>
+                      </figure>
+                      <p>{{ 'relatoBodaEsteve.bloque1_parrafo3' | translate}}</p>
+                      <figure class="animated zoomInDown">
+                        <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve4.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve4.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                        <figcaption>{{ 'relatoBodaEsteve.descFoto4' | translate}}</figcaption>
+                      </figure>
+                  </div>
+              </div>
+
+              <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-left content-article">
+                  <div class="row">
+                      <div class="col-lg-8 cp-r ">
+                        <figure class="animated zoomInDown">
+                          <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve5.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve5.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                          <figcaption>{{ 'relatoBodaEsteve.descFoto5' | translate}}</figcaption>
+                        </figure>
+                        <p>{{ 'relatoBodaEsteve.bloque2_parrafo1' | translate}}</p>
+                        <figure class="animated zoomInDown">
+                          <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve6.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve6.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                          <figcaption>{{ 'relatoBodaEsteve.descFoto6' | translate}}</figcaption>
+                        </figure>
+                        <p>{{ 'relatoBodaEsteve.bloque2_parrafo2' | translate}}</p>
+                        <figure class="animated zoomInDown">
+                          <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve7.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve7.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                          <figcaption>{{ 'relatoBodaEsteve.descFoto7' | translate}}</figcaption>
+                        </figure>
+                        <p>{{ 'relatoBodaEsteve.bloque2_parrafo3' | translate}}</p>
+                        <figure class="animated zoomInDown">
+                          <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve8.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve8.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                          <figcaption>{{ 'relatoBodaEsteve.descFoto8' | translate}}</figcaption>
+                        </figure>
+                        <figure class="animated zoomInDown">
+                          <a target="_blank" href="assets/images/relatoBodaEsteve/relatoBodaEsteve9.jpg"><img src="assets/images/relatoBodaEsteve/relatoBodaEsteve9.jpg" loading="lazy" alt="Image" class="img-responsive"></a>
+                          <figcaption>{{ 'relatoBodaEsteve.descFoto9' | translate}}</figcaption>
+                        </figure>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="divLeft">
+                  <span class=""><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate}}</a></span>
+              </div>
+
+          </article>
+      </div>
+    </div>
+
+  </div><!-- fin modo web -->
+
+</div><!-- de la autenticación -->

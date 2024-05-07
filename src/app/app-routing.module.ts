@@ -22,6 +22,7 @@ import { QuizComponent } from './pages/games/quiz/quiz.component';
 import { MapComponent } from './pages/map/map.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
+import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -34,6 +35,7 @@ const app_routes: Routes = [
   { path: 'bookMode', component : BookModeComponent},
   { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
   { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
+  { path: 'historias/relatoBodaEsteve', component : RelatoBodaEsteveComponent},
   { path: 'games', component : GamesComponent},
   { path: 'games/memory', component : MemoryComponent},
   { path: 'games/quien-es-quien', component : QuienEsQuienComponent},
