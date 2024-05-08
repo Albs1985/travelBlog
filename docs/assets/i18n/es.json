@@ -172,6 +172,9 @@
     },
     "7": {
       "detalle": "Dibujo en acuarela en la clase de Paula, 1º Infantil"
+    },
+    "8": {
+      "detalle": "Dibujo del viaje de los iaios a ver las auroras boreales, 1º Infantil"
     }
   },
   "frases": {
@@ -345,6 +348,26 @@
     "descFoto10": "Mi Pepe y yo, en 2023",
     "descFoto11": ""
   },
+  "relatoBodaEsteve": {
+    "titulo": "Boda Esteve y Laura",
+    "fecha": "4 de Mayo de 2024",
+    "tituloParte1": "Discurso de Albert, para Esteve",
+    "bloque1_parrafo1": "Bon dia a tots, Em fa molta il·lusió estar ací avui amb vosaltres, Esteve i Laura, una parella de les de tota la vida. D'eixes que es fan l'una a l'altra, es van modelant com si es tractara d'un pitxer de fang.",
+    "bloque1_parrafo2": "I m'agrada eixa comparació per què crec que nosaltres, tu i jo Esteve, hem construït una cosa paregut (en un altre pla òbviament). Però ens coneguem des de que tenim memòria, des d’aquells primers volantins al jardí de ta casa, des d’aquells primers aniversaris amb els noms escrits a eixes tasses de plàstic de colors...",
+    "bloque1_parrafo3": "I és que hem viscut i seguim vivint una vida junts. Ens hem fet l'un a l'altre també. Hem crescut com a germans, i no és que ho pense jo només per dins, sinó que encara avui em diuen molt que si som germans, com l'altre dia a l'escoleta de Marina al conéixer a la seua mestra Núria. I és que em sent en l'obligació de dir que no som germans de sang, però que com si ho fórem. Però m'entren ganes de dir que sí, i prou, sense més explicacions.",
+    "bloque2_parrafo1": "Probablement, ets l'amic en el qual més temps he passat de viatge. Viatges per tot el món: Nova York, Croàcia, Milan i Berlín als respectius Erasmus, innumerables viatges a la neu, i mesos de convivència a Menorca... Segurament el millor estiu de la meua vida, i va ser amb tu, mà a mà des de l’inici, des de aquell dia 2 de juliol (no oblidaré mai la nostra arribada)… i un sense fi de viatges més, fets, i els que queden per vindre.",
+    "bloque2_parrafo2": "I també a les nits... estic segur que “el cojo i el manco” tornaran a pegar-se alguna festeta junts... Quin bon rato hem passat de nits i de matins deixant fluir les nostres tonteríes... com a aquell Iboga menjant paella amb tots eixos desconeguts...",
+    "bloque2_parrafo3": "Em fa molta il·lusió també veure les famílies que hem construït. Veig la il·lusió amb la qual heu portat al món a Lola, Emma i Joan, que em fa sentir més en sintonia encara amb vosaltres. Una decisió difícil de prendre, 3 ja són multitud (😊) però ara es veu el encertat que és, vore-vos tan feliços amb eixes tres criatures em fa veure la sort que tenen eixos xiquets. Us desitge una llarga vida en família bonicos. Us estime molt 😊",
+    "descFoto1": "",
+    "descFoto2": "",
+    "descFoto3": "",
+    "descFoto4": "",
+    "descFoto5": "",
+    "descFoto6": "",
+    "descFoto7": "",
+    "descFoto8": "",
+    "descFoto9": ""
+  },
   "header": {
     "categoria": "Categorias",
     "playa": "Playa",
@@ -363,7 +386,8 @@
     "frases": "Frases",
     "apodos": "Apodos",
     "recetas": "Recetas",
-    "iaiaAna": "Historia de la Yaya Ana"
+    "iaiaAna": "Historia de la Yaya Ana",
+    "bodaEsteve": "Boda Esteve y Laura"
   },
   "categoria": {
     "Nieve": "Nieve",
@@ -385,7 +409,8 @@
     "Hostal": "Hostal",
     "Caravana": "Caravana",
     "Furgoneta": "Furgoneta Camper",
-    "Cabaña": "Cabaña"
+    "Cabaña": "Cabaña",
+    "Albergue": "Albergue"
   },
   "mesAnyo": {
     "01": "Enero",
@@ -515,7 +540,16 @@
     "fotoFav88": "Valdelinares, primera visita de Marina a la nieve",
     "fotoFav89": "Día del padre, regalo de la mamá",
     "fotoFav90": "El iaio Pep, jugando con Marina",
-    "fotoFav91": "Los primos en el parque, como si de fiesta estuvieran"
+    "fotoFav91": "Los primos en el parque, como si de fiesta estuvieran",
+    "fotoFav92": "Mateu, Gerard y Marina, en casa jugando.",
+    "fotoFav93": "Marina en el Llumenetes, en la semana de la feria de Abril",
+    "fotoFav94": "Marina y Mateu jugando en casa",
+    "fotoFav95": "Boda Esteve y Laura",
+    "fotoFav96": "Marina jugando con el papel del vater en el baño de casa",
+    "fotoFav97": "Marina en la escoleta Llumenetes",
+    "fotoFav98": "Albert e hijos jugando en casa",
+    "fotoFav99": "Mateu en su primer día de piragua",
+    "fotoFav100": "Comida el día antes de la boda de Estve y Laura con los testigos"
   },
   "recetas": {
     "6": {
@@ -621,6 +655,37 @@
       "paso3": "Dejamos 10 minutos cociendo para que se evapore el alcohol del vino, y añadimos el caldo de carne reservado. Cocinamos durante 30 minutos en la cazuela tapada, le damos la vuelta a las piezas de carne y cocinamos durante 20 minutos más. Comprobamos la ternura de las carrilleras y dejamos que se reduzca la salsa durante 15 minutos más, ahora con la olla destapada. Retiramos las carrilleras y pasamos la salsa por el pasapuré.",
       "paso4": "Las carrilleras de ternera guisadas con vino tinto se sirven loncheadas y acompañadas de su salsa a la que podemos espolvorear un poco de perejil picado. Unas patatas nuevas semiasadas o puré de patata casero, es la guarnición ideal para este plato tradicional."
     }
+  },
+  "2024-05-03": {
+    "tituloParte1": "De viaje con el cole",
+    "bloque1_parrafo1": "Mateu empezaba a entablar nuevas amistades en el nuevo colegio, el CEIP Barranquet. Amistades que parecían ir más allá de un colegueo de un rato. Sus amigos Bruno, Onai, Julen y Santi eran una constante en el tiempo.",
+    "bloque1_parrafo2": "A su vez, sus padres, hacían los mismo, en las jornadas de parque, donde iban conociendo a otros padres, especialmente a los padres de los amigos de Mateu.",
+    "bloque1_parrafo3": "Buenas amistades, que de momento, quedaban en un segundo plano, pero que por la experiencia de los padres de Albert, podrían ser amistades para toda la vida (los padres de Esteve son muy amigos de los padres de Albert, y fue porque se conocieron en el parque con los niños).",
+    "nota1": "Ten en cuenta que los niños por la noche están ya cansados, no se lo tengas en cuenta...",
+    "cita1": "“Yo quiero el palo papá”",
+    "personaCita1": "— Mateu, en modo martillo a su padre, momentos antes de volver a casa",
+    "bloque2_parrafo1": "El fin de semana iba a ser algo atípico, ya que, especialmente para Albert, iba a estar muy completo.",
+    "bloque2_parrafo2": "El viernes empezó con una comida a medio día, en el Gordo y el Flaco, en Bétera, para celebrar la boda de Esteve y Laura. Ésta iba a ser muy familiar, sin apenas público (como se puede ver en el apartado de fotos Favoritas).",
+    "bloque2_parrafo3": "Al acabar la comida, rápidamente Albert marchó para casa, donde esperaban los niños y Alba impacientes para salir (con la ayuda de los iaios Pep y Matilde).",
+    "bloque3_parrafo1": "A su llegada, tuvieron que descargar el coche que llevaban hasta arriba de trastos, para su comodidad y disfrute. Bajo la atenta mirada del resto de viajeros, Alba cargó con todos los trastos mientras Albert cuidaba de los pequeños.",
+    "bloque3_parrafo2": "Ya estaban algunos amigos allí, y Mateu no tardó en socializar con ellos (aunque se había dormido durante el camino y al principio estaba un poco quejón).",
+    "bloque3_parrafo3": "A la noche, les habían puesto unos castillos inchables, para el disfrute de los pequeños. Alba y Marina fueron pronto a dormir y Mateu y Albert se quedaron un rato más, hasta las 22:30.",
+    "tituloParte2": "A la mañana siguiente...",
+    "bloque4_parrafo1": "Al día siguiente tenían preparada una actividad llamada 'de pi a pi'. Un recorrido entre árboles algo peligroso para niños de 3 años. A Mateu no le gustan mucho las alturas, y decidió no hacerlo. Se quedó jugando con otros niños en las camas elásticas.",
+    "bloque4_parrafo2": "Ahí fue cuando Albert tuvo que volver sobre las 11:00 para la celebración de la boda de Esteve y Laura. Algo sencillo en el ayuntamiento. Con un emotivo discurso de Albert, que no pudo evitar las lágrimas de emoción.",
+    "bloque4_parrafo3": "Al acabar la ceremonia, volvió rápidamente de nuevo al centro de vacaciones del embalse de Benagéber, para seguir con el fin de semana en familia y amigos. Ahí seguían, aunque se notaba que era la hora de la siesta ya que casi todos estaban en las habitaciones descansando.",
+    "bloque5_parrafo1": "Después de jugar un rato con la hermana de Mar Carsí, Mireia, volvieron a la parte de arriba, a jugar de nuevo y a organizar una salida por la montaña. Habían dos opciones: una cogiendo el coche y yendo al embalse (más apetitosa) y otra que era darle la vuelta al recinto, que era la más cómoda, ya que no había que coger coche y para los niños era mejor.",
+    "bloque5_parrafo2": "Así fue, hicieron una ruta por la zona, donde conocieron el entorno e intimaron algo más los padres, que se iban conociendo entre sí (los padres de los gemelos Mateu y Ferran, Julia y Joan, apuntaban a posibles buenos amigos de Alba y Albert). ",
+    "bloque6_parrafo1": "Al llegar la noche, Alba y Marina se retiraron pronto de nuevo, y esta vez, Albert no le dió tanto margen a Mateu, ya que el día había sido largo para los dos, y sobre las 22:00 ya estaban en la cama.",
+    "bloque6_parrafo2": "El domingo por la mañana llegaba la actividad estrella: piragua en familia. Albert tenía ganas de subirse a una (e incluso del baño en el embalse) junto a Mateu, que disfrutó como un enano acompañado de su padre, que remaba cual profesional.",
+    "bloque7_parrafo1": "Al medio día tenían incluida la comida, que fue paella, ensalada césar y sepia, bien buena. Al acabar tenían programado volver rápido para aprovechar las siestas de los niños.",
+    "bloque7_parrafo2": "Sin duda, un viaje de fin de semana muy provechoso y disfrutón. Volverían a repetir el año siguiente (y quien sabe si antes también).",
+    "descPrincipal": "Desde una esquina del albergue, único punto de cobertura del lugar",
+    "descFoto1": "Durante la excursión, toda la colla del Barranquet",
+    "descFoto2": "Durante la excursión, toda la colla del Barranquet",
+    "descFoto3": "Día de canoas, padre e hijo",
+    "descFoto4": "Día de canoas, padre e hijo",
+    "descFoto5": "Vistas durante el paseo por la montaña"
   },
   "2024-04-02": {
     "tituloParte1": "De vuelta a la carretera",

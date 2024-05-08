@@ -1,4 +1,76 @@
 {
+  "fotoFav100": {
+    "idDesc": "fotoFav100",
+    "id": "favoritos/fotoFav100.jpg",
+    "anyo": "2024",
+    "lugar": "Pre-Boda, El Gordo y el Flaco",
+    "categoria": "boda, comida, amigos, dinar, amics",
+    "personas": "Esteve, Laura, Jordi, Albert"
+  },
+  "fotoFav99": {
+    "idDesc": "fotoFav99",
+    "id": "favoritos/fotoFav99.jpg",
+    "anyo": "2024",
+    "lugar": "Embalse Benagèber",
+    "categoria": "niño, xiquet, pare, piragua, piraigua, canoa, kayak",
+    "personas": "Mateu, Albert"
+  },
+  "fotoFav98": {
+    "idDesc": "fotoFav98",
+    "id": "favoritos/fotoFav98.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, pare, ",
+    "personas": "Mateu, Marina, Albert"
+  },
+  "fotoFav97": {
+    "idDesc": "fotoFav97",
+    "id": "favoritos/fotoFav97.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Escoleta Llumenetes",
+    "categoria": "niños, xiquets, xiqueta, niña, bebé, jugar, escoleta, guardería, llumenetes",
+    "personas": "Marina"
+  },
+  "fotoFav96": {
+    "idDesc": "fotoFav96",
+    "id": "favoritos/fotoFav96.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, xiqueta, niña, bebé, jugar, baño",
+    "personas": "Marina"
+  },
+  "fotoFav95": {
+    "idDesc": "fotoFav95",
+    "id": "favoritos/fotoFav95.jpg",
+    "anyo": "2024",
+    "lugar": "Paterna, Ajuntament",
+    "categoria": "Boda, Ceremonia",
+    "personas": "Esteve, Laura, Albert"
+  },
+  "fotoFav94": {
+    "idDesc": "fotoFav94",
+    "id": "favoritos/fotoFav94.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, primos, cosins",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav93": {
+    "idDesc": "fotoFav93",
+    "id": "favoritos/fotoFav93.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Escoleta Llumenetes",
+    "categoria": "niños, xiquets, primos, cosins",
+    "personas": "Marina"
+  },
+  "fotoFav92": {
+    "idDesc": "fotoFav92",
+    "id": "favoritos/fotoFav92.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, primos, cosins",
+    "personas": "Mateu, Gerard, Marina"
+  },
   "fotoFav91": {
     "idDesc": "fotoFav91",
     "id": "favoritos/fotoFav91.jpg",
