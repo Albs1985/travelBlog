@@ -24,25 +24,10 @@
   cursor: pointer;
 }
 
-.divRightLibro {
-  float: right;
-  margin-right: 25px;
-  font-size: 14px !important;
-  margin-top: -35px;
-  cursor: pointer;
-}
-
 .divLeft {
   float: left;
   margin-left: 5px;
   font-size: 14px !important;
-}
-
-.botonVersionWeb {
-  background: transparent;
-  border-color: transparent;
-  font-size: 16px;
-  margin-left: 20px;
 }
 
 .iconoFlecha {
@@ -50,16 +35,6 @@
   height: 30px;
   padding: 5px;
   background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-  cursor: pointer;
-  /* filter: blur(1px);
-  -webkit-filter: blur(1px); */
-}
-
-.iconoSitioWeb {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
   border-radius: 15px;
   cursor: pointer;
 }

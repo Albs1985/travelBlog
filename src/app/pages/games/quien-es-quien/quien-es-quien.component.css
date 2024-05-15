@@ -123,11 +123,6 @@
   align-items: center; /* Centra los elementos horizontalmente */
 }
 
-/* .adversary-container img {
-  max-width: 100%;
-  height: auto;
-} */
-
 .labelNomRival {
   margin-top: 10px; /* Ajusta el espacio entre la imagen y el texto */
 }
@@ -152,10 +147,6 @@
   cursor: pointer; /* Cursor de puntero */
   /* transition: background-color 0.3s ease; Transición suave */
 }
-
-/* .turn-button:hover {
-  background-color: rgb(255, 228, 177); /* Cambio de color al pasar el ratón
-} */
 
 .btnRestart {
   background: transparent;

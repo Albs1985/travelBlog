@@ -91,13 +91,6 @@
   margin-bottom: 10px; /* Espacio entre los dos divs */
 }
 
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-}
-
 .btnRestart {
   background: transparent;
   border-radius: 30px;
@@ -132,11 +125,6 @@
   display: table-cell;
   padding: 5px;
 }
-
-/* .listaJugadores {
-  justify-content: space-between;
-  margin-left: 30px;
-} */
 
 .imagen {
   border: 1px solid #000000;

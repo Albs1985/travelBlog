@@ -46,14 +46,6 @@
   width: 50vh;
 }
 
-.colorRojo {
-  color: red !important;
-}
-
-.colorVerde {
-  color: green !important;
-}
-
 .select-container {
   display: block; /* Opcionalmente puedes usar 'flex' en lugar de 'block' */
   margin-bottom: 10px; /* Espacio entre los dos divs */
@@ -117,16 +109,6 @@ h1 {
   color: #333;
 }
 
-#question {
-  margin: 20px 0;
-}
-
-#options {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .option {
   background-color: #007bff;
   color: #fff;
@@ -139,26 +121,6 @@ h1 {
 
 .option:hover {
   background-color: #0056b3;
-}
-
-#nextBtn {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#nextBtn:hover {
-  background-color: #218838;
-}
-
-#result {
-  margin-top: 20px;
-  font-weight: bold;
 }
 
 .overlay {

@@ -63,18 +63,6 @@
   width: 50vh;
 }
 
-.bloqueDibujo {
-  margin-left: 25px;
-  margin-right: 25px;
-  /* border-radius: 25px;
-  box-shadow: 0px 5px 5px 5px #888888; */
-}
-
-.letraExplicacion {
-  font-size: small;
-  margin-left: 25px;
-}
-
 .dibujoPersona {
   margin-left: 25px;
 }
@@ -116,25 +104,10 @@
   margin-top: -40px;
 }
 
-#myInput {
-  width: 350px !important;
-}
-
 #busquedaForm {
   display: inline-flex !important;
   width: 100% !important;
   margin-right: 25px;
-}
-
-.fotosPerfiles {
-  margin-right: 20px;
-  margin-left: 20px;
-}
-.dobleFotos {
-  width: 25%;
-  height: 25%;
-  display: table-cell;
-  padding: 5px;
 }
 
 .center {
@@ -154,14 +127,6 @@ div.gallery:hover {
 div.gallery img {
   width: 100%;
   height: auto;
-  /* border-radius: 15px; */
-  /* background: transparent !important;
-    border-color: transparent !important; */
-}
-
-div.desc {
-  padding: 0px;
-  text-align: center;
 }
 
 * {
