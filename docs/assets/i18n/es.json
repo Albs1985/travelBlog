@@ -241,6 +241,10 @@
     "16": {
       "frase": "Huevos de Pacsua",
       "explicacion": "Huevos de Pascua"
+    },
+    "17": {
+      "frase": "Chuvasquero",
+      "explicacion": "Así llamada Mateu a su equipaje de basket"
     }
   },
   "relatoAlbaiAlbert": {
@@ -549,7 +553,16 @@
     "fotoFav97": "Marina en la escoleta Llumenetes",
     "fotoFav98": "Albert e hijos jugando en casa",
     "fotoFav99": "Mateu en su primer día de piragua",
-    "fotoFav100": "Comida el día antes de la boda de Estve y Laura con los testigos"
+    "fotoFav100": "Comida el día antes de la boda de Estve y Laura con los testigos",
+    "fotoFav101": "Albert emocionado con sus hijos bien equipados para las finales NBA 2024",
+    "fotoFav102": "Disfrutando de un día en familia en Gilet, después de comer en el Restaurente El Reino",
+    "fotoFav103": "Disfrutando de un día en familia en Gilet, después de comer en el Restaurente El Reino",
+    "fotoFav104": "Marina bien vestida para el día del granjero en la escoleta",
+    "fotoFav105": "La feliz pareja disfrutando del regalo de Albert, el Spa.",
+    "fotoFav106": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav107": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav108": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav109": "39 Cumpleaños de Alba, en casa en familia, como siempre"
   },
   "recetas": {
     "6": {
