@@ -241,6 +241,10 @@
     "16": {
       "frase": "Ous de Pacsua",
       "explicacion": "Ous de Pascua"
+    },
+    "17": {
+      "frase": "Chuvasquero",
+      "explicacion": "Així anomenava Mateu al seu equipatge de basket"
     }
   },
   "relatoAlbaiAlbert": {
@@ -387,7 +391,7 @@
     "apodos": "Malnoms",
     "recetas": "Receptes",
     "iaiaAna": "Història de la Iaia Anna",
-    "bodaEsteve": "Boda Esteve i Laura"
+    "bodaEsteve": "Discurs boda Esteve i Laura"
   },
   "categoria": {
     "Nieve": "Neu",
@@ -549,7 +553,16 @@
     "fotoFav97": "Marina en la Escoleta Llumenetes",
     "fotoFav98": "Albert i fills jugant a casa",
     "fotoFav99": "Mateu en el seu primer dia de piragua",
-    "fotoFav100": "Menjar el dia abans de la boda de Estve i Laura amb els testimonis"
+    "fotoFav100": "Menjar el dia abans de la boda de Estve i Laura amb els testimonis",
+    "fotoFav101": "Albert emocionat amb els seus fills ben equipats per a les finals NBA 2024",
+    "fotoFav102": "Gaudint d'un dia en família a Gilet, havent dinat en el Restaurent El Regne",
+    "fotoFav103": "Gaudint d'un dia en família a Gilet, havent dinat en el Restaurent El Regne",
+    "fotoFav104": "Marina ben vestida per al dia del granger en l'escoleta",
+    "fotoFav105": "La feliç parella gaudint del regal d'Albert, l'Spa.",
+    "fotoFav106": "39 Aniversari d'Alba, a casa en família, com sempre",
+    "fotoFav107": "39 Aniversari d'Alba, a casa en família, com sempre",
+    "fotoFav108": "39 Aniversari d'Alba, a casa en família, com sempre",
+    "fotoFav109": "39 Aniversari d'Alba, a casa en família, com sempre"
   },
   "recetas": {
     "6": {
@@ -659,39 +672,44 @@
   "2024-05-03": {
     "tituloParte1": "De viatge amb el col·le",
     "bloque1_parrafo1": "Mateu començava a entaular noves amistats en el nou col·legi, el CEIP Barranquet. Amistats que semblaven anar més enllà d'un colegueo d'una estona. Els seus amics Bruno, Onai, Julen i Santi eren una constant en el temps.",
-    "bloque1_parrafo2": "Al seu torn, els seus pares, feien els mateix, en les jornades de parc, on anaven coneixent a altres pares, especialment als pares dels amics de Mateu.",
+    "bloque1_parrafo2": "Al mateix temps, els seus pares, feien el mateix, en les jornades de parc, on anaven coneixent a altres pares, especialment als pares dels amics de Mateu.",
     "bloque1_parrafo3": "Bones amistats, que de moment, quedaven en un segon pla, però que per l'experiència dels pares d'Albert, podrien ser amistats per a tota la vida (els pares d'Esteve són molt amics dels pares d'Albert, i va ser perquè es van conéixer al parc amb els xiquets).",
-    "nota1": "Tingues en compte que els xiquets a la nit estan ja cansats, no li ho tingues en compte...",
+    "nota1": "Pensa que els xiquets a la nit estan ja cansats, no li ho tingues en compte...",
     "cita1": "“Jo vull el pal papà”",
     "personaCita1": "— Mateu, en mode martell al seu pare, moments abans de tornar a casa",
     "bloque2_parrafo1": "El cap de setmana anava a ser una cosa atípica, ja que, especialment per a Albert, anava a estar molt complet.",
-    "bloque2_parrafo2": "El divendres va començar amb un menjar a mig dia, en la Grossa i el Flac, a Bétera, per a celebrar la boda d'Esteve i Laura. Esta anava a ser molt familiar, sense tot just públic (com es pot veure en l'apartat de fotos Favorites).",
-    "bloque2_parrafo3": "En acabar el menjar, ràpidament Albert va marxar per a casa, on esperaven els xiquets i Alba impacients per a eixir (amb l'ajuda dels iaios Pep i Matilde).",
-    "bloque3_parrafo1": "A la seua arribada, van haver de descarregar el cotxe que portaven fins dalt d'andròmines, per a la seua comoditat i gaudi. Sota l'atenta mirada de la resta de viatgers, Alba va carregar amb totes les andròmines mentres Albert cuidava dels xicotets.",
+    "bloque2_parrafo2": "El divendres va començar amb un menjar a mig dia, en El Gordo y el Flaco, a Bétera, per a celebrar la boda d'Esteve i Laura. Esta anava a ser molt familiar, sense apenes públic (com es pot veure en l'apartat de fotos Favorites).",
+    "bloque2_parrafo3": "En acabar el menjar, ràpidament Albert va marxar cap a casa, on esperaven els xiquets i Alba impacients per a eixir (amb l'ajuda dels iaios Pep i Matilde).",
+    "bloque3_parrafo1": "A la seua arribada, van haver de descarregar el cotxe que portaven fins dalt d'andròmines (trastos), per a la seua comoditat i gaudi. Sota l'atenta mirada de la resta de viatgers, Alba va carregar amb totes les andròmines mentres Albert cuidava dels xicotets.",
     "bloque3_parrafo2": "Ja estaven alguns amics allí, i Mateu no va tardar a socialitzar amb ells (encara que s'havia adormit durant el camí i al principi estava un poc reguinyós).",
     "bloque3_parrafo3": "A la nit, els havien posat uns castells unflables, per al gaudi dels xicotets. Alba i Marina van anar prompte a dormir i Mateu i Albert es van quedar una estona més, fins a les 22.30.",
     "tituloParte2": "Al matí següent...",
-    "bloque4_parrafo1": "L'endemà tenien preparada una activitat anomenada 'de pi a pi'. Un recorregut entre arbres una cosa perillosa per a xiquets de 3 anys. A Mateu no li agraden molt les altures, i va decidir no fer-ho. Es va quedar jugant amb altres xiquets en els llits elàstics.",
+    "bloque4_parrafo1": "L'endemà tenien preparada una activitat anomenada 'de pi a pi'. Un recorregut entre arbres, una cosa perillosa per a xiquets de 3 anys. A Mateu no li agraden molt les altures, i va decidir no fer-ho. Es va quedar jugant amb altres xiquets en els llits elàstics.",
     "bloque4_parrafo2": "Ací va ser quan Albert va haver de tornar sobre les 11.00 per a la celebració de la boda d'Esteve i Laura. Una cosa senzilla a l'ajuntament. Amb un emotiu discurs d'Albert, que no va poder evitar les llàgrimes d'emoció.",
-    "bloque4_parrafo3": "En acabar la cerimònia, va tornar ràpidament de nou al centre de vacacions de l'embassament de Benagéber, per a seguir amb la finalitat de setmana en família i amics. Ací seguien, encara que es notava que era l'hora de la migdiada ja que quasi tots eren a les habitacions descansant.",
+    "bloque4_parrafo3": "En acabar la cerimònia, va tornar ràpidament de nou al centre de vacances de l'embassament de Benagéber, per a seguir amb el cap de setmana en família i amics. Ací seguien, encara que es notava que era l'hora de la migdiada ja que quasi tots eren a les habitacions descansant.",
     "bloque5_parrafo1": "Després de jugar una estona amb la germana de Mar Carsí, Mireia, van tornar a la part de dalt, a jugar de nou i a organitzar una eixida per la muntanya. Havien dos opcions: una agafant el cotxe i anant a l'embassament (més apetitosa) i una altra que era donar-li la volta al recinte, que era la més còmoda, ja que no calia agafar cotxe i per als xiquets era millor.",
     "bloque5_parrafo2": "Així va ser, van fer una ruta per la zona, on conegueren l'entorn i van intimar una mica més els pares, que s'anaven coneguent entre si (els pares dels bessons Mateu i Ferran, Julia i Joan, apuntaven a possibles bons amics d'Alba i Albert). ",
     "bloque6_parrafo1": "En arribar la nit, Alba i Marina es van retirar prompte de nou, i esta vegada, Albert no li va donar tant de marge a Mateu, ja que el dia havia sigut llarg per als dos, i sobre les 22.00 ja estaven en el llit.",
-    "bloque6_parrafo2": "El diumenge al matí arribava l'activitat estrela: piragua en família. Albert tenia ganes de pujar-se a una (i fins i tot del bany en l'embassament) al costat de Mateu, que va gaudir com un nan acompanyat del seu pare, que remava com professional.",
+    "bloque6_parrafo2": "El diumenge al matí arribava l'activitat estrela: piragua en família. Albert tenia ganes de pujar-se a una (i fins i tot del bany en l'embassament) al costat de Mateu, que va gaudir com un xiquet acompanyat del seu pare, que remava com professional.",
     "bloque7_parrafo1": "Al mig dia tenien inclosa el menjar, que va ser paella, ensalada cèsar i sépia, ben bona. En acabar tenien programat tornar ràpid per a aprofitar les migdiades dels xiquets.",
     "bloque7_parrafo2": "Sens dubte, un viatge de cap de setmana molt profitós i per a disfrutar. Tornarien a repetir l'any següent (i qui sap si abans també).",
-    "descPrincipal": "Des d'una cantonada de l'alberg, únic punt de cobertura del lloc",
+    "descPrincipal": "Vista des de la presa",
     "descFoto1": "Durant l'excursió, tota la colla del Barranquet",
-    "descFoto2": "Durant l'excursió, tota la colla del Barranquet",
+    "descFoto2": "Mateu en els llits elàstics, en lloc de fer el 'pi a pi'",
     "descFoto3": "Dia de canoes, pare i fill",
     "descFoto4": "Dia de canoes, pare i fill",
-    "descFoto5": "Vistes durant el passeig per la muntanya"
+    "descFoto5": "Vistes durant el passeig per la muntanya",
+    "descFoto6": "Recorregut del 'pi a pi' dels xicotets",
+    "descFoto7": "Mateu des de la finestra de l'habitació",
+    "descFoto8": "Recorregut del 'pi a pi' dels xicotets",
+    "descFoto9": "Recorregut del 'pi a pi' dels xicotets",
+    "descFoto10": "Mateu Serrador i Pau Pardo des del pati de l'alberg"
   },
   "2024-04-02": {
     "tituloParte1": "De tornada a la carretera",
-    "bloque1_parrafo1": "Després d'uns mesos de dura vida, amb nits eternes i cansament acumulat, i després d'un parell d'incursions a Puertomingalvo, va arribar el moment de fer una eixida amb amics a unes cabanyes, en el riu Cabriol.",
-    "bloque1_parrafo2": "En els pintorescos vessants de la vall del Cabriol, en un racó apartat entre muntanyes cobertes de boscos, s'amagaven unes cabanyes que prometien ser l'escenari perfecte per a unes vacacions en família i amics. Alba i Albert, acompanyats dels seus dos xicotets tresors, Marina, amb tot just huit mesos, i Mateu, eixe xiquet vivaç de tres anys i mig, es van aventurar cap a este refugi de tranquil·litat i diversió. En esta ocasió, estarien ben acompanyats per Dani, Gloria i Martí, i Jordi i Asier.",
-    "bloque1_parrafo3": "En arribar, van quedar meravellats en descobrir que el lloc oferia una àmplia gamma d'entreteniment per als més xicotets: un parc de boles curulla de riures infantils, una piscina coberta que convidava a xipollejar, un castell inflable que desafiava la gravetat i jocs que estimulaven la imaginació dels xiquets.",
+    "bloque1_parrafo1": "Després d'uns mesos de dura vida, amb nits eternes i cansament acumulat, i després d'un parell d'incursions a Puertomingalvo, va arribar el moment de fer una eixida amb amics a unes cabanyes, en el riu Cabriel.",
+    "bloque1_parrafo2": "En els pintorescos vessants de la vall del Cabriel, en un racó apartat entre muntanyes cobertes de boscos, s'amagaven unes cabanyes que prometien ser l'escenari perfecte per a unes vacances en família i amics. Alba i Albert, acompanyats dels seus dos xicotets tresors, Marina, amb tot just huit mesos, i Mateu, eixe xiquet actiu de tres anys i mig, es van aventurar cap a este refugi de tranquil·litat i diversió. En esta ocasió, estarien ben acompanyats per Dani, Gloria i Martí, i Jordi i Asier.",
+    "bloque1_parrafo3": "En arribar, van quedar meravellats en descobrir que el lloc oferia una àmplia gamma d'entreteniment per als més xicotets: un parc de boles ple de riures infantils, una piscina coberta que convidava a xipollejar, un castell inflable que desafiava la gravetat i jocs que estimulaven la imaginació dels xiquets.",
     "nota1": "Que dur és viatjar amb bebés! No et cap la casa en el cotxe!!",
     "cita1": "“Jo vull ous de PaCSua”",
     "personaCita1": "— Mateu",
@@ -699,7 +717,7 @@
     "bloque2_parrafo2": "",
     "bloque2_parrafo3": "",
     "bloque3_parrafo1": "Marina, amb els seus grans ulls curiosos, observava el bullici des dels braços dels seus pares, mentres Mateu, ple d'energia, es llançava a explorar cada racó del recinte amb entusiasme. Alba i Albert, còmplices en el seu amor pels seus fills, gaudien veient les entremaliadures dels xicotets, assaborint cada moment com si fora un regal fugaç.",
-    "bloque3_parrafo2": "Però la diversió no es limitava a les instal·lacions de les cabanyes. En un dia solejat, i aprofitant la visita de Blai i Gerard, la família i els seus amics es van aventurar en una excursió per les ribes del riu Cabriol, on el murmuri de les seues aigües amenitzava el passeig. Mateu, Martí i Asier, fascinats per la naturalesa que els envoltava, arreplegaven ous de pasqua que Albert anava deixant al seu pas, mentres que Marina, a l'esquena d'Alba, dormia plàcidament amb el so de l'aigua.",
+    "bloque3_parrafo2": "Però la diversió no es limitava a les instal·lacions de les cabanyes. En un dia solejat, i aprofitant la visita de Blai i Gerard, la família i els seus amics es van aventurar en una excursió per les ribes del riu Cabriel, on el murmuri de les seues aigües amenitzava el passeig. Mateu, Martí i Asier, fascinats per la naturalesa que els envoltava, arreplegaven ous de pasqua que Albert anava deixant al seu pas, mentres que Marina, a l'esquena d'Alba, dormia plàcidament amb el so de l'aigua.",
     "bloque3_parrafo3": "Un altre dia van prendre el camí del foc, o millor dit, es van endinsar en la barbacoa per a preparar unes riques xulles de corder i pollastre a la brasa. Mentres els xiquets jugaven a llançar el frisbi i s'anaven embrutant, els adults acabaven el menjar.",
     "tituloParte2": "",
     "bloque4_parrafo1": "Sens dubte es tractava d'un viatge esperançador, on la previsió de més viatges sempre brilla a l'horitzó, i on es va comprovar que Marina ja començava a eixir d'eixe bucle d'insomni que revelava als seus pares.",
@@ -711,14 +729,14 @@
     "bloque6_parrafo2": "",
     "bloque7_parrafo1": "",
     "bloque7_parrafo2": "",
-    "descPrincipal": "Començar el dia en les Cabanyes del Cabriol. Jordi.",
-    "descFoto1": "Alba passejant amb Marina pel riu Cabriol",
+    "descPrincipal": "Començar el dia en les Cabanyes del Cabriel. Jordi.",
+    "descFoto1": "Alba passejant amb Marina pel riu Cabriel",
     "descFoto2": "Els cosins Mateu i Gerard posant en el porxo de la cabanya",
     "descFoto3": "Els cosins al complet: Primera eixida de Marina amb la motxilla",
     "descFoto4": "Primer bany de Marina en la piscina (aigua salada)",
     "descFoto5": "Primer bany de Marina en la piscina (no estaven permeses les fotos)",
     "descFoto6": "Menjant en el porxo de la cabanya, només arribar",
-    "descFoto7": "Les xiques, de passeig pel va riure Cabriol",
+    "descFoto7": "Les xiques, de passeig pel va riure Cabriel",
     "descFoto8": "Mateu i Martí jugant al parc de boles del complex",
     "descFoto9": "El breu passeig pel riu, amb la visita de Blai i Gerard"
   },

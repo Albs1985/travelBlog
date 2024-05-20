@@ -36,11 +36,6 @@
   margin-top: -10px;
 }
 
-.responsive-image {
-  max-width: 100%;
-  height: auto;
-}
-
 .videoContenedor {
   position: relative;
   width: 90%;

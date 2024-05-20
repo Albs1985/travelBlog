@@ -1,4 +1,148 @@
 {
+  "fotoFav109": {
+    "idDesc": "fotoFav109",
+    "id": "favoritos/fotoFav109.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Albert, Alba, Marina, Mateu, Iaio Pep, Iaia Matilde, Tieta María, Emili, Marcel, Sarita"
+  },
+  "fotoFav108": {
+    "idDesc": "fotoFav108",
+    "id": "favoritos/fotoFav108.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Marina, Iaia Matilde"
+  },
+  "fotoFav107": {
+    "idDesc": "fotoFav107",
+    "id": "favoritos/fotoFav107.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Mateu, Marina, Alba, Albert"
+  },
+  "fotoFav106": {
+    "idDesc": "fotoFav106",
+    "id": "favoritos/fotoFav106.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Alba, Marina"
+  },
+  "fotoFav105": {
+    "idDesc": "fotoFav105",
+    "id": "favoritos/fotoFav105.jpg",
+    "anyo": "2024",
+    "lugar": "Spa las Arenas",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Alba, Albert"
+  },
+  "fotoFav104": {
+    "idDesc": "fotoFav104",
+    "id": "favoritos/fotoFav104.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "sombrero, gorro, bebé, bebe, xicoteta, filla, hija",
+    "personas": "Marina"
+  },
+  "fotoFav103": {
+    "idDesc": "fotoFav103",
+    "id": "favoritos/fotoFav103.jpg",
+    "anyo": "2024",
+    "lugar": "Gilet, Santo Espíritu",
+    "categoria": "dinar, comida, familia, pinada, naturaleza, natura",
+    "personas": "Alba, Marina"
+  },
+  "fotoFav102": {
+    "idDesc": "fotoFav102",
+    "id": "favoritos/fotoFav102.jpg",
+    "anyo": "2024",
+    "lugar": "Gilet, Santo Espíritu",
+    "categoria": "dinar, comida, familia, pinada, naturaleza, natura",
+    "personas": "Marina, Gerard, Albert"
+  },
+  "fotoFav101": {
+    "idDesc": "fotoFav101",
+    "id": "favoritos/fotoFav101.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "pare, padre, hijos, fills, basquet, basket, nba, baloncesto, camiseta",
+    "personas": "Mateu, Marina, Albert"
+  },
+  "fotoFav100": {
+    "idDesc": "fotoFav100",
+    "id": "favoritos/fotoFav100.jpg",
+    "anyo": "2024",
+    "lugar": "Pre-Boda, El Gordo y el Flaco",
+    "categoria": "boda, comida, amigos, dinar, amics",
+    "personas": "Esteve, Laura, Jordi, Albert"
+  },
+  "fotoFav99": {
+    "idDesc": "fotoFav99",
+    "id": "favoritos/fotoFav99.jpg",
+    "anyo": "2024",
+    "lugar": "Embalse Benagèber",
+    "categoria": "niño, xiquet, pare, piragua, piraigua, canoa, kayak",
+    "personas": "Mateu, Albert"
+  },
+  "fotoFav98": {
+    "idDesc": "fotoFav98",
+    "id": "favoritos/fotoFav98.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, pare, ",
+    "personas": "Mateu, Marina, Albert"
+  },
+  "fotoFav97": {
+    "idDesc": "fotoFav97",
+    "id": "favoritos/fotoFav97.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Escoleta Llumenetes",
+    "categoria": "niños, xiquets, xiqueta, niña, bebé, jugar, escoleta, guardería, llumenetes",
+    "personas": "Marina"
+  },
+  "fotoFav96": {
+    "idDesc": "fotoFav96",
+    "id": "favoritos/fotoFav96.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, xiqueta, niña, bebé, jugar, baño",
+    "personas": "Marina"
+  },
+  "fotoFav95": {
+    "idDesc": "fotoFav95",
+    "id": "favoritos/fotoFav95.jpg",
+    "anyo": "2024",
+    "lugar": "Paterna, Ajuntament",
+    "categoria": "Boda, Ceremonia",
+    "personas": "Esteve, Laura, Albert"
+  },
+  "fotoFav94": {
+    "idDesc": "fotoFav94",
+    "id": "favoritos/fotoFav94.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, primos, cosins",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav93": {
+    "idDesc": "fotoFav93",
+    "id": "favoritos/fotoFav93.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Escoleta Llumenetes",
+    "categoria": "niños, xiquets, primos, cosins",
+    "personas": "Marina"
+  },
+  "fotoFav92": {
+    "idDesc": "fotoFav92",
+    "id": "favoritos/fotoFav92.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, Casa",
+    "categoria": "niños, xiquets, primos, cosins",
+    "personas": "Mateu, Gerard, Marina"
+  },
   "fotoFav91": {
     "idDesc": "fotoFav91",
     "id": "favoritos/fotoFav91.jpg",

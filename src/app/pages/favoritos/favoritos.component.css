@@ -78,10 +78,6 @@
   margin-right: 0px;
 }
 
-#myInput {
-  width: 350px !important;
-}
-
 #busquedaForm {
   display: inline-flex !important;
   width: 100% !important;
@@ -105,12 +101,6 @@
   text-align: center;
 }
 
-/* .foto{
-    border-radius: 15px;
-    background: transparent !important;
-    border-color: transparent !important;
-} */
-
 .iconoFlecha {
   width: 30px;
   height: 30px;
@@ -131,14 +121,6 @@ div.gallery:hover {
 div.gallery img {
   width: 100%;
   height: auto;
-  /* border-radius: 15px; */
-  /* background: transparent !important;
-    border-color: transparent !important; */
-}
-
-div.desc {
-  padding: 0px;
-  text-align: center;
 }
 
 * {

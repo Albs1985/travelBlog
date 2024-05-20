@@ -241,6 +241,10 @@
     "16": {
       "frase": "Huevos de Pacsua",
       "explicacion": "Huevos de Pascua"
+    },
+    "17": {
+      "frase": "Chuvasquero",
+      "explicacion": "Así llamada Mateu a su equipaje de basket"
     }
   },
   "relatoAlbaiAlbert": {
@@ -387,7 +391,7 @@
     "apodos": "Apodos",
     "recetas": "Recetas",
     "iaiaAna": "Historia de la Yaya Ana",
-    "bodaEsteve": "Boda Esteve y Laura"
+    "bodaEsteve": "Discurso boda Esteve y Laura"
   },
   "categoria": {
     "Nieve": "Nieve",
@@ -549,7 +553,16 @@
     "fotoFav97": "Marina en la escoleta Llumenetes",
     "fotoFav98": "Albert e hijos jugando en casa",
     "fotoFav99": "Mateu en su primer día de piragua",
-    "fotoFav100": "Comida el día antes de la boda de Estve y Laura con los testigos"
+    "fotoFav100": "Comida el día antes de la boda de Estve y Laura con los testigos",
+    "fotoFav101": "Albert emocionado con sus hijos bien equipados para las finales NBA 2024",
+    "fotoFav102": "Disfrutando de un día en familia en Gilet, después de comer en el Restaurente El Reino",
+    "fotoFav103": "Disfrutando de un día en familia en Gilet, después de comer en el Restaurente El Reino",
+    "fotoFav104": "Marina bien vestida para el día del granjero en la escoleta",
+    "fotoFav105": "La feliz pareja disfrutando del regalo de Albert, el Spa.",
+    "fotoFav106": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav107": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav108": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav109": "39 Cumpleaños de Alba, en casa en familia, como siempre"
   },
   "recetas": {
     "6": {
@@ -680,12 +693,17 @@
     "bloque6_parrafo2": "El domingo por la mañana llegaba la actividad estrella: piragua en familia. Albert tenía ganas de subirse a una (e incluso del baño en el embalse) junto a Mateu, que disfrutó como un enano acompañado de su padre, que remaba cual profesional.",
     "bloque7_parrafo1": "Al medio día tenían incluida la comida, que fue paella, ensalada césar y sepia, bien buena. Al acabar tenían programado volver rápido para aprovechar las siestas de los niños.",
     "bloque7_parrafo2": "Sin duda, un viaje de fin de semana muy provechoso y disfrutón. Volverían a repetir el año siguiente (y quien sabe si antes también).",
-    "descPrincipal": "Desde una esquina del albergue, único punto de cobertura del lugar",
+    "descPrincipal": "Vista desde la presa",
     "descFoto1": "Durante la excursión, toda la colla del Barranquet",
-    "descFoto2": "Durante la excursión, toda la colla del Barranquet",
+    "descFoto2": "Mateu en las camas elásticas, en lugar de hacer el 'pi a pi'",
     "descFoto3": "Día de canoas, padre e hijo",
     "descFoto4": "Día de canoas, padre e hijo",
-    "descFoto5": "Vistas durante el paseo por la montaña"
+    "descFoto5": "Vistas durante el paseo por la montaña",
+    "descFoto6": "Recorrido del 'pi a pi' de los pequeños",
+    "descFoto7": "Mateu desde la ventana de la habitación",
+    "descFoto8": "Recorrido del 'pi a pi' de los pequeños",
+    "descFoto9": "Recorrido del 'pi a pi' de los pequeños",
+    "descFoto10": "Mateu Serrador y Pau Pardo desde el patio del albergue"
   },
   "2024-04-02": {
     "tituloParte1": "De vuelta a la carretera",

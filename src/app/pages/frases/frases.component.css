@@ -1,33 +1,3 @@
-/* .authLogin {
-  margin-left: 35px;
-  justify-content: center;
-
-} */
-
-.divAka {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-}
-/* h4 {
-  text-align: center;
-} */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  margin-bottom: 10px;
-}
-.nombre {
-  font-weight: bold;
-}
-.apodos {
-  margin-left: 20px;
-  color: #666;
-}
-
 .tituloFrases {
   margin-left: 25px;
 }
@@ -58,12 +28,6 @@ li {
   border-radius: 15px;
 }
 
-.iconoApodo {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-}
-
 .spinner {
   width: 40px;
   height: 40px;
@@ -84,8 +48,6 @@ li {
 .bloqueFrase {
   margin-left: 25px;
   margin-right: 25px;
-  /* border-radius: 25px;
-  box-shadow: 0px 5px 5px 5px #888888; */
 }
 
 .letraExplicacion {
@@ -132,10 +94,6 @@ li {
   margin-left: 35px;
   margin-right: 0px;
   margin-top: -40px;
-}
-
-#myInput {
-  width: 350px !important;
 }
 
 #busquedaForm {

@@ -79,32 +79,6 @@
   margin-bottom: 20px;
   position: relative;
 }
-/*
-.leyenda {
-  padding: 25px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.leyenda-item {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.leyenda-color {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 5px;
-  border-color: black;
-}
-
-.leyenda-texto {
-  font-size: 10px;
-} */
 
 .tooltip {
   background-color: rgb(255, 228, 177);
@@ -114,14 +88,6 @@
   position: absolute;
   z-index: 9998;
   opacity: 1;
-}
-
-.buttonTooltip {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  z-index: 9999;
 }
 
 .buttonCentrar {

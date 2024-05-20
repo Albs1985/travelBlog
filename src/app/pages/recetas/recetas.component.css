@@ -81,29 +81,12 @@ li {
   margin-right: 25px;
 }
 
-.letraExplicacion {
-  font-size: small;
-  margin-left: 25px;
-}
-
 .recetaTitulo {
   margin-left: 25px;
 }
 
 .recetaTituloIngred {
   margin-left: 50px;
-}
-
-.paginacion {
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-  margin-left: -25px;
-}
-
-.my-pagination ::ng-deep .ngx-pagination .current {
-  background: rgb(247, 200, 115);
-  border-radius: 15px;
 }
 
 .my-pagination ::ng-deep .ngx-pagination :hover {
