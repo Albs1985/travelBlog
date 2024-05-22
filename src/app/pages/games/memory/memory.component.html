@@ -1,15 +1,3 @@
-<!-- <br>
-<h2 class="tituloJuego">
-    <img src="assets/icons/juegos.png" alt="" class="iconosImgFav animated rollIn">
-  {{ 'app.juegosTitulo' | translate }}
-</h2>
-<h3 class="subTituloJuego">
-    <img src="assets/icons/consola.png" alt="" class="iconosImgFav animated rollIn">
-  {{ 'app.juegosSubtitulo1' | translate }}
-</h3>
-<h4 class="subTituloJuego">
-    {{ 'app.juegosSubtitulo2' | translate }}
-</h4> -->
 <br>
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
@@ -81,7 +69,7 @@
   <br>
   <button  class="btnStart" (click)="startGame()">{{ 'app.startGame' | translate }}</button>
   <br><br>
-  <label class="tituloJuego" *ngIf="(this.jugadorInicialNoSeleccionado | async) === true">{{ 'app.selectPlayer' | translate }}</label>
+  <label class="titulo" *ngIf="(this.jugadorInicialNoSeleccionado | async) === true">{{ 'app.selectPlayer' | translate }}</label>
 </div>
 
 <div *ngIf="(this.inicioDelJuego | async) === true" class="memory-game-container">

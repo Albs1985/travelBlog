@@ -1,41 +1,12 @@
-.dobleFotos {
-  width: 25%;
-  height: 25%;
-  display: table-cell;
-  padding: 5px;
-}
-
 .centrarTexto {
   text-align: center;
 }
 
-.divVolver {
-  text-align: left;
-  margin-top: 0px;
-  margin-left: 15px;
-  margin-bottom: 25px;
-  cursor: pointer;
-}
-.divRight {
+.divRight2 {
   float: right;
   margin-right: 5px;
   margin-bottom: 15px;
   font-size: 14px !important;
-  cursor: pointer;
-}
-
-.divLeft {
-  float: left;
-  margin-left: 5px;
-  font-size: 14px !important;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
   cursor: pointer;
 }
 
@@ -45,26 +16,6 @@
   padding: 5px;
   /* border-radius: 15px; */
   cursor: pointer;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.25, 1.25, 1.25);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
 }
 
 .icon {

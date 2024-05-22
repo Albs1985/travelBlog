@@ -2,7 +2,7 @@
   font-size: 34px;
 }
 
-.divRight {
+.divRight3 {
   float: right;
   margin-right: 15px;
   margin-top: 0px;
@@ -14,23 +14,13 @@
   font-size: 26px !important;
   margin-right: 25px !important;
 }
-/* .fh5co-post-entry article {
-    display: inline-block !important;
-} */
 .img-responsive {
-  /*display: block !important;
-  */ /*max-width: 100% !important;
-  */ /*height: auto !important;
-  */ /*width:;
-  -webkit-fill-availableERROR!!NO FUNCIONA EN IPHONE*/
   width: auto !important;
   margin: 15px !important;
   border-radius: 15px !important;
   box-shadow: 5px 10px 8px #888888;
 }
 .img-responsiveAnyo {
-  /* display: block !important; */
-  /* max-width: 100% !important; */
   height: auto !important;
 }
 
@@ -56,7 +46,7 @@
   border-radius: 5px;
 }
 
-.iconosImg {
+.iconosImg4 {
   padding: 2px;
   width: 40px;
   height: 40px;
@@ -65,75 +55,10 @@
   margin-top: -10px;
 }
 
-.tituloOrdenar {
-  justify-content: space-between;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-}
-
 .iconoFlechaPeque {
   width: 25px;
   height: 25px;
   padding: 5px;
   background-color: rgba(247, 200, 115, 0.6);
   border-radius: 15px;
-}
-
-.botonOrdenar {
-  background: transparent;
-  border-color: transparent;
-  font-size: 16px;
-  margin-left: 20px;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  animation: spin 1s linear infinite;
-}
-
-.spinner-container {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Ajusta la altura del contenedor según necesites */
-  width: 50vh;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.25, 1.25, 1.25);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
 }

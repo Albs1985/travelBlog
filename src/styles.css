@@ -1,181 +1,387 @@
+/*DE TODA LA APLICACIÓN*/
+
+.centerText {
+  text-align: center;
+}
+
+.botonOrdenar {
+  background: transparent;
+  border-color: transparent;
+  font-size: 16px;
+  margin-left: 20px;
+}
+
+.fotosPerfiles {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.dobleFotos {
+  width: 25%;
+  height: 25%;
+  display: table-cell;
+  padding: 5px;
+}
+
+.paginacion {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin-left: -25px;
+}
+
+.titulo {
+  margin-left: 25px;
+}
+
+.subTitulo {
+  margin-left: 50px;
+  margin-right: 15px;
+}
+
+.tituloOrdenar {
+  justify-content: space-between;
+}
+
+.divLeft {
+  float: left;
+  margin-left: 5px;
+  font-size: 14px !important;
+}
+
+.divRight {
+  float: right;
+  margin-right: 25px;
+}
+.divVolver {
+  text-align: left;
+  margin-top: 0px;
+  margin-left: 15px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.iconosImgFav {
+  padding: 0px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  margin-top: -10px;
+}
+
+.iconoFlecha {
+  width: 30px !important;
+  height: 30px !important;
+  padding: 5px !important;
+  background-color: rgb(247, 200, 115);
+  border-radius: 15px !important;
+  cursor: pointer !important;
+}
+
+.iconosImg {
+  padding: 2px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ajusta la altura del contenedor según necesites */
+  width: 50vh;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse !important;
+  animation-timing-function: ease-in-out !important;
+  animation-iteration-count: infinite !important;
+  animation-duration: 2s !important;
+}
+
+/*PARA LOS JUEGOS*/
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.winnerMessage {
+  text-align: center;
+  position: relative;
+  z-index: 10000;
+}
+.winnerLabel {
+  font-size: 2em;
+  color: rgb(247, 200, 115);
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.btnRestart {
+  background: transparent;
+  border-radius: 30px;
+  border: 4px solid rgb(33, 33, 33);
+  background-color: rgb(255, 228, 177);
+}
+.mueveIconos {
+  position: relative;
+  animation-name: mueveIconosPorPantalla;
+  animation-delay: 1s;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes mueveIconosPorPantalla {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 30%;
+    top: 0px;
+  }
+  50% {
+    left: 0px;
+    top: 0px;
+  }
+  75% {
+    left: -30%;
+    top: 0px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
 
 /* Para todas las animaciones*/
 .animated {
-    -webkit-animation-duration: 5s;
-    animation-duration: 5s;    
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 /***********************************fadeIn*************************************/
 
 @-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 .fadeIn {
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
 }
 
 /***********************************fadeInDown*************************************/
 
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translate3d(0, -100%, 0);
-    }
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
 
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .fadeInDown {
-    animation-name: fadeInDown;
+  animation-name: fadeInDown;
 }
 
 /***********************************bounceInRight*************************************/
 @keyframes bounceInRight {
-    from,
-    60%,
-    75%,
-    90%,
-    to {
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
 
-    from {
-        opacity: 0;
-        transform: translate3d(3000px, 0, 0) scaleX(3);
-    }
+  from {
+    opacity: 0;
+    transform: translate3d(3000px, 0, 0) scaleX(3);
+  }
 
-    60% {
-        opacity: 1;
-        transform: translate3d(-25px, 0, 0) scaleX(1);
-    }
+  60% {
+    opacity: 1;
+    transform: translate3d(-25px, 0, 0) scaleX(1);
+  }
 
-    75% {
-        transform: translate3d(10px, 0, 0) scaleX(0.98);
-    }
+  75% {
+    transform: translate3d(10px, 0, 0) scaleX(0.98);
+  }
 
-    90% {
-        transform: translate3d(-5px, 0, 0) scaleX(0.995);
-    }
+  90% {
+    transform: translate3d(-5px, 0, 0) scaleX(0.995);
+  }
 
-    to {
-        transform: translate3d(0, 0, 0);
-    }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
-  
+
 .bounceInRight {
-    animation-name: bounceInRight;
+  animation-name: bounceInRight;
 }
 
 /***********************************rollIn*************************************/
 
 @keyframes rollIn {
-from {
+  from {
     opacity: 0;
     transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);
-}
+  }
 
-to {
+  to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-}
+  }
 }
 
 .rollIn {
-animation-name: rollIn;
+  animation-name: rollIn;
 }
 
 /***********************************bounceInUp*************************************/
 
 @keyframes bounceInUp {
-from,
-60%,
-75%,
-90%,
-to {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-}
+  }
 
-from {
+  from {
     opacity: 0;
     transform: translate3d(0, 3000px, 0) scaleY(5);
-}
+  }
 
-60% {
+  60% {
     opacity: 1;
     transform: translate3d(0, -20px, 0) scaleY(0.9);
-}
+  }
 
-75% {
+  75% {
     transform: translate3d(0, 10px, 0) scaleY(0.95);
-}
+  }
 
-90% {
+  90% {
     transform: translate3d(0, -5px, 0) scaleY(0.985);
-}
+  }
 
-to {
+  to {
     transform: translate3d(0, 0, 0);
-}
+  }
 }
 
 .bounceInUp {
-    animation-name: bounceInUp;
+  animation-name: bounceInUp;
 }
-
 
 /***********************************zoomInDown*************************************/
 @keyframes zoomInDown {
-    from {
-      opacity: 0;
-      transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
-      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
-  
-    60% {
-      opacity: 1;
-      transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
-      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-    }
-  }
-  
-  .zoomInDown {
-    animation-name: zoomInDown;
+  from {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
 
+  60% {
+    opacity: 1;
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+
+.zoomInDown {
+  animation-name: zoomInDown;
+}
+
 /***********************************fadeInDownBig*************************************/
-  @keyframes fadeInDownBig {
-    from {
-      opacity: 0;
-      transform: translate3d(0, -2000px, 0);
-    }
-  
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+@keyframes fadeInDownBig {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
   }
-  
-  .fadeInDownBig {
-    animation-name: fadeInDownBig;
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
+}
+
+.fadeInDownBig {
+  animation-name: fadeInDownBig;
+}

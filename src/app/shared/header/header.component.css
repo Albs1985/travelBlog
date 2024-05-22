@@ -1,41 +1,15 @@
-.idiomas {
-  justify-content: space-between !important;
-  display: inline-block !important;
-}
-
 .idioma {
   background: transparent;
   border-color: transparent;
 }
 
-.textoEnImagen {
-  position: absolute;
-  bottom: 15px; /* Ajusta la posición vertical */
-  right: 15px; /* Ajusta la posición horizontal */
-  color: rgba(255, 255, 255, 0.6); /* Color del texto */
-  font-size: 16px; /* Tamaño de fuente */
-  background-color: rgba(0, 0, 0, 0.4); /*Color de fondo del texto*/
-  padding: 5px; /* Espacio interno del texto */
-  cursor: pointer;
-  border-radius: 5px;
-}
-
 .imagenPerfil {
   margin-top: -15px;
-  /*margin-right: 10px;
-  */
   width: 100%;
   height: 40%;
   align-self: center;
   border-radius: 5px;
   box-shadow: 5px 10px 8px #888888;
-  /*float: right;
-  */
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 
 .margenTop {
@@ -46,8 +20,6 @@
   width: 30px;
   height: 30px;
   padding: 1px;
-  /* background-color : rgb(247, 200, 115); */
-  /* border-radius: 15px; */
   cursor: pointer;
 }
 
@@ -73,7 +45,6 @@
 }
 
 .seleccionado {
-  /* border: 10px solid transparent; */ /*PARA HACER LA IMAGEN MÁS PEQUEÑA, LA QUE ESTÉ SELECCIONADA*/
   border-radius: 30px;
   border: 2px solid grey;
   background-color: rgb(255, 228, 177);
@@ -81,19 +52,10 @@
 
 .disabled-button {
   pointer-events: none;
-  opacity: 0.5; /* Puedes ajustar este valor para cambiar la opacidad */
+  opacity: 0.5;
 }
 
-.iconosImg {
-  padding: 2px;
-  width: 30px;
-  height: 30px;
-  align-self: center;
-  cursor: pointer;
-  margin-top: -5px;
-}
-
-.iconosImgFav {
+.iconosImgFav6 {
   padding: 0px;
   width: 30px;
   height: 30px;
@@ -131,24 +93,10 @@
   margin-top: -30px;
 }
 
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
 .pulse {
   animation-name: pulse;
-  animation-timing-function: linear;
-  animation-iteration-count: 2;
+  animation-timing-function: linear !important;
+  animation-iteration-count: 2 !important;
 }
 
 @keyframes pulseInfinito {
