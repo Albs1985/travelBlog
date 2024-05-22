@@ -44,7 +44,7 @@
   </div>
   <br>
 
-  <h3 class="center">
+  <h3 class="centerText">
     {{'app.categoriaRecetas' | translate}}
   </h3>
   <div class="cuerpoImagenes">
@@ -57,7 +57,7 @@
       <div *ngIf="this.categoria !== 'dulce'" class="separaImagen"><a class="js-fh5co-close-offcanvas" (click)="buscarRecetas('dulce')"><img src="assets/icons/pastel.png" alt="postre" class="icon animated fadeIn pulse"></a></div>
     </div>
   </div>
-  <h3 class="center">
+  <h3 class="centerText">
     <div *ngIf="this.categoria === 'frio'" class="letraPequenya">{{'app.recetas' | translate}} <b>{{'app.categoriaFrio' | translate}}</b></div>
     <div *ngIf="this.categoria === 'caliente'" class="letraPequenya">{{'app.recetas' | translate}} <b>{{'app.categoriaCaliente' | translate}}</b></div>
     <div *ngIf="this.categoria === 'dulce'" class="letraPequenya">{{'app.recetas' | translate}} <b>{{'app.categoriaDulce' | translate}}</b></div>
@@ -80,7 +80,7 @@
   </div>
 
   <figure *ngIf="this.recetaMostrada.id > 0 ">
-    <div class="center">
+    <div class="centerText">
       <h2 class="titulo">{{'recetas.'+recetaMostrada.id+'.nombre' | translate}}</h2>
       <img *ngIf="recetaMostrada.categoria.indexOf('frio') >= 0" src="assets/icons/ingrediente.png" alt="frio" class="iconosCategoria animated rollIn">
       <img *ngIf="recetaMostrada.categoria.indexOf('caliente') >= 0" src="assets/icons/frito.png" alt="caliente" class="iconosCategoria animated rollIn">
@@ -119,12 +119,12 @@
       </div>
     </blockquote>
 
-    <div class="center">
+    <div class="centerText">
       <blockquote>
         <h3>{{ 'app.pasos' | translate}}</h3>
         <div *ngFor="let paso of recetaMostrada.numPasos" class="bloqueReceta">
           <ul class="pasos">
-            <h4 class="center">{{paso}}</h4>
+            <h4 class="centerText">{{paso}}</h4>
             <li>&nbsp;{{ 'recetas.'+recetaMostrada.id+'.paso'+paso | translate}}</li>
           </ul>
         </div>

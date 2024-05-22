@@ -48,7 +48,7 @@
     <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
   </div>
 
-  <div *ngFor="let dibujo of servicioDibujos.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase">
+  <div *ngFor="let dibujo of servicioDibujos.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase animated zoomInDown">
     <!-- <h4 class="dibujoPersona">{{dibujo.persona}} ({{dibujo.anyo}})</h4> -->
     <div class="gallery">
       <a target="_blank" href="assets/images/dibujos/dibujo{{dibujo.id}}.jpg">
@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <div class="center">
+  <div class="centerText">
     <span *ngIf="servicioDibujos.dibujos.length == 0"> {{ 'app.sinResultados' | translate}}</span>
   </div>
 
