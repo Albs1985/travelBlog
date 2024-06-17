@@ -5,4 +5,5 @@ export interface Viajero{
     aka: string[];
     fotoPerfil: string;
     edad : number;
+    info: string;
 }

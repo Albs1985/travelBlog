@@ -21,7 +21,8 @@ export class ViajerosService {
     nombreCorto : '',
     aka: [],
     fotoPerfil : '',
-    edad : 0
+    edad : 0,
+    info: ''
   }
 
   constructor(private http: HttpClient) {
@@ -50,13 +51,15 @@ export class ViajerosService {
               nombreCorto : '',
               aka: [],
               fotoPerfil : '',
-              edad : 0
+              edad : 0,
+              info: ''
             };
             this.viajero.nacimiento = response[key].nacimiento;
             this.viajero.nombreCompleto = response[key].nombreCompleto;
             this.viajero.nombreCorto = response[key].nombreCorto;
             this.viajero.fotoPerfil = response[key].fotoPerfil;
             this.viajero.aka = response[key].aka;
+            this.viajero.info = response[key].info;
 
             //Cálculo de la edad en años
             let date = new Date(response[key].nacimiento);

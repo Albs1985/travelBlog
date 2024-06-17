@@ -588,5 +588,15 @@
     "año": 2024,
     "descripcion": "Embalse de Benageber. Salida con el Barranquet",
     "pais": "España"
+  },
+  {
+    "coordinates": [
+      -1.081358,
+      40.332793
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2024,
+    "descripcion": "Dinopolis, Teruel",
+    "pais": "España"
   }
 ]

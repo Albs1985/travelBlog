@@ -562,7 +562,9 @@
     "fotoFav106": "39 Aniversari d'Alba, a casa en família, com sempre",
     "fotoFav107": "39 Aniversari d'Alba, a casa en família, com sempre",
     "fotoFav108": "39 Aniversari d'Alba, a casa en família, com sempre",
-    "fotoFav109": "39 Aniversari d'Alba, a casa en família, com sempre"
+    "fotoFav109": "39 Aniversari d'Alba, a casa en família, com sempre",
+    "fotoFav110": "Mateu i Gerard, comentaristes d'ocasió en un partit de xiquets",
+    "fotoFav111": "Aniversari de la tia Carmen i Albert"
   },
   "recetas": {
     "6": {
@@ -668,6 +670,42 @@
       "paso3": "Deixem 10 minuts coent perquè s'evapore l'alcohol del vi, i afegim el caldo de carn reservat. Cuinem durant 30 minuts en la cassola tapada, li donem la volta a les peces de carn i cuinem durant 20 minutos més. Comprovem la tendresa de les galtes i deixem que es reduïsca la salsa durant 15 minuts més, ara amb l'olla destapada. Retirem les galtes i passem la salsa pel passapuré.",
       "paso4": "Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."
     }
+  },
+  "2024-06-15": {
+    "tituloParte1": "Jurassic Park",
+    "bloque1_parrafo1": "Escapada ràpida d'un dia al parc d'atraccions Dinopolis. Després d'un divendres de festa de comiat en el col·le de Mateu, amb molta diversió i una mala gestió dels temps per part dels seus pares, que els haguera agradat quedar-se a sopar, però no anaven preparats. Així, arrancaven un dissabte emocionant cap a Dinopolis. Allí ja els estaven esperant els oncles Blai i Marta, i el cosí Gerard.",
+    "bloque1_parrafo2": "Les sorpreses anaven a començar, amb l'aparició d'un velociraptor baixant pel camí. Mateu es va quedar de pedra, si bé encara confús, no va tindre por. Van passar a la cantina per a un esmorzar que no semblava arribar mai. No sembla que tinguen moltes taules en l'hostaleria.",
+    "bloque1_parrafo3": "Després van voler provar la Mar Juràsica, una experiència pel fons marí que no anaven a oblidar fàcilment. Un simulador de submarí els va fer creure que un calamar gegant anava a trencar la cabina i anaven a ser devorats. Per sort, i amb molta por, van eixir del submarí i van passejar pel fons marí. Una atracció molt ben ambientada, però que amb la por en el cos, Mateu no volia ser allí. I és que la volta tampoc anava a ser fàcil. Havien de tornar a pujar al submarí, però esta vegada anava a ser un volcà el que anava a destruir-los. Els plors dels xiquets es van apoderar de l'ambient.",
+    "nota1": "Revisa les edats de les atraccions, algunes no seran aptes per als teus xiquets",
+    "cita1": "“Repetiiiimoooosss”",
+    "personaCita1": "— Mateu i Gerard en acabar en el troncomovil",
+    "bloque2_parrafo1": "Encara anaven a seguir les emocions, amb una atracció de viatge amb barca, a la qual Mateu, Alba i Marina ja no van voler pujar. No estaven preparats per a tantes emocions seguides.",
+    "bloque2_parrafo2": "Després d'estes aventures, van pensar que un menjar i jocs d'arena podrien llevar-los el mal cos, i així va ser durant una estona. Després van voler seguir la dinàmica infantil i van anar a la fira, al dinoPark, on van poder gaudir els xiquets d'una zona per a ells, amb trenet de troncs, tobogans i altres atraccions aptes per a ells.",
+    "bloque2_parrafo3": "Abans de marxar, volien veure alguna cosa més, i mentres els adults anaven a un simulador 4D, els xiquets van poder fer un recorregut amb tren, una cosa sinistra però menys intens que el submarí.",
+    "bloque3_parrafo1": "",
+    "bloque3_parrafo2": "Per a acabar el dia teníen reservat uns apartaments genials a Terol, a 5 minuts del parc, on van compartir dos pisos enormes amb terrassa i portes obertes fent dels dos pisos un només.",
+    "bloque3_parrafo3": "",
+    "tituloParte2": "",
+    "bloque4_parrafo1": "Al matí següent van anar a recórrer Terol, una bonica ciutat amb aires àrabs, construccions boniques que feien recordar a una altra zona d'Espanya, Al-Andalus. Una mescla de Puertomingalvo i Còrdova.",
+    "bloque4_parrafo2": "Després d'un menjar copiós, encaraven la tornada a casa, on els esperava una vesprada de visites, com la de Julen i Mikel, per a entregar una mà del regal de la profe Paula, i Jordi, per a arreplegar el cotxe que havía deixat a Albert la nit del divendres, per a quedar-se ell de festa i Albert tornar a casa després del concert de reggae de la sala Matisse.",
+    "bloque4_parrafo3": "",
+    "bloque5_parrafo1": "",
+    "bloque5_parrafo2": "",
+    "bloque6_parrafo1": "",
+    "bloque6_parrafo2": "",
+    "bloque7_parrafo1": "",
+    "bloque7_parrafo2": "",
+    "descPrincipal": "Descobrint els dinosaures a grandària real",
+    "descFoto1": "A l'ombra del diplodocus",
+    "descFoto2": "La família Serrador Casares, sobre l'ardent dinosaure",
+    "descFoto3": "El Velociraptor que els va rebre en arribar, acompanyat de la seua cria i cuidadora",
+    "descFoto4": "Mateu i Gerard en el troncomovil",
+    "descFoto5": "Els xiquets muntats en els pequeSaurios",
+    "descFoto6": "La família Serrador Castilla (i Mateu)",
+    "descFoto7": "Mateu i Gerard en el troncomovil, una altra vegada",
+    "descFoto8": "Mateu i Gerard jugant amb el dinosaure",
+    "descFoto9": "En la plaça del Torico, Teruel",
+    "descFoto10": "Gerard jugant amb Marina"
   },
   "2024-05-03": {
     "tituloParte1": "De viatge amb el col·le",

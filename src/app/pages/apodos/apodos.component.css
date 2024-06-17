@@ -15,6 +15,11 @@ li {
 .nombre {
   font-weight: bold;
 }
+
+.info {
+  font-style: italic;
+}
+
 .apodos {
   margin-left: 20px;
   color: #666;

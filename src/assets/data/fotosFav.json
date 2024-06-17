@@ -1,4 +1,20 @@
 {
+  "fotoFav111": {
+    "idDesc": "fotoFav111",
+    "id": "favoritos/fotoFav111.jpg",
+    "anyo": "2024",
+    "lugar": "La Cañada, Club La Vallesa",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Albert, Alba, Marina, Mateu, Iaio Pepe, Iaia Ana, Blai, Marta, Gerard, Raul, Biel, Eric, Tia Carmen, Tere"
+  },
+  "fotoFav110": {
+    "idDesc": "fotoFav110",
+    "id": "favoritos/fotoFav110.jpg",
+    "anyo": "2024",
+    "lugar": "La Cañada, Club La Vallesa",
+    "categoria": "aniversari, cumpleaños",
+    "personas": "Mateu, Gerard"
+  },
   "fotoFav109": {
     "idDesc": "fotoFav109",
     "id": "favoritos/fotoFav109.jpg",

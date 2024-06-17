@@ -562,7 +562,9 @@
     "fotoFav106": "39 Cumpleaños de Alba, en casa en familia, como siempre",
     "fotoFav107": "39 Cumpleaños de Alba, en casa en familia, como siempre",
     "fotoFav108": "39 Cumpleaños de Alba, en casa en familia, como siempre",
-    "fotoFav109": "39 Cumpleaños de Alba, en casa en familia, como siempre"
+    "fotoFav109": "39 Cumpleaños de Alba, en casa en familia, como siempre",
+    "fotoFav110": "Mateu y Gerard, comentaristas de ocasión en un partido de niños",
+    "fotoFav111": "Cumpleaños de la tía Carmen y Albert"
   },
   "recetas": {
     "6": {
@@ -668,6 +670,42 @@
       "paso3": "Dejamos 10 minutos cociendo para que se evapore el alcohol del vino, y añadimos el caldo de carne reservado. Cocinamos durante 30 minutos en la cazuela tapada, le damos la vuelta a las piezas de carne y cocinamos durante 20 minutos más. Comprobamos la ternura de las carrilleras y dejamos que se reduzca la salsa durante 15 minutos más, ahora con la olla destapada. Retiramos las carrilleras y pasamos la salsa por el pasapuré.",
       "paso4": "Las carrilleras de ternera guisadas con vino tinto se sirven loncheadas y acompañadas de su salsa a la que podemos espolvorear un poco de perejil picado. Unas patatas nuevas semiasadas o puré de patata casero, es la guarnición ideal para este plato tradicional."
     }
+  },
+  "2024-06-15": {
+    "tituloParte1": "Jurassic Park",
+    "bloque1_parrafo1": "Escapada rápida de un día al parque de atracciones Dinopolis. Tras un viernes de fiesta de despedida en el cole de Mateu, con mucha diversión y una mala gestión de los tiempos por parte de sus padres, que les hubiera gustado quedarse a cenar, pero no iban preparados. Así, arrancaban un sábado emocionante hacia Dinopolis. Allí ya les estaban esperando los tíos Blai y Marta, y el primo Gerard.",
+    "bloque1_parrafo2": "Las sorpresas iban a empezar, con la aparición de un velociraptor bajando por el camino. Mateu se quedó de piedra, aunque todavía confuso, no tuvo miedo. Pasaron a la cantina para un almuerzo que no parecía llegar nunca. No parece que tengan muchas tablas en la hostelería.",
+    "bloque1_parrafo3": "Después quisieron probar el Mar Jurásico, una experiencia por el fondo marino que no iban a olvidar fácilmente. Un simulador de submarino les hizo creer que un calamar gigante iba a romper la cabina y iban a ser devorados. Por suerte, y con mucho miedo, salieron del submarino y pasearon por el fondo marino. Una atracción muy bien ambientada, pero que con el miedo en el cuerpo, Mateu no quería estar allí. Y es que la vuelta tampoco iba a ser fácil. Debían volver a subir al submarino, pero esta vez iba a ser un volcán el que iba a destruirlos. Los llantos de los niños se apoderaron del ambiente.",
+    "nota1": "Revisa las edades de las atracciones, algunas no serán aptas para tus niños",
+    "cita1": "“Repetiiiimoooosss”",
+    "personaCita1": "— Mateu y Gerard al terminar en el troncomovil",
+    "bloque2_parrafo1": "Todavía iban a seguir las emociones, con una atracción de viaje en barca, a la cual Mateu, Alba y Marina ya no quisieron subir. No estaban preparados para tantas emociones seguidas.",
+    "bloque2_parrafo2": "Después de estas aventuras, pensaron que una comida y juegos de arena podrían quitarles el mal cuerpo, y así fue durante un rato. Después quisieron seguir la dinámica infantil y fueron a la feria, al dinoPark, donde pudieron disfrutar los niños de una zona para ellos, con trenecito de troncos, toboganes y otras atracciones aptas para ellos.",
+    "bloque2_parrafo3": "Antes de marchar, querían ver algo más, y mientras los adultos iban a un simulador 4D, los niños pudieron hacer un recorrido en tren, algo siniestro pero menos intenso que el submarino.",
+    "bloque3_parrafo1": "",
+    "bloque3_parrafo2": "Para acabar el día tenian reservado unos apartamentos geniales en Teruel, a 5 minutos del parque, donde compartieron dos pisos enormes con terraza y puertas abiertas haciendo de los dos pisos uno solo.",
+    "bloque3_parrafo3": "",
+    "tituloParte2": "",
+    "bloque4_parrafo1": "A la mañana siguiente fueron a recorrer Teruel, una bonita ciudad con aires árabes, construcciones bonitas que hacían recordar a otra zona de España, Al-Andalus. Una mezcla de Puertomingalvo y Córdoba.",
+    "bloque4_parrafo2": "Tras una comida copiosa, encaraban la vuelta a casa, donde les esperaba una tarde de visitas, como la de Julen i Mikel, para entregar una mano del regalo de la profe Paula, y Jordi, para recoger el coche que había dejado a Albert la noche del viernes, para quedarse él de fiesta y Albert volver a casa después del concierto de reggae de la sala Matisse.",
+    "bloque4_parrafo3": "",
+    "bloque5_parrafo1": "",
+    "bloque5_parrafo2": "",
+    "bloque6_parrafo1": "",
+    "bloque6_parrafo2": "",
+    "bloque7_parrafo1": "",
+    "bloque7_parrafo2": "",
+    "descPrincipal": "Descubriendo los dinosaurios a tamaño real",
+    "descFoto1": "A la sombra del diplodocus",
+    "descFoto2": "La familia Serrador Casares, sobre el ardiente dinosaurio",
+    "descFoto3": "El Velociraptor que les recibió al llegar, acompañado de su cría y cuidadora",
+    "descFoto4": "Mateu y Gerard en el troncomovil",
+    "descFoto5": "Los niños montados en los pequeSaurios",
+    "descFoto6": "La familia Serrador Castilla (y Mateu)",
+    "descFoto7": "Mateu y Gerard en el troncomovil, otra vez",
+    "descFoto8": "Mateu y Gerard jugando con el dinosaurio",
+    "descFoto9": "En la plaza del Torico, Teruel",
+    "descFoto10": "Gerard jugando con Marina"
   },
   "2024-05-03": {
     "tituloParte1": "De viaje con el cole",

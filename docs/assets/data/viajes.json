@@ -9,7 +9,7 @@
       "pais": "España",
       "year": 2024,
       "idAnteriorViaje": "2024-04-02_Valle del Cabriel",
-      "idSiguienteViaje": "",
+      "idSiguienteViaje": "2024-06-15_Dinopolis",
       "precio": 270,
       "numFotos": 10,
       "identificadorFotos": "benageber",
@@ -67,6 +67,41 @@
       ],
       "mapaSrc": [
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.3697630600086!2d-1.3359233892353424!3d39.32520722123143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd67283195837c87%3A0x6b4a84f3a27cb484!2sCaba%C3%B1as%20y%20Bungalows%20Valle%20del%20Cabriel!5e0!3m2!1ses!2ses!4v1712657628508!5m2!1ses!2ses"
+      ]
+    },
+    "Dinopolis": {
+      "fechaInicio": "2024-06-15",
+      "fechaFin": "2024-06-16",
+      "categoria": "Ciudad",
+      "destino": "Dinopolis",
+      "provincia": "Teruel",
+      "pais": "España",
+      "year": 2024,
+      "idAnteriorViaje": "2024-04-02_Valle del Cabriel",
+      "idSiguienteViaje": "",
+      "precio": 110,
+      "numFotos": 10,
+      "identificadorFotos": "dinopolis",
+      "estancia": "Apartamentos Turísticos Vicotel",
+      "tipoEstancia": "Apartamento",
+      "transporte": [
+        "Coche"
+      ],
+      "personas": [
+        "Alba",
+        "Albert",
+        "Marina",
+        "Mateu",
+        "Marta",
+        "Blai",
+        "Gerard"
+      ],
+      "infoInteres": [
+        "https://www.dinopolis.com/",
+        "https://apartamentosvicotel.es/"
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1520.702084186928!2d-1.0809293!3d40.33337935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5e12a555555555%3A0x65777f966275c42c!2sDin%C3%B3polis!5e0!3m2!1ses!2ses!4v1718605079901!5m2!1ses!2ses"
       ]
     }
   },
