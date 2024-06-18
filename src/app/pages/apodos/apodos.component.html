@@ -35,7 +35,9 @@
       <div *ngFor="let viajero of viajerosService.viajerosLista">
         <li>
           <span class="nombre">{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'app.edad' | translate}})</span>
+          <br>
           <span class="info">{{viajero.info}}</span>
+          <br>
           <div *ngFor="let apodo of viajero.aka">
             <span class="apodos">{{apodo}}</span>
           </div>
