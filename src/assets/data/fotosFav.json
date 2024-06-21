@@ -1,4 +1,20 @@
 {
+  "fotoFav113": {
+    "idDesc": "fotoFav113",
+    "id": "favoritos/fotoFav113.jpg",
+    "anyo": "2024",
+    "lugar": "CEIP Colegi Barranquet",
+    "categoria": "niños, xiquets, cole, escola, clase, barranquet",
+    "personas": "Mateu, Bruno, Onai, Santi,..."
+  },
+  "fotoFav112": {
+    "idDesc": "fotoFav112",
+    "id": "favoritos/fotoFav112.jpg",
+    "anyo": "2024",
+    "lugar": "Teatro Principal, Valencia",
+    "categoria": "cine, estreno, broders, teatro, teatre",
+    "personas": "Albert, Esteve, Guillermo, Cartxo, Javi, Polo, Cándido, Gonzalo"
+  },
   "fotoFav111": {
     "idDesc": "fotoFav111",
     "id": "favoritos/fotoFav111.jpg",
