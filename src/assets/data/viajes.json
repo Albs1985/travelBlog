@@ -114,7 +114,7 @@
       "year": 2024,
       "idAnteriorViaje": "2024-04-02_Dinopolis",
       "idSiguienteViaje": "",
-      "precio": 1000,
+      "precio": 1030.33,
       "numFotos": 12,
       "identificadorFotos": "peniscola",
       "estancia": "Apartamento",
@@ -129,6 +129,8 @@
         "Mateu"
       ],
       "infoInteres": [
+        "https://magicmuseum.es/",
+        "https://www.toboganespeniscola.es/"
       ],
       "mapaSrc": [
         "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2377.24807633842!2d0.40985632135023387!3d40.383092370082366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1724424975736!5m2!1ses!2ses"
