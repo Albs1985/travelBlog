@@ -598,5 +598,15 @@
     "año": 2024,
     "descripcion": "Dinopolis, Teruel",
     "pais": "España"
+  },
+  {
+    "coordinates": [
+      0.409307,
+      40.383430
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2024,
+    "descripcion": "Peñíscola, Castellón",
+    "pais": "España"
   }
 ]
