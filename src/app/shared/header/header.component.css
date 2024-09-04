@@ -44,6 +44,15 @@
   margin-left: 30px;
 }
 
+.iconoCasa {
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  cursor: pointer;
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
 .seleccionado {
   border-radius: 30px;
   border: 2px solid grey;
