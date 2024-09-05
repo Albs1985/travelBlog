@@ -1,4 +1,52 @@
 {
+  "fotoFav142": {
+    "idDesc": "fotoFav142",
+    "id": "favoritos/fotoFav142.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav141": {
+    "idDesc": "fotoFav141",
+    "id": "favoritos/fotoFav141.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari",
+    "personas": "Mateu, Marina, Gerard, Emili"
+  },
+  "fotoFav140": {
+    "idDesc": "fotoFav140",
+    "id": "favoritos/fotoFav140.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari",
+    "personas": "Mateu, Alba, Albert, Matilde"
+  },
+  "fotoFav139": {
+    "idDesc": "fotoFav139",
+    "id": "favoritos/fotoFav139.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav138": {
+    "idDesc": "fotoFav138",
+    "id": "favoritos/fotoFav138.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Marcel"
+  },
+  "fotoFav137": {
+    "idDesc": "fotoFav137",
+    "id": "favoritos/fotoFav137.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari",
+    "personas": "Mateu"
+  },
   "fotoFav136": {
     "idDesc": "fotoFav136",
     "id": "favoritos/fotoFav136.jpg",
@@ -340,8 +388,8 @@
     "id": "favoritos/fotoFav94.jpg",
     "anyo": "2024",
     "lugar": "Burjassot, Casa",
-    "categoria": "niños, xiquets, primos, cosins",
-    "personas": "Mateu, Gerard"
+    "categoria": "niños, xiquets, germans, brothers, sisters",
+    "personas": "Mateu, Marina"
   },
   "fotoFav93": {
     "idDesc": "fotoFav93",
