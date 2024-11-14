@@ -1,7 +1,151 @@
 {
-  "fotoFav142": {
-    "idDesc": "fotoFav142",
-    "id": "favoritos/fotoFav142.jpg",
+  "fotoFav161": {
+    "idDesc": "fotoFav161",
+    "id": "favoritos/fotoFav161.jpg",
+    "anyo": "2024",
+    "lugar": "DinoExpo, Valencia",
+    "categoria": "niños, xiquets, dinosaures, dino, disaurio, jurassic",
+    "personas": "Mateu, Albert, Marina"
+  },
+  "fotoFav160": {
+    "idDesc": "fotoFav160",
+    "id": "favoritos/fotoFav160.jpg",
+    "anyo": "2024",
+    "lugar": "Calle, Burjassot",
+    "categoria": "niños, xiquets, iaios, iaio",
+    "personas": "Marina, Iaio Pepe"
+  },
+  "fotoFav159": {
+    "idDesc": "fotoFav159",
+    "id": "favoritos/fotoFav159.jpg",
+    "anyo": "2024",
+    "lugar": "Alborache",
+    "categoria": "niño, xiquet, muntaya, riu, montaña, rio",
+    "personas": "Mateu, Maria, María, Tieta"
+  },
+  "fotoFav158": {
+    "idDesc": "fotoFav158",
+    "id": "favoritos/fotoFav158.jpg",
+    "anyo": "2024",
+    "lugar": "Parc, Paterna",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Marina, Albert, Gerard"
+  },
+  "fotoFav157": {
+    "idDesc": "fotoFav157",
+    "id": "favoritos/fotoFav157.jpg",
+    "anyo": "2024",
+    "lugar": "Parc, Burjassot",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav156": {
+    "idDesc": "fotoFav156",
+    "id": "favoritos/fotoFav156.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Marina, Iaio Pepe, Gerard"
+  },
+  "fotoFav155": {
+    "idDesc": "fotoFav155",
+    "id": "favoritos/fotoFav155.jpg",
+    "anyo": "2024",
+    "lugar": "Ajuntament, Burjassot",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav154": {
+    "idDesc": "fotoFav154",
+    "id": "favoritos/fotoFav154.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Gerard"
+  },
+  "fotoFav153": {
+    "idDesc": "fotoFav153",
+    "id": "favoritos/fotoFav153.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav152": {
+    "idDesc": "fotoFav152",
+    "id": "favoritos/fotoFav152.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav151": {
+    "idDesc": "fotoFav151",
+    "id": "favoritos/fotoFav151.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav150": {
+    "idDesc": "fotoFav150",
+    "id": "favoritos/fotoFav150.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav149": {
+    "idDesc": "fotoFav149",
+    "id": "favoritos/fotoFav149.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav148": {
+    "idDesc": "fotoFav148",
+    "id": "favoritos/fotoFav148.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav147": {
+    "idDesc": "fotoFav147",
+    "id": "favoritos/fotoFav147.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav146": {
+    "idDesc": "fotoFav146",
+    "id": "favoritos/fotoFav146.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav145": {
+    "idDesc": "fotoFav145",
+    "id": "favoritos/fotoFav145.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav144": {
+    "idDesc": "fotoFav144",
+    "id": "favoritos/fotoFav144.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
+    "personas": "Mateu, Iaio Pepe, Gerard"
+  },
+  "fotoFav143": {
+    "idDesc": "fotoFav143",
+    "id": "favoritos/fotoFav143.jpg",
     "anyo": "2024",
     "lugar": "Casa, Burjassot",
     "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",

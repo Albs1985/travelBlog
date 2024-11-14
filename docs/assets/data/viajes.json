@@ -113,7 +113,7 @@
       "pais": "España",
       "year": 2024,
       "idAnteriorViaje": "2024-04-02_Dinopolis",
-      "idSiguienteViaje": "",
+      "idSiguienteViaje": "2024-10-04_Formentera",
       "precio": 1030.33,
       "numFotos": 12,
       "identificadorFotos": "peniscola",
@@ -134,6 +134,36 @@
       ],
       "mapaSrc": [
         "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2377.24807633842!2d0.40985632135023387!3d40.383092370082366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1724424975736!5m2!1ses!2ses"
+      ]
+    },
+    "Formentera (Boda Sarita i Martín)": {
+      "fechaInicio": "2024-10-04",
+      "fechaFin": "2024-10-06",
+      "categoria": "Playa",
+      "destino": "Formentera",
+      "provincia": "Illes Balears",
+      "pais": "España",
+      "year": 2024,
+      "idAnteriorViaje": "2024-08-05_Peñíscola",
+      "idSiguienteViaje": "",
+      "precio": 270,
+      "numFotos": 9,
+      "identificadorFotos": "formentera",
+      "estancia": "Casa Sarita",
+      "tipoEstancia": "Casa",
+      "transporte": [
+        "Coche",
+        "Avion",
+        "Barca"
+      ],
+      "personas": [
+        "Alba",
+        "Albert"
+      ],
+      "infoInteres": [
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188.52946004650207!2d1.4741069042895412!3d38.69996895755279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12995ef31614f4a1%3A0xdad4b4abfd2d9b54!2sCala%20en%20Baster!5e1!3m2!1ses!2ses!4v1731600087010!5m2!1ses!2ses"
       ]
     }
 

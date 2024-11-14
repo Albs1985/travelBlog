@@ -175,6 +175,18 @@
     },
     "8": {
       "detalle": "Dibuix del viatge dels iaios a veure les aurores boreals, 1r Infantil"
+    },
+    "9": {
+      "detalle": "Dibuix de la mama del panel d'anuncis de la seua clase de 4 anys"
+    },
+    "10": {
+      "detalle": "Dibuixant a casa"
+    },
+    "11": {
+      "detalle": "Dibuixant a  casa"
+    },
+    "12": {
+      "detalle": "Dibuixant a casa"
     }
   },
   "frases": {
@@ -261,6 +273,14 @@
     "21": {
       "frase": "Toarreta",
       "explicacion": "Torradeta (de pà)"
+    },
+    "22": {
+      "frase": "¡¡Familia para todos!!",
+      "explicacion": "Mateu en un moment d'exaltació"
+    },
+    "23": {
+      "frase": "¿Saps com es diu mare en anglés? Mam. ¿I pare? Pap.",
+      "explicacion": "Demostrant el nivell aprés"
     }
   },
   "relatoAlbaiAlbert": {
@@ -718,6 +738,41 @@
       "paso4": "Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."
     }
   },
+  "2024-10-04": {
+    "tituloParte1": "Formentera (Noces Sarita i Martín)",
+    "bloque1_parrafo1": "I per fi va arribar l'anhelat moment, eixe moment d'un viatge de cap de setmana en n parella. I quin millor moment que unes noces, les noces de Sarita i Martín. I dic anhelat perquè la criança és un procés llarg i costós, en el qual hi ha pocs moments per a gaudir assoles, en parella. ",
+    "bloque1_parrafo2": "Es van assabentar de la gran notícia allà per agost, i no van dubtar a comprar els bitllets ni un moment. Sabien que podrien trobar mainaders, i així va ser. Encara que en primera instància es va oferir la tieta María, finalment van ser els iaios i els tios Blai i Marta els qui van acollir als xicotets.",
+    "bloque1_parrafo3": "En una parenceria d'organització, la primera nit la van passar els iaios Pepe i Ana a casa, amb els dos. L'endemà, van ser els iaios Pep i Matilde els qui van anar per Marina, per a dormir amb ells, i Mateu va ser a casa dels oncles a passar la #vesprada i a dormir amb el seu cosí Gerard, per primera vegada. Ja va ser el diumenge quan a mig dia van tornar a ajuntar-se la família sencera.",
+    "nota1": "",
+    "cita1": "",
+    "personaCita1": "",
+    "bloque2_parrafo1": "",
+    "bloque2_parrafo2": "",
+    "bloque2_parrafo3": "",
+    "bloque3_parrafo1": "Per part de la feliç parella, van arribar a Eivissa la nit del divendres, a les 23 i van acabar arribant a Formentera a la 1. Eixa nit la van passar a casa de Sarita. Va anar a arreplegar-los al port la seua amiga Vero, i directes a casa.",
+    "bloque3_parrafo2": "L'endemà, d'hora, es van alçar per a ajudar a les noces. Tot semblava estar per fer, el menjar a mig fer, l'escenari de les noces (a la platja de Calan Baster) sense muntar... Finalment, amb ajuda de tots, les noces va tirar a rodar.",
+    "bloque3_parrafo3": "Una festa temàtica de blanc (o nus com deia la invitació, encara que ningú va prendre eixa opció). Una festa divertida, on ràpidament es van emborratxar, custodiant el barril de cervesa. A boca de nit arribe Saúl, el seu amic d'Eivissa, i Berliner d'adopció. Ja sobre les 2 del matí, van caure en el llit de la seua amiga, fins que a les 4 els van portar a casa de Sarita. ",
+    "bloque4_parrafo1": "",
+    "bloque4_parrafo2": "",
+    "bloque4_parrafo3": "",
+    "tituloParte2": "Al matí següent...",
+    "bloque5_parrafo1": "El matí següent va ser dura. A les 9.30 tenian el vaixell de tornada a Eivissa, per a agafar l'avió a les 13.00. Prompte es van adonar que no arribarien a eixe vaixell. Per sort per a ells, eixia un altre 30 minuts després.",
+    "bloque5_parrafo2": "Després del vaixell, venia la llarga espera, entre autobús i cues en l'aeroport, van arribar per fi a casa, on els esperaven Marina i els iaios Pep i Matilde. ",
+    "bloque6_parrafo1": "Un cap de setmana express, un poc estressant, sense tampoc a penes temps per a ells sols, però que va valdre la pena.",
+    "bloque6_parrafo2": "",
+    "bloque7_parrafo1": "",
+    "bloque7_parrafo2": "",
+    "descPrincipal": "Vista des de l'interior d'una cova de Calan Baster",
+    "descFoto1": "Preparats per a les noces",
+    "descFoto2": "En plena cerimònia",
+    "descFoto3": "L'arribada de la núvia",
+    "descFoto4": "La cantant de Ojos de Brujo, Marina, amb el seu fill i el ram",
+    "descFoto5": "Lloc de la cerimònia",
+    "descFoto6": "Cartells indicatius del camí a la platja",
+    "descFoto7": "Vista des de l'habitació de Vero",
+    "descFoto8": "Sarita plena de felicitat",
+    "descFoto9": "Mateu i Gerard en la seua primera nit de cosins"
+ },
   "2024-08-05": {
     "tituloParte1": "Castell de Penyiscola",
     "bloque1_parrafo1": "Primer viatge d'estiu per a Marina. La xicoteta Marina, amb un anyet a la seua esquena, començava a viatjar amb els seus pares i germà. Encara que no era la primera vegada que eixia amb la família, sí que era la que més temps seria.",
