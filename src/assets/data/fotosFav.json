@@ -1,4 +1,196 @@
 {
+  "fotoFav185": {
+    "idDesc": "fotoFav185",
+    "id": "favoritos/fotoFav185.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, nieve, neu, montaña, muntanya",
+    "personas": "Marina, Alba"
+  },
+  "fotoFav184": {
+    "idDesc": "fotoFav184",
+    "id": "favoritos/fotoFav184.jpg",
+    "anyo": "2025",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, sopar, casa, festa, amics, cole",
+    "personas": "Marina, Mateu, Bruno, Renata, Julen"
+  },
+  "fotoFav183": {
+    "idDesc": "fotoFav183",
+    "id": "favoritos/fotoFav183.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, neu, nieve, montaña, muntanya",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav182": {
+    "idDesc": "fotoFav182",
+    "id": "favoritos/fotoFav182.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, boira, niebla, montaña, muntanya",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav181": {
+    "idDesc": "fotoFav181",
+    "id": "favoritos/fotoFav181.jpg",
+    "anyo": "2025",
+    "lugar": "Escoleta, Burjassot",
+    "categoria": "niños, xiquets, disfressa, disfraces, disfraz",
+    "personas": "Marina"
+  },
+  "fotoFav180": {
+    "idDesc": "fotoFav180",
+    "id": "favoritos/fotoFav180.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, neu, nieve,, boira, niebla, montaña, muntanya",
+    "personas": "Marina, Alba, Mateu, Albert"
+  },
+  "fotoFav179": {
+    "idDesc": "fotoFav179",
+    "id": "favoritos/fotoFav179.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, neu, nieve, montaña, muntanya",
+    "personas": "Marina, Alba, Mateu, Albert"
+  },
+  "fotoFav178": {
+    "idDesc": "fotoFav178",
+    "id": "favoritos/fotoFav178.jpg",
+    "anyo": "2025",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, jugant, disfraz, disfresses, disfressa",
+    "personas": "Mateu, Alba, Marina"
+  },
+  "fotoFav177": {
+    "idDesc": "fotoFav177",
+    "id": "favoritos/fotoFav177.jpg",
+    "anyo": "2024",
+    "lugar": "Paterna, La canyada",
+    "categoria": "niños, xiquets, cumple, iaia, ana, anna, aniversari, cumpleaños",
+    "personas": "Mateu, Gerard, Marina, Iaio Pepe, Iaia Ana"
+  },
+  "fotoFav176": {
+    "idDesc": "fotoFav176",
+    "id": "favoritos/fotoFav176.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, boira, niebla, montaña, muntanya",
+    "personas": "Marina, Mateu, Albert, Iaio Pep, Alba"
+  },
+  "fotoFav175": {
+    "idDesc": "fotoFav175",
+    "id": "favoritos/fotoFav175.jpg",
+    "anyo": "2025",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, bañera, dutxa, banyera, ducha",
+    "personas": "Mateu, Alba, Marina"
+  },
+  "fotoFav174": {
+    "idDesc": "fotoFav174",
+    "id": "favoritos/fotoFav174.jpg",
+    "anyo": "2025",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, pijama, jugant, juego, joc",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav173": {
+    "idDesc": "fotoFav173",
+    "id": "favoritos/fotoFav173.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, boira, niebla, montaña, muntanya",
+    "personas": "Marina, Sol, Alba, Gloria"
+  },
+  "fotoFav172": {
+    "idDesc": "fotoFav172",
+    "id": "favoritos/fotoFav172.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, banyera, bañera, dutxa, ducha",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav171": {
+    "idDesc": "fotoFav171",
+    "id": "favoritos/fotoFav171.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, boira, niebla, montaña, muntanya",
+    "personas": "Marina"
+  },
+  "fotoFav170": {
+    "idDesc": "fotoFav170",
+    "id": "favoritos/fotoFav170.jpg",
+    "anyo": "2024",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, billy, gos, perro",
+    "personas": "Marina"
+  },
+  "fotoFav169": {
+    "idDesc": "fotoFav169",
+    "id": "favoritos/fotoFav169.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Burjassot",
+    "categoria": "niños, xiquets, dormint, sobant, dormir",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav168": {
+    "idDesc": "fotoFav168",
+    "id": "favoritos/fotoFav168.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, camí al cole, Burjassot",
+    "categoria": "niños, xiquets, cole, escola",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav167": {
+    "idDesc": "fotoFav167",
+    "id": "favoritos/fotoFav167.jpg",
+    "anyo": "2024",
+    "lugar": "Casa, Valencia",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu, Marina"
+  },
+  "fotoFav166": {
+    "idDesc": "fotoFav166",
+    "id": "favoritos/fotoFav166.jpg",
+    "anyo": "2024",
+    "lugar": "Paterna, Valencia",
+    "categoria": "niños, xiquets, dinar",
+    "personas": "Mateu, Marina, Pepe, Iaio, Gerard"
+  },
+  "fotoFav165": {
+    "idDesc": "fotoFav165",
+    "id": "favoritos/fotoFav165.jpg",
+    "anyo": "2024",
+    "lugar": "Casa iaios, Valencia",
+    "categoria": "niños, xiquets, día de iaios",
+    "personas": "Mateu, Gerard, Pepe, Iaio"
+  },
+  "fotoFav164": {
+    "idDesc": "fotoFav164",
+    "id": "favoritos/fotoFav164.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, neu, nieve, trineu, trineo",
+    "personas": "Marina, Alba"
+  },
+  "fotoFav163": {
+    "idDesc": "fotoFav163",
+    "id": "favoritos/fotoFav163.jpg",
+    "anyo": "2024",
+    "lugar": "Casa iaios, Valencia",
+    "categoria": "niños, xiquets, nadals, navidades, sopar, cumple, iaio",
+    "personas": "Mateu, Albert, Marina, Alba, Emili, Marcel, Matilde, Pep, María, Maria, Tieta"
+  },
+  "fotoFav162": {
+    "idDesc": "fotoFav162",
+    "id": "favoritos/fotoFav162.jpg",
+    "anyo": "2024",
+    "lugar": "Puertomingalvo, Teruel",
+    "categoria": "niños, xiquets, amigas, montaña, muntanya, amigues, xiques",
+    "personas": "Alba, Marina, Gloria, Sol"
+  },
   "fotoFav161": {
     "idDesc": "fotoFav161",
     "id": "favoritos/fotoFav161.jpg",
@@ -47,22 +239,6 @@
     "categoria": "niños, xiquets",
     "personas": "Mateu, Marina, Iaio Pepe, Gerard"
   },
-  "fotoFav155": {
-    "idDesc": "fotoFav155",
-    "id": "favoritos/fotoFav155.jpg",
-    "anyo": "2024",
-    "lugar": "Ajuntament, Burjassot",
-    "categoria": "niños, xiquets",
-    "personas": "Mateu, Gerard"
-  },
-  "fotoFav154": {
-    "idDesc": "fotoFav154",
-    "id": "favoritos/fotoFav154.jpg",
-    "anyo": "2024",
-    "lugar": "Casa, Burjassot",
-    "categoria": "niños, xiquets",
-    "personas": "Mateu, Gerard"
-  },
   "fotoFav153": {
     "idDesc": "fotoFav153",
     "id": "favoritos/fotoFav153.jpg",
@@ -70,38 +246,6 @@
     "lugar": "Casa, Burjassot",
     "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
     "personas": "Mateu, Marina"
-  },
-  "fotoFav152": {
-    "idDesc": "fotoFav152",
-    "id": "favoritos/fotoFav152.jpg",
-    "anyo": "2024",
-    "lugar": "Casa, Burjassot",
-    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
-    "personas": "Mateu, Iaio Pepe, Gerard"
-  },
-  "fotoFav151": {
-    "idDesc": "fotoFav151",
-    "id": "favoritos/fotoFav151.jpg",
-    "anyo": "2024",
-    "lugar": "Casa, Burjassot",
-    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
-    "personas": "Mateu, Iaio Pepe, Gerard"
-  },
-  "fotoFav150": {
-    "idDesc": "fotoFav150",
-    "id": "favoritos/fotoFav150.jpg",
-    "anyo": "2024",
-    "lugar": "Casa, Burjassot",
-    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
-    "personas": "Mateu, Iaio Pepe, Gerard"
-  },
-  "fotoFav149": {
-    "idDesc": "fotoFav149",
-    "id": "favoritos/fotoFav149.jpg",
-    "anyo": "2024",
-    "lugar": "Casa, Burjassot",
-    "categoria": "niños, xiquets, cumpleaños, aniversari, disfraz, disfresses, disfraces, disfressar",
-    "personas": "Mateu, Iaio Pepe, Gerard"
   },
   "fotoFav148": {
     "idDesc": "fotoFav148",
