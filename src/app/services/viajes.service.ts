@@ -251,7 +251,7 @@ export class ViajesService {
               }
             }
           }
-          this.viajesDetalleLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
+          // this.viajesDetalleLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
 
           this.cargandoViajes$.next(false);
           resolve(this.viajesDetalleLista);
