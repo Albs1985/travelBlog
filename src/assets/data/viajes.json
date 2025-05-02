@@ -1,4 +1,42 @@
 {
+  "2025": {
+    "Camping Alannia (Crevillent)": {
+      "fechaInicio": "2025-04-22",
+      "fechaFin": "2025-04-25",
+      "categoria": "Montaña",
+      "destino": "Camping Alannia",
+      "provincia": "Alacant",
+      "pais": "España",
+      "year": 2025,
+      "idAnteriorViaje": "2024-10-04_Formentera (Boda Sarita i Martín)",
+      "idSiguienteViaje": "",
+      "precio": 182,
+      "numFotos": 12,
+      "identificadorFotos": "alannia",
+      "estancia": "Camping Alannia",
+      "tipoEstancia": "Bungalow",
+      "transporte": [
+        "Coche"
+      ],
+      "personas": [
+        "Alba",
+        "Albert",
+        "Marina",
+        "Mateu",
+        "Dani",
+        "Gloria",
+        "Martí",
+        "Jordi",
+        "Asier"
+      ],
+      "infoInteres": [
+        "https://alanniaresorts.com/es/resorts/alannia-costa-blanca"
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5284.2599686389185!2d-0.8144851226530951!3d38.180791971886045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63bb0d6bb5ad73%3A0x1d322b73e150330b!2sAlannia%20Costa%20Blanca!5e1!3m2!1ses!2ses!4v1746183660317!5m2!1ses!2ses"
+      ]
+    }
+  },
   "2024": {
     "Embalse de Benageber": {
       "fechaInicio": "2024-05-03",

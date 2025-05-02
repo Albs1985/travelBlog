@@ -608,5 +608,15 @@
     "año": 2024,
     "descripcion": "Peñíscola, Castellón",
     "pais": "España"
+  },
+  {
+    "coordinates": [
+      -0.8118208527410948,
+      38.182059524748766
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2025,
+    "descripcion": "Camping Alannia (Crevillent)",
+    "pais": "España"
   }
 ]
