@@ -71,14 +71,14 @@
       "fechaInicio": "2025-06-06",
       "fechaFin": "2025-06-08",
       "categoria": "Playa",
-      "destino": "Sagunt",
+      "destino": "Grau Vell",
       "provincia": "València",
       "pais": "España",
       "year": 2025,
       "idAnteriorViaje": "2025-05-09_Embalse de Benageber",
       "idSiguienteViaje": "2025-08-15_Formigal",
       "precio": 300,
-      "numFotos": 10,
+      "numFotos": 9,
       "identificadorFotos": "grauVell",
       "estancia": "Caravana",
       "tipoEstancia": "Caravana",
@@ -109,7 +109,7 @@
       "idAnteriorViaje": "2025-05-09_Embalse de Benageber",
       "idSiguienteViaje": "",
       "precio": 1450,
-      "numFotos": 12,
+      "numFotos": 13,
       "identificadorFotos": "formigal",
       "estancia": "Hotel NieveSol",
       "tipoEstancia": "Hotel",
@@ -123,7 +123,8 @@
         "Mateu"
       ],
       "infoInteres": [
-        "https://pirineos-sur.es/"
+        "https://pirineos-sur.es/",
+        "https://www.lacuniacha.es/"
       ],
       "mapaSrc": [
         "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1233.629753258095!2d-0.36216173028026327!3d42.77399399819736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDLCsDQ2JzI2LjQiTiAwwrAyMSc0MS41Ilc!5e1!3m2!1ses!2ses!4v1758289246761!5m2!1ses!2ses"
@@ -142,7 +143,7 @@
       "idAnteriorViaje": "2024-04-02_Valle del Cabriel",
       "idSiguienteViaje": "2024-06-15_Dinopolis",
       "precio": 270,
-      "numFotos": 10,
+      "numFotos": 9,
       "identificadorFotos": "benageber",
       "estancia": "Centro de vacaciones Embalse de Benageber",
       "tipoEstancia": "Albergue",

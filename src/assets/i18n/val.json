@@ -285,6 +285,22 @@
     "24": {
       "frase": "Calendari de hambriento",
       "explicacion": "Calendari de adviento, per a Mateu"
+    },
+    "25": {
+      "frase": "Ete Marina, vale? Vale",
+      "explicacion": "Marina amb les seues coses"
+    },
+    "26": {
+      "frase": "Agua pito",
+      "explicacion": "Vuic la botella d'aigua de Bingo (i Bluey)."
+    },
+    "27": {
+      "frase": "Apachito papi/mami",
+      "explicacion": "Abraçam papi/mami"
+    },
+    "28": {
+      "frase": "Potó (i després Mateuf)",
+      "explicacion": "Mateu"
     }
   },
   "relatoAlbaiAlbert": {
@@ -786,29 +802,29 @@
     }
   },
   "2025-08-15": {
-    "tituloParte1": "Pirineu Arragonés",
-    "bloque1_parrafo1": "",
-    "bloque1_parrafo2": "",
-    "bloque1_parrafo3": "",
-    "nota1": "",
+    "tituloParte1": "Pirineu Aragonés",
+    "bloque1_parrafo1": "Arrancaven l'estiu amb il·lusió els Serrador Casares. Al cap d'un any dur, amb la pandèmia, i amb dos xiquets xicotets, volien gaudir d'uns dies en família, i què millor que a la muntanya, al Pirineu Aragonés. ",
+    "bloque1_parrafo2": "Destí: Formigal. Allotjament: Hotel Neu Sol. ",
+    "bloque1_parrafo3": "En este viatge sabien que anaven a haver de lluitar amb Mateu perquè caminara en les excussions, no tant amb Marina, ja que anava a anar quasi sempre en la motxilla, a l'esquena de la seua mare.",
+    "nota1": "Abans de pagar per un bufet lliure, assegura't que t'agrada el menjar del lloc. En este cas, no va anar així, i ens emportem una decepció.",
     "cita1": "",
     "personaCita1": "",
-    "bloque2_parrafo1": "",
-    "bloque2_parrafo2": "",
-    "bloque2_parrafo3": "",
-    "bloque3_parrafo1": "",
-    "bloque3_parrafo2": "",
-    "bloque3_parrafo3": "",
-    "tituloParte2": "",
-    "bloque4_parrafo1": "",
-    "bloque4_parrafo2": "",
-    "bloque4_parrafo3": "",
-    "bloque5_parrafo1": "",
-    "bloque5_parrafo2": "",
-    "bloque6_parrafo1": "",
-    "bloque6_parrafo2": "",
-    "bloque7_parrafo1": "",
-    "bloque7_parrafo2": "",
+    "bloque2_parrafo1": "Primer dia i ja van poder gaudix d'una bonica ruta paral·lela al riu Aigües Netes, que naix en la glacera de l'Aneto. Una ruta senzilla, de 3 hores, que els va permetre veure trencades, ponts penjants, i un paisatge espectacular. ",
+    "bloque2_parrafo2": "Van menjar en el restaurant una carn de rellom espectacular. I a la vesprada van tractar d'arribar a la trencada Salt de Sallent, però es van perdre, i quan estaven a punt d'arribar, van decidir tornar, ja que la baixada després calia pujar-la, i ja començaven a estar cansats (Mateu va pujar a l'esquena del seu pare).",
+    "bloque2_parrafo3": "Així passaven els dies, entre excursions, banys en la piscina de l'hotel, i sopars a l'apartament. ",
+    "bloque3_parrafo1": "Un dia van ser a Lanuza, on van poder gaudir d'un dia de caiac en el llac, i visita a l'escenari on se celebra el Festival Pirinencs Sud.",
+    "bloque3_parrafo2": "També van ser a Panticosa, on al matí van pujar cap a les cascades, i a la vesprada en el telecadira fins al cim, gaudint de les vistes. També van ser al parc faunístic Lacuniacha, on van poder veure animals en semi-llibertat, com a ossos, llops, cérvols, muflons, i un llarg etcètera.",
+    "bloque3_parrafo3": "La veritat és que pocs parcs xafaven, ja que el millor parc era la naturalesa que els envoltava. Unes pedres i un riu era l'única cosa que feia falta.",
+    "tituloParte2": "L'estiu seguia, i estaven en ratxa...",
+    "bloque4_parrafo1": "A la volta d'eixos 8 dies a Pirineus, no van passar més d'un dia a Burjassot quan van eixir per a Sa Pobla, a l'apartament de la família Casares. Esta vegada anava a canviar el paradigma de la temporada d'estiu. ",
+    "bloque4_parrafo2": "Esta vegada, anaven a poder gaudir de l'apartament sols, sense els cosins, i sense els avis. Així que la idea era gaudir de la piscina, de la platja, mentres la senyora Casares anava a treballar als matins. ",
+    "bloque4_parrafo3": "Albert va poder gaudir d'uns dies més de vacacions, mà a mà amb els seus fills. Van tindre diverses visites, de Gerard, Blai, els iaios Pepe i Ana...",
+    "bloque5_parrafo1": "Però no anava a quedar així la cosa, el cap de setmana anaven a anar 3 nits a Puertomingalvo, a la casa dels Serrador. Allí es van ajuntar la família amb els iaios i Gerard, que passava uns dies amb ells al poble.",
+    "bloque5_parrafo2": "Amb la visita obligada a Gloria i Jaime, i el bany corresponent en el riu. Este viatge van descobrir el riu de Cedraman, un lloc espectacular a 30 minuts del poble, on l'aigua és cristal·lina, i la naturalesa t'embolica. ",
+    "bloque6_parrafo1": "Un lloc amb diversos punts a assenyalar, com el gorg davall del pont passant Cedraman.",
+    "bloque6_parrafo2": "I és que en finalitzar eixe cap de setmana de muntanya, de nou, tornaven a la platja, a Sa Pobla. Esta vegada, els dies estaven comptats, ja que en uns dies tornaven a Burjassot, per a començar el col·le.",
+    "bloque7_parrafo1": "No sense abans, celebrar l'aniversari de Mateu, amb un regal especial. Visita a Jurassic World, a Madrid, amb un dia de escapada amb tren a veure l'exposició de la pel·lícula, i tornada a casa.",
+    "bloque7_parrafo2": "Sens dubte, unes vacacions per a recordar tota la vida, passant el mínim possible per casa",
     "descPrincipal": "",
     "descFoto1": "",
     "descFoto2": "",
