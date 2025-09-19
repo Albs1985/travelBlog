@@ -9,9 +9,9 @@
       "pais": "España",
       "year": 2025,
       "idAnteriorViaje": "2024-10-04_Formentera (Boda Sarita i Martín)",
-      "idSiguienteViaje": "",
+      "idSiguienteViaje": "2025-05-09_Embalse de Benageber",
       "precio": 182,
-      "numFotos": 12,
+      "numFotos": 10,
       "identificadorFotos": "alannia",
       "estancia": "Camping Alannia",
       "tipoEstancia": "Bungalow",
@@ -34,6 +34,99 @@
       ],
       "mapaSrc": [
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5284.2599686389185!2d-0.8144851226530951!3d38.180791971886045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63bb0d6bb5ad73%3A0x1d322b73e150330b!2sAlannia%20Costa%20Blanca!5e1!3m2!1ses!2ses!4v1746183660317!5m2!1ses!2ses"
+      ]
+    },
+    "Embalse de Benageber": {
+      "fechaInicio": "2025-05-09",
+      "fechaFin": "2025-05-11",
+      "categoria": "Montaña",
+      "destino": "Embalse de Benageber",
+      "provincia": "València",
+      "pais": "España",
+      "year": 2025,
+      "idAnteriorViaje": "2025-04-22_Camping Alannia",
+      "idSiguienteViaje": "2025-06-06_Grau Vell",
+      "precio": 270,
+      "numFotos": 9,
+      "identificadorFotos": "benageber",
+      "estancia": "Centro de vacaciones Embalse de Benageber",
+      "tipoEstancia": "Albergue",
+      "transporte": [
+        "Coche"
+      ],
+      "personas": [
+        "Alba",
+        "Albert",
+        "Marina",
+        "Mateu"
+      ],
+      "infoInteres": [
+        "https://alberguebenageber.com"
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58365.220627589646!2d-1.1222091998869836!3d39.75213743320417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd60b6cd4572e3f9%3A0xe921c50e6ebaa67f!2sCentro%20de%20vacaciones%20Embalse%20de%20Benag%C3%A9ber!5e0!3m2!1ses!2ses!4v1713767227247!5m2!1ses!2ses"
+      ]
+    },
+    "Grau Vell": {
+      "fechaInicio": "2025-06-06",
+      "fechaFin": "2025-06-08",
+      "categoria": "Playa",
+      "destino": "Sagunt",
+      "provincia": "València",
+      "pais": "España",
+      "year": 2025,
+      "idAnteriorViaje": "2025-05-09_Embalse de Benageber",
+      "idSiguienteViaje": "2025-08-15_Formigal",
+      "precio": 300,
+      "numFotos": 10,
+      "identificadorFotos": "grauVell",
+      "estancia": "Caravana",
+      "tipoEstancia": "Caravana",
+      "transporte": [
+        "Caravana"
+      ],
+      "personas": [
+        "Alba",
+        "Albert",
+        "Marina",
+        "Mateu"
+      ],
+      "infoInteres": [
+        ""
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d412.7984411837615!2d-0.2386154419854557!3d39.63542504241458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2ses!4v1758290005583!5m2!1ses!2ses"
+      ]
+    },
+    "Formigal": {
+      "fechaInicio": "2025-08-15",
+      "fechaFin": "2025-08-23",
+      "categoria": "Montaña",
+      "destino": "Formigal",
+      "provincia": "Huesca",
+      "pais": "España",
+      "year": 2025,
+      "idAnteriorViaje": "2025-05-09_Embalse de Benageber",
+      "idSiguienteViaje": "",
+      "precio": 1450,
+      "numFotos": 12,
+      "identificadorFotos": "formigal",
+      "estancia": "Hotel NieveSol",
+      "tipoEstancia": "Hotel",
+      "transporte": [
+        "Coche"
+      ],
+      "personas": [
+        "Alba",
+        "Albert",
+        "Marina",
+        "Mateu"
+      ],
+      "infoInteres": [
+        "https://pirineos-sur.es/"
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1233.629753258095!2d-0.36216173028026327!3d42.77399399819736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDLCsDQ2JzI2LjQiTiAwwrAyMSc0MS41Ilc!5e1!3m2!1ses!2ses!4v1758289246761!5m2!1ses!2ses"
       ]
     }
   },

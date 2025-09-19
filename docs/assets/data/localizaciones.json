@@ -618,5 +618,25 @@
     "año": 2025,
     "descripcion": "Camping Alannia (Crevillent)",
     "pais": "España"
+  },
+  {
+    "coordinates": [
+      -0.361644,
+      42.774047
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2025,
+    "descripcion": "Formigal",
+    "pais": "España"
+  },
+  {
+    "coordinates": [
+      -0.239061,
+      39.635422
+    ],
+    "personas": "Marina, Mateu, Alba, Albert",
+    "año": 2025,
+    "descripcion": "Grau Vell",
+    "pais": "España"
   }
 ]
