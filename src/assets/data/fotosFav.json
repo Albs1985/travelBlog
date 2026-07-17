@@ -1,6 +1,462 @@
 {
+  "fotoFav248": {
+    "idDesc": "Primer día de Pitufo",
+    "id": "favoritos/fotoFav248.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, pitufo",
+    "categoria": "niños, xiquets, casa nova, pitufo",
+    "personas": "Marina, Mateu, Albert, Alba"
+  },
+  "fotoFav247": {
+    "idDesc": "Cole barranquet, clase de María José",
+    "id": "favoritos/fotoFav247.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, cole Barranquet",
+    "categoria": "niños, xiquets, barranquet, cole",
+    "personas": "Mateu"
+  },
+  "fotoFav246": {
+    "idDesc": "Mateu ben guapo",
+    "id": "favoritos/fotoFav246.jpg",
+    "anyo": "2026",
+    "lugar": "",
+    "categoria": "niños, xiquets",
+    "personas": "Mateu"
+  },
+  "fotoFav245": {
+    "idDesc": "Siesta en el pare",
+    "id": "favoritos/fotoFav245.jpg",
+    "anyo": "2026",
+    "lugar": "Paterna, casa iaios",
+    "categoria": "niños, xiquets, siesta",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav244": {
+    "idDesc": "Cumple Serrador a la Pobla",
+    "id": "favoritos/fotoFav244.jpg",
+    "anyo": "2026",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, disfressa, disfraz, disfraces",
+    "personas": "Marina"
+  },
+  "fotoFav243": {
+    "idDesc": "Celebrant la segona lliga del València Bàsket a casa de Julen",
+    "id": "favoritos/fotoFav243.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa Mikel",
+    "categoria": "niños, xiquets, amics, Mikel, Julen",
+    "personas": "Marina, Mateu, Julen"
+  },
+  "fotoFav242": {
+    "idDesc": "Equipo INDONA, Mercadona",
+    "id": "favoritos/fotoFav241.jpg",
+    "anyo": "2026",
+    "lugar": "La malvarrosa",
+    "categoria": "Mercadona, equipo, INDONA",
+    "personas": "Marina"
+  },
+  "fotoFav241": {
+    "idDesc": "fotoFav191",
+    "id": "favoritos/fotoFav241.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, pitufo",
+    "categoria": "niños, xiquets, disfressa, disfraz, disfraces",
+    "personas": "Marina"
+  },
+  "fotoFav240": {
+    "idDesc": "Neu en familia. Estrenant taula",
+    "id": "favoritos/fotoFav240.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, neu, nieve",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav239": {
+    "idDesc": "Segon partit de basquet de Mateu (primera derrota)",
+    "id": "favoritos/fotoFav239.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, basket, baloncesto, equip",
+    "personas": "Mateu, y el equip"
+  },
+  "fotoFav238": {
+    "idDesc": "Siesta en el papi",
+    "id": "favoritos/fotoFav238.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, siesta",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav237": {
+    "idDesc": "Les amiguetes al parc",
+    "id": "favoritos/fotoFav237.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, ",
+    "personas": "Marina, Ana Gregori, Empar"
+  },
+  "fotoFav236": {
+    "idDesc": "Guillem y Gerard, los primos",
+    "id": "favoritos/fotoFav236.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, germans, primos, cosins",
+    "personas": "Gerard, Guillem"
+  },
+  "fotoFav235": {
+    "idDesc": "L'equip de Mateu",
+    "id": "favoritos/fotoFav235.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, parc del Barranquet",
+    "categoria": "niños, xiquets, amics, cole, barranquet",
+    "personas": "Mateu, Julen, Santi, Onai, Ferran, Pau, Bruno"
+  },
+  "fotoFav234": {
+    "idDesc": "Marina disfrutant de la neu",
+    "id": "favoritos/fotoFav234.jpg",
+    "anyo": "2026",
+    "lugar": "Valdelinares",
+    "categoria": "niños, xiquets,neu, nieve",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav233": {
+    "idDesc": "Basket lovers",
+    "id": "favoritos/fotoFav233.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, basket, baloncesto",
+    "personas": "Marina, Mateu, Albert"
+  },
+  "fotoFav232": {
+    "idDesc": "Platja en Marina, la Pobla",
+    "id": "favoritos/fotoFav232.jpg",
+    "anyo": "2026",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, la pobla",
+    "personas": "Marina"
+  },
+  "fotoFav231": {
+    "idDesc": "Disfresses",
+    "id": "favoritos/fotoFav231.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, pitufo",
+    "categoria": "niños, xiquets, disfressa, disfraz, disfraces",
+    "personas": "Marina"
+  },
+  "fotoFav230": {
+    "idDesc": "Neu en familia",
+    "id": "favoritos/fotoFav230.jpg",
+    "anyo": "2026",
+    "lugar": "Valdelinares",
+    "categoria": "niños, xiquets, neu, Valdelinares",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav229": {
+    "idDesc": "Marina jugant muntant el llit",
+    "id": "favoritos/fotoFav229.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, pitufo",
+    "categoria": "niños, xiquets, pitufo",
+    "personas": "Marina"
+  },
+  "fotoFav228": {
+    "idDesc": "Litera de puerto",
+    "id": "favoritos/fotoFav228.jpg",
+    "anyo": "2026",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, puerto, Puertomingalvo",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav227": {
+    "idDesc": "Día de montar la piscina per primera vegada",
+    "id": "favoritos/fotoFav227.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, piscina, jardí, pitufo",
+    "personas": "Jardí del pitufo"
+  },
+  "fotoFav226": {
+    "idDesc": "Les amiguetes",
+    "id": "favoritos/fotoFav226.jpg",
+    "anyo": "2026",
+    "lugar": "Godella",
+    "categoria": "niños, xiquets, amigues, amiguetes, cole",
+    "personas": "Marina, Ana Gregori"
+  },
+  "fotoFav225": {
+    "idDesc": "Pare i filla",
+    "id": "favoritos/fotoFav225.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, horta",
+    "categoria": "niños, xiquets, horta, huerta",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav224": {
+    "idDesc": "Marina jugando a los disfraces",
+    "id": "favoritos/fotoFav224.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, pitufo",
+    "categoria": "niños, xiquets, disfressa, disfraz, disfraces",
+    "personas": "Marina"
+  },
+  "fotoFav223": {
+    "idDesc": "La casa nova, pitufo!",
+    "id": "favoritos/fotoFav222.jpg",
+    "anyo": "2026",
+    "lugar": "Godella",
+    "categoria": "niños, xiquets, casa, pitufo",
+    "personas": "Marina, Mateu, Alba, Albert"
+  },
+  "fotoFav222": {
+    "idDesc": "Equip del barranquet de bàsquet",
+    "id": "favoritos/fotoFav222.jpg",
+    "anyo": "2025",
+    "lugar": "Cole Barranquet",
+    "categoria": "niños, xiquets, basquet, baloncesto,cole, barranquet",
+    "personas": "Mateu, Julen, Santi, Bruno, Ferran, "
+  },
+  "fotoFav221": {
+    "idDesc": "Despedida de Julen del estiu",
+    "id": "favoritos/fotoFav221.jpg",
+    "anyo": "2026",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, estiu, amics",
+    "personas": "Marina, Mateu, Julen"
+  },
+  "fotoFav220": {
+    "idDesc": "Germanets",
+    "id": "favoritos/fotoFav220.jpg",
+    "anyo": "2026",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, germans, hermanos",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav219": {
+    "idDesc": "Viatge a la neu",
+    "id": "favoritos/fotoFav219.jpg",
+    "anyo": "2026",
+    "lugar": "Valdelinares",
+    "categoria": "niños, xiquets, neu, nieve, snowboard, montaña, muntanya",
+    "personas": "Marina, Mateu, Alba, Albert"
+  },
+  "fotoFav218": {
+    "idDesc": "fotoFav218",
+    "id": "favoritos/fotoFav218.jpg",
+    "anyo": "2026",
+    "lugar": "Paterna, casa iaios",
+    "categoria": "niños, xiquets, germans, hermanos",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav217": {
+    "idDesc": "fotoFav217",
+    "id": "favoritos/fotoFav217.jpg",
+    "anyo": "2026",
+    "lugar": "Godella, El Barranquet",
+    "categoria": "niños, xiquets, cole",
+    "personas": "Marina, Ana Gregori, Empar, Ayla"
+  },
+  "fotoFav216": {
+    "idDesc": "fotoFav216",
+    "id": "favoritos/fotoFav216.jpg",
+    "anyo": "2024",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, germans, hermanos",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav215": {
+    "idDesc": "fotoFav215",
+    "id": "favoritos/fotoFav215.jpg",
+    "anyo": "2025",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav214": {
+    "idDesc": "fotoFav214",
+    "id": "favoritos/fotoFav214.jpg",
+    "anyo": "2025",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets",
+    "personas": "Marina, Alba, Mateu"
+  },
+  "fotoFav213": {
+    "idDesc": "fotoFav213",
+    "id": "favoritos/fotoFav213.jpg",
+    "anyo": "2025",
+    "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina, iaia Ana"
+  },
+  "fotoFav212": {
+    "idDesc": "fotoFav212",
+    "id": "favoritos/fotoFav212.jpg",
+    "anyo": "2025",
+    "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina, Gerard"
+  },
+  "fotoFav211": {
+    "idDesc": "fotoFav211",
+    "id": "favoritos/fotoFav211.jpg",
+    "anyo": "2025",
+   "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina"
+  },
+  "fotoFav210": {
+    "idDesc": "fotoFav210",
+    "id": "favoritos/fotoFav210.jpg",
+    "anyo": "2025",
+    "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina"
+  },
+  "fotoFav209": {
+    "idDesc": "fotoFav209",
+    "id": "favoritos/fotoFav209.jpg",
+    "anyo": "2025",
+    "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina"
+  },
+  "fotoFav208": {
+    "idDesc": "fotoFav208",
+    "id": "favoritos/fotoFav208.jpg",
+    "anyo": "2025",
+    "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav207": {
+    "idDesc": "fotoFav207",
+    "id": "favoritos/fotoFav207.jpg",
+    "anyo": "2025",
+    "lugar": "Rocafort, poliesportiu",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina, Mateu, Albert, Alba"
+  },
+  "fotoFav206": {
+    "idDesc": "fotoFav206",
+    "id": "favoritos/fotoFav206.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, platja",
+    "personas": "Marina, Iaio Pep, Iaia Matilde"
+  },
+  "fotoFav205": {
+    "idDesc": "fotoFav205",
+    "id": "favoritos/fotoFav205.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, muntanya, montaña, puerto",
+    "personas": "Marina, Albert"
+  },
+  "fotoFav204": {
+    "idDesc": "fotoFav204",
+    "id": "favoritos/fotoFav204.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, muntanya, montaña, puerto",
+    "personas": "Mateu, Gerard, Iaio Pepe, Albert"
+  },
+  "fotoFav203": {
+    "idDesc": "fotoFav203",
+    "id": "favoritos/fotoFav203.jpg",
+    "anyo": "2025",
+    "lugar": "Burjassot, casa",
+    "categoria": "niños, xiquets, llit, cama",
+    "personas": "Marina, Mateu, Albert"
+  },
+  "fotoFav202": {
+    "idDesc": "fotoFav202",
+    "id": "favoritos/fotoFav202.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, muntanya, montaña, puerto, Gallina",
+    "personas": "Mateu"
+  },
+  "fotoFav201": {
+    "idDesc": "fotoFav201",
+    "id": "favoritos/fotoFav201.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, muntanya, montaña, puerto, iaia",
+    "personas": "Marina, Alba, Iaia Ana, Gerard, Mateu"
+  },
+  "fotoFav200": {
+    "idDesc": "fotoFav200",
+    "id": "favoritos/fotoFav200.jpg",
+    "anyo": "2025",
+    "lugar": "Puertomingalvo",
+    "categoria": "niños, xiquets, muntanya, montaña, puerto",
+    "personas": "Marina, Alba"
+  },
+  "fotoFav199": {
+    "idDesc": "fotoFav199",
+    "id": "favoritos/fotoFav199.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, playa, platja",
+    "personas": "Marina, Alba"
+  },
+  "fotoFav198": {
+    "idDesc": "fotoFav198",
+    "id": "favoritos/fotoFav198.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, playa, platja",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav197": {
+    "idDesc": "fotoFav197",
+    "id": "favoritos/fotoFav197.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, playa, platja",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav196": {
+    "idDesc": "fotoFav196",
+    "id": "favoritos/fotoFav196.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals",
+    "categoria": "niños, xiquets, playa, platja",
+    "personas": "Marina, Mateu"
+  },
+  "fotoFav195": {
+    "idDesc": "Jurassic World Expo",
+    "id": "favoritos/fotoFav195.jpg",
+    "anyo": "2025",
+    "lugar": "Madrid, casa",
+    "categoria": "niños, xiquets, disfressa, disfraz, disfraces",
+    "personas": "Marina"
+  },
+  "fotoFav194": {
+    "idDesc": "fotoFav194",
+    "id": "favoritos/fotoFav194.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals, casa",
+    "categoria": "niños, xiquets, disfressa, disfraz, disfraces",
+    "personas": "Mateu, Alba, Albert"
+  },
+  "fotoFav193": {
+    "idDesc": "fotoFav193",
+    "id": "favoritos/fotoFav193.jpg",
+    "anyo": "2025",
+    "lugar": "La Pobla de Farnals, casa",
+    "categoria": "niños, xiquets, cumple, aniversari",
+    "personas": "Marina, Mateu, Alba, Albert, Gerard"
+  },
+  "fotoFav192": {
+    "idDesc": "Jurassic World Expo",
+    "id": "favoritos/fotoFav192.jpg",
+    "anyo": "2025",
+    "lugar": "Madrid, casa",
+    "categoria": "niños, xiquets, dinosaurio,dino,",
+    "personas": "Marina, Mateu, Alba, Albert"
+  },
   "fotoFav191": {
-    "idDesc": "fotoFafotoFav191v189",
+    "idDesc": "fotoFav191",
     "id": "favoritos/fotoFav191.jpg",
     "anyo": "2025",
     "lugar": "Burjassot, casa",
