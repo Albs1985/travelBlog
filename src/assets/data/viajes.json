@@ -1,4 +1,42 @@
 {
+  "2026": {
+    "Tabarca": {
+      "fechaInicio": "2026-06-29",
+      "fechaFin": "2026-06-29",
+      "categoria": "Playa",
+      "destino": "Isla Tabarca",
+      "provincia": "Alacant",
+      "pais": "España",
+      "year": 2026,
+      "idAnteriorViaje": "2025-08-15_Formigal",
+      "idSiguienteViaje": "",
+      "precio": 600,
+      "numFotos": 10,
+      "identificadorFotos": "tabarca",
+      "estancia": "Velero",
+      "tipoEstancia": "Airbnb",
+      "transporte": [
+        "Barca"
+      ],
+      "personas": [
+        "Alba",
+        "Albert",
+        "Mateu",
+        "Marina",
+        "Maria",
+        "Emili",
+        "Marcel",
+        "Matilde",
+        "Pep"
+      ],
+      "infoInteres": [
+        "https://www.trulovesailing.com/"
+      ],
+      "mapaSrc": [
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1562.6922442815378!2d-0.48106976342491686!3d38.1648463270187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd624f666451bb8d%3A0xba7e05aa96de46dc!2sPlaya%20de%20Tabarca!5e1!3m2!1ses!2ses!4v1784282739909!5m2!1ses!2ses"
+      ]
+    }
+  },
   "2025": {
     "Camping Alannia (Crevillent)": {
       "fechaInicio": "2025-04-22",

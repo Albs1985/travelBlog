@@ -301,6 +301,54 @@
     "28": {
       "frase": "Potó (y después Mateuf)",
       "explicacion": "Mateu"
+    },
+    "29": {
+      "frase": "Vuic pipinillos",
+      "explicacion": "Marina, a las 7 de la mañana"
+    },
+    "30": {
+      "frase": "¿Ole vas papi?",
+      "explicacion": "Donde vas papá?"
+    },
+    "31": {
+      "frase": "¿O ta papi?",
+      "explicacion": "Dónde está papá?"
+    },
+    "32": {
+      "frase": "Totolil",
+      "explicacion": "Cocodrilo"
+    },
+    "33": {
+      "frase": "Marina es una parlona",
+      "explicacion": "Mateu, alucinando de lo mucho que empieza a hablar Marina"
+    },
+    "34": {
+      "frase": "Fa molt bon temps per a que ploga",
+      "explicacion": "Mateu, mirando al cielo una mañana"
+    },
+    "35": {
+      "frase": "Me gustan los chicles porque masticas y el sabor se va hacia dentro",
+      "explicacion": "Mateu, disfrutando de los chicles por primera vez"
+    },
+    "36": {
+      "frase": "Está todo solo",
+      "explicacion": "Mateu, mirando el piso vacío, el día de la despedida del piso"
+    },
+    "37": {
+      "frase": "Papá, que se nos acaba la energía bro",
+      "explicacion": "Mateu, en el columpio"
+    },
+    "38": {
+      "frase": "Jo de major vuic ser fanquista (com la iaia Ana, que fa fang)",
+      "explicacion": "Mateu, que quiere ser ceramista"
+    },
+    "39": {
+      "frase": "Tafó / Tafons",
+      "explicacion": "Fartó / Fartons"
+    },
+    "40": {
+      "frase": "Acepto el record",
+      "explicacion": "Acepto el reto"
     }
   },
   "relatoAlbaiAlbert": {
@@ -835,6 +883,47 @@
       "paso3": "Dejamos 10 minutos cociendo para que se evapore el alcohol del vino, y añadimos el caldo de carne reservado. Cocinamos durante 30 minutos en la cazuela tapada, le damos la vuelta a las piezas de carne y cocinamos durante 20 minutos más. Comprobamos la ternura de las carrilleras y dejamos que se reduzca la salsa durante 15 minutos más, ahora con la olla destapada. Retiramos las carrilleras y pasamos la salsa por el pasapuré.",
       "paso4": "Las carrilleras de ternera guisadas con vino tinto se sirven loncheadas y acompañadas de su salsa a la que podemos espolvorear un poco de perejil picado. Unas patatas nuevas semiasadas o puré de patata casero, es la guarnición ideal para este plato tradicional."
     }
+  },
+  "2026-06-29": {
+    "tituloParte1": "Feliz cumpleaños iaia Matilde",
+    "bloque1_parrafo1": "Había pasado mucho tiempo, demasiado, hasta que la familia Serrador Casares pudieron realizar otra escapada. En esta ocasión, la excusa era el cumpleaños de la iaia Matilde.",
+    "bloque1_parrafo2": "Para ello, se compincharon todos: Alba, María, Albert y Pep. Tenía que ser sorpresa, eran 70 años, un día especial.",
+    "bloque1_parrafo3": "Aunque en fallas pudieron escapar para ir a la nieve unos días, desde Puertomingalvo lo tienen a 30 minutos, supo a poco, ya que al final son destinos conocidos, y no llenan el depósito de los viajes de la misma manera.",
+    "nota1": "",
+    "cita1": "Una barracuda!!",
+    "personaCita1": "Emili: ",
+    "bloque2_parrafo1": "El plan ya estaba organizado. Ir a recibir a la iaia a su casa, bien temprano, a las 8:30 allí estaban todos, niños incluidos, para cantar el cumpleaños feliz.",
+    "bloque2_parrafo2": "Tras la sorpresa de la iaia se pusieron en marcha, llegando en 2,15h a Santa Pola, desde donde iban a coger el velero para ir a pasar el día a Tabarca.",
+    "bloque2_parrafo3": "Matilde no se lo podía creer, pero ni ella, ni los pequeños (y no tan pequeños ya), que no habían subido en un barco tan pequeño. Iba a ser un día especial también para ellos.",
+    "bloque3_parrafo1": "La ida transcurría tranquila, viendo pasar a los barcos llenos de pasajeros, y nosotros surfeando las olas que hacían con nuestro velero (para no volcar). Comiendo, bebiendo y disfrutando del paisaje.",
+    "bloque3_parrafo2": "Se trataba de un picoteo ligero, pero abundante, aunque con los estímulos, ni siquiera se comió mucho. Al llegar a la isla, echaron el ancla a una distancia de la playa, y se echaron al agua, alucinando de la cantidad de peces que habían. Un espectaculo nunca vivido por los pequeños, que reían y disfrutaban lanzandose desde el velero al mar. Mientras los peces se llenaban la boca con los trozos de pan que les lanzában desde el barco, apareció un pez más grande de lo habitual. Una barracuda! Gritó Emili, convencido (nunca pudieron comprobarlo).",
+    "bloque3_parrafo3": "Las horas pasaban rápido, y dieron la señal de la vuelta. Tenían que volver a tierra... una lástima. Esta vez, la vuelta iba a ser más tranquila todavía, a vela, sin el sonido del motor del barco. Una lástima que Matilde se mareó un poco, pero lo superó con la mirada al frente.",
+    "tituloParte2": "Y de vuelta... la tarta!",
+    "bloque4_parrafo1": "En el camino de vuelta, Emili quiso volver con los Serrador, y mientras se hacían la puñeta, Mateu pidió dormirse, y se acabaron durmiendo todos. Mejor para la pareja de padres, que iba a ser más larga la vuelta que la ida.",
+    "bloque4_parrafo2": "Al llegar al piso de los iaios, estaba Jorge esperando a todos con la tarta. La comieron y disfrutaron entre risas y cantos de cumpleaños.",
+    "bloque4_parrafo3": "Un día especial, sin duda, que no olvidarían.",
+    "bloque5_parrafo1": "",
+    "bloque5_parrafo2": "",
+    "bloque6_parrafo1": "",
+    "bloque6_parrafo2": "",
+    "bloque7_parrafo1": "",
+    "bloque7_parrafo2": "",
+    "descPrincipal": "",
+    "descFoto1": "",
+    "descFoto2": "",
+    "descFoto3": "",
+    "descFoto4": "",
+    "descFoto5": "",
+    "descFoto6": "",
+    "descFoto7": "",
+    "descFoto8": "",
+    "descFoto9": "",
+    "descFoto10": "",
+    "descFoto11": "",
+    "descFoto12": "",
+    "descFoto13": "",
+    "descFoto14": "",
+    "descFoto15": ""
   },
   "2025-08-15": {
     "tituloParte1": "Pirineo Arragonés",

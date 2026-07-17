@@ -301,6 +301,54 @@
     "28": {
       "frase": "Potó (i després Mateuf)",
       "explicacion": "Mateu"
+    },
+    "29": {
+      "frase": "Vuic pipinillos",
+      "explicacion": "Marina, a las 7 del matí"
+    },
+    "30": {
+      "frase": "¿Ole vas papi?",
+      "explicacion": "On vas pare?"
+    },
+    "31": {
+      "frase": "¿O ta papi?",
+      "explicacion": "On està papá?"
+    },
+    "32": {
+      "frase": "Totolil",
+      "explicacion": "Cocodril"
+    },
+    "33": {
+      "frase": "Marina es una parlona",
+      "explicacion": "Mateu, alucinant de lo molt que parla Marina"
+    },
+    "34": {
+      "frase": "Fa molt bon temps per a que ploga",
+      "explicacion": "Mateu, mirant al cel un matí"
+    },
+    "35": {
+      "frase": "Me gustan los chicles porque masticas y el sabor se va hacia dentro",
+      "explicacion": "Mateu, disfrutant dels xicles per primera vegada"
+    },
+    "36": {
+      "frase": "Está todo solo",
+      "explicacion": "Mateu, mirant el pis vuït, el dia de la despedida del pis"
+    },
+    "37": {
+      "frase": "Papá, que se nos acaba la energía bro",
+      "explicacion": "Mateu, en el columpi"
+    },
+    "38": {
+      "frase": "Jo de major vuic ser fanquista (com la iaia Ana, que fa fang)",
+      "explicacion": "Mateu, que vol ser ceramista"
+    },
+    "39": {
+      "frase": "Tafó / Tafons",
+      "explicacion": "Fartó / Fartons"
+    },
+    "40": {
+      "frase": "Acepto el record",
+      "explicacion": "Accepte el repte"
     }
   },
   "relatoAlbaiAlbert": {
@@ -800,6 +848,47 @@
       "paso3": "Deixem 10 minuts coent perquè s'evapore l'alcohol del vi, i afegim el caldo de carn reservat. Cuinem durant 30 minuts en la cassola tapada, li donem la volta a les peces de carn i cuinem durant 20 minutos més. Comprovem la tendresa de les galtes i deixem que es reduïsca la salsa durant 15 minuts més, ara amb l'olla destapada. Retirem les galtes i passem la salsa pel passapuré.",
       "paso4": "Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."
     }
+  },
+  "2026-06-29": {
+    "tituloParte1": "Per molts anys iaia Matilde",
+    "bloque1_parrafo1": "Havia passat molt de temps, massa, fins que la família Serrador Casares van poder realitzar una altra escapada. En esta ocasió, l'excusa era l'aniversari de la iaia Matilde.",
+    "bloque1_parrafo2": "Per a això, es compincharon tots: Alba, María, Albert i Pep. Havia de ser sorpresa, eren 70 anys, un dia especial.",
+    "bloque1_parrafo3": "Encara que en falles van poder escapar per a anar a la neu uns dies, des de Puertomingalvo ho tenen a 30 minuts, va fer gust de poc, ja que al final són destinacions conegudes, i no omplin el depòsit dels viatges de la mateixa manera.",
+    "nota1": "",
+    "cita1": "Una barracuda!!",
+    "personaCita1": "Emili: ",
+    "bloque2_parrafo1": "El pla ja estava organitzat. Anar a rebre a la iaia a la seua casa, ben d'hora, a les 8.30 allí estaven tots, xiquets inclosos, per a cantar l'aniversari feliç.",
+    "bloque2_parrafo2": "Després de la sorpresa de la iaia es van posar en marxa, arribant en 2,15h a Santa Pola, des d'on anaven a agafar el veler per a anar a passar el dia a Tabarca.",
+    "bloque2_parrafo3": "Matilde no li ho podia creure, però ni ella, ni els xicotets (i no tan xicotets ja), que no havien pujat en un vaixell tan xicotet. Anava a ser un dia especial també per a ells.",
+    "bloque3_parrafo1": "L'anada transcorria tranquil·la, veient passar als vaixells plens de passatgers, i nosaltres surfeando les ones que feien amb el nostre veler (per a no bolcar). Menjant, bevent i gaudint del paisatge.",
+    "bloque3_parrafo2": "Es tractava d'un picotege lleuger, però abundant, encara que amb els estímuls, ni tan sols es va menjar molt. En arribar a l'illa, van tirar l'ancora a una distància de la platja, i es van tirar a l'aigua, al·lucinant de la quantitat de peixos que havien. Un espectaculo mai viscut pels xicotets, que reien i gaudien lanzandose des del veler a la mar. Mentres els peixos s'omplien la boca amb els trossos de pa que els lanzában des del vaixell, va aparéixer un peix més gran de l'habitual. Una barracuda! Va cridar Emili, convençut (mai van poder comprovar-ho).",
+    "bloque3_parrafo3": "Les hores passaven ràpid, i van donar el senyal de la volta. Havien de tornar a terra... una llàstima. Esta vegada, la volta anava a ser més tranquil·la encara, a vela, sense el so del motor del vaixell. Una llàstima que Matilde es va marejar un poc, però ho va superar amb la mirada al capdavant.",
+    "tituloParte2": "I de tornada... el pastís!",
+    "bloque4_parrafo1": "En el camí de tornada, Emili va voler tornar amb els Serrador, i mentres es feien la guitza, Mateu va demanar adormir-se, i es van acabar dormint tots. Millor per a la parella de pares, que anava a ser més llarga la volta que l'anada.",
+    "bloque4_parrafo2": "En arribar al pis dels iaios, estava Jorge esperant a tots amb el pastís. La van menjar i van gaudir entre riures i cants d'aniversaris.",
+    "bloque4_parrafo3": "Un dia especial, sens dubte, que no oblidarien.",
+    "bloque5_parrafo1": "",
+    "bloque5_parrafo2": "",
+    "bloque6_parrafo1": "",
+    "bloque6_parrafo2": "",
+    "bloque7_parrafo1": "",
+    "bloque7_parrafo2": "",
+    "descPrincipal": "",
+    "descFoto1": "",
+    "descFoto2": "",
+    "descFoto3": "",
+    "descFoto4": "",
+    "descFoto5": "",
+    "descFoto6": "",
+    "descFoto7": "",
+    "descFoto8": "",
+    "descFoto9": "",
+    "descFoto10": "",
+    "descFoto11": "",
+    "descFoto12": "",
+    "descFoto13": "",
+    "descFoto14": "",
+    "descFoto15": ""
   },
   "2025-08-15": {
     "tituloParte1": "Pirineu Aragonés",
