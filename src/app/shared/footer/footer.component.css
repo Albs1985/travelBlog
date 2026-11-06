@@ -1,96 +1,79 @@
-
-.audio{
-    margin-left: 50px;
-    margin-bottom: -50px;
-    width: 260px;
+.audio {
+  margin-left: 50px;
+  margin-bottom: -50px;
+  width: 260px;
 }
 
 .icono {
-    width: 30px;
-    height: 30px;
-    padding: 1px;
-    cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 1px;
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .audio {
+    width: 460px;
+  }
+}
+@media (min-width: 900px) {
+  .audio {
+    width: 600px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .audio {
+    width: 900px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .audio {
+    width: 900px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .audio {
+    width: 1200px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .audio {
+    width: 1800px;
+  }
+}
+
+@media (min-width: 2200px) {
+  .audio {
+    width: 2000px;
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-timing-function: linear !important;
+  animation-iteration-count: 2 !important;
+}
+
+@keyframes pulseInfinito {
+  from {
+    transform: scale3d(1, 1, 1);
   }
 
-@media(min-width: 600px){
-    .audio{    
-        width: 460px;
-    }
-}
-@media(min-width: 900px){
-    .audio{   
-        width: 600px; 
-    }
-}
-
-@media(min-width: 1100px){
-    .audio{   
-        width: 900px; 
-    }
-}
-
-@media(min-width: 1100px){
-    .audio{   
-        width: 900px; 
-    }
-}
-
-@media(min-width: 1500px){
-    .audio{   
-        width: 1200px; 
-    }
-}
-
-@media(min-width: 2000px){
-    .audio{   
-        width: 1800px; 
-    }
-}
-
-@media(min-width: 2200px){
-    .audio{   
-        width: 2000px; 
-    }
-}
-
-@keyframes pulse {
-    from {
-      transform: scale3d(1, 1, 1);
-    }
-  
-    50% {
-      transform: scale3d(1.05, 1.05, 1.05);
-    }
-  
-    to {
-      transform: scale3d(1, 1, 1);
-    }
-  }
-  
-  .pulse {
-    animation-name: pulse;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 2;
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
   }
 
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
 
-  
- @keyframes pulseInfinito {
-    from {
-      transform: scale3d(1, 1, 1);
-    }
-  
-    50% {
-      transform: scale3d(1.05, 1.05, 1.05);
-    }
-  
-    to {
-      transform: scale3d(1, 1, 1);
-    }
-  }
-  
-  .pulseInfinito {
-    animation-name: pulseInfinito;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-  }
+.pulseInfinito {
+  animation-name: pulseInfinito;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}

@@ -1,18 +1,4 @@
-.dobleFotos {
-  width: 25%;
-  height: 25%;
-  display: table-cell;
-  padding: 5px;
-}
-
-.divVolver {
-  text-align: left;
-  margin-top: 0px;
-  margin-left: 15px;
-  margin-bottom: 25px;
-  cursor: pointer;
-}
-.divRight {
+.divRight2 {
   float: right;
   margin-right: 5px;
   margin-bottom: 15px;
@@ -28,12 +14,6 @@
   cursor: pointer;
 }
 
-.divLeft {
-  float: left;
-  margin-left: 5px;
-  font-size: 14px !important;
-}
-
 .botonVersionWeb {
   background: transparent;
   border-color: transparent;
@@ -45,17 +25,6 @@
   width: 40px;
   height: 40px;
   margin: 10px;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-  cursor: pointer;
-  /* filter: blur(1px);
-  -webkit-filter: blur(1px); */
 }
 
 .iconoSitioWeb {
@@ -72,26 +41,6 @@
   padding: 5px;
   /* border-radius: 15px; */
   cursor: pointer;
-}
-
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.25, 1.25, 1.25);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
 }
 
 /* MODO LIBRO CSS */
@@ -194,14 +143,14 @@
   color: #fff !important;
 }
 
-.iconoFlecha {
+/* .iconoFlecha {
   width: 30px;
   height: 30px;
   padding: 5px;
   background-color: rgb(252, 218, 157);
   border-radius: 15px;
   cursor: pointer;
-}
+} */
 
 .barraPaginas {
   margin-left: -310px !important;

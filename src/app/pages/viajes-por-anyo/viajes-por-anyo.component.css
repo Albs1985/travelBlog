@@ -16,16 +16,6 @@
   animation-iteration-count: infinite;
 }
 
-.iconosImg {
-  /* border-radius: 25px;     */
-  padding: 2px;
-  width: 30px;
-  height: 30px;
-  align-self: center;
-  cursor: pointer;
-  margin-top: -10px;
-}
-
 .iconosImgCalendario {
   /* border-radius: 25px;     */
   padding: 2px;
@@ -60,40 +50,28 @@
   -o-border-radius: 15px;
 }
 
-.tituloOrdenar {
-  justify-content: space-between;
-}
-
 .divOrdenar {
   text-align: left;
 }
 
-.divVolver {
+.divVolver2 {
   text-align: right;
   margin-top: -35px;
   margin-right: 15px;
 }
 
-.divLeft {
+.divLeft2 {
   float: left;
   margin-left: 15px;
   margin-bottom: 25px;
   font-size: 14px !important;
 }
 
-.divRight {
+.divRight4 {
   float: right;
   margin-right: 15px;
   margin-bottom: 25px;
   font-size: 14px !important;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
 }
 
 .iconoFlechaColor {
@@ -117,39 +95,6 @@
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
-}
-
-.botonOrdenar {
-  background: transparent;
-  border-color: transparent;
-  font-size: 16px;
-  margin-left: 20px;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  animation: spin 1s linear infinite;
-}
-
-.spinner-container {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Ajusta la altura del contenedor según necesites */
-  width: 50vh;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes pulsePeque {

@@ -15,31 +15,14 @@ li {
 .nombre {
   font-weight: bold;
 }
+
+.info {
+  font-style: italic;
+}
+
 .apodos {
   margin-left: 20px;
   color: #666;
-}
-
-.tituloApodos {
-  margin-left: 25px;
-}
-
-.subTituloApodos {
-  margin-left: 50px;
-  margin-right: 15px;
-}
-
-.divRight {
-  float: right;
-  margin-right: 15px;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
 }
 
 .icon {
@@ -48,7 +31,7 @@ li {
   margin: 10px;
 }
 
-.iconosImgFav {
+.iconosImgFav5 {
   padding: 0px;
   width: 40px;
   height: 40px;

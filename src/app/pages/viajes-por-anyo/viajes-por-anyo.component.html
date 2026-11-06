@@ -3,7 +3,7 @@
         <button *ngIf="!orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaAbajo.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
         <button *ngIf="orderDesc" class="botonOrdenar animated zoomInDown" (touchstart)="ordenar('touchstart')" (click)="ordenar('click')"><img src="assets/icons/flechaArriba.png" class="iconoFlecha"> {{ 'app.ordenar' | translate }}</button>
     </div>
-    <div class="divVolver">
+    <div class="divVolver2">
         <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated pulsePeque zoomInDown" routerLink="/viajes"><a routerLink="/viajes">  {{ 'viaje.volver' | translate}}</a></span>
     </div>
 </div>
@@ -135,11 +135,11 @@
   </div>
   <div class="clearfix visible-xs-block"></div>
   <div *ngIf="mensajeCabeceraAnyo">
-    <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoInicio" class="divLeft">
+    <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoInicio" class="divLeft2">
       <img src="assets/icons/flechaIzq.png" class="animated fadeIn pulseGrande iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">&nbsp;
         <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year-1}}">  {{ 'viaje.anteriores' | translate}}</a>
     </div>
-    <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoActual" class="divRight">
+    <div *ngIf="servicioViajes.viajesDetalleLista[0].year != anyoActual" class="divRight4">
       <a routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">  {{ 'viaje.siguientes' | translate}}</a>&nbsp;
         <img src="assets/icons/flechaDer.png" class="animated fadeIn pulseGrande iconoFlecha" routerLink="/viajesFiltrados/{{servicioViajes.viajesDetalleLista[0].year+1}}">
     </div>

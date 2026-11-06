@@ -1,56 +1,3 @@
-.mueveIconos {
-  position: relative;
-  animation-name: mueveIconosPorPantalla;
-  animation-delay: 1s;
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes mueveIconosPorPantalla {
-  0% {
-    left: 0px;
-    top: 0px;
-  }
-  25% {
-    left: 30%;
-    top: 0px;
-  }
-  50% {
-    left: 0px;
-    top: 0px;
-  }
-  75% {
-    left: -30%;
-    top: 0px;
-  }
-  100% {
-    left: 0px;
-    top: 0px;
-  }
-}
-
-.tituloJuego {
-  margin-left: 25px;
-}
-
-.subTituloJuego {
-  margin-left: 50px;
-  margin-right: 15px;
-}
-
-.iconosImgFav {
-  padding: 0px;
-  width: 30px;
-  height: 30px;
-  align-self: center;
-  margin-top: -10px;
-}
-
-.divRight {
-  float: right;
-  margin-right: 15px;
-}
-
 .imagenCentrada {
   display: flex;
   justify-content: center;
@@ -60,14 +7,6 @@
 .iconJuego {
   width: 60px;
   height: 60px;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
 }
 
 .quien-es-quien-container {
@@ -148,26 +87,6 @@
   /* transition: background-color 0.3s ease; Transición suave */
 }
 
-.btnRestart {
-  background: transparent;
-  border-radius: 30px;
-  border: 4px solid rgb(33, 33, 33);
-  background-color: rgb(255, 228, 177);
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
 .endGameMessage {
   text-align: center;
   position: relative;
@@ -181,6 +100,18 @@
   font-size: 2em;
   color: rgb(247, 200, 115);
   animation: blink 1s infinite;
+  -webkit-animation: blink 1s infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .cross {

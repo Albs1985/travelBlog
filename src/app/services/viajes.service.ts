@@ -117,8 +117,8 @@ export class ViajesService {
 
           }
 
-          this.viajesLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
-
+          // this.viajesLista = array.sort(); //Para ordenar de mayor a menor los años y que salga el ultimo año el primero
+          this.viajesLista = array;
           resolve(this.viajesLista);
           this.cargandoViajes$.next(false);
 

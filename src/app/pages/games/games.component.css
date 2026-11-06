@@ -1,39 +1,9 @@
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-}
-
-.divRight {
-  float: right;
-  margin-right: 15px;
-}
-
-.tituloJuego {
-  margin-left: 25px;
-}
-
-.subTituloJuego {
-  margin-left: 50px;
-  margin-right: 15px;
-}
-
 .cuerpoImagenes {
   margin-top: 25px;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.iconosImgFav {
-  padding: 0px;
-  width: 30px;
-  height: 30px;
-  align-self: center;
-  margin-top: -10px;
 }
 
 .videoContenedor {
@@ -61,34 +31,6 @@
   }
 }
 
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-    -webkit-transform: scale3d(1, 1, 1);
-    -moz-transform: scale3d(1, 1, 1);
-    -ms-transform: scale3d(1, 1, 1);
-    -o-transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.05, 1.05, 1.05);
-    -webkit-transform: scale3d(1.05, 1.05, 1.05);
-    -moz-transform: scale3d(1.05, 1.05, 1.05);
-    -ms-transform: scale3d(1.05, 1.05, 1.05);
-    -o-transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
 .icon-container {
   display: flex;
   flex-wrap: wrap;
@@ -104,19 +46,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-}
-
-.divRight {
-  float: right;
-  margin-right: 15px;
 }
 
 @media screen and (max-width: 600px) {

@@ -70,18 +70,6 @@ li {
   border-color: transparent;
 }
 
-.divLeft {
-  float: left;
-  margin-left: 5px;
-  font-size: 14px !important;
-}
-
-.divRight {
-  float: right;
-  margin-right: 5px;
-  font-size: 14px !important;
-}
-
 .estiloNota {
   font-style: italic !important;
   font-family: "sans-serif" !important;
@@ -118,7 +106,7 @@ li {
   margin-bottom: 50px;
 }
 
-.dobleFotos {
+.dobleFotos2 {
   width: 50%;
   height: 50%;
   display: table-cell;
@@ -128,17 +116,6 @@ li {
   width: 50px;
   height: 50px;
   padding: 5px;
-}
-
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-  cursor: pointer;
-  /* filter: blur(1px);
-  -webkit-filter: blur(1px); */
 }
 
 .disposicion {
@@ -162,14 +139,6 @@ li {
 
 .fh5co-post-entry article .fh5co-meta {
   font-size: 20px;
-}
-
-.iconosImg {
-  padding: 2px;
-  width: 30px;
-  height: 30px;
-  align-self: center;
-  margin-top: -10px;
 }
 
 .iconoAirbnb {
@@ -202,52 +171,6 @@ li {
     /* width: 100%; */
     height: 600px;
   }
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  animation: spin 1s linear infinite;
-}
-
-.spinner-container {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Ajusta la altura del contenedor según necesites */
-  width: 50vh;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
 }
 
 @keyframes rubberBand {

@@ -1,50 +1,6 @@
-.iconoFlecha {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-}
-
-.divRight {
-  float: right;
-  margin-right: 15px;
-}
-
 .iconJuego {
   width: 120px;
   height: 120px;
-}
-
-.mueveIconos {
-  position: relative;
-  animation-name: mueveIconosPorPantalla;
-  animation-delay: 1s;
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes mueveIconosPorPantalla {
-  0% {
-    left: 0px;
-    top: 0px;
-  }
-  25% {
-    left: 30%;
-    top: 0px;
-  }
-  50% {
-    left: 0px;
-    top: 0px;
-  }
-  75% {
-    left: -30%;
-    top: 0px;
-  }
-  100% {
-    left: 0px;
-    top: 0px;
-  }
 }
 
 .game-container {
@@ -52,14 +8,12 @@
 }
 
 .image-container {
-  position: flex; /* Establece la posición relativa para el contenedor */
+  position: flex;
 }
 
 img {
-  width: 100%; /* Ajusta el ancho según sea necesario */
-  height: 100%; /* Ajusta la altura según sea necesario */
-  /* max-width: 250px;
-  max-height: 250px; */
+  width: 100%;
+  height: 100%;
   padding: 25px;
 }
 
@@ -89,48 +43,4 @@ img {
 
 .restart-button:hover {
   background-color: rgb(248, 191, 86);
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.winnerMessage {
-  text-align: center;
-  position: relative;
-  z-index: 10000;
-}
-
-.btnRestart {
-  background: transparent;
-  border-radius: 30px;
-  border: 4px solid rgb(33, 33, 33);
-  background-color: rgb(255, 228, 177);
-}
-
-.winnerLabel {
-  font-size: 2em;
-  color: rgb(247, 200, 115);
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
