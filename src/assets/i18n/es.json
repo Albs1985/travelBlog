@@ -349,6 +349,26 @@
     "40": {
       "frase": "Acepto el record",
       "explicacion": "Acepto el reto"
+    },
+    "41": {
+      "frase": "Papi: Marina s'ha dormit. Mateu: Según mis cálculos está sorda.",
+      "explicacion": "Mateu para decir que está fingiendo"
+    },
+    "42": {
+      "frase": "Papi: No pasa res. Marina: Si pasa res.",
+      "explicacion": "Si qué pasa sí"
+    },
+    "43": {
+      "frase": "Mateu: Avui no m'han despedit.",
+      "explicacion": "Mateu para decir que no le han tirado de clase."
+    },
+    "44": {
+      "frase": "Mami: He vist que ja no està Hansel. Mateu: Sí que està, pero ara te un altre nom.",
+      "explicacion": "Mateu para referirse a Liam, otro compañero negro de su clase."
+    },
+    "45": {
+      "frase": "Mira Mami! Unes tissores!!",
+      "explicacion": "Senyala Marina una paret amb un graffiti de un penis"
     }
   },
   "relatoAlbaiAlbert": {
