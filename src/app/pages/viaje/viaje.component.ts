@@ -1,47 +1,95 @@
-import { Component, OnInit/*, ElementRef, ViewChild, AfterViewInit*/ } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { ViajesService } from '../../services/viajes.service';
-import { FotosService } from 'src/app/services/fotos.service';
 import { AutenticationService } from 'src/app/services/autentication.service';
+import { Bloque, FotoViaje, Texto, Viaje } from '../../interfaces/viaje.interface';
+import { iconoAlojamiento, iconoCategoria, iconoTransporte } from '../../services/viajes.catalogo';
+
+/** Foto de un bloque, con su posición dentro del visor (lightbox). */
+export interface FotoVista {
+  foto: FotoViaje;
+  idx: number;
+}
+
+export interface BloqueVista {
+  tipo: Bloque['tipo'];
+  texto?: Texto;
+  autor?: Texto;
+  fotos?: FotoVista[];
+}
+
+export interface VistaViaje {
+  viaje: Viaje;
+  bloques: BloqueVista[];
+  extra: FotoVista[];
+  /** Todas las fotos del viaje en el orden en que se ven en la página (para el visor). */
+  galeria: FotoViaje[];
+  transporteIconos: string[];
+  categoriaIcono: string;
+  alojamientoIcono: string;
+}
 
 @Component({
   selector: 'app-viaje',
   templateUrl: './viaje.component.html',
-  styleUrls: ['./viaje.component.css']
+  styleUrls: ['./viaje.component.css'],
 })
-export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
-  // @ViewChild('container') containerRef!: ElementRef;
+export class ViajeComponent {
+  showMsg = false;
+  /** Posición de la foto abierta en el visor; null = cerrado. */
+  fotoAbierta: number | null = null;
 
-  showMsg : boolean = false;
+  /** null mientras carga; { viaje: undefined } no se usa: si no existe, `vista.viaje` es undefined. */
+  readonly vista$: Observable<VistaViaje | { viaje: undefined }> = this.route.paramMap.pipe(
+    map((p) => p.get('ciudad') ?? ''),
+    switchMap((id) => this.servicioViajes.viaje(id)),
+    map((viaje) => (viaje ? this.prepararVista(viaje) : { viaje: undefined }))
+  );
 
-  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService, public authenticationService: AutenticationService){
+  constructor(
+    private route: ActivatedRoute,
+    public servicioViajes: ViajesService,
+    public authenticationService: AutenticationService
+  ) {}
 
-  }
-
-
-  ngOnInit(){
-
-    this.route.params.subscribe(params =>{
-
-      // console.log(params['ciudad']);
-
-      this.servicioViajes.cargarViaje(params);
-      this.servicioFotos.cargarFotos(params);
-
-    });
-
-  }
-
-  showTooltip(){
-
+  showTooltip(): void {
     this.showMsg = !this.showMsg;
-    // console.log(this.showMsg);
   }
 
-  // ngAfterViewInit() {
-  //   this.containerRef.nativeElement.scrollTo(0, 0);
-  // }
+  esVista(v: VistaViaje | { viaje: undefined }): v is VistaViaje {
+    return v.viaje !== undefined;
+  }
 
+  ocultar(evento: Event): void {
+    (evento.target as HTMLElement).style.display = 'none';
+  }
 
+  private prepararVista(viaje: Viaje): VistaViaje {
+    const galeria: FotoViaje[] = [];
+    if (viaje.portada) galeria.push({ src: viaje.portada, desc: viaje.descPrincipal });
 
+    const añadir = (foto: FotoViaje): FotoVista => {
+      galeria.push(foto);
+      return { foto, idx: galeria.length - 1 };
+    };
+
+    const bloques: BloqueVista[] = viaje.bloques.map((b) =>
+      b.tipo === 'fotos'
+        ? { tipo: b.tipo, fotos: b.fotos.map(añadir) }
+        : { tipo: b.tipo, texto: 'texto' in b ? b.texto : undefined, autor: b.tipo === 'cita' ? b.autor : undefined }
+    );
+    const extra = viaje.fotosExtra.map((src) => añadir({ src }));
+
+    return {
+      viaje,
+      bloques,
+      extra,
+      galeria,
+      transporteIconos: viaje.transporte.map(iconoTransporte).filter((i) => i !== ''),
+      categoriaIcono: iconoCategoria(viaje.categoria),
+      alojamientoIcono: viaje.tipoEstancia === 'Airbnb' ? '' : iconoAlojamiento(viaje.tipoEstancia),
+    };
+  }
 }

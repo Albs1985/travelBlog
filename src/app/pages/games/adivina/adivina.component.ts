@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
 import { ViajesService } from 'src/app/services/viajes.service';
@@ -30,15 +31,15 @@ export class AdivinaComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.viajesService.cargarViajesTotales().then(()=>{
-      if (this.viajesService.viajesTotales && this.viajesService.viajesTotales.length > 0){
-        let index = Math.floor(Math.random() * (this.viajesService.viajesTotales.length - 1 + 1) + 1);
-        let indexNumFotos = Math.floor(Math.random() * (this.viajesService.viajesTotales[index].numFotos - 1 + 1) + 1);
-        this.urlImagen = 'assets/images/'+this.viajesService.viajesTotales[index].year +'/'+this.viajesService.viajesTotales[index].identificadorFotos+''+indexNumFotos+'.jpg';
-        this.nomViaje = this.viajesService.viajesTotales[index].destino;
+    this.viajesService.viajes$.pipe(take(1)).subscribe((viajes) => {
+      const conFotos = viajes.filter((v) => v.fotos.length > 0);
+      if (conFotos.length > 0){
+        const viaje = conFotos[Math.floor(Math.random() * conFotos.length)];
+        const foto = viaje.fotos[Math.floor(Math.random() * viaje.fotos.length)];
+        this.urlImagen = 'assets/images/' + foto;
+        this.nomViaje = viaje.destino;
       }
     });
-
     this.blurFilter = `blur(${this.blurAmount}px)`;
 
   }

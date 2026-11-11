@@ -1,6 +1,7 @@
 .mapa {
   width: 100%;
   height: 300px;
+  margin: 20px 0;
 }
 
 .bodyUrl {
@@ -34,16 +35,14 @@ li {
   text-align: center;
   font-size: 12px;
   text-decoration: none;
-  color: #007bff; /* Cambia el color según tus preferencias */
+  color: #007bff;
+  word-break: break-all;
 }
 
 .aUrl:hover {
   text-decoration: underline;
 }
 
-.listaPersonas {
-  margin-left: 25px !important;
-}
 .custom-tooltip {
   position: fixed;
   top: 30%;
@@ -75,41 +74,8 @@ li {
   font-family: "sans-serif" !important;
 }
 
-.video-container {
-  display: grid;
-  grid-template-columns: repeat(
-    1,
-    1fr
-  ); /*Para hacer 3 columnas y que tengan el mismo tamaño*/
-  padding: 20px;
-  grid-gap: 20px;
-}
-
 .textoFoto {
   text-align: center;
-}
-
-.video-item {
-  position: relative;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.vid-border {
-  position: relative;
-  height: 260px;
-  width: 340px;
-  border: 5px solid rgb(212, 212, 212);
-  box-shadow: 5px 10px 8px #888888;
-  overflow: hidden;
-  border-radius: 25px 25px;
-  margin-bottom: 50px;
-}
-
-.dobleFotos2 {
-  width: 50%;
-  height: 50%;
-  display: table-cell;
 }
 
 .iconos {
@@ -125,7 +91,6 @@ li {
 .mueveTransporte {
   position: relative;
   animation-name: muevePorPantalla;
-  /* animation-delay: 0s;      */
   animation-duration: 4s;
   animation-iteration-count: infinite;
 }
@@ -148,89 +113,98 @@ li {
   align-self: center;
 }
 
-/*ESTE TAMAÑO ES EL DE TABLE, ES DECIR, CON PANTALLA MEDIANA*/
-@media (min-width: 850px) {
-  .video-container {
-    grid-template-columns: repeat(
-      2,
-      1fr
-    ); /*Para hacer 3 columnas y que tengan el mismo tamaño*/
-    padding: 20px;
-    grid-gap: 10px;
-  }
+.aviso {
+  text-align: center;
+  padding: 60px 15px;
+}
+
+/* ---- Contenido del viaje (bloques) ---- */
+.relato {
+  clear: both;
+  padding-top: 15px;
+}
+
+.bloque-texto {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fotos-grid {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.fotos-grid figure {
+  margin: 0;
+}
+
+.fotos-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Una sola foto: se ve entera y centrada */
+.fotos-una {
+  grid-template-columns: minmax(0, 640px);
+  justify-content: center;
+}
+
+.fotos-una img {
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.foto-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+figure > .foto-btn img {
+  width: 100%;
+  height: auto;
 }
 
 @media (min-width: 850px) {
   .mapa {
-    /* width: 600px; */
     height: 500px;
   }
 }
 @media (min-width: 1150px) {
   .mapa {
-    /* width: 100%; */
     height: 600px;
   }
 }
 
 @keyframes rubberBand {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  30% {
-    transform: scale3d(1.25, 0.75, 1);
-  }
-
-  40% {
-    transform: scale3d(0.75, 1.25, 1);
-  }
-
-  50% {
-    transform: scale3d(1.15, 0.85, 1);
-  }
-
-  65% {
-    transform: scale3d(0.95, 1.05, 1);
-  }
-
-  75% {
-    transform: scale3d(1.05, 0.95, 1);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
+  from { transform: scale3d(1, 1, 1); }
+  30% { transform: scale3d(1.25, 0.75, 1); }
+  40% { transform: scale3d(0.75, 1.25, 1); }
+  50% { transform: scale3d(1.15, 0.85, 1); }
+  65% { transform: scale3d(0.95, 1.05, 1); }
+  75% { transform: scale3d(1.05, 0.95, 1); }
+  to { transform: scale3d(1, 1, 1); }
 }
 
 .rubberBand {
   animation-name: rubberBand;
   animation-iteration-count: infinite;
-  /* animation-delay: 1s;      */
   animation-duration: 1.5s;
   animation-timing-function: ease-in;
-  /* animation-direction: alternate; */
 }
 
 @keyframes muevePorPantalla {
-  0% {
-    left: 0px;
-    top: 0px;
-  }
-  25% {
-    left: 200%;
-    top: 0px;
-  }
-  50% {
-    left: 0px;
-    top: 0px;
-  }
-  75% {
-    left: -200%;
-    top: 0px;
-  }
-  100% {
-    left: 0px;
-    top: 0px;
-  }
+  0% { left: 0px; top: 0px; }
+  25% { left: 200%; top: 0px; }
+  50% { left: 0px; top: 0px; }
+  75% { left: -200%; top: 0px; }
+  100% { left: 0px; top: 0px; }
 }

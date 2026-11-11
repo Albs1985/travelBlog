@@ -1,0 +1,28 @@
+{
+  "destino": "Nombre del destino",
+  "fechaInicio": "2027-07-10",
+  "fechaFin": "2027-07-17",
+  "categoria": "Playa",
+  "provincia": "Provincia o región",
+  "pais": "España",
+  "precio": 0,
+  "estancia": "Nombre del alojamiento",
+  "tipoEstancia": "Hotel",
+  "transporte": ["Coche"],
+  "personas": ["Alba", "Albert", "Marina", "Mateu"],
+  "prefijoFotos": "destino",
+  "mapa": "",
+  "infoInteres": [],
+  "descPrincipal": { "es": "Pie de la foto principal", "val": "Peu de la foto principal" },
+  "bloques": [
+    { "tipo": "titulo",  "es": "Título de la primera parte", "val": "Títol de la primera part" },
+    { "tipo": "parrafo", "es": "Un párrafo en castellano.", "val": "Un paràgraf en valencià." },
+    { "tipo": "foto", "n": 1, "es": "Pie de la foto 1 (opcional)", "val": "Peu de la foto 1 (opcional)" },
+    { "tipo": "foto", "n": 2 },
+    { "tipo": "foto", "n": 3 },
+    { "tipo": "cita", "es": "Una frase destacada", "val": "Una frase destacada", "autor": { "es": "— Quién la dijo", "val": "— Qui la va dir" } },
+    { "tipo": "nota", "es": "Una nota en cursiva", "val": "Una nota en cursiva" },
+    { "tipo": "mapa" },
+    { "tipo": "parrafo", "es": "Otro párrafo.", "val": "Un altre paràgraf." }
+  ]
+}

@@ -1,0 +1,43 @@
+# OPCIONAL: publicar en GitHub Pages automáticamente con cada "git push" a main.
+#
+# Para activarlo:
+#  1. Mueve este archivo a  .github/workflows/deploy.yml
+#  2. En GitHub: Settings > Pages > Source = "GitHub Actions"
+#  3. Regenera el package-lock.json con el registro público (ver README, apartado "package-lock") y súbelo.
+#  4. Ya no hace falta compilar en local ni subir la carpeta docs/.
+name: Deploy a GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # "npm run build" genera antes los datos de los viajes (prebuild) y falla si hay errores en ellos
+      - run: npm run build -- --output-path dist
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

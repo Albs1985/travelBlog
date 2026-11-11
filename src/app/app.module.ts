@@ -11,6 +11,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SafePipe } from './pipes/safe.pipe';
+import { L10nPipe } from './pipes/l10n.pipe';
+import { LightboxComponent } from './shared/lightbox/lightbox.component';
+import { CarruselComponent } from './shared/carrusel/carrusel.component';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
@@ -45,6 +48,9 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
     ViajeComponent,
     ViajesPorAnyoComponent,
     SafePipe,
+    L10nPipe,
+    LightboxComponent,
+    CarruselComponent,
     BookModeComponent,
     GaleriaComponent,
     PrincipalComponent,
@@ -76,7 +82,6 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TranslateModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -85,7 +90,7 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
       }
     })
   ],
-  providers: [HeaderComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

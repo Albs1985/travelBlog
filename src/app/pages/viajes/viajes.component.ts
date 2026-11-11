@@ -1,61 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ViajesService } from '../../services/viajes.service';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { ActivatedRoute } from '@angular/router';
-import { Viajes } from 'src/app/interfaces/viajes.interface';
 import { AutenticationService } from 'src/app/services/autentication.service';
+
+/** Un año con su portada y los destinos que se visitaron. */
+export interface AnyoConDestinos {
+  anyo: number;
+  portada: string;
+  destinos: string[];
+}
 
 @Component({
   selector: 'app-viajes',
   templateUrl: './viajes.component.html',
   styleUrls: ['./viajes.component.css']
 })
-export class ViajesComponent{
-  // implements OnInit
+export class ViajesComponent {
+  /** true = años del más reciente al más antiguo (orden por defecto) */
+  orderDesc = true;
 
-  orderDesc : boolean;
-  ejecutarSoloTouch: boolean;
-  viajesListado : Viajes[] = [];
+  readonly anyos$: Observable<AnyoConDestinos[]> = combineLatest([
+    this.servicioViajes.anyos$,
+    this.servicioViajes.viajes$,
+  ]).pipe(
+    map(([anyos, viajes]) =>
+      anyos.map((a) => ({
+        anyo: a.anyo,
+        portada: a.portada,
+        destinos: viajes.filter((v) => v.anyo === a.anyo).map((v) => v.destino),
+      }))
+    )
+  );
 
-  constructor(public servicioViajes : ViajesService,
-    private route: ActivatedRoute,
-    private translate: TranslateService, public authenticationService: AutenticationService){
+  constructor(public servicioViajes: ViajesService, public authenticationService: AutenticationService) {}
 
-      // this.preloadImages();
-      this.orderDesc = true;
-      this.ejecutarSoloTouch = false;
-      this.servicioViajes.cargarViajes();
-  }
-  // ngOnInit(): void {
-  //   // Pre cargar imágenes
-  //   // this.preloadImages();
-  // }
-
-  // preloadImages(): void {
-  //   const imagesToPreload: string[] = [
-  //     'assets/images/2019/Portada2019.jpg',
-  //     'assets/images/2020/Portada2020.jpg',
-  //     'assets/images/2021/Portada2021.jpg',
-  //     'assets/images/2022/Portada2022.jpg',
-  //     'assets/images/2023/Portada2023.jpg',
-  //     'assets/images/2024/Portada2024.jpg'
-  //   ];
-
-  //   imagesToPreload.forEach(imageUrl => {
-  //     const img = new Image();
-  //     img.src = imageUrl;
-  //   });
-  // }
-
-  public ordenar(eventType: string): void {
-
-    // console.log('eventType - '+eventType);
-    if (eventType === 'click' && !this.ejecutarSoloTouch) {
-      this.servicioViajes.viajesLista.reverse();
-    } else if (eventType === 'touchstart') {
-      this.ejecutarSoloTouch = true;
-      this.servicioViajes.viajesLista.reverse();
-    }
+  ordenar(): void {
     this.orderDesc = !this.orderDesc;
+  }
+
+  ordenados(anyos: AnyoConDestinos[]): AnyoConDestinos[] {
+    return this.orderDesc ? anyos : [...anyos].reverse();
   }
 }

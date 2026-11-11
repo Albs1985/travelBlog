@@ -39,17 +39,6 @@
   margin-right: 25px;
 }
 
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-  width: 60%;
-  margin: auto;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-}
-
 .divOrdenar {
   text-align: left;
 }
@@ -80,21 +69,6 @@
   padding: 5px;
   background-color: rgb(219, 237, 255);
   border-radius: 15px;
-}
-
-.iconoFlechaImg {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
-  background-color: rgb(247, 200, 115);
-  border-radius: 15px;
-  /* margin-top: 30px; */
-}
-
-.ancla {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
 }
 
 @keyframes pulsePeque {
@@ -179,4 +153,10 @@
 
 .backInLeft {
   animation-name: backInLeft;
+}
+
+.sin-resultados {
+  text-align: center;
+  padding: 40px 15px;
+  clear: both;
 }

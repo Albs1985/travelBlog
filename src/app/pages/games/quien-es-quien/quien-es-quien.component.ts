@@ -1,6 +1,7 @@
 // quien-es-quien.component.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
 import { ViajesService } from 'src/app/services/viajes.service';
 
@@ -38,9 +39,9 @@ export class QuienEsQuienComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    this.viajesService.cargarViajesTotales().then(()=>{
-      if (this.viajesService.viajesTotales && this.viajesService.viajesTotales.length > 0){
-        this.viajesService.viajesTotales.forEach((viaje)=>{
+    this.viajesService.viajes$.pipe(take(1)).subscribe((viajes) => {
+      if (viajes.length > 0){
+        viajes.forEach((viaje)=>{
           viaje.personas.forEach((persona)=>{
             let perso = {
               nombre : persona,
@@ -52,7 +53,6 @@ export class QuienEsQuienComponent implements OnInit, OnDestroy{
             }
           });
         });
-
         this.shufflePersonajes();
         this.selectAdversaryCharacter();
       }

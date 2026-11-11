@@ -1,0 +1,46 @@
+.car {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.car-pista {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 15px;
+}
+.car-pista::-webkit-scrollbar {
+  display: none;
+}
+.car-item {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+.car-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.car-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 20px;
+  background: rgb(247, 200, 115);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.car-btn img {
+  width: 24px;
+  height: 24px;
+}
+.car-izq { left: 8px; }
+.car-der { right: 8px; }

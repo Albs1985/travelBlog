@@ -16,11 +16,6 @@
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>
 <br>
-<div *ngIf="(viajesService.cargandoFotosGaleria$ | async) === true" class="spinner-container">
-  <div class="spinner">
-  </div>
-  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
-</div>
 
 
 <!-- Para autenticarse en la aplicación -->
@@ -32,22 +27,29 @@
 
 
 <div *ngIf="authenticationService.isLoggedIn()">
-
-  <br>
-  <div class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
-
-  <div *ngFor="let viaje of viajesService.arrayFotos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
-    <div class="gallery">
-      <a target="_blank" href="assets/images/{{viaje}}">
-        <img src="assets/images/{{viaje}}" loading="lazy" alt="" width="600" height="400">
-      </a>
+  <ng-container *ngIf="fotos$ | async as fotos; else cargando">
+    <br>
+    <div class="paginacion">
+      <pagination-controls class="my-pagination" id="gal" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
     </div>
-  </div>
-  <div class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
+    <div *ngFor="let foto of fotos | paginate: { id: 'gal', itemsPerPage: pageSize, currentPage: p }; let i = index" class="responsive animated zoomInDown">
+      <div class="gallery">
+        <a href="#" (click)="fotoAbierta = posicion(i); $event.preventDefault()">
+          <img [src]="'assets/images/' + foto.src" loading="lazy" alt="" width="600" height="400">
+        </a>
+      </div>
+    </div>
+    <div class="paginacion">
+      <pagination-controls class="my-pagination" id="gal" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="fotos" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
+  </ng-container>
+  <ng-template #cargando>
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+    </div>
+  </ng-template>
 </div> <!-- de la autenticacion -->
 
 

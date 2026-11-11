@@ -1,6 +1,8 @@
 // memory-game.component.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, max } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { ViajeResumen } from 'src/app/interfaces/viaje.interface';
 import { Viajero } from 'src/app/interfaces/viajero.interface';
 import { CommonService } from 'src/app/services/common.service';
 import { ViajerosService } from 'src/app/services/viajeros.service';
@@ -24,7 +26,11 @@ export class MemoryComponent implements OnInit, OnDestroy {
   cards: MemoryCard[] = [];
   difficulty: string = 'facil';
   numFotosJuegoSeleccionado : number = 0;
+  /** id del viaje cuyas fotos se usan en el juego */
   fotosJuegoSeleccionado : string = '';
+  /** Viajes que tienen fotos (opciones del selector) */
+  viajesConFotos : ViajeResumen[] = [];
+  private fotosViaje : string[] = [];
   marinaScore: number = 0;
   mateuScore: number = 0;
   albaScore: number = 0;
@@ -49,10 +55,11 @@ export class MemoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.viajesService.cargarViajesTotales().then(()=>{
-      if (this.viajesService.viajesTotales && this.viajesService.viajesTotales.length > 0){
-        this.fotosJuegoSeleccionado = this.viajesService.viajesTotales[0].year+'/'+this.viajesService.viajesTotales[0].identificadorFotos;
-        this.numFotosJuegoSeleccionado = this.viajesService.viajesTotales[0].numFotos;
+    this.viajesService.viajes$.pipe(take(1)).subscribe((viajes) => {
+      this.viajesConFotos = viajes.filter((v) => v.fotos.length > 0).reverse();
+      if (this.viajesConFotos.length > 0){
+        this.seleccionarViaje(this.viajesConFotos[0]);
+        this.generateCards();
       }
     });
     this.servicioJugadores.cargarViajeros().then(()=>{
@@ -87,14 +94,17 @@ export class MemoryComponent implements OnInit, OnDestroy {
   }
 
   onSelectImagesGameChange(): void {
-    this.viajesService.viajesTotales.forEach((viaje)=>{
-      if (viaje.year+'/'+viaje.identificadorFotos === this.fotosJuegoSeleccionado){
-        this.numFotosJuegoSeleccionado = viaje.numFotos;
-      }
-    });
+    const viaje = this.viajesConFotos.find((v) => v.id === this.fotosJuegoSeleccionado);
+    if (viaje){
+      this.seleccionarViaje(viaje);
+    }
     this.restartGame();
   }
-
+  private seleccionarViaje(viaje: ViajeResumen): void {
+    this.fotosJuegoSeleccionado = viaje.id;
+    this.fotosViaje = viaje.fotos;
+    this.numFotosJuegoSeleccionado = viaje.fotos.length;
+  }
   seleccionarJugador(nombre: string): void {
     this.selectedPlayer = nombre === this.selectedPlayer ? null : nombre;
     for (const [index, player] of this.jugadoresSeleccionados.entries()) {
@@ -151,9 +161,9 @@ export class MemoryComponent implements OnInit, OnDestroy {
         this.level = this.numFotosJuegoSeleccionado;
         break;
     }
-    for (let i = 1; i <= this.level; i++) {
-      this.cards.push({ image: 'assets/images/'+this.fotosJuegoSeleccionado+''+i+'.jpg', isFlipped: false, isMatched: false });
-      this.cards.push({ image: 'assets/images/'+this.fotosJuegoSeleccionado+''+i+'.jpg', isFlipped: false, isMatched: false });
+    for (let i = 0; i < this.level && i < this.fotosViaje.length; i++) {
+      this.cards.push({ image: 'assets/images/'+this.fotosViaje[i], isFlipped: false, isMatched: false });
+      this.cards.push({ image: 'assets/images/'+this.fotosViaje[i], isFlipped: false, isMatched: false });
     }
     this.shuffleCards();
 
