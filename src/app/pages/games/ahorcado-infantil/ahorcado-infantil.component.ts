@@ -182,7 +182,7 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     // La imagen describe un personaje que se construye o construye un juguete.
     // Ej: h0 es una estrella, h6 es un osito completo en un columpio.
     // Esto es puramente descriptivo, reemplaza con tus archivos locales.
-    return `assets/games/ahorcado-infantil/h${errorIndex}.svg`;
+    return `assets/icons/h${errorIndex}.svg`;
   }
 
   // Devuelve la clase del estado de la letra para estilizar el teclado

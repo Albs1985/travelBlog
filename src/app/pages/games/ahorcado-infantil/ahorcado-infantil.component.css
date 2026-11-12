@@ -17,9 +17,9 @@
 }
 
 .mobile-app-wrapper {
-  min-height: 100dvh;
+  /* min-height: 100dvh; */
   background-color: var(--bg-app);
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   padding: 0;
