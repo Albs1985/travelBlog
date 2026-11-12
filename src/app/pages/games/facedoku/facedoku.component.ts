@@ -52,7 +52,7 @@ export class FacedokuComponent implements OnInit, OnDestroy {
     { id: 9, name: 'Marina', imageUrl: 'assets/images/perfiles/fotoPerfilMarina.jpg' },
     { id: 10, name: 'Marta', imageUrl: 'assets/images/perfiles/fotoPerfilMarta.jpg' },
     { id: 11, name: 'Mateu', imageUrl: 'assets/images/perfiles/fotoPerfilMateu.jpg' },
-    { id: 12, name: 'Matilde', imageUrl: 'assets/images/perfiles/fotoPerfilMatilde.jpg' },
+    { id: 12, name: 'Matilde', imageUrl: 'assets/images/perfiles/fotoPerfilMatilde.jpg' }
     // { id: 12, name: 'Familia', imageUrl: 'assets/images/perfiles/fotoPerfilFamilia.jpg' },
     // { id: 13, name: 'Familia2', imageUrl: 'assets/images/perfiles/fotoPerfilFamilia2.jpg' },
     // { id: 14, name: 'Fede', imageUrl: 'assets/images/perfiles/fotoPerfilFede.jpg' },
@@ -95,6 +95,7 @@ export class FacedokuComponent implements OnInit, OnDestroy {
   private timerInterval: any;
 
   ngOnInit(): void {
+    this.avatars = this.getRandomAvatars();
     const savedHigh = localStorage.getItem('facedoku_highscore');
     if (savedHigh) {
       this.highScore = parseInt(savedHigh, 10);
@@ -104,6 +105,20 @@ export class FacedokuComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopTimer();
+  }
+
+  getRandomAvatars(count: number = 9): AvatarItem[] {
+    // 1. Creamos una copia para no mutar this.avatars
+    const shuffled = [...this.avatars];
+
+    // 2. Mezclamos con Fisher-Yates
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    // 3. Devolvemos los primeros 'count' elementos
+    return shuffled.slice(0, count);
   }
 
   // Inicia una nueva partida
