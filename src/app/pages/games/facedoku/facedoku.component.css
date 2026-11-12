@@ -27,8 +27,8 @@
 
 .app-container {
   width: 100%;
-  max-width: 440px;
-  min-height: 100dvh;
+  /* max-width: 440px;
+  min-height: 100dvh; */
   background: var(--bg-app);
   color: var(--text-light);
   display: flex;
