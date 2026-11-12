@@ -1,0 +1,126 @@
+<div class="mobile-app-wrapper {{ themeActual?.backgroundClass }}">
+  <div class="app-container">
+    
+    <!-- PANTALLA DE INICIO: Selección de Nivel -->
+    <main *ngIf="gameState === 'start'" class="start-screen animate-fade">
+      <div class="game-intro">
+        <div class="game-logo">
+          <img src="assets/games/peque-ahorcado/icon.png" alt="Peque Ahorcado Icono">
+        </div>
+        <h1>Peque Ahorcado</h1>
+        <p>Adivina palabras de películas, juegos y animales.</p>
+      </div>
+
+      <div class="level-selector">
+        <h2>¿Qué nivel quieres?</h2>
+        <div class="level-buttons">
+          <button class="diff-btn facilidad" (click)="setDifficulty('Fácil')">
+            <span class="icon">😊</span> Fácil
+          </button>
+          <button class="diff-btn normalidad" (click)="setDifficulty('Normal')">
+            <span class="icon">🤓</span> Normal
+          </button>
+          <button class="diff-btn dificultad" (click)="setDifficulty('Difícil')">
+            <span class="icon">🦁</span> Difícil
+          </button>
+        </div>
+        <p class="high-score-info">Mejor Puntuación: <strong>{{ highScore }}</strong> pts</p>
+      </div>
+    </main>
+
+    <!-- PANTALLA DE JUEGO PRINCIPAL -->
+    <main *ngIf="gameState !== 'start'" class="game-screen">
+      
+      <!-- CABECERA: Estadísticas -->
+      <header class="app-header">
+        <button class="exit-btn" (click)="resetGame()">X</button>
+        <div class="stats-group">
+          <div class="stat-box">
+            <span class="label">NIVEL</span>
+            <span class="value">{{ difficulty }}</span>
+          </div>
+          <div class="stat-box">
+            <span class="label">TIEMPO</span>
+            <span class="value">{{ formattedTime }}</span>
+          </div>
+          <div class="stat-box score-box">
+            <span class="label">PUNTOS <span class="combo-badge" *ngIf="combo > 1">x{{ combo | number:'1.1-1' }}</span></span>
+            <span class="value">{{ score }}</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ÁREA DE DIBUJO Y TEMÁTICA -->
+      <section class="game-visuals">
+        <div class="theme-info">
+          <span class="theme-icon">{{ themeActual?.icon }}</span>
+          <span class="theme-name">{{ themeActual?.name }}</span>
+        </div>
+        <div class="lives-indicator">
+          <span *ngFor="let h of [1,2,3,4,5,6]" [class.lost]="h > lives" class="heart">❤️</span>
+        </div>
+        <div class="draw-container">
+          <!-- Reemplaza [src] con tus assets descritos visualmente -->
+          <img [src]="currentDrawImage" alt="Dibujo del Personaje">
+        </div>
+      </section>
+
+      <!-- ÁREA DE LA PALABRA OCULTA -->
+      <section class="word-display">
+        <div *ngFor="let char of guionesOcultos" class="letter-slot" [class.space]="char === ' '">
+          {{ char === '_' ? '?' : char }}
+        </div>
+      </section>
+
+      <!-- ÁREA DE HERRAMIENTAS Y PISTAS -->
+      <section class="tools-bar">
+        <button class="tool-btn hint-btn" [disabled]="hintsLeft === 0 || pistaUsadaEnPalabra" (click)="useHint()">
+          <span class="icon">💡</span> Pista ({{ hintsLeft }})
+        </button>
+      </section>
+
+      <!-- ÁREA DEL TECLADO VIRTUAL -->
+      <footer class="keyboard-area">
+        <div *ngFor="let row of keyboard" class="keyboard-row">
+          <button 
+            *ngFor="let letra of row"
+            class="key-btn"
+            [class.correct]="getLetterState(letra) === 'correct'"
+            [class.incorrect]="getLetterState(letra) === 'incorrect'"
+            [disabled]="letrasSeleccionadas.includes(letra)"
+            (click)="checkLetter(letra)">
+            {{ letra }}
+          </button>
+        </div>
+      </footer>
+
+      <!-- OVERLAY DE FIN DE PARTIDA: Victoria/Derrota -->
+      <div class="overlay-modal animate-pop" *ngIf="gameState === 'won' || gameState === 'gameover'">
+        <div class="modal-card">
+          <div class="result-emoji">{{ gameState === 'won' ? '🏆' : '💔' }}</div>
+          <h2>{{ gameState === 'won' ? '¡Increíble, acertaste!' : '¡Oops, se acabó!' }}</h2>
+          <p *ngIf="gameState === 'won'">Has resuelto la palabra <strong>{{ palabraActual }}</strong> en {{ formattedTime }}.</p>
+          <p *ngIf="gameState === 'gameover'">La palabra era <strong>{{ palabraActual }}</strong>. ¡Vuelve a intentarlo!</p>
+          
+          <div class="final-scores">
+            <div>
+              <span>Puntuación</span>
+              <strong>{{ score }}</strong>
+            </div>
+            <div>
+              <span>Mejor</span>
+              <strong>{{ highScore }}</strong>
+            </div>
+          </div>
+
+          <div class="modal-buttons">
+            <button class="secondary-btn" (click)="resetGame()">Niveles</button>
+            <button class="primary-btn" (click)="startNewGame()">Jugar de Nuevo</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+</div>
