@@ -27,18 +27,6 @@ export type Difficulty = 'Fácil' | 'Normal' | 'Difícil';
   styleUrls: ['./facedoku.component.css']
 })
 export class FacedokuComponent implements OnInit, OnDestroy {
-  // REEMPLAZA ESTAS URLS POR TUS ASSETS LOCALES (ej: 'assets/faces/cara1.png')
-  // avatars: AvatarItem[] = [
-  //   { id: 1, name: 'Ana', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ana&backgroundColor=ffdfbf' },
-  //   { id: 2, name: 'Luis', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Luis&backgroundColor=c0aede' },
-  //   { id: 3, name: 'Sofía', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia&backgroundColor=b6e3f4' },
-  //   { id: 4, name: 'Carlos', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos&backgroundColor=ffd5dc' },
-  //   { id: 5, name: 'Elena', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Elena&backgroundColor=d1d4f9' },
-  //   { id: 6, name: 'Mateo', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Mateo&backgroundColor=ffdfbf' },
-  //   { id: 7, name: 'Lucía', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Lucia&backgroundColor=c0aede' },
-  //   { id: 8, name: 'Diego', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Diego&backgroundColor=b6e3f4' },
-  //   { id: 9, name: 'Valeria', imageUrl: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Valeria&backgroundColor=ffd5dc' }
-  // ];
 
   avatars: AvatarItem[] = [
     { id: 1, name: 'Alba', imageUrl: 'assets/images/perfiles/fotoPerfilAlba.jpg' },
@@ -108,7 +96,7 @@ export class FacedokuComponent implements OnInit, OnDestroy {
   }
 
   getRandomAvatars(count: number = 9): AvatarItem[] {
-    // 1. Creamos una copia para no mutar this.avatars
+    // 1. Creamos una copia superficial del array para no alterar el orden original
     const shuffled = [...this.avatars];
 
     // 2. Mezclamos con Fisher-Yates
@@ -117,8 +105,11 @@ export class FacedokuComponent implements OnInit, OnDestroy {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    // 3. Devolvemos los primeros 'count' elementos
-    return shuffled.slice(0, count);
+    // 3. Tomamos los 'count' primeros y creamos un nuevo objeto con el id reasignado (1..9)
+    return shuffled.slice(0, count).map((avatar, index) => ({
+      ...avatar,
+      id: index + 1
+    }));
   }
 
   // Inicia una nueva partida
