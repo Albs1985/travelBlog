@@ -1,11 +1,11 @@
 <div class="mobile-app-wrapper {{ themeActual?.backgroundClass }}">
   <div class="app-container">
-    
+
     <!-- PANTALLA DE INICIO: Selección de Nivel -->
     <main *ngIf="gameState === 'start'" class="start-screen animate-fade">
       <div class="game-intro">
         <div class="game-logo">
-          <img src="assets/games/peque-ahorcado/icon.png" alt="Peque Ahorcado Icono">
+          <img src="assets/icons/ahorcado.png" alt="Peque Ahorcado Icono">
         </div>
         <h1>Peque Ahorcado</h1>
         <p>Adivina palabras de películas, juegos y animales.</p>
@@ -30,7 +30,7 @@
 
     <!-- PANTALLA DE JUEGO PRINCIPAL -->
     <main *ngIf="gameState !== 'start'" class="game-screen">
-      
+
       <!-- CABECERA: Estadísticas -->
       <header class="app-header">
         <button class="exit-btn" (click)="resetGame()">X</button>
@@ -82,7 +82,7 @@
       <!-- ÁREA DEL TECLADO VIRTUAL -->
       <footer class="keyboard-area">
         <div *ngFor="let row of keyboard" class="keyboard-row">
-          <button 
+          <button
             *ngFor="let letra of row"
             class="key-btn"
             [class.correct]="getLetterState(letra) === 'correct'"
@@ -101,7 +101,7 @@
           <h2>{{ gameState === 'won' ? '¡Increíble, acertaste!' : '¡Oops, se acabó!' }}</h2>
           <p *ngIf="gameState === 'won'">Has resuelto la palabra <strong>{{ palabraActual }}</strong> en {{ formattedTime }}.</p>
           <p *ngIf="gameState === 'gameover'">La palabra era <strong>{{ palabraActual }}</strong>. ¡Vuelve a intentarlo!</p>
-          
+
           <div class="final-scores">
             <div>
               <span>Puntuación</span>

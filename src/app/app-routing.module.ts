@@ -24,6 +24,7 @@ import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
 import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
 import { FacedokuComponent } from './pages/games/facedoku/facedoku.component';
+import { AhorcadoInfantilComponent } from './pages/games/ahorcado-infantil/ahorcado-infantil.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -45,6 +46,7 @@ const app_routes: Routes = [
   { path: 'games/tableros', component : TablerosComponent},
   { path: 'games/misionCumplida', component : MisionCumplidaComponent},
   { path: 'games/facedoku', component : FacedokuComponent},
+  { path: 'games/ahorcado', component : AhorcadoInfantilComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},

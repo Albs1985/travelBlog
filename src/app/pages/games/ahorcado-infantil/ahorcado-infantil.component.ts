@@ -40,15 +40,15 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
 
   // Las imágenes del "ahorcado" son representaciones visuales (SVG o PNG)
   // que construyen un muñeco de peluche o personaje, no una ejecución.
-  // Reemplaza estas rutas por tus assets locales: 'assets/games/peque-ahorcado/h1.svg'
+  // Reemplaza estas rutas por tus assets locales: 'assets/games/ahorcado-infantil/h1.svg'
   drawImages: string[] = [
-    'assets/images/h0.svg', // Base vacía, solo la estructura del columpio
-    'assets/images/h1.svg', // Cabeza del muñeco de peluche
-    'assets/images/h2.svg', // Cabeza + Cuerpo
-    'assets/images/h3.svg', // Cabeza + Cuerpo + 1 Brazo
-    'assets/images/h4.svg', // Cabeza + Cuerpo + 2 Brazos
-    'assets/images/h5.svg', // Cabeza + Cuerpo + 2 Brazos + 1 Pierna
-    'assets/images/h6.svg'  // Muñeco completo, feliz, en el columpio. ¡Perdiste!
+    'assets/icons/h0.svg', // Base vacía, solo la estructura del columpio
+    'assets/icons/h1.svg', // Cabeza del muñeco de peluche
+    'assets/icons/h2.svg', // Cabeza + Cuerpo
+    'assets/icons/h3.svg', // Cabeza + Cuerpo + 1 Brazo
+    'assets/icons/h4.svg', // Cabeza + Cuerpo + 2 Brazos
+    'assets/icons/h5.svg', // Cabeza + Cuerpo + 2 Brazos + 1 Pierna
+    'assets/icons/h6.svg'  // Muñeco completo, feliz, en el columpio. ¡Perdiste!
   ];
 
   // Teclado virtual QWERTY
@@ -66,14 +66,14 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
   lives: number = 6;
   maxLives: number = 6;
   hintsLeft: number = 3;
-  
+
   palabraActual: string = '';
   guionesOcultos: string[] = [];
   letrasSeleccionadas: string[] = [];
   themeActual: ChildrenTheme | null = null;
   gameState: 'start' | 'playing' | 'won' | 'gameover' = 'start';
   pistaUsadaEnPalabra: boolean = false;
-  
+
   // Temporizador
   secondsElapsed: number = 0;
   private timerInterval: any;
@@ -182,7 +182,7 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     // La imagen describe un personaje que se construye o construye un juguete.
     // Ej: h0 es una estrella, h6 es un osito completo en un columpio.
     // Esto es puramente descriptivo, reemplaza con tus archivos locales.
-    return `assets/games/peque-ahorcado/h${errorIndex}.svg`; 
+    return `assets/games/ahorcado-infantil/h${errorIndex}.svg`;
   }
 
   // Devuelve la clase del estado de la letra para estilizar el teclado

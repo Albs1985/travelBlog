@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 220" width="100%" height="100%">
+  <!-- Suelo / Hierba suave -->
+  <path d="M 30 195 Q 150 185 270 195" fill="none" stroke="#1e1e1e" stroke-width="5" stroke-linecap="round" />
+  <path d="M 60 205 L 110 205 M 190 205 L 240 205" stroke="#eab55e" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Poste izquierdo del columpio -->
+  <rect x="65" y="35" width="14" height="160" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="5" />
+  <!-- Poste derecho del columpio -->
+  <rect x="221" y="35" width="14" height="160" rx="5" fill="#ffffff" stroke="#1e1e1e" stroke-width="5" />
+  <!-- Barra superior -->
+  <rect x="50" y="25" width="200" height="14" rx="7" fill="#eab55e" stroke="#1e1e1e" stroke-width="5" />
+
+  <!-- Cuerdas del columpio -->
+  <line x1="115" y1="39" x2="115" y2="155" stroke="#1e1e1e" stroke-width="4" stroke-linecap="round" />
+  <line x1="185" y1="39" x2="185" y2="155" stroke="#1e1e1e" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Asiento del columpio -->
+  <rect x="103" y="152" width="94" height="12" rx="6" fill="#eab55e" stroke="#1e1e1e" stroke-width="5" />
+
+  <!-- Estrellita decorativa -->
+  <path d="M 255 55 L 258 63 L 266 65 L 258 67 L 255 75 L 252 67 L 244 65 L 252 63 Z" fill="#eab55e" stroke="#1e1e1e" stroke-width="3" stroke-linejoin="round" />
+</svg>

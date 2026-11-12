@@ -29,9 +29,10 @@
 }
 
 /* Temáticas visuales de fondo (ejemplos) */
-.mobile-app-wrapper.theme-disney { background-image: url('assets/games/peque-ahorcado/bg-disney.svg'); }
-.mobile-app-wrapper.theme-park { background-image: url('assets/games/peque-ahorcado/bg-park.svg'); }
-.mobile-app-wrapper.theme-farm { background-image: url('assets/games/peque-ahorcado/bg-farm.svg'); }
+/* En ahorcado-infantil.component.css */
+.mobile-app-wrapper.theme-disney { background-image: url('/assets/icons/bg-disney.svg'); }
+.mobile-app-wrapper.theme-park   { background-image: url('/assets/icons/bg-park.svg'); }
+.mobile-app-wrapper.theme-farm   { background-image: url('/assets/icons/bg-farm.svg'); }
 
 .app-container {
   width: 100%;
