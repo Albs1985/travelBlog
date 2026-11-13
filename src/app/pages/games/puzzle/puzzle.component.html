@@ -1,5 +1,5 @@
 <div class="puzzle-normal-container">
-  <h2>📸 puzzle de Boda Modular (Drag & Drop)</h2>
+  <h2>📸 Puzzle de Boda</h2>
   <p class="subtit">Arrastra las piezas desde la bandeja hasta el tablero. Clic derecho o doble clic para girar.</p>
 
   <!-- PANEL DE CONFIGURACIÓN -->
@@ -93,7 +93,7 @@
 
   <!-- MODAL VICTORIA -->
   <div class="victoria-modal" *ngIf="juegoCompletado">
-    <h3>🎉 ¡Increíble! puzzle Superado</h3>
+    <h3>🎉 ¡Increíble! Puzzle Superado</h3>
     <p>Has completado el reto en <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>.</p>
     <button class="btn-iniciar" (click)="juegoIniciado = false; juegoCompletado = false">Jugar de Nuevo</button>
   </div>

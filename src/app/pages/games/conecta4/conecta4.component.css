@@ -1,0 +1,185 @@
+.conecta4-container {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+h2 {
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.subtit {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.config-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+}
+
+.grupo-control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #334155;
+  text-align: left;
+}
+
+.input-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.btn-iniciar {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-iniciar:hover {
+  background: #2563eb;
+}
+
+.turno-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.jugador-turno-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jugador-turno-info img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* TABLERO CONECTA 4 */
+.tablero-grid {
+  background: #1d4ed8;
+  padding: 10px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3);
+}
+
+.fila {
+  display: flex;
+}
+
+.celda {
+  width: 45px;
+  height: 45px;
+  background: #1e3a8a;
+  margin: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hueco {
+  width: 38px;
+  height: 38px;
+  background: #f8fafc;
+  border-radius: 50%;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.4);
+}
+
+.ficha {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  animation: caer 0.3s ease-in-out;
+}
+
+.ficha.p1 {
+  border: 3px solid #ef4444;
+}
+
+.ficha.p2 {
+  border: 3px solid #f59e0b;
+}
+
+.ficha img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes caer {
+  0% { transform: translateY(-150px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.resultado-modal {
+  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.botones-fin {
+  display: flex;
+  gap: 10px;
+}
+
+.botones-fin button {
+  flex: 1;
+}
+
+.btn-reiniciar {
+  background: #64748b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}

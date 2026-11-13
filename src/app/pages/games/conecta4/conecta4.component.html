@@ -1,0 +1,75 @@
+<div class="conecta4-container">
+  <h2>🔴 Conecta 4: Batalla de Primos 🔵</h2>
+  <p class="subtit">Alinea 4 fichas de tu familiar favorito para ganar.</p>
+
+  <!-- SECCIÓN DE CONFIGURACIÓN -->
+  <div class="config-panel" *ngIf="!juegoIniciado">
+    
+    <div class="grupo-control">
+      <label>Jugador 1 (Fichas Rojas / Primario):</label>
+      <select [(ngModel)]="jugador1" class="input-select">
+        <option *ngFor="let p of personajes" [ngValue]="p">{{ p.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="grupo-control">
+      <label>Jugador 2 (Fichas Amarillas / Retador):</label>
+      <select [(ngModel)]="jugador2" class="input-select">
+        <option *ngFor="let p of personajes" [ngValue]="p">{{ p.nombre }}</option>
+      </select>
+    </div>
+
+    <button class="btn-iniciar" (click)="iniciarPartida()">🚀 ¡Comenzar Batalla!</button>
+  </div>
+
+  <!-- JUEGO ACTIVO -->
+  <div class="juego-area" *ngIf="juegoIniciado">
+    
+    <!-- BARRA DE TURNO -->
+    <div class="turno-bar" *ngIf="!ganador && !esEmpate">
+      <span>Turno de:</span>
+      <div class="jugador-turno-info">
+        <img [src]="turnoJugador === 1 ? jugador1.fotoUrl : jugador2.fotoUrl" alt="Avatar">
+        <strong [style.color]="turnoJugador === 1 ? '#ef4444' : '#f59e0b'">
+          {{ turnoJugador === 1 ? jugador1.nombre : jugador2.nombre }}
+        </strong>
+      </div>
+    </div>
+
+    <!-- TABLERO 6x7 -->
+    <div class="tablero-grid">
+      <div *ngFor="let fila of tablero; let f = index" class="fila">
+        <div *ngFor="let celdaId of fila; let c = index" 
+             class="celda" 
+             (click)="soltarFicha(c)">
+          
+          <!-- Hueco vacío -->
+          <div class="hueco" *ngIf="celdaId === 0"></div>
+
+          <!-- Ficha Jugador 1 -->
+          <div class="ficha p1" *ngIf="celdaId === 1">
+            <img [src]="jugador1.fotoUrl" [alt]="jugador1.nombre">
+          </div>
+
+          <!-- Ficha Jugador 2 -->
+          <div class="ficha p2" *ngIf="celdaId === 2">
+            <img [src]="jugador2.fotoUrl" [alt]="jugador2.nombre">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLA DE VICTORIA O EMPATE -->
+    <div class="resultado-modal" *ngIf="ganador || esEmpate">
+      <h3 *ngIf="ganador">🎉 ¡Victoria para {{ ganador.nombre }}!</h3>
+      <h3 *ngIf="esEmpate">🤝 ¡Empate técnico!</h3>
+      <div class="botones-fin">
+        <button class="btn-iniciar" (click)="iniciarPartida()">Jugar Otra Revancha</button>
+        <button class="btn-reiniciar" (click)="reiniciarConfiguracion()">Cambiar Jugadores</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
