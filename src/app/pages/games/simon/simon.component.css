@@ -1,0 +1,122 @@
+.simon-container {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+h2 {
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.subtit {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.marcador-panel {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.estado-aviso {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #475569;
+  padding: 8px;
+  background: #e2e8f0;
+  border-radius: 6px;
+}
+
+.estado-aviso.turno {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* TABLERO 2x2 */
+.tablero-simon {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 320px;
+  height: 320px;
+  margin: 0 auto 20px auto;
+}
+
+.btn-familiar {
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0.6;
+  transition: transform 0.1s ease, opacity 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  outline: none;
+}
+
+.btn-familiar:hover:not(:disabled) {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* ESTADO ILUMINADO AL REPRODUCIRSE */
+.btn-familiar.iluminado {
+  opacity: 1 !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), 0 6px 15px rgba(0,0,0,0.3);
+  filter: brightness(1.3);
+}
+
+.btn-familiar img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+.btn-familiar span {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.controles-panel {
+  margin-top: 15px;
+}
+
+.btn-comenzar {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.btn-comenzar:hover {
+  background: #2563eb;
+}

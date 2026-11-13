@@ -28,6 +28,7 @@ import { AhorcadoInfantilComponent } from './pages/games/ahorcado-infantil/ahorc
 import { AventuraFamiliarComponent } from './pages/games/aventura-familiar/aventura-familiar.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { ImpostorComponent } from './pages/games/impostor/impostor.component';
+import { SimonComponent } from './pages/games/simon/simon.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -53,6 +54,7 @@ const app_routes: Routes = [
   { path: 'games/aventura', component : AventuraFamiliarComponent},
   { path: 'games/puzzle', component : PuzzleComponent},
   { path: 'games/impostor', component : ImpostorComponent},
+  { path: 'games/simon', component : SimonComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},
