@@ -31,6 +31,7 @@ import { ImpostorComponent } from './pages/games/impostor/impostor.component';
 import { SimonComponent } from './pages/games/simon/simon.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { Conecta4Component } from './pages/games/conecta4/conecta4.component';
+import { TicketTrenComponent } from './pages/games/ticket-tren/ticket-tren.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -59,6 +60,7 @@ const app_routes: Routes = [
   { path: 'games/simon', component : SimonComponent},
   { path: 'games/puzzle', component : PuzzleComponent},
   { path: 'games/conecta4', component : Conecta4Component},
+  { path: 'games/ticket-tren', component : TicketTrenComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},

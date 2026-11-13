@@ -1,0 +1,111 @@
+<div class="ticket-container">
+  
+  <!-- CABECERA -->
+  <header class="ticket-header">
+    <h2>🚂 Aventureros al Tren: Rutas de Verano</h2>
+    <p>Conecta los destinos familiares y conviértete en el mejor viajero.</p>
+  </header>
+
+  <!-- PANTALLA DE CONFIGURACIÓN -->
+  <div class="config-screen" *ngIf="!juegoIniciado">
+    
+    <div class="config-card">
+      <h3>⚙️ Configura tu Partida</h3>
+      
+      <div class="form-group">
+        <label>Modo de Juego:</label>
+        <select [(ngModel)]="modoDificultad" class="select-styled">
+          <option value="ninos">👶 Modo Niños (Fácil y directo sin gestión de cartas)</option>
+          <option value="adultos">🧠 Modo Adultos (Estratégico con objetivos y rutas)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Jugador 1 (Rojo):</label>
+        <select [(ngModel)]="configJugador1" class="select-styled">
+          <option *ngFor="let av of listaAvatares" [ngValue]="{nombre: av.nombre, avatar: av.url}">
+            {{ av.nombre }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Jugador 2 (Azul):</label>
+        <select [(ngModel)]="configJugador2" class="select-styled">
+          <option *ngFor="let av of listaAvatares" [ngValue]="{nombre: av.nombre, avatar: av.url}">
+            {{ av.nombre }}
+          </option>
+        </select>
+      </div>
+
+      <button class="btn-primary" (click)="iniciarPartida()">🚀 ¡Comenzar Aventura!</button>
+    </div>
+
+  </div>
+
+  <!-- TABLERO Y JUEGO ACTIVO (PANTALLA COMPLETA) -->
+  <div class="game-board-screen" *ngIf="juegoIniciado && !juegoTerminado">
+    
+    <!-- BARRA DE ESTADO Y TURNOS -->
+    <div class="status-bar">
+      <div class="jugador-pill" [class.activo]="turnoActual === 1">
+        <img [src]="jugadores[0].avatar" alt="Avatar">
+        <span>{{ jugadores[0].nombre }}: <strong>{{ jugadores[0].puntos }} pts</strong> (🧳 {{ jugadores[0].trenesRestantes }})</span>
+      </div>
+
+      <div class="turno-aviso">{{ mensajeEstado }}</div>
+
+      <div class="jugador-pill" [class.activo]="turnoActual === 2">
+        <img [src]="jugadores[1].avatar" alt="Avatar">
+        <span>{{ jugadores[1].nombre }}: <strong>{{ jugadores[1].puntos }} pts</strong> (🧳 {{ jugadores[1].trenesRestantes }})</span>
+      </div>
+    </div>
+
+    <!-- MAPA INTERACTIVO SVG -->
+    <div class="mapa-contenedor">
+      <svg class="svg-mapa" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <!-- Líneas / Rutas -->
+        <g *ngFor="let r of rutas">
+          <line [attr.x1]="ciudades[0].x" [attr.y1]="ciudades[0].y" ... ></line> <!-- Simplificado visualmente en CSS -->
+        </g>
+      </svg>
+
+      <!-- BOTONES DE RUTAS SOBRE EL MAPA -->
+      <div class="rutas-grid-overlay">
+        <button *ngFor="let r of rutas" 
+                class="btn-ruta"
+                [class.capturada-p1]="r.propietario === 1"
+                [class.capturada-p2]="r.propietario === 2"
+                [disabled]="r.propietario !== null"
+                (click)="reclamarRuta(r)">
+          <span>{{ getNombreCiudad(r.origen) }} ⇄ {{ getNombreCiudad(r.destino) }}</span>
+          <small>📏 {{ r.longitud }} tramos</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- PANEL INFERIOR OBJETIVOS -->
+    <div class="panel-objetivos" *ngIf="modoDificultad === 'adultos'">
+      <h4>🎯 Tus Objetivos Secretos ({{ jugadores[turnoActual-1].nombre }}):</h4>
+      <ul>
+        <li *ngFor="let obj of jugadores[turnoActual-1].objetivos" [class.completado]="obj.completado">
+          {{ getNombreCiudad(obj.origen) }} ➔ {{ getNombreCiudad(obj.destino) }} 
+          <span>({{ obj.puntos }} pts) {{ obj.completado ? '✅ ¡Completado!' : '⏳ Pendiente' }}</span>
+        </li>
+      </ul>
+      <button class="btn-secundario" (click)="robarCartasExtra()">🎫 Robar Cartas Extra</button>
+    </div>
+
+  </div>
+
+  <!-- PANTALLA FINAL DE VICTORIA -->
+  <div class="modal-victoria" *ngIf="juegoTerminado">
+    <h3>🏆 ¡Fin del Viaje en Familia!</h3>
+    <div class="podium">
+      <p><strong>Ganador:</strong> {{ jugadores[0].puntos > jugadores[1].puntos ? jugadores[0].nombre : jugadores[1].nombre }}</p>
+      <p>{{ jugadores[0].nombre }}: {{ jugadores[0].puntos }} puntos | {{ jugadores[1].nombre }}: {{ jugadores[1].puntos }} puntos</p>
+    </div>
+    <button class="btn-primary" (click)="juegoIniciado = false">🔄 Jugar Otra Partida</button>
+  </div>
+
+</div>
