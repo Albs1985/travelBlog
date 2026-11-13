@@ -1,28 +1,47 @@
-/* PANTALLA COMPLETA FLUIDA */
+/* INTEGRACIÓN FLUIDA DENTRO DEL CONTENEDOR PADRE (SIN SUPERPONER HEADER/FOOTER) */
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 75vh; /* Asegura buena altura incluso si el contenedor padre no tiene altura fija */
+  flex: 1;
+}
+
 .ticket-container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  flex: 1;
   background: #fdf6e2;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  border-radius: 12px;
   overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative; /* Clave para que el modal de victoria se centre solo dentro del juego */
 }
 
 .ticket-header {
   background: #b45309;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
 }
 
-.ticket-header h2 { margin: 0; font-size: 1.3rem; }
-.ticket-header p { margin: 2px 0 0 0; font-size: 0.8rem; opacity: 0.9; }
+.ticket-header h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+
+.ticket-header p {
+  margin: 4px 0 0 0;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+  opacity: 0.9;
+}
 
 /* CONFIGURACIÓN */
 .config-screen {
@@ -31,18 +50,25 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  overflow-y: auto;
 }
 
 .config-card {
   background: white;
   padding: 25px;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.config-card h3 {
+  margin: 0;
+  color: #78350f;
+  text-align: center;
 }
 
 .form-group label {
@@ -66,54 +92,67 @@
   background: #d97706;
   color: white;
   border: none;
-  padding: 12px;
+  padding: 12px 20px;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   font-size: 1rem;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.1s;
 }
-.btn-primary:hover { background: #b45309; }
 
-/* JUEGO ACTIVO */
+.btn-primary:hover {
+  background: #b45309;
+  transform: translateY(-1px);
+}
+
+/* JUEGO ACTIVO (SE ADAPTA A MÓVIL, HORIZONTAL Y PC GRANDE) */
 .game-board-screen {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  gap: 10px;
-  max-width: 900px;
-  margin: 0 auto;
+  padding: 12px;
+  gap: 12px;
   width: 100%;
+  max-width: 1200px; /* Aprovecha pantallas grandes de PC sin deformarse */
+  margin: 0 auto;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .status-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   background: #fffbeb;
-  padding: 8px 15px;
+  padding: 10px 16px;
   border-radius: 10px;
   border: 1px solid #fcd34d;
+  flex-shrink: 0;
 }
 
 .jugador-pill {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   opacity: 0.6;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
+  padding: 4px 10px;
+  border-radius: 20px;
 }
+
 .jugador-pill.activo {
   opacity: 1;
   font-weight: bold;
-  transform: scale(1.03);
+  background: #fef3c7;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.2);
 }
+
 .jugador-pill img {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #d97706;
@@ -122,7 +161,8 @@
 .turno-aviso {
   font-weight: bold;
   color: #92400e;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  text-align: center;
 }
 
 /* MAPA Y RUTAS */
@@ -131,37 +171,45 @@
   background: #fef3c7;
   border: 2px dashed #d97706;
   border-radius: 12px;
-  padding: 15px;
+  padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
 }
 
 .rutas-grid-overlay {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+  width: 100%;
 }
 
 .btn-ruta {
   background: white;
   border: 2px solid #f59e0b;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px 10px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
   font-weight: bold;
   color: #78350f;
   transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .btn-ruta:hover:not(:disabled) {
-  background: #fef3c7;
+  background: #fffbeb;
   transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15);
+}
+
+.btn-ruta:disabled {
+  cursor: default;
 }
 
 .btn-ruta.capturada-p1 {
@@ -179,27 +227,50 @@
 /* PANEL OBJETIVOS */
 .panel-objetivos {
   background: white;
-  padding: 10px 15px;
+  padding: 12px 16px;
   border-radius: 10px;
-  font-size: 0.85rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
-.panel-objetivos h4 { margin: 0 0 5px 0; color: #78350f; }
-.panel-objetivos ul { margin: 0; padding-left: 15px; color: #451a03; }
-.panel-objetivos li.completado { text-decoration: line-through; opacity: 0.6; }
+
+.panel-objetivos h4 {
+  margin: 0 0 4px 0;
+  color: #78350f;
+}
+
+.panel-objetivos ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #451a03;
+}
+
+.panel-objetivos li.completado {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
 
 .btn-secundario {
   background: #65a30d;
   color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 8px;
   font-weight: bold;
+  transition: background 0.2s;
 }
 
-/* MODAL VICTORIA */
+.btn-secundario:hover {
+  background: #4d7c0f;
+}
+
+/* MODAL VICTORIA (CENTRADO DENTRO DEL COMPONENTE) */
 .modal-victoria {
   position: absolute;
   top: 50%;
@@ -208,8 +279,32 @@
   background: white;
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border: 2px solid #f59e0b;
   text-align: center;
   max-width: 400px;
-  width: 90%;
+  width: 85%;
+  z-index: 10;
+}
+
+/* AJUSTES PARA MÓVIL EN HORIZONTAL (LANDSCAPE) */
+@media (max-height: 500px) and (orientation: landscape) {
+  .ticket-header {
+    padding: 6px 15px;
+  }
+  .ticket-header p {
+    display: none; /* Ahorra espacio vertical al girar el móvil */
+  }
+  .game-board-screen {
+    padding: 8px;
+    gap: 8px;
+  }
+  .rutas-grid-overlay {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+  }
+  .btn-ruta {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
 }
