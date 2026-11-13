@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export interface PersonajeFamiliar {
-  id: string;
+export interface AvatarItem {
+  id: number;
   nombre: string;
-  fotoUrl: string;
-  color: string;
+  imageUrl: string;
 }
 
 @Component({
@@ -18,16 +17,24 @@ export interface PersonajeFamiliar {
 })
 export class Conecta4Component {
 
-  // Personajes disponibles de la familia
-  public personajes: PersonajeFamiliar[] = [
-    { id: 'albert', nombre: 'Albert', fotoUrl: 'assets/images/perfiles/fotoPerfilAlbert.jpg', color: '#4d7c0f' },
-    { id: 'alba', nombre: 'Alba', fotoUrl: 'assets/images/perfiles/fotoPerfilAlba.jpg', color: '#be185d' },
-    { id: 'mateu', nombre: 'Mateu', fotoUrl: 'assets/images/perfiles/fotoPerfilMateu.jpg', color: '#38a169' },
-    { id: 'marina', nombre: 'Marina', fotoUrl: 'assets/images/perfiles/fotoPerfilMarina.jpg', color: '#d69e2e' }
+  // Lista completa de los 12 avatares de la familia
+  public personajes: AvatarItem[] = [
+    { id: 1, nombre: 'Alba', imageUrl: 'assets/images/perfiles/fotoPerfilAlba.jpg' },
+    { id: 2, nombre: 'Albert', imageUrl: 'assets/images/perfiles/fotoPerfilAlbert.jpg' },
+    { id: 3, nombre: 'Blai', imageUrl: 'assets/images/perfiles/fotoPerfilBlai.jpg' },
+    { id: 4, nombre: 'Emili', imageUrl: 'assets/images/perfiles/fotoPerfilEmili.jpg' },
+    { id: 5, nombre: 'Gerard', imageUrl: 'assets/images/perfiles/fotoPerfilGerard.jpg' },
+    { id: 6, nombre: 'Pep', imageUrl: 'assets/images/perfiles/fotoPerfilPep.jpg' },
+    { id: 7, nombre: 'Marcel', imageUrl: 'assets/images/perfiles/fotoPerfilMarcel.jpg' },
+    { id: 8, nombre: 'Maria', imageUrl: 'assets/images/perfiles/fotoPerfilMaria.jpg' },
+    { id: 9, nombre: 'Marina', imageUrl: 'assets/images/perfiles/fotoPerfilMarina.jpg' },
+    { id: 10, nombre: 'Marta', imageUrl: 'assets/images/perfiles/fotoPerfilMarta.jpg' },
+    { id: 11, nombre: 'Mateu', imageUrl: 'assets/images/perfiles/fotoPerfilMateu.jpg' },
+    { id: 12, nombre: 'Matilde', imageUrl: 'assets/images/perfiles/fotoPerfilMatilde.jpg' }
   ];
 
-  public jugador1: PersonajeFamiliar = this.personajes[0];
-  public jugador2: PersonajeFamiliar = this.personajes[1];
+  public jugador1: AvatarItem = this.personajes[0];
+  public jugador2: AvatarItem = this.personajes[1];
 
   public juegoIniciado: boolean = false;
   public turnoJugador: number = 1; // 1 o 2
@@ -37,7 +44,7 @@ export class Conecta4Component {
   public columnas: number = 7;
   public tablero: number[][] = [];
 
-  public ganador: PersonajeFamiliar | null = null;
+  public ganador: AvatarItem | null = null;
   public esEmpate: boolean = false;
 
   public iniciarPartida(): void {
