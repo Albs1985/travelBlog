@@ -1,111 +1,135 @@
 <div class="ticket-container">
-  
-  <!-- CABECERA -->
+
   <header class="ticket-header">
-    <h2>🚂 Aventureros al Tren: Rutas de Verano</h2>
-    <p>Conecta los destinos familiares y conviértete en el mejor viajero.</p>
+    <h2>🚂 Aventureros al Tren: Edición España</h2>
+    <p>Coloca tus trenes sobre el mapa interactivo y conecta las ciudades.</p>
   </header>
 
-  <!-- PANTALLA DE CONFIGURACIÓN -->
+  <!-- PANTALLA CONFIGURACIÓN -->
   <div class="config-screen" *ngIf="!juegoIniciado">
-    
     <div class="config-card">
-      <h3>⚙️ Configura tu Partida</h3>
-      
+      <h3>⚙️ Preparar Partida de Viaje</h3>
+
       <div class="form-group">
         <label>Modo de Juego:</label>
         <select [(ngModel)]="modoDificultad" class="select-styled">
-          <option value="ninos">👶 Modo Niños (Fácil y directo sin gestión de cartas)</option>
-          <option value="adultos">🧠 Modo Adultos (Estratégico con objetivos y rutas)</option>
+          <option value="ninos">👶 Modo Familiar / Niños (Rutas directas)</option>
+          <option value="adultos">🧠 Modo Estrategia (Con objetivos secretos)</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label>Jugador 1 (Rojo):</label>
+        <label>Jugador 1 (Trenes Rojos):</label>
         <select [(ngModel)]="configJugador1" class="select-styled">
-          <option *ngFor="let av of listaAvatares" [ngValue]="{nombre: av.nombre, avatar: av.url}">
-            {{ av.nombre }}
-          </option>
+          <option *ngFor="let av of listaAvatares" [ngValue]="{nombre: av.nombre, avatar: av.url}">{{ av.nombre }}</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label>Jugador 2 (Azul):</label>
+        <label>Jugador 2 (Trenes Azules):</label>
         <select [(ngModel)]="configJugador2" class="select-styled">
-          <option *ngFor="let av of listaAvatares" [ngValue]="{nombre: av.nombre, avatar: av.url}">
-            {{ av.nombre }}
-          </option>
+          <option *ngFor="let av of listaAvatares" [ngValue]="{nombre: av.nombre, avatar: av.url}">{{ av.nombre }}</option>
         </select>
       </div>
 
-      <button class="btn-primary" (click)="iniciarPartida()">🚀 ¡Comenzar Aventura!</button>
+      <button class="btn-primary" (click)="iniciarPartida()">🗺️ ¡Abrir Tablero de España!</button>
     </div>
-
   </div>
 
-  <!-- TABLERO Y JUEGO ACTIVO (PANTALLA COMPLETA) -->
+  <!-- TABLERO INTERACTIVO EN PANTALLA COMPLETA -->
   <div class="game-board-screen" *ngIf="juegoIniciado && !juegoTerminado">
-    
-    <!-- BARRA DE ESTADO Y TURNOS -->
+
+    <!-- BARRA SUPERIOR DE RECURSOS Y TURNOS (TRENES VISIBLES) -->
     <div class="status-bar">
-      <div class="jugador-pill" [class.activo]="turnoActual === 1">
+      <div class="jugador-pill p1-pill" [class.activo]="turnoActual === 1">
         <img [src]="jugadores[0].avatar" alt="Avatar">
-        <span>{{ jugadores[0].nombre }}: <strong>{{ jugadores[0].puntos }} pts</strong> (🧳 {{ jugadores[0].trenesRestantes }})</span>
+        <div class="info-recursos">
+          <span><strong>{{ jugadores[0].nombre }}</strong> ({{ jugadores[0].puntos }} pts)</span>
+          <span class="trenes-badge">🚂 {{ jugadores[0].trenesRestantes }} trenes libres</span>
+        </div>
       </div>
 
       <div class="turno-aviso">{{ mensajeEstado }}</div>
 
-      <div class="jugador-pill" [class.activo]="turnoActual === 2">
+      <div class="jugador-pill p2-pill" [class.activo]="turnoActual === 2">
         <img [src]="jugadores[1].avatar" alt="Avatar">
-        <span>{{ jugadores[1].nombre }}: <strong>{{ jugadores[1].puntos }} pts</strong> (🧳 {{ jugadores[1].trenesRestantes }})</span>
+        <div class="info-recursos">
+          <span><strong>{{ jugadores[1].nombre }}</strong> ({{ jugadores[1].puntos }} pts)</span>
+          <span class="trenes-badge">🚂 {{ jugadores[1].trenesRestantes }} trenes libres</span>
+        </div>
       </div>
     </div>
 
-    <!-- MAPA INTERACTIVO SVG -->
-    <div class="mapa-contenedor">
-      <svg class="svg-mapa" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <!-- Líneas / Rutas -->
+    <!-- MAPA REAL DE ESPAÑA (TABLERO SVG) -->
+    <div class="mapa-tablero-wrapper">
+      <svg class="mapa-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+
+        <!-- Líneas de fondo de las rutas -->
         <g *ngFor="let r of rutas">
-          <line [attr.x1]="ciudades[0].x" [attr.y1]="ciudades[0].y" ... ></line> <!-- Simplificado visualmente en CSS -->
+          <line [attr.x1]="getCiudad(r.origen).x"
+                [attr.y1]="getCiudad(r.origen).y"
+                [attr.x2]="getCiudad(r.destino).x"
+                [attr.y2]="getCiudad(r.destino).y"
+                class="linea-ruta-base" />
+        </g>
+
+        <!-- Ciudades del mapa -->
+        <g *ngFor="let c of ciudades">
+          <circle [attr.cx]="c.x" [attr.cy]="c.y" r="2.2" class="ciudad-punto" />
+          <text [attr.x]="c.x" [attr.y]="c.y + 4" class="ciudad-texto">{{ c.nombre }}</text>
         </g>
       </svg>
 
-      <!-- BOTONES DE RUTAS SOBRE EL MAPA -->
-      <div class="rutas-grid-overlay">
-        <button *ngFor="let r of rutas" 
-                class="btn-ruta"
-                [class.capturada-p1]="r.propietario === 1"
-                [class.capturada-p2]="r.propietario === 2"
-                [disabled]="r.propietario !== null"
-                (click)="reclamarRuta(r)">
-          <span>{{ getNombreCiudad(r.origen) }} ⇄ {{ getNombreCiudad(r.destino) }}</span>
-          <small>📏 {{ r.longitud }} tramos</small>
-        </button>
+      <!-- CAPA INTERACTIVA DE TRENES Y BOTONES DE RUTA -->
+      <div class="rutas-overlay">
+        <div *ngFor="let r of rutas"
+             class="ruta-item"
+             [style.left.%]="(getCiudad(r.origen).x + getCiudad(r.destino).x) / 2"
+             [style.top.%]="(getCiudad(r.origen).y + getCiudad(r.destino).y) / 2">
+
+          <button class="btn-reclamar-ruta"
+                  [class.ocupada-p1]="r.propietario === 1"
+                  [class.ocupada-p2]="r.propietario === 2"
+                  [disabled]="r.propietario !== null"
+                  (click)="reclamarRuta(r)">
+            <span class="ruta-nombre">{{ getCiudad(r.origen).nombre }} ⇄ {{ getCiudad(r.destino).nombre }}</span>
+
+            <!-- Fichas de trenes visuales colocadas sobre la ruta -->
+            <div class="casillas-trenes">
+              <span *ngFor="let casilla of getRutasCasillas(r)"
+                    class="casilla-tren"
+                    [class.tren-p1]="r.propietario === 1"
+                    [class.tren-p2]="r.propietario === 2">
+                🚂
+              </span>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- PANEL INFERIOR OBJETIVOS -->
-    <div class="panel-objetivos" *ngIf="modoDificultad === 'adultos'">
-      <h4>🎯 Tus Objetivos Secretos ({{ jugadores[turnoActual-1].nombre }}):</h4>
-      <ul>
-        <li *ngFor="let obj of jugadores[turnoActual-1].objetivos" [class.completado]="obj.completado">
-          {{ getNombreCiudad(obj.origen) }} ➔ {{ getNombreCiudad(obj.destino) }} 
-          <span>({{ obj.puntos }} pts) {{ obj.completado ? '✅ ¡Completado!' : '⏳ Pendiente' }}</span>
-        </li>
-      </ul>
-      <button class="btn-secundario" (click)="robarCartasExtra()">🎫 Robar Cartas Extra</button>
+    <!-- PANEL INFERIOR DE OBJETIVOS Y ACCIONES -->
+    <div class="panel-inferior" *ngIf="modoDificultad === 'adultos'">
+      <div class="objetivos-box">
+        <h4>🎯 Objetivos de {{ jugadores[turnoActual-1].nombre }}:</h4>
+        <ul>
+          <li *ngFor="let obj of jugadores[turnoActual-1].objetivos" [class.completado]="obj.completado">
+            {{ getCiudad(obj.origen).nombre }} ➔ {{ getCiudad(obj.destino).nombre }}
+            ({{ obj.puntos }} pts) {{ obj.completado ? '✅ ¡Hecho!' : '⏳ Pendiente' }}
+          </li>
+        </ul>
+      </div>
+      <button class="btn-robar" (click)="robarCartas()">🃏 Robar Tarjetas de Transporte</button>
     </div>
 
   </div>
 
-  <!-- PANTALLA FINAL DE VICTORIA -->
+  <!-- PANTALLA FINAL -->
   <div class="modal-victoria" *ngIf="juegoTerminado">
-    <h3>🏆 ¡Fin del Viaje en Familia!</h3>
-    <div class="podium">
-      <p><strong>Ganador:</strong> {{ jugadores[0].puntos > jugadores[1].puntos ? jugadores[0].nombre : jugadores[1].nombre }}</p>
-      <p>{{ jugadores[0].nombre }}: {{ jugadores[0].puntos }} puntos | {{ jugadores[1].nombre }}: {{ jugadores[1].puntos }} puntos</p>
-    </div>
-    <button class="btn-primary" (click)="juegoIniciado = false">🔄 Jugar Otra Partida</button>
+    <h3>🏆 ¡Fin del Viaje por España!</h3>
+    <p><strong>Ganador:</strong> {{ jugadores[0].puntos > jugadores[1].puntos ? jugadores[0].nombre : jugadores[1].nombre }}</p>
+    <p>{{ jugadores[0].nombre }}: {{ jugadores[0].puntos }} pts | {{ jugadores[1].nombre }}: {{ jugadores[1].puntos }} pts</p>
+    <button class="btn-primary" (click)="juegoIniciado = false">🔄 Volver a Jugar</button>
   </div>
 
 </div>
