@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export interface PiezaPuzzleNormal {
+export interface PiezaPuzzle {
   id: number;
-  currentPos: number; // Posición actual en el grid
-  correctPos: number; // Posición donde debería estar
-  rotacion: number;   // 0, 90, 180, 270 grados
+  correctPos: number; // Posición ideal en el grid (0 hasta N*N - 1)
+  currentPos: number | null; // null si está en la bandeja, o un número de índice del tablero
+  rotacion: number;   // 0, 90, 180, 270
   bgX: number;
   bgY: number;
 }
@@ -20,19 +20,20 @@ export interface PiezaPuzzleNormal {
 })
 export class PuzzleComponent implements OnInit, OnDestroy {
 
-  // Configuración de niveles
-  public nivelSeleccionado: number = 2; // 2 = Fácil (2x2), 3 = Normal (3x3), 4 = Difícil (4x4)
-  public piezas: PiezaPuzzleNormal[] = [];
+  // Configuraciones personalizables por el usuario
+  public tamanoGrid: number = 3; // 3x3 (9 piezas), 4x4, 5x5, 6x6
+  public permitirRotacion: boolean = true;
 
-  // Imagen de Boda (2019) del 1 al 20 por ejemplo
-  public totalFotosBoda: number = 20;
+  public piezas: PiezaPuzzle[] = [];
+  public totalFotosBoda: number = 22;
   public imagenActualUrl: string = '';
 
   public juegoIniciado: boolean = false;
   public juegoCompletado: boolean = false;
+  public mostrarPista: boolean = false;
+
   public segundosTranscurridos: number = 0;
   private timerInterval: any;
-  public piezaSeleccionadaIndex: number | null = null; // Para intercambiar posiciones en niveles altos
 
   ngOnInit(): void {}
 
@@ -43,106 +44,125 @@ export class PuzzleComponent implements OnInit, OnDestroy {
   public iniciarJuego(): void {
     this.juegoCompletado = false;
     this.segundosTranscurridos = 0;
+    this.mostrarPista = false;
     this.detenerCronometro();
-    this.piezaSeleccionadaIndex = null;
 
     // Seleccionar foto aleatoria de Boda
     const numFoto = Math.floor(Math.random() * this.totalFotosBoda) + 1;
     this.imagenActualUrl = `assets/images/2019/Boda${numFoto}.jpg`;
 
     this.generarTablero();
-    this.mezclarTablero();
-
     this.juegoIniciado = true;
     this.iniciarCronometro();
   }
 
   private generarTablero(): void {
     this.piezas = [];
-    const totalPiezas = this.nivelSeleccionado * this.nivelSeleccionado;
+    const totalPiezas = this.tamanoGrid * this.tamanoGrid;
 
     for (let i = 0; i < totalPiezas; i++) {
-      const fila = Math.floor(i / this.nivelSeleccionado);
-      const col = i % this.nivelSeleccionado;
+      const fila = Math.floor(i / this.tamanoGrid);
+      const col = i % this.tamanoGrid;
 
-      const bgX = (col / (this.nivelSeleccionado - 1)) * 100;
-      const bgY = (fila / (this.nivelSeleccionado - 1)) * 100;
+      const bgX = (col / (this.tamanoGrid - 1)) * 100;
+      const bgY = (fila / (this.tamanoGrid - 1)) * 100;
+
+      const girosDisponibles = [0, 90, 180, 270];
+      const rotacionInicial = this.permitirRotacion
+        ? girosDisponibles[Math.floor(Math.random() * girosDisponibles.length)]
+        : 0;
 
       this.piezas.push({
         id: i,
-        currentPos: i,
         correctPos: i,
-        rotacion: 0,
+        currentPos: null, // Al empezar, todas las piezas están fuera en la bandeja
+        rotacion: rotacionInicial,
         bgX: isNaN(bgX) ? 0 : bgX,
         bgY: isNaN(bgY) ? 0 : bgY
       });
     }
+
+    // Desordenar la bandeja inicial para que no salgan ordenadas
+    this.piezas.sort(() => Math.random() - 0.5);
   }
 
-  private mezclarTablero(): void {
-    // 1. Rotaciones aleatorias para todos los niveles
-    this.piezas.forEach(p => {
-      const girosAleatorios = [0, 90, 180, 270];
-      // En nivel fácil (2x2), aseguramos que al menos algunas tengan giros
-      p.rotacion = girosAleatorios[Math.floor(Math.random() * girosAleatorios.length)];
-    });
+  // --- DRAG AND DROP MÉTODOS ---
 
-    // 2. Si es nivel 3x3 o 4x4, desordenamos también las posiciones de las piezas
-    if (this.nivelSeleccionado > 2) {
-      for (let i = this.piezas.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        // Intercambiar currentPos
-        const tempPos = this.piezas[i].currentPos;
-        this.piezas[i].currentPos = this.piezas[j].currentPos;
-        this.piezas[j].currentPos = tempPos;
-      }
+  public onDragStart(event: DragEvent, piezaId: number): void {
+    event.dataTransfer?.setData('text/plain', piezaId.toString());
+  }
+
+  public onDragOver(event: DragEvent): void {
+    event.preventDefault(); // Necesario para permitir soltar
+  }
+
+  // Soltar en una celda vacía o ocupada del tablero
+  public onDropTablero(event: DragEvent, destinoIndex: number): void {
+    event.preventDefault();
+    if (this.juegoCompletado) return;
+
+    const piezaIdStr = event.dataTransfer?.getData('text/plain');
+    if (!piezaIdStr) return;
+    const piezaId = parseInt(piezaIdStr, 10);
+
+    // Comprobar si otra pieza ya ocupa esta celda del tablero
+    const piezaEnDestino = this.piezas.find(p => p.currentPos === destinoIndex);
+    const piezaMovida = this.piezas.find(p => p.id === piezaId);
+
+    if (!piezaMovida) return;
+
+    // Si había otra pieza en el destino, la mandamos a la bandeja (currentPos = null) o la intercambiamos
+    if (piezaEnDestino && piezaEnDestino.id !== piezaMovida.id) {
+      piezaEnDestino.currentPos = piezaMovida.currentPos; // Intercambio o retorno a bandeja
+    }
+
+    piezaMovida.currentPos = destinoIndex;
+    this.verificarVictoria();
+  }
+
+  // Soltar de vuelta en la bandeja lateral/inferior
+  public onDropBandeja(event: DragEvent): void {
+    event.preventDefault();
+    if (this.juegoCompletado) return;
+
+    const piezaIdStr = event.dataTransfer?.getData('text/plain');
+    if (!piezaIdStr) return;
+    const piezaId = parseInt(piezaIdStr, 10);
+
+    const piezaMovida = this.piezas.find(p => p.id === piezaId);
+    if (piezaMovida) {
+      piezaMovida.currentPos = null; // Vuelve a la bandeja
     }
   }
 
-  // Clic simple: Gira la pieza 90 grados
-  public girarPieza(index: number, event: MouseEvent): void {
-    event.stopPropagation();
-    if (this.juegoCompletado || !this.juegoIniciado) return;
-
-    // Encontrar la pieza en el grid actual
-    const pieza = this.piezas.find(p => p.currentPos === index);
-    if (pieza) {
-      pieza.rotacion = (pieza.rotacion + 90) % 360;
-      this.verificarVictoria();
-    }
+  // Obtener la pieza colocada en una celda concreta del tablero
+  public getPiezaEnCelda(index: number): PiezaPuzzle | undefined {
+    return this.piezas.find(p => p.currentPos === index);
   }
 
-  // Intercambiar posiciones entre dos piezas (para niveles 3x3 y 4x4)
-  public seleccionarParaIntercambiar(index: number): void {
-    if (this.nivelSeleccionado === 2 || this.juegoCompletado || !this.juegoIniciado) return;
-
-    if (this.piezaSeleccionadaIndex === null) {
-      this.piezaSeleccionadaIndex = index;
-    } else {
-      // Intercambiar posiciones actuales
-      const p1 = this.piezas.find(p => p.currentPos === this.piezaSeleccionadaIndex);
-      const p2 = this.piezas.find(p => p.currentPos === index);
-
-      if (p1 && p2) {
-        const temp = p1.currentPos;
-        p1.currentPos = p2.currentPos;
-        p2.currentPos = temp;
-      }
-
-      this.piezaSeleccionadaIndex = null;
-      this.verificarVictoria();
-    }
+  // Obtener las piezas que siguen en la bandeja de reserva
+  public get piezasEnBandeja(): PiezaPuzzle[] {
+    return this.piezas.filter(p => p.currentPos === null);
   }
 
-  // Ordenar las piezas visualmente en el grid según su currentPos
-  public get piezasOrdenadasGrid(): PiezaPuzzleNormal[] {
-    const copia = [...this.piezas];
-    copia.sort((a, b) => a.currentPos - b.currentPos);
-    return copia;
+  // Girar pieza mediante clic si la rotación está habilitada
+  public girarPieza(pieza: PiezaPuzzle, event: MouseEvent): void {
+    event.preventDefault();
+    if (!this.permitirRotacion || this.juegoCompletado) return;
+    pieza.rotacion = (pieza.rotacion + 90) % 360;
+    this.verificarVictoria();
   }
 
   private verificarVictoria(): void {
-    const todoCorrecto = this.piezas.every(p => p.currentPos === p.correctPos && p.rotacion === 0);
+    const todoColocado = this.piezas.every(p => p.currentPos !== null);
+    if (!todoColocado) return;
+
+    const todoCorrecto = this.piezas.every(p => {
+      const posicionCorrecta = p.currentPos === p.correctPos;
+      const rotacionCorrecta = !this.permitirRotacion || p.rotacion === 0;
+      return posicionCorrecta && rotacionCorrecta;
+    });
+
     if (todoCorrecto) {
       this.finalizarJuego();
     }
@@ -155,9 +175,7 @@ export class PuzzleComponent implements OnInit, OnDestroy {
   }
 
   private detenerCronometro(): void {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-    }
+    if (this.timerInterval) clearInterval(this.timerInterval);
   }
 
   private finalizarJuego(): void {

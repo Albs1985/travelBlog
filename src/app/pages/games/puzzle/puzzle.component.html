@@ -1,56 +1,100 @@
 <div class="puzzle-normal-container">
-  <h2>📸 Puzle de Recuerdos: Boda 2019</h2>
-  <p class="subtit">Haz clic en una pieza para girarla 90°. (En niveles superiores, clica dos piezas para intercambiarlas).</p>
+  <h2>📸 puzzle de Boda Modular (Drag & Drop)</h2>
+  <p class="subtit">Arrastra las piezas desde la bandeja hasta el tablero. Clic derecho o doble clic para girar.</p>
 
-  <!-- CONFIGURACIÓN -->
+  <!-- PANEL DE CONFIGURACIÓN -->
   <div class="config-panel" *ngIf="!juegoIniciado || juegoCompletado">
-    
+
     <div class="grupo-control">
-      <label>Nivel de Dificultad:</label>
-      <div class="botones-nivel">
-        <button [class.activo]="nivelSeleccionado === 2" (click)="nivelSeleccionado = 2">Fácil (2x2 - Solo Giro)</button>
-        <button [class.activo]="nivelSeleccionado === 3" (click)="nivelSeleccionado = 3">Normal (3x3 - Giro + Mover)</button>
-        <button [class.activo]="nivelSeleccionado === 4" (click)="nivelSeleccionado = 4">Difícil (4x4 - Experto)</button>
-      </div>
+      <label>Tamaño de Cuadrícula:</label>
+      <select [(ngModel)]="tamanoGrid" class="input-select">
+        <option [value]="3">3 x 3 (9 piezas - Fácil)</option>
+        <option [value]="4">4 x 4 (16 piezas - Normal)</option>
+        <option [value]="5">5 x 5 (25 piezas - Avanzado)</option>
+        <option [value]="6">6 x 6 (36 piezas - Experto)</option>
+      </select>
     </div>
 
-    <button class="btn-iniciar" (click)="iniciarJuego()">🚀 ¡Empezar Puzle de Boda!</button>
+    <div class="grupo-control checkbox-container">
+      <label>
+        <input type="checkbox" [(ngModel)]="permitirRotacion"> Activar rotación de piezas
+      </label>
+    </div>
+
+    <button class="btn-iniciar" (click)="iniciarJuego()">🚀 ¡Empezar puzzle!</button>
   </div>
 
   <!-- JUEGO ACTIVO -->
   <div class="juego-area" *ngIf="juegoIniciado">
-    
+
     <div class="info-partida">
-      <span>⏱️ Tiempo: <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong></span>
-      <button class="btn-reiniciar" (click)="iniciarJuego()">Cambiar Foto</button>
+      <span>⏱️ <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong></span>
+      <button class="btn-pista" (click)="mostrarPista = !mostrarPista">
+        {{ mostrarPista ? '🙈 Ocultar Pista' : '💡 Ver Pista' }}
+      </button>
+      <button class="btn-reiniciar" (click)="iniciarJuego()">Reiniciar</button>
     </div>
 
-    <!-- TABLERO -->
-    <div class="tablero-normal" 
-         [style.grid-template-columns]="'repeat(' + nivelSeleccionado + ', 1fr)'"
-         [style.grid-template-rows]="'repeat(' + nivelSeleccionado + ', 1fr)'">
-      
-      <div *ngFor="let pieza of piezasOrdenadasGrid; let i = index" 
-           class="pieza-normal"
-           [class.seleccionada]="piezaSeleccionadaIndex === i"
-           [style.background-image]="'url(' + imagenActualUrl + ')'"
-           [style.background-size]="(nivelSeleccionado * 100) + '% ' + (nivelSeleccionado * 100) + '%'"
-           [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
-           [style.transform]="'rotate(' + pieza.rotacion + 'deg)'"
-           (click)="seleccionarParaIntercambiar(i)"
-           (contextmenu)="$event.preventDefault(); girarPieza(i, $event)"
-           title="Clic izq: Seleccionar para mover | Clic der: Girar 90º">
-           
-           <!-- Botón táctil visible en móvil para girar fácilmente -->
-           <button class="btn-girar-movil" (click)="girarPieza(i, $event)">🔄</button>
+    <div class="mesa-trabajo">
+
+      <!-- TABLERO PRINCIPAL -->
+      <div class="tablero-normal"
+           [style.grid-template-columns]="'repeat(' + tamanoGrid + ', 1fr)'"
+           [style.grid-template-rows]="'repeat(' + tamanoGrid + ', 1fr)'">
+
+        <!-- Imagen de fondo fantasma para la pista -->
+        <div class="imagen-pista-fondo"
+             *ngIf="mostrarPista"
+             [style.background-image]="'url(' + imagenActualUrl + ')'">
+        </div>
+
+        <div *ngFor="let celda of [].constructor(tamanoGrid * tamanoGrid); let i = index"
+             class="celda-tablero"
+             (dragover)="onDragOver($event)"
+             (drop)="onDropTablero($event, i)">
+
+          <!-- Si hay una pieza colocada en esta celda -->
+          <div *ngIf="getPiezaEnCelda(i) as pieza"
+               class="pieza-puzzle"
+               draggable="true"
+               (dragstart)="onDragStart($event, pieza.id)"
+               (click)="girarPieza(pieza, $event)"
+               [style.background-image]="'url(' + imagenActualUrl + ')'"
+               [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
+               [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
+               [style.transform]="'rotate(' + pieza.rotacion + 'deg)'"
+               title="Arrastra para mover | Clic para girar">
+          </div>
+        </div>
       </div>
+
+      <!-- BANDEJA DE PIEZAS (DISPONIBLES FUERA DEL TABLERO) -->
+      <div class="bandeja-piezas"
+           (dragover)="onDragOver($event)"
+           (drop)="onDropBandeja($event)">
+        <p class="titulo-bandeja">🧩 Piezas sin colocar ({{ piezasEnBandeja.length }})</p>
+
+        <div class="contenedor-fichas-bandeja">
+          <div *ngFor="let pieza of piezasEnBandeja"
+               class="pieza-puzzle"
+               draggable="true"
+               (dragstart)="onDragStart($event, pieza.id)"
+               (click)="girarPieza(pieza, $event)"
+               [style.background-image]="'url(' + imagenActualUrl + ')'"
+               [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
+               [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
+               [style.transform]="'rotate(' + pieza.rotacion + 'deg)'">
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <!-- MODAL VICTORIA -->
   <div class="victoria-modal" *ngIf="juegoCompletado">
-    <h3>🎉 ¡Maravilloso! Puzle Completado</h3>
-    <p>Has recompuesto la foto de la boda en <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>.</p>
+    <h3>🎉 ¡Increíble! puzzle Superado</h3>
+    <p>Has completado el reto en <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>.</p>
     <button class="btn-iniciar" (click)="juegoIniciado = false; juegoCompletado = false">Jugar de Nuevo</button>
   </div>
 

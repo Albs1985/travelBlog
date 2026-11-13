@@ -1,5 +1,5 @@
 .puzzle-normal-container {
-  max-width: 480px;
+  max-width: 520px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -38,27 +38,20 @@ h2 {
   text-align: left;
 }
 
-.botones-nivel {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.botones-nivel button {
+.input-select {
+  width: 100%;
   padding: 10px;
-  border: 1px solid #cbd5e1;
-  background: #f1f5f9;
   border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.2s;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
 }
 
-.botones-nivel button.activo {
-  background: #ec4899; /* Tono especial romántico para bodas */
-  color: white;
-  border-color: #db2777;
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .btn-iniciar {
@@ -88,8 +81,19 @@ h2 {
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
+.btn-pista {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
 .btn-reiniciar {
-  background: #ef4444;
+  background: #64748b;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -98,53 +102,93 @@ h2 {
   font-size: 0.85rem;
 }
 
+.mesa-trabajo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
 /* TABLERO */
 .tablero-normal {
+  position: relative;
   width: 360px;
   height: 360px;
-  margin: 0 auto;
   display: grid;
-  gap: 3px;
+  gap: 2px;
   background: #1e293b;
-  padding: 3px;
+  padding: 4px;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.pieza-normal {
+.imagen-pista-fondo {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  filter: blur(1px);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 6px;
+}
+
+.celda-tablero {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
   position: relative;
-  background-color: #e2e8f0;
-  cursor: pointer;
-  transition: transform 0.3s ease, border 0.2s ease;
-  border: 2px solid transparent;
+  z-index: 2;
+}
+
+/* PIEZAS DE PUZLE */
+.pieza-puzzle {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  border-radius: 3px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.pieza-puzzle:active {
+  cursor: grabbing;
+}
+
+/* BANDEJA INFERIOR */
+.bandeja-piezas {
+  width: 100%;
+  background: #e2e8f0;
+  padding: 12px;
+  border-radius: 10px;
+  min-height: 100px;
+  max-height: 160px;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
-.pieza-normal.seleccionada {
-  border: 3px solid #f59e0b;
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+.titulo-bandeja {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #475569;
+  margin-bottom: 8px;
+  margin-top: 0;
 }
 
-.btn-girar-movil {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 0.9rem;
-  cursor: pointer;
+.contenedor-fichas-bandeja {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: center;
-  transition: background 0.2s;
 }
 
-.btn-girar-movil:hover {
-  background: rgba(0, 0, 0, 0.8);
+.contenedor-fichas-bandeja .pieza-puzzle {
+  width: 55px;
+  height: 55px;
 }
 
 .victoria-modal {
