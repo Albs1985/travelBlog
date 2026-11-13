@@ -15,10 +15,6 @@
 <div class="divRight">
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>
-<div *ngIf="(servicioDibujos.cargandoDibujos$ | async) === true" class="spinner-container">
-  <div class="spinner"></div>
-  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
-</div>
 
 <!-- Para autenticarse en la aplicación -->
 <div *ngIf="authenticationService.isLoggedIn() === false">
@@ -29,44 +25,36 @@
 
 
 <div *ngIf="authenticationService.isLoggedIn()">
-
-<br>
-<br>
-<div class="filtrado animated rollIn">
-  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
-    <form id="busquedaForm">
-      <div id="busquedaForm" class="form-group">
-          <input id="myInputDibujo" type="text" class="form-control gradiente" placeholder="{{ 'app.dibujosFiltrado' | translate }}">
-              <button id="botonLupa" (click)="buscarDibujos()">
-                  <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
-              </button>
-      </div>
-  </form>
-</div>
-
-  <div *ngIf="servicioDibujos.dibujos.length > maxSizeDisplay" class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
-
-  <div *ngFor="let dibujo of servicioDibujos.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="bloqueFrase animated zoomInDown">
-    <!-- <h4 class="dibujoPersona">{{dibujo.persona}} ({{dibujo.anyo}})</h4> -->
-    <div class="gallery">
-      <a target="_blank" href="assets/images/dibujos/dibujo{{dibujo.id}}.jpg">
-        <img src="assets/images/dibujos/dibujo{{dibujo.id}}.jpg" loading="lazy" alt="" width="600" height="400" class="responsive">
-        <figcaption class="textoFoto"><b>{{dibujo.persona}} ({{dibujo.anyo}})</b>: {{ dibujo.edad}} {{'app.edad' | translate}} - {{'dibujos.'+dibujo.id+'.detalle' | translate}} </figcaption>
-      </a>
+  <ng-container *ngIf="vista$ | async as vista; else cargando">
+    <br>
+    <br>
+    <app-buscador [placeholder]="'app.dibujosFiltrado' | translate" (buscar)="buscar($event)"></app-buscador>
+    <div *ngIf="vista.dibujos.length > maxSizeDisplay" class="paginacion">
+      <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
     </div>
-  </div>
-
-  <div class="centerText">
-    <span *ngIf="servicioDibujos.dibujos.length == 0"> {{ 'app.sinResultados' | translate}}</span>
-  </div>
-
-  <div *ngIf="servicioDibujos.dibujos.length > maxSizeDisplay" class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
+    <div *ngFor="let dibujo of vista.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index" class="bloqueFrase animated zoomInDown">
+      <div class="gallery">
+        <a href="#" (click)="abierto = posicion(i); $event.preventDefault()">
+          <img [src]="'assets/images/' + dibujo.src" loading="lazy" alt="" width="600" height="400" class="responsive">
+          <figcaption class="textoFoto"><b>{{dibujo.persona}} ({{dibujo.anyo}})</b>: {{ dibujo.edad }} {{'app.edad' | translate}} - {{ dibujo.detalle | l10n }} </figcaption>
+        </a>
+      </div>
+    </div>
+    <div class="centerText">
+      <span *ngIf="vista.dibujos.length == 0"> {{ 'app.sinResultados' | translate}}</span>
+    </div>
+    <div *ngIf="vista.dibujos.length > maxSizeDisplay" class="paginacion">
+      <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <app-lightbox *ngIf="abierto !== null" [fotos]="vista.fotos" [indice]="abierto" (cerrar)="abierto = null"></app-lightbox>
+  </ng-container>
+  <ng-template #cargando>
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+    </div>
+  </ng-template>
 </div> <!-- de la autenticacion -->
-
 <br>
 <br>
 <div class="divRight">

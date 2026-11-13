@@ -8,9 +8,11 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
 import { FrasesComponent } from './pages/frases/frases.component';
-import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
-import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
+import { RelatoComponent } from './pages/relato/relato.component';
+// import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
+// import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
+// import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
@@ -22,7 +24,6 @@ import { QuizComponent } from './pages/games/quiz/quiz.component';
 import { MapComponent } from './pages/map/map.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
-import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
 import { FacedokuComponent } from './pages/games/facedoku/facedoku.component';
 import { AhorcadoInfantilComponent } from './pages/games/ahorcado-infantil/ahorcado-infantil.component';
 import { AventuraFamiliarComponent } from './pages/games/aventura-familiar/aventura-familiar.component';
@@ -42,9 +43,10 @@ const app_routes: Routes = [
   { path: 'viaje/:ciudad', component : ViajeComponent},
   { path: 'contactQR', component : ContactQRComponent},
   { path: 'bookMode', component : BookModeComponent},
-  { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
-  { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
-  { path: 'historias/relatoBodaEsteve', component : RelatoBodaEsteveComponent},
+  { path: 'historias/:slug', component : RelatoComponent},
+  // { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
+  // { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
+  // { path: 'historias/relatoBodaEsteve', component : RelatoBodaEsteveComponent},
   { path: 'games', component : GamesComponent},
   { path: 'games/memory', component : MemoryComponent},
   { path: 'games/quien-es-quien', component : QuienEsQuienComponent},

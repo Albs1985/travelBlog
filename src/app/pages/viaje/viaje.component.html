@@ -59,36 +59,7 @@
           </div>
 
           <!-- Contenido del viaje: cada bloque se pinta según su tipo, en el orden del archivo del viaje -->
-          <div class="relato text-left content-article">
-            <ng-container *ngFor="let b of vista.bloques" [ngSwitch]="b.tipo">
-              <h2 *ngSwitchCase="'titulo'" class="bloque-texto">{{ b.texto | l10n }}</h2>
-              <p *ngSwitchCase="'parrafo'" class="bloque-texto">{{ b.texto | l10n }}</p>
-              <h4 *ngSwitchCase="'nota'" class="bloque-texto estiloNota">{{ b.texto | l10n }}</h4>
-              <blockquote *ngSwitchCase="'cita'" class="bloque-texto">
-                <p>{{ b.texto | l10n }}<cite *ngIf="b.autor">{{ b.autor | l10n }}</cite></p>
-              </blockquote>
-              <iframe *ngSwitchCase="'mapa'" class="mapa" [src]="vista.viaje.mapa | safe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              <div *ngSwitchCase="'fotos'" class="fotos-grid" [class.fotos-una]="b.fotos?.length === 1">
-                <figure *ngFor="let f of b.fotos">
-                  <button type="button" class="foto-btn" (click)="fotoAbierta = f.idx">
-                    <img [src]="'assets/images/' + f.foto.src" [alt]="f.foto.desc ? (f.foto.desc | l10n) : vista.viaje.destino" loading="lazy">
-                  </button>
-                  <figcaption class="textoFoto" *ngIf="f.foto.desc">{{ f.foto.desc | l10n }}</figcaption>
-                </figure>
-              </div>
-            </ng-container>
-
-            <ng-container *ngIf="vista.extra.length">
-              <h3 class="bloque-texto">{{ 'viaje.masFotos' | translate }}</h3>
-              <div class="fotos-grid">
-                <figure *ngFor="let f of vista.extra">
-                  <button type="button" class="foto-btn" (click)="fotoAbierta = f.idx">
-                    <img [src]="'assets/images/' + f.foto.src" [alt]="vista.viaje.destino" loading="lazy">
-                  </button>
-                </figure>
-              </div>
-            </ng-container>
-          </div>
+          <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.viaje.mapa" [alt]="vista.viaje.destino" (abrir)="fotoAbierta = $event"></app-bloques>
 
           <div class="bodyUrl" *ngIf="vista.viaje.infoInteres.length">
             <div class="container">

@@ -1,9 +1,3 @@
-.mapa {
-  width: 100%;
-  height: 300px;
-  margin: 20px 0;
-}
-
 .bodyUrl {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -69,15 +63,6 @@ li {
   border-color: transparent;
 }
 
-.estiloNota {
-  font-style: italic !important;
-  font-family: "sans-serif" !important;
-}
-
-.textoFoto {
-  text-align: center;
-}
-
 .iconos {
   width: 50px;
   height: 50px;
@@ -118,72 +103,6 @@ li {
   padding: 60px 15px;
 }
 
-/* ---- Contenido del viaje (bloques) ---- */
-.relato {
-  clear: both;
-  padding-top: 15px;
-}
-
-.bloque-texto {
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.fotos-grid {
-  display: grid;
-  gap: 12px;
-  margin: 20px 0;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-}
-
-.fotos-grid figure {
-  margin: 0;
-}
-
-.fotos-grid img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-/* Una sola foto: se ve entera y centrada */
-.fotos-una {
-  grid-template-columns: minmax(0, 640px);
-  justify-content: center;
-}
-
-.fotos-una img {
-  aspect-ratio: auto;
-  object-fit: contain;
-}
-
-.foto-btn {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: zoom-in;
-}
-
-figure > .foto-btn img {
-  width: 100%;
-  height: auto;
-}
-
-@media (min-width: 850px) {
-  .mapa {
-    height: 500px;
-  }
-}
-@media (min-width: 1150px) {
-  .mapa {
-    height: 600px;
-  }
-}
-
 @keyframes rubberBand {
   from { transform: scale3d(1, 1, 1); }
   30% { transform: scale3d(1.25, 0.75, 1); }
@@ -207,4 +126,22 @@ figure > .foto-btn img {
   50% { left: 0px; top: 0px; }
   75% { left: -200%; top: 0px; }
   100% { left: 0px; top: 0px; }
+}
+
+.textoFoto {
+  text-align: center;
+}
+
+.foto-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+figure > .foto-btn img {
+  width: 100%;
+  height: auto;
 }

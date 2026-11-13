@@ -8,8 +8,13 @@ export interface FotoViaje {
 }
 
 export interface BloqueTexto {
-  tipo: 'titulo' | 'parrafo' | 'nota';
+  tipo: 'titulo' | 'subtitulo' | 'parrafo' | 'nota';
   texto: Texto;
+}
+export interface BloqueLista {
+  tipo: 'lista';
+  titulo?: Texto;
+  items: Texto[];
 }
 export interface BloqueCita {
   tipo: 'cita';
@@ -23,7 +28,7 @@ export interface BloqueFotos {
   tipo: 'fotos';
   fotos: FotoViaje[];
 }
-export type Bloque = BloqueTexto | BloqueCita | BloqueMapa | BloqueFotos;
+export type Bloque = BloqueTexto | BloqueCita | BloqueMapa | BloqueFotos | BloqueLista;
 
 /** Datos ligeros de un viaje (los del listado). Los genera scripts/build-data.mjs */
 export interface ViajeResumen {

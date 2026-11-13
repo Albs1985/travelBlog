@@ -4,28 +4,12 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ViajesService } from '../../services/viajes.service';
 import { AutenticationService } from 'src/app/services/autentication.service';
-import { Bloque, FotoViaje, Texto, Viaje } from '../../interfaces/viaje.interface';
+import { Viaje } from '../../interfaces/viaje.interface';
+import { VistaBloques, prepararBloques } from '../../services/bloques.util';
 import { iconoAlojamiento, iconoCategoria, iconoTransporte } from '../../services/viajes.catalogo';
 
-/** Foto de un bloque, con su posición dentro del visor (lightbox). */
-export interface FotoVista {
-  foto: FotoViaje;
-  idx: number;
-}
-
-export interface BloqueVista {
-  tipo: Bloque['tipo'];
-  texto?: Texto;
-  autor?: Texto;
-  fotos?: FotoVista[];
-}
-
-export interface VistaViaje {
+export interface VistaViaje extends VistaBloques {
   viaje: Viaje;
-  bloques: BloqueVista[];
-  extra: FotoVista[];
-  /** Todas las fotos del viaje en el orden en que se ven en la página (para el visor). */
-  galeria: FotoViaje[];
   transporteIconos: string[];
   categoriaIcono: string;
   alojamientoIcono: string;
@@ -67,26 +51,11 @@ export class ViajeComponent {
   }
 
   private prepararVista(viaje: Viaje): VistaViaje {
-    const galeria: FotoViaje[] = [];
-    if (viaje.portada) galeria.push({ src: viaje.portada, desc: viaje.descPrincipal });
-
-    const añadir = (foto: FotoViaje): FotoVista => {
-      galeria.push(foto);
-      return { foto, idx: galeria.length - 1 };
-    };
-
-    const bloques: BloqueVista[] = viaje.bloques.map((b) =>
-      b.tipo === 'fotos'
-        ? { tipo: b.tipo, fotos: b.fotos.map(añadir) }
-        : { tipo: b.tipo, texto: 'texto' in b ? b.texto : undefined, autor: b.tipo === 'cita' ? b.autor : undefined }
-    );
-    const extra = viaje.fotosExtra.map((src) => añadir({ src }));
-
+    // La foto de portada va la primera en el visor
+    const portada = viaje.portada ? [{ src: viaje.portada, desc: viaje.descPrincipal }] : [];
     return {
       viaje,
-      bloques,
-      extra,
-      galeria,
+      ...prepararBloques(viaje.bloques, viaje.fotosExtra, portada),
       transporteIconos: viaje.transporte.map(iconoTransporte).filter((i) => i !== ''),
       categoriaIcono: iconoCategoria(viaje.categoria),
       alojamientoIcono: viaje.tipoEstancia === 'Airbnb' ? '' : iconoAlojamiento(viaje.tipoEstancia),

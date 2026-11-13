@@ -36,25 +36,28 @@ npm run datos        # solo regenera los datos de los viajes (src/assets/data/ge
 - Usa siempre `npm start` / `npm run build` (no `ng serve` / `ng build` a pelo): así los datos de los viajes se regeneran antes.
 - Para subirlo: `git add .` · `git commit -m "Texto"` · (a veces `git pull`) · `git push -u origin main`
 
-## Añadir un viaje
-Mira **`content/LEEME.md`**: fotos en `src/assets/images/<año>/`, un archivo por viaje en `content/viajes/`
-(copiando `content/plantilla-viaje.json`) y listo. Ya no hay que tocar `viajes.json`, `fotos.json`, `es.json`, `val.json`
-ni código, ni contar fotos, ni respetar ningún orden de inserción.
+## Añadir contenido
+Mira **`content/LEEME.md`**: viajes, relatos, frases, dibujos, fotos favoritas, recetas, preguntas del quiz y viajeros
+se escriben en `content/` (los idiomas juntos, una sola vez) y las fotos se meten en `src/assets/images/`.
+Ya no hay que tocar `viajes.json`, `fotos.json`, `es.json`, `val.json` ni código, ni contar fotos, ni respetar órdenes de inserción.
 
-## Cómo está organizado (viajes)
+## Cómo está organizado
 ```
-content/viajes/*.json          <- LO ÚNICO QUE SE ESCRIBE A MANO: datos + textos (es y val) de cada viaje
-src/assets/images/<año>/       <- las fotos (se descubren solas por su nombre)
+content/                       <- LO ÚNICO QUE SE ESCRIBE A MANO (datos + textos en todos los idiomas)
+  viajes/*.json                   un archivo por viaje
+  relatos/*.json                  un archivo por relato
+  frases.json  dibujos.json  favoritos.json  recetas.json  preguntas.json  viajeros.json
+src/assets/images/<carpeta>/   <- las fotos (se descubren solas por su nombre, con cualquier extensión)
 scripts/build-data.mjs         <- valida y genera los datos para la web (se ejecuta solo)
-src/assets/data/generated/     <- GENERADO (index.json + un json por viaje). No editar a mano.
+  lib/                            (una pieza por tipo de contenido)
+src/assets/data/generated/     <- GENERADO. No editar a mano.
 src/assets/i18n/es.json, val.json  <- solo textos de la interfaz (menús, botones...)
 ```
-En el código: `ViajesService` (carga y búsqueda), `L10nPipe` (`{{ texto | l10n }}` para textos en varios idiomas),
-`LightboxComponent` (visor de fotos), `CarruselComponent`.
+En el código: `ContenidoService` (carga de colecciones y relatos), `ViajesService` (viajes), `L10nPipe`
+(`{{ texto | l10n }}`), y componentes compartidos: `app-buscador`, `app-bloques`, `app-lightbox`, `app-carrusel`, `app-libro`.
 
-## Otros datos que hay que seguir manteniendo a mano
-- Fotos de "About": si se añaden, cambiar `numFotosAbout` en `fotos.service.ts` (siempre en .jpg).
-- Descripciones de las fotos de favoritos, frases, dibujos y recetas: siguen en el i18n (es y val).
+## Lo que sigue a mano
+- Localizaciones del mapa y tableros de juegos (`src/assets/data/localizaciones.json`, `tableros.json`).
 - Comprimir las fotos antes de subirlas: https://www.iloveimg.com/
 
 ## package-lock

@@ -12,23 +12,6 @@
   margin-left: 25px;
 }
 
-#botonLupa {
-  background: transparent;
-  border-color: transparent;
-}
-
-.filtrado {
-  margin-left: 35px;
-  margin-right: 0px;
-  margin-top: -40px;
-}
-
-#busquedaForm {
-  display: inline-flex !important;
-  width: 100% !important;
-  margin-right: 25px;
-}
-
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: rgb(247, 200, 115);
   border-radius: 15px;

@@ -18,7 +18,6 @@ export class ApodosComponent {
 
   constructor(private route: ActivatedRoute, private translate: TranslateService, public viajerosService: ViajerosService, public authenticationService: AutenticationService){
     // this.maxSizeDisplay = 10;
-    this.viajerosService.cargarViajeros();
   }
 
 }

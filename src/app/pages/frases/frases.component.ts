@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { FrasesService } from 'src/app/services/frases.service';
-import { ViajerosService } from 'src/app/services/viajeros.service';
+import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Frase } from '../../interfaces/contenido.interface';
+import { ContenidoService } from '../../services/contenido.service';
 import { AutenticationService } from '../../services/autentication.service';
+import { filtrar } from '../../services/buscar.util';
 
 @Component({
   selector: 'app-frases',
@@ -11,28 +12,21 @@ import { AutenticationService } from '../../services/autentication.service';
   styleUrls: ['./frases.component.css']
 })
 export class FrasesComponent {
+  p = 1; // Página actual
+  pageSize = 10; // Elementos por página
+  maxSizeDisplay = 10;
 
-  p: number = 1; // Página inicial
-  pageSize: number = 10; // Elementos por página
-  maxSizeDisplay: number = 10;
-  palabra : any = '';
+  private readonly termino$ = new BehaviorSubject<string>('');
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService, public authenticationService: AutenticationService){
-    this.maxSizeDisplay = 10;
-    this.palabra = '';
-    this.servicioFrases.cargarFrases();
-    //this.viajerosService.cargarViajeros(); , public viajerosService: ViajerosService
+  /** Las frases que cumplen la búsqueda (todas si no se busca nada). */
+  readonly frases$: Observable<Frase[]> = combineLatest([this.contenido.coleccion<Frase>('frases'), this.termino$]).pipe(
+    map(([frases, termino]) => filtrar(frases, termino, (f) => [f.persona, f.fecha, f.frase, f.explicacion]))
+  );
+
+  constructor(private contenido: ContenidoService, public authenticationService: AutenticationService) {}
+
+  buscar(termino: string): void {
+    this.p = 1;
+    this.termino$.next(termino);
   }
-
-
-  buscarFrases(){
-    if($('#myInputFrase').val() == ''){
-      this.servicioFrases.cargarFrases();
-    } else {
-      this.palabra = $('#myInputFrase').val();
-    }
-    this.servicioFrases.buscarFrases(this.palabra);
-    this.palabra = '';
-  }
-
 }

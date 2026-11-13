@@ -1,0 +1,11 @@
+<div class="filtrado animated rollIn" [class.sin-margen]="sinMargenSuperior">
+  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
+  <form id="busquedaForm" (submit)="enviar($event)">
+    <div id="busquedaForm" class="form-group">
+      <input type="text" class="form-control gradiente" name="texto" [(ngModel)]="texto" [placeholder]="placeholder" autocomplete="off">
+      <button id="botonLupa" type="submit" [attr.aria-label]="'header.buscar' | translate">
+        <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
+      </button>
+    </div>
+  </form>
+</div>

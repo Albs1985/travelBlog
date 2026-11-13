@@ -28,64 +28,49 @@
 
 
 <div *ngIf="authenticationService.isLoggedIn()">
-
   <br>
   <div class="row fotosPerfiles">
-    <div *ngFor="let viajero of viajerosService.viajerosLista" class="row dobleFotos">
-        <figure>
-            <a target="_blank" href="{{viajero.fotoPerfil}}"><img src="{{viajero.fotoPerfil}}" alt="{{viajero.nombreCorto}}" class="img-responsive"></a>
-            <figcaption>{{viajero.nombreCompleto}} </figcaption>
-            <figcaption>({{viajero.edad}} {{ 'app.edad' | translate}})</figcaption>
-        </figure>
+    <div *ngFor="let viajero of viajerosService.viajeros$ | async" class="row dobleFotos">
+      <figure>
+        <a target="_blank" rel="noopener" [href]="viajero.fotoPerfil"><img [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" class="img-responsive"></a>
+        <figcaption>{{viajero.nombreCompleto}} </figcaption>
+        <figcaption>({{viajero.edad}} {{ 'app.edad' | translate}})</figcaption>
+      </figure>
     </div>
   </div>
   <br>
-  <div class="filtrado animated rollIn">
-    <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
-      <form id="busquedaForm">
-        <div id="busquedaForm" class="form-group">
-            <input id="myInputFav" type="text" class="form-control gradiente" placeholder="{{ 'favoritos.filtrado' | translate }}">
-                <button id="botonLupa" (click)="buscar()">
-                    <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
-                </button>
-        </div>
-    </form>
-  </div>
-
-  <div *ngIf="(servicioFotos.cargandoFotosFav$ | async) === true" class="spinner-container">
-    <div class="spinner">
+  <app-buscador [placeholder]="'favoritos.filtrado' | translate" [sinMargenSuperior]="true" (buscar)="buscar($event)"></app-buscador>
+  <ng-container *ngIf="vista$ | async as vista; else cargando">
+    <br>
+    <div class="paginacion">
+      <pagination-controls *ngIf="vista.fotos.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
     </div>
-    <span> &nbsp; {{ 'app.cargando' | translate}}</span>
-  </div>
-
-  <br>
-  <div class="paginacion">
-    <pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
-  <!-- <div *ngFor="let numFoto of [].constructor(numeroFotosFavoritos); let i = index" class="responsive"> -->
-  <div *ngFor="let foto of servicioFotos.fotosFavLista | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
-    <div class="gallery">
-      <!-- <figure class=""> -->
-      <a target="_blank" href="assets/images/{{foto.id}}">
-          <img src="assets/images/{{foto.id}}" loading="lazy" alt="" width="600" height="400">
-          <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}}. {{ 'favoritos.'+foto.idDesc | translate}}</figcaption>
-      </a>
-      <!-- </figure> -->
+    <div *ngFor="let foto of vista.fotos | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index" class="responsive animated zoomInDown">
+      <div class="gallery">
+        <a href="#" (click)="abierta = posicion(i); $event.preventDefault()">
+          <img [src]="'assets/images/' + foto.src" loading="lazy" alt="" width="600" height="400">
+          <figcaption class="textoFoto"><b>{{foto.anyo}}</b>, {{foto.lugar}}. {{ foto.desc | l10n }}</figcaption>
+        </a>
+      </div>
     </div>
-  </div>
-
-  <div class="centerText">
-    <span *ngIf="servicioFotos.fotosFavLista.length == 0"> {{ 'app.sinResultados' | translate}}</span>
-  </div>
-
-  <div class="clearfix"></div>
-  <br>
-  <br>
-  <div class="paginacion">
-    <pagination-controls *ngIf="servicioFotos.fotosFavLista.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
+    <div class="centerText">
+      <span *ngIf="vista.fotos.length == 0"> {{ 'app.sinResultados' | translate}}</span>
+    </div>
+    <div class="clearfix"></div>
+    <br>
+    <br>
+    <div class="paginacion">
+      <pagination-controls *ngIf="vista.fotos.length > maxSizeDisplay" class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <app-lightbox *ngIf="abierta !== null" [fotos]="vista.visor" [indice]="abierta" (cerrar)="abierta = null"></app-lightbox>
+  </ng-container>
+  <ng-template #cargando>
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+    </div>
+  </ng-template>
 </div> <!-- de la autenticacion -->
-
 <br>
 <br>
 <div class="divRight">
