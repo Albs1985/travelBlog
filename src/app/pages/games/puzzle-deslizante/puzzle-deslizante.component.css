@@ -1,0 +1,204 @@
+.puzzle-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.subtit {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.config-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.grupo-control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+.personajes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.card-personaje {
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fff;
+}
+
+.card-personaje img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-personaje span {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  color: #1e293b;
+}
+
+.card-personaje.seleccionado {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  transform: scale(1.05);
+}
+
+.input-select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+}
+
+.botones-nivel {
+  display: flex;
+  gap: 10px;
+}
+
+.botones-nivel button {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  background: #f1f5f9;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.botones-nivel button.activo {
+  background: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+}
+
+.btn-iniciar {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-iniciar:hover {
+  background: #059669;
+}
+
+.info-partida {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.btn-reiniciar {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* TABLERO DEL PUZLE */
+.tablero {
+  width: 350px;
+  height: 350px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2px;
+  background: #334155;
+  padding: 2px;
+  border-radius: 6px;
+}
+
+.pieza {
+  background-color: #e2e8f0;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.pieza:hover:not(.vacia) {
+  opacity: 0.9;
+}
+
+.pieza.vacia {
+  background: #cbd5e1;
+  cursor: default;
+}
+
+.victoria-modal {
+  margin-top: 20px;
+  background: #d1fae5;
+  border: 1px solid #34d399;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.records-section {
+  margin-top: 25px;
+  text-align: left;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.records-section h4 {
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.records-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.records-section th, .records-section td {
+  padding: 6px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+}
+
+.records-section th {
+  color: #64748b;
+}

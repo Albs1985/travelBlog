@@ -26,9 +26,10 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
 import { FacedokuComponent } from './pages/games/facedoku/facedoku.component';
 import { AhorcadoInfantilComponent } from './pages/games/ahorcado-infantil/ahorcado-infantil.component';
 import { AventuraFamiliarComponent } from './pages/games/aventura-familiar/aventura-familiar.component';
-import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
+import { PuzzleDeslizanteComponent } from './pages/games/puzzle-deslizante/puzzle-deslizante.component';
 import { ImpostorComponent } from './pages/games/impostor/impostor.component';
 import { SimonComponent } from './pages/games/simon/simon.component';
+import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -52,9 +53,10 @@ const app_routes: Routes = [
   { path: 'games/facedoku', component : FacedokuComponent},
   { path: 'games/ahorcado', component : AhorcadoInfantilComponent},
   { path: 'games/aventura', component : AventuraFamiliarComponent},
-  { path: 'games/puzzle', component : PuzzleComponent},
+  { path: 'games/puzzle-deslizante', component : PuzzleDeslizanteComponent},
   { path: 'games/impostor', component : ImpostorComponent},
   { path: 'games/simon', component : SimonComponent},
+  { path: 'games/puzzle', component : PuzzleComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},

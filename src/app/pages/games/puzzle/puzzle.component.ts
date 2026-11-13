@@ -1,28 +1,14 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export interface PersonajeFamiliar {
-  id: string;
-  nombre: string;
-  rol: string;
-  fotoUrl: string;
-  colorRopa: string;
-}
-
-export interface PiezaPuzle {
-  currentPos: number;
-  correctPos: number;
+export interface PiezaPuzzleNormal {
+  id: number;
+  currentPos: number; // Posición actual en el grid
+  correctPos: number; // Posición donde debería estar
+  rotacion: number;   // 0, 90, 180, 270 grados
   bgX: number;
   bgY: number;
-  isEmpty: boolean;
-}
-
-export interface RecordTiempos {
-  personaje: string;
-  nivel: string;
-  tiempoSegundos: number;
-  fecha: string;
 }
 
 @Component({
@@ -34,57 +20,35 @@ export interface RecordTiempos {
 })
 export class PuzzleComponent implements OnInit, OnDestroy {
 
-  public personajes: PersonajeFamiliar[] = [
-    { id: 'albert', nombre: 'Albert', rol: 'El Explorador', fotoUrl: 'assets/images/perfiles/fotoPerfilAlbert.jpg', colorRopa: '#4d7c0f' },
-    { id: 'alba', nombre: 'Alba', rol: 'La Estratega', fotoUrl: 'assets/images/perfiles/fotoPerfilAlba.jpg', colorRopa: '#be185d' },
-    { id: 'mateu', nombre: 'Mateu', rol: 'El Veloz', fotoUrl: 'assets/images/perfiles/fotoPerfilMateu.jpg', colorRopa: '#38a169' },
-    { id: 'marina', nombre: 'Marina', rol: 'La Saltarina', fotoUrl: 'assets/images/perfiles/fotoPerfilMarina.jpg', colorRopa: '#d69e2e' }
-  ];
+  // Configuración de niveles
+  public nivelSeleccionado: number = 2; // 2 = Fácil (2x2), 3 = Normal (3x3), 4 = Difícil (4x4)
+  public piezas: PiezaPuzzleNormal[] = [];
 
-  public personajeSeleccionado: PersonajeFamiliar = this.personajes[0];
-
-  // Años disponibles (centrados especialmente en 2019 para Bali)
-  public aniosDisponibles: number[] = [2019];
-  public anioSeleccionado: number = 2019; // Por defecto 2019 para las fotos de Bali
-
-  public tamanoGrid: number = 3; // 3x3 o 4x4
-  public piezas: PiezaPuzle[] = [];
+  // Imagen de Boda (2019) del 1 al 20 por ejemplo
+  public totalFotosBoda: number = 20;
+  public imagenActualUrl: string = '';
 
   public juegoIniciado: boolean = false;
   public juegoCompletado: boolean = false;
-  public movimientos: number = 0;
   public segundosTranscurridos: number = 0;
   private timerInterval: any;
+  public piezaSeleccionadaIndex: number | null = null; // Para intercambiar posiciones en niveles altos
 
-  public records: RecordTiempos[] = [];
-  public imagenActualUrl: string = '';
-
-  ngOnInit(): void {
-    this.cargarRecords();
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.detenerCronometro();
   }
 
-  // Método que selecciona aleatoriamente una imagen de Bali (Bali1 a Bali33) dentro de la carpeta del año
-  public obtenerRutaImagen(): string {
-    if (!this.imagenActualUrl) {
-      // Generar un número aleatorio entre 1 y 33
-      const numeroBali = Math.floor(Math.random() * 33) + 1;
-      this.imagenActualUrl = `assets/images/${this.anioSeleccionado}/Bali${numeroBali}.jpg`;
-    }
-    return this.imagenActualUrl;
-  }
-
   public iniciarJuego(): void {
     this.juegoCompletado = false;
-    this.movimientos = 0;
     this.segundosTranscurridos = 0;
     this.detenerCronometro();
+    this.piezaSeleccionadaIndex = null;
 
-    // Resetear la imagen para que elija una nueva foto de Bali aleatoria en cada partida
-    this.imagenActualUrl = '';
+    // Seleccionar foto aleatoria de Boda
+    const numFoto = Math.floor(Math.random() * this.totalFotosBoda) + 1;
+    this.imagenActualUrl = `assets/images/2019/Boda${numFoto}.jpg`;
 
     this.generarTablero();
     this.mezclarTablero();
@@ -95,83 +59,93 @@ export class PuzzleComponent implements OnInit, OnDestroy {
 
   private generarTablero(): void {
     this.piezas = [];
-    const totalPiezas = this.tamanoGrid * this.tamanoGrid;
+    const totalPiezas = this.nivelSeleccionado * this.nivelSeleccionado;
 
     for (let i = 0; i < totalPiezas; i++) {
-      const fila = Math.floor(i / this.tamanoGrid);
-      const col = i % this.tamanoGrid;
+      const fila = Math.floor(i / this.nivelSeleccionado);
+      const col = i % this.nivelSeleccionado;
 
-      const bgX = (col / (this.tamanoGrid - 1)) * 100;
-      const bgY = (fila / (this.tamanoGrid - 1)) * 100;
+      const bgX = (col / (this.nivelSeleccionado - 1)) * 100;
+      const bgY = (fila / (this.nivelSeleccionado - 1)) * 100;
 
       this.piezas.push({
+        id: i,
         currentPos: i,
         correctPos: i,
+        rotacion: 0,
         bgX: isNaN(bgX) ? 0 : bgX,
-        bgY: isNaN(bgY) ? 0 : bgY,
-        isEmpty: i === totalPiezas - 1
+        bgY: isNaN(bgY) ? 0 : bgY
       });
     }
   }
 
   private mezclarTablero(): void {
-    for (let i = 0; i < 100 * this.tamanoGrid; i++) {
-      const vaciaIndex = this.piezas.findIndex(p => p.isEmpty);
-      const vecinas = this.obtenerIndicesVecinos(vaciaIndex);
-      const randomVecina = vecinas[Math.floor(Math.random() * vecinas.length)];
+    // 1. Rotaciones aleatorias para todos los niveles
+    this.piezas.forEach(p => {
+      const girosAleatorios = [0, 90, 180, 270];
+      // En nivel fácil (2x2), aseguramos que al menos algunas tengan giros
+      p.rotacion = girosAleatorios[Math.floor(Math.random() * girosAleatorios.length)];
+    });
 
-      this.intercambiarPiezas(vaciaIndex, randomVecina);
-    }
-    this.movimientos = 0;
-  }
-
-  private obtenerIndicesVecinos(index: number): number[] {
-    const vecinos: number[] = [];
-    const fila = Math.floor(index / this.tamanoGrid);
-    const col = index % this.tamanoGrid;
-
-    if (fila > 0) vecinos.push(index - this.tamanoGrid);
-    if (fila < this.tamanoGrid - 1) vecinos.push(index + this.tamanoGrid);
-    if (col > 0) vecinos.push(index - 1);
-    if (col < this.tamanoGrid - 1) vecinos.push(index + 1);
-
-    return vecinos;
-  }
-
-  public moverPieza(index: number): void {
-    if (this.juegoCompletado || !this.juegoIniciado) return;
-
-    const vaciaIndex = this.piezas.findIndex(p => p.isEmpty);
-    if (this.esVecino(index, vaciaIndex)) {
-      this.intercambiarPiezas(index, vaciaIndex);
-      this.movimientos++;
-
-      if (this.verificarVictoria()) {
-        this.finalizarJuego();
+    // 2. Si es nivel 3x3 o 4x4, desordenamos también las posiciones de las piezas
+    if (this.nivelSeleccionado > 2) {
+      for (let i = this.piezas.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        // Intercambiar currentPos
+        const tempPos = this.piezas[i].currentPos;
+        this.piezas[i].currentPos = this.piezas[j].currentPos;
+        this.piezas[j].currentPos = tempPos;
       }
     }
   }
 
-  private esVecino(i1: number, i2: number): boolean {
-    const f1 = Math.floor(i1 / this.tamanoGrid);
-    const c1 = i1 % this.tamanoGrid;
-    const f2 = Math.floor(i2 / this.tamanoGrid);
-    const c2 = i2 % this.tamanoGrid;
+  // Clic simple: Gira la pieza 90 grados
+  public girarPieza(index: number, event: MouseEvent): void {
+    event.stopPropagation();
+    if (this.juegoCompletado || !this.juegoIniciado) return;
 
-    return (Math.abs(f1 - f2) + Math.abs(c1 - c2)) === 1;
+    // Encontrar la pieza en el grid actual
+    const pieza = this.piezas.find(p => p.currentPos === index);
+    if (pieza) {
+      pieza.rotacion = (pieza.rotacion + 90) % 360;
+      this.verificarVictoria();
+    }
   }
 
-  private intercambiarPiezas(i1: number, i2: number): void {
-    const temp = this.piezas[i1];
-    this.piezas[i1] = this.piezas[i2];
-    this.piezas[i2] = temp;
+  // Intercambiar posiciones entre dos piezas (para niveles 3x3 y 4x4)
+  public seleccionarParaIntercambiar(index: number): void {
+    if (this.nivelSeleccionado === 2 || this.juegoCompletado || !this.juegoIniciado) return;
 
-    this.piezas[i1].currentPos = i1;
-    this.piezas[i2].currentPos = i2;
+    if (this.piezaSeleccionadaIndex === null) {
+      this.piezaSeleccionadaIndex = index;
+    } else {
+      // Intercambiar posiciones actuales
+      const p1 = this.piezas.find(p => p.currentPos === this.piezaSeleccionadaIndex);
+      const p2 = this.piezas.find(p => p.currentPos === index);
+
+      if (p1 && p2) {
+        const temp = p1.currentPos;
+        p1.currentPos = p2.currentPos;
+        p2.currentPos = temp;
+      }
+
+      this.piezaSeleccionadaIndex = null;
+      this.verificarVictoria();
+    }
   }
 
-  private verificarVictoria(): boolean {
-    return this.piezas.every(p => p.currentPos === p.correctPos);
+  // Ordenar las piezas visualmente en el grid según su currentPos
+  public get piezasOrdenadasGrid(): PiezaPuzzleNormal[] {
+    const copia = [...this.piezas];
+    copia.sort((a, b) => a.currentPos - b.currentPos);
+    return copia;
+  }
+
+  private verificarVictoria(): void {
+    const todoCorrecto = this.piezas.every(p => p.currentPos === p.correctPos && p.rotacion === 0);
+    if (todoCorrecto) {
+      this.finalizarJuego();
+    }
   }
 
   private iniciarCronometro(): void {
@@ -189,27 +163,6 @@ export class PuzzleComponent implements OnInit, OnDestroy {
   private finalizarJuego(): void {
     this.detenerCronometro();
     this.juegoCompletado = true;
-    this.guardarRecord();
-  }
-
-  private guardarRecord(): void {
-    const nuevoRecord: RecordTiempos = {
-      personaje: this.personajeSeleccionado.nombre,
-      nivel: `${this.tamanoGrid}x${this.tamanoGrid}`,
-      tiempoSegundos: this.segundosTranscurridos,
-      fecha: new Date().toLocaleDateString()
-    };
-
-    this.records.push(nuevoRecord);
-    this.records.sort((a, b) => a.tiempoSegundos - b.tiempoSegundos);
-    localStorage.setItem('familia_puzzle_records', JSON.stringify(this.records));
-  }
-
-  private cargarRecords(): void {
-    const guardados = localStorage.getItem('familia_puzzle_records');
-    if (guardados) {
-      this.records = JSON.parse(guardados);
-    }
   }
 
   public formatearTiempo(segundos: number): string {

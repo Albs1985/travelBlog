@@ -1,12 +1,12 @@
-.puzzle-container {
-  max-width: 500px;
+.puzzle-normal-container {
+  max-width: 480px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   background: #f8fafc;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 h2 {
@@ -16,7 +16,7 @@ h2 {
 
 .subtit {
   color: #64748b;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin-bottom: 20px;
 }
 
@@ -26,8 +26,8 @@ h2 {
   gap: 15px;
   background: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
 
 .grupo-control label {
@@ -35,78 +35,38 @@ h2 {
   font-weight: bold;
   margin-bottom: 8px;
   color: #334155;
-}
-
-.personajes-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.card-personaje {
-  border: 2px solid #cbd5e1;
-  border-radius: 8px;
-  padding: 5px;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: #fff;
-}
-
-.card-personaje img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.card-personaje span {
-  display: block;
-  font-size: 0.8rem;
-  margin-top: 4px;
-  color: #1e293b;
-}
-
-.card-personaje.seleccionado {
-  border-color: #3b82f6;
-  background: #eff6ff;
-  transform: scale(1.05);
-}
-
-.input-select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  font-size: 1rem;
+  text-align: left;
 }
 
 .botones-nivel {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .botones-nivel button {
-  flex: 1;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #cbd5e1;
   background: #f1f5f9;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
 }
 
 .botones-nivel button.activo {
-  background: #3b82f6;
+  background: #ec4899; /* Tono especial romántico para bodas */
   color: white;
-  border-color: #2563eb;
+  border-color: #db2777;
 }
 
 .btn-iniciar {
-  background: #10b981;
+  background: #ec4899;
   color: white;
   border: none;
-  padding: 12px;
-  border-radius: 6px;
+  padding: 14px;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
@@ -114,7 +74,7 @@ h2 {
 }
 
 .btn-iniciar:hover {
-  background: #059669;
+  background: #db2777;
 }
 
 .info-partida {
@@ -125,80 +85,73 @@ h2 {
   padding: 10px 15px;
   border-radius: 8px;
   margin-bottom: 15px;
-  font-size: 0.9rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
 .btn-reiniciar {
   background: #ef4444;
   color: white;
   border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 0.85rem;
 }
 
-/* TABLERO DEL PUZLE */
-.tablero {
-  width: 350px;
-  height: 350px;
+/* TABLERO */
+.tablero-normal {
+  width: 360px;
+  height: 360px;
   margin: 0 auto;
   display: grid;
-  gap: 2px;
-  background: #334155;
-  padding: 2px;
-  border-radius: 6px;
+  gap: 3px;
+  background: #1e293b;
+  padding: 3px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.pieza {
+.pieza-normal {
+  position: relative;
   background-color: #e2e8f0;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 0.3s ease, border 0.2s ease;
+  border: 2px solid transparent;
+  box-sizing: border-box;
 }
 
-.pieza:hover:not(.vacia) {
-  opacity: 0.9;
+.pieza-normal.seleccionada {
+  border: 3px solid #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
 }
 
-.pieza.vacia {
-  background: #cbd5e1;
-  cursor: default;
+.btn-girar-movil {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.btn-girar-movil:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .victoria-modal {
   margin-top: 20px;
-  background: #d1fae5;
-  border: 1px solid #34d399;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.records-section {
-  margin-top: 25px;
-  text-align: left;
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.records-section h4 {
-  margin-bottom: 10px;
-  color: #1e293b;
-}
-
-.records-section table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.85rem;
-}
-
-.records-section th, .records-section td {
-  padding: 6px;
-  border-bottom: 1px solid #f1f5f9;
-  text-align: left;
-}
-
-.records-section th {
-  color: #64748b;
+  background: #fce7f3;
+  border: 1px solid #f472b6;
+  padding: 20px;
+  border-radius: 12px;
+  color: #831843;
 }

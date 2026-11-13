@@ -1,98 +1,57 @@
-<div class="puzzle-container">
-  <h2>🧩 Puzle de Viajes: ¡Aventura en Bali!</h2>
-  <p class="subtit">Elige tu personaje y recompón las fotos míticas del viaje (Bali 1 al 33).</p>
+<div class="puzzle-normal-container">
+  <h2>📸 Puzle de Recuerdos: Boda 2019</h2>
+  <p class="subtit">Haz clic en una pieza para girarla 90°. (En niveles superiores, clica dos piezas para intercambiarlas).</p>
 
-  <!-- SECCIÓN DE CONFIGURACIÓN -->
+  <!-- CONFIGURACIÓN -->
   <div class="config-panel" *ngIf="!juegoIniciado || juegoCompletado">
-
-    <!-- 1. Elegir Personaje -->
-    <div class="grupo-control">
-      <label>Elige Jugador:</label>
-      <div class="personajes-grid">
-        <div *ngFor="let p of personajes"
-             class="card-personaje"
-             [class.seleccionado]="personajeSeleccionado.id === p.id"
-             (click)="personajeSeleccionado = p">
-          <img [src]="p.fotoUrl" [alt]="p.nombre">
-          <span>{{ p.nombre }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. Elegir Año (Por defecto 2019 para Bali) -->
-    <div class="grupo-control">
-      <label for="anioSelect">Año del Recuerdo:</label>
-      <select id="anioSelect" [ngModel]="anioSeleccionado" (ngModelChange)="anioSeleccionado = +$event" class="input-select">
-        <option *ngFor="let anio of aniosDisponibles" [value]="anio">Año {{ anio }}</option>
-      </select>
-    </div>
-
-    <!-- 3. Elegir Nivel de Dificultad -->
+    
     <div class="grupo-control">
       <label>Nivel de Dificultad:</label>
       <div class="botones-nivel">
-        <button [class.activo]="tamanoGrid === 3" (click)="tamanoGrid = 3">Fácil (3x3)</button>
-        <button [class.activo]="tamanoGrid === 4" (click)="tamanoGrid = 4">Normal (4x4)</button>
+        <button [class.activo]="nivelSeleccionado === 2" (click)="nivelSeleccionado = 2">Fácil (2x2 - Solo Giro)</button>
+        <button [class.activo]="nivelSeleccionado === 3" (click)="nivelSeleccionado = 3">Normal (3x3 - Giro + Mover)</button>
+        <button [class.activo]="nivelSeleccionado === 4" (click)="nivelSeleccionado = 4">Difícil (4x4 - Experto)</button>
       </div>
     </div>
 
-    <button class="btn-iniciar" (click)="iniciarJuego()">¡Empezar Puzle de Bali!</button>
+    <button class="btn-iniciar" (click)="iniciarJuego()">🚀 ¡Empezar Puzle de Boda!</button>
   </div>
 
-  <!-- SECCIÓN DEL JUEGO ACTIVO -->
+  <!-- JUEGO ACTIVO -->
   <div class="juego-area" *ngIf="juegoIniciado">
-
+    
     <div class="info-partida">
-      <span>👤 <strong>{{ personajeSeleccionado.nombre }}</strong></span>
-      <span>⏱️ <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong></span>
-      <span>🔄 <strong>{{ movimientos }} movs</strong></span>
+      <span>⏱️ Tiempo: <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong></span>
       <button class="btn-reiniciar" (click)="iniciarJuego()">Cambiar Foto</button>
     </div>
 
-    <!-- TABLERO DINÁMICO -->
-    <div class="tablero"
-         [style.grid-template-columns]="'repeat(' + tamanoGrid + ', 1fr)'"
-         [style.grid-template-rows]="'repeat(' + tamanoGrid + ', 1fr)'">
-
-      <div *ngFor="let pieza of piezas; let i = index"
-           class="pieza"
-           [class.vacia]="pieza.isEmpty"
-           [style.background-image]="pieza.isEmpty ? 'none' : 'url(' + obtenerRutaImagen() + ')'"
-           [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
+    <!-- TABLERO -->
+    <div class="tablero-normal" 
+         [style.grid-template-columns]="'repeat(' + nivelSeleccionado + ', 1fr)'"
+         [style.grid-template-rows]="'repeat(' + nivelSeleccionado + ', 1fr)'">
+      
+      <div *ngFor="let pieza of piezasOrdenadasGrid; let i = index" 
+           class="pieza-normal"
+           [class.seleccionada]="piezaSeleccionadaIndex === i"
+           [style.background-image]="'url(' + imagenActualUrl + ')'"
+           [style.background-size]="(nivelSeleccionado * 100) + '% ' + (nivelSeleccionado * 100) + '%'"
            [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
-           (click)="moverPieza(i)">
+           [style.transform]="'rotate(' + pieza.rotacion + 'deg)'"
+           (click)="seleccionarParaIntercambiar(i)"
+           (contextmenu)="$event.preventDefault(); girarPieza(i, $event)"
+           title="Clic izq: Seleccionar para mover | Clic der: Girar 90º">
+           
+           <!-- Botón táctil visible en móvil para girar fácilmente -->
+           <button class="btn-girar-movil" (click)="girarPieza(i, $event)">🔄</button>
       </div>
     </div>
   </div>
 
-  <!-- PANTALLA DE VICTORIA -->
+  <!-- MODAL VICTORIA -->
   <div class="victoria-modal" *ngIf="juegoCompletado">
-    <h3>🎉 ¡Increíble, {{ personajeSeleccionado.nombre }}!</h3>
-    <p>Has completado la foto de Bali en el año <strong>{{ anioSeleccionado }}</strong> en <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>.</p>
-    <button class="btn-iniciar" (click)="juegoIniciado = false; juegoCompletado = false">Jugar otra foto</button>
-  </div>
-
-  <!-- TABLA DE RECORDS -->
-  <div class="records-section" *ngIf="records.length > 0">
-    <h4>🏆 Mejores Tiempos Familiares</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Jugador</th>
-          <th>Nivel</th>
-          <th>Tiempo</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let r of records.slice(0, 5)">
-          <td>{{ r.personaje }}</td>
-          <td>{{ r.nivel }}</td>
-          <td>{{ formatearTiempo(r.tiempoSegundos) }}</td>
-          <td>{{ r.fecha }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <h3>🎉 ¡Maravilloso! Puzle Completado</h3>
+    <p>Has recompuesto la foto de la boda en <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>.</p>
+    <button class="btn-iniciar" (click)="juegoIniciado = false; juegoCompletado = false">Jugar de Nuevo</button>
   </div>
 
 </div>
