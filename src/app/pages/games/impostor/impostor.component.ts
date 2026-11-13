@@ -27,7 +27,6 @@ export interface SituacionFamiliar {
 })
 export class ImpostorComponent {
 
-  // Perfiles base de la familia (puedes mantenerlos fijos para los principales)
   public perfilesBase = [
     { nombre: 'Albert', avatar: 'assets/images/perfiles/fotoPerfilAlbert.jpg' },
     { nombre: 'Alba', avatar: 'assets/images/perfiles/fotoPerfilAlba.jpg' },
@@ -76,8 +75,7 @@ export class ImpostorComponent {
   public jugadoresConfig: { nombre: string; avatar: string }[] = [
     { nombre: 'Albert', avatar: 'assets/images/perfiles/fotoPerfilAlbert.jpg' },
     { nombre: 'Alba', avatar: 'assets/images/perfiles/fotoPerfilAlba.jpg' },
-    { nombre: 'Mateu', avatar: 'assets/images/perfiles/fotoPerfilMateu.jpg' },
-    { nombre: 'Marina', avatar: 'assets/images/perfiles/fotoPerfilMarina.jpg' }
+    { nombre: 'Mateu', avatar: 'assets/images/perfiles/fotoPerfilMateu.jpg' }
   ];
   public nuevoNombreInput: string = '';
   public nivelDificultad: 'normal' | 'avanzado' = 'normal';
@@ -91,12 +89,10 @@ export class ImpostorComponent {
   public palabrasTabuPartida: string[] = [];
   public impostorDescubierto: JugadorPartida | null = null;
 
-  // NUEVO MÉTODO AGREGAR JUGADOR CON DICEBEAR
   public agregarJugador(): void {
     const nombreLimpio = this.nuevoNombreInput.trim();
     if (!nombreLimpio) return;
 
-    // Estilo de DiceBear (puedes probar 'lorelei', 'adventurer', 'avataaars', 'bottts', etc.)
     const estilo = 'lorelei';
     const urlAvatar = `https://api.dicebear.com/7.x/${estilo}/svg?seed=${encodeURIComponent(nombreLimpio)}`;
 
@@ -119,6 +115,7 @@ export class ImpostorComponent {
   public iniciarPartida(): void {
     if (this.jugadoresConfig.length < 3) return;
 
+    // 1. Seleccionar situación y palabras tabú de forma aleatoria
     const sitAleatoria = this.situacionesSecretas[Math.floor(Math.random() * this.situacionesSecretas.length)];
     this.situacionPartida = sitAleatoria.lugar;
 
@@ -128,13 +125,16 @@ export class ImpostorComponent {
       this.palabrasTabuPartida = [];
     }
 
-    const indexImpostor = Math.floor(Math.random() * this.jugadoresConfig.length);
+    // 2. CALCULO ALEATORIO DEL IMPOSTOR EN EL MOMENTO EXACTO DE PULSAR
+    const totalJugadores = this.jugadoresConfig.length;
+    const indexImpostor = Math.floor(Math.random() * totalJugadores);
 
+    // 3. Mapear y asignar roles de forma totalmente fresca
     this.listaJugadoresPartida = this.jugadoresConfig.map((j, idx) => ({
       id: `j_${idx}`,
       nombre: j.nombre,
       avatar: j.avatar,
-      esImpostor: idx === indexImpostor,
+      esImpostor: idx === indexImpostor, // Solo uno será true de forma verdaderamente aleatoria
       visto: false
     }));
 
