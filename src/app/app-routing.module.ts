@@ -27,6 +27,7 @@ import { FacedokuComponent } from './pages/games/facedoku/facedoku.component';
 import { AhorcadoInfantilComponent } from './pages/games/ahorcado-infantil/ahorcado-infantil.component';
 import { AventuraFamiliarComponent } from './pages/games/aventura-familiar/aventura-familiar.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
+import { ImpostorComponent } from './pages/games/impostor/impostor.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -51,6 +52,7 @@ const app_routes: Routes = [
   { path: 'games/ahorcado', component : AhorcadoInfantilComponent},
   { path: 'games/aventura', component : AventuraFamiliarComponent},
   { path: 'games/puzzle', component : PuzzleComponent},
+  { path: 'games/impostor', component : ImpostorComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},

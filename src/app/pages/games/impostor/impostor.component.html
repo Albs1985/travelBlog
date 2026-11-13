@@ -1,0 +1,110 @@
+<div class="impostor-container">
+  <h2>🕵️‍♂️ El Intruso (Spyfall Familiar)</h2>
+  <p class="subtit">Pasad el móvil de mano en mano sin que los demás vean la pantalla.</p>
+
+  <!-- FASE 1: CONFIGURACIÓN -->
+  <div class="config-section" *ngIf="!juegoIniciado">
+
+    <div class="grupo-control">
+      <label>Nivel de Dificultad:</label>
+      <div class="botones-nivel">
+        <button [class.activo]="nivelDificultad === 'normal'" (click)="nivelDificultad = 'normal'">Normal (Solo Lugar)</button>
+        <button [class.activo]="nivelDificultad === 'avanzado'" (click)="nivelDificultad = 'avanzado'">Avanzado (+ Palabras Tabú)</button>
+      </div>
+    </div>
+
+    <div class="grupo-control">
+      <label>Jugadores en la ronda (Mínimo 3):</label>
+      <div class="lista-jugadores-config">
+        <div class="chip-jugador" *ngFor="let j of jugadoresConfig; let i = index">
+          <img [src]="j.avatar" [alt]="j.nombre">
+          <span>{{ j.nombre }}</span>
+          <button class="btn-eliminar" (click)="eliminarJugadorConfig(i)" *ngIf="jugadoresConfig.length > 3">×</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grupo-control add-box">
+      <input type="text" [ngModel]="nuevoNombreInput" (ngModelChange)="nuevoNombreInput = $event" placeholder="Añadir otro familiar o invitado..." (keyup.enter)="agregarJugador()">
+      <button class="btn-add" (click)="agregarJugador()">Añadir</button>
+    </div>
+
+    <button class="btn-iniciar" (click)="iniciarPartida()" [disabled]="jugadoresConfig.length < 3">
+      🚀 ¡Repartir Secretos y Jugar!
+    </button>
+  </div>
+
+
+  <!-- FASE 2: PASAR EL MÓVIL / VER ROL -->
+  <div class="ronda-section" *ngIf="juegoIniciado && faseEntrega !== 'ronda_activa' && faseEntrega !== 'revelacion'">
+
+    <div class="turno-card">
+      <div class="avatar-turno">
+        <img [src]="listaJugadoresPartida[indiceJugadorActual].avatar" [alt]="listaJugadoresPartida[indiceJugadorActual].nombre">
+      </div>
+      <h3>Turno de: <strong>{{ listaJugadoresPartida[indiceJugadorActual].nombre }}</strong></h3>
+      <p class="aviso-privacidad">🔒 Asegúrate de que nadie más mire la pantalla.</p>
+
+      <div *ngIf="faseEntrega === 'esperando_toque'">
+        <button class="btn-ver-secreto" (click)="revelarSecreto()">👁️ Toca aquí para ver tu secreto</button>
+      </div>
+
+      <div *ngIf="faseEntrega === 'viendo_secreto'" class="secreto-box">
+
+        <div *ngIf="listaJugadoresPartida[indiceJugadorActual].esImpostor" class="rol-impostor">
+          <span class="emoji-alerta">🚨</span>
+          <h4>¡ERES EL INTRUSO!</h4>
+          <p>No sabes dónde estamos. ¡Disimula, escucha las pistas de los demás y no te delates!</p>
+        </div>
+
+        <div *ngIf="!listaJugadoresPartida[indiceJugadorActual].esImpostor" class="rol-normal">
+          <span class="emoji-lugar">📍</span>
+          <h4>Lugar Secreto:</h4>
+          <p class="lugar-texto">{{ situacionPartida }}</p>
+
+          <div *ngIf="nivelDificultad === 'avanzado'" class="tabu-box">
+            <span>⚠️ Palabras Tabú prohibidas:</span>
+            <ul>
+              <li *ngFor="let tabu of palabrasTabuPartida"><strong>{{ tabu }}</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <button class="btn-siguiente" (click)="siguienteJugador()">✅ ¡Entendido! Pasar al siguiente</button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- FASE 3: RONDA ACTIVA (DEBATE) -->
+  <div class="debate-section" *ngIf="juegoIniciado && faseEntrega === 'ronda_activa'">
+    <div class="debate-card">
+      <h3>🗣️ ¡Todos tienen su secreto asignado!</h3>
+      <p>Comienza la ronda de palabras por turnos. Cada uno dice una palabra relacionada con la situación.</p>
+
+      <div class="alerta-impostor-activo" *ngIf="nivelDificultad === 'avanzado'">
+        <p>⚠️ Recuerden que hay <strong>Palabras Tabú</strong> activas en esta partida.</p>
+      </div>
+
+      <button class="btn-revelar" (click)="finalizarRevelandoImpostor()">🔍 ¡Descubrir quién era el Intruso!</button>
+    </div>
+  </div>
+
+
+  <!-- FASE 4: REVELACIÓN FINAL -->
+  <div class="revelacion-section" *ngIf="juegoIniciado && faseEntrega === 'revelacion'">
+    <div class="revelacion-card" *ngIf="impostorDescubierto">
+      <h3>🎉 Fin de la partida</h3>
+      <p>El lugar secreto era: <strong>{{ situacionPartida }}</strong></p>
+
+      <div class="foto-impostor-final">
+        <img [src]="impostorDescubierto?.avatar" [alt]="impostorDescubierto?.nombre">
+        <h4>El impostor era... <strong>{{ impostorDescubierto?.nombre }}</strong>! 🕵️‍♂️</h4>
+      </div>
+
+      <button class="btn-iniciar" (click)="reiniciarConfiguracion()">🔄 Jugar otra partida</button>
+    </div>
+  </div>
+
+</div>

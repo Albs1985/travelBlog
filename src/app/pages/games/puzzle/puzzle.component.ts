@@ -44,7 +44,7 @@ export class PuzzleComponent implements OnInit, OnDestroy {
   public personajeSeleccionado: PersonajeFamiliar = this.personajes[0];
 
   // Años disponibles (centrados especialmente en 2019 para Bali)
-  public aniosDisponibles: number[] = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  public aniosDisponibles: number[] = [2019];
   public anioSeleccionado: number = 2019; // Por defecto 2019 para las fotos de Bali
 
   public tamanoGrid: number = 3; // 3x3 o 4x4
