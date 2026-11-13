@@ -27,6 +27,7 @@ export interface SituacionFamiliar {
 })
 export class ImpostorComponent {
 
+  // Perfiles base de la familia (puedes mantenerlos fijos para los principales)
   public perfilesBase = [
     { nombre: 'Albert', avatar: 'assets/images/perfiles/fotoPerfilAlbert.jpg' },
     { nombre: 'Alba', avatar: 'assets/images/perfiles/fotoPerfilAlba.jpg' },
@@ -75,7 +76,8 @@ export class ImpostorComponent {
   public jugadoresConfig: { nombre: string; avatar: string }[] = [
     { nombre: 'Albert', avatar: 'assets/images/perfiles/fotoPerfilAlbert.jpg' },
     { nombre: 'Alba', avatar: 'assets/images/perfiles/fotoPerfilAlba.jpg' },
-    { nombre: 'Mateu', avatar: 'assets/images/perfiles/fotoPerfilMateu.jpg' }
+    { nombre: 'Mateu', avatar: 'assets/images/perfiles/fotoPerfilMateu.jpg' },
+    { nombre: 'Marina', avatar: 'assets/images/perfiles/fotoPerfilMarina.jpg' }
   ];
   public nuevoNombreInput: string = '';
   public nivelDificultad: 'normal' | 'avanzado' = 'normal';
@@ -89,10 +91,20 @@ export class ImpostorComponent {
   public palabrasTabuPartida: string[] = [];
   public impostorDescubierto: JugadorPartida | null = null;
 
+  // NUEVO MÉTODO AGREGAR JUGADOR CON DICEBEAR
   public agregarJugador(): void {
-    if (!this.nuevoNombreInput.trim()) return;
-    const avatarAleatorio = this.perfilesBase[Math.floor(Math.random() * this.perfilesBase.length)].avatar;
-    this.jugadoresConfig.push({ nombre: this.nuevoNombreInput.trim(), avatar: avatarAleatorio });
+    const nombreLimpio = this.nuevoNombreInput.trim();
+    if (!nombreLimpio) return;
+
+    // Estilo de DiceBear (puedes probar 'lorelei', 'adventurer', 'avataaars', 'bottts', etc.)
+    const estilo = 'lorelei';
+    const urlAvatar = `https://api.dicebear.com/7.x/${estilo}/svg?seed=${encodeURIComponent(nombreLimpio)}`;
+
+    this.jugadoresConfig.push({
+      nombre: nombreLimpio,
+      avatar: urlAvatar
+    });
+
     this.nuevoNombreInput = '';
   }
 
