@@ -1,1 +1,523 @@
-[{"id":1,"nombre":{"es":"Ensalada de queso Feta","val":"Amanida de formatge feta"},"frase":{"es":"Para los días de calor","val":"Per als dies de calor"},"categoria":{"es":"Ensalada","val":"Amanida"},"cocinero":"Alba","dificultad":"3/10","raciones":2,"tipos":["frio"],"metodo":"nevera","tiempoPreparacion":10,"imagen":"recetas/ensaladaGarbanzosRuculaFeta.jpg","ingredientes":[{"es":"Rúcula (1 bolsa)","val":"Ruca (1 bossa)"},{"es":"Garbanzos: 1/2 bote pequeño","val":"Cigrons: 1/2 pot xicotet"},{"es":"Queso Feta (unos 16-20 dados)","val":"Formatge feta (uns 16-20 daus)"},{"es":"Aceite, sal y pimienta","val":"Oli, sal i pebre"},{"es":"Extra: 1/2 calabacín plancha","val":"Extra: 1/2 carabasseta planxa"}],"utensilios":[{"es":"Bol","val":"Bol"}],"pasos":[{"es":"Sacar la rúcula de la bolsa y separar el contenido en dos platos hondos.","val":"Traure la ruca de la bossa i separar el contingut en dos plats profunds."},{"es":"Vaciar medio bote de garbanzos en un colador para limpiarlos bajo el grifo. Después de escurrirlos, depositar la mitad en cada plato.","val":"Buidar mig pot de cigrons en un colador per a netejar-los sota l'aixeta. Després d'escórrer-los, depositar la mitat en cada plat."},{"es":"Coger los dados de queso feta y trocearlos sobre la rúcula y los garbanzos, la mitad en cada plato. Y listo! Solo falta aliñar con sal, aceite y pimienta.","val":"Agafar els daus de formatge feta i trossejar-los sobre la ruca i els cigrons, la mitat en cada plat. I llest! Només falta amanir amb sal, oli i pebre."},{"es":"Extra: Si queremos darle más consistencia al plato podemos añadir el calabacín plancha, en rodajas finas, para dar ese efecto de frío-calor.","val":"Extra: Si volem donar-li més consistència al plat podem afegir la carabasseta planxa, en rodanxes fines, per a donar eixe efecte de freda-calor."}]},{"id":2,"nombre":{"es":"Carrillera al vino tinto","val":"Galta al vi negre"},"frase":{"es":"Para darse un homenaje","val":"Per a donar-se un homenatge"},"categoria":{"es":"Comida, cena","val":"Menjar, sopar"},"cocinero":"Albert","dificultad":"7/10","raciones":4,"tipos":["caliente"],"metodo":"olla","tiempoPreparacion":20,"tiempoCoccion":90,"imagen":"recetas/carrillera.jpg","ingredientes":[{"es":"Carrilleras de ternera 2","val":"Galtes de vedella 2"},{"es":"Cebolla 200 g","val":"Ceba 200 g"},{"es":"Zanahoria 2","val":"Carlota 2"},{"es":"Diente de ajo 2","val":"Gra d'all 2"},{"es":"Vino tinto 200 ml","val":"Vi negre 200 ml"},{"es":"Caldo de carne 450 ml","val":"Caldo de carn 450 ml"},{"es":"Aceite de oliva virgen extra 100 ml","val":"Oli d'oliva verge extra 100 ml"},{"es":"Sal y pimienta al gusto","val":"Sal i pebre al gust"},{"es":"Laurel","val":"Llorer"}],"utensilios":[{"es":"Olla","val":"Olla"}],"pasos":[{"es":"Comenzaremos limpiando las carrilleras, eliminando la piel que las cubre, aunque lo normal es que este paso, aunque no es demasiado complicado, lo realice el propio carnicero. No las cortamos en trozos, sino que las dejamos enteras. Seguidamente las salpimentamos, las enharinamos y procedemos a sellarlas en una cazuela a fuego fuerte. Reservamos.","val":"Començarem netejant les galtes, eliminant la pell que les cobrix, encara que el normal és que este pas, encara que no és massa complicat, el realitze el propi carnisser. No les tallem en trossos, sinó que les deixem senceres. Seguidament les salpebrem, les enfarinem i procedim a segellar-les en una cassola a foc fort. Reservem."},{"es":"Picamos la cebolla y la zanahoria, así como los dientes de ajo. Salteamos las hortalizas en aceite de oliva, añadimos la hoja de laurel. Agregamos de nuevo la carne junto con las hortalizas, añadimos el vino tinto y las hierbas aromáticas.","val":"Piquem la ceba i la carlota, així com els grans d'all. Saltem les hortalisses en oli d'oliva, afegim la fulla de llorer. Agreguem de nou la carn juntament amb les hortalisses, afegim el vi negre i les herbes aromàtiques."},{"es":"Dejamos 10 minutos cociendo para que se evapore el alcohol del vino, y añadimos el caldo de carne reservado. Cocinamos durante 30 minutos en la cazuela tapada, le damos la vuelta a las piezas de carne y cocinamos durante 20 minutos más. Comprobamos la ternura de las carrilleras y dejamos que se reduzca la salsa durante 15 minutos más, ahora con la olla destapada. Retiramos las carrilleras y pasamos la salsa por el pasapuré.","val":"Deixem 10 minuts coent perquè s'evapore l'alcohol del vi, i afegim el caldo de carn reservat. Cuinem durant 30 minuts en la cassola tapada, li donem la volta a les peces de carn i cuinem durant 20 minutos més. Comprovem la tendresa de les galtes i deixem que es reduïsca la salsa durant 15 minuts més, ara amb l'olla destapada. Retirem les galtes i passem la salsa pel passapuré."},{"es":"Las carrilleras de ternera guisadas con vino tinto se sirven loncheadas y acompañadas de su salsa a la que podemos espolvorear un poco de perejil picado. Unas patatas nuevas semiasadas o puré de patata casero, es la guarnición ideal para este plato tradicional.","val":"Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."}]},{"id":3,"nombre":{"es":"Donut Vegano","val":"Dònut Vegà"},"frase":{"es":"Para los más viciosos del dulce!","val":"Per als més viciosos del dolcet!"},"categoria":{"es":"Postre dulce","val":"Postres dolces"},"cocinero":"Alba","dificultad":"2/10","raciones":3,"tipos":["dulce"],"metodo":"microondas","tiempoPreparacion":5,"tiempoCoccion":2.2,"temperatura":"800 W (ó max)","imagen":"recetas/donutVegano.jpg","ingredientes":[{"es":"2 cucharadas de harina de almendra","val":"2 cullerades de farina d'ametlla"},{"es":"1 cucharada de yogur de coco","val":"1 cullerada de iogurt de coco"},{"es":"1 cucharada de cacao en polvo 0%","val":"1 cullerada de cacau en pols 0%"},{"es":"2 cucharaditas de erititrol","val":"2 culleradetes de erititrol"},{"es":"1 cucharaditas de levadura","val":"1 culleradeta de rent"}],"utensilios":[{"es":"Bol","val":"Bol"}],"pasos":[{"es":"Remover todo junto en el orden que aparecen los ingredientes.","val":"Remoure tot junt en l'orde que apareixen els ingredients."},{"es":"Poner sobre un molde en forma de donut redondo.","val":"Posar sobre un motle en forma de dònut redó."},{"es":"Calentar en el microondas durante el tiempo indicado.","val":"Calfar en el microones durant el temps indicat."},{"es":"Y listo para comer!","val":"I llest per a menjar!"}]},{"id":4,"nombre":{"es":"Coca de Llanda","val":"Coca de Llanda"},"frase":{"es":"Para las meriendas de la familia","val":"Per als berenars de la família"},"categoria":{"es":"Merienda dulce","val":"Berenar dolç"},"cocinero":"Albert","dificultad":"4/10","raciones":24,"tipos":["dulce"],"metodo":"horno","tiempoPreparacion":15,"tiempoCoccion":25,"temperatura":"180 C","imagen":"recetas/cocaLlanda.jpg","ingredientes":[{"es":"2 yogures","val":"2 iogurts"},{"es":"4 huevos","val":"4 ous"},{"es":"2 de aceite de girasol","val":"2 d'oli de gira-sol"},{"es":"4 harina integral","val":"4 farina integral"},{"es":"2 azúcar de caña","val":"2 sucre de canya"},{"es":"1 sobre de levadura","val":"1 sobre de llevat"}],"utensilios":[{"es":"Bol","val":"Bol"}],"pasos":[{"es":"Precalentar el horno a la temperatura indicada. Batir bien los huevos en un bol grande, y poner después los yogures, y seguir removiendo.","val":"Precalfar el forn a la temperatura indicada. Batre bé els ous en un bol gran, i posar després els iogurts, i continuar removent."},{"es":"Tomando como referencia el envase del yogurt, poner 4 vasitos de harina integral, y remover hasta conseguir una masa uniforme.","val":"Prenent com a referència l'envàs del iogurt, posar 4 gotets de farina integral, i remoure fins a aconseguir una massa uniforme."},{"es":"Añadir ahora el azúcar de caña, y remover bien, para finalmente añadir las dos de aceite, que permitirán que sea más blanda la masa. Añadir la levadura y seguir removiendo.","val":"Afegir ara el sucre de canya, i remoure bé, per a finalment afegir les dos d'oli, que permetran que siga més blana la massa. Afegir el llevat i continuar removent."},{"es":"Una vez removido, podemos acabar de remover con la batidora, para que quede mejor.","val":"Una vegada remogut, podem acabar de remoure amb la batedora, perquè quede millor."},{"es":"Cuando tengamos la masa bien removida, la pondremos en la bandeja de metal.","val":"Quan tinguem la massa ben remoguda, la posarem en la safata de metall."},{"es":"Extra: Se le puede añadir pepitas de chocolate a la masa, o azúcar o canela por encima una vez la tengamos para meter en el horno.","val":"Extra: Se li pot afegir llavors de xocolate a la massa, o sucre o canyella per damunt una vegada la tinguem per a ficar en el forn."}]},{"id":5,"nombre":{"es":"Trufas","val":"Tòfones"},"frase":{"es":"Para los que siempre tienen un lugar para el postre","val":"Per als que sempre tenen un lloc per al postre"},"categoria":{"es":"Postre dulce","val":"Postre dulce"},"cocinero":"Alba","dificultad":"1/10","raciones":6,"tipos":["dulce"],"metodo":"nevera","tiempoPreparacion":5,"imagen":"recetas/trufas.jpg","ingredientes":[{"es":"Una taza de chocolate crudo","val":"Una tassa de xocolata crua"},{"es":"Media taza de yogur de coco","val":"Mitja tassa de iogurt de coco"},{"es":"Cobertura coco rayado","val":"Cobertura coco ratllat"}],"utensilios":[{"es":"Bol","val":"Bol"}],"pasos":[{"es":"Derretir el chocolate y mezclar con el yogur","val":"Fondre el xocolate i barrejar amb el iogurt"},{"es":"Enfriar y dar forma.","val":"Refredar i donar forma."},{"es":"Poner el coco rayado por encima","val":"Posar el coco ratllat per damunt"},{"es":"Y a disfrutar!!","val":"I a gaudir!!"}]},{"id":6,"nombre":{"es":"Brownie de chocolate","val":"Brownie de xocolate"},"frase":{"es":"Para los amantes del chocolate","val":"Per als amants del xocolate"},"categoria":{"es":"Postre","val":"Postre"},"cocinero":"Albert","dificultad":"4/10","raciones":12,"tipos":["dulce"],"metodo":"horno","tiempoPreparacion":15,"tiempoCoccion":18,"temperatura":"180 C","imagen":"recetas/brownie.jpg","ingredientes":[{"es":"Chocolate negro para fundir: 300gr","val":"Xocolate negre per a fondre: 300gr"},{"es":"Mantequilla con sal: 150gr","val":"Mantega amb sal: 150gr"},{"es":"Huevos: 4","val":"Ous: 4"},{"es":"Azúcar: Un vaso","val":"Sucre: Un got"},{"es":"Harina: Medio vaso","val":"Farina: Mig got"},{"es":"Nueces: 100 gr (al gusto)","val":"Anous: 100gr (al gust)"},{"es":"Aceite: (para untar el molde)","val":"Oli: (per a untar el motle)"}],"utensilios":[{"es":"Tenedor","val":"Forqueta"},{"es":"Bandeja metal","val":"Safata metall"},{"es":"2 Bols grandes","val":"2 Bols grans"},{"es":"Horno","val":"Forn"},{"es":"Microondas","val":"Microones"}],"pasos":[{"es":"Precalentar el horno a 180 C. Cogemos un bol y ponemos el chocolate y la mantequilla, y los metemos en el microondas en tandas de 1 minuto, para no quemar el chocolate. Ir sacando y remover hasta conseguir una masa uniforme.","val":"Precalfar el forn a 180 C. Agafem un bol i posem el xocolate i la mantega, i els fiquem en el microones en tandes d'1 minut, per a no cremar el xocolate. Anar traient i remoure fins a aconseguir una massa uniforme."},{"es":"Cogemos otro bol y vamos poniendo los huevos, los batimos con el tenedor, y poco a poco vamos añadiendo: primero la harina, y después el azúcar.","val":"Agafem un altre bol i anem posant els ous, els batem amb la forqueta, i a poc a poc anem afegint: primer la farina, i després el sucre."},{"es":"Una vez tengamos las dos masas uniformes, los juntamos en un único bol. Ahora añadimos las nueces. Importante trocearlas (con las mismas manos).","val":"Una vegada tinguem les dos masses uniformes, els ajuntem en un únic bol. Ara afegim les anous. Important trossejar-les (amb les mateixes mans)."},{"es":"Removemos bien y ya podemos ponerlo en la bandeja, que previamente la habremos huntado con un poco de aceite con las manos.","val":"Removem bé i ja podem posar-ho en la safata, que prèviament l'haurem untat amb un poc d'oli amb les mans."},{"es":"Por último, ya podremos meterlo en el horno en el tiempo indicado. Cada horno es diferente, asegúrate que no se cuece demasiado, si no, se convertirá en bizcocho.","val":"Finalment, ja podrem ficar-ho en el forn en el temps indicat. Cada forn és diferent, assegura't que no es cou massa, si no, es convertirà en bescuit."},{"es":"Extra: Si quieres sorprender a tus comensales, añade una bola de helado de vainilla, ponla sobre el cuadrado de brownie, y échale chocolate caliente fundido por encima. La combinación de frío-calor es alucinante...","val":"Extra: Si vols sorprendre els teus comensals, afig una bola de gelat de vainilla, posa-la sobre el quadrat de brownie, i tira-li xocolate calent fos per damunt. La combinació de freda-calor és al·lucinant..."}]}]
+[
+  {
+      "id": 1,
+      "nombre":
+      {
+          "es": "Ensalada de queso Feta",
+          "val": "Amanida de formatge feta"
+      },
+      "frase":
+      {
+          "es": "Para los días de calor",
+          "val": "Per als dies de calor"
+      },
+      "categoria":
+      {
+          "es": "Ensalada",
+          "val": "Amanida"
+      },
+      "cocinero": "Alba",
+      "dificultad": "3/10",
+      "raciones": 2,
+      "tipos":
+      [
+          "frio"
+      ],
+      "metodo": "nevera",
+      "tiempoPreparacion": 10,
+      "imagen": "recetas/ensaladaGarbanzosRuculaFeta.jpg",
+      "ingredientes":
+      [
+          {
+              "es": "Rúcula (1 bolsa)",
+              "val": "Ruca (1 bossa)"
+          },
+          {
+              "es": "Garbanzos: 1/2 bote pequeño",
+              "val": "Cigrons: 1/2 pot xicotet"
+          },
+          {
+              "es": "Queso Feta (unos 16-20 dados)",
+              "val": "Formatge feta (uns 16-20 daus)"
+          },
+          {
+              "es": "Aceite, sal y pimienta",
+              "val": "Oli, sal i pebre"
+          },
+          {
+              "es": "Extra: 1/2 calabacín plancha",
+              "val": "Extra: 1/2 carabasseta planxa"
+          }
+      ],
+      "utensilios":
+      [
+          {
+              "es": "Bol",
+              "val": "Bol"
+          }
+      ],
+      "pasos":
+      [
+          {
+              "es": "Sacar la rúcula de la bolsa y separar el contenido en dos platos hondos.",
+              "val": "Traure la ruca de la bossa i separar el contingut en dos plats profunds."
+          },
+          {
+              "es": "Vaciar medio bote de garbanzos en un colador para limpiarlos bajo el grifo. Después de escurrirlos, depositar la mitad en cada plato.",
+              "val": "Buidar mig pot de cigrons en un colador per a netejar-los sota l'aixeta. Després d'escórrer-los, depositar la mitat en cada plat."
+          },
+          {
+              "es": "Coger los dados de queso feta y trocearlos sobre la rúcula y los garbanzos, la mitad en cada plato. Y listo! Solo falta aliñar con sal, aceite y pimienta.",
+              "val": "Agafar els daus de formatge feta i trossejar-los sobre la ruca i els cigrons, la mitat en cada plat. I llest! Només falta amanir amb sal, oli i pebre."
+          },
+          {
+              "es": "Extra: Si queremos darle más consistencia al plato podemos añadir el calabacín plancha, en rodajas finas, para dar ese efecto de frío-calor.",
+              "val": "Extra: Si volem donar-li més consistència al plat podem afegir la carabasseta planxa, en rodanxes fines, per a donar eixe efecte de freda-calor."
+          }
+      ]
+  },
+  {
+      "id": 2,
+      "nombre":
+      {
+          "es": "Carrillera al vino tinto",
+          "val": "Galta al vi negre"
+      },
+      "frase":
+      {
+          "es": "Para darse un homenaje",
+          "val": "Per a donar-se un homenatge"
+      },
+      "categoria":
+      {
+          "es": "Comida, cena",
+          "val": "Menjar, sopar"
+      },
+      "cocinero": "Albert",
+      "dificultad": "7/10",
+      "raciones": 4,
+      "tipos":
+      [
+          "caliente"
+      ],
+      "metodo": "olla",
+      "tiempoPreparacion": 20,
+      "tiempoCoccion": 90,
+      "imagen": "recetas/carrillera.jpg",
+      "ingredientes":
+      [
+          {
+              "es": "Carrilleras de ternera 2",
+              "val": "Galtes de vedella 2"
+          },
+          {
+              "es": "Cebolla 200 g",
+              "val": "Ceba 200 g"
+          },
+          {
+              "es": "Zanahoria 2",
+              "val": "Carlota 2"
+          },
+          {
+              "es": "Diente de ajo 2",
+              "val": "Gra d'all 2"
+          },
+          {
+              "es": "Vino tinto 200 ml",
+              "val": "Vi negre 200 ml"
+          },
+          {
+              "es": "Caldo de carne 450 ml",
+              "val": "Caldo de carn 450 ml"
+          },
+          {
+              "es": "Aceite de oliva virgen extra 100 ml",
+              "val": "Oli d'oliva verge extra 100 ml"
+          },
+          {
+              "es": "Sal y pimienta al gusto",
+              "val": "Sal i pebre al gust"
+          },
+          {
+              "es": "Laurel",
+              "val": "Llorer"
+          }
+      ],
+      "utensilios":
+      [
+          {
+              "es": "Olla",
+              "val": "Olla"
+          }
+      ],
+      "pasos":
+      [
+          {
+              "es": "Comenzaremos limpiando las carrilleras, eliminando la piel que las cubre, aunque lo normal es que este paso, aunque no es demasiado complicado, lo realice el propio carnicero. No las cortamos en trozos, sino que las dejamos enteras. Seguidamente las salpimentamos, las enharinamos y procedemos a sellarlas en una cazuela a fuego fuerte. Reservamos.",
+              "val": "Començarem netejant les galtes, eliminant la pell que les cobrix, encara que el normal és que este pas, encara que no és massa complicat, el realitze el propi carnisser. No les tallem en trossos, sinó que les deixem senceres. Seguidament les salpebrem, les enfarinem i procedim a segellar-les en una cassola a foc fort. Reservem."
+          },
+          {
+              "es": "Picamos la cebolla y la zanahoria, así como los dientes de ajo. Salteamos las hortalizas en aceite de oliva, añadimos la hoja de laurel. Agregamos de nuevo la carne junto con las hortalizas, añadimos el vino tinto y las hierbas aromáticas.",
+              "val": "Piquem la ceba i la carlota, així com els grans d'all. Saltem les hortalisses en oli d'oliva, afegim la fulla de llorer. Agreguem de nou la carn juntament amb les hortalisses, afegim el vi negre i les herbes aromàtiques."
+          },
+          {
+              "es": "Dejamos 10 minutos cociendo para que se evapore el alcohol del vino, y añadimos el caldo de carne reservado. Cocinamos durante 30 minutos en la cazuela tapada, le damos la vuelta a las piezas de carne y cocinamos durante 20 minutos más. Comprobamos la ternura de las carrilleras y dejamos que se reduzca la salsa durante 15 minutos más, ahora con la olla destapada. Retiramos las carrilleras y pasamos la salsa por el pasapuré.",
+              "val": "Deixem 10 minuts coent perquè s'evapore l'alcohol del vi, i afegim el caldo de carn reservat. Cuinem durant 30 minuts en la cassola tapada, li donem la volta a les peces de carn i cuinem durant 20 minutos més. Comprovem la tendresa de les galtes i deixem que es reduïsca la salsa durant 15 minuts més, ara amb l'olla destapada. Retirem les galtes i passem la salsa pel passapuré."
+          },
+          {
+              "es": "Las carrilleras de ternera guisadas con vino tinto se sirven loncheadas y acompañadas de su salsa a la que podemos espolvorear un poco de perejil picado. Unas patatas nuevas semiasadas o puré de patata casero, es la guarnición ideal para este plato tradicional.",
+              "val": "Les galtes de vedella guisades amb vi negre se servixen en rodanxes i acompanyades de la seua salsa a la qual podem empolvorar un poc de julivert picat. Unes creïlles noves mig-cuites o puré de creïlla casolà, és la guarnició ideal per a este plat tradicional."
+          }
+      ]
+  },
+  {
+      "id": 3,
+      "nombre":
+      {
+          "es": "Donut Vegano",
+          "val": "Dònut Vegà"
+      },
+      "frase":
+      {
+          "es": "Para los más viciosos del dulce!",
+          "val": "Per als més viciosos del dolcet!"
+      },
+      "categoria":
+      {
+          "es": "Postre dulce",
+          "val": "Postres dolces"
+      },
+      "cocinero": "Alba",
+      "dificultad": "2/10",
+      "raciones": 3,
+      "tipos":
+      [
+          "dulce"
+      ],
+      "metodo": "microondas",
+      "tiempoPreparacion": 5,
+      "tiempoCoccion": 2.2,
+      "temperatura": "800 W (ó max)",
+      "imagen": "recetas/donutVegano.jpg",
+      "ingredientes":
+      [
+          {
+              "es": "2 cucharadas de harina de almendra",
+              "val": "2 cullerades de farina d'ametlla"
+          },
+          {
+              "es": "1 cucharada de yogur de coco",
+              "val": "1 cullerada de iogurt de coco"
+          },
+          {
+              "es": "1 cucharada de cacao en polvo 0%",
+              "val": "1 cullerada de cacau en pols 0%"
+          },
+          {
+              "es": "2 cucharaditas de erititrol",
+              "val": "2 culleradetes de erititrol"
+          },
+          {
+              "es": "1 cucharaditas de levadura",
+              "val": "1 culleradeta de rent"
+          }
+      ],
+      "utensilios":
+      [
+          {
+              "es": "Bol",
+              "val": "Bol"
+          }
+      ],
+      "pasos":
+      [
+          {
+              "es": "Remover todo junto en el orden que aparecen los ingredientes.",
+              "val": "Remoure tot junt en l'orde que apareixen els ingredients."
+          },
+          {
+              "es": "Poner sobre un molde en forma de donut redondo.",
+              "val": "Posar sobre un motle en forma de dònut redó."
+          },
+          {
+              "es": "Calentar en el microondas durante el tiempo indicado.",
+              "val": "Calfar en el microones durant el temps indicat."
+          },
+          {
+              "es": "Y listo para comer!",
+              "val": "I llest per a menjar!"
+          }
+      ]
+  },
+  {
+      "id": 4,
+      "nombre":
+      {
+          "es": "Coca de Llanda",
+          "val": "Coca de Llanda"
+      },
+      "frase":
+      {
+          "es": "Para las meriendas de la familia",
+          "val": "Per als berenars de la família"
+      },
+      "categoria":
+      {
+          "es": "Merienda dulce",
+          "val": "Berenar dolç"
+      },
+      "cocinero": "Albert",
+      "dificultad": "4/10",
+      "raciones": 24,
+      "tipos":
+      [
+          "dulce"
+      ],
+      "metodo": "horno",
+      "tiempoPreparacion": 15,
+      "tiempoCoccion": 25,
+      "temperatura": "180 C",
+      "imagen": "recetas/cocaLlanda.jpg",
+      "ingredientes":
+      [
+          {
+              "es": "2 yogures",
+              "val": "2 iogurts"
+          },
+          {
+              "es": "4 huevos",
+              "val": "4 ous"
+          },
+          {
+              "es": "2 de aceite de girasol",
+              "val": "2 d'oli de gira-sol"
+          },
+          {
+              "es": "4 harina integral",
+              "val": "4 farina integral"
+          },
+          {
+              "es": "2 azúcar de caña",
+              "val": "2 sucre de canya"
+          },
+          {
+              "es": "1 sobre de levadura",
+              "val": "1 sobre de llevat"
+          }
+      ],
+      "utensilios":
+      [
+          {
+              "es": "Bol",
+              "val": "Bol"
+          }
+      ],
+      "pasos":
+      [
+          {
+              "es": "Precalentar el horno a la temperatura indicada. Batir bien los huevos en un bol grande, y poner después los yogures, y seguir removiendo.",
+              "val": "Precalfar el forn a la temperatura indicada. Batre bé els ous en un bol gran, i posar després els iogurts, i continuar removent."
+          },
+          {
+              "es": "Tomando como referencia el envase del yogurt, poner 4 vasitos de harina integral, y remover hasta conseguir una masa uniforme.",
+              "val": "Prenent com a referència l'envàs del iogurt, posar 4 gotets de farina integral, i remoure fins a aconseguir una massa uniforme."
+          },
+          {
+              "es": "Añadir ahora el azúcar de caña, y remover bien, para finalmente añadir las dos de aceite, que permitirán que sea más blanda la masa. Añadir la levadura y seguir removiendo.",
+              "val": "Afegir ara el sucre de canya, i remoure bé, per a finalment afegir les dos d'oli, que permetran que siga més blana la massa. Afegir el llevat i continuar removent."
+          },
+          {
+              "es": "Una vez removido, podemos acabar de remover con la batidora, para que quede mejor.",
+              "val": "Una vegada remogut, podem acabar de remoure amb la batedora, perquè quede millor."
+          },
+          {
+              "es": "Cuando tengamos la masa bien removida, la pondremos en la bandeja de metal.",
+              "val": "Quan tinguem la massa ben remoguda, la posarem en la safata de metall."
+          },
+          {
+              "es": "Extra: Se le puede añadir pepitas de chocolate a la masa, o azúcar o canela por encima una vez la tengamos para meter en el horno.",
+              "val": "Extra: Se li pot afegir llavors de xocolate a la massa, o sucre o canyella per damunt una vegada la tinguem per a ficar en el forn."
+          }
+      ]
+  },
+  {
+      "id": 5,
+      "nombre":
+      {
+          "es": "Trufas",
+          "val": "Tòfones"
+      },
+      "frase":
+      {
+          "es": "Para los que siempre tienen un lugar para el postre",
+          "val": "Per als que sempre tenen un lloc per al postre"
+      },
+      "categoria":
+      {
+          "es": "Postre dulce",
+          "val": "Postre dulce"
+      },
+      "cocinero": "Alba",
+      "dificultad": "1/10",
+      "raciones": 6,
+      "tipos":
+      [
+          "dulce"
+      ],
+      "metodo": "nevera",
+      "tiempoPreparacion": 5,
+      "imagen": "recetas/trufas.jpg",
+      "ingredientes":
+      [
+          {
+              "es": "Una taza de chocolate crudo",
+              "val": "Una tassa de xocolata crua"
+          },
+          {
+              "es": "Media taza de yogur de coco",
+              "val": "Mitja tassa de iogurt de coco"
+          },
+          {
+              "es": "Cobertura coco rayado",
+              "val": "Cobertura coco ratllat"
+          }
+      ],
+      "utensilios":
+      [
+          {
+              "es": "Bol",
+              "val": "Bol"
+          }
+      ],
+      "pasos":
+      [
+          {
+              "es": "Derretir el chocolate y mezclar con el yogur",
+              "val": "Fondre el xocolate i barrejar amb el iogurt"
+          },
+          {
+              "es": "Enfriar y dar forma.",
+              "val": "Refredar i donar forma."
+          },
+          {
+              "es": "Poner el coco rayado por encima",
+              "val": "Posar el coco ratllat per damunt"
+          },
+          {
+              "es": "Y a disfrutar!!",
+              "val": "I a gaudir!!"
+          }
+      ]
+  },
+  {
+      "id": 6,
+      "nombre":
+      {
+          "es": "Brownie de chocolate",
+          "val": "Brownie de xocolate"
+      },
+      "frase":
+      {
+          "es": "Para los amantes del chocolate",
+          "val": "Per als amants del xocolate"
+      },
+      "categoria":
+      {
+          "es": "Postre",
+          "val": "Postre"
+      },
+      "cocinero": "Albert",
+      "dificultad": "4/10",
+      "raciones": 12,
+      "tipos":
+      [
+          "dulce"
+      ],
+      "metodo": "horno",
+      "tiempoPreparacion": 15,
+      "tiempoCoccion": 18,
+      "temperatura": "180 C",
+      "imagen": "recetas/brownie.jpg",
+      "ingredientes":
+      [
+          {
+              "es": "Chocolate negro para fundir: 300gr",
+              "val": "Xocolate negre per a fondre: 300gr"
+          },
+          {
+              "es": "Mantequilla con sal: 150gr",
+              "val": "Mantega amb sal: 150gr"
+          },
+          {
+              "es": "Huevos: 4",
+              "val": "Ous: 4"
+          },
+          {
+              "es": "Azúcar: Un vaso",
+              "val": "Sucre: Un got"
+          },
+          {
+              "es": "Harina: Medio vaso",
+              "val": "Farina: Mig got"
+          },
+          {
+              "es": "Nueces: 100 gr (al gusto)",
+              "val": "Anous: 100gr (al gust)"
+          },
+          {
+              "es": "Aceite: (para untar el molde)",
+              "val": "Oli: (per a untar el motle)"
+          }
+      ],
+      "utensilios":
+      [
+          {
+              "es": "Tenedor",
+              "val": "Forqueta"
+          },
+          {
+              "es": "Bandeja metal",
+              "val": "Safata metall"
+          },
+          {
+              "es": "2 Bols grandes",
+              "val": "2 Bols grans"
+          },
+          {
+              "es": "Horno",
+              "val": "Forn"
+          },
+          {
+              "es": "Microondas",
+              "val": "Microones"
+          }
+      ],
+      "pasos":
+      [
+          {
+              "es": "Precalentar el horno a 180 C. Cogemos un bol y ponemos el chocolate y la mantequilla, y los metemos en el microondas en tandas de 1 minuto, para no quemar el chocolate. Ir sacando y remover hasta conseguir una masa uniforme.",
+              "val": "Precalfar el forn a 180 C. Agafem un bol i posem el xocolate i la mantega, i els fiquem en el microones en tandes d'1 minut, per a no cremar el xocolate. Anar traient i remoure fins a aconseguir una massa uniforme."
+          },
+          {
+              "es": "Cogemos otro bol y vamos poniendo los huevos, los batimos con el tenedor, y poco a poco vamos añadiendo: primero la harina, y después el azúcar.",
+              "val": "Agafem un altre bol i anem posant els ous, els batem amb la forqueta, i a poc a poc anem afegint: primer la farina, i després el sucre."
+          },
+          {
+              "es": "Una vez tengamos las dos masas uniformes, los juntamos en un único bol. Ahora añadimos las nueces. Importante trocearlas (con las mismas manos).",
+              "val": "Una vegada tinguem les dos masses uniformes, els ajuntem en un únic bol. Ara afegim les anous. Important trossejar-les (amb les mateixes mans)."
+          },
+          {
+              "es": "Removemos bien y ya podemos ponerlo en la bandeja, que previamente la habremos huntado con un poco de aceite con las manos.",
+              "val": "Removem bé i ja podem posar-ho en la safata, que prèviament l'haurem untat amb un poc d'oli amb les mans."
+          },
+          {
+              "es": "Por último, ya podremos meterlo en el horno en el tiempo indicado. Cada horno es diferente, asegúrate que no se cuece demasiado, si no, se convertirá en bizcocho.",
+              "val": "Finalment, ja podrem ficar-ho en el forn en el temps indicat. Cada forn és diferent, assegura't que no es cou massa, si no, es convertirà en bescuit."
+          },
+          {
+              "es": "Extra: Si quieres sorprender a tus comensales, añade una bola de helado de vainilla, ponla sobre el cuadrado de brownie, y échale chocolate caliente fundido por encima. La combinación de frío-calor es alucinante...",
+              "val": "Extra: Si vols sorprendre els teus comensals, afig una bola de gelat de vainilla, posa-la sobre el quadrat de brownie, i tira-li xocolate calent fos per damunt. La combinació de freda-calor és al·lucinant..."
+          }
+      ]
+  }
+]

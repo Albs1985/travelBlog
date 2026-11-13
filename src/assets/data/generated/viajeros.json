@@ -1,1 +1,68 @@
-[{"nombre":"Marina","nombreCompleto":"Marina Serrador Casares","nacimiento":"2023-07-26","aka":["Marinuski","Truskilina","Filleta Pinyol","Truski Muski","Mini Truski","Porruski","Xicaleta","Miji"],"info":{"es":"Hora de naciemiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00","val":"Hora de naciemiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00"},"fotoPerfil":"assets/images/perfiles/fotoPerfilMarina.jpg"},{"nombre":"Mateu","nombreCompleto":"Mateu Serrador Casares","nacimiento":"2020-09-04","aka":["Mateuito","Matotis","Pollito","Porruski","Xiriwini/o","Luka Matotić","Fifi"],"info":{"es":"Hora de naciemiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00","val":"Hora de naciemiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00"},"fotoPerfil":"assets/images/perfiles/fotoPerfilMateu.jpg"},{"nombre":"Alba","nombreCompleto":"Alba Casares Català","nacimiento":"1985-05-10","aka":["Albeta","Musti"],"fotoPerfil":"assets/images/perfiles/fotoPerfilAlba.jpg"},{"nombre":"Albert","nombreCompleto":"Albert Serrador Sánchez","nacimiento":"1985-06-06","aka":["Papi Papowski","Berto","Bertolico"],"fotoPerfil":"assets/images/perfiles/fotoPerfilAlbert.jpg"}]
+[
+  {
+      "nombre": "Marina",
+      "nombreCompleto": "Marina Serrador Casares",
+      "nacimiento": "2023-07-26",
+      "aka":
+      [
+          "Marinuski",
+          "Truskilina",
+          "Filleta Pinyol",
+          "Truski Muski",
+          "Mini Truski",
+          "Porruski",
+          "Xicaleta",
+          "Miji"
+      ],
+      "info":
+      {
+          "es": "Hora de naciemiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00",
+          "val": "Hora de naciemiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00"
+      },
+      "fotoPerfil": "assets/images/perfiles/fotoPerfilMarina.jpg"
+  },
+  {
+      "nombre": "Mateu",
+      "nombreCompleto": "Mateu Serrador Casares",
+      "nacimiento": "2020-09-04",
+      "aka":
+      [
+          "Mateuito",
+          "Matotis",
+          "Pollito",
+          "Porruski",
+          "Xiriwini/o",
+          "Luka Matotić",
+          "Fifi"
+      ],
+      "info":
+      {
+          "es": "Hora de naciemiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00",
+          "val": "Hora de naciemiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00"
+      },
+      "fotoPerfil": "assets/images/perfiles/fotoPerfilMateu.jpg"
+  },
+  {
+      "nombre": "Alba",
+      "nombreCompleto": "Alba Casares Català",
+      "nacimiento": "1985-05-10",
+      "aka":
+      [
+          "Albeta",
+          "Musti"
+      ],
+      "fotoPerfil": "assets/images/perfiles/fotoPerfilAlba.jpg"
+  },
+  {
+      "nombre": "Albert",
+      "nombreCompleto": "Albert Serrador Sánchez",
+      "nacimiento": "1985-06-06",
+      "aka":
+      [
+          "Papi Papowski",
+          "Berto",
+          "Bertolico"
+      ],
+      "fotoPerfil": "assets/images/perfiles/fotoPerfilAlbert.jpg"
+  }
+]

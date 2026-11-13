@@ -1,1 +1,153 @@
-[{"id":1,"src":"dibujos/dibujo1.jpg","persona":"Mateu","anyo":2022,"edad":2,"detalle":{"es":"Manualidades en la clase de Murta, 2º Escoleta","val":"Manualitats a la clase de Murta, 2º Escoleta"}},{"id":2,"src":"dibujos/dibujo2.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Figuras de barro hechas en casa de la yaya Ana, las tardes de primos","val":"Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"}},{"id":3,"src":"dibujos/dibujo3.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Figuras de barro hechas en casa de la yaya Ana, las tardes de primos","val":"Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"}},{"id":4,"src":"dibujos/dibujo4.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Dibujos en la clase de Paula, 1º Infantil","val":"Dibuixos a la clase de Paula, 1r Infantil"}},{"id":5,"src":"dibujos/dibujo5.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Manualidades en la clase de Paula, 1º Infantil","val":"Manualitats a la clase de Paula, 1r Infantil"}},{"id":6,"src":"dibujos/dibujo6.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Dibujos en la clase de Paula, 1º Infantil","val":"Dibuixos a la clase de Paula, 1r Infantil"}},{"id":7,"src":"dibujos/dibujo7.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Dibujo en acuarela en la clase de Paula, 1º Infantil","val":"Dibuix en aquarel·la a la clase de Paula, 1r Infantil"}},{"id":8,"src":"dibujos/dibujo8.jpg","persona":"Mateu","anyo":2024,"edad":3,"detalle":{"es":"Dibujo del viaje de los iaios a ver las auroras boreales, 1º Infantil","val":"Dibuix del viatge dels iaios a veure les aurores boreals, 1r Infantil"}},{"id":9,"src":"dibujos/dibujo9.JPG","persona":"Mateu","anyo":2024,"edad":4,"detalle":{"es":"Dibujo de la mama del tablón de anuncios de su clase de 4 años","val":"Dibuix de la mama del panel d'anuncis de la seua clase de 4 anys"}},{"id":10,"src":"dibujos/dibujo10.jpg","persona":"Mateu","anyo":2024,"edad":4,"detalle":{"es":"Dibujando en casa","val":"Dibuixant a casa"}},{"id":11,"src":"dibujos/dibujo11.jpg","persona":"Mateu","anyo":2024,"edad":4,"detalle":{"es":"Dibujando en casa","val":"Dibuixant a  casa"}},{"id":12,"src":"dibujos/dibujo12.jpg","persona":"Mateu","anyo":2024,"edad":4,"detalle":{"es":"Dibujando en casa","val":"Dibuixant a casa"}},{"id":13,"src":"dibujos/dibujo13.jpg","persona":"Mateu","anyo":2025,"edad":4}]
+[
+  {
+      "id": 1,
+      "src": "dibujos/dibujo1.jpg",
+      "persona": "Mateu",
+      "anyo": 2022,
+      "edad": 2,
+      "detalle":
+      {
+          "es": "Manualidades en la clase de Murta, 2º Escoleta",
+          "val": "Manualitats a la clase de Murta, 2º Escoleta"
+      }
+  },
+  {
+      "id": 2,
+      "src": "dibujos/dibujo2.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos",
+          "val": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
+      }
+  },
+  {
+      "id": 3,
+      "src": "dibujos/dibujo3.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos",
+          "val": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
+      }
+  },
+  {
+      "id": 4,
+      "src": "dibujos/dibujo4.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Dibujos en la clase de Paula, 1º Infantil",
+          "val": "Dibuixos a la clase de Paula, 1r Infantil"
+      }
+  },
+  {
+      "id": 5,
+      "src": "dibujos/dibujo5.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Manualidades en la clase de Paula, 1º Infantil",
+          "val": "Manualitats a la clase de Paula, 1r Infantil"
+      }
+  },
+  {
+      "id": 6,
+      "src": "dibujos/dibujo6.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Dibujos en la clase de Paula, 1º Infantil",
+          "val": "Dibuixos a la clase de Paula, 1r Infantil"
+      }
+  },
+  {
+      "id": 7,
+      "src": "dibujos/dibujo7.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Dibujo en acuarela en la clase de Paula, 1º Infantil",
+          "val": "Dibuix en aquarel·la a la clase de Paula, 1r Infantil"
+      }
+  },
+  {
+      "id": 8,
+      "src": "dibujos/dibujo8.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 3,
+      "detalle":
+      {
+          "es": "Dibujo del viaje de los iaios a ver las auroras boreales, 1º Infantil",
+          "val": "Dibuix del viatge dels iaios a veure les aurores boreals, 1r Infantil"
+      }
+  },
+  {
+      "id": 9,
+      "src": "dibujos/dibujo9.JPG",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 4,
+      "detalle":
+      {
+          "es": "Dibujo de la mama del tablón de anuncios de su clase de 4 años",
+          "val": "Dibuix de la mama del panel d'anuncis de la seua clase de 4 anys"
+      }
+  },
+  {
+      "id": 10,
+      "src": "dibujos/dibujo10.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 4,
+      "detalle":
+      {
+          "es": "Dibujando en casa",
+          "val": "Dibuixant a casa"
+      }
+  },
+  {
+      "id": 11,
+      "src": "dibujos/dibujo11.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 4,
+      "detalle":
+      {
+          "es": "Dibujando en casa",
+          "val": "Dibuixant a  casa"
+      }
+  },
+  {
+      "id": 12,
+      "src": "dibujos/dibujo12.jpg",
+      "persona": "Mateu",
+      "anyo": 2024,
+      "edad": 4,
+      "detalle":
+      {
+          "es": "Dibujando en casa",
+          "val": "Dibuixant a casa"
+      }
+  },
+  {
+      "id": 13,
+      "src": "dibujos/dibujo13.jpg",
+      "persona": "Mateu",
+      "anyo": 2025,
+      "edad": 4
+  }
+]

@@ -1,46 +1,434 @@
 [
-  {"persona":"Mateu","fecha":"2024","frase":{"es":"Muchas gracias papi, ha sido muy divertido","val":"Moltes gràcies papi, ha sigut molt divertit"},"explicacion":{"es":"Después de venir a la cama a las 2 de la mañana y estar 30 minutos dando vueltas sobre Albert, él decide devolverlo a su cama en brazos medio dormido.","val":"Després de vindre al llit a les 2 del matí i estar 30 minuts pegant voltes damunt d'Albert, ha decidit portarlo al braç mig dormit al seu llit."}},
-  {"persona":"Mateu","fecha":"2022-2024","frase":"Saquetí","explicacion":{"es":"Calcetín","val":"Calcetí"}},
-  {"persona":"Mateu","fecha":"2022-2023","frase":"Mapi","explicacion":{"es":"Conjunción de Mamá y Papá","val":"Unió de Mama i Papa"}},
-  {"persona":"Mateu","fecha":"2023-2024","frase":"Tacaleja","explicacion":{"es":"Catalejo","val":"Ullera"}},
-  {"persona":"Mateu","fecha":"2023","frase":"Vaaaaale, CoTuQuieeeeras","explicacion":{"es":"Vale, como tu quieras","val":"Val, com vulguis"}},
-  {"persona":"Mateu","fecha":"2023","frase":"¡No me vaig a tranquilar!","explicacion":{"es":"Fue su respuesta a su madre cuando le dijo, ves a tu cuarto y te tranquilizas","val":"Va ser la seua respuesta a sa mare quan li va dir: ves a la teua habitació i te tranquilitzes"}},
-  {"persona":"Mateu","fecha":"06-06-2021","frase":{"es":"Papá","val":"Papà"},"explicacion":{"es":"Su primera palabra, el día del cumple de su padre","val":"La seua primera paraula, el día del cumple del seu pare"}},
-  {"persona":"Marina","fecha":"18-02-2024","frase":{"es":"Papá","val":"Papà"},"explicacion":{"es":"Su primera palabra","val":"La seua primera paraula"}},
-  {"persona":"Mateu","fecha":"2021","frase":"Sicato Botón","explicacion":{"es":"Aspirador marca Conga ... nunca supimos por qué le llamaba así (lo de botón era para encenderlo)","val":"Aspirador marca Conga ... mai vam saber per què li deia així (això de botó era per a encendre-ho)"}},
-  {"persona":"Mateu","fecha":"2021","frase":"Sicaua","explicacion":"Secadora"},
-  {"persona":"Mateu","fecha":"2024","frase":"A mil colora papi!","explicacion":"A mil por hora papi! Para que acelerase."},
-  {"persona":"Marina","fecha":"18-03-2024","frase":{"es":"Mamá","val":"Mamà"},"explicacion":{"es":"Primera vez que Marina decía Mamá","val":"Primera vegada que Marina deia Mamà"}},
-  {"persona":"Mateu","fecha":"2024","frase":"Te pistolo o te voy a pistolar","explicacion":{"es":"Te disparo o te voy a disparar","val":"Et dispare o et vaig a disparar"}},
-  {"persona":"Mateu","fecha":"2024","frase":"¡Papi, no m'has cinturat!","explicacion":{"es":"¡Papá, no me has puesto el cinturón!","val":"¡Papà, no m'has ficat el cinturó!"}},
-  {"persona":"Mateu","fecha":"2024","frase":"Supereue","explicacion":{"es":"superhéroe","val":"Superheroi"}},
-  {"persona":"Mateu","fecha":"2024","frase":{"es":"Huevos de Pacsua","val":"Ous de Pacsua"},"explicacion":{"es":"Huevos de Pascua","val":"Ous de Pascua"}},
-  {"persona":"Mateu","fecha":"2024","frase":"Chuvasquero","explicacion":{"es":"Así llamada Mateu a su equipaje de basket","val":"Així anomenava Mateu al seu equipatge de basket"}},
-  {"persona":"Mateu","fecha":"2024","frase":{"es":"Papi, no tengo fuerzas para dormir","val":"Papi, no tinc forces per a dormir"},"explicacion":{"es":"Mateu a las 3 de la mañana cuando venía a la cama, para ver si se podría quedar con nosotros","val":"Mateu a les 3 del matí quan venía al llit, per a vore si es podía quedar amb nosaltres"}},
-  {"persona":"Mateu","fecha":"2024","frase":"La iaia ve del seu pais a este (la Pobla). ¿Li has vist tu ací a la iaia alguna vegada? Nooooo, perque ve del seu pais a este","explicacion":"Mateu tractant d'entendre que l'apartament era de la iaia Matilde, i no enten que no vixca ahí"},
-  {"persona":"Mateu","fecha":"2024","frase":"CalaMásticas","explicacion":"Cama elásticas"},
-  {"persona":"Mateu","fecha":"2024","frase":"Toarreta","explicacion":"Torradeta (de pà)"},
-  {"persona":"Mateu","fecha":"2024","frase":"¡¡Familia para todos!!","explicacion":{"es":"Mateu en un momento de exaltación","val":"Mateu en un moment d'exaltació"}},
-  {"persona":"Mateu","fecha":"2024","frase":{"es":"¿Sabes como se dice mamá en ingles? Mam. ¿Y papá? Pap.","val":"¿Saps com es diu mare en anglés? Mam. ¿I pare? Pap."},"explicacion":{"es":"Demostrando el nivel aprendido","val":"Demostrant el nivell aprés"}},
-  {"persona":"Mateu","fecha":"2024","frase":{"es":"Calendario de hambriento","val":"Calendari de hambriento"},"explicacion":{"es":"Calendario de adviento, para Mateu","val":"Calendari de adviento, per a Mateu"}},
-  {"persona":"Marina","fecha":"2025","frase":"Ete Marina, vale? Vale","explicacion":{"es":"Marina con sus cosas","val":"Marina amb les seues coses"}},
-  {"persona":"Marina","fecha":"2025","frase":"Agua pito","explicacion":{"es":"Quiero la botella de agua de Bingo (y Bluey).","val":"Vuic la botella d'aigua de Bingo (i Bluey)."}},
-  {"persona":"Marina","fecha":"2025","frase":"Apachito papi/mami","explicacion":{"es":"Abrazame papi/mami","val":"Abraçam papi/mami"}},
-  {"persona":"Marina","fecha":"2025","frase":{"es":"Potó (y después Mateuf)","val":"Potó (i després Mateuf)"},"explicacion":"Mateu"},
-  {"persona":"Marina","fecha":"2026","frase":"Vuic pipinillos","explicacion":{"es":"Marina, a las 7 de la mañana","val":"Marina, a las 7 del matí"}},
-  {"persona":"Marina","fecha":"2026","frase":"¿Ole vas papi?","explicacion":{"es":"Donde vas papá?","val":"On vas pare?"}},
-  {"persona":"Marina","fecha":"2026","frase":"¿O ta papi?","explicacion":{"es":"Dónde está papá?","val":"On està papá?"}},
-  {"persona":"Marina","fecha":"2026","frase":"Totolil","explicacion":{"es":"Cocodrilo","val":"Cocodril"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Marina es una parlona","explicacion":{"es":"Mateu, alucinando de lo mucho que empieza a hablar Marina","val":"Mateu, alucinant de lo molt que parla Marina"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Fa molt bon temps per a que ploga","explicacion":{"es":"Mateu, mirando al cielo una mañana","val":"Mateu, mirant al cel un matí"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Me gustan los chicles porque masticas y el sabor se va hacia dentro","explicacion":{"es":"Mateu, disfrutando de los chicles por primera vez","val":"Mateu, disfrutant dels xicles per primera vegada"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Está todo solo","explicacion":{"es":"Mateu, mirando el piso vacío, el día de la despedida del piso","val":"Mateu, mirant el pis vuït, el dia de la despedida del pis"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Papá, que se nos acaba la energía bro","explicacion":{"es":"Mateu, en el columpio","val":"Mateu, en el columpi"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Jo de major vuic ser fanquista (com la iaia Ana, que fa fang)","explicacion":{"es":"Mateu, que quiere ser ceramista","val":"Mateu, que vol ser ceramista"}},
-  {"persona":"Marina","fecha":"2026","frase":"Tafó / Tafons","explicacion":"Fartó / Fartons"},
-  {"persona":"Mateu","fecha":"2026","frase":"Acepto el record","explicacion":{"es":"Acepto el reto","val":"Accepte el repte"}},
-  {"persona":"Mateu","fecha":"2026","frase":"Papi: Marina s'ha dormit. Mateu: Según mis cálculos está sorda.","explicacion":"Mateu para decir que está fingiendo"},
-  {"persona":"Marina","fecha":"2026","frase":"Papi: No pasa res. Marina: Si pasa res.","explicacion":"Si qué pasa sí"},
-  {"persona":"Mateu","fecha":"2026","frase":"Mateu: Avui no m'han despedit.","explicacion":"Mateu para decir que no le han tirado de clase."},
-  {"persona":"Mateu","fecha":"2026","frase":"Mami: He vist que ja no està Hansel. Mateu: Sí que està, pero ara te un altre nom.","explicacion":"Mateu para referirse a Liam, otro compañero negro de su clase."}
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase":
+      {
+          "es": "Muchas gracias papi, ha sido muy divertido",
+          "val": "Moltes gràcies papi, ha sigut molt divertit"
+      },
+      "explicacion":
+      {
+          "es": "Después de venir a la cama a las 2 de la mañana y estar 30 minutos dando vueltas sobre Albert, él decide devolverlo a su cama en brazos medio dormido.",
+          "val": "Després de vindre al llit a les 2 del matí i estar 30 minuts pegant voltes damunt d'Albert, ha decidit portarlo al braç mig dormit al seu llit."
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2022-2024",
+      "frase": "Saquetí",
+      "explicacion":
+      {
+          "es": "Calcetín",
+          "val": "Calcetí"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2022-2023",
+      "frase": "Mapi",
+      "explicacion":
+      {
+          "es": "Conjunción de Mamá y Papá",
+          "val": "Unió de Mama i Papa"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2023-2024",
+      "frase": "Tacaleja",
+      "explicacion":
+      {
+          "es": "Catalejo",
+          "val": "Ullera"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2023",
+      "frase": "Vaaaaale, CoTuQuieeeeras",
+      "explicacion":
+      {
+          "es": "Vale, como tu quieras",
+          "val": "Val, com vulguis"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2023",
+      "frase": "¡No me vaig a tranquilar!",
+      "explicacion":
+      {
+          "es": "Fue su respuesta a su madre cuando le dijo, ves a tu cuarto y te tranquilizas",
+          "val": "Va ser la seua respuesta a sa mare quan li va dir: ves a la teua habitació i te tranquilitzes"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "06-06-2021",
+      "frase":
+      {
+          "es": "Papá",
+          "val": "Papà"
+      },
+      "explicacion":
+      {
+          "es": "Su primera palabra, el día del cumple de su padre",
+          "val": "La seua primera paraula, el día del cumple del seu pare"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "18-02-2024",
+      "frase":
+      {
+          "es": "Papá",
+          "val": "Papà"
+      },
+      "explicacion":
+      {
+          "es": "Su primera palabra",
+          "val": "La seua primera paraula"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2021",
+      "frase": "Sicato Botón",
+      "explicacion":
+      {
+          "es": "Aspirador marca Conga ... nunca supimos por qué le llamaba así (lo de botón era para encenderlo)",
+          "val": "Aspirador marca Conga ... mai vam saber per què li deia així (això de botó era per a encendre-ho)"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2021",
+      "frase": "Sicaua",
+      "explicacion": "Secadora"
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "A mil colora papi!",
+      "explicacion": "A mil por hora papi! Para que acelerase."
+  },
+  {
+      "persona": "Marina",
+      "fecha": "18-03-2024",
+      "frase":
+      {
+          "es": "Mamá",
+          "val": "Mamà"
+      },
+      "explicacion":
+      {
+          "es": "Primera vez que Marina decía Mamá",
+          "val": "Primera vegada que Marina deia Mamà"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "Te pistolo o te voy a pistolar",
+      "explicacion":
+      {
+          "es": "Te disparo o te voy a disparar",
+          "val": "Et dispare o et vaig a disparar"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "¡Papi, no m'has cinturat!",
+      "explicacion":
+      {
+          "es": "¡Papá, no me has puesto el cinturón!",
+          "val": "¡Papà, no m'has ficat el cinturó!"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "Supereue",
+      "explicacion":
+      {
+          "es": "superhéroe",
+          "val": "Superheroi"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase":
+      {
+          "es": "Huevos de Pacsua",
+          "val": "Ous de Pacsua"
+      },
+      "explicacion":
+      {
+          "es": "Huevos de Pascua",
+          "val": "Ous de Pascua"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "Chuvasquero",
+      "explicacion":
+      {
+          "es": "Así llamada Mateu a su equipaje de basket",
+          "val": "Així anomenava Mateu al seu equipatge de basket"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase":
+      {
+          "es": "Papi, no tengo fuerzas para dormir",
+          "val": "Papi, no tinc forces per a dormir"
+      },
+      "explicacion":
+      {
+          "es": "Mateu a las 3 de la mañana cuando venía a la cama, para ver si se podría quedar con nosotros",
+          "val": "Mateu a les 3 del matí quan venía al llit, per a vore si es podía quedar amb nosaltres"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "La iaia ve del seu pais a este (la Pobla). ¿Li has vist tu ací a la iaia alguna vegada? Nooooo, perque ve del seu pais a este",
+      "explicacion": "Mateu tractant d'entendre que l'apartament era de la iaia Matilde, i no enten que no vixca ahí"
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "CalaMásticas",
+      "explicacion": "Cama elásticas"
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "Toarreta",
+      "explicacion": "Torradeta (de pà)"
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase": "¡¡Familia para todos!!",
+      "explicacion":
+      {
+          "es": "Mateu en un momento de exaltación",
+          "val": "Mateu en un moment d'exaltació"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase":
+      {
+          "es": "¿Sabes como se dice mamá en ingles? Mam. ¿Y papá? Pap.",
+          "val": "¿Saps com es diu mare en anglés? Mam. ¿I pare? Pap."
+      },
+      "explicacion":
+      {
+          "es": "Demostrando el nivel aprendido",
+          "val": "Demostrant el nivell aprés"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2024",
+      "frase":
+      {
+          "es": "Calendario de hambriento",
+          "val": "Calendari de hambriento"
+      },
+      "explicacion":
+      {
+          "es": "Calendario de adviento, para Mateu",
+          "val": "Calendari de adviento, per a Mateu"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2025",
+      "frase": "Ete Marina, vale? Vale",
+      "explicacion":
+      {
+          "es": "Marina con sus cosas",
+          "val": "Marina amb les seues coses"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2025",
+      "frase": "Agua pito",
+      "explicacion":
+      {
+          "es": "Quiero la botella de agua de Bingo (y Bluey).",
+          "val": "Vuic la botella d'aigua de Bingo (i Bluey)."
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2025",
+      "frase": "Apachito papi/mami",
+      "explicacion":
+      {
+          "es": "Abrazame papi/mami",
+          "val": "Abraçam papi/mami"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2025",
+      "frase":
+      {
+          "es": "Potó (y después Mateuf)",
+          "val": "Potó (i després Mateuf)"
+      },
+      "explicacion": "Mateu"
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2026",
+      "frase": "Vuic pipinillos",
+      "explicacion":
+      {
+          "es": "Marina, a las 7 de la mañana",
+          "val": "Marina, a las 7 del matí"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2026",
+      "frase": "¿Ole vas papi?",
+      "explicacion":
+      {
+          "es": "Donde vas papá?",
+          "val": "On vas pare?"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2026",
+      "frase": "¿O ta papi?",
+      "explicacion":
+      {
+          "es": "Dónde está papá?",
+          "val": "On està papá?"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2026",
+      "frase": "Totolil",
+      "explicacion":
+      {
+          "es": "Cocodrilo",
+          "val": "Cocodril"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Marina es una parlona",
+      "explicacion":
+      {
+          "es": "Mateu, alucinando de lo mucho que empieza a hablar Marina",
+          "val": "Mateu, alucinant de lo molt que parla Marina"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Fa molt bon temps per a que ploga",
+      "explicacion":
+      {
+          "es": "Mateu, mirando al cielo una mañana",
+          "val": "Mateu, mirant al cel un matí"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Me gustan los chicles porque masticas y el sabor se va hacia dentro",
+      "explicacion":
+      {
+          "es": "Mateu, disfrutando de los chicles por primera vez",
+          "val": "Mateu, disfrutant dels xicles per primera vegada"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Está todo solo",
+      "explicacion":
+      {
+          "es": "Mateu, mirando el piso vacío, el día de la despedida del piso",
+          "val": "Mateu, mirant el pis vuït, el dia de la despedida del pis"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Papá, que se nos acaba la energía bro",
+      "explicacion":
+      {
+          "es": "Mateu, en el columpio",
+          "val": "Mateu, en el columpi"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Jo de major vuic ser fanquista (com la iaia Ana, que fa fang)",
+      "explicacion":
+      {
+          "es": "Mateu, que quiere ser ceramista",
+          "val": "Mateu, que vol ser ceramista"
+      }
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2026",
+      "frase": "Tafó / Tafons",
+      "explicacion": "Fartó / Fartons"
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Acepto el record",
+      "explicacion":
+      {
+          "es": "Acepto el reto",
+          "val": "Accepte el repte"
+      }
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Papi: Marina s'ha dormit. Mateu: Según mis cálculos está sorda.",
+      "explicacion": "Mateu para decir que está fingiendo"
+  },
+  {
+      "persona": "Marina",
+      "fecha": "2026",
+      "frase": "Papi: No pasa res. Marina: Si pasa res.",
+      "explicacion": "Si qué pasa sí"
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Mateu: Avui no m'han despedit.",
+      "explicacion": "Mateu para decir que no le han tirado de clase."
+  },
+  {
+      "persona": "Mateu",
+      "fecha": "2026",
+      "frase": "Mami: He vist que ja no està Hansel. Mateu: Sí que està, pero ara te un altre nom.",
+      "explicacion": "Mateu para referirse a Liam, otro compañero negro de su clase."
+  }
 ]
