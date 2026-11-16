@@ -1,54 +1,89 @@
-<br>
-<h2 class="titulo">
-    <img src="assets/icons/firma.png" alt="" class="iconosImgFav5 animated rollIn">
-   {{ 'app.apodosTitulo' | translate }}
-</h2>
-<h3 class="subTitulo">
-    <img src="assets/icons/apodo2.png" alt="" class="iconosImg2 animated rollIn">
-   {{ 'app.apodosSubtitulo1' | translate }}
-</h3>
-<h4 class="subTitulo">
-  <img src="assets/icons/apodo.png" alt="" class="iconosImgFav5 animated rollIn">
-  {{ 'app.apodosSubtitulo2' | translate }}
-</h4>
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
-</div>
+<div class="apodos-wrapper">
 
-
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br><br><br>
-  <app-login></app-login>
-  <br>
-</div>
-
-
-<div *ngIf="authenticationService.isLoggedIn()">
-
-  <br>
-  <div class="divAka">
-    <h3>{{ 'app.familiaApodos' | translate}}</h3>
-    <img src="assets/icons/familia.png" alt="familia" class="icon animated fadeIn">
-    <ul>
-      <div *ngFor="let viajero of viajerosService.viajeros$ | async">
-        <li>
-          <span class="nombre">{{viajero.nombreCorto}} ({{viajero.edad}} {{ 'app.edad' | translate}})</span>
-          <br>
-          <span class="info">{{viajero.info | l10n}}</span>
-          <br>
-          <div *ngFor="let apodo of viajero.aka">
-            <span class="apodos">{{apodo}}</span>
-          </div>
-        </li>
+  <!-- Cabecera Hero Editorial (Con fondo naranja degradado exclusivo del banner) -->
+  <header class="apodos-hero-header">
+    <div class="hero-content">
+      <h2 class="titulo animated fadeInDown">
+        <img src="assets/icons/firma.png" alt="" class="iconosImgFav5 animated rollIn">
+        <span>{{ 'app.apodosTitulo' | translate }}</span>
+      </h2>
+      <div class="subtitulos-group animated fadeIn">
+        <h3 class="subTitulo">
+          <img src="assets/icons/apodo2.png" alt="" class="iconosImg2 animated rollIn">
+          <span>{{ 'app.apodosSubtitulo1' | translate }}</span>
+        </h3>
+        <h4 class="subTitulo subTitulo2">
+          <img src="assets/icons/apodo.png" alt="" class="iconosImgFav5 animated rollIn">
+          <span>{{ 'app.apodosSubtitulo2' | translate }}</span>
+        </h4>
       </div>
-    </ul>
-  </div>
-</div> <!-- de la autenticacion -->
+    </div>
+  </header>
 
-<br>
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  <!-- Botón Volver Superior (Estilo pastilla con borde) -->
+  <div class="action-bar">
+    <a class="btn-volver-pill animated zoomInDown" routerLink="/principal">
+      <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
+      <span>{{ 'viaje.volver' | translate}}</span>
+    </a>
+  </div>
+
+  <!-- Para autenticarse en la aplicación -->
+  <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">
+    <app-login></app-login>
+  </div>
+
+  <!-- Contenido Protegido -->
+  <div *ngIf="authenticationService.isLoggedIn()">
+    <div class="divAka">
+      <div class="familia-header-section">
+        <h3>{{ 'app.familiaApodos' | translate}}</h3>
+        <img src="assets/icons/familia.png" alt="familia" class="icon animated fadeIn">
+      </div>
+
+      <!-- Grid de Fichas de Viajeros (Mateu, Marina y todos los perfiles) -->
+      <div class="viajeros-cards-grid" *ngIf="viajerosService.viajeros$ | async as viajeros">
+        <article *ngFor="let viajero of viajeros; let i = index"
+                 class="id-card animated fadeInUp"
+                 [ngClass]="'card-theme-' + (i % 4)">
+
+          <!-- Cabecera de la ficha con foto de perfil -->
+          <div class="id-card-top">
+            <div class="avatar-container">
+              <a target="_blank" rel="noopener" [href]="viajero.fotoPerfil" title="Ver foto">
+                <img [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" class="viajero-avatar">
+              </a>
+              <span class="edad-pill">{{viajero.edad}} {{ 'app.edad' | translate}}</span>
+            </div>
+
+            <div class="viajero-titular">
+              <h4 class="nombre">{{viajero.nombreCorto}}</h4>
+              <p class="info" *ngIf="viajero.info">{{viajero.info | l10n}}</p>
+            </div>
+          </div>
+
+          <!-- Zona de Apodos en formato Stickers/Etiquetas -->
+          <div class="id-card-akabox" *ngIf="viajero.aka && viajero.aka.length > 0">
+            <div class="stickers-cloud">
+              <span *ngFor="let apodo of viajero.aka; let j = index"
+                    class="apodo-sticker"
+                    [style.--rot]="((j % 3) - 1) * 2 + 'deg'">
+                🏷️ {{apodo}}
+              </span>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div> <!-- de la autenticacion -->
+
+  <!-- Botón Volver Inferior (Estilo pastilla con borde) -->
+  <div class="footer-back-wrapper">
+    <a routerLink="/principal" class="btn-volver-pill">
+      <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha">
+      <span>{{ 'viaje.volver' | translate}}</span>
+    </a>
+  </div>
+
 </div>
