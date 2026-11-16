@@ -1,47 +1,64 @@
-import { Component, OnInit/*, ElementRef, ViewChild, AfterViewInit*/ } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { ViajesService } from '../../services/viajes.service';
-import { FotosService } from 'src/app/services/fotos.service';
 import { AutenticationService } from 'src/app/services/autentication.service';
+import { Viaje } from '../../interfaces/viaje.interface';
+import { VistaBloques, prepararBloques } from '../../services/bloques.util';
+import { iconoAlojamiento, iconoCategoria, iconoTransporte } from '../../services/viajes.catalogo';
+
+export interface VistaViaje extends VistaBloques {
+  viaje: Viaje;
+  transporteIconos: string[];
+  categoriaIcono: string;
+  alojamientoIcono: string;
+}
 
 @Component({
   selector: 'app-viaje',
   templateUrl: './viaje.component.html',
-  styleUrls: ['./viaje.component.css']
+  styleUrls: ['./viaje.component.css'],
 })
-export class ViajeComponent implements OnInit/*, AfterViewInit*/ {
-  // @ViewChild('container') containerRef!: ElementRef;
+export class ViajeComponent {
+  showMsg = false;
+  /** Posición de la foto abierta en el visor; null = cerrado. */
+  fotoAbierta: number | null = null;
 
-  showMsg : boolean = false;
+  /** null mientras carga; { viaje: undefined } no se usa: si no existe, `vista.viaje` es undefined. */
+  readonly vista$: Observable<VistaViaje | { viaje: undefined }> = this.route.paramMap.pipe(
+    map((p) => p.get('ciudad') ?? ''),
+    switchMap((id) => this.servicioViajes.viaje(id)),
+    map((viaje) => (viaje ? this.prepararVista(viaje) : { viaje: undefined }))
+  );
 
-  constructor (private route: ActivatedRoute, public servicioViajes : ViajesService, public servicioFotos : FotosService, public authenticationService: AutenticationService){
+  constructor(
+    private route: ActivatedRoute,
+    public servicioViajes: ViajesService,
+    public authenticationService: AutenticationService
+  ) {}
 
-  }
-
-
-  ngOnInit(){
-
-    this.route.params.subscribe(params =>{
-
-      // console.log(params['ciudad']);
-
-      this.servicioViajes.cargarViaje(params);
-      this.servicioFotos.cargarFotos(params);
-
-    });
-
-  }
-
-  showTooltip(){
-
+  showTooltip(): void {
     this.showMsg = !this.showMsg;
-    // console.log(this.showMsg);
   }
 
-  // ngAfterViewInit() {
-  //   this.containerRef.nativeElement.scrollTo(0, 0);
-  // }
+  esVista(v: VistaViaje | { viaje: undefined }): v is VistaViaje {
+    return v.viaje !== undefined;
+  }
 
+  ocultar(evento: Event): void {
+    (evento.target as HTMLElement).style.display = 'none';
+  }
 
-
+  private prepararVista(viaje: Viaje): VistaViaje {
+    // La foto de portada va la primera en el visor
+    const portada = viaje.portada ? [{ src: viaje.portada, desc: viaje.descPrincipal }] : [];
+    return {
+      viaje,
+      ...prepararBloques(viaje.bloques, viaje.fotosExtra, portada),
+      transporteIconos: viaje.transporte.map(iconoTransporte).filter((i) => i !== ''),
+      categoriaIcono: iconoCategoria(viaje.categoria),
+      alojamientoIcono: viaje.tipoEstancia === 'Airbnb' ? '' : iconoAlojamiento(viaje.tipoEstancia),
+    };
+  }
 }

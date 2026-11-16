@@ -1,61 +1,85 @@
-<!-- <h2>Responsive Image Gallery</h2> -->
+<div class="apodos-wrapper">
 
-<br>
-<h2 class="titulo">
-  <img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn"> &nbsp;{{ 'app.galeriaImagenes' | translate }}
-</h2>
-<h3 class="subTitulo">
-  <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">
- {{ 'app.subTituloGal' | translate }}
-</h3>
-<h4 class="subTitulo">
-  {{ 'app.subTituloGal2' | translate }}
-</h4>
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
-</div>
-<br>
-<div *ngIf="(viajesService.cargandoFotosGaleria$ | async) === true" class="spinner-container">
-  <div class="spinner">
-  </div>
-  <span> &nbsp; {{ 'app.cargando' | translate}}</span>
-</div>
-
-
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br><br><br>
-  <app-login></app-login>
-  <br>
-</div>
-
-
-<div *ngIf="authenticationService.isLoggedIn()">
-
-  <br>
-  <div class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
-
-  <div *ngFor="let viaje of viajesService.arrayFotos | paginate: { itemsPerPage: pageSize, currentPage: p }" class="responsive animated zoomInDown">
-    <div class="gallery">
-      <a target="_blank" href="assets/images/{{viaje}}">
-        <img src="assets/images/{{viaje}}" loading="lazy" alt="" width="600" height="400">
-      </a>
+  <!-- Cabecera Hero Editorial (Con fondo naranja acotado al banner) -->
+  <header class="apodos-hero-header">
+    <div class="hero-content">
+      <h2 class="titulo animated fadeInDown">
+        <img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">
+        <span>{{ 'app.galeriaImagenes' | translate }}</span>
+      </h2>
+      <div class="subtitulos-group animated fadeIn">
+        <h3 class="subTitulo">
+          <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">
+          <span>{{ 'app.subTituloGal' | translate }}</span>
+        </h3>
+        <h4 class="subTitulo subTitulo2">
+          {{ 'app.subTituloGal2' | translate }}
+        </h4>
+      </div>
     </div>
-  </div>
-  <div class="paginacion">
-    <pagination-controls class="my-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]=maxSizeDisplay (pageChange)="p = $event"></pagination-controls>
-  </div>
-</div> <!-- de la autenticacion -->
+  </header>
 
+  <!-- Botón Volver Superior (Estilo pastilla con borde) -->
+  <div class="action-bar">
+    <a class="btn-volver-pill animated zoomInDown" routerLink="/principal">
+      <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
+      <span>{{ 'viaje.volver' | translate}}</span>
+    </a>
+  </div>
 
-<br>
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  <!-- Para autenticarse en la aplicación -->
+  <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">
+    <app-login></app-login>
+  </div>
+
+  <!-- Contenido Protegido -->
+  <div *ngIf="authenticationService.isLoggedIn()">
+    <ng-container *ngIf="fotos$ | async as fotos; else cargando">
+
+      <!-- Paginación superior compacta -->
+      <div class="paginacion-container" *ngIf="fotos.length > maxSizeDisplay">
+        <pagination-controls class="my-pagination compact-pagination" id="gal" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+      <!-- Grid de Galería (Masonry que respeta proporciones originales y sin floats) -->
+      <div class="masonry-gallery-grid">
+        <div *ngFor="let foto of fotos | paginate: { id: 'gal', itemsPerPage: pageSize, currentPage: p }; let i = index" class="masonry-card-wrapper animated zoomInDown">
+          <div class="gallery art-card">
+            <a href="#" (click)="fotoAbierta = posicion(i); $event.preventDefault()">
+              <div class="img-frame">
+                <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
+                <div class="card-glass-overlay">
+                  <span class="explore-pill">✨ Ver foto</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paginación inferior compacta -->
+      <div class="paginacion-container" *ngIf="fotos.length > maxSizeDisplay">
+        <pagination-controls class="my-pagination compact-pagination" id="gal" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+      </div>
+
+      <!-- Visor Lightbox -->
+      <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="fotos" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
+    </ng-container>
+
+    <ng-template #cargando>
+      <div class="spinner-container-creative">
+        <div class="spinner-ring"></div>
+        <span>{{ 'app.cargando' | translate}}</span>
+      </div>
+    </ng-template>
+  </div> <!-- de la autenticacion -->
+
+  <!-- Botón Volver Inferior (Estilo pastilla con borde) -->
+  <div class="footer-back-wrapper">
+    <a routerLink="/principal" class="btn-volver-pill">
+      <img src="assets/icons/flechaAtras.png" loading="lazy" class="animated fadeIn iconoFlecha">
+      <span>{{ 'viaje.volver' | translate}}</span>
+    </a>
+  </div>
+
 </div>
-
-
-<div class="clearfix"></div>

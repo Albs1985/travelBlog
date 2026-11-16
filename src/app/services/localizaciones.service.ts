@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 })
 export class LocalizacionesService {
 
-  jsonLocalizaciones = "assets/data/localizaciones.json";
+  jsonLocalizaciones = "assets/data/generated/localizaciones.json";
 
   cargandoLocalizaciones$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 

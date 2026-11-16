@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { CommonService } from 'src/app/services/common.service';
-import { ViajesService } from 'src/app/services/viajes.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +17,6 @@ export class HeaderComponent {
   // mensajeCabeceraAny : string = '';
 
   constructor(/*private route: ActivatedRoute, */
-              public servicioViajes : ViajesService,
               private translate: TranslateService,
               protected commonService : CommonService,
               private router: Router){
@@ -60,7 +58,7 @@ export class HeaderComponent {
     // this.mensajeCabeceraAny = '';
 
     // this.mensajeCabecera = 'Filtramos por '+ this.palabra;
-    this.servicioViajes.buscarViajes(this.palabra);
+    // La búsqueda la hace la página /viajesFiltrados/:palabra al abrirse
     this.router.navigate(['/viajesFiltrados/', this.palabra]);
 
   }

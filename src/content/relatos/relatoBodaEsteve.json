@@ -1,0 +1,26 @@
+{
+  "titulo": "Boda Esteve y Laura",
+  "fecha": "4 de Mayo de 2024",
+  "icono": "discurso.png",
+  "protegido": true,
+  "portada": {
+    "src": "relatoBodaEsteve/relatoBodaEsteve1.jpg"
+  },
+  "bloques": [
+    {"tipo":"titulo","texto":"Discurso de Albert, para Esteve"},
+    {"tipo":"parrafo","texto":"Bon dia a tots, Em fa molta il·lusió estar ací avui amb vosaltres, Esteve i Laura, una parella de les de tota la vida. D'eixes que es fan l'una a l'altra, es van modelant com si es tractara d'un pitxer de fang."},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve2.jpg"},
+    {"tipo":"parrafo","texto":"I m'agrada eixa comparació per què crec que nosaltres, tu i jo Esteve, hem construït una cosa paregut (en un altre pla òbviament). Però ens coneguem des de que tenim memòria, des d’aquells primers volantins al jardí de ta casa, des d’aquells primers aniversaris amb els noms escrits a eixes tasses de plàstic de colors..."},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve3.jpg"},
+    {"tipo":"parrafo","texto":"I és que hem viscut i seguim vivint una vida junts. Ens hem fet l'un a l'altre també. Hem crescut com a germans, i no és que ho pense jo només per dins, sinó que encara avui em diuen molt que si som germans, com l'altre dia a l'escoleta de Marina al conéixer a la seua mestra Núria. I és que em sent en l'obligació de dir que no som germans de sang, però que com si ho fórem. Però m'entren ganes de dir que sí, i prou, sense més explicacions."},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve4.jpg"},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve5.jpg"},
+    {"tipo":"parrafo","texto":"Probablement, ets l'amic en el qual més temps he passat de viatge. Viatges per tot el món: Nova York, Croàcia, Milan i Berlín als respectius Erasmus, innumerables viatges a la neu, i mesos de convivència a Menorca... Segurament el millor estiu de la meua vida, i va ser amb tu, mà a mà des de l’inici, des de aquell dia 2 de juliol (no oblidaré mai la nostra arribada)… i un sense fi de viatges més, fets, i els que queden per vindre."},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve6.jpg"},
+    {"tipo":"parrafo","texto":"I també a les nits... estic segur que “el cojo i el manco” tornaran a pegar-se alguna festeta junts... Quin bon rato hem passat de nits i de matins deixant fluir les nostres tonteríes... com a aquell Iboga menjant paella amb tots eixos desconeguts..."},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve7.jpg"},
+    {"tipo":"parrafo","texto":"Em fa molta il·lusió també veure les famílies que hem construït. Veig la il·lusió amb la qual heu portat al món a Lola, Emma i Joan, que em fa sentir més en sintonia encara amb vosaltres. Una decisió difícil de prendre, 3 ja són multitud (😊) però ara es veu el encertat que és, vore-vos tan feliços amb eixes tres criatures em fa veure la sort que tenen eixos xiquets. Us desitge una llarga vida en família bonicos. Us estime molt 😊"},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve8.jpg"},
+    {"tipo":"foto","src":"relatoBodaEsteve/relatoBodaEsteve9.jpg"}
+  ]
+}

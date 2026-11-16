@@ -1,0 +1,43 @@
+{
+  "destino": "Poble Mascarat (Altea)",
+  "fechaInicio": "2021-04-02",
+  "fechaFin": "2021-04-05",
+  "categoria": "Playa",
+  "provincia": "Alicante",
+  "pais": "España",
+  "precio": 193.18,
+  "estancia": "Apartamento",
+  "tipoEstancia": "Airbnb",
+  "transporte": ["Coche"],
+  "personas": ["Mateu", "Alba", "Albert"],
+  "prefijoFotos": "Mascarat",
+  "mapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5263.472359901551!2d0.0027497272136043694!3d38.63301486225865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129dff8b250f6db1%3A0xd1cdfc7ff8fd9d5f!2sPlaya%20Pueblo%20Mascarat!5e1!3m2!1ses!2ses!4v1688373188915!5m2!1ses!2ses",
+  "infoInteres": [],
+  "descPrincipal": {
+    "es": "Vista de la playa del apartamento, Pueblo Mascarat",
+    "val": "Vista de la platja de l'apartament, Poble Mascarat"
+  },
+  "bloques": [
+    {"tipo":"titulo","es":"Primera escapada con Mateu","val":"Primera escapada amb Mateu"},
+    {"tipo":"parrafo","es":"Seguía la dura y difícil situación de la pandemia mundial, dejando a miles de viajeros en casa. Aunque, de pronto, una brecha se abrió ante la joven pareja, dejando viajar dentro de su comunidad. Además, se enfrentaban a su primer viaje en familia, pero en familia de 3. Por primera vez iban a salir de la comodidad del hogar familiar para ir a un piso en frente de la playa, en el Poble Mascarat, al lado de Altea.","val":"Seguia la dura i difícil situació de la pandèmia mundial, deixant milers de viatgers a casa. Tot i que, de sobte, una bretxa es va obrir davant la jove parella, deixant viatjar dins de la seua comunitat. A més, s'enfrontaven a el seu primer viatge en família, però en família de 3. Per primera vegada eixiríen de la comoditat de la llar famíliar per anar a un pis davant de la platja, al Poble Mascarat, al costat d'Altea."},
+    {"tipo":"foto","n":1,"es":"Felicidad de la familia viajera","val":"Felicitat de la família viatgera"},
+    {"tipo":"foto","n":2,"es":"Mateu y Albert descansando en sus camas","val":"Mateu i Albert descansant als seus llits"},
+    {"tipo":"foto","n":3,"es":"Mirando por la ventana de la habitación","val":"Mirant per la finestra de l'habitació"},
+    {"tipo":"cita","es":"Invertir en viajar es invertir en uno mismo","val":"Invertir en viatjar és invertir en un mateix","autor":{"es":"— Albert","val":"— Albert"}},
+    {"tipo":"foto","n":4,"es":"La sonrisa de Mateu","val":"El somriure de Mateu"},
+    {"tipo":"parrafo","es":"Para este viaje, y también para los siguientes, iban a cargar el coche hasta arriba, sin dejar siquiera un hueco para otro acompañante. Maletero y dos asientos del coche ocupados con trastos, algunos de ellos sin necesidad (al menos, así lo pensaba Albert)...","val":"Per a aquest viatge, i també per als següents, carregarien el cotxe fins a dalt, sense deixar ni tan sols un forat per a un altre acompanyant. Maleter i dos seients del cotxe ocupats amb trastos, alguns d'ells sense necessitat (almenys, així ho pensava Albert)..."},
+    {"tipo":"foto","n":5,"es":"Cala Barra Grande","val":"Cala Barra Gran"},
+    {"tipo":"parrafo","es":"Cargados con la cuna, colchón, ropa, comida, cosas de baño, carro... Llegaron al apartamento. Un pequeño pero bonito apartamento con un balcón con vistas al mar. Estuvieron la mar de agusto (valga la redundancia). Jugando a algún juego de mesa, como les gustaba hacer en los viajes, dando algún paseo por la zona, y con la visita de Jordi, amigo de Albert, que casualmente su hermano tiene un apartamento por la zona. ","val":"Carregats amb el bressol, matalàs, roba, menjar, coses de bany, carro... Van arribar a l'apartament. Un xicotet però bonic apartament amb un balcó amb vistes al mar. Van estar la mar d'agust (valgui la redundància ) Jugant a algun joc de taula, com els agradava fer en els viatges, fent alguna passejada per la zona, i amb la visita de Jordi, amic d'Albert, que casualment el seu germà té un apartament per la zona."},
+    {"tipo":"foto","n":6,"es":"Cala Barra Grande","val":"Cala Barra Gran"},
+    {"tipo":"parrafo","es":"La playa es una zona ideal de furgonetas camper y caravanas. La época no acompañaba al baño, así que solo disfrutaron de las vistas y la tranquilidad, al ser fuera de temporada.","val":"La platja és una zona ideal de furgonetes camper i caravanes. L'època no acompanyava el bany, així que només van gaudir de les vistes i la tranquil·litat, en ser fora de temporada."},
+    {"tipo":"mapa"},
+    {"tipo":"parrafo","es":"Aprovecharon también para hacer un par de visitas a los pueblos cercanos. Altea, un pueblo marítimo con mucho encanto, especialmente la parte alta. Y también Calpe, con menos encanto el pueblo pero sí la zona, con el peñón d'Ifach entrando hasta el mar y una laguna repleta de espectaculares flamencos rosas. Un paseo muy bonito especialmente, como decimos, fuera de temporada.","val":"Aprofitaren també per fer un parell de visites als pobles propers. Altea, un poble marítim amb molt d'encant, especialment la part alta. I també Calp, amb menys encant el poble però sí la zona, amb el penyal d'Ifach entrant fins al mar i una llacuna plena d'espectaculars flamencs roses. Un passeig molt bonic especialment, com diem, fora de temporada."},
+    {"tipo":"foto","n":7,"es":"Mateu durmiendo en la playa abrazado a su madre","val":"Mateu dormint a la platja abraçat a la seua mare"},
+    {"tipo":"foto","n":8,"es":"Playa Pueblo Mascarat","val":"Platja Poble Mascarat"},
+    {"tipo":"foto","n":9,"es":"Madre e hijo, felices como nadie","val":"Mare i fill, feliços com ningú"},
+    {"tipo":"foto","n":10,"es":"Vista desde Altea, de la playa","val":"Vista des d'Altea, de la platja"},
+    {"tipo":"foto","n":11,"es":"Vista del peñón d'Ifach, desde abajo, Calpe","val":"Vista del penyal d'Ifach, des de baix, Calp"},
+    {"tipo":"foto","n":12,"es":"Paseo por Les Salines de Calpe, viendo flamencos","val":"Passeig per les Salines de Calp, veient flamencs"},
+    {"tipo":"parrafo","es":"Superada la primera prueba del viaje, ya empezaban a pensar en el próximo, y el otro, y el otro... Mateu disfruta también viajando, no les da miedo ir con él a ningún lado.","val":"Superada la primera prova del viatge, ja començaven a pensar en el proper, i l'altre, i l'altre... Mateu gaudeix també viatjant, no els fa por anar amb ell enlloc."}
+  ]
+}

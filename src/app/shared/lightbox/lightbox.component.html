@@ -1,0 +1,15 @@
+<div class="lb" role="dialog" aria-modal="true" (click)="cerrar.emit()">
+  <button type="button" class="lb-btn lb-cerrar" (click)="cerrar.emit()" [attr.aria-label]="'app.cerrar' | translate">&times;</button>
+
+  <button *ngIf="fotos.length > 1" type="button" class="lb-btn lb-prev" (click)="ir(-1, $event)" [attr.aria-label]="'app.anterior' | translate">&#8249;</button>
+
+  <figure *ngIf="actual as foto" class="lb-fig" (click)="$event.stopPropagation()" (touchstart)="tocarInicio($event)" (touchend)="tocarFin($event)">
+    <img [src]="'assets/images/' + foto.src" [alt]="foto.desc | l10n">
+    <figcaption *ngIf="(foto.desc | l10n) || fotos.length > 1">
+      <span *ngIf="foto.desc | l10n">{{ foto.desc | l10n }}</span>
+      <small *ngIf="fotos.length > 1">{{ indice + 1 }} / {{ fotos.length }}</small>
+    </figcaption>
+  </figure>
+
+  <button *ngIf="fotos.length > 1" type="button" class="lb-btn lb-next" (click)="ir(1, $event)" [attr.aria-label]="'app.siguiente' | translate">&#8250;</button>
+</div>

@@ -1,0 +1,84 @@
+<ng-container *ngIf="vista$ | async as vista; else cargando">
+
+  <div *ngIf="!esVista(vista)" class="aviso">
+    <p>{{ 'app.sinResultados' | translate }}</p>
+    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/principal"><a routerLink="/principal">  {{ 'app.listaViajes' | translate }}</a></span>
+  </div>
+
+  <ng-container *ngIf="esVista(vista)">
+
+    <!-- Para autenticarse en la aplicación -->
+    <div *ngIf="!estaAutenticado(vista.relato)">
+      <br><br><br><br><br><br><br>
+      <div class="centrada">
+        <img src="assets/icons/seguridad.png" alt="" class="iconSeguridad animated fadeIn pulse">
+      </div>
+      <br><br>
+      <div class="centrada">
+        <app-login></app-login>
+      </div>
+      <div class="divVolver">
+        <br><br><br><br>
+        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate }}</a></span>
+      </div>
+      <br>
+    </div>
+
+    <div *ngIf="estaAutenticado(vista.relato)">
+
+      <!-- Modo libro -->
+      <div *ngIf="esModoLibro">
+        <div class="divRight2">
+          <span class="fh5co-meta"><img src="assets/icons/libro.png" alt="" class="animated fadeIn pulse iconoLibro" (click)="cambiarModo()"><a (click)="cambiarModo()">{{ 'app.versionWeb' | translate }}</a></span>
+        </div>
+        <app-libro [paginas]="vista.paginas" [titulo]="vista.relato.titulo" [subtitulo]="vista.relato.fecha"></app-libro>
+      </div>
+
+      <!-- Modo web -->
+      <div *ngIf="!esModoLibro" class="container-fluid">
+        <div class="row fh5co-post-entry single-entry">
+          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+            <div *ngIf="vista.relato.modoLibro" class="divRight2">
+              <span class="fh5co-meta"><img src="assets/icons/libro.png" alt="" class="animated fadeIn pulse iconoLibro" (click)="cambiarModo()"><a (click)="cambiarModo()">{{ 'app.versionLibro' | translate }}</a></span>
+            </div>
+            <div class="divVolver">
+              <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate }}</a></span>
+            </div>
+
+            <span class="fh5co-meta" *ngIf="vista.relato.supra">
+              <a>{{ vista.relato.supra | l10n }}<ng-container *ngIf="vista.edad !== undefined"> ({{ vista.edad }} {{ 'app.edad' | translate }})</ng-container></a>
+            </span>
+            <img *ngIf="vista.relato.icono" [src]="'assets/icons/' + vista.relato.icono" alt="" class="icon animated fadeIn">
+            <img src="assets/icons/relatos.png" alt="" class="icon animated fadeIn">
+            <h2 class="fh5co-article-title"><a>{{ vista.relato.titulo | l10n }}</a></h2>
+            <span class="fh5co-meta fh5co-date" *ngIf="vista.relato.fecha">{{ vista.relato.fecha | l10n }}</span>
+            <br>
+
+            <figure *ngIf="vista.relato.portada as portada" class="animated zoomInDown">
+              <button type="button" class="foto-btn" (click)="fotoAbierta = 0">
+                <img [src]="'assets/images/' + portada.src" alt="" class="img-responsive">
+              </button>
+              <figcaption class="textoFoto" *ngIf="portada.desc">{{ portada.desc | l10n }}</figcaption>
+            </figure>
+
+            <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.relato.mapa" (abrir)="fotoAbierta = $event"></app-bloques>
+
+            <div *ngIf="vista.relato.siguiente" class="divRight">
+              <a [routerLink]="['/viaje', vista.relato.siguiente]">  {{ 'viaje.empezar' | translate }}</a>&nbsp;
+              <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulse iconoFlecha" [routerLink]="['/viaje', vista.relato.siguiente]">
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="vista.galeria" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-template #cargando>
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <span> &nbsp; {{ 'app.cargando' | translate }}</span>
+  </div>
+</ng-template>
