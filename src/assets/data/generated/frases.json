@@ -570,5 +570,18 @@
       "es": "Mateu para referirse a Liam, otro compañero negro de su clase.",
       "val": "Mateu para referirse a Liam, otro compañero negro de su clase."
     }
+  },
+  {
+    "id": 45,
+    "persona": "Mateu",
+    "fecha": "2026",
+    "frase": {
+      "es": "1231",
+      "val": "23123123"
+    },
+    "explicacion": {
+      "es": "12431dasd",
+      "val": "asdasasd"
+    }
   }
 ]
