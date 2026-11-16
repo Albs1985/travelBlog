@@ -1,23 +1,624 @@
-.bloqueFrase {
-  margin-left: 25px;
-  margin-right: 25px;
+
+.frases-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px 22px 50px;
+  color: #45434a;
 }
 
-.letraExplicacion {
-  font-size: small;
-  margin-left: 25px;
+/* CABECERA */
+
+.frases-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 220px;
+  padding: 35px 45px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 25px;
+  background: linear-gradient(125deg, #fff1dc, #fce8e9 55%, #f4eafa);
 }
 
-.frasePersona {
-  margin-left: 25px;
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  color: #b58a69;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.titulo-frases {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0 10px;
+  color: #57444a;
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 4vw, 38px);
+}
+
+.titulo-frases img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.frases-hero h3 {
+  margin: 0 0 8px;
+  color: #96747b;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.frases-hero p {
+  margin: 0;
+  color: #9a8589;
+  font-size: 13px;
+}
+
+.hero-illustration {
+  position: relative;
+  width: 180px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.hero-quote {
+  position: absolute;
+  right: 35px;
+  top: 0;
+  color: #dba8a9;
+  font-family: Georgia, serif;
+  font-size: 180px;
+  line-height: 1;
+  opacity: .65;
+}
+
+.hero-heart {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  z-index: 2;
+  color: #e5a3a9;
+  font-size: 45px;
+  transform: rotate(15deg);
+}
+
+.hero-stars {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  color: #d5a94e;
+  font-size: 27px;
+}
+
+.hero-decoration {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+}
+
+.hero-decoration-1 {
+  width: 180px;
+  height: 180px;
+  right: 120px;
+  bottom: -120px;
+}
+
+.hero-decoration-2 {
+  width: 100px;
+  height: 100px;
+  right: -30px;
+  top: -35px;
+}
+
+/* VOLVER */
+
+.back-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 18px 5px 25px;
+}
+
+.back-link a {
+  color: #927e83;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.back-link a:hover {
+  color: #ce9b74;
+}
+
+.iconoFlecha {
+  width: 23px;
+  cursor: pointer;
+}
+
+.back-link-bottom {
+  margin-top: 40px;
+}
+
+.login-container {
+  padding: 25px 0;
+}
+
+/* BUSCADOR */
+
+.frases-toolbar {
+  margin: 30px 0 25px;
+  padding: 22px 25px;
+  border: 1px solid #f0e9e5;
+  border-radius: 18px;
+  background: #fffdfb;
+  box-shadow: 0 5px 20px rgba(100,75,70,.04);
+}
+
+.toolbar-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.toolbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: #fbeddf;
+  font-size: 21px;
+}
+
+.toolbar-heading h3 {
+  margin: 0 0 4px;
+  color: #514951;
+  font-family: Georgia, serif;
+  font-size: 19px;
+}
+
+.toolbar-heading p {
+  margin: 0;
+  color: #a39ba0;
+  font-size: 12px;
+}
+
+.resultados-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 17px;
+  padding-top: 13px;
+  border-top: 1px solid #f3eeea;
+  color: #a29ba0;
+  font-size: 11px;
+}
+
+.resultados-info strong {
+  color: #c28d65;
+  font-size: 15px;
+}
+
+.resultados-decoration {
+  color: #e5b0b3;
+  font-size: 22px;
+}
+
+/* TARJETAS DE CITAS */
+
+.frases-lista {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.frase-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #f0e9e5;
+  border-radius: 19px;
+  background: #fff;
+  box-shadow: 0 6px 22px rgba(91,68,64,.055);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.frase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(91,68,64,.11);
+}
+
+.frase-year {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  z-index: 2;
+  padding: 6px 13px;
+  border-radius: 20px;
+  background: #fff2e1;
+  color: #bd8c58;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.frase-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 23px 24px 16px;
+}
+
+/* PERFIL */
+
+.perfil-frase {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-right: 65px;
+  margin-bottom: 22px;
+}
+
+.perfil-image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  width: 65px;
+  height: 65px;
+  padding: 3px;
+  border: 2px solid #f2d7bd;
+  border-radius: 50%;
+  background: #fff9f3;
+}
+
+.perfil-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.perfil-status {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  width: 13px;
+  height: 13px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: #a6c7a5;
+}
+
+.perfil-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #b1a0a0;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.perfil-info h4 {
+  margin: 0;
+  color: #65515a;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+/* CITA */
+
+.frase-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 0 5px;
+}
+
+.quote-decoration {
+  height: 34px;
+  color: #e9c59e;
+  font-family: Georgia, serif;
+  font-size: 65px;
+  line-height: 1;
+}
+
+.frase-content blockquote {
+  margin: 5px 0 0;
+  color: #514a52;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.quote-bottom-decoration {
+  align-self: flex-end;
+  height: 25px;
+  color: #e9c59e;
+  font-family: Georgia, serif;
+  font-size: 45px;
+  line-height: 1;
+}
+
+/* EXPLICACIÓN */
+
+.frase-explicacion {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 10px;
+  padding: 12px 13px;
+  border-radius: 11px;
+  background: #fcf8f4;
+}
+
+.explicacion-icon {
+  flex-shrink: 0;
+  color: #d5a86f;
+  font-size: 12px;
+}
+
+.frase-explicacion p {
+  margin: 0;
+  color: #95888a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* PIE DE TARJETA */
+
+.frase-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid #f4efeb;
+  color: #c2b3ad;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.footer-heart {
+  color: #e6afb0;
+  font-size: 15px;
+}
+
+/* SIN RESULTADOS */
+
+.sin-frases {
+  padding: 60px 20px;
+  text-align: center;
+  border: 1px dashed #eadfd7;
+  border-radius: 18px;
+  background: #fffdfb;
+}
+
+.sin-frases span {
+  font-size: 38px;
+}
+
+.sin-frases h3 {
+  color: #65515a;
+  font-family: Georgia, serif;
+}
+
+.sin-frases p {
+  color: #a39ba0;
+  font-size: 13px;
+}
+
+/* PAGINACIÓN */
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.my-pagination ::ng-deep .ngx-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+}
+
+.my-pagination ::ng-deep .ngx-pagination li {
+  margin: 0;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a,
+.my-pagination ::ng-deep .ngx-pagination button {
+  border-radius: 10px;
+  color: #8d7c7e;
+  transition: background .2s;
 }
 
 .my-pagination ::ng-deep .ngx-pagination .current {
-  background: rgb(247, 200, 115);
-  border-radius: 15px;
+  padding: 8px 13px;
+  border-radius: 10px;
+  background: #e9bf91;
+  color: #fff;
 }
 
-.my-pagination ::ng-deep .ngx-pagination :hover {
-  background: rgb(255, 233, 194);
-  border-radius: 15px;
+.my-pagination ::ng-deep .ngx-pagination a:hover,
+.my-pagination ::ng-deep .ngx-pagination button:hover {
+  border-radius: 10px;
+  background: #fff0dc;
+}
+
+.paginacion-bottom {
+  margin-top: 35px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 760px) {
+
+  .frases-page {
+    padding: 10px 15px 35px;
+  }
+
+  .frases-hero {
+    min-height: 180px;
+    padding: 25px;
+  }
+
+  .hero-illustration {
+    width: 100px;
+  }
+
+  .hero-quote {
+    right: 0;
+    font-size: 130px;
+  }
+
+  .hero-heart {
+    right: 0;
+  }
+
+  .frases-lista {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .frase-card-content {
+    padding: 21px;
+  }
+
+  .frase-content blockquote {
+    font-size: 17px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .frases-page {
+    padding: 8px 11px 30px;
+  }
+
+  .frases-hero {
+    min-height: 155px;
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .hero-label {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+
+  .titulo-frases {
+    gap: 7px;
+    font-size: 23px;
+  }
+
+  .titulo-frases img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .frases-hero h3 {
+    font-size: 15px;
+  }
+
+  .frases-hero p {
+    max-width: 230px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .hero-illustration {
+    width: 65px;
+    height: 100px;
+  }
+
+  .hero-quote {
+    top: 5px;
+    font-size: 100px;
+  }
+
+  .hero-heart {
+    bottom: 0;
+    font-size: 30px;
+  }
+
+  .hero-stars {
+    font-size: 17px;
+  }
+
+  .frases-toolbar {
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .toolbar-heading h3 {
+    font-size: 16px;
+  }
+
+  .frase-card {
+    border-radius: 16px;
+  }
+
+  .frase-card-content {
+    padding: 19px 17px 14px;
+  }
+
+  .perfil-image-wrapper {
+    width: 57px;
+    height: 57px;
+  }
+
+  .perfil-info h4 {
+    font-size: 17px;
+  }
+
+  .frase-content blockquote {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .frase-explicacion {
+    padding: 10px;
+  }
+
+  .frase-explicacion p {
+    font-size: 11px;
+  }
+
+  .frase-year {
+    top: 15px;
+    right: 13px;
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .perfil-frase {
+    padding-right: 55px;
+  }
+
 }

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Frase } from '../../interfaces/contenido.interface';
-import { ContenidoService } from '../../services/contenido.service';
+import { FrasesService } from '../../services/frases.service';
 import { AutenticationService } from '../../services/autentication.service';
-import { filtrar } from '../../services/buscar.util';
 
 @Component({
   selector: 'app-frases',
@@ -19,11 +18,14 @@ export class FrasesComponent {
   private readonly termino$ = new BehaviorSubject<string>('');
 
   /** Las frases que cumplen la búsqueda (todas si no se busca nada). */
-  readonly frases$: Observable<Frase[]> = combineLatest([this.contenido.coleccion<Frase>('frases'), this.termino$]).pipe(
-    map(([frases, termino]) => filtrar(frases, termino, (f) => [f.persona, f.fecha, f.frase, f.explicacion]))
+  readonly frases$: Observable<Frase[]> = this.termino$.pipe(
+    switchMap((termino) => this.servicioFrases.buscar(termino)),
+    map(frases => [...frases].sort((a, b) =>
+      Number(b.fecha) - Number(a.fecha) || Number(b.id) - Number(a.id)
+    ))
   );
 
-  constructor(private contenido: ContenidoService, public authenticationService: AutenticationService) {}
+  constructor(public servicioFrases: FrasesService, public authenticationService: AutenticationService) {}
 
   buscar(termino: string): void {
     this.p = 1;
