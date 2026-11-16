@@ -583,5 +583,18 @@
       "es": "12431dasd",
       "val": "asdasasd"
     }
+  },
+  {
+    "id": 46,
+    "persona": "Mateu",
+    "fecha": "2026",
+    "frase": {
+      "es": "HOLA",
+      "val": "hello"
+    },
+    "explicacion": {
+      "es": "ase1",
+      "val": "ase32"
+    }
   }
 ]
