@@ -1,45 +1,140 @@
-<br>
-<h2 class="titulo">
-    <img src="assets/icons/juegos.png" alt="" class="iconosImgFav animated rollIn">
-  {{ 'app.juegosTitulo' | translate }}
-</h2>
-<h3 class="subTitulo">
-    <img src="assets/icons/consola.png" alt="" class="iconosImgFav animated rollIn">
-  {{ 'app.juegosSubtitulo1' | translate }}
-</h3>
-<h4 class="subTitulo">
-    {{ 'app.juegosSubtitulo2' | translate }}
-</h4>
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
-</div>
-<br><br>
-<div class="videoContenedor animated fadeIn">
-  <img src="assets/images/games/portadaJuegos.jpg" loading="lazy" alt="inicio" class="">
-</div>
-<br>
-<div class="cuerpoImagenes">
-  <div class="icon-container">
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/memory/"><img src="assets/icons/memory.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/quien-es-quien/"><img src="assets/icons/quien.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/adivina/"><img src="assets/icons/rompecabezas.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/quiz/"><img src="assets/icons/prueba.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/tableros/"><img src="assets/icons/juego-de-mesa.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/misionCumplida/"><img src="assets/icons/juegos-de-cartas.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/facedoku/"><img src="assets/icons/facedoku.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/ahorcado/"><img src="assets/icons/ahorcado.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/aventura/"><img src="assets/icons/aventura.jpeg" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle-deslizante/"><img src="assets/icons/puzzle-deslizante.jpeg" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/impostor/"><img src="assets/icons/impostor.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/simon/"><img src="assets/icons/simon.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle/"><img src="assets/icons/puzzle.png" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/conecta4/"><img src="assets/icons/conecta4.jpeg" alt="" class="icon animated fadeIn pulse"></a></div>
-    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/ticket-tren/"><img src="assets/icons/ticket-tren.jpeg" alt="" class="icon animated fadeIn pulse"></a></div>
-  </div>
-</div>
-<br><br>
-<!-- <div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
-</div> -->
+<div class="games-home-wrapper">
 
+  <!-- Botón Volver Flotante Superior -->
+  <div class="top-nav-bar">
+    <a class="btn-volver-glass animated zoomInDown" routerLink="/principal">
+      <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
+      <span>{{ 'viaje.volver' | translate}}</span>
+    </a>
+  </div>
+
+  <!-- Contenido Protegido / Home de Juegos -->
+  <div class="games-hero-section">
+
+    <!-- Imagen de fondo difuminada cubriendo el máximo disponible -->
+    <div class="hero-bg-container">
+      <img src="assets/images/games/portadaJuegos.jpg" loading="lazy" alt="inicio" class="hero-bg-image">
+      <div class="hero-dark-overlay"></div>
+    </div>
+
+    <!-- Contenido Principal Superpuesto sobre la imagen -->
+    <div class="hero-content-overlay">
+
+      <!-- Cabecera de Títulos -->
+      <div class="titles-container animated fadeInDown">
+        <h2 class="titulo-juegos">
+          <img src="assets/icons/juegos.png" alt="" class="iconosImgFav animated rollIn">
+          <span>{{ 'app.juegosTitulo' | translate }}</span>
+        </h2>
+        <div class="subtitulos-group">
+          <h3 class="subTitulo-juegos">
+            <img src="assets/icons/consola.png" alt="" class="iconosImgFav animated rollIn">
+            <span>{{ 'app.juegosSubtitulo1' | translate }}</span>
+          </h3>
+          <h4 class="subTitulo-juegos sub2">
+            {{ 'app.juegosSubtitulo2' | translate }}
+          </h4>
+        </div>
+      </div>
+
+      <!-- Grid de Iconos de Juegos Estilo Glassmorphism (Flotantes) -->
+      <div class="cuerpoImagenes animated fadeInUp">
+        <div class="icon-container-glass">
+
+          <div class="game-icon-card" title="Memory">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/memory/">
+              <img src="assets/icons/memory.png" alt="Memory">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Quién es quién">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/quien-es-quien/">
+              <img src="assets/icons/quien.png" alt="Quién es quién">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Adivina">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/adivina/">
+              <img src="assets/icons/rompecabezas.png" alt="Adivina">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Quiz">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/quiz/">
+              <img src="assets/icons/prueba.png" alt="Quiz">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Tableros">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/tableros/">
+              <img src="assets/icons/juego-de-mesa.png" alt="Tableros">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Misión Cumplida">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/misionCumplida/">
+              <img src="assets/icons/juegos-de-cartas.png" alt="Misión Cumplida">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Facedoku">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/facedoku/">
+              <img src="assets/icons/facedoku.png" alt="Facedoku">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Ahorcado">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/ahorcado/">
+              <img src="assets/icons/ahorcado.png" alt="Ahorcado">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Aventura">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/aventura/">
+              <img src="assets/icons/aventura.jpeg" alt="Aventura">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Puzzle Deslizante">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle-deslizante/">
+              <img src="assets/icons/puzzle-deslizante.jpeg" alt="Puzzle Deslizante">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Impostor">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/impostor/">
+              <img src="assets/icons/impostor.png" alt="Impostor">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Simón">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/simon/">
+              <img src="assets/icons/simon.png" alt="Simón">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Puzzle">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle/">
+              <img src="assets/icons/puzzle.png" alt="Puzzle">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Conecta 4">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/conecta4/">
+              <img src="assets/icons/conecta4.jpeg" alt="Conecta 4">
+            </a>
+          </div>
+
+          <div class="game-icon-card" title="Ticket al Tren">
+            <a class="js-fh5co-close-offcanvas" routerLink="/games/ticket-tren/">
+              <img src="assets/icons/ticket-tren.jpeg" alt="Ticket al Tren">
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
