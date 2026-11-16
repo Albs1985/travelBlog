@@ -55,11 +55,13 @@
           </div>
         </div>
 
-        <app-buscador
-          class="mt-3"
-          [placeholder]="'app.frasesFiltrado' | translate"
-          (buscar)="buscar($event)">
-        </app-buscador>
+        <div class="margin-top-5rem">
+          <app-buscador
+            class="mt-3"
+            [placeholder]="'app.frasesFiltrado' | translate"
+            (buscar)="buscar($event)">
+          </app-buscador>
+        </div>
 
         <div class="resultados-info">
           <span>
