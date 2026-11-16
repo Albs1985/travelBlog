@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 800" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyFarm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff3e0" />
+      <stop offset="60%" stop-color="#ffe0b2" />
+      <stop offset="100%" stop-color="#f1f8e9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Cielo cálido de mañana -->
+  <rect width="440" height="800" fill="url(#skyFarm)" />
+
+  <!-- Nubes suaves -->
+  <g fill="#ffffff" opacity="0.75">
+    <circle cx="110" cy="100" r="30" />
+    <circle cx="145" cy="95" r="35" />
+    <circle cx="175" cy="105" r="25" />
+  </g>
+
+  <!-- Colinas lejanas -->
+  <path d="M0 600 Q130 550 260 600 T440 580 L440 800 L0 800 Z" fill="#dce775" opacity="0.7" />
+
+  <!-- Silueta de Granero Rojo y Silo -->
+  <g opacity="0.85">
+    <!-- Silo -->
+    <rect x="330" y="510" width="32" height="95" fill="#cfd8dc" />
+    <path d="M330 510 A16 16 0 0 1 362 510 Z" fill="#b0bec5" />
+    <!-- Granero -->
+    <polygon points="260,550 295,515 330,550 330,605 260,605" fill="#e57373" />
+    <polyline points="256,553 295,513 334,553" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+    <!-- Puerta del granero -->
+    <rect x="282" y="570" width="26" height="35" fill="#ffcdd2" />
+    <line x1="282" y1="570" x2="308" y2="605" stroke="#e57373" stroke-width="2" />
+    <line x1="308" y1="570" x2="282" y2="605" stroke="#e57373" stroke-width="2" />
+  </g>
+
+  <!-- Pradera principal -->
+  <path d="M0 640 Q220 595 440 650 L440 800 L0 800 Z" fill="#aed581" />
+
+  <!-- Cerca de madera de la granja -->
+  <g fill="#d7ccc8" stroke="#a1887f" stroke-width="1.5">
+    <!-- Travesaños horizontales -->
+    <rect x="0" y="675" width="440" height="8" />
+    <rect x="0" y="700" width="440" height="8" />
+    <!-- Postes verticales -->
+    <rect x="30" y="660" width="12" height="65" rx="2" />
+    <rect x="115" y="660" width="12" height="65" rx="2" />
+    <rect x="200" y="660" width="12" height="65" rx="2" />
+    <rect x="285" y="660" width="12" height="65" rx="2" />
+    <rect x="370" y="660" width="12" height="65" rx="2" />
+  </g>
+
+  <!-- Primer plano verde -->
+  <path d="M0 735 Q180 715 440 745 L440 800 L0 800 Z" fill="#9ccc65" />
+</svg>

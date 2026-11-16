@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 800" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyPark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#89f7fe" />
+      <stop offset="100%" stop-color="#e0f7fa" />
+    </linearGradient>
+  </defs>
+
+  <!-- Cielo azul claro -->
+  <rect width="440" height="800" fill="url(#skyPark)" />
+
+  <!-- Sol sonriente sutil -->
+  <circle cx="370" cy="85" r="42" fill="#ffe082" opacity="0.8" />
+  <circle cx="370" cy="85" r="30" fill="#ffd54f" />
+
+  <!-- Nubes esponjosas -->
+  <g fill="#ffffff" opacity="0.85">
+    <circle cx="90" cy="120" r="32" />
+    <circle cx="125" cy="115" r="38" />
+    <circle cx="160" cy="125" r="28" />
+
+    <circle cx="290" cy="230" r="25" />
+    <circle cx="320" cy="225" r="30" />
+    <circle cx="348" cy="232" r="22" />
+  </g>
+
+  <!-- Colina trasera -->
+  <path d="M0 630 Q160 560 320 620 T440 600 L440 800 L0 800 Z" fill="#a5d6a7" />
+
+  <!-- Árboles del parque -->
+  <g>
+    <!-- Árbol izquierdo -->
+    <rect x="64" y="570" width="12" height="55" rx="4" fill="#a1887f" />
+    <circle cx="70" cy="555" r="32" fill="#66bb6a" />
+    <circle cx="52" cy="565" r="22" fill="#81c784" />
+    <circle cx="88" cy="565" r="22" fill="#81c784" />
+
+    <!-- Árbol derecho -->
+    <rect x="355" y="555" width="14" height="60" rx="4" fill="#a1887f" />
+    <circle cx="362" cy="535" r="36" fill="#66bb6a" />
+    <circle cx="342" cy="548" r="24" fill="#81c784" />
+    <circle cx="382" cy="548" r="24" fill="#81c784" />
+  </g>
+
+  <!-- Colina frontal de césped -->
+  <path d="M0 680 Q220 630 440 690 L440 800 L0 800 Z" fill="#81c784" />
+  <path d="M0 730 Q150 760 440 715 L440 800 L0 800 Z" fill="#66bb6a" />
+</svg>

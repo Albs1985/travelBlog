@@ -46,16 +46,6 @@ li {
   margin-left: 50px;
 }
 
-#botonLupa {
-  background: transparent;
-  border-color: transparent;
-}
-
-.filtrado {
-  margin-left: 35px;
-  margin-right: 0px;
-  margin-top: -40px;
-}
 .ingrediente {
   list-style-type: "🍮";
   list-style-position: outside;
@@ -67,12 +57,6 @@ li {
   list-style-position: outside;
   padding: 0;
 } */
-
-#busquedaForm {
-  display: inline-flex !important;
-  width: 100% !important;
-  margin-right: 25px;
-}
 
 .letraPequenya {
   font-size: medium !important;

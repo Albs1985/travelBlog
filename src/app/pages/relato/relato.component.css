@@ -1,0 +1,54 @@
+.centrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconSeguridad {
+  width: 60px;
+  height: 60px;
+}
+
+.iconoLibro {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
+.divRight2 {
+  float: right;
+  margin-right: 5px;
+  margin-bottom: 15px;
+  font-size: 14px !important;
+  cursor: pointer;
+}
+
+.aviso {
+  text-align: center;
+  padding: 60px 15px;
+}
+
+.textoFoto {
+  text-align: center;
+}
+
+.foto-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+figure > .foto-btn img {
+  width: 100%;
+  height: auto;
+}

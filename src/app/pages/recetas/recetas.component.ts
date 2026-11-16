@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { Receta } from 'src/app/interfaces/receta.interface';
-import { AutenticationService } from 'src/app/services/autentication.service';
-import { FrasesService } from 'src/app/services/frases.service';
-import { RecetasService } from 'src/app/services/recetas.service';
+import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Receta, TipoReceta } from '../../interfaces/contenido.interface';
+import { ContenidoService } from '../../services/contenido.service';
+import { AutenticationService } from '../../services/autentication.service';
+import { filtrar } from '../../services/buscar.util';
+
+export interface VistaRecetas {
+  /** Recetas que cumplen el filtro */
+  lista: Receta[];
+  /** La receta abierta: la elegida, o la única que queda al filtrar */
+  mostrada?: Receta;
+}
 
 @Component({
   selector: 'app-recetas',
@@ -12,75 +19,59 @@ import { RecetasService } from 'src/app/services/recetas.service';
   styleUrls: ['./recetas.component.css']
 })
 export class RecetasComponent {
+  /** Botones de tipo de receta: id, icono (assets/icons/<icono>.png y <icono>Selected.png) y textos */
+  readonly tipos: { id: TipoReceta; icono: string; alt: string; etiqueta: string }[] = [
+    { id: 'frio', icono: 'ingrediente', alt: 'frio', etiqueta: 'app.categoriaFrio' },
+    { id: 'caliente', icono: 'frito', alt: 'caliente', etiqueta: 'app.categoriaCaliente' },
+    { id: 'dulce', icono: 'pastel', alt: 'postre', etiqueta: 'app.categoriaDulce' },
+  ];
+  /** Tipo elegido ('' = todos) */
+  tipo: TipoReceta | '' = '';
 
-  // p: number = 1; // Página inicial
-  // pageSize: number = 1; // Elementos por página
-  // maxSizeDisplay: number = 5;
-  palabra : any = '';
-  categoria : any = '';
-  recetaMostrada : Receta = {
-    id: 0,
-    nombre: '',
-    categoria: '',
-    cocinero: '',
-    dificultad: '',
-    ingredientes: [],
-    utensilios: [],
-    tiempoPreparacion: 0,
-    tiempoHorno: 0,
-    temperatura: 0,
-    numPasos: [],
-    imagen: '',
-    raciones: 0
-  };
+  private readonly termino$ = new BehaviorSubject<string>('');
+  private readonly tipo$ = new BehaviorSubject<TipoReceta | ''>('');
+  private readonly elegida$ = new BehaviorSubject<number | null>(null);
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioRecetas: RecetasService, public authenticationService: AutenticationService){
-    this.palabra = '';
-    this.servicioRecetas.cargarRecetas();
+  readonly vista$: Observable<VistaRecetas> = combineLatest([
+    this.contenido.coleccion<Receta>('recetas'),
+    this.termino$,
+    this.tipo$,
+    this.elegida$,
+  ]).pipe(
+    map(([todas, termino, tipo, elegida]) => {
+      const porTipo = tipo ? todas.filter((r) => r.tipos?.includes(tipo)) : todas;
+      // Se busca en los dos idiomas: nombre, categoría, cocinero, ingredientes...
+      const lista = filtrar(porTipo, termino, (r) => [r.nombre, r.categoria, r.cocinero, r.tipos, r.metodo, r.ingredientes]);
+      const mostrada = elegida !== null ? todas.find((r) => r.id === elegida) : lista.length === 1 ? lista[0] : undefined;
+      return { lista, mostrada };
+    })
+  );
+
+  constructor(private contenido: ContenidoService, public authenticationService: AutenticationService) {}
+
+  buscar(termino: string): void {
+    this.tipo = '';
+    this.tipo$.next('');
+    this.elegida$.next(null);
+    this.termino$.next(termino);
   }
 
-  buscarRecetas(tipo: any){
-    // this.p = 1;
-    if (tipo !== 'lista'){
-      this.categoria = tipo;
-      if (tipo === ''){
-        if($('#myInputReceta').val() == ''){
-          this.servicioRecetas.cargarRecetas();
-        } else {
-          this.palabra = $('#myInputReceta').val();
-        }
-      }else{
-        this.palabra = tipo;
-      }
-    }else{
-      this.categoria = '';
-    }
-
-    this.servicioRecetas.buscarRecetas(this.palabra).then(()=>{
-
-      if (this.servicioRecetas.recetas.length === 1){
-        this.recetaMostrada = this.servicioRecetas.recetas[0];
-      }else{
-        this.recetaMostrada = {
-          id: 0,
-          nombre: '',
-          categoria: '',
-          cocinero: '',
-          dificultad: '',
-          ingredientes: [],
-          utensilios: [],
-          tiempoPreparacion: 0,
-          tiempoHorno: 0,
-          temperatura: 0,
-          numPasos: [],
-          imagen: '',
-          raciones: 0
-        };
-      }
-
-    });
-
-    this.palabra = '';
+  filtrarPorTipo(tipo: TipoReceta): void {
+    this.tipo = tipo;
+    this.tipo$.next(tipo);
+    this.elegida$.next(null);
+    this.termino$.next('');
   }
 
+  verLista(): void {
+    this.buscar('');
+  }
+
+  abrir(receta: Receta): void {
+    this.elegida$.next(receta.id);
+  }
+
+  tiempoTotal(r: Receta): number {
+    return (r.tiempoPreparacion ?? 0) + (r.tiempoCoccion ?? 0);
+  }
 }

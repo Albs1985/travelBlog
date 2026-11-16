@@ -1,0 +1,42 @@
+{
+  "destino": "Ibiza",
+  "fechaInicio": "2020-07-06",
+  "fechaFin": "2020-07-19",
+  "categoria": "Playa",
+  "provincia": "Balears",
+  "pais": "España",
+  "precio": 550,
+  "estancia": "Furgoneta",
+  "tipoEstancia": "Furgoneta",
+  "transporte": ["Furgoneta"],
+  "personas": ["Alba", "Albert"],
+  "prefijoFotos": "Ibiza",
+  "mapa": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167625.93782285458!2d1.3349882194167952!3d38.97444743489563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1299476385093943%3A0x9064725cd8426d6!2sIbiza!5e1!3m2!1ses!2ses!4v1688373149680!5m2!1ses!2ses",
+  "infoInteres": ["https://maps.app.goo.gl/b2udFr627LUkCptS7"],
+  "descPrincipal": {
+    "es": "Faro de la Mola, Formentera",
+    "val": "Far de la Mola, Formentera"
+  },
+  "bloques": [
+    {"tipo":"titulo","es":"De ruta por las islas Baleares, esperando a Mateu","val":"De ruta per les illes Balears, esperant Mateu"},
+    {"tipo":"parrafo","es":"Este viaje pendía de un hilo. La situación mundial de la pandemia ponía trabas a todos los viajeros, y a pesar de tener la reserva del barco hecha hacía meses, podían volver a encerrarlos en casa. También era especialmente complicado, por el avanzado estado de embarazo de Alba, 7 meses. Por suerte, no fue así y pudieron echar a rodar.","val":"Aquest viatge penjava d'un fil. La situació mundial de la pandèmia posava traves a tots els viatgers, i malgrat tenir la reserva del vaixell feta feia mesos, podien tornar a tancar-los a casa. També era especialment complicat, per l'avançat estat d'embaràs d'Alba, 7 mesos. Per sort, no va ser així i van poder rodar."},
+    {"tipo":"parrafo","es":"A su llegada a Ibiza, hicieron noche cerca del puerto, en la cala Raconet de S'Amarador, donde encontraron una zona apartada y tranquila, que disponía de duchas públicas, un lujo cuando viajas en furgoneta. Pasaron la primera noche sin problemas. Siguieron una ruta marcada por el GPS, un sistema infalible para los viajes en furgoneta, ya que podían ver las playas más tranquilas y accesibles para dormir, como Pou des Lleó. ","val":"En arribar a Eivissa, van fer nit a prop del port, a la cala Raconet de S'Amarador, on van trobar una zona apartada i tranquil·la, que disposava de dutxes públiques, un luxe quan viatges en furgoneta. Van passar la primera nit sense problemes.Van seguir una ruta marcada pel GPS, un sistema infal·lible per als viatges en furgoneta, ja que podien veure les platges més tranquil·les i accessibles per dormir, com Pou des Lleó."},
+    {"tipo":"foto","n":1,"es":"Alba en una playa de Ibiza","val":"Alba en una platja d'Eivissa"},
+    {"tipo":"foto","n":2,"es":"La feliz pareja, esperando la llegada de su pequeño","val":"La feliç parella, esperant l'arribada del seu xiquet"},
+    {"tipo":"foto","n":3,"es":"Mateu calentando en la banda","val":"Mateu escalfant a la banda"},
+    {"tipo":"cita","es":"Caminante no hay camino, se hace camino al andar.","val":"Caminante no hay camino, se hace camino al andar.","autor":{"es":"— Antonio Machado","val":"— Antonio Machado"}},
+    {"tipo":"foto","n":4,"es":"FurgoPerfecto en Formentera, camino a Restaurante Sa Platjeta, es Mitjorn","val":"FurgoPerfecte a Formentera, camí cap a Restaurant Sa Platjeta, és Mitjorn"},
+    {"tipo":"parrafo","es":"A los pocos días marcharon para Formentera, a visitar a Sarita, la amiga de Alba. Estuvieron durmiendo por las playas en la furgoneta, en Migjorn, al lado del restaurante Sa Platjeta. Estaban muy felices de encontrarse en esa isla mágica que trae recuerdos a ambos viajeros. Habían pasado allí veranos de juventud, especialmente Alba, que trabajó varias temporadas allí. ","val":"Al cap de pocs dies van marxar cap a Formentera, a visitar la Sarita, l'amiga d'Alba. Van estar dormint per les platges a la furgoneta, a Migjorn, al costat del restaurant Sa Platjeta. Estaven molt feliços de trobar-se en aquella illa màgica que porta records als dos viatgers. Hi havien passat estius de joventut, especialment Alba, que hi va treballar diverses temporades."},
+    {"tipo":"foto","n":5,"es":"Calò des Morts, Formentera","val":"Calò des Morts, Formentera"},
+    {"tipo":"foto","n":6,"es":"FurgoPerfecto: Port de Ses Caletes","val":"FurgoPerfecte: Port de ses Caletes"},
+    {"tipo":"parrafo","es":"Después de unos días, volvieron a Ibiza para terminar el viaje. Todavía les quedaban unos días y querían disfrutarlos en pareja. Estuvieron descubriendo playas remotas, lugares 'furgoPerfectos' donde hacer noche y pasar días tranquilos. No llevaban rumbo definido, simplemente miraban el GPS y decidían hacia dónde ir. ","val":"Després d'uns dies, van tornar a Eivissa per acabar el viatge. Encara els quedaven uns dies i volien gaudir-los en parella. Van estar descobrint platges remotes, llocs 'furgoPerfectos' on fer nit i passar dies tranquils. No portaven rumb definit , simplement miraven el GPS i decidien cap on anar."},
+    {"tipo":"mapa"},
+    {"tipo":"foto","n":7,"es":"FurgoPerfecto: Cala de sa Ferradura","val":"FurgoPerfecte: Cala de sa Ferradura"},
+    {"tipo":"foto","n":8,"es":"FurgoPerfecto: Desde la furgoneta, cerca de la Desaladora de Sant Antoni, Ibiza","val":"FurgoPerfecte: Des de la furgoneta, a prop de la Dessaladora de Sant Antoni, Eivissa"},
+    {"tipo":"foto","n":9,"es":"Atardecer en playas de Comte","val":"Posta de Sol a les platges de Comte"},
+    {"tipo":"foto","n":10,"es":"FurgoPerfecto: al lado de Es Charco, vista desde arriba de Porroig","val":"FurgoPerfecte: al costat d'Es Charco, vista des de dalt de Porroig"},
+    {"tipo":"parrafo","es":"Se hizo el día en que tenían que volver, siempre con pena, y más si era para despedirse de las Baleares. Esta vez, sí sería el último viaje en la furgoneta. Tantas alegrías que iban a quedar atrás para dar paso a unas nuevas. Mateu estaba calentando en la banda, le quedaba un mes y medio para nacer, y durante unos años no iban a poder viajar de la misma forma en la furgoneta. ","val":"Es va fer el dia que havien de tornar, sempre amb pena, i més si era per acomiadar-se de les Balears. Aquesta vegada, sí que seria l'últim viatge a la furgoneta. Tantes alegries que quedarien enrere per donar pas a unes noves. Mateu estava escalfant a la banda, li quedava un mes i mig per néixer, i durant uns anys no podrien viatjar de la mateixa manera a la furgoneta."},
+    {"tipo":"foto","n":11,"es":"FurgoPerfecto: Playa des Codolar","val":"FurgoPerfecte: Platja des Codolar"},
+    {"tipo":"foto","n":12,"es":"Alba y Albert, en el embarcadero del Bruji","val":"Alba y Albert, al embarcader del Bruji"}
+  ]
+}

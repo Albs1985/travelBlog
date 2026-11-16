@@ -1,0 +1,37 @@
+<div class="relato text-left content-article">
+  <ng-container *ngFor="let b of bloques" [ngSwitch]="b.tipo">
+    <h2 *ngSwitchCase="'titulo'" class="bloque-texto">{{ b.texto | l10n }}</h2>
+    <h3 *ngSwitchCase="'subtitulo'" class="bloque-texto"><b>{{ b.texto | l10n }}</b></h3>
+    <p *ngSwitchCase="'parrafo'" class="bloque-texto">{{ b.texto | l10n }}</p>
+    <h4 *ngSwitchCase="'nota'" class="bloque-texto estiloNota">{{ b.texto | l10n }}</h4>
+    <blockquote *ngSwitchCase="'cita'" class="bloque-texto">
+      <p>{{ b.texto | l10n }}<cite *ngIf="b.autor">{{ b.autor | l10n }}</cite></p>
+    </blockquote>
+    <div *ngSwitchCase="'lista'" class="bloque-texto bloque-lista">
+      <h4 *ngIf="b.titulo">{{ b.titulo | l10n }}</h4>
+      <ul>
+        <li *ngFor="let item of b.items">{{ item | l10n }}</li>
+      </ul>
+    </div>
+    <iframe *ngSwitchCase="'mapa'" class="mapa" [src]="mapa | safe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div *ngSwitchCase="'fotos'" class="fotos-grid" [class.fotos-una]="b.fotos?.length === 1">
+      <figure *ngFor="let f of b.fotos">
+        <button type="button" class="foto-btn" (click)="abrir.emit(f.idx)">
+          <img [src]="'assets/images/' + f.foto.src" [alt]="f.foto.desc ? (f.foto.desc | l10n) : alt" loading="lazy">
+        </button>
+        <figcaption class="textoFoto" *ngIf="f.foto.desc">{{ f.foto.desc | l10n }}</figcaption>
+      </figure>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="extra.length">
+    <h3 class="bloque-texto">{{ 'viaje.masFotos' | translate }}</h3>
+    <div class="fotos-grid">
+      <figure *ngFor="let f of extra">
+        <button type="button" class="foto-btn" (click)="abrir.emit(f.idx)">
+          <img [src]="'assets/images/' + f.foto.src" [alt]="alt" loading="lazy">
+        </button>
+      </figure>
+    </div>
+  </ng-container>
+</div>

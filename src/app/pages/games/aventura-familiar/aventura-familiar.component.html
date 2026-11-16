@@ -1,0 +1,131 @@
+<div class="game-wrapper">
+  <!-- PANTALLA 1: SELECTOR DE PERSONAJE -->
+  <section *ngIf="(estadoService.pantalla$ | async) === 'SELECCION'" class="selector-screen">
+    <header class="selector-header">
+      <h2>🌍 La Aventura Familiar</h2>
+      <p>Elige quién recorrerá nuestros recuerdos de viaje</p>
+      <div *ngIf="estadoService.recordFamiliar" class="record-badge">
+        🏆 Récord Familiar: <strong>{{ estadoService.recordFamiliar.nombre }}</strong> ({{ estadoService.recordFamiliar.puntos }} pts)
+      </div>
+    </header>
+
+    <div class="cards-grid">
+      <article *ngFor="let p of personajes"
+                class="character-card"
+                [style.border-color]="p.colorBorde"
+                (click)="elegirJugador(p)">
+
+        <div class="avatar-ring" [style.background]="p.colorBorde">
+          <img [src]="p.fotoUrl" [alt]="p.nombre" (error)="onImgError($event, p.nombre)">
+        </div>
+
+        <h3>{{ p.nombre }}</h3>
+        <span class="role-badge" [style.background]="p.colorBorde">{{ p.rol }}</span>
+        <p class="bio-metrics">📏 {{ p.alturaCm }} cm · ⚖️ {{ p.pesoKg }} kg</p>
+
+        <div class="stats-list">
+          <div class="stat-row">
+            <span>⚡ Velocidad</span>
+            <div class="bar"><div class="fill" [style.width.%]="(p.velocidad / 7) * 100"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>🦘 Agilidad</span>
+            <div class="bar"><div class="fill" [style.width.%]="(100 - p.pesoKg) * 0.9"></div></div>
+          </div>
+          <div class="stat-row">
+            <span>❤️ Vidas</span>
+            <strong>{{ '❤️'.repeat(p.vidasIniciales) }}</strong>
+          </div>
+        </div>
+
+        <button class="play-btn" [style.background]="p.colorBorde">¡Jugar!</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2: CANVAS DE JUEGO 2D -->
+  <section *ngIf="(estadoService.pantalla$ | async) === 'JUGANDO'" class="play-screen">
+    <div class="hud" *ngIf="jugadorActual">
+      <div class="hud-player">
+        <img [src]="jugadorActual.fotoUrl" [alt]="jugadorActual.nombre" (error)="onImgError($event, jugadorActual.nombre)">
+        <div>
+          <div class="hud-name">{{ jugadorActual.nombre }}</div>
+          <small>{{ nivelData?.titulo }}</small>
+        </div>
+      </div>
+
+      <div class="progress-wrapper">
+        <span>Meta: {{ porcentajeProgreso }}%</span>
+        <div class="progress-track">
+          <div class="progress-fill" [style.width.%]="porcentajeProgreso"></div>
+        </div>
+      </div>
+
+      <div class="hud-stats">
+        <span>🪙 {{ estadoService.puntuacion }}</span>
+        <span>{{ '❤️'.repeat(estadoService.vidas) }}</span>
+      </div>
+
+      <div class="hud-actions">
+        <button class="btn-sound" (click)="sonidoActivo = !sonidoActivo" title="Activar/Desactivar sonido">
+          {{ sonidoActivo ? '🔊' : '🔇' }}
+        </button>
+        <button class="btn-exit" (click)="salirAlMenu()">Salir</button>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas #gameCanvas width="860" height="450"></canvas>
+
+      <!-- CONTROLES TÁCTILES SUPERPUESTOS (Móvil / Tablet) -->
+      <div class="touch-controls">
+        <div class="touch-dpad">
+          <button class="touch-btn"
+                  (touchstart)="setControlTactil('ArrowLeft', true, $event)"
+                  (touchend)="setControlTactil('ArrowLeft', false, $event)"
+                  (mousedown)="setControlTactil('ArrowLeft', true, $event)"
+                  (mouseup)="setControlTactil('ArrowLeft', false, $event)"
+                  (mouseleave)="setControlTactil('ArrowLeft', false, $event)">◀</button>
+          <button class="touch-btn"
+                  (touchstart)="setControlTactil('ArrowRight', true, $event)"
+                  (touchend)="setControlTactil('ArrowRight', false, $event)"
+                  (mousedown)="setControlTactil('ArrowRight', true, $event)"
+                  (mouseup)="setControlTactil('ArrowRight', false, $event)"
+                  (mouseleave)="setControlTactil('ArrowRight', false, $event)">▶</button>
+        </div>
+
+        <button class="touch-btn jump-btn"
+                (touchstart)="setControlTactil('Space', true, $event)"
+                (touchend)="setControlTactil('Space', false, $event)"
+                (mousedown)="setControlTactil('Space', true, $event)"
+                (mouseup)="setControlTactil('Space', false, $event)"
+                (mouseleave)="setControlTactil('Space', false, $event)">SALTAR</button>
+      </div>
+    </div>
+
+    <div class="controls-hint">
+      ⌨️ PC: <strong>Flechas ◀ ▶</strong> o <strong>A / D</strong> para moverte, <strong>Espacio</strong> para saltar (salta sobre los enemigos para derrotarlos).
+    </div>
+  </section>
+
+  <!-- PANTALLA INTERMEDIA: NIVEL COMPLETADO -->
+  <section *ngIf="(estadoService.pantalla$ | async) === 'NIVEL_COMPLETADO'" class="status-screen">
+    <h2>🎉 ¡Etapa Completada!</h2>
+    <p>Has llegado al final del recorrido con <strong>{{ estadoService.puntuacion }} puntos</strong>.</p>
+    <button class="play-btn" style="max-width: 240px; background: #0284c7;" (click)="siguienteNivel()">
+      Ir al Nivel {{ estadoService.nivelActual }} ➔
+    </button>
+  </section>
+
+  <!-- PANTALLA FINAL: VICTORIA O GAME OVER -->
+  <section *ngIf="(estadoService.pantalla$ | async) === 'VICTORIA' || (estadoService.pantalla$ | async) === 'GAME_OVER'" class="status-screen">
+    <h2>{{ (estadoService.pantalla$ | async) === 'VICTORIA' ? '🏆 ¡Aventura Familiar Completada!' : '💔 ¡Oh no! Te quedaste sin vidas' }}</h2>
+    <p>Puntuación total conseguida: <strong>{{ estadoService.puntuacion }} puntos</strong></p>
+    <p *ngIf="estadoService.recordFamiliar" style="color: #0284c7; font-weight: bold;">
+      🌟 Récord Familiar: {{ estadoService.recordFamiliar.nombre }} - {{ estadoService.recordFamiliar.puntos }} pts
+    </p>
+    <button class="play-btn" style="max-width: 240px; background: #16a34a;" (click)="salirAlMenu()">
+      Volver a Elegir Personaje
+    </button>
+  </section>
+</div>

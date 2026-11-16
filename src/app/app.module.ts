@@ -11,6 +11,13 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SafePipe } from './pipes/safe.pipe';
+import { RelatoComponent } from './pages/relato/relato.component';
+import { BuscadorComponent } from './shared/buscador/buscador.component';
+import { BloquesComponent } from './shared/bloques/bloques.component';
+import { LibroComponent } from './shared/libro/libro.component';
+import { L10nPipe } from './pipes/l10n.pipe';
+import { LightboxComponent } from './shared/lightbox/lightbox.component';
+import { CarruselComponent } from './shared/carrusel/carrusel.component';
 import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
@@ -18,8 +25,6 @@ import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
 import { FrasesComponent } from './pages/frases/frases.component';
-import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
-import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
@@ -35,7 +40,6 @@ import { MapComponent } from './pages/map/map.component';
 import { GraficaComponent } from './pages/map/grafica/grafica.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
-import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
 
 @NgModule({
   declarations: [
@@ -45,14 +49,19 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
     ViajeComponent,
     ViajesPorAnyoComponent,
     SafePipe,
+    L10nPipe,
+    RelatoComponent,
+    BuscadorComponent,
+    BloquesComponent,
+    LibroComponent,
+    LightboxComponent,
+    CarruselComponent,
     BookModeComponent,
     GaleriaComponent,
     PrincipalComponent,
     FavoritosComponent,
     ContactQRComponent,
     FrasesComponent,
-    RelatoAlbertComponent,
-    RelatoIaiaAnaComponent,
     ViajesComponent,
     DibujosComponent,
     ApodosComponent,
@@ -67,7 +76,6 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
     GraficaComponent,
     TablerosComponent,
     MisionCumplidaComponent,
-    RelatoBodaEsteveComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +84,6 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    TranslateModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -85,7 +92,7 @@ import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/
       }
     })
   ],
-  providers: [HeaderComponent],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

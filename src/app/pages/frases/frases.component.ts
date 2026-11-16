@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { FrasesService } from 'src/app/services/frases.service';
-import { ViajerosService } from 'src/app/services/viajeros.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { Frase } from '../../interfaces/contenido.interface';
+import { FrasesService } from '../../services/frases.service';
 import { AutenticationService } from '../../services/autentication.service';
 
 @Component({
@@ -11,28 +11,24 @@ import { AutenticationService } from '../../services/autentication.service';
   styleUrls: ['./frases.component.css']
 })
 export class FrasesComponent {
+  p = 1; // Página actual
+  pageSize = 10; // Elementos por página
+  maxSizeDisplay = 10;
 
-  p: number = 1; // Página inicial
-  pageSize: number = 10; // Elementos por página
-  maxSizeDisplay: number = 10;
-  palabra : any = '';
+  private readonly termino$ = new BehaviorSubject<string>('');
 
-  constructor(private route: ActivatedRoute, private translate: TranslateService, public servicioFrases: FrasesService, public authenticationService: AutenticationService){
-    this.maxSizeDisplay = 10;
-    this.palabra = '';
-    this.servicioFrases.cargarFrases();
-    //this.viajerosService.cargarViajeros(); , public viajerosService: ViajerosService
+  /** Las frases que cumplen la búsqueda (todas si no se busca nada). */
+  readonly frases$: Observable<Frase[]> = this.termino$.pipe(
+    switchMap((termino) => this.servicioFrases.buscar(termino)),
+    map(frases => [...frases].sort((a, b) =>
+      Number(b.fecha) - Number(a.fecha) || Number(b.id) - Number(a.id)
+    ))
+  );
+
+  constructor(public servicioFrases: FrasesService, public authenticationService: AutenticationService) {}
+
+  buscar(termino: string): void {
+    this.p = 1;
+    this.termino$.next(termino);
   }
-
-
-  buscarFrases(){
-    if($('#myInputFrase').val() == ''){
-      this.servicioFrases.cargarFrases();
-    } else {
-      this.palabra = $('#myInputFrase').val();
-    }
-    this.servicioFrases.buscarFrases(this.palabra);
-    this.palabra = '';
-  }
-
 }

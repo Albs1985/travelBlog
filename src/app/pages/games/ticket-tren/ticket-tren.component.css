@@ -1,0 +1,261 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+
+.ticket-container {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background: #fdf6e2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.ticket-header {
+  background: #b45309;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.ticket-header h2 { margin: 0; font-size: 1.2rem; }
+.ticket-header p { margin: 2px 0 0 0; font-size: 0.8rem; opacity: 0.9; }
+
+.config-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.config-card {
+  background: white;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #78350f; font-size: 0.9rem; }
+.select-styled { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #d97706; background: #fffbeb; font-size: 0.95rem; }
+.btn-primary { background: #d97706; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+.btn-primary:hover { background: #b45309; }
+
+/* JUEGO ACTIVO CON MAPA */
+.game-board-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fffbeb;
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: 1px solid #fcd34d;
+  flex-shrink: 0;
+}
+
+.jugador-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.6;
+  padding: 6px 12px;
+  border-radius: 25px;
+  background: #fef3c7;
+  transition: all 0.2s;
+}
+.jugador-pill.activo {
+  opacity: 1;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(217,119,6,0.3);
+  border: 2px solid #d97706;
+}
+.jugador-pill img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.info-recursos { display: flex; flex-direction: column; font-size: 0.8rem; }
+.trenes-badge { color: #b45309; font-weight: bold; font-size: 0.85rem; }
+
+.turno-aviso { font-weight: bold; color: #92400e; font-size: 0.9rem; text-align: center; }
+
+/* CONTENEDOR DEL MAPA ESTILO TABLERO */
+.mapa-tablero-wrapper {
+  flex: 1;
+  background: #fef3c7;
+  border: 3px solid #d97706;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(180,83,9,0.15);
+  min-height: 380px;
+}
+
+.mapa-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.linea-ruta-base {
+  stroke: #e2e8f0;
+  stroke-width: 1.5;
+  stroke-dasharray: 2;
+}
+
+.ciudad-punto {
+  fill: #b45309;
+  stroke: #ffffff;
+  stroke-width: 0.8;
+}
+
+.ciudad-texto {
+  font-size: 3.2px;
+  fill: #78350f;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+/* CAPA DE BOTONES Y TRENES SOBRE EL MAPA */
+.rutas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ruta-item {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.btn-reclamar-ruta {
+  background: white;
+  border: 2px solid #d97706;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-reclamar-ruta:hover:not(:disabled) {
+  background: #fffbeb;
+  transform: scale(1.08);
+}
+
+.ruta-nombre {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #78350f;
+  white-space: nowrap;
+}
+
+.casillas-trenes {
+  display: flex;
+  gap: 2px;
+}
+
+.casilla-tren {
+  font-size: 0.75rem;
+  background: #e2e8f0;
+  padding: 1px 4px;
+  border-radius: 4px;
+  border: 1px dashed #94a3b8;
+}
+
+/* TRENES COLOCADOS DEL JUGADOR 1 O 2 */
+.casilla-tren.tren-p1 {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+.casilla-tren.tren-p2 {
+  background: #dbeafe;
+  border-color: #3b82f6;
+}
+
+.btn-reclamar-ruta.ocupada-p1 {
+  background: #fee2e2;
+  border-color: #ef4444;
+}
+
+.btn-reclamar-ruta.ocupada-p2 {
+  background: #dbeafe;
+  border-color: #3b82f6;
+}
+
+/* PANEL INFERIOR */
+.panel-inferior {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+}
+.objetivos-box h4 { margin: 0 0 4px 0; font-size: 0.85rem; color: #78350f; }
+.objetivos-box ul { margin: 0; padding-left: 15px; font-size: 0.8rem; color: #451a03; }
+.objetivos-box li.completado { text-decoration: line-through; opacity: 0.6; }
+
+.btn-robar {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-robar:hover { background: #059669; }
+
+/* MODAL FINAL */
+.modal-victoria {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  border: 2px solid #d97706;
+  text-align: center;
+  max-width: 380px;
+  width: 90%;
+  z-index: 10;
+}

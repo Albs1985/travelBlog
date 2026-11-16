@@ -1,0 +1,34 @@
+<div class="simon-container">
+  <h2>🎵 Simón Dice Familiar</h2>
+  <p class="subtit">Memoriza la secuencia de caras y risas de la familia.</p>
+
+  <div class="marcador-panel">
+    <div class="info-stat">Nivel: <strong>{{ ronda }}</strong></div>
+    <div class="info-stat">🏆 Récord: <strong>{{ recordPersonal }}</strong></div>
+  </div>
+
+  <div class="estado-aviso" [class.turno]="estadoJuego === 'turno_usuario'">
+    {{ mensajeEstado }}
+  </div>
+
+  <!-- TABLERO DE LOS 4 BOTONES FAMILIARES -->
+  <div class="tablero-simon">
+    <button *ngFor="let boton of botonesFamilia"
+            class="btn-familiar"
+            [style.background-color]="boton.colorBg"
+            [class.iluminado]="botonIluminadoId === boton.id"
+            [disabled]="estadoJuego !== 'turno_usuario'"
+            (click)="pulsarBoton(boton.id)">
+      <img [src]="boton.avatar" [alt]="boton.nombre">
+      <span>{{ boton.nombre }}</span>
+    </button>
+  </div>
+
+  <!-- CONTROLES DE INICIO / REINTENTO -->
+  <div class="controles-panel" *ngIf="estadoJuego === 'inicio' || estadoJuego === 'game_over'">
+    <button class="btn-comenzar" (click)="iniciarJuego()">
+      {{ estadoJuego === 'inicio' ? '🚀 ¡Comenzar Juego!' : '🔄 Jugar de Nuevo' }}
+    </button>
+  </div>
+
+</div>

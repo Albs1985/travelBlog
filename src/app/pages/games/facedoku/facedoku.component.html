@@ -1,0 +1,153 @@
+<div class="mobile-app-wrapper">
+  <div class="app-container">
+    
+    <!-- CABECERA SUPERIOR -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo-icon">🎭</span>
+        <h1>FaceDoku</h1>
+      </div>
+      
+      <div class="difficulty-selector">
+        <button 
+          *ngFor="let diff of ['Fácil', 'Normal', 'Difícil']"
+          [class.active]="difficulty === diff"
+          (click)="startNewGame($any(diff))">
+          {{ diff }}
+        </button>
+      </div>
+    </header>
+
+    <!-- BARRA DE ESTADÍSTICAS -->
+    <section class="stats-bar">
+      <div class="stat-box">
+        <span class="stat-label">VIDAS</span>
+        <div class="lives-container">
+          <span *ngFor="let h of [1, 2, 3]" [class.lost]="h > lives">❤️</span>
+        </div>
+      </div>
+
+      <div class="stat-box score-box">
+        <span class="stat-label">PUNTOS <span class="combo-badge" *ngIf="combo > 1">x{{ combo }}</span></span>
+        <span class="stat-value">{{ score }}</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-label">TIEMPO</span>
+        <div class="timer-controls">
+          <span class="stat-value">{{ formattedTime }}</span>
+          <button class="pause-btn" (click)="togglePause()">
+            {{ isPaused ? '▶️' : '⏸️' }}
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLERO DE JUEGO 9x9 -->
+    <main class="board-container">
+      <div class="sudoku-grid" [class.blurred]="isPaused || gameState !== 'playing'">
+        <ng-container *ngFor="let row of board; let r = index">
+          <div 
+            *ngFor="let cell of row; let c = index"
+            class="cell"
+            [class.border-right]="c === 2 || c === 5"
+            [class.border-bottom]="r === 2 || r === 5"
+            [class.initial]="cell.isInitial"
+            [class.selected]="selectedCell?.row === r && selectedCell?.col === c"
+            [class.highlighted]="isHighlighted(r, c)"
+            [class.same-avatar]="isSameAvatarSelected(cell)"
+            [class.error]="cell.isError"
+            (click)="selectCell(r, c)">
+            
+            <!-- Cara colocada -->
+            <img 
+              *ngIf="cell.value !== 0" 
+              [src]="getAvatarUrl(cell.value)" 
+              alt="Avatar"
+              class="cell-avatar animate-pop">
+
+            <!-- Cuadrícula de mini-notas (3x3) -->
+            <div *ngIf="cell.value === 0 && cell.notes.length > 0" class="notes-grid">
+              <div *ngFor="let n of [1,2,3,4,5,6,7,8,9]" class="note-slot">
+                <img *ngIf="cell.notes.includes(n)" [src]="getAvatarUrl(n)" alt="Nota">
+              </div>
+            </div>
+
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- OVERLAY DE PAUSA -->
+      <div class="overlay-modal" *ngIf="isPaused && gameState === 'playing'">
+        <div class="modal-card">
+          <h2>Juego en Pausa</h2>
+          <p>Récord actual: <strong>{{ highScore }}</strong> pts</p>
+          <button class="primary-btn" (click)="togglePause()">Continuar Jugando</button>
+          <button class="secondary-btn" (click)="startNewGame(difficulty)">Reiniciar Nivel</button>
+        </div>
+      </div>
+
+      <!-- OVERLAY DE VICTORIA O DERROTA -->
+      <div class="overlay-modal" *ngIf="gameState !== 'playing'">
+        <div class="modal-card">
+          <div class="result-emoji">{{ gameState === 'won' ? '🏆' : '💔' }}</div>
+          <h2>{{ gameState === 'won' ? '¡Tablero Completado!' : '¡Sin Vidas!' }}</h2>
+          <p *ngIf="gameState === 'won'">Has resuelto el FaceDoku en <strong>{{ formattedTime }}</strong>.</p>
+          <p *ngIf="gameState === 'gameover'">Te has quedado sin oportunidades.</p>
+          
+          <div class="final-scores">
+            <div>
+              <span>Puntuación</span>
+              <strong>{{ score }}</strong>
+            </div>
+            <div>
+              <span>Récord</span>
+              <strong>{{ highScore }}</strong>
+            </div>
+          </div>
+
+          <button class="primary-btn" (click)="startNewGame(difficulty)">Jugar de Nuevo</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- HERRAMIENTAS DE ACCIÓN -->
+    <section class="tools-bar">
+      <button class="tool-btn" (click)="eraseCell()">
+        <span class="tool-icon">🧹</span>
+        <span>Borrar</span>
+      </button>
+
+      <button class="tool-btn" [class.active-tool]="isNoteMode" (click)="toggleNoteMode()">
+        <span class="tool-icon">✏️</span>
+        <span>Notas {{ isNoteMode ? 'ON' : 'OFF' }}</span>
+      </button>
+
+      <button class="tool-btn" [disabled]="hintsLeft === 0" (click)="useHint()">
+        <span class="tool-icon">💡</span>
+        <span>Pista ({{ hintsLeft }})</span>
+      </button>
+
+      <button class="tool-btn" (click)="startNewGame(difficulty)">
+        <span class="tool-icon">🔄</span>
+        <span>Nuevo</span>
+      </button>
+    </section>
+
+    <!-- TECLADO DE CARAS (DOCK INFERIOR) -->
+    <footer class="avatar-dock">
+      <button 
+        *ngFor="let avatar of avatars"
+        class="avatar-btn"
+        [class.completed]="getRemainingCount(avatar.id) === 0"
+        [disabled]="getRemainingCount(avatar.id) === 0"
+        (click)="selectAvatar(avatar.id)">
+        <img [src]="avatar.imageUrl" [alt]="avatar.name">
+        <span class="remaining-badge" *ngIf="getRemainingCount(avatar.id) > 0">
+          {{ getRemainingCount(avatar.id) }}
+        </span>
+      </button>
+    </footer>
+
+  </div>
+</div>
