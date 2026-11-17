@@ -174,7 +174,12 @@
     "unaFraseDe": "UNA FRASE DE",
     "recuerdoSiempre": "UN RECUERDO PARA SIEMPRE",
     "sinFrasesTitulo": "No hemos encontrado ninguna frase",
-    "frasesLabel": "Nuestros pequeños recuerdos"
+    "frasesLabel": "Nuestros pequeños recuerdos",
+    "nuevoDibujo": "Nou Dibuix",
+    "edadLabel": "EDAD",
+    "detalleLabel": "DETALLE / DESCRIPCIÓN",
+    "imagenLabel": "IMAGEN DEL DIBUJO",
+    "verDetalle": "Ver detalle"
   },
   "header": {
     "categoria": "Categorias",

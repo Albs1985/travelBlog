@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Dibujo } from '../../interfaces/contenido.interface';
 import { FotoViaje } from '../../interfaces/viaje.interface';
 import { ContenidoService } from '../../services/contenido.service';
+import { DibujosService } from '../../services/dibujos.service';
 import { AutenticationService } from '../../services/autentication.service';
 import { filtrar } from '../../services/buscar.util';
 
@@ -13,34 +14,115 @@ import { filtrar } from '../../services/buscar.util';
   styleUrls: ['./dibujos.component.css']
 })
 export class DibujosComponent {
-  p = 1; // Página actual
-  pageSize = 10; // Elementos por página
+  p = 1;
+  pageSize = 10;
   maxSizeDisplay = 10;
-  /** Posición del dibujo abierto en el visor (dentro de los dibujos filtrados); null = cerrado */
   abierto: number | null = null;
+
+  // Control de token y administración
+  githubToken: string = localStorage.getItem('gh_travel_token') || '';
+  mostrarPanelToken = false;
+  mostrarFormulario = false;
+  cargandoAccion = false;
+  archivoSeleccionado: File | null = null;
+
+  dibujoForm: Dibujo = {
+    persona: 'Mateu',
+    anyo: new Date().getFullYear().toString(),
+    edad: '',
+    detalle: '',
+    src: ''
+  };
 
   private readonly termino$ = new BehaviorSubject<string>('');
 
-  /** Los dibujos que cumplen la búsqueda, y esos mismos como fotos para el visor. */
   readonly vista$: Observable<{ dibujos: Dibujo[]; fotos: FotoViaje[] }> = combineLatest([
-    this.contenido.coleccion<Dibujo>('dibujos'),
+    this.dibujosService.dibujos$,
     this.termino$,
   ]).pipe(
     map(([todos, termino]) => {
       const dibujos = filtrar(todos, termino, (d) => [d.persona, d.anyo, d.edad, d.detalle]);
-      return { dibujos, fotos: dibujos.map((d) => ({ src: d.src, desc: d.detalle })) };
+      return {
+        dibujos,
+        fotos: dibujos.map((d) => ({ src: d.src, desc: d.detalle })) as unknown as FotoViaje[]
+      };
     })
   );
 
-  constructor(private contenido: ContenidoService, public authenticationService: AutenticationService) {}
+  constructor(
+    private contenido: ContenidoService,
+    private dibujosService: DibujosService,
+    public authenticationService: AutenticationService
+  ) {}
 
   buscar(termino: string): void {
     this.p = 1;
     this.termino$.next(termino);
   }
 
-  /** Posición real de un dibujo de la página actual dentro de la lista completa */
   posicion(indiceEnPagina: number): number {
     return (this.p - 1) * this.pageSize + indiceEnPagina;
+  }
+
+  guardarToken(token: string): void {
+    this.githubToken = token.trim();
+    localStorage.setItem('gh_travel_token', this.githubToken);
+    this.mostrarPanelToken = false;
+  }
+
+  onFileSelected(event: any): void {
+    if (event.target.files && event.target.files[0]) {
+      this.archivoSeleccionado = event.target.files[0];
+    }
+  }
+
+  guardarDibujo(): void {
+    if (!this.githubToken) {
+      alert('Introduce el token de administrador.');
+      this.mostrarPanelToken = true;
+      return;
+    }
+    if (!this.archivoSeleccionado || !this.dibujoForm.persona) {
+      alert('Selecciona una imagen y cubre los datos obligatorios.');
+      return;
+    }
+
+    this.cargandoAccion = true;
+    this.dibujosService.agregarDibujo(this.dibujoForm, this.archivoSeleccionado, this.githubToken).subscribe({
+      next: () => {
+        this.cargandoAccion = false;
+        this.mostrarFormulario = false;
+        this.archivoSeleccionado = null;
+        this.contenido.invalidarCache('dibujos');
+        this.buscar('');
+      },
+      error: (err) => {
+        this.cargandoAccion = false;
+        console.error(err);
+        alert('Error al subir el dibujo a GitHub.');
+      }
+    });
+  }
+
+  eliminar(id: number | string | undefined): void {
+    if (!id) return;
+    if (!this.githubToken) {
+      alert('Introduce el token de administrador.');
+      this.mostrarPanelToken = true;
+      return;
+    }
+
+    if (confirm('¿Estás seguro de que deseas eliminar este dibujo?')) {
+      this.dibujosService.eliminarDibujo(id, this.githubToken).subscribe({
+        next: () => {
+          this.contenido.invalidarCache('dibujos');
+          this.buscar('');
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Error al eliminar el dibujo en GitHub.');
+        }
+      });
+    }
   }
 }

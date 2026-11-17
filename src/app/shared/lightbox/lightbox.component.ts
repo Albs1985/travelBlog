@@ -1,5 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FotoViaje } from '../../interfaces/viaje.interface';
+import { FotoDibujo } from 'src/app/interfaces/contenido.interface';
 
 /**
  * Visor de fotos a pantalla completa.
@@ -13,13 +14,13 @@ import { FotoViaje } from '../../interfaces/viaje.interface';
   styleUrls: ['./lightbox.component.css'],
 })
 export class LightboxComponent implements OnInit, OnDestroy {
-  @Input() fotos: FotoViaje[] = [];
+  @Input() fotos: FotoViaje[] | FotoDibujo[] = [];
   @Input() indice = 0;
   @Output() cerrar = new EventEmitter<void>();
 
   private inicioX = 0;
 
-  get actual(): FotoViaje | undefined {
+  get actual(): FotoViaje | FotoDibujo | undefined {
     return this.fotos[this.indice];
   }
 
