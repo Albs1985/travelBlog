@@ -111,24 +111,40 @@
       </div>
 
       <!-- Grid tipo Columnas (Masonry) para respetar 100% las proporciones originales -->
+      <!-- Grid tipo Columnas (Masonry) -->
       <div class="masonry-gallery-grid">
         <div *ngFor="let dibujo of vista.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index" class="masonry-card-wrapper animated zoomInDown">
-          <div class="gallery art-card">
-            <a href="#" (click)="abierto = posicion(i); $event.preventDefault()">
-              <div class="img-frame">
-                <!-- Se eliminó el float y la clase responsive antigua para usar tamaño natural adaptable -->
+          <div class="gallery art-card" [style.opacity]="idsEliminando.has(dibujo.id!) ? '0.6' : '1'">
+
+            <!-- Enlace para ver detalle (Desactivado si se está eliminando) -->
+            <a href="#" (click)="$event.preventDefault(); !idsEliminando.has(dibujo.id!) && (abierto = posicion(i))">
+              <div class="img-frame" style="position: relative;">
+
                 <img [src]="'assets/images/' + dibujo.src" loading="lazy" alt="">
-                <div class="card-glass-overlay">
+
+                <!-- 👈 OVERLAY DE PROCESANDO SI SE ESTÁ ELIMINANDO -->
+                <div *ngIf="idsEliminando.has(dibujo.id!)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px;">
+                  <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
+                  <span style="font-size: 11px; font-weight: bold; color: #d97706;">Eliminando...</span>
+                </div>
+
+                <div class="card-glass-overlay" *ngIf="!idsEliminando.has(dibujo.id!)">
                   <span class="explore-pill">✨ {{ 'app.verDetalle' | translate }}</span>
                 </div>
               </div>
+
               <figcaption class="textoFoto">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <div class="badge-autor">
                     <b>{{dibujo.persona}}</b> ({{dibujo.anyo}})
                   </div>
-                  <!-- Botón de eliminar visible si hay token -->
-                  <button *ngIf="githubToken" (click)="eliminar(dibujo.id); $event.stopPropagation()" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 2px 8px; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
+                  <!-- Botón Eliminar con event.stopPropagation() y desactivado si está procesando -->
+                  <button *ngIf="githubToken"
+                          [disabled]="idsEliminando.has(dibujo.id!)"
+                          (click)="eliminar(dibujo.id, $event)"
+                          style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: bold;">
+                    🗑️ {{ 'app.eliminarBtn' | translate }}
+                  </button>
                 </div>
                 <div class="info-text">
                   <span class="edad-badge">{{ dibujo.edad }} {{'app.edad' | translate}}</span>

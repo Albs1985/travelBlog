@@ -19,12 +19,14 @@ export class DibujosComponent {
   maxSizeDisplay = 10;
   abierto: number | null = null;
 
-  // Control de token y administración
   githubToken: string = localStorage.getItem('gh_travel_token') || '';
   mostrarPanelToken = false;
   mostrarFormulario = false;
   cargandoAccion = false;
   archivoSeleccionado: File | null = null;
+
+  // 👈 NUEVO: Control de elementos que se están eliminando actualmente
+  idsEliminando: Set<number | string> = new Set();
 
   dibujoForm: Dibujo = {
     persona: 'Mateu',
@@ -104,7 +106,11 @@ export class DibujosComponent {
     });
   }
 
-  eliminar(id: number | string | undefined): void {
+  eliminar(id: number | string | undefined, event: Event): void {
+    // 👈 EVITAMOS QUE EL EVENTO NAVEGUE AL HOME O ABRA EL LIGHTBOX
+    event.stopPropagation();
+    event.preventDefault();
+
     if (!id) return;
     if (!this.githubToken) {
       alert('Introduce el token de administrador.');
@@ -113,12 +119,17 @@ export class DibujosComponent {
     }
 
     if (confirm('¿Estás seguro de que deseas eliminar este dibujo?')) {
+      // 1. Marcamos el dibujo como "procesando/eliminando"
+      this.idsEliminando.add(id);
+
       this.dibujosService.eliminarDibujo(id, this.githubToken).subscribe({
         next: () => {
+          this.idsEliminando.delete(id);
           this.contenido.invalidarCache('dibujos');
           this.buscar('');
         },
         error: (err) => {
+          this.idsEliminando.delete(id);
           console.error(err);
           alert('Error al eliminar el dibujo en GitHub.');
         }

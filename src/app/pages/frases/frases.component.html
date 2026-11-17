@@ -145,7 +145,15 @@
             itemsPerPage: pageSize,
             currentPage: p
           }"
-          class="frase-card">
+          class="frase-card"
+          [style.opacity]="idsEliminando.has(frase.id!) ? '0.6' : '1'"
+          style="position: relative;">
+
+          <!-- 👈 OVERLAY DE PROCESANDO SI SE ESTÁ ELIMINANDO -->
+          <div *ngIf="idsEliminando.has(frase.id!)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px; border-radius: 12px;">
+            <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
+            <span style="font-size: 11px; font-weight: bold; color: #d97706;">Eliminando...</span>
+          </div>
 
           <!-- Año -->
           <div class="frase-year">
@@ -194,8 +202,8 @@
 
             <!-- Botones de administración visibles si hay token -->
             <div *ngIf="githubToken" style="display: flex; gap: 8px; margin: 15px 0 5px; justify-content: flex-end;">
-              <button (click)="abrirEditar(frase)" style="background: #fff2e1; border: 1px solid #f2d7bd; color: #bd8c58; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ {{ 'app.editarBtn' | translate }}</button>
-              <button (click)="eliminar(frase.id)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
+              <button (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)" style="background: #fff2e1; border: 1px solid #f2d7bd; color: #bd8c58; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ {{ 'app.editarBtn' | translate }}</button>
+              <button (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
             </div>
 
             <!-- Decoración -->
