@@ -71,22 +71,12 @@
 
       <div style="margin-bottom: 15px;">
         <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.fraseEsLabel' | translate }}</label>
-        <textarea [(ngModel)]="fraseForm.frase['es']" rows="3" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box; resize: vertical;"></textarea>
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.fraseValLabel' | translate }}</label>
-        <textarea [(ngModel)]="fraseForm.frase['val']" rows="3" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box; resize: vertical;"></textarea>
+        <textarea [(ngModel)]="fraseForm.frase" rows="3" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box; resize: vertical;"></textarea>
       </div>
 
       <div style="margin-bottom: 15px;">
         <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.explicacionEsLabel' | translate }}</label>
-        <input type="text" [(ngModel)]="fraseForm.explicacion!['es']" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.explicacionValLabel' | translate }}</label>
-        <input type="text" [(ngModel)]="fraseForm.explicacion!['val']" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
+        <input type="text" [(ngModel)]="fraseForm.explicacion!" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
       </div>
 
       <div style="display: flex; justify-content: flex-end; gap: 10px;">
@@ -190,14 +180,14 @@
               <span class="quote-decoration">“</span>
 
               <blockquote>
-                {{ frase.frase | l10n }}
+                {{ frase.frase }}
               </blockquote>
 
               <div class="quote-bottom-decoration">”</div>
 
               <div *ngIf="frase.explicacion" class="frase-explicacion">
                 <span class="explicacion-icon">✦</span>
-                <p>{{ frase.explicacion | l10n }}</p>
+                <p>{{ frase.explicacion }}</p>
               </div>
 
             </div>

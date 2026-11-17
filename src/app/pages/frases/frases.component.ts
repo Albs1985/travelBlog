@@ -52,8 +52,8 @@ export class FrasesComponent {
       id: 0,
       persona: 'Mateu',
       fecha: new Date().getFullYear().toString(),
-      frase: { es: '', val: '' },
-      explicacion: { es: '', val: '' }
+      frase: '',
+      explicacion: ''
     };
   }
 
@@ -81,7 +81,7 @@ export class FrasesComponent {
       return;
     }
 
-    if (!this.fraseForm.frase['es'] || !this.fraseForm.persona) {
+    if (!this.fraseForm.frase || !this.fraseForm.persona) {
       alert('La persona y la frase en español son obligatorias.');
       return;
     }

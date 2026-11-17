@@ -21,7 +21,7 @@ export class FrasesService {
 
   buscar(termino: string): Observable<Frase[]> {
     return this.frases$.pipe(
-      map((frases) => filtrar(frases, termino, (f) => [f.persona, f.fecha, f.frase?.['es'], f.explicacion?.['es']]))
+      map((frases) => filtrar(frases, termino, (f) => [f.persona, f.fecha, f.frase, f.explicacion]))
     );
   }
 
