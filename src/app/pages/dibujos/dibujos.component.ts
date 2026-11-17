@@ -8,6 +8,16 @@ import { DibujosService } from '../../services/dibujos.service';
 import { AutenticationService } from '../../services/autentication.service';
 import { filtrar } from '../../services/buscar.util';
 
+// Interfaz auxiliar para la cola de subida múltiple
+export interface DibujoPendiente {
+  file: File;
+  previewUrl: string;
+  persona: string;
+  anyo: string;
+  edad: string;
+  detalle: string;
+}
+
 @Component({
   selector: 'app-dibujos',
   templateUrl: './dibujos.component.html',
@@ -23,18 +33,11 @@ export class DibujosComponent {
   mostrarPanelToken = false;
   mostrarFormulario = false;
   cargandoAccion = false;
-  archivoSeleccionado: File | null = null;
 
-  // 👈 NUEVO: Control de elementos que se están eliminando actualmente
+  // 👈 NUEVA COLA DE DIBUJOS PENDIENTES
+  dibujosPendientes: DibujoPendiente[] = [];
+
   idsEliminando: Set<number | string> = new Set();
-
-  dibujoForm: Dibujo = {
-    persona: 'Mateu',
-    anyo: new Date().getFullYear().toString(),
-    edad: '',
-    detalle: '',
-    src: ''
-  };
 
   private readonly termino$ = new BehaviorSubject<string>('');
 
@@ -72,42 +75,61 @@ export class DibujosComponent {
     this.mostrarPanelToken = false;
   }
 
-  onFileSelected(event: any): void {
-    if (event.target.files && event.target.files[0]) {
-      this.archivoSeleccionado = event.target.files[0];
+  // 👈 CAPTURA MÚLTIPLE DE FICHEROS Y CREA LA COLA
+  onFilesSelected(event: any): void {
+    const files: FileList = event.target.files;
+    if (files && files.length > 0) {
+      const anioActual = new Date().getFullYear().toString();
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const previewUrl = URL.createObjectURL(file);
+
+        this.dibujosPendientes.push({
+          file: file,
+          previewUrl: previewUrl,
+          persona: 'Mateu', // Valor por defecto
+          anyo: anioActual,
+          edad: '',
+          detalle: ''
+        });
+      }
     }
   }
 
-  guardarDibujo(): void {
+  quitarPendiente(index: number): void {
+    this.dibujosPendientes.splice(index, 1);
+  }
+
+  guardarTodos(): void {
     if (!this.githubToken) {
       alert('Introduce el token de administrador.');
       this.mostrarPanelToken = true;
       return;
     }
-    if (!this.archivoSeleccionado || !this.dibujoForm.persona) {
-      alert('Selecciona una imagen y cubre los datos obligatorios.');
+    if (this.dibujosPendientes.length === 0) {
+      alert('Selecciona al menos una imagen.');
       return;
     }
 
     this.cargandoAccion = true;
-    this.dibujosService.agregarDibujo(this.dibujoForm, this.archivoSeleccionado, this.githubToken).subscribe({
+    this.dibujosService.agregarMultiplesDibujos(this.dibujosPendientes, this.githubToken).subscribe({
       next: () => {
         this.cargandoAccion = false;
         this.mostrarFormulario = false;
-        this.archivoSeleccionado = null;
+        this.dibujosPendientes = [];
         this.contenido.invalidarCache('dibujos');
         this.buscar('');
       },
       error: (err) => {
         this.cargandoAccion = false;
         console.error(err);
-        alert('Error al subir el dibujo a GitHub.');
+        alert('Error al subir los dibujos a GitHub.');
       }
     });
   }
 
   eliminar(id: number | string | undefined, event: Event): void {
-    // 👈 EVITAMOS QUE EL EVENTO NAVEGUE AL HOME O ABRA EL LIGHTBOX
     event.stopPropagation();
     event.preventDefault();
 
@@ -119,14 +141,12 @@ export class DibujosComponent {
     }
 
     if (confirm('¿Estás seguro de que deseas eliminar este dibujo?')) {
-      // 1. Marcamos el dibujo como "procesando/eliminando"
       this.idsEliminando.add(id);
-
       this.dibujosService.eliminarDibujo(id, this.githubToken).subscribe({
         next: () => {
-          this.idsEliminando.delete(id);
+          // this.idsEliminando.delete(id);
           this.contenido.invalidarCache('dibujos');
-          this.buscar('');
+          // this.buscar('');
         },
         error: (err) => {
           this.idsEliminando.delete(id);

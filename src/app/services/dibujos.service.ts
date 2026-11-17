@@ -256,4 +256,109 @@ export class DibujosService {
       })
     );
   }
+
+  /**
+   * Sube múltiples dibujos comprimidos y actualiza el JSON de golpe
+   */
+  agregarMultiplesDibujos(pendientes: { file: File; persona: string; anyo: string; edad: string; detalle: string }[], token: string): Observable<any> {
+    return new Observable(observer => {
+      // 1. Comprimimos todas las imágenes en paralelo
+      const promesasCompresion = pendientes.map(item => this.comprimirImagen(item.file, 0.8, 1600));
+
+      Promise.all(promesasCompresion).then(archivosComprimidos => {
+
+        // 2. Preparamos las peticiones de subida física para cada imagen (src y docs)
+        const subidasFisicas$: Observable<any>[] = [];
+        const nuevosRegistrosData: any[] = [];
+
+        archivosComprimidos.forEach((fileComp, index) => {
+          const itemOriginal = pendientes[index];
+          const extension = itemOriginal.file.name.split('.').pop() || 'jpg';
+          const nombreUnico = `dibujo_${Date.now()}_${index}.${extension}`;
+          const rutaSrcRelativa = `dibujos/${nombreUnico}`;
+
+          nuevosRegistrosData.push({
+            src: rutaSrcRelativa,
+            persona: itemOriginal.persona || 'Mateu',
+            anyo: itemOriginal.anyo || new Date().getFullYear().toString(),
+            edad: itemOriginal.edad ? itemOriginal.edad.toString() : '',
+            detalle: itemOriginal.detalle || ''
+          });
+
+          // Convertir a base64
+          const reader = new FileReader();
+          reader.readAsDataURL(fileComp);
+          // Creamos una promesa envuelta en observable para leer el base64 de cada archivo
+        });
+
+        // Para hacerlo limpio con operadores RxJS, leemos todos los Base64 secuencialmente o en paralelo
+        this.leerArchivosEnBase64(archivosComprimidos).observable.subscribe({
+          next: (bases64List) => {
+            let flujoTotal: Observable<any> = of(null);
+
+            // Encolamos la subida de cada imagen física a src y docs
+            bases64List.forEach((base64Str, index) => {
+              const nombreUnico = nuevosRegistrosData[index].src.replace('dibujos/', '');
+
+              flujoTotal = flujoTotal.pipe(
+                concatMap(() => this.subirArchivoGitHub(token, `${this.imageFolderSrc}${nombreUnico}`, base64Str, `Subir imagen ${nombreUnico}`)),
+                concatMap(() => this.subirArchivoGitHub(token, `${this.imageFolderDocs}${nombreUnico}`, base64Str, `Subir imagen ${nombreUnico} (Docs)`))
+              );
+            });
+
+            // 3. Finalmente, actualizamos el JSON de una sola vez añadiendo todos los nuevos registros
+            flujoTotal.pipe(
+              concatMap(() => this.actualizarJsonDibujos(token, `Añadir lote de ${nuevosRegistrosData.length} dibujos`, (dibujosActuales) => {
+                const listaSegura = Array.isArray(dibujosActuales) ? dibujosActuales : [];
+                let maxId = listaSegura.length > 0 ? Math.max(...listaSegura.map(d => Number(d.id) || 0)) : 0;
+
+                nuevosRegistrosData.forEach(nuevo => {
+                  maxId++;
+                  listaSegura.push({
+                    id: maxId,
+                    src: nuevo.src,
+                    persona: nuevo.persona,
+                    anyo: nuevo.anyo,
+                    edad: nuevo.edad,
+                    detalle: nuevo.detalle
+                  });
+                });
+
+                return listaSegura;
+              }))
+            ).subscribe({
+              next: (res) => { observer.next(res); observer.complete(); },
+              error: (err) => observer.error(err)
+            });
+
+          },
+          error: (err) => observer.error(err)
+        });
+
+      }).catch(err => observer.error(err));
+    });
+  }
+
+  private leerArchivosEnBase64(archivos: File[]): { observable: Observable<string[]> } {
+    return {
+      observable: new Observable(obs => {
+        const resultados: string[] = [];
+        let procesados = 0;
+
+        archivos.forEach((file, index) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            resultados[index] = (reader.result as string).split(',')[1];
+            procesados++;
+            if (procesados === archivos.length) {
+              obs.next(resultados);
+              obs.complete();
+            }
+          };
+          reader.onerror = (err) => obs.error(err);
+        });
+      })
+    };
+  }
 }

@@ -49,43 +49,49 @@
     </div>
   </div>
 
-  <!-- Modal / Formulario Crear Dibujo -->
+  <!-- Modal / Formulario Crear Dibujos Múltiples -->
   <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
-    <div class="admin-modal-card" style="background: #fff; width: 100%; max-width: 550px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
-      <h3 style="margin-top: 0; color: #65515a; font-family: Georgia, serif;">{{ 'app.nuevoDibujo' | translate }}</h3>
+    <div class="admin-modal-card" style="background: #fff; width: 100%; max-width: 650px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
+      <h3 style="margin-top: 0; color: #65515a; font-family: Georgia, serif;">✨ {{ 'app.nuevoDibujo' | translate }}</h3>
 
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.personaLabel' | translate }}</label>
-        <select [(ngModel)]="dibujoForm.persona" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; background: #fffdfb;">
-          <option value="Mateu">Mateu</option>
-          <option value="Marina">Marina</option>
-        </select>
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.anyoLabel' | translate }}</label>
-        <input type="text" [(ngModel)]="dibujoForm.anyo" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.edadLabel' | translate }}</label>
-        <input type="text" [(ngModel)]="dibujoForm.edad" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.detalleLabel' | translate }}</label>
-        <textarea [(ngModel)]="dibujoForm.detalle" rows="3" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box; resize: vertical;"></textarea>
-      </div>
-
+      <!-- Selector múltiple -->
       <div style="margin-bottom: 20px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.imagenLabel' | translate }}</label>
-        <input type="file" (change)="onFileSelected($event)" accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; background: #fffdfb;" />
+        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.imagenLabel' | translate }} (Selecciona una o varias)</label>
+        <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" />
       </div>
 
+      <!-- Lista acumulativa de dibujos pendientes -->
+      <div *ngIf="dibujosPendientes.length > 0" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
+        <div *ngFor="let item of dibujosPendientes; let i = index" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 15px; border-radius: 14px; display: flex; gap: 15px; align-items: flex-start; position: relative;">
+
+          <!-- Miniatura -->
+          <div style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #eee;">
+            <img [src]="item.previewUrl" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+          </div>
+
+          <!-- Campos editables por cada imagen -->
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 10px;">
+              <select [(ngModel)]="item.persona" style="flex: 1; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;">
+                <option value="Mateu">Mateu</option>
+                <option value="Marina">Marina</option>
+              </select>
+              <input type="text" [(ngModel)]="item.anyo" placeholder="Año" style="width: 70px; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
+              <input type="text" [(ngModel)]="item.edad" placeholder="Edad" style="width: 60px; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
+            </div>
+            <textarea [(ngModel)]="item.detalle" placeholder="Detalle / Descripción" rows="2" style="width: 100%; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; resize: vertical; box-sizing: border-box;"></textarea>
+          </div>
+
+          <!-- Botón quitar de la cola -->
+          <button (click)="quitarPendiente(i)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 12px;" title="Quitar">×</button>
+        </div>
+      </div>
+
+      <!-- Acciones del Modal -->
       <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button (click)="mostrarFormulario = false" style="padding: 10px 18px; background: #f0e9e5; color: #65515a; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.cancelar' | translate }}</button>
-        <button (click)="guardarDibujo()" [disabled]="cargandoAccion" style="padding: 10px 18px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-          {{ cargandoAccion ? ('app.guardando' | translate) : ('app.guardarEnGithub' | translate) }}
+        <button (click)="mostrarFormulario = false; dibujosPendientes = []" style="padding: 10px 18px; background: #f0e9e5; color: #65515a; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.cancelar' | translate }}</button>
+        <button (click)="guardarTodos()" [disabled]="cargandoAccion || dibujosPendientes.length === 0" style="padding: 10px 18px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+          {{ cargandoAccion ? ('app.guardando' | translate) : ('Guardar (' + dibujosPendientes.length + ')') }}
         </button>
       </div>
     </div>
