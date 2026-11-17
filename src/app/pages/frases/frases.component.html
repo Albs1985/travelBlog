@@ -1,4 +1,3 @@
-
 <div class="frases-page">
 
   <!-- Cabecera -->
@@ -7,7 +6,7 @@
     <div class="hero-decoration hero-decoration-2"></div>
 
     <div class="hero-content">
-      <span class="hero-label">NUESTROS PEQUEÑOS RECUERDOS</span>
+      <span class="hero-label">{{ 'app.frasesLabel' | translate }}</span>
 
       <h2 class="titulo-frases">
         <img src="assets/icons/goodOne.png" alt="">
@@ -25,18 +24,72 @@
     </div>
   </header>
 
-  <!-- Volver -->
-  <div class="back-link">
-    <img src="assets/icons/flechaAtras.png"
-         class="iconoFlecha"
-         routerLink="/principal"
-         alt="">
-    <a routerLink="/principal">{{ 'viaje.volver' | translate }}</a>
+  <!-- Barra de Acciones y Token -->
+  <div class="admin-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+    <div class="back-link" style="margin: 0;">
+      <img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/principal" alt="">
+      <a routerLink="/principal">{{ 'viaje.volver' | translate }}</a>
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" (click)="mostrarPanelToken = !mostrarPanelToken">
+        🔑 {{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}
+      </button>
+      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" *ngIf="githubToken" (click)="abrirCrear()">
+        ✨ {{ 'app.nuevaFrase' | translate }}
+      </button>
+    </div>
   </div>
 
-  <!-- Autenticación -->
-  <div *ngIf="authenticationService.isLoggedIn() === false"
-       class="login-container">
+  <!-- Panel Desplegable para configurar el Token -->
+  <div *ngIf="mostrarPanelToken" class="admin-panel-token" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+    <h4 style="margin: 0 0 10px; color: #65515a; font-family: Georgia, serif;">{{ 'app.adminTokenConfig' | translate }}</h4>
+    <p style="margin: 0 0 12px; font-size: 12px; color: #a39ba0;">{{ 'app.adminTokenDescripcion' | translate }}</p>
+    <div style="display: flex; gap: 10px;">
+      <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" style="flex: 1; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; outline: none; font-size: 13px;" />
+      <button (click)="guardarToken(tokenInput.value)" style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.guardar' | translate }}</button>
+    </div>
+  </div>
+
+  <!-- Modal / Formulario Crear o Editar Frase -->
+  <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div class="admin-modal-card" style="background: #fff; width: 100%; max-width: 550px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
+      <h3 style="margin-top: 0; color: #65515a; font-family: Georgia, serif;">{{ modoEdicion ? ('app.editarFrase' | translate) : ('app.nuevaFrase' | translate) }}</h3>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.personaLabel' | translate }}</label>
+        <select [(ngModel)]="fraseForm.persona" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; background: #fffdfb;">
+          <option value="Mateu">Mateu</option>
+          <option value="Marina">Marina</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.anyoLabel' | translate }}</label>
+        <input type="text" [(ngModel)]="fraseForm.fecha" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.fraseEsLabel' | translate }}</label>
+        <textarea [(ngModel)]="fraseForm.frase" rows="3" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box; resize: vertical;"></textarea>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.explicacionEsLabel' | translate }}</label>
+        <input type="text" [(ngModel)]="fraseForm.explicacion!" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button (click)="cerrarFormulario()" style="padding: 10px 18px; background: #f0e9e5; color: #65515a; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.cancelar' | translate }}</button>
+        <button (click)="guardarFrase()" [disabled]="cargandoAccion" style="padding: 10px 18px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+          {{ cargandoAccion ? ('app.guardando' | translate) : ('app.guardarEnGithub' | translate) }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Autenticación previa de la app (si aplica) -->
+  <div *ngIf="authenticationService.isLoggedIn() === false" class="login-container">
     <app-login></app-login>
   </div>
 
@@ -50,8 +103,8 @@
         <div class="toolbar-heading">
           <span class="toolbar-icon">💬</span>
           <div>
-            <h3>El rincón de las ocurrencias</h3>
-            <p>Palabras que queremos recordar siempre</p>
+            <h3>{{ 'app.rinconOcurrenciasTitulo' | translate }}</h3>
+            <p>{{ 'app.rinconOcurrenciasSub' | translate }}</p>
           </div>
         </div>
 
@@ -66,7 +119,7 @@
         <div class="resultados-info">
           <span>
             <strong>{{ frases.length }}</strong>
-            recuerdos encontrados
+            {{ 'app.recuerdosEncontrados' | translate }}
           </span>
           <span class="resultados-decoration">♡</span>
         </div>
@@ -105,20 +158,17 @@
             <div class="perfil-frase">
 
               <div class="perfil-image-wrapper">
-
                 <img
                   [src]="frase.persona?.toLowerCase() === 'marina'
                     ? 'assets/images/perfiles/fotoPerfilMarina.jpg'
                     : 'assets/images/perfiles/fotoPerfilMateu.jpg'"
                   [alt]="'Foto de ' + frase.persona"
                   class="perfil-image">
-
                 <span class="perfil-status"></span>
-
               </div>
 
               <div class="perfil-info">
-                <span class="perfil-label">UNA FRASE DE</span>
+                <span class="perfil-label">{{ 'app.unaFraseDe' | translate }}</span>
                 <h4>{{ frase.persona }}</h4>
               </div>
 
@@ -130,26 +180,27 @@
               <span class="quote-decoration">“</span>
 
               <blockquote>
-                {{ frase.frase | l10n }}
+                {{ frase.frase }}
               </blockquote>
 
               <div class="quote-bottom-decoration">”</div>
 
-              <div
-                *ngIf="frase.explicacion"
-                class="frase-explicacion">
-
+              <div *ngIf="frase.explicacion" class="frase-explicacion">
                 <span class="explicacion-icon">✦</span>
-
-                <p>{{ frase.explicacion | l10n }}</p>
-
+                <p>{{ frase.explicacion }}</p>
               </div>
 
             </div>
 
+            <!-- Botones de administración visibles si hay token -->
+            <div *ngIf="githubToken" style="display: flex; gap: 8px; margin: 15px 0 5px; justify-content: flex-end;">
+              <button (click)="abrirEditar(frase)" style="background: #fff2e1; border: 1px solid #f2d7bd; color: #bd8c58; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ {{ 'app.editarBtn' | translate }}</button>
+              <button (click)="eliminar(frase.id)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
+            </div>
+
             <!-- Decoración -->
             <div class="frase-card-footer">
-              <span>UN RECUERDO PARA SIEMPRE</span>
+              <span>{{ 'app.recuerdoSiempre' | translate }}</span>
               <span class="footer-heart">♥</span>
             </div>
 
@@ -162,7 +213,7 @@
       <!-- Sin resultados -->
       <div *ngIf="frases.length === 0" class="sin-frases">
         <span>🌷</span>
-        <h3>No hemos encontrado ninguna frase</h3>
+        <h3>{{ 'app.sinFrasesTitulo' | translate }}</h3>
         <p>{{ 'app.sinResultados' | translate }}</p>
       </div>
 
@@ -187,15 +238,6 @@
       </div>
     </ng-template>
 
-  </div>
-
-  <!-- Volver inferior -->
-  <div class="back-link back-link-bottom">
-    <img src="assets/icons/flechaAtras.png"
-         class="iconoFlecha"
-         routerLink="/principal"
-         alt="">
-    <a routerLink="/principal">{{ 'viaje.volver' | translate }}</a>
   </div>
 
 </div>
