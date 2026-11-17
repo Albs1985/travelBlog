@@ -101,5 +101,37 @@
     "persona": "Mateu",
     "anyo": 2025,
     "edad": 4
+  },
+  {
+    "id": 14,
+    "src": "dibujos/dibujo_1794926663868_0.jpg",
+    "persona": "Mateu",
+    "anyo": "2026",
+    "edad": "1",
+    "detalle": "2"
+  },
+  {
+    "id": 15,
+    "src": "dibujos/dibujo_1794926663868_1.jpg",
+    "persona": "Marina",
+    "anyo": "2026",
+    "edad": "3",
+    "detalle": "4"
+  },
+  {
+    "id": 16,
+    "src": "dibujos/dibujo_1794926663868_2.jpg",
+    "persona": "Marina",
+    "anyo": "2555",
+    "edad": "5",
+    "detalle": "5"
+  },
+  {
+    "id": 17,
+    "src": "dibujos/dibujo_1794926663868_3.jpg",
+    "persona": "Mateu",
+    "anyo": "2027",
+    "edad": "6",
+    "detalle": "6"
   }
 ]
