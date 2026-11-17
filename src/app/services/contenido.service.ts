@@ -4,12 +4,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, shareReplay } from 'rxjs/operators';
 import { Relato } from '../interfaces/contenido.interface';
 
-/**
- * Carga de contenido generado por scripts/build-data.mjs (src/assets/data/generated/).
- * Cada colección se descarga una sola vez y se guarda en caché.
- *
- *   frases$ = this.contenido.coleccion<Frase>('frases');
- */
 @Injectable({ providedIn: 'root' })
 export class ContenidoService {
   private readonly base = 'assets/data/generated/';
@@ -17,14 +11,19 @@ export class ContenidoService {
 
   constructor(private http: HttpClient) {}
 
-  /** Una colección (lista) por su nombre: 'frases', 'dibujos', 'favoritos', 'recetas', 'preguntas', 'viajeros'. */
+  /** Una colección (lista) por su nombre: 'frases', 'dibujos', etc. */
   coleccion<T>(nombre: string): Observable<T[]> {
     return this.cargar<T[]>(`${nombre}.json`, []);
   }
 
-  /** Un relato por su nombre (el de la ruta /historias/<nombre>). `undefined` si no existe. */
+  /** Un relato por su nombre. */
   relato(slug: string): Observable<Relato | undefined> {
     return this.cargar<Relato | undefined>(`relatos/${slug}.json`, undefined);
+  }
+
+  /** Invalida la caché de una colección para forzar su recarga */
+  invalidarCache(nombre: string): void {
+    this.cache.delete(`${nombre}.json`);
   }
 
   private cargar<T>(archivo: string, valorSiFalla: T): Observable<T> {
