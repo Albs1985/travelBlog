@@ -1,5 +1,28 @@
 [
   {
+    "src": "favoritos/fotoFav_1794931127127_0.jpg",
+    "anyo": "2026",
+    "lugar": "Casa, Godella",
+    "etiquetas": "Xiquets, niños,peli",
+    "personas": [
+      "Marina",
+      "Julen",
+      "Mateu"
+    ],
+    "desc": "Mirant una peli en el sótano de casa"
+  },
+  {
+    "src": "favoritos/fotoFav_1794931127127_1.jpg",
+    "anyo": "2026",
+    "lugar": "Pitufo, Godella",
+    "etiquetas": "Xiquets, niños, dormint, pijama",
+    "personas": [
+      "Marina",
+      "Mateu"
+    ],
+    "desc": "Despertant al pitufo"
+  },
+  {
     "src": "favoritos/fotoFav248.jpg",
     "anyo": "2026",
     "lugar": "Godella, pitufo",
