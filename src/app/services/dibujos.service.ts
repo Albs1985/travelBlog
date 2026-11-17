@@ -12,11 +12,11 @@ export class DibujosService {
   private readonly repoName = 'travelBlog';
   private readonly branchName = 'main'; // O tu rama actual
 
-  // Rutas de los JSON en origen y docs
+  // Rutas de los JSON en origen y docs (con /generated/)
   private readonly originJsonPath = 'src/assets/data/generated/dibujos.json';
   private readonly docsJsonPath = 'docs/assets/data/generated/dibujos.json';
 
-  // 📂 Carpeta exacta donde se guardarán las imágenes físicas
+  // Carpeta exacta donde se guardarán las imágenes físicas
   private readonly imageFolderSrc = 'src/assets/images/dibujos/';
   private readonly imageFolderDocs = 'docs/assets/images/dibujos/';
 
@@ -155,29 +155,27 @@ export class DibujosService {
           const extension = file.name.split('.').pop() || 'jpg';
           const nombreUnico = `dibujo_${Date.now()}.${extension}`;
 
-          // Aseguramos que los campos obligatorios tengan valores seguros
           nuevoDibujo.src = `dibujos/${nombreUnico}`;
           nuevoDibujo.detalle = nuevoDibujo.detalle || '';
-          nuevoDibujo.edad = nuevoDibujo.edad ? nuevoDibujo.edad.toString() : '';
+          nuevoDibujo.edad = nuevoDibujo.edad !== undefined && nuevoDibujo.edad !== null ? nuevoDibujo.edad.toString() : '';
           nuevoDibujo.anyo = nuevoDibujo.anyo ? nuevoDibujo.anyo.toString() : new Date().getFullYear().toString();
 
-          // 1. Subir imagen a src y docs
+          // 1. Subir imagen comprimida a src y docs
           this.subirArchivoGitHub(token, `${this.imageFolderSrc}${nombreUnico}`, base64String, `Subir imagen ${nombreUnico}`)
             .pipe(
               concatMap(() => this.subirArchivoGitHub(token, `${this.imageFolderDocs}${nombreUnico}`, base64String, `Subir imagen ${nombreUnico} (Docs)`)),
-              // 2. Actualizar el JSON de dibujos en ambos sitios
+              // 2. Actualizar el JSON de dibujos en origen y docs
               concatMap(() => this.actualizarJsonDibujos(token, `Añadir dibujo de ${nuevoDibujo.persona}`, (dibujos) => {
                 const listaSegura = Array.isArray(dibujos) ? dibujos : [];
                 const maxId = listaSegura.length > 0 ? Math.max(...listaSegura.map(d => Number(d.id) || 0)) : 0;
 
-                // Normalizamos los datos nuevos para que coincidan exactamente con la interfaz Dibujo
                 const dibujoNormalizado = {
                   id: maxId + 1,
                   src: `dibujos/${nombreUnico}`,
                   persona: nuevoDibujo.persona || '',
-                  anyo: nuevoDibujo.anyo ? nuevoDibujo.anyo.toString() : new Date().getFullYear().toString(),
-                  edad: nuevoDibujo.edad !== undefined && nuevoDibujo.edad !== null && nuevoDibujo.edad !== '' ? nuevoDibujo.edad.toString() : '',
-                  detalle: nuevoDibujo.detalle || ''
+                  anyo: nuevoDibujo.anyo,
+                  edad: nuevoDibujo.edad,
+                  detalle: nuevoDibujo.detalle
                 };
 
                 listaSegura.push(dibujoNormalizado);
@@ -213,44 +211,45 @@ export class DibujosService {
           sha: sha,
           branch: this.branchName
         };
-        // En Angular, la petición DELETE con cuerpo requiere pasar las opciones { headers, body }
         return this.http.request('delete', deleteUrl, { headers, body });
       }),
       catchError(err => {
-        console.warn(`No se pudo encontrar o eliminar el archivo físico ${filePath} (puede que ya no exista):`, err);
-        return of(null); // Permite continuar el flujo aunque la imagen ya estuviera borrada
+        console.warn(`No se pudo encontrar o eliminar el archivo físico ${filePath}:`, err);
+        return of(null);
       })
     );
   }
 
   /**
-   * Método completo para eliminar el registro del JSON y sus imágenes asociadas en origen y docs
+   * Elimina el registro del JSON y borra las imágenes físicas asociadas en origen y docs
    */
   eliminarDibujo(id: number | string, token: string): Observable<any> {
     const url = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${this.originJsonPath}?ref=${this.branchName}`;
     const headers = this.getHeaders(token);
 
-    // 1. Primero leemos el JSON para averiguar la ruta de la imagen (src) asociada a este id
     return this.http.get<any>(url, { headers }).pipe(
       switchMap(response => {
         const decodedContent = decodeURIComponent(escape(atob(response.content)));
         const dibujos: Dibujo[] = JSON.parse(decodedContent);
         const dibujoAEliminar = dibujos.find(d => Number(d.id) === Number(id));
-        const imageSrc = dibujoAEliminar ? dibujoAEliminar.src : null; // Ej: "dibujos/dibujo_171838.jpg"
+        const imageSrc = dibujoAEliminar ? dibujoAEliminar.src : null; // Ej: "dibujos/dibujo_123.jpg"
 
-        // 2. Actualizamos los ficheros JSON (Origen y Docs) quitando el registro
+        // 1. Actualizar los JSONs eliminando el registro
         return this.actualizarJsonDibujos(token, `Eliminar dibujo ID ${id}`, (lista) => {
           return lista.filter(d => Number(d.id) !== Number(id));
         }).pipe(
-          // 3. Una vez actualizado el JSON, borramos los archivos físicos de imagen si existen
+          // 2. Borrar las imágenes físicas de src y docs
           concatMap(() => {
             if (!imageSrc) return of(null);
 
-            const imgPathSrc = `src/assets/images/${imageSrc}`;
-            const imgPathDocs = `docs/assets/images/${imageSrc}`;
+            // imageSrc ya viene como "dibujos/nombre.jpg", por lo que al unirlo con imageFolderSrc queda perfecto
+            // (imageFolderSrc termina en / y imageSrc empieza con dibujos/, así que quitamos la duplicidad si hace falta o usamos la ruta relativa limpia)
+            const nombreArchivo = imageSrc.replace('dibujos/', '');
+            const imgPathSrc = `${this.imageFolderSrc}${nombreArchivo}`;
+            const imgPathDocs = `${this.imageFolderDocs}${nombreArchivo}`;
 
-            return this.eliminarArchivoGitHub(token, imgPathSrc, `Eliminar imagen física ${imageSrc}`).pipe(
-              concatMap(() => this.eliminarArchivoGitHub(token, imgPathDocs, `Eliminar imagen física ${imageSrc} (Docs)`))
+            return this.eliminarArchivoGitHub(token, imgPathSrc, `Eliminar imagen física ${nombreArchivo}`).pipe(
+              concatMap(() => this.eliminarArchivoGitHub(token, imgPathDocs, `Eliminar imagen física ${nombreArchivo} (Docs)`))
             );
           })
         );
