@@ -609,5 +609,12 @@
       "es": "3",
       "val": "4"
     }
+  },
+  {
+    "id": 48,
+    "persona": "Mateu",
+    "fecha": "2026",
+    "frase": "Proba",
+    "explicacion": "Proba exp"
   }
 ]
