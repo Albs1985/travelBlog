@@ -11,13 +11,22 @@ import { AutenticationService } from '../../services/autentication.service';
   styleUrls: ['./frases.component.css']
 })
 export class FrasesComponent {
-  p = 1; // Página actual
-  pageSize = 10; // Elementos por página
+  p = 1;
+  pageSize = 10;
   maxSizeDisplay = 10;
+
+  // Control de Token y UI de edición
+  githubToken: string = localStorage.getItem('gh_travel_token') || '';
+  mostrarPanelToken = false;
+  mostrarFormulario = false;
+  modoEdicion = false;
+  cargandoAccion = false;
+
+  // Objeto formulario
+  fraseForm: Frase = this.inicializarFraseVacia();
 
   private readonly termino$ = new BehaviorSubject<string>('');
 
-  /** Las frases que cumplen la búsqueda (todas si no se busca nada). */
   readonly frases$: Observable<Frase[]> = this.termino$.pipe(
     switchMap((termino) => this.servicioFrases.buscar(termino)),
     map(frases => [...frases].sort((a, b) =>
@@ -30,5 +39,96 @@ export class FrasesComponent {
   buscar(termino: string): void {
     this.p = 1;
     this.termino$.next(termino);
+  }
+
+  guardarToken(token: string): void {
+    this.githubToken = token.trim();
+    localStorage.setItem('gh_travel_token', this.githubToken);
+    this.mostrarPanelToken = false;
+  }
+
+  inicializarFraseVacia(): Frase {
+    return {
+      id: 0,
+      persona: 'Mateu',
+      fecha: new Date().getFullYear().toString(),
+      frase: { es: '', val: '' },
+      explicacion: { es: '', val: '' }
+    };
+  }
+
+  abrirCrear(): void {
+    this.modoEdicion = false;
+    this.fraseForm = this.inicializarFraseVacia();
+    this.mostrarFormulario = true;
+  }
+
+  abrirEditar(frase: Frase): void {
+    this.modoEdicion = true;
+    // Clonamos para evitar modificar la tabla en vivo antes de guardar
+    this.fraseForm = JSON.parse(JSON.stringify(frase));
+    this.mostrarFormulario = true;
+  }
+
+  cerrarFormulario(): void {
+    this.mostrarFormulario = false;
+  }
+
+  guardarFrase(): void {
+    if (!this.githubToken) {
+      alert('Por favor, introduce primero tu token de GitHub.');
+      this.mostrarPanelToken = true;
+      return;
+    }
+
+    if (!this.fraseForm.frase['es'] || !this.fraseForm.persona) {
+      alert('La persona y la frase en español son obligatorias.');
+      return;
+    }
+
+    this.cargandoAccion = true;
+
+    const peticion = this.modoEdicion
+      ? this.servicioFrases.editarFrase(this.fraseForm, this.githubToken)
+      : this.servicioFrases.agregarFrase(this.fraseForm, this.githubToken);
+
+    peticion.subscribe({
+      next: () => {
+        this.cargandoAccion = false;
+        this.cerrarFormulario();
+        this.buscar('');
+      },
+      error: (err) => {
+        this.cargandoAccion = false;
+        console.error('Error detallado de GitHub:', err); // 👈 Mira esto en la consola del navegador (F12)
+
+        // Mostramos el mensaje exacto que devuelve GitHub si lo hay
+        const mensajeGitHub = err.error?.message || err.message || 'Desconocido';
+        alert(`Error al guardar en GitHub: ${mensajeGitHub}`);
+      }
+    });
+  }
+
+  eliminar(id: number): void {
+    if (!this.githubToken) {
+      alert('Por favor, introduce primero tu token de GitHub.');
+      this.mostrarPanelToken = true;
+      return;
+    }
+
+    if (confirm('¿Estás seguro de que deseas eliminar este recuerdo?')) {
+      this.cargandoAccion = true;
+      this.servicioFrases.eliminarFrase(id, this.githubToken).subscribe({
+        next: () => {
+          this.cargandoAccion = false;
+          this.buscar('');
+        },
+        error: (err) => {
+          this.cargandoAccion = false;
+          console.error(err);
+          alert('Error al eliminar en GitHub.');
+        }
+      });
+    }
   }
 }
