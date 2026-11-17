@@ -596,18 +596,5 @@
       "es": "ase1",
       "val": "ase32"
     }
-  },
-  {
-    "id": 47,
-    "persona": "Mateu",
-    "fecha": "2026",
-    "frase": {
-      "es": "111",
-      "val": "222"
-    },
-    "explicacion": {
-      "es": "33",
-      "val": "444"
-    }
   }
 ]
