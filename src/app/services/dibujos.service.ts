@@ -13,8 +13,8 @@ export class DibujosService {
   private readonly branchName = 'main'; // O tu rama actual
 
   // Rutas de los JSON en origen y docs
-  private readonly originJsonPath = 'src/assets/data/dibujos.json';
-  private readonly docsJsonPath = 'docs/assets/data/dibujos.json';
+  private readonly originJsonPath = 'src/assets/data/generated/dibujos.json';
+  private readonly docsJsonPath = 'docs/assets/data/generated/dibujos.json';
 
   // 📂 Carpeta exacta donde se guardarán las imágenes físicas
   private readonly imageFolderSrc = 'src/assets/images/dibujos/';
@@ -152,28 +152,44 @@ export class DibujosService {
         reader.onload = () => {
           const base64String = (reader.result as string).split(',')[1];
 
-          // Generamos un nombre limpio y único para evitar colisiones (ej: dibujo_1718382910.jpg)
           const extension = file.name.split('.').pop() || 'jpg';
           const nombreUnico = `dibujo_${Date.now()}.${extension}`;
 
-          // La ruta relativa que se guardará en el JSON y buscará el [src]
+          // Aseguramos que los campos obligatorios tengan valores seguros
           nuevoDibujo.src = `dibujos/${nombreUnico}`;
+          nuevoDibujo.detalle = nuevoDibujo.detalle || '';
+          nuevoDibujo.edad = nuevoDibujo.edad ? nuevoDibujo.edad.toString() : '';
+          nuevoDibujo.anyo = nuevoDibujo.anyo ? nuevoDibujo.anyo.toString() : new Date().getFullYear().toString();
 
-          // 1. Subir imagen a src/assets/images/dibujos/ y docs/assets/images/dibujos/ de forma limpia
+          // 1. Subir imagen a src y docs
           this.subirArchivoGitHub(token, `${this.imageFolderSrc}${nombreUnico}`, base64String, `Subir imagen ${nombreUnico}`)
             .pipe(
               concatMap(() => this.subirArchivoGitHub(token, `${this.imageFolderDocs}${nombreUnico}`, base64String, `Subir imagen ${nombreUnico} (Docs)`)),
               // 2. Actualizar el JSON de dibujos en ambos sitios
               concatMap(() => this.actualizarJsonDibujos(token, `Añadir dibujo de ${nuevoDibujo.persona}`, (dibujos) => {
-                const maxId = dibujos.length > 0 ? Math.max(...dibujos.map(d => Number(d.id) || 0)) : 0;
-                nuevoDibujo.id = maxId + 1;
-                dibujos.push(nuevoDibujo);
-                return dibujos;
+                const listaSegura = Array.isArray(dibujos) ? dibujos : [];
+                const maxId = listaSegura.length > 0 ? Math.max(...listaSegura.map(d => Number(d.id) || 0)) : 0;
+
+                // Normalizamos los datos nuevos para que coincidan exactamente con la interfaz Dibujo
+                const dibujoNormalizado = {
+                  id: maxId + 1,
+                  src: `dibujos/${nombreUnico}`,
+                  persona: nuevoDibujo.persona || '',
+                  anyo: nuevoDibujo.anyo ? nuevoDibujo.anyo.toString() : new Date().getFullYear().toString(),
+                  edad: nuevoDibujo.edad !== undefined && nuevoDibujo.edad !== null && nuevoDibujo.edad !== '' ? nuevoDibujo.edad.toString() : '',
+                  detalle: nuevoDibujo.detalle || ''
+                };
+
+                listaSegura.push(dibujoNormalizado);
+                return listaSegura;
               }))
             )
             .subscribe({
               next: (res) => { observer.next(res); observer.complete(); },
-              error: (err) => observer.error(err)
+              error: (err) => {
+                console.error('Error detallado en alta de dibujo:', err);
+                observer.error(err);
+              }
             });
         };
         reader.onerror = (error) => observer.error(error);
