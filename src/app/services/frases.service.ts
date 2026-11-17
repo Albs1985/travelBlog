@@ -10,18 +10,16 @@ import { Frase } from '../interfaces/contenido.interface';
 export class FrasesService {
   private readonly repoOwner = 'Albs1985';
   private readonly repoName = 'travelBlog';
-  private readonly branchName = 'main'; // O tu rama actual
+  private readonly branchName = 'main';
 
-  // 📂 Las dos rutas que necesitas actualizar en GitHub
   private readonly originFilePath = 'src/assets/data/generated/frases.json';
-  private readonly docsFilePath = 'docs/assets/data/generated/frases.json'; // Ajusta si la ruta en docs es diferente
-
-  readonly frases$: Observable<Frase[]> = this.contenido.coleccion<Frase>('frases');
+  private readonly docsFilePath = 'docs/assets/data/generated/frases.json';
 
   constructor(private contenido: ContenidoService, private http: HttpClient) {}
 
-  buscar(termino: string): Observable<Frase[]> {
-    return this.frases$.pipe(
+  /** Obtiene las frases frescas (invalidando caché) y aplica el filtro de búsqueda */
+  obtenerFrasesYFiltrar(termino: string): Observable<Frase[]> {
+    return this.contenido.coleccion<Frase>('frases').pipe(
       map((frases) => filtrar(frases, termino, (f) => [f.persona, f.fecha, f.frase, f.explicacion]))
     );
   }
@@ -33,9 +31,6 @@ export class FrasesService {
     });
   }
 
-  /**
-   * Método genérico para actualizar un archivo específico en GitHub
-   */
   private actualizarArchivoEnGitHub(token: string, filePath: string, mensajeCommit: string, operacion: (frases: Frase[]) => Frase[]): Observable<any> {
     const url = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}?ref=${this.branchName}`;
     const headers = this.getHeaders(token);
@@ -62,16 +57,15 @@ export class FrasesService {
     );
   }
 
-  /**
-   * Modifica ambos archivos de forma SECUENCIAL para evitar conflictos de referencia en la rama
-   */
   private modificarAmbosArchivos(token: string, mensaje: string, operacion: (frases: Frase[]) => Frase[]): Observable<any> {
     return this.actualizarArchivoEnGitHub(token, this.originFilePath, `${mensaje} (Origen)`, operacion).pipe(
-      // Esperamos a que el primer commit termine por completo antes de leer y actualizar el segundo archivo
       concatMap(() =>
         this.actualizarArchivoEnGitHub(token, this.docsFilePath, `${mensaje} (Docs)`, operacion)
       ),
-      tap(() => this.contenido.invalidarCache('frases'))
+      tap(() => {
+        // 👈 Limpiamos la caché interna de Angular para que el siguiente GET sea real
+        this.contenido.invalidarCache('frases');
+      })
     );
   }
 

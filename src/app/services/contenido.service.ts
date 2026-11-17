@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, shareReplay } from 'rxjs/operators';
-import { Relato } from '../interfaces/contenido.interface';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { catchError, Observable, of } from "rxjs";
+import { Relato } from "../interfaces/contenido.interface";
 
 @Injectable({ providedIn: 'root' })
 export class ContenidoService {
@@ -11,30 +10,39 @@ export class ContenidoService {
 
   constructor(private http: HttpClient) {}
 
-  /** Una colección (lista) por su nombre: 'frases', 'dibujos', etc. */
   coleccion<T>(nombre: string): Observable<T[]> {
     return this.cargar<T[]>(`${nombre}.json`, []);
   }
 
-  /** Un relato por su nombre. */
   relato(slug: string): Observable<Relato | undefined> {
     return this.cargar<Relato | undefined>(`relatos/${slug}.json`, undefined);
   }
 
-  /** Invalida la caché de una colección para forzar su recarga */
   invalidarCache(nombre: string): void {
+    // Al borrarlo del Map, obligamos a que la próxima petición vuelva a hacer un GET real
     this.cache.delete(`${nombre}.json`);
   }
 
   private cargar<T>(archivo: string, valorSiFalla: T): Observable<T> {
     let obs = this.cache.get(archivo);
     if (!obs) {
-      obs = this.http.get<T>(this.base + archivo).pipe(
+      // Cabeceras HTTP estrictas para evitar que el navegador cachee el JSON
+      const headers = new HttpHeaders({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      });
+
+      // Añadimos un timestamp aleatorio para evitar la caché estática de assets
+      const timestamp = new Date().getTime();
+      const urlConCacheBusting = `${this.base}${archivo}?v=${timestamp}`;
+
+      obs = this.http.get<T>(urlConCacheBusting, { headers }).pipe(
         catchError((err) => {
           console.error(`No se pudo cargar ${archivo}`, err);
           return of(valorSiFalla);
-        }),
-        shareReplay({ bufferSize: 1, refCount: false })
+        })
+        // OJO: Quitamos el shareReplay aquí para que no congrile la respuesta en memoria local
       );
       this.cache.set(archivo, obs);
     }
