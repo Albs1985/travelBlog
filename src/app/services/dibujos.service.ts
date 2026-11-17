@@ -1,110 +1,189 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Dibujo } from '../interfaces/dibujo.interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { concatMap, map, switchMap, tap, catchError } from 'rxjs/operators';
+import { ContenidoService } from './contenido.service';
+import { filtrar } from './buscar.util';
+import { Dibujo } from '../interfaces/contenido.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class DibujosService {
+  private readonly repoOwner = 'Albs1985';
+  private readonly repoName = 'travelBlog';
+  private readonly branchName = 'main'; // O tu rama actual
 
-  cargandoDibujos$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  dibujosFiltrado: Dibujo[] = [];
-  dibujos: Dibujo[] = [];
-  dibujo : Dibujo = {
-    anyo: '',
-    persona: '',
-    edad: '',
-    id: ''
-  };
+  // Rutas de los JSON en origen y docs
+  private readonly originJsonPath = 'src/assets/data/dibujos.json';
+  private readonly docsJsonPath = 'docs/assets/data/dibujos.json';
 
-  DibujosJSON = "assets/data/dibujos.json";
-  constructor(private http: HttpClient) {
+  // 📂 Carpeta exacta donde se guardarán las imágenes físicas
+  private readonly imageFolderSrc = 'src/assets/images/dibujos/';
+  private readonly imageFolderDocs = 'docs/assets/images/dibujos/';
 
+  readonly dibujos$: Observable<Dibujo[]> = this.contenido.coleccion<Dibujo>('dibujos');
+
+  constructor(private contenido: ContenidoService, private http: HttpClient) {}
+
+  buscar(termino: string): Observable<Dibujo[]> {
+    return this.dibujos$.pipe(
+      map((dibujos) => filtrar(dibujos, termino, (d) => [d.persona, d.anyo, d.edad, d.detalle]))
+    );
   }
 
-  cargarDibujos(){
+  private getHeaders(token: string): HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json'
+    });
+  }
 
-    this.cargandoDibujos$.next(true);
-    return new Promise( (resolve, reject) => {
+  /**
+   * Comprime la imagen antes de subirla
+   */
+  private comprimirImagen(file: File, calidad: number = 0.8, maxWidth: number = 1600): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event: any) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
 
-      this.http.get(this.DibujosJSON)
-        .subscribe( (response: any ) => {
-
-          // console.log(response);
-          var array = [];
-          for(let key in response){
-            // console.log(key);
-            // console.log(response[key]);
-            this.dibujo = {
-              anyo: '',
-              persona: '',
-              edad: '',
-              id: ''
-            };
-            this.dibujo.anyo = response[key].anyo;
-            this.dibujo.persona = response[key].persona;
-            this.dibujo.edad = response[key].edad;
-            this.dibujo.id = response[key].id;
-
-            array.push(this.dibujo);
-
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
           }
 
-          this.dibujos = array;
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
 
-          this.cargandoDibujos$.next(false);
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            reject(new Error('No se pudo inicializar el canvas'));
+            return;
+          }
 
-          resolve(this.dibujos);
+          ctx.drawImage(img, 0, 0, width, height);
+          const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
 
-        });
-
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) {
+                reject(new Error('Falló la compresión'));
+                return;
+              }
+              const archivoComprimido = new File([blob], file.name, {
+                type: mimeType,
+                lastModified: Date.now(),
+              });
+              resolve(archivoComprimido);
+            },
+            mimeType,
+            calidad
+          );
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
     });
-
   }
 
-  buscarDibujos(termino : any){
-    var palabra = '';
-    this.cargandoDibujos$.next(true);
-    if (termino.filtro != undefined){
-      palabra = termino.filtro;
-    }else{
-      palabra = termino;
-    }
+  private subirArchivoGitHub(token: string, filePath: string, contentBase64: string, mensaje: string): Observable<any> {
+    const url = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}?ref=${this.branchName}`;
+    const headers = this.getHeaders(token);
 
-    return new Promise( (resolve, reject) => {
-      if (this.dibujos.length === 0){
-        this.cargarDibujos().then(() => {
-          resolve(this.filtrarDibujos(palabra));
-        });
-      }else{
-        resolve(this.filtrarDibujos(palabra));
-      }
-
-    });
-
-
+    return this.http.get<any>(url, { headers, observe: 'response' }).pipe(
+      switchMap(response => {
+        const sha = response.body?.sha;
+        const putUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}`;
+        const body: any = {
+          message: mensaje,
+          content: contentBase64,
+          branch: this.branchName
+        };
+        if (sha) body.sha = sha;
+        return this.http.put(putUrl, body, { headers });
+      }),
+      catchError(() => {
+        const putUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}`;
+        const body = {
+          message: mensaje,
+          content: contentBase64,
+          branch: this.branchName
+        };
+        return this.http.put(putUrl, body, { headers });
+      })
+    );
   }
 
-  private filtrarDibujos(termino : string){
+  private actualizarJsonDibujos(token: string, mensaje: string, operacion: (dibujos: Dibujo[]) => Dibujo[]): Observable<any> {
+    return this.actualizarJsonEnRuta(token, this.originJsonPath, `${mensaje} (Origen)`, operacion).pipe(
+      concatMap(() => this.actualizarJsonEnRuta(token, this.docsJsonPath, `${mensaje} (Docs)`, operacion)),
+      tap(() => this.contenido.invalidarCache('dibujos'))
+    );
+  }
 
-    this.dibujosFiltrado = [];
+  private actualizarJsonEnRuta(token: string, filePath: string, mensaje: string, operacion: (dibujos: Dibujo[]) => Dibujo[]): Observable<any> {
+    const url = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}?ref=${this.branchName}`;
+    const headers = this.getHeaders(token);
 
-    const terminoLower = termino.toString().toLocaleLowerCase();
-    this.dibujos.forEach(dibu => {
+    return this.http.get<any>(url, { headers }).pipe(
+      switchMap(response => {
+        const sha = response.sha;
+        const decodedContent = decodeURIComponent(escape(atob(response.content)));
+        const lista: Dibujo[] = JSON.parse(decodedContent);
 
-      let anyoLower = dibu.anyo.toLocaleLowerCase();
-      let personaLower = dibu.persona.toLocaleLowerCase();
+        const listaModificada = operacion(lista);
+        const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(listaModificada, null, 2))));
 
-      if (anyoLower.indexOf(terminoLower) >=0 || personaLower.indexOf(terminoLower) >=0){
-        this.dibujosFiltrado.push(dibu);
-      }
+        return this.subirArchivoGitHub(token, filePath, contentBase64, mensaje);
+      })
+    );
+  }
+
+  agregarDibujo(nuevoDibujo: Dibujo, file: File, token: string): Observable<any> {
+    return new Observable(observer => {
+      this.comprimirImagen(file, 0.8, 1600).then(fileComprimido => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileComprimido);
+        reader.onload = () => {
+          const base64String = (reader.result as string).split(',')[1];
+
+          // Generamos un nombre limpio y único para evitar colisiones (ej: dibujo_1718382910.jpg)
+          const extension = file.name.split('.').pop() || 'jpg';
+          const nombreUnico = `dibujo_${Date.now()}.${extension}`;
+
+          // La ruta relativa que se guardará en el JSON y buscará el [src]
+          nuevoDibujo.src = `dibujos/${nombreUnico}`;
+
+          // 1. Subir imagen a src/assets/images/dibujos/ y docs/assets/images/dibujos/ de forma limpia
+          this.subirArchivoGitHub(token, `${this.imageFolderSrc}${nombreUnico}`, base64String, `Subir imagen ${nombreUnico}`)
+            .pipe(
+              concatMap(() => this.subirArchivoGitHub(token, `${this.imageFolderDocs}${nombreUnico}`, base64String, `Subir imagen ${nombreUnico} (Docs)`)),
+              // 2. Actualizar el JSON de dibujos en ambos sitios
+              concatMap(() => this.actualizarJsonDibujos(token, `Añadir dibujo de ${nuevoDibujo.persona}`, (dibujos) => {
+                const maxId = dibujos.length > 0 ? Math.max(...dibujos.map(d => Number(d.id) || 0)) : 0;
+                nuevoDibujo.id = maxId + 1;
+                dibujos.push(nuevoDibujo);
+                return dibujos;
+              }))
+            )
+            .subscribe({
+              next: (res) => { observer.next(res); observer.complete(); },
+              error: (err) => observer.error(err)
+            });
+        };
+        reader.onerror = (error) => observer.error(error);
+      }).catch(err => observer.error(err));
     });
+  }
 
-    this.dibujos = this.dibujosFiltrado;
-
-    this.cargandoDibujos$.next(false);
-    // console.log(this.dibujos);
-
+  eliminarDibujo(id: number | string, token: string): Observable<any> {
+    return this.actualizarJsonDibujos(token, `Eliminar dibujo ID ${id}`, (dibujos) => {
+      return dibujos.filter(d => Number(d.id) !== Number(id));
+    });
   }
 }

@@ -5,10 +5,7 @@
     "persona": "Mateu",
     "anyo": 2022,
     "edad": 2,
-    "detalle": {
-      "es": "Manualidades en la clase de Murta, 2º Escoleta",
-      "val": "Manualitats a la clase de Murta, 2º Escoleta"
-    }
+    "detalle": "Manualitats a la clase de Murta, 2º Escoleta"
   },
   {
     "id": 2,
@@ -16,10 +13,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos",
-      "val": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
-    }
+    "detalle": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
   },
   {
     "id": 3,
@@ -27,10 +21,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Figuras de barro hechas en casa de la yaya Ana, las tardes de primos",
-      "val": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
-    }
+    "detalle": "Figures de fang fetes a casa de la iaia Anna, les vesprades de cosins"
   },
   {
     "id": 4,
@@ -38,10 +29,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Dibujos en la clase de Paula, 1º Infantil",
-      "val": "Dibuixos a la clase de Paula, 1r Infantil"
-    }
+    "detalle": "Dibuixos a la clase de Paula, 1r Infantil"
   },
   {
     "id": 5,
@@ -49,10 +37,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Manualidades en la clase de Paula, 1º Infantil",
-      "val": "Manualitats a la clase de Paula, 1r Infantil"
-    }
+    "detalle": "Manualitats a la clase de Paula, 1r Infantil"
   },
   {
     "id": 6,
@@ -60,10 +45,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Dibujos en la clase de Paula, 1º Infantil",
-      "val": "Dibuixos a la clase de Paula, 1r Infantil"
-    }
+    "detalle": "Dibuixos a la clase de Paula, 1r Infantil"
   },
   {
     "id": 7,
@@ -71,10 +53,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Dibujo en acuarela en la clase de Paula, 1º Infantil",
-      "val": "Dibuix en aquarel·la a la clase de Paula, 1r Infantil"
-    }
+    "detalle": "Dibuix en aquarel·la a la clase de Paula, 1r Infantil"
   },
   {
     "id": 8,
@@ -82,10 +61,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 3,
-    "detalle": {
-      "es": "Dibujo del viaje de los iaios a ver las auroras boreales, 1º Infantil",
-      "val": "Dibuix del viatge dels iaios a veure les aurores boreals, 1r Infantil"
-    }
+    "detalle": "Dibuix del viatge dels iaios a veure les aurores boreals, 1r Infantil"
   },
   {
     "id": 9,
@@ -93,10 +69,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 4,
-    "detalle": {
-      "es": "Dibujo de la mama del tablón de anuncios de su clase de 4 años",
-      "val": "Dibuix de la mama del panel d'anuncis de la seua clase de 4 anys"
-    }
+    "detalle": "Dibuix de la mama del panel d'anuncis de la seua clase de 4 anys"
   },
   {
     "id": 10,
@@ -104,10 +77,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 4,
-    "detalle": {
-      "es": "Dibujando en casa",
-      "val": "Dibuixant a casa"
-    }
+    "detalle": "Dibuixant a casa"
   },
   {
     "id": 11,
@@ -115,10 +85,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 4,
-    "detalle": {
-      "es": "Dibujando en casa",
-      "val": "Dibuixant a  casa"
-    }
+    "detalle": "Dibuixant a  casa"
   },
   {
     "id": 12,
@@ -126,10 +93,7 @@
     "persona": "Mateu",
     "anyo": 2024,
     "edad": 4,
-    "detalle": {
-      "es": "Dibujando en casa",
-      "val": "Dibuixant a casa"
-    }
+    "detalle": "Dibuixant a casa"
   },
   {
     "id": 13,
@@ -137,13 +101,5 @@
     "persona": "Mateu",
     "anyo": 2025,
     "edad": 4
-  },
-  {
-    "persona": "Mateu",
-    "anyo": "2026",
-    "edad": "6",
-    "detalle": "Proba",
-    "src": "dibujos/_D0A8682.jpg",
-    "id": 14
   }
 ]

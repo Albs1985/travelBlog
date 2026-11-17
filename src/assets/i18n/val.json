@@ -174,7 +174,12 @@
     "unaFraseDe": "UNA FRASE DE",
     "recuerdoSiempre": "UN RECORD PER A SEMPRE",
     "sinFrasesTitulo": "No hem trobat cap frase",
-    "frasesLabel": "Els Nostres xicotets records"
+    "frasesLabel": "Els Nostres xicotets records",
+    "nuevoDibujo": "Nou Dibuix",
+    "edadLabel": "EDAT",
+    "detalleLabel": "DETALL / DESCRIPCIÓ",
+    "imagenLabel": "IMATGE DEL DIBUIX",
+    "verDetalle": "Vore detall"
   },
   "header": {
     "categoria": "Categoríes",
