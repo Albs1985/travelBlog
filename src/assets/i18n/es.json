@@ -179,7 +179,17 @@
     "edadLabel": "EDAD",
     "detalleLabel": "DETALLE / DESCRIPCIÓN",
     "imagenLabel": "IMAGEN DEL DIBUJO",
-    "verDetalle": "Ver detalle"
+    "verDetalle": "Ver detalle",
+    "nuevoFavorito": "Nuevo Favorito",
+    "seleccionarFotos": "SELECCIONAR FOTOS",
+    "anyoPlaceholder": "Año",
+    "lugarPlaceholder": "Lugar",
+    "etiquetasPlaceholder": "Etiquetas (coma)",
+    "personasPlaceholder": "Personas (coma)",
+    "descPlaceholder": "Descripción de la foto",
+    "quitar": "Quitar",
+    "guardarLote": "Guardar lote",
+    "eliminando": "Eliminando..."
   },
   "header": {
     "categoria": "Categorias",

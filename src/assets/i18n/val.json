@@ -179,7 +179,17 @@
     "edadLabel": "EDAT",
     "detalleLabel": "DETALL / DESCRIPCIÓ",
     "imagenLabel": "IMATGE DEL DIBUIX",
-    "verDetalle": "Vore detall"
+    "verDetalle": "Vore detall",
+    "nuevoFavorito": "Nou Favorit",
+    "seleccionarFotos": "SELECCIONAR FOTOS",
+    "anyoPlaceholder": "Any",
+    "lugarPlaceholder": "Lloc",
+    "etiquetasPlaceholder": "Etiquetes (coma)",
+    "personasPlaceholder": "Persones (coma)",
+    "descPlaceholder": "Descripció de la foto",
+    "quitar": "Llevar",
+    "guardarLote": "Guardar lot",
+    "eliminando": "Eliminant..."
   },
   "header": {
     "categoria": "Categoríes",

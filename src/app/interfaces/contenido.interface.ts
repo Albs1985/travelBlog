@@ -30,7 +30,7 @@ export interface FotoFavorita {
   lugar?: string;
   etiquetas?: string;
   personas: string[];
-  desc?: Texto;
+  desc?: string; // Como un string simple
 }
 
 export type TipoReceta = 'frio' | 'caliente' | 'dulce';
