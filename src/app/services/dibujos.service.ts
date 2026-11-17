@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { concatMap, map, switchMap, tap, catchError } from 'rxjs/operators';
 import { ContenidoService } from './contenido.service';
 import { filtrar } from './buscar.util';
@@ -197,9 +197,64 @@ export class DibujosService {
     });
   }
 
+  /**
+   * Elimina un archivo físico (imagen) de GitHub usando su ruta y SHA
+   */
+  private eliminarArchivoGitHub(token: string, filePath: string, mensaje: string): Observable<any> {
+    const url = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}?ref=${this.branchName}`;
+    const headers = this.getHeaders(token);
+
+    return this.http.get<any>(url, { headers }).pipe(
+      switchMap(response => {
+        const sha = response.sha;
+        const deleteUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${filePath}`;
+        const body = {
+          message: mensaje,
+          sha: sha,
+          branch: this.branchName
+        };
+        // En Angular, la petición DELETE con cuerpo requiere pasar las opciones { headers, body }
+        return this.http.request('delete', deleteUrl, { headers, body });
+      }),
+      catchError(err => {
+        console.warn(`No se pudo encontrar o eliminar el archivo físico ${filePath} (puede que ya no exista):`, err);
+        return of(null); // Permite continuar el flujo aunque la imagen ya estuviera borrada
+      })
+    );
+  }
+
+  /**
+   * Método completo para eliminar el registro del JSON y sus imágenes asociadas en origen y docs
+   */
   eliminarDibujo(id: number | string, token: string): Observable<any> {
-    return this.actualizarJsonDibujos(token, `Eliminar dibujo ID ${id}`, (dibujos) => {
-      return dibujos.filter(d => Number(d.id) !== Number(id));
-    });
+    const url = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${this.originJsonPath}?ref=${this.branchName}`;
+    const headers = this.getHeaders(token);
+
+    // 1. Primero leemos el JSON para averiguar la ruta de la imagen (src) asociada a este id
+    return this.http.get<any>(url, { headers }).pipe(
+      switchMap(response => {
+        const decodedContent = decodeURIComponent(escape(atob(response.content)));
+        const dibujos: Dibujo[] = JSON.parse(decodedContent);
+        const dibujoAEliminar = dibujos.find(d => Number(d.id) === Number(id));
+        const imageSrc = dibujoAEliminar ? dibujoAEliminar.src : null; // Ej: "dibujos/dibujo_171838.jpg"
+
+        // 2. Actualizamos los ficheros JSON (Origen y Docs) quitando el registro
+        return this.actualizarJsonDibujos(token, `Eliminar dibujo ID ${id}`, (lista) => {
+          return lista.filter(d => Number(d.id) !== Number(id));
+        }).pipe(
+          // 3. Una vez actualizado el JSON, borramos los archivos físicos de imagen si existen
+          concatMap(() => {
+            if (!imageSrc) return of(null);
+
+            const imgPathSrc = `src/assets/images/${imageSrc}`;
+            const imgPathDocs = `docs/assets/images/${imageSrc}`;
+
+            return this.eliminarArchivoGitHub(token, imgPathSrc, `Eliminar imagen física ${imageSrc}`).pipe(
+              concatMap(() => this.eliminarArchivoGitHub(token, imgPathDocs, `Eliminar imagen física ${imageSrc} (Docs)`))
+            );
+          })
+        );
+      })
+    );
   }
 }
