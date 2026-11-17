@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, forkJoin } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { ContenidoService } from './contenido.service';
 import { filtrar } from './buscar.util';
 import { Frase } from '../interfaces/contenido.interface';
@@ -63,14 +63,14 @@ export class FrasesService {
   }
 
   /**
-   * Modifica ambos archivos (Origen y Docs) simultáneamente usando forkJoin
+   * Modifica ambos archivos de forma SECUENCIAL para evitar conflictos de referencia en la rama
    */
   private modificarAmbosArchivos(token: string, mensaje: string, operacion: (frases: Frase[]) => Frase[]): Observable<any> {
-    const origen$ = this.actualizarArchivoEnGitHub(token, this.originFilePath, `${mensaje} (Origen)`, operacion);
-    const docs$ = this.actualizarArchivoEnGitHub(token, this.docsFilePath, `${mensaje} (Docs)`, operacion);
-
-    // Ejecutamos ambas peticiones en paralelo
-    return forkJoin([origen$, docs$]).pipe(
+    return this.actualizarArchivoEnGitHub(token, this.originFilePath, `${mensaje} (Origen)`, operacion).pipe(
+      // Esperamos a que el primer commit termine por completo antes de leer y actualizar el segundo archivo
+      concatMap(() =>
+        this.actualizarArchivoEnGitHub(token, this.docsFilePath, `${mensaje} (Docs)`, operacion)
+      ),
       tap(() => this.contenido.invalidarCache('frases'))
     );
   }
