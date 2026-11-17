@@ -101,5 +101,13 @@
     "persona": "Mateu",
     "anyo": 2025,
     "edad": 4
+  },
+  {
+    "id": 14,
+    "src": "dibujos/dibujo_1794924495891.jpg",
+    "persona": "Mateu",
+    "anyo": "2026",
+    "edad": "6",
+    "detalle": "ASSSSSE"
   }
 ]
