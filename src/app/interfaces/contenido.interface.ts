@@ -6,8 +6,8 @@ export interface Frase {
   id: number;
   persona: string;
   fecha: string;
-  frase: Texto;
-  explicacion?: Texto;
+  frase: string;
+  explicacion?: string;
 }
 
 export interface Dibujo {

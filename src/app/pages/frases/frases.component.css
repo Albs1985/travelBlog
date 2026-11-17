@@ -627,3 +627,29 @@
 .margin-top-5rem{
   margin-top: 5rem;
 }
+
+.btn-admin-action {
+  padding: 8px 14px;
+  background: #fffdfb;
+  border: 1px solid #f0e9e5;
+  border-radius: 12px;
+  color: #8d7c7e;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(100,75,70,0.03);
+  transition: all 0.2s;
+}
+.btn-admin-action:hover {
+  background: #fff0dc;
+  color: #ce9b74;
+}
+.btn-primary-action {
+  background: #e9bf91;
+  color: white;
+  border-color: #e9bf91;
+}
+.btn-primary-action:hover {
+  background: #d8af80;
+  color: white;
+}
