@@ -189,7 +189,11 @@
     "descPlaceholder": "Descripción de la foto",
     "quitar": "Quitar",
     "guardarLote": "Guardar lote",
-    "eliminando": "Eliminando..."
+    "eliminando": "Eliminando...",
+    "cancelarSeleccion": "Cancelar Selección",
+    "borrarVarios": "Borrar Varios...",
+    "seleccionadas": "seleccionadas",
+    "confirmarBorradoMultiple": "Confirmar Borrado Múltiple"
   },
   "header": {
     "categoria": "Categorias",

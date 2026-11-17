@@ -21,7 +21,7 @@
 
   <!-- Barra de acciones y panel de administrador -->
   <div class="fav-action-bar">
-    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
       <button class="botonOrdenar animated zoomInDown" (click)="ordenar()">
         <img *ngIf="!orderDesc" src="assets/icons/flechaAbajo.png" class="iconoFlecha" alt="">
         <img *ngIf="orderDesc" src="assets/icons/flechaArriba.png" class="iconoFlecha" alt="">
@@ -35,6 +35,19 @@
       <button *ngIf="authenticationService.isLoggedIn() && githubToken" class="botonOrdenar animated zoomInDown" style="background: linear-gradient(135deg, #10b981, #059669);" (click)="mostrarFormulario = true">
         ✨ {{ 'app.nuevoFavorito' | translate }}
       </button>
+
+      <!-- Botón Activar / Desactivar Selección Múltiple -->
+      <button *ngIf="authenticationService.isLoggedIn() && githubToken" class="botonOrdenar animated zoomInDown" style="background: linear-gradient(135deg, #ef4444, #dc2626);" (click)="modoSeleccionMultiple = !modoSeleccionMultiple; seleccionadasParaBorrar.clear()">
+        🗑️ {{ modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate) }}
+      </button>
+
+      <!-- Barra flotante de confirmación si hay elementos seleccionados -->
+      <div *ngIf="modoSeleccionMultiple && seleccionadasParaBorrar.size > 0" style="background: #fff; padding: 6px 15px; border-radius: 50px; border: 2px solid #ef4444; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 13px; font-weight: bold; color: #dc2626;">{{ seleccionadasParaBorrar.size }} {{ 'app.seleccionadas' | translate }}</span>
+        <button (click)="eliminarSeleccionadas()" style="background: #dc2626; color: white; border: none; padding: 6px 14px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px;">
+          {{ 'app.confirmarBorradoMultiple' | translate }}
+        </button>
+      </div>
     </div>
 
     <div class="divRight">
@@ -140,13 +153,21 @@
               <div class="img-frame" style="position: relative;">
                 <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
 
+                <!-- Checkbox de selección múltiple -->
+                <div *ngIf="modoSeleccionMultiple" style="position: absolute; top: 10px; left: 10px; z-index: 20;" (click)="$event.stopPropagation()">
+                  <input type="checkbox"
+                         [checked]="seleccionadasParaBorrar.has(foto.src)"
+                         (change)="toggleSeleccion(foto.src)"
+                         style="width: 20px; height: 20px; cursor: pointer;" />
+                </div>
+
                 <!-- Overlay de Eliminando -->
                 <div *ngIf="idsEliminando.has(foto.src)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px;">
                   <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
                   <span style="font-size: 11px; font-weight: bold; color: #d97706;">{{ 'app.eliminando' | translate }}</span>
                 </div>
 
-                <div class="card-glass-overlay" *ngIf="!idsEliminando.has(foto.src)">
+                <div class="card-glass-overlay" *ngIf="!idsEliminando.has(foto.src) && !modoSeleccionMultiple">
                   <span class="explore-pill">✨ {{ 'app.verDetalle' | translate }}</span>
                 </div>
               </div>
@@ -155,7 +176,7 @@
                 <div style="width: 100%;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
                     <div class="badge-anyo">{{foto.anyo}}</div>
-                    <button *ngIf="githubToken"
+                    <button *ngIf="githubToken && !modoSeleccionMultiple"
                             [disabled]="idsEliminando.has(foto.src)"
                             (click)="eliminar(foto.src, $event)"
                             style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 3px 8px; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: bold;">
