@@ -22,8 +22,8 @@ export class FavoritosService {
   private readonly repoName = 'travelBlog';
   private readonly branchName = 'main';
 
-  private readonly originJsonPath = 'src/assets/data/generated/favoritos.json';
-  private readonly docsJsonPath = 'docs/assets/data/generated/favoritos.json';
+  private readonly originJsonPath = 'src/assets/data/favoritos.json';
+  private readonly docsJsonPath = 'docs/assets/data/favoritos.json';
 
   private readonly imageFolderSrc = 'src/assets/images/favoritos/';
   private readonly imageFolderDocs = 'docs/assets/images/favoritos/';

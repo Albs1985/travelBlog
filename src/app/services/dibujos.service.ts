@@ -12,9 +12,9 @@ export class DibujosService {
   private readonly repoName = 'travelBlog';
   private readonly branchName = 'main'; // O tu rama actual
 
-  // Rutas de los JSON en origen y docs (con /generated/)
-  private readonly originJsonPath = 'src/assets/data/generated/dibujos.json';
-  private readonly docsJsonPath = 'docs/assets/data/generated/dibujos.json';
+  // Rutas de los JSON en origen y docs
+  private readonly originJsonPath = 'src/assets/data/dibujos.json';
+  private readonly docsJsonPath = 'docs/assets/data/dibujos.json';
 
   // Carpeta exacta donde se guardarán las imágenes físicas
   private readonly imageFolderSrc = 'src/assets/images/dibujos/';

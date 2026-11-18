@@ -12,8 +12,8 @@ export class FrasesService {
   private readonly repoName = 'travelBlog';
   private readonly branchName = 'main';
 
-  private readonly originFilePath = 'src/assets/data/generated/frases.json';
-  private readonly docsFilePath = 'docs/assets/data/generated/frases.json';
+  private readonly originFilePath = 'src/assets/data/frases.json';
+  private readonly docsFilePath = 'docs/assets/data/frases.json';
 
   constructor(private contenido: ContenidoService, private http: HttpClient) {}
 

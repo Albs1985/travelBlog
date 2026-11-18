@@ -5,7 +5,7 @@ import { Relato } from "../interfaces/contenido.interface";
 
 @Injectable({ providedIn: 'root' })
 export class ContenidoService {
-  private readonly base = 'assets/data/generated/';
+  private readonly base = 'assets/data/';
   private readonly cache = new Map<string, Observable<any>>();
 
   constructor(private http: HttpClient) {}
