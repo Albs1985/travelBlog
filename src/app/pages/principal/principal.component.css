@@ -96,3 +96,89 @@ a {
     height: 50px;
   }
 }
+
+
+/* ========================================================
+   VIAJEROS OPTIMIZADOS (Grandes en PC, Centrados, Flexibles)
+   ======================================================== */
+   .viajeros-stories-section {
+    margin-bottom: 25px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #edf2f7;
+    display: flex;
+    justify-content: center; /* Centrado perfecto en PC */
+  }
+
+  .stories-container-centered {
+    overflow: hidden;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 5px;
+    max-width: 100%;
+    justify-content: center;
+    flex-wrap: wrap; /* Se acomodan en móvil y se centran en PC */
+  }
+
+  .story-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .story-ring {
+    display: block;
+    padding: 4px;
+    background: linear-gradient(45deg, #f59e0b, #ec4899);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    /* box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25); */
+  }
+
+  .story-ring:hover {
+    transform: scale(1.08);
+  }
+
+  /* Tamaño de avatares grande en PC y adaptable en móvil */
+  .img-story {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    display: block;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .img-story {
+      width: 60px;
+      height: 60px;
+    }
+    .stories-container-centered {
+      justify-content: flex-start; /* Scroll horizontal fluido en pantallas pequeñas */
+    }
+  }
+
+  .story-meta {
+    margin-top: 8px;
+  }
+
+  .story-meta .nombre {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2d3748;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .story-meta .edad {
+    font-size: 0.75rem;
+    color: #718096;
+  }

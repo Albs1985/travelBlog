@@ -1,12 +1,10 @@
 <div class="games-home-wrapper">
 
-  <!-- Botón Volver Flotante Superior -->
-  <div class="top-nav-bar">
-    <a class="btn-volver-glass animated zoomInDown" routerLink="/principal">
-      <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
-      <span>{{ 'viaje.volver' | translate}}</span>
-    </a>
-  </div>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="false">
+  </app-toolbar>
 
   <!-- Contenido Protegido / Home de Juegos -->
   <div class="games-hero-section">

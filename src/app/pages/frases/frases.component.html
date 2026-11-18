@@ -24,32 +24,11 @@
     </div>
   </header>
 
-  <!-- Barra de Acciones y Token -->
-  <div class="admin-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
-    <div class="back-link" style="margin: 0;">
-      <img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/principal" alt="">
-      <a routerLink="/principal">{{ 'viaje.volver' | translate }}</a>
-    </div>
-
-    <div style="display: flex; gap: 10px;">
-      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" (click)="mostrarPanelToken = !mostrarPanelToken">
-        🔑 {{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}
-      </button>
-      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" *ngIf="githubToken" (click)="abrirCrear()">
-        ✨ {{ 'app.nuevaFrase' | translate }}
-      </button>
-    </div>
-  </div>
-
-  <!-- Panel Desplegable para configurar el Token -->
-  <div *ngIf="mostrarPanelToken" class="admin-panel-token" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-    <h4 style="margin: 0 0 10px; color: #65515a; font-family: Georgia, serif;">{{ 'app.adminTokenConfig' | translate }}</h4>
-    <p style="margin: 0 0 12px; font-size: 12px; color: #a39ba0;">{{ 'app.adminTokenDescripcion' | translate }}</p>
-    <div style="display: flex; gap: 10px;">
-      <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" style="flex: 1; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; outline: none; font-size: 13px;" />
-      <button (click)="guardarToken(tokenInput.value)" style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.guardar' | translate }}</button>
-    </div>
-  </div>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [textoNuevo]="'app.nuevaFrase'"
+    (nuevo)="mostrarFormulario = true">
+  </app-toolbar>
 
   <!-- Modal / Formulario Crear o Editar Frase -->
   <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">

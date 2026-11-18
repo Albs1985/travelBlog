@@ -19,13 +19,11 @@
     </div>
   </header>
 
-  <!-- Botón Volver Superior (Estilo pastilla con borde) -->
-  <div class="action-bar">
-    <a class="btn-volver-pill animated zoomInDown" routerLink="/principal">
-      <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
-      <span>{{ 'viaje.volver' | translate}}</span>
-    </a>
-  </div>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="false">
+  </app-toolbar>
 
   <!-- Para autenticarse en la aplicación -->
   <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">

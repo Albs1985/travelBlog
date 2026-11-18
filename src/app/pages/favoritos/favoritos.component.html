@@ -19,54 +19,19 @@
     </div>
   </header>
 
-  <!-- Barra de acciones y panel de administrador -->
-  <div class="fav-action-bar">
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-      <button class="botonOrdenar animated zoomInDown" (click)="ordenar()">
-        <img *ngIf="!orderDesc" src="assets/icons/flechaAbajo.png" class="iconoFlecha" alt="">
-        <img *ngIf="orderDesc" src="assets/icons/flechaArriba.png" class="iconoFlecha" alt="">
-        <span>{{ 'app.ordenarPorAnyo' | translate }}</span>
-      </button>
-
-      <button *ngIf="authenticationService.isLoggedIn()" class="botonOrdenar animated zoomInDown" style="background: linear-gradient(135deg, #f59e0b, #d97706);" (click)="mostrarPanelToken = !mostrarPanelToken">
-        🔑 {{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}
-      </button>
-
-      <button *ngIf="authenticationService.isLoggedIn() && githubToken" class="botonOrdenar animated zoomInDown" style="background: linear-gradient(135deg, #10b981, #059669);" (click)="mostrarFormulario = true">
-        ✨ {{ 'app.nuevoFavorito' | translate }}
-      </button>
-
-      <!-- Botón Activar / Desactivar Selección Múltiple -->
-      <button *ngIf="authenticationService.isLoggedIn() && githubToken" class="botonOrdenar animated zoomInDown" style="background: linear-gradient(135deg, #ef4444, #dc2626);" (click)="modoSeleccionMultiple = !modoSeleccionMultiple; seleccionadasParaBorrar.clear()">
-        🗑️ {{ modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate) }}
-      </button>
-
-      <!-- Barra flotante de confirmación si hay elementos seleccionados -->
-      <div *ngIf="modoSeleccionMultiple && seleccionadasParaBorrar.size > 0" style="background: #fff; padding: 6px 15px; border-radius: 50px; border: 2px solid #ef4444; display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 13px; font-weight: bold; color: #dc2626;">{{ seleccionadasParaBorrar.size }} {{ 'app.seleccionadas' | translate }}</span>
-        <button (click)="eliminarSeleccionadas()" style="background: #dc2626; color: white; border: none; padding: 6px 14px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px;">
-          {{ 'app.confirmarBorradoMultiple' | translate }}
-        </button>
-      </div>
-    </div>
-
-    <div class="divRight">
-      <a class="btn-volver-pill animated zoomInDown" routerLink="/principal">
-        <img src="assets/icons/flechaAtras.png" class="iconoFlecha" alt="">
-        <span>{{ 'viaje.volver' | translate}}</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Panel Desplegable para configurar el Token -->
-  <div *ngIf="mostrarPanelToken" class="admin-panel-token" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-    <h4 style="margin: 0 0 10px; color: #65515a; font-family: Georgia, serif;">{{ 'app.adminTokenConfig' | translate }}</h4>
-    <p style="margin: 0 0 12px; font-size: 12px; color: #a39ba0;">{{ 'app.adminTokenDescripcion' | translate }}</p>
-    <div style="display: flex; gap: 10px;">
-      <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" style="flex: 1; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; outline: none; font-size: 13px;" />
-      <button (click)="guardarToken(tokenInput.value)" style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.guardar' | translate }}</button>
-    </div>
-  </div>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [textoNuevo]="'app.nuevoFavorito'"
+    [mostrarBotonOrdenar]="true"
+    [orderDesc]="orderDesc"
+    [mostrarBotonSeleccionMultiple]="true"
+    [modoSeleccionMultiple]="modoSeleccionMultiple"
+    [cantidadSeleccionada]="seleccionadasParaBorrar.size"
+    (ordenar)="ordenar()"
+    (nuevo)="mostrarFormulario = true"
+    (toggleSeleccionMultiple)="modoSeleccionMultiple = !modoSeleccionMultiple; seleccionadasParaBorrar.clear()"
+    (confirmarBorradoMultiple)="eliminarSeleccionadas()">
+  </app-toolbar>
 
   <!-- Modal / Formulario Múltiple por Lotes -->
   <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
@@ -117,21 +82,6 @@
 
   <!-- Contenido protegido -->
   <div *ngIf="authenticationService.isLoggedIn()" class="fav-main-content">
-
-    <!-- Avatares de Viajeros -->
-    <div class="viajeros-stories-section" *ngIf="viajerosService.viajeros$ | async as viajeros">
-      <div class="stories-container-centered">
-        <div *ngFor="let viajero of viajeros" class="story-item animated fadeInUp">
-          <a target="_blank" rel="noopener" [href]="viajero.fotoPerfil" class="story-ring">
-            <img [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" class="img-story">
-          </a>
-          <div class="story-meta">
-            <span class="nombre">{{viajero.nombreCorto}}</span>
-            <span class="edad">{{viajero.edad}} {{ 'app.edad' | translate}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Buscador Integrado -->
     <div class="buscador-artistic-container">

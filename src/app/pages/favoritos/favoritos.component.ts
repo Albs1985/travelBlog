@@ -58,7 +58,6 @@ export class FavoritosComponent {
   constructor(
     private contenido: ContenidoService,
     private favoritosService: FavoritosService,
-    public viajerosService: ViajerosService,
     public authenticationService: AutenticationService
   ) {}
 

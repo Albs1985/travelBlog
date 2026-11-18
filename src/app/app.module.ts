@@ -40,6 +40,7 @@ import { MapComponent } from './pages/map/map.component';
 import { GraficaComponent } from './pages/map/grafica/grafica.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cu
     GraficaComponent,
     TablerosComponent,
     MisionCumplidaComponent,
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,

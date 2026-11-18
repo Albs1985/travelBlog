@@ -20,24 +20,11 @@
     </div>
   </header>
 
-  <!-- Barra de Acciones y Token Admin -->
-  <div class="admin-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
-    <div class="back-link" style="margin: 0;">
-      <a class="btn-volver-pill animated zoomInDown" routerLink="/principal">
-        <img src="assets/icons/flechaAtras.png" class="iconoFlecha" alt="">
-        <span>{{ 'viaje.volver' | translate }}</span>
-      </a>
-    </div>
-
-    <div style="display: flex; gap: 10px;" *ngIf="authenticationService.isLoggedIn()">
-      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" (click)="mostrarPanelToken = !mostrarPanelToken">
-        🔑 {{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}
-      </button>
-      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" *ngIf="githubToken" (click)="mostrarFormulario = true">
-        ✨ {{ 'app.nuevoDibujo' | translate }}
-      </button>
-    </div>
-  </div>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [textoNuevo]="'app.nuevoDibujo'"
+    (nuevo)="mostrarFormulario = true">
+  </app-toolbar>
 
   <!-- Panel Desplegable para configurar el Token -->
   <div *ngIf="mostrarPanelToken" class="admin-panel-token" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
