@@ -84,22 +84,14 @@
     </div>
 
     <!-- Paginación entre años anteriores y siguientes -->
-    <div *ngIf="vista.modo === 'anyo'" class="row justify-content-center my-4">
-      <div class="col-12 col-md-10 col-lg-8 mx-auto d-flex justify-content-between align-items-center">
-        <div>
-          <a *ngIf="vista.anyoAnterior" [routerLink]="['/viajesFiltrados', vista.anyoAnterior]" class="d-inline-flex align-items-center gap-2 text-decoration-none">
-            <img src="assets/icons/flechaIzq.png" alt="" class="animated fadeIn pulseGrande iconoFlecha">
-            <span>{{ 'viaje.anteriores' | translate }}</span>
-          </a>
-        </div>
-        <div>
-          <a *ngIf="vista.anyoSiguiente" [routerLink]="['/viajesFiltrados', vista.anyoSiguiente]" class="d-inline-flex align-items-center gap-2 text-decoration-none">
-            <span>{{ 'viaje.siguientes' | translate }}</span>
-            <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulseGrande iconoFlecha">
-          </a>
-        </div>
-      </div>
-    </div>
+    <app-paginacion
+      *ngIf="vista.modo === 'anyo'"
+      [linkAnterior]="vista.anyoAnterior ? ['/viajesFiltrados', vista.anyoAnterior] : undefined"
+      [textoAnterior]="'viaje.anteriores'"
+      [linkSiguiente]="vista.anyoSiguiente ? ['/viajesFiltrados', vista.anyoSiguiente] : undefined"
+      [textoSiguiente]="'viaje.siguientes'"
+      [claseIcono]="'animated fadeIn pulseGrande iconoFlecha'">
+    </app-paginacion>
 
   </ng-container>
 
@@ -112,7 +104,7 @@
 </div>
 
 <!-- TOOLBAR INFERIOR: Acceso directo para volver sin tener que hacer scroll hasta arriba -->
-<div class="container py-4">
+<!-- <div class="container py-4">
   <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8 mx-auto">
 
@@ -125,4 +117,4 @@
 
     </div>
   </div>
-</div>
+</div> -->

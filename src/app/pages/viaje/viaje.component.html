@@ -82,14 +82,12 @@
             </div>
           </div>
 
-          <div *ngIf="vista.viaje.anterior" class="divLeft">
-            <img src="assets/icons/flechaIzq.png" alt="" class="animated fadeIn pulse iconoFlecha" [routerLink]="['/viaje', vista.viaje.anterior]">&nbsp;
-            <a [routerLink]="['/viaje', vista.viaje.anterior]">  {{ 'viaje.anterior' | translate }}</a>
-          </div>
-          <div *ngIf="vista.viaje.siguiente" class="divRight">
-            <a [routerLink]="['/viaje', vista.viaje.siguiente]">  {{ 'viaje.siguiente' | translate }}</a>&nbsp;
-            <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulse iconoFlecha" [routerLink]="['/viaje', vista.viaje.siguiente]">
-          </div>
+          <app-paginacion
+            [linkAnterior]="vista.viaje.anterior ? ['/viaje', vista.viaje.anterior] : undefined"
+            [textoAnterior]="'viaje.anterior'"
+            [linkSiguiente]="vista.viaje.siguiente ? ['/viaje', vista.viaje.siguiente] : undefined"
+            [textoSiguiente]="'viaje.siguiente'">
+          </app-paginacion>
         </article>
       </div>
 
