@@ -84,13 +84,7 @@
     </div>
   </div>
 
-  <!-- Para autenticarse en la aplicación -->
-  <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">
-    <app-login></app-login>
-  </div>
-
-  <!-- Contenido protegido -->
-  <div *ngIf="authenticationService.isLoggedIn()" class="fav-main-content">
+  <div class="fav-main-content">
     <ng-container *ngIf="vista$ | async as vista; else cargando">
 
       <!-- Buscador -->

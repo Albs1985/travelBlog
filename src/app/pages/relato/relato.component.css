@@ -1,4 +1,4 @@
-/* Contenedor general */
+/* Contenedor fluido principal */
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -7,7 +7,22 @@
   margin-left: auto;
 }
 
-/* Forzar que el toolbar ocupe todo el ancho de la columna central */
+/* Fila con centrado estricto de Bootstrap */
+.row.justify-content-center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* La caja del artículo se alinea perfectamente al centro en PC gracias a mx-auto */
+article.col-12 {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Forzar que la barra de herramientas ocupe todo el ancho de la caja central */
 app-toolbar {
   display: block;
   width: 100%;
@@ -41,9 +56,6 @@ app-toolbar {
   margin-top: 8px;
 }
 
-/* ========================================================
-   IMÁGENES: Mantienen su tamaño y proporciones originales
-   ======================================================== */
 .foto-btn {
   display: block;
   width: 100%;
@@ -53,14 +65,13 @@ app-toolbar {
   cursor: zoom-in;
 }
 
-/* Evitamos que Bootstrap fuerce alturas extrañas y permitimos que la imagen sea natural */
 figure img,
 .foto-btn img,
 app-bloques img {
   max-width: 100% !important;
   width: auto !important;
   height: auto !important;
-  max-height: 75vh !important; /* Limita fotos gigantes en PC pero sin deformar */
+  max-height: 75vh !important;
   object-fit: contain !important;
   border-radius: 12px;
   display: block;
@@ -73,19 +84,9 @@ app-bloques img {
   object-fit: contain;
 }
 
-
-
-/* Ajustes responsivos para asegurar que en móvil respire bien */
 @media only screen and (max-width: 768px) {
   article.col-12 {
     padding-left: 10px !important;
     padding-right: 10px !important;
-  }
-
-  figure img,
-  .foto-btn img,
-  app-bloques img {
-    width: 100% !important; /* En móvil sí pueden ocupar el 100% del ancho estético */
-    max-height: none !important;
   }
 }

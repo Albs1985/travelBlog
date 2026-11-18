@@ -193,7 +193,9 @@
     "cancelarSeleccion": "Cancelar Selección",
     "borrarVarios": "Borrar Varios...",
     "seleccionadas": "seleccionadas",
-    "confirmarBorradoMultiple": "Confirmar Borrado Múltiple"
+    "confirmarBorradoMultiple": "Confirmar Borrado Múltiple",
+    "relatoProtegidoDesc": "Este contenido está protegido y requiere de autenticación para poder visualizarse.",
+    "relatoProtegidoTitulo": "Relato Protegido"
   },
   "header": {
     "categoria": "Categorias",

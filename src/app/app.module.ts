@@ -28,8 +28,7 @@ import { FrasesComponent } from './pages/frases/frases.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { MemoryComponent } from './pages/games/memory/memory.component';
 import { GamesComponent } from './pages/games/games.component';
@@ -66,7 +65,6 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
     ViajesComponent,
     DibujosComponent,
     ApodosComponent,
-    LoginComponent,
     RecetasComponent,
     MemoryComponent,
     GamesComponent,

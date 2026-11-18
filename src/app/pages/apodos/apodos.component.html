@@ -26,13 +26,8 @@
     [mostrarBotonConfig]="false">
   </app-toolbar>
 
-  <!-- Para autenticarse en la aplicación -->
-  <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">
-    <app-login></app-login>
-  </div>
-
   <!-- Contenido Protegido -->
-  <div *ngIf="authenticationService.isLoggedIn()">
+  <div>
     <div class="divAka">
       <div class="familia-header-section">
         <h3>{{ 'app.familiaApodos' | translate}}</h3>

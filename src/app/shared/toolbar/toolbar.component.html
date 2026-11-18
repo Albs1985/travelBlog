@@ -15,7 +15,7 @@
   </button>
 
   <!-- Grupo de Botones de Administración (Solo si está logueado) -->
-  <div class="admin-actions-group animated fadeIn" *ngIf="authenticationService.isLoggedIn()">
+  <div class="admin-actions-group animated fadeIn">
 
     <!-- Botón Ordenar -->
     <button *ngIf="mostrarBotonOrdenar" class="toolbar-btn" (click)="ordenar.emit()" [title]="'app.ordenarPorAnyo' | translate">
@@ -26,7 +26,7 @@
 
     <!-- Botón Configurar Token -->
     <button *ngIf="mostrarBotonConfig" class="toolbar-btn" (click)="mostrarPanelToken = !mostrarPanelToken" [title]="githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate)">
-      <img src="assets/icons/key.png" class="iconoFlecha" alt="">
+      <img src="assets/icons/login.png" class="iconoFlecha" alt="">
       <span class="btn-text">{{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}</span>
     </button>
 

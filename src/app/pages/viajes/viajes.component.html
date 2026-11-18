@@ -12,14 +12,7 @@
   </h2>
 </div>
 
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br>
-  <app-login></app-login>
-  <br>
-</div>
-
-<div *ngIf="authenticationService.isLoggedIn()">
+<div>
   <ng-container *ngIf="anyos$ | async as anyos; else cargando">
     <div *ngIf="(servicioViajes.error$ | async) === true" class="aviso">{{ 'app.errorCarga' | translate }}</div>
     <div class="row fh5co-post-entry">

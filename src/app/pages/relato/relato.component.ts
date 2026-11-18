@@ -60,8 +60,11 @@ export class RelatoComponent implements OnDestroy {
   }
 
   /** Cada relato puede usar la contraseña general o la propia de los relatos de la familia. */
-  estaAutenticado(relato?: Relato): boolean {
-    return relato?.protegido ? this.authenticationService.isLoggedInRelatoIaia() : this.authenticationService.isLoggedIn();
+  // estaAutenticado(relato?: Relato): boolean {
+  //   return relato?.protegido ? this.authenticationService.isLoggedInRelatoIaia() : this.authenticationService.isLoggedIn();
+  // }
+  tieneTokenAdmin(): boolean {
+    return !!localStorage.getItem('gh_travel_token');
   }
 
   ngOnDestroy(): void {

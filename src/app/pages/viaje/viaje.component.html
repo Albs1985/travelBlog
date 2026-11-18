@@ -1,14 +1,6 @@
 <div class="container-fluid">
 
-  <!-- Para autenticarse en la aplicación -->
-  <div *ngIf="authenticationService.isLoggedIn() === false">
-    <br><br><br><br><br><br>
-    <app-login></app-login>
-    <br><br><br>
-    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/viajes"><a routerLink="/viajes">  {{ 'viaje.volver' | translate}}</a></span>
-  </div>
-
-  <div *ngIf="authenticationService.isLoggedIn()">
+  <div>
 
     <ng-container *ngIf="vista$ | async as vista; else cargando">
 

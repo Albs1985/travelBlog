@@ -75,13 +75,7 @@
     </div>
   </div>
 
-  <!-- Autenticación -->
-  <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">
-    <app-login></app-login>
-  </div>
-
-  <!-- Contenido protegido -->
-  <div *ngIf="authenticationService.isLoggedIn()" class="fav-main-content">
+  <div class="fav-main-content">
 
     <!-- Buscador Integrado -->
     <div class="buscador-artistic-container">

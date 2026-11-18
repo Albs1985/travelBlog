@@ -9,14 +9,7 @@
   </div>
 </div>
 
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br><br><br>
-  <app-login></app-login>
-  <br>
-</div>
-
-<div *ngIf="authenticationService.isLoggedIn()">
+<div>
   <ng-container *ngIf="vista$ | async as vista; else cargando">
 
     <h2 *ngIf="vista.modo === 'anyo'" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{ vista.filtro }}</b>&nbsp;

@@ -193,7 +193,9 @@
     "cancelarSeleccion": "Cancel·lar Selecció",
     "borrarVarios": "Esborrar Varis...",
     "seleccionadas": "seleccionades",
-    "confirmarBorradoMultiple": "Confirmar Esborrat Múltiple"
+    "confirmarBorradoMultiple": "Confirmar Esborrat Múltiple",
+    "relatoProtegidoDesc": "Aquest contingut està protegit. Autenticat en la aplicació per a poder visualitzar-ho",
+    "relatoProtegidoTitulo": "Història Protegida"
   },
   "header": {
     "categoria": "Categoríes",

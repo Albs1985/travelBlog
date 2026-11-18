@@ -67,12 +67,7 @@
     </div>
   </div>
 
-  <!-- Autenticación previa de la app (si aplica) -->
-  <div *ngIf="authenticationService.isLoggedIn() === false" class="login-container">
-    <app-login></app-login>
-  </div>
-
-  <div *ngIf="authenticationService.isLoggedIn()">
+  <div>
 
     <ng-container *ngIf="frases$ | async as frases; else cargando">
 
