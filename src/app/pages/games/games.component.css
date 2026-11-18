@@ -3,7 +3,6 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #0f172a;
   font-family: inherit;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -90,7 +89,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.85));
+  /* background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.85)); */
 }
 
 /* Capa de contenido flotando sobre la imagen */
@@ -239,4 +238,16 @@
     top: 12px;
     right: 12px;
   }
+}
+
+/* Capa de fundido progresivo hacia el blanco en la parte superior */
+.hero-white-fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px; /* Altura de la zona que se desvanecerá */
+  background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 3; /* Por encima de la imagen y del overlay oscuro */
+  pointer-events: none; /* Permite hacer clic a través de ella si fuera necesario */
 }
