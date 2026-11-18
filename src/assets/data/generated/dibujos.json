@@ -101,5 +101,13 @@
     "persona": "Mateu",
     "anyo": 2025,
     "edad": 4
+  },
+  {
+    "id": 14,
+    "src": "dibujos/dibujo_1794995691091_0.jpg",
+    "persona": "Mateu",
+    "anyo": "2026",
+    "edad": "6",
+    "detalle": "Pintant en la clase de Mila, 1er de Primaria"
   }
 ]
