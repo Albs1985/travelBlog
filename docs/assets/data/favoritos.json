@@ -1,5 +1,103 @@
 [
   {
+    "src": "favoritos/fotoFav_1795028708099_8.jpg",
+    "anyo": "2026",
+    "lugar": "Parc de Rocafort ",
+    "etiquetas": "Amiguetes, xiquetes",
+    "personas": [
+      "Marina",
+      "Aina"
+    ],
+    "desc": "Jugant al parc"
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_7.jpg",
+    "anyo": "2026",
+    "lugar": "Pitufi",
+    "etiquetas": "Plutja, lluvia, germans",
+    "personas": [
+      "Mateu",
+      "Marina"
+    ],
+    "desc": "Abans dixir per la porta"
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_6.jpg",
+    "anyo": "2026",
+    "lugar": "Plaça de Baix",
+    "etiquetas": "Germans, xiquets",
+    "personas": [
+      "Marina",
+      "Mateu"
+    ],
+    "desc": "Pujats a la caseta del parc"
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_5.jpg",
+    "anyo": "2026",
+    "lugar": "Parc del Barranquet ",
+    "etiquetas": "Xiquetes, amiguetes,llunes",
+    "personas": [
+      "Marina",
+      "aina"
+    ],
+    "desc": ""
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_4.jpg",
+    "anyo": "2026",
+    "lugar": "Pitufi",
+    "etiquetas": "Disfreses, disfraz, Halloween ",
+    "personas": [
+      "Mateu"
+    ],
+    "desc": "Abans de la nit"
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_3.jpg",
+    "anyo": "2026",
+    "lugar": "Pitufi",
+    "etiquetas": "Disfreses, disfraz, Halloween ",
+    "personas": [
+      "Marina"
+    ],
+    "desc": "Abans de les xuxes"
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_2.jpg",
+    "anyo": "2026",
+    "lugar": "Pitufi",
+    "etiquetas": "Llegint, conte, cuento",
+    "personas": [
+      "Iaio Pepe",
+      "Marina",
+      "Mateu"
+    ],
+    "desc": "Llegint un conte abans de dormir "
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_1.jpg",
+    "anyo": "2026",
+    "lugar": "Pitufi",
+    "etiquetas": "Iaios, xiquets, nets, nietos",
+    "personas": [
+      "Iaia ana",
+      "Mateu",
+      "Marina"
+    ],
+    "desc": "Mirant la tele en nit de iaios"
+  },
+  {
+    "src": "favoritos/fotoFav_1795028708099_0.jpg",
+    "anyo": "2026",
+    "lugar": "Decathlon ",
+    "etiquetas": "Xiquets, niñot",
+    "personas": [
+      "Marina"
+    ],
+    "desc": "Probant barrets"
+  },
+  {
     "src": "favoritos/fotoFav_1794931127127_0.jpg",
     "anyo": "2026",
     "lugar": "Casa, Godella",
