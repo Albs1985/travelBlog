@@ -28,9 +28,6 @@ export interface VistaLista {
   anyoSiguiente?: number;
 }
 
-/** Fotos que se enseñan en el carrusel de cada tarjeta (la portada + las primeras del viaje). */
-const FOTOS_CARRUSEL = 3;
-
 @Component({
   selector: 'app-viajes-por-anyo',
   templateUrl: './viajes-por-anyo.component.html',
@@ -94,7 +91,8 @@ export class ViajesPorAnyoComponent {
   }
 
   private tarjeta(v: ViajeResumen): Tarjeta {
-    const imagenes = [v.portada, ...v.fotos.slice(0, FOTOS_CARRUSEL)].filter((f, i, todas) => f && todas.indexOf(f) === i);
+    // Se añade la portada y se extienden todas las fotos del array, filtrando duplicados si los hubiera
+    const imagenes = [v.portada, ...v.fotos].filter((f, i, todas) => f && todas.indexOf(f) === i);
     return {
       viaje: v,
       imagenes,

@@ -14,8 +14,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
 }
 
 /* Redefinimos el toggle hamburguesa para que encaje de forma fluida en el flexbox */
