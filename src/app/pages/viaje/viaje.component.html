@@ -4,15 +4,32 @@
 
     <ng-container *ngIf="vista$ | async as vista; else cargando">
 
-      <div *ngIf="!esVista(vista)" class="aviso">
-        <p>{{ 'app.sinResultados' | translate }}</p>
-        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/viajes"><a routerLink="/viajes">  {{ 'viaje.volver' | translate}}</a></span>
+      <div *ngIf="!esVista(vista)" class="container py-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8 mx-auto">
+            <app-toolbar
+              [volverLink]="'/viajes'"
+              [mostrarBotonNuevo]="false"
+              [mostrarBotonConfig]="false"
+              [mostrarBotonOrdenar]="false">
+            </app-toolbar>
+            <div class="aviso text-center py-5">
+              <p class="mb-0">{{ 'app.sinResultados' | translate }}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div *ngIf="esVista(vista)" class="row fh5co-post-entry single-entry">
         <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
-          <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" [routerLink]="['/viajesFiltrados', vista.viaje.anyo]"><a [routerLink]="['/viajesFiltrados', vista.viaje.anyo]">  {{ 'viaje.volver' | translate}}</a></span>
-
+          <div class="mb-4">
+            <app-toolbar
+              [volverLink]="'/viajesFiltrados/' + vista.viaje.anyo"
+              [mostrarBotonNuevo]="false"
+              [mostrarBotonConfig]="false"
+              [mostrarBotonOrdenar]="false">
+            </app-toolbar>
+          </div>
           <h2 class="fh5co-article-title"><a>{{ vista.viaje.destino }}</a></h2>
 
           <figure *ngIf="vista.viaje.portada" class="animated zoomInDown">
