@@ -1,3 +1,19 @@
+/* Contenedor general */
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Forzar que el toolbar ocupe todo el ancho de la columna central */
+app-toolbar {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 .centrada {
   display: flex;
   justify-content: center;
@@ -9,25 +25,10 @@
   height: 60px;
 }
 
-.iconoLibro {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  cursor: pointer;
-}
-
 .icon {
-  width: 40px;
-  height: 40px;
-  margin: 10px;
-}
-
-.divRight2 {
-  float: right;
-  margin-right: 5px;
-  margin-bottom: 15px;
-  font-size: 14px !important;
-  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .aviso {
@@ -37,8 +38,12 @@
 
 .textoFoto {
   text-align: center;
+  margin-top: 8px;
 }
 
+/* ========================================================
+   IMÁGENES: Mantienen su tamaño y proporciones originales
+   ======================================================== */
 .foto-btn {
   display: block;
   width: 100%;
@@ -48,7 +53,39 @@
   cursor: zoom-in;
 }
 
-figure > .foto-btn img {
-  width: 100%;
-  height: auto;
+/* Evitamos que Bootstrap fuerce alturas extrañas y permitimos que la imagen sea natural */
+figure img,
+.foto-btn img,
+app-bloques img {
+  max-width: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: 75vh !important; /* Limita fotos gigantes en PC pero sin deformar */
+  object-fit: contain !important;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+.iconoFlecha {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+
+
+/* Ajustes responsivos para asegurar que en móvil respire bien */
+@media only screen and (max-width: 768px) {
+  article.col-12 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  figure img,
+  .foto-btn img,
+  app-bloques img {
+    width: 100% !important; /* En móvil sí pueden ocupar el 100% del ancho estético */
+    max-height: none !important;
+  }
 }

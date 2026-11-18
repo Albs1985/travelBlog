@@ -2,20 +2,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-bottom: 20px;
   gap: 10px;
   flex-wrap: wrap;
 }
 
 .back-link {
-  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .admin-actions-group {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 /* Estilo unificado para TODOS los botones basado en el botón de volver */
@@ -83,8 +85,8 @@
 .btn-confirm-batch:hover { background: #f59e0b; color: white; }
 
 
-/* ==========================================================
-   📱 RESPONSIVE PARA MÓVILES (Botones pequeños, solo iconos)
+  /* ==========================================================
+  📱 RESPONSIVE PARA MÓVILES (Botones pequeños, solo iconos)
    ========================================================== */
 @media only screen and (max-width: 600px) {
   .admin-toolbar {

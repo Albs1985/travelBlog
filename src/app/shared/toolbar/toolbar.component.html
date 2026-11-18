@@ -1,6 +1,6 @@
 <div class="admin-toolbar">
 
-  <!-- Enlace de Volver -->
+  <!-- Enlace de Volver (Siempre visible) -->
   <div class="back-link animated fadeIn">
     <a class="toolbar-btn" [routerLink]="volverLink">
       <img src="assets/icons/flechaAtras.png" class="iconoFlecha" alt="">
@@ -8,7 +8,13 @@
     </a>
   </div>
 
-  <!-- Grupo de Botones de Administración -->
+  <!-- Botón Extra (Modo Libro / Web) -> Siempre visible si está configurado -->
+  <button *ngIf="textoBotonExtra" class="toolbar-btn animated fadeIn" (click)="accionExtra.emit()" [title]="textoBotonExtra | translate">
+    <img *ngIf="iconoBotonExtra" [src]="iconoBotonExtra" class="iconoFlecha" alt="">
+    <span class="btn-text">{{ textoBotonExtra | translate }}</span>
+  </button>
+
+  <!-- Grupo de Botones de Administración (Solo si está logueado) -->
   <div class="admin-actions-group animated fadeIn" *ngIf="authenticationService.isLoggedIn()">
 
     <!-- Botón Ordenar -->
@@ -36,11 +42,6 @@
       <span class="btn-text">{{ textoNuevo | translate }}</span>
     </button>
 
-    <!-- Botón Extra (ej: Modo Libro / Modo Web) -->
-    <button *ngIf="textoBotonExtra" class="toolbar-btn" (click)="accionExtra.emit()" [title]="textoBotonExtra | translate">
-      <img *ngIf="iconoBotonExtra" [src]="iconoBotonExtra" class="iconoFlecha" alt="">
-      <span class="btn-text">{{ textoBotonExtra | translate }}</span>
-    </button>
   </div>
 </div>
 

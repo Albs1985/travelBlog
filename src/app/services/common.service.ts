@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Viajero } from '../interfaces/viajero.interface';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
