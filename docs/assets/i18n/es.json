@@ -195,7 +195,15 @@
     "seleccionadas": "seleccionadas",
     "confirmarBorradoMultiple": "Confirmar Borrado Múltiple",
     "relatoProtegidoDesc": "Este contenido está protegido y requiere de autenticación para poder visualizarse.",
-    "relatoProtegidoTitulo": "Relato Protegido"
+    "relatoProtegidoTitulo": "Relato Protegido",
+    "faceDoku": "FaceDoku",
+    "ahorcado": "El Ahorcado",
+    "aventura": "Aventura",
+    "puzzleDeslizante": "Puzzle Deslizante",
+    "impostor": "El Impostor",
+    "simon": "Simón",
+    "puzzle": "Rompecabezas",
+    "conecta4": "Conecta 4"
   },
   "header": {
     "categoria": "Categorias",

@@ -195,7 +195,15 @@
     "seleccionadas": "seleccionades",
     "confirmarBorradoMultiple": "Confirmar Esborrat Múltiple",
     "relatoProtegidoDesc": "Aquest contingut està protegit. Autenticat en la aplicació per a poder visualitzar-ho",
-    "relatoProtegidoTitulo": "Història Protegida"
+    "relatoProtegidoTitulo": "Història Protegida",
+    "faceDoku": "FaceDoku",
+    "ahorcado": "El Penjat",
+    "aventura": "Aventura",
+    "puzzleDeslizante": "Trencaclosques Lliscant",
+    "impostor": "L'Impostor",
+    "simon": "Simó",
+    "puzzle": "Trencaclosques",
+    "conecta4": "Connecta 4"
   },
   "header": {
     "categoria": "Categoríes",
