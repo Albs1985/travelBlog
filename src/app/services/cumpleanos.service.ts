@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, from, of, throwError } from 'rxjs';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import { ContenidoService } from './contenido.service';
 
@@ -29,10 +29,15 @@ interface GithubContentResponse {
   providedIn: 'root'
 })
 export class CumpleanosService {
-  private readonly jsonPath = 'src/assets/data/cumpleanyos.json';
+  // Rutas del JSON en origen (src) y desplegado (docs)
+  private readonly originJsonPath = 'src/assets/data/cumpleanyos.json';
+  private readonly docsJsonPath = 'docs/assets/data/cumpleanyos.json';
   private readonly jsonUrl = 'assets/data/cumpleanyos.json';
+
+  // Carpetas de imágenes de perfil en origen (src) y desplegado (docs)
   private readonly perfilesCarpeta = 'assets/images/perfiles';
-  private readonly perfilesRepoCarpeta = 'src/assets/images/perfiles';
+  private readonly imageFolderSrc = 'src/assets/images/perfiles';
+  private readonly imageFolderDocs = 'docs/assets/images/perfiles';
 
   private readonly repoOwner = 'Albs1985';
   private readonly repoName = 'travelBlog';
@@ -118,7 +123,7 @@ export class CumpleanosService {
     const nuevaLista = [...this.items$.value, item];
 
     return this.subirImagenSiExiste(item.id, token, archivoImagen).pipe(
-      switchMap(() =>
+      concatMap(() =>
         this.guardarJsonEnGithub(nuevaLista, token, `feat(cumpleanos): añadir cumpleaños de ${item.nombre}`)
       ),
       tap(() => {
@@ -140,7 +145,7 @@ export class CumpleanosService {
     );
 
     return this.subirImagenSiExiste(editado.id, token, archivoImagen).pipe(
-      switchMap(() =>
+      concatMap(() =>
         this.guardarJsonEnGithub(nuevaLista, token, `feat(cumpleanos): actualizar cumpleaños de ${editado.nombre}`)
       ),
       tap(() => {
@@ -182,15 +187,26 @@ export class CumpleanosService {
     }
 
     const nombreArchivo = this.obtenerNombreArchivoPerfil(idPersona);
-    const rutaArchivo = `${this.perfilesRepoCarpeta}/${nombreArchivo}`;
+    const rutaSrc = `${this.imageFolderSrc}/${nombreArchivo}`;
+    const rutaDocs = `${this.imageFolderDocs}/${nombreArchivo}`;
 
-    return this.leerArchivoComoBase64(archivoImagen).pipe(
+    return from(this.comprimirImagen(archivoImagen, 0.8, 800)).pipe(
+      switchMap((fileComprimido) => this.leerArchivoComoBase64(fileComprimido)),
       switchMap((base64) =>
         this.subirArchivoAGithub(
-          rutaArchivo,
+          rutaSrc,
           base64,
           tokenLimpio,
-          `feat(perfiles): actualizar foto ${nombreArchivo}`
+          `feat(perfiles): actualizar foto ${nombreArchivo} (src)`
+        ).pipe(
+          concatMap(() =>
+            this.subirArchivoAGithub(
+              rutaDocs,
+              base64,
+              tokenLimpio,
+              `feat(perfiles): actualizar foto ${nombreArchivo} (docs)`
+            )
+          )
         )
       ),
       tap(() => {
@@ -213,7 +229,10 @@ export class CumpleanosService {
     const contenidoFormateado = JSON.stringify(nuevaLista, null, 2) + '\n';
     const contentBase64 = this.codificarBase64Utf8(contenidoFormateado);
 
-    return this.subirArchivoAGithub(this.jsonPath, contentBase64, tokenLimpio, mensaje).pipe(
+    return this.subirArchivoAGithub(this.originJsonPath, contentBase64, tokenLimpio, `${mensaje} (Origen)`).pipe(
+      concatMap(() =>
+        this.subirArchivoAGithub(this.docsJsonPath, contentBase64, tokenLimpio, `${mensaje} (Docs)`)
+      ),
       map(() => void 0)
     );
   }
@@ -250,6 +269,58 @@ export class CumpleanosService {
         return this.http.put(apiUrl, body, { headers });
       })
     );
+  }
+
+  private comprimirImagen(file: File, calidad = 0.8, maxWidth = 800): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event: ProgressEvent<FileReader>) => {
+        const img = new Image();
+        img.src = String(event.target?.result || '');
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            reject(new Error('No se pudo inicializar el canvas'));
+            return;
+          }
+
+          ctx.drawImage(img, 0, 0, width, height);
+          const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+
+          canvas.toBlob(
+            (blob) => {
+              if (!blob) {
+                reject(new Error('Falló la compresión'));
+                return;
+              }
+              resolve(
+                new File([blob], file.name, {
+                  type: mimeType,
+                  lastModified: Date.now()
+                })
+              );
+            },
+            mimeType,
+            calidad
+          );
+        };
+        img.onerror = (error) => reject(error);
+      };
+      reader.onerror = (error) => reject(error);
+    });
   }
 
   private leerArchivoComoBase64(archivo: File): Observable<string> {
