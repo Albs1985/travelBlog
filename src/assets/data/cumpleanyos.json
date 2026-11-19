@@ -118,5 +118,13 @@
     "mes": 9,
     "anyoNacimiento": 2010,
     "nota": "Arrancant setembre amb festa familiar"
+  },
+  {
+    "nombre": "Proba varios",
+    "dia": 1,
+    "mes": 11,
+    "anyoNacimiento": 1995,
+    "nota": "Alslsne",
+    "id": "proba-varios"
   }
 ]
