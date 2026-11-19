@@ -31,6 +31,7 @@ import { ImpostorComponent } from './pages/games/impostor/impostor.component';
 import { SimonComponent } from './pages/games/simon/simon.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { Conecta4Component } from './pages/games/conecta4/conecta4.component';
+import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -61,6 +62,7 @@ const app_routes: Routes = [
   { path: 'apodos', component : ApodosComponent},
   { path: 'dibujos', component : DibujosComponent},
   { path: 'mapa', component : MapComponent},
+  { path: 'cumpleanyos', component: CumpleanosComponent },
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

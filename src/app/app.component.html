@@ -1,5 +1,51 @@
 <app-header></app-header>
 
+<ng-container *ngIf="cumpleanerosHoy$ | async as cumpleHoy">
+  <div *ngIf="cumpleHoy.length > 0 && mostrarAvisoCumple" class="cumple-app-backdrop" (click)="mostrarAvisoCumple = false">
+    <div class="cumple-app-modal" (click)="$event.stopPropagation()">
+      <div class="cumple-app-header">
+        <span class="cumple-app-badge">🎉 {{ 'cumpleanos.hoyEsSuCumple' | translate }}</span>
+        <button
+          type="button"
+          class="cumple-app-close"
+          (click)="mostrarAvisoCumple = false"
+          [attr.aria-label]="'app.cerrar' | translate"
+          [attr.title]="'app.cerrar' | translate">✕</button>
+      </div>
+
+      <div class="cumple-app-body">
+        <div class="cumple-app-avatares">
+          <img
+            *ngFor="let c of cumpleHoy"
+            [src]="c.foto"
+            [alt]="c.nombre"
+            class="cumple-app-avatar"
+            (error)="$any($event.target).style.display = 'none'">
+        </div>
+
+        <div class="cumple-app-texto">
+          <h3 *ngFor="let c of cumpleHoy" class="cumple-app-nombre">
+            {{ 'cumpleanos.felicidadesNombre' | translate: { nombre: c.nombre } }}
+            <span *ngIf="c.edadActual !== null" class="cumple-app-edad">
+              {{ c.edadActual }} {{ (c.edadActual === 1 ? 'cumpleanos.anyoSingular' : 'cumpleanos.anyoPlural') | translate }}
+            </span>
+          </h3>
+          <p *ngIf="cumpleHoy[0].nota" class="cumple-app-nota">{{ cumpleHoy[0].nota | l10n }}</p>
+        </div>
+      </div>
+
+      <div class="cumple-app-footer">
+        <a routerLink="/cumpleanos" class="cumple-app-btn-primario" (click)="mostrarAvisoCumple = false">
+          🎂 {{ 'cumpleanos.verCalendario' | translate }}
+        </a>
+        <button type="button" class="cumple-app-btn-secundario" (click)="mostrarAvisoCumple = false">
+          {{ 'app.cerrar' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
 <router-outlet></router-outlet>
 
 <app-footer></app-footer>

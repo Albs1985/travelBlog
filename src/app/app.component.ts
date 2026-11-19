@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CumpleanosService } from './services/cumpleanos.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'Familia Serrador Casares';
+  cumpleanerosHoy$ = this.cumpleanosService.cumpleanerosHoy$;
+  mostrarAvisoCumple = true;
 
-  constructor(translate: TranslateService){
+  constructor(translate: TranslateService, public cumpleanosService: CumpleanosService){
     translate.setDefaultLang('val');
     translate.use('val');
     // translate.onLangChange.subscribe((event: LangChangeEvent) => {

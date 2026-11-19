@@ -1,0 +1,292 @@
+<div class="cumple-wrapper">
+
+  <!-- Cabecera Hero -->
+  <header class="cumple-hero">
+    <h2 class="cumple-titulo">
+      <span>🎂 {{ 'cumpleanos.titulo' | translate }}</span>
+    </h2>
+    <p class="cumple-subtitulo">{{ 'cumpleanos.subtitulo' | translate }}</p>
+  </header>
+
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [textoNuevo]="'cumpleanos.anadir'"
+    [mostrarBotonConfig]="true"
+    (nuevo)="abrirNuevo()">
+  </app-toolbar>
+
+  <!-- Botón Superior para Cambiar Estilo de Visualización -->
+  <div class="barra-selector-vista">
+    <button type="button" class="btn-cambiar-vista" (click)="alternarVista()">
+      <span *ngIf="modoVista === 'calendario'">🗂️ {{ 'cumpleanos.verTarjetas' | translate }}</span>
+      <span *ngIf="modoVista === 'tarjetas'">📅 {{ 'cumpleanos.verCalendarioVista' | translate }}</span>
+    </button>
+  </div>
+
+  <!-- Aviso Especial si Hoy es Cumpleaños de Alguien -->
+  <ng-container *ngIf="hoy$ | async as cumpleHoy">
+    <div *ngIf="cumpleHoy.length > 0 && !avisoHoyCerrado" class="aviso-hoy-banner">
+      <button
+        type="button"
+        class="aviso-hoy-close"
+        (click)="avisoHoyCerrado = true"
+        [attr.aria-label]="'app.cerrar' | translate">✕</button>
+      <div class="aviso-hoy-contenido">
+        <div class="aviso-hoy-avatares">
+          <img
+            *ngFor="let c of cumpleHoy"
+            [src]="c.foto"
+            [alt]="c.nombre"
+            class="aviso-hoy-avatar"
+            (error)="mostrarAvatar(c)">
+        </div>
+        <div class="aviso-hoy-texto">
+          <span class="aviso-hoy-badge">🎉 {{ 'cumpleanos.hoyEsSuCumple' | translate }}</span>
+          <h3>
+            <ng-container *ngFor="let c of cumpleHoy; let last = last">
+              {{ c.nombre }}<span *ngIf="c.edadActual !== null"> ({{ c.edadActual }} {{ (c.edadActual === 1 ? 'cumpleanos.anyoSingular' : 'cumpleanos.anyoPlural') | translate }})</span><span *ngIf="!last">, </span>
+            </ng-container>
+          </h3>
+          <p *ngIf="cumpleHoy[0].nota">{{ cumpleHoy[0].nota }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Modal / Formulario Alta y Edición (CRUD) -->
+  <div *ngIf="mostrarFormulario" class="modal-backdrop" (click)="cerrarFormulario()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>{{ (editandoId ? 'cumpleanos.editarTitulo' : 'cumpleanos.nuevoTitulo') | translate }}</h3>
+        <button
+          type="button"
+          class="btn-close-x"
+          (click)="cerrarFormulario()"
+          [attr.aria-label]="'app.cerrar' | translate">✕</button>
+      </div>
+
+      <form (ngSubmit)="guardar()" class="modal-form">
+        <div class="campo-grupo">
+          <label>{{ 'cumpleanos.nombreLabel' | translate }}</label>
+          <input
+            type="text"
+            [(ngModel)]="form.nombre"
+            name="nombre"
+            required
+            [placeholder]="'cumpleanos.nombrePlaceholder' | translate">
+        </div>
+
+        <div class="fila-dos">
+          <div class="campo-grupo">
+            <label>{{ 'cumpleanos.diaLabel' | translate }}</label>
+            <input type="number" [(ngModel)]="form.dia" name="dia" min="1" max="31" required>
+          </div>
+          <div class="campo-grupo">
+            <label>{{ 'cumpleanos.mesLabel' | translate }}</label>
+            <select [(ngModel)]="form.mes" name="mes" required>
+              <option *ngFor="let m of mesesOpciones" [ngValue]="m.numero">
+                {{ 'mesAnyo.' + m.clave | translate }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="campo-grupo">
+          <label>{{ 'cumpleanos.anyoNacimientoLabel' | translate }}</label>
+          <input
+            type="number"
+            [(ngModel)]="form.anyoNacimiento"
+            name="anyoNacimiento"
+            min="1900"
+            max="2100"
+            placeholder="Ej. 2020">
+        </div>
+
+        <div class="campo-grupo">
+          <label>{{ 'cumpleanos.notaLabel' | translate }}</label>
+          <textarea
+            [(ngModel)]="form.nota"
+            name="nota"
+            rows="2"
+            [placeholder]="'cumpleanos.notaPlaceholder' | translate"></textarea>
+        </div>
+
+        <div class="modal-acciones">
+          <button
+            *ngIf="editandoId"
+            type="button"
+            class="btn-eliminar-modal"
+            [disabled]="cargandoAccion"
+            (click)="eliminar({ id: editandoId, nombre: form.nombre, dia: form.dia, mes: form.mes, anyoNacimiento: form.anyoNacimiento, nota: form.nota, foto: '', edadActual: null, esHoy: false, diasHastaProximo: 0 })">
+            {{ 'app.eliminarBtn' | translate }}
+          </button>
+          <button type="button" class="btn-secundario" [disabled]="cargandoAccion" (click)="cerrarFormulario()">{{ 'app.cancelar' | translate }}</button>
+          <button type="submit" class="btn-primario" [disabled]="cargandoAccion">
+            {{ cargandoAccion ? ('app.guardando' | translate) : ((editandoId ? 'cumpleanos.guardarCambios' : 'app.guardar') | translate) }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================
+      VISTA 1: CALENDARIO MENSUAL (CUADRÍCULA DE DÍAS)
+      ====================================================== -->
+  <ng-container *ngIf="modoVista === 'calendario'">
+    <ng-container *ngIf="meses$ | async as meses">
+      <section class="cal-grid-meses">
+        <div
+          *ngFor="let mes of meses"
+          class="cal-mes-card"
+          [class.activo-movil]="mes.numero === mesSeleccionado"
+          [class.tiene-cumples]="mes.cumpleanos.length > 0">
+
+          <div class="cal-mes-header">
+            <button
+              type="button"
+              class="btn-flecha-mes solo-movil"
+              (click)="cambiarMes(-1)"
+              [attr.aria-label]="'cumpleanos.mesAnterior' | translate"
+              [attr.title]="'cumpleanos.mesAnterior' | translate">
+              ‹
+            </button>
+
+            <div class="cal-mes-titulo-wrap">
+              <span class="cal-mes-nombre">{{ 'mesAnyo.' + mes.claveMes | translate }}</span>
+              <span class="cal-mes-badge" *ngIf="mes.cumpleanos.length > 0">{{ mes.cumpleanos.length }}</span>
+            </div>
+
+            <button
+              type="button"
+              class="btn-flecha-mes solo-movil"
+              (click)="cambiarMes(1)"
+              [attr.aria-label]="'cumpleanos.mesSiguiente' | translate"
+              [attr.title]="'cumpleanos.mesSiguiente' | translate">
+              ›
+            </button>
+          </div>
+
+          <!-- Cabecera L-D -->
+          <div class="cal-dias-semana">
+            <span *ngFor="let dSem of diasSemana">{{ dSem }}</span>
+          </div>
+
+          <!-- Cuadrícula de días -->
+          <div class="cal-dias-grid">
+            <div *ngFor="let _ of mes.huecosInicio" class="cal-dia-vacio"></div>
+
+            <div
+              *ngFor="let d of mes.dias"
+              class="cal-dia-celda"
+              [class.tiene-cumple]="d.cumpleanos.length > 0"
+              [class.es-hoy]="d.esHoy">
+
+              <span class="cal-dia-numero">{{ d.dia }}</span>
+
+              <div
+                *ngIf="d.cumpleanos.length > 0"
+                class="cal-avatares-dia"
+                [class.varios]="d.cumpleanos.length > 1">
+                <button
+                  *ngFor="let c of d.cumpleanos"
+                  type="button"
+                  class="cal-avatar-btn"
+                  (click)="abrirEditar(c)"
+                  [title]="c.nombre + (c.edadActual !== null ? ' (' + c.edadActual + ' ' + ((c.edadActual === 1 ? 'cumpleanos.anyoSingular' : 'cumpleanos.anyoPlural') | translate) + ')' : '')">
+                  <img
+                    [src]="c.foto"
+                    [alt]="c.nombre"
+                    class="cal-avatar-img"
+                    (error)="mostrarAvatar(c)">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leyenda rápida de los cumpleaños del mes -->
+          <div class="cal-mes-resumen" *ngIf="mes.cumpleanos.length > 0">
+            <button
+              *ngFor="let c of mes.cumpleanos"
+              type="button"
+              class="cal-chip-cumple"
+              (click)="abrirEditar(c)">
+              <strong>{{ c.dia }}</strong> · {{ c.nombre }}
+              <span *ngIf="c.edadActual !== null">({{ c.edadActual }}{{ 'cumpleanos.anyoInicial' | translate }})</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+
+  <!-- ======================================================
+       VISTA 2: TARJETAS POR MES (VISTA ANTERIOR)
+       ====================================================== -->
+  <ng-container *ngIf="modoVista === 'tarjetas'">
+    <ng-container *ngIf="meses$ | async as meses">
+      <section class="calendario-meses-grid">
+        <div
+          *ngFor="let mes of meses"
+          class="mes-tarjeta"
+          [class.mes-con-cumples]="mes.cumpleanos.length > 0">
+
+          <div class="mes-cabecera">
+            <span class="mes-nombre">{{ 'mesAnyo.' + mes.claveMes | translate }}</span>
+            <span class="mes-contador" *ngIf="mes.cumpleanos.length > 0">{{ mes.cumpleanos.length }}</span>
+          </div>
+
+          <div class="mes-cuerpo">
+            <p *ngIf="mes.cumpleanos.length === 0" class="mes-vacio">{{ 'cumpleanos.sinCumples' | translate }}</p>
+
+            <div
+              *ngFor="let c of mes.cumpleanos"
+              class="cumple-item"
+              [class.es-hoy]="c.esHoy">
+
+              <div class="cumple-dia-sello">
+                <span class="dia-num">{{ c.dia }}</span>
+                <span class="dia-mes">{{ ('mesAnyo.' + claveMes(c.mes) | translate) | slice:0:3 }}</span>
+              </div>
+
+              <img
+                [src]="c.foto"
+                [alt]="c.nombre"
+                class="cumple-avatar"
+                loading="lazy"
+                (error)="mostrarAvatar(c)">
+
+              <div class="cumple-info">
+                <div class="cumple-nombre-fila">
+                  <strong class="cumple-nombre">{{ c.nombre }}</strong>
+                  <span *ngIf="c.esHoy" class="badge-hoy">{{ 'cumpleanos.hoyBadge' | translate }}</span>
+                  <span *ngIf="!c.esHoy && c.edadActual !== null" class="badge-edad">
+                    {{ c.edadActual }} {{ (c.edadActual === 1 ? 'cumpleanos.anyoSingular' : 'cumpleanos.anyoPlural') | translate }}
+                  </span>
+                </div>
+                <p *ngIf="c.nota" class="cumple-nota">{{ c.nota }}</p>
+                <small *ngIf="!c.esHoy" class="cumple-cuenta">
+                  {{ 'cumpleanos.enDias' | translate: { dias: c.diasHastaProximo, unidad: ((c.diasHastaProximo === 1 ? 'cumpleanos.diaSingular' : 'cumpleanos.diaPlural') | translate) } }}
+                </small>
+              </div>
+
+              <div class="cumple-acciones">
+                <button type="button" class="btn-icono" (click)="abrirEditar(c)" [attr.title]="'app.editarBtn' | translate">✏️</button>
+                <button type="button" class="btn-icono borrar" (click)="eliminar(c)" [attr.title]="'app.eliminarBtn' | translate">🗑️</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </ng-container>
+  </ng-container>
+
+  <!-- Botón Volver Inferior -->
+  <div class="footer-back-wrapper">
+    <a routerLink="/principal" class="btn-volver-pill">
+      <img src="assets/icons/flechaAtras.png" loading="lazy" class="iconoFlecha" alt="">
+      <span>{{ 'viaje.volver' | translate }}</span>
+    </a>
+  </div>
+
+</div>

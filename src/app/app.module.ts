@@ -40,6 +40,7 @@ import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { PaginacionComponent } from './shared/paginacion/paginacion.component';
+import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { PaginacionComponent } from './shared/paginacion/paginacion.component';
     MisionCumplidaComponent,
     ToolbarComponent,
     PaginacionComponent,
+    CumpleanosComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "mateu",
+    "nombre": "Mateu",
+    "dia": 4,
+    "mes": 9,
+    "anyoNacimiento": 2020,
+    "nota": "Aniversari de tardor, ¡tornada a la rutina amb pastís i rialles!"
+  },
+  {
+    "id": "marina",
+    "nombre": "Marina",
+    "dia": 26,
+    "mes": 7,
+    "anyoNacimiento": 2023,
+    "nota": "Aniversari de ple estiu, remullades i gelats"
+  },
+  {
+    "id": "alba",
+    "nombre": "Alba",
+    "dia": 10,
+    "mes": 5,
+    "anyoNacimiento": 1985,
+    "nota": "Celebració primaveral en família"
+  },
+  {
+    "id": "albert",
+    "nombre": "Albert",
+    "dia": 6,
+    "mes": 6,
+    "anyoNacimiento": 1985,
+    "nota": "Dies llargs i brindis de principis de juny"
+  },
+  {
+    "id": "blai",
+    "nombre": "Blai",
+    "dia": 7,
+    "mes": 8,
+    "anyoNacimiento": 1981,
+    "nota": "Estiu en tot el seu esplendor per a bufar les espelmes"
+  },
+  {
+    "id": "marta",
+    "nombre": "Marta",
+    "dia": 14,
+    "mes": 9,
+    "anyoNacimiento": 1986,
+    "nota": "Mitjan setembre, excusa perfecta per a reunir-nos tots"
+  },
+  {
+    "id": "pepe",
+    "nombre": "Iaio Pepe",
+    "dia": 12,
+    "mes": 2,
+    "anyoNacimiento": 1956,
+    "nota": "Febrer amb molt d'afecte i bones històries familiars"
+  },
+  {
+    "id": "ana",
+    "nombre": "Iaia Ana",
+    "dia": 16,
+    "mes": 11,
+    "anyoNacimiento": 1953,
+    "nota": "Tardor acollidora i berenar especial per a celebrar"
+  },
+  {
+    "id": "gerard",
+    "nombre": "Gerard",
+    "dia": 17,
+    "mes": 3,
+    "anyoNacimiento": 2019,
+    "nota": "A les portes de la primavera, ¡a gaudir del dia!"
+  },
+  {
+    "id": "guillem",
+    "nombre": "Guillem",
+    "dia": 17,
+    "mes": 12,
+    "anyoNacimiento": 2025,
+    "nota": "Ambient nadalenc i molta il·lusió al desembre"
+  },
+  {
+    "id": "pep",
+    "nombre": "Iaio Pep",
+    "dia": 24,
+    "mes": 12,
+    "anyoNacimiento": 1952,
+    "nota": "Nit de Nadal doblement especial per a celebrar a casa"
+  },
+  {
+    "id": "matilde",
+    "nombre": "Iaia Matilde",
+    "dia": 30,
+    "mes": 6,
+    "anyoNacimiento": 1956,
+    "nota": "Tancant juny amb alegria i tota la família prop"
+  },
+  {
+    "id": "maria",
+    "nombre": "Maria",
+    "dia": 24,
+    "mes": 7,
+    "anyoNacimiento": 1979,
+    "nota": "Vesprades de juliol i celebració estiuenca"
+  },
+  {
+    "id": "marcel",
+    "nombre": "Marcel",
+    "dia": 12,
+    "mes": 8,
+    "anyoNacimiento": 2005,
+    "nota": "Nits d'agost per a celebrar-ho ben alt"
+  },
+  {
+    "id": "emili",
+    "nombre": "Emili",
+    "dia": 3,
+    "mes": 9,
+    "anyoNacimiento": 2010,
+    "nota": "Arrancant setembre amb festa familiar"
+  }
+]
