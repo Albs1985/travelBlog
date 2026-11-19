@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import { Cluster, Vector as VectorSource, XYZ } from 'ol/source';
@@ -68,7 +68,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
   constructor(
     public servicioLocalizaciones: LocalizacionesService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private ngZone: NgZone
   ) {
     this.coordenadasIniciales = [0, 0];
   }
@@ -118,36 +119,58 @@ export class MapComponent implements OnInit, OnDestroy {
         });
 
         this.map.on('click', (event) => {
-          const hit = this.map!.forEachFeatureAtPixel(event.pixel, (feature) => feature);
+          if (event.dragging) {
+            return;
+          }
+
+          const hit = this.map!.forEachFeatureAtPixel(
+            event.pixel,
+            (feature) => feature,
+            { hitTolerance: 14 }
+          );
+
           if (!hit) {
             return;
           }
 
-          const miembros: Feature<Point>[] = hit.get('features') ?? [];
-          if (miembros.length > 1) {
-            const geom = hit.getGeometry() as Point;
-            const vista = this.map!.getView();
-            const zoomActual = vista.getZoom() ?? 4;
-            vista.animate({
-              center: geom.getCoordinates(),
-              zoom: Math.min(zoomActual + 2, 16),
-              duration: 350
-            });
+          this.ngZone.run(() => {
+            const miembros: Feature<Point>[] = hit.get('features') ?? [];
+            if (miembros.length > 1) {
+              const geom = hit.getGeometry() as Point;
+              const vista = this.map!.getView();
+              const zoomActual = vista.getZoom() ?? 4;
+              vista.animate({
+                center: geom.getCoordinates(),
+                zoom: Math.min(zoomActual + 2, 16),
+                duration: 350
+              });
+              return;
+            }
+
+            const origen = miembros[0] ?? hit;
+            const anyoStr = String(origen.get('año') ?? '');
+            const personaRaw = String(origen.get('persona') ?? '');
+            const mes = origen.get('mes') as number | undefined;
+            const dia = origen.get('dia') as number | undefined;
+
+            this.detalleSeleccionado = {
+              pais: String(origen.get('pais') ?? ''),
+              anyo: anyoStr,
+              viajeros: this.construirViajeros(personaRaw, anyoStr, mes, dia),
+              descripcion: String(origen.get('descripcion') ?? '')
+            };
+          });
+        });
+
+        this.map.on('pointermove', (event) => {
+          if (event.dragging) {
             return;
           }
-
-          const origen = miembros[0] ?? hit;
-          const anyoStr = String(origen.get('año') ?? '');
-          const personaRaw = String(origen.get('persona') ?? '');
-          const mes = origen.get('mes') as number | undefined;
-          const dia = origen.get('dia') as number | undefined;
-
-          this.detalleSeleccionado = {
-            pais: String(origen.get('pais') ?? ''),
-            anyo: anyoStr,
-            viajeros: this.construirViajeros(personaRaw, anyoStr, mes, dia),
-            descripcion: String(origen.get('descripcion') ?? '')
-          };
+          const hayPin = this.map!.hasFeatureAtPixel(event.pixel, { hitTolerance: 14 });
+          const target = this.map!.getTargetElement();
+          if (target) {
+            target.style.cursor = hayPin ? 'pointer' : '';
+          }
         });
       }
 
