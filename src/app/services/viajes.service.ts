@@ -12,7 +12,7 @@ import { slugCategoria, normalizar } from './viajes.catalogo';
  */
 @Injectable({ providedIn: 'root' })
 export class ViajesService {
-  private readonly base = 'assets/data/generated/';
+  private readonly base = 'assets/data/';
   private readonly detalles = new Map<string, Observable<Viaje | undefined>>();
 
   private readonly indice$: Observable<IndiceViajes | undefined> = this.http

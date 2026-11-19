@@ -20,24 +20,91 @@
     </div>
   </header>
 
-  <!-- Botón Volver Superior -->
-  <div class="fav-action-bar">
-    <div></div> <!-- Espaciador -->
-    <div class="divRight">
-      <a class="btn-volver-pill animated zoomInDown" routerLink="/principal">
-        <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
-        <span>{{ 'viaje.volver' | translate}}</span>
-      </a>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [textoNuevo]="'app.nuevoDibujo'"
+    (nuevo)="mostrarFormulario = true">
+  </app-toolbar>
+
+  <!-- Panel Desplegable para configurar el Token -->
+  <div *ngIf="mostrarPanelToken" class="admin-panel-token" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+    <h4 style="margin: 0 0 10px; color: #65515a; font-family: Georgia, serif;">{{ 'app.adminTokenConfig' | translate }}</h4>
+    <p style="margin: 0 0 12px; font-size: 12px; color: #a39ba0;">{{ 'app.adminTokenDescripcion' | translate }}</p>
+    <div style="display: flex; gap: 10px;">
+      <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" style="flex: 1; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; outline: none; font-size: 13px;" />
+      <button (click)="guardarToken(tokenInput.value)" style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.guardar' | translate }}</button>
     </div>
   </div>
 
-  <!-- Para autenticarse en la aplicación -->
-  <div *ngIf="authenticationService.isLoggedIn() === false" class="auth-box-container">
-    <app-login></app-login>
+  <!-- Modal / Formulario Crear Dibujos Múltiples -->
+  <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div class="admin-modal-card" style="background: #fff; width: 100%; max-width: 650px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
+      <h3 style="margin-top: 0; color: #65515a; font-family: Georgia, serif;">✨ {{ 'app.nuevoDibujo' | translate }}</h3>
+
+      <!-- Selector múltiple -->
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.imagenLabel' | translate }} (Selecciona una o varias)</label>
+        <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" />
+      </div>
+
+      <!-- Lista acumulativa de dibujos pendientes -->
+      <div *ngIf="dibujosPendientes.length > 0" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
+        <div *ngFor="let item of dibujosPendientes; let i = index" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 15px; border-radius: 14px; display: flex; gap: 15px; align-items: flex-start; position: relative;">
+
+          <!-- Miniatura -->
+          <div style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #eee;">
+            <img [src]="item.previewUrl" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+          </div>
+
+          <!-- Campos editables por cada imagen -->
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <select
+              [(ngModel)]="item.persona"
+              (ngModelChange)="actualizarEdadPendiente(item)"
+              style="width: 100%; max-width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; background: #fff; box-sizing: border-box;">
+              <option value="Mateu">Mateu</option>
+              <option value="Marina">Marina</option>
+              <option value="Alba">Alba</option>
+              <option value="Albert">Albert</option>
+            </select>
+
+            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
+              <input
+                type="text"
+                [(ngModel)]="item.anyo"
+                (ngModelChange)="actualizarEdadPendiente(item)"
+                placeholder="Año"
+                style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
+              <input
+                type="text"
+                [(ngModel)]="item.edad"
+                placeholder="Edad"
+                style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
+            </div>
+
+            <textarea
+              [(ngModel)]="item.detalle"
+              placeholder="Detalle / Descripción"
+              rows="2"
+              style="width: 100%; max-width: 100%; min-width: 0; min-height: 10rem; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; resize: vertical; box-sizing: border-box;"></textarea>
+          </div>
+
+          <!-- Botón quitar de la cola -->
+          <button (click)="quitarPendiente(i)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 12px;" title="Quitar">×</button>
+        </div>
+      </div>
+
+      <!-- Acciones del Modal -->
+      <div style="display: flex; justify-content: flex-end; gap: 10px;">
+        <button (click)="mostrarFormulario = false; dibujosPendientes = []" style="padding: 10px 18px; background: #f0e9e5; color: #65515a; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.cancelar' | translate }}</button>
+        <button (click)="guardarTodos()" [disabled]="cargandoAccion || dibujosPendientes.length === 0" style="padding: 10px 18px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+          {{ cargandoAccion ? ('app.guardando' | translate) : ('Guardar (' + dibujosPendientes.length + ')') }}
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- Contenido protegido -->
-  <div *ngIf="authenticationService.isLoggedIn()" class="fav-main-content">
+  <div class="fav-main-content">
     <ng-container *ngIf="vista$ | async as vista; else cargando">
 
       <!-- Buscador -->
@@ -51,20 +118,40 @@
       </div>
 
       <!-- Grid tipo Columnas (Masonry) para respetar 100% las proporciones originales -->
+      <!-- Grid tipo Columnas (Masonry) -->
       <div class="masonry-gallery-grid">
         <div *ngFor="let dibujo of vista.dibujos | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index" class="masonry-card-wrapper animated zoomInDown">
-          <div class="gallery art-card">
-            <a href="#" (click)="abierto = posicion(i); $event.preventDefault()">
-              <div class="img-frame">
-                <!-- Se eliminó el float y la clase responsive antigua para usar tamaño natural adaptable -->
+          <div class="gallery art-card" [style.opacity]="idsEliminando.has(dibujo.id!) ? '0.6' : '1'">
+
+            <!-- Enlace para ver detalle (Desactivado si se está eliminando) -->
+            <a href="#" (click)="$event.preventDefault(); !idsEliminando.has(dibujo.id!) && (abierto = posicion(i))">
+              <div class="img-frame" style="position: relative;">
+
                 <img [src]="'assets/images/' + dibujo.src" loading="lazy" alt="">
-                <div class="card-glass-overlay">
-                  <span class="explore-pill">✨ Ver detalle</span>
+
+                <!-- 👈 OVERLAY DE PROCESANDO SI SE ESTÁ ELIMINANDO -->
+                <div *ngIf="idsEliminando.has(dibujo.id!)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px;">
+                  <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
+                  <span style="font-size: 11px; font-weight: bold; color: #d97706;">Eliminando...</span>
+                </div>
+
+                <div class="card-glass-overlay" *ngIf="!idsEliminando.has(dibujo.id!)">
+                  <span class="explore-pill">✨ {{ 'app.verDetalle' | translate }}</span>
                 </div>
               </div>
+
               <figcaption class="textoFoto">
-                <div class="badge-autor">
-                  <b>{{dibujo.persona}}</b> ({{dibujo.anyo}})
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div class="badge-autor">
+                    <b>{{dibujo.persona}}</b> ({{dibujo.anyo}})
+                  </div>
+                  <!-- Botón Eliminar con event.stopPropagation() y desactivado si está procesando -->
+                  <button *ngIf="githubToken"
+                          [disabled]="idsEliminando.has(dibujo.id!)"
+                          (click)="eliminar(dibujo.id, $event)"
+                          style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: bold;">
+                    🗑️ {{ 'app.eliminarBtn' | translate }}
+                  </button>
                 </div>
                 <div class="info-text">
                   <span class="edad-badge">{{ dibujo.edad }} {{'app.edad' | translate}}</span>

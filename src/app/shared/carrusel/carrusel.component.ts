@@ -1,21 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-/**
- * Carrusel ligero de fotos (sin jQuery ni Bootstrap): se desliza con el dedo en el móvil
- * y con las flechas en el ordenador. Cada foto es un enlace a `enlace`.
- *
- *   <app-carrusel [imagenes]="v.fotosCarrusel" [enlace]="['/viaje', v.id]"></app-carrusel>
- */
 @Component({
   selector: 'app-carrusel',
   templateUrl: './carrusel.component.html',
   styleUrls: ['./carrusel.component.css'],
 })
-export class CarruselComponent {
+export class CarruselComponent implements OnChanges {
   /** Rutas relativas a assets/images/ */
   @Input() imagenes: string[] = [];
   @Input() enlace: any[] = [];
   @Input() alt = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['imagenes'] && this.imagenes?.length) {
+      this.precargarImagenes(this.imagenes);
+    }
+  }
 
   mover(pista: HTMLElement, direccion: number): void {
     pista.scrollBy({ left: direccion * pista.clientWidth, behavior: 'smooth' });
@@ -23,5 +23,17 @@ export class CarruselComponent {
 
   ocultar(evento: Event): void {
     (evento.target as HTMLElement).style.display = 'none';
+  }
+
+  private precargarImagenes(rutas: string[]): void {
+    for (const ruta of rutas) {
+      if (!ruta) continue;
+      const img = new Image();
+      img.decoding = 'async';
+      img.src = `assets/images/${ruta}`;
+      if (typeof img.decode === 'function') {
+        img.decode().catch(() => {});
+      }
+    }
   }
 }

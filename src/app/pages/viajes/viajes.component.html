@@ -1,10 +1,23 @@
-<div class="divRight3">
-  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal"  class="animated zoomInDown">{{ 'viaje.volver' | translate}}</a>
+<!-- TOOLBAR SUPERIOR: Sustituye al enlace de volver y al botón de ordenar sueltos -->
+<div class="container py-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <app-toolbar
+        [volverLink]="'/principal'"
+        [mostrarBotonNuevo]="false"
+        [mostrarBotonConfig]="false"
+        [mostrarBotonOrdenar]="true"
+        [orderDesc]="orderDesc"
+        (ordenar)="ordenar()">
+      </app-toolbar>
+
+    </div>
+  </div>
 </div>
-<div class="tituloOrdenar">
-  <button class="botonOrdenar animated zoomInDown" (click)="ordenar()">
-    <img [src]="orderDesc ? 'assets/icons/flechaArriba.png' : 'assets/icons/flechaAbajo.png'" alt="" class="iconoFlecha"> {{ 'app.ordenar' | translate }}
-  </button>
+
+<!-- Título de la sección -->
+<div class="tituloOrdenar text-center my-3">
   <h2 class="fh5co-article-title subtitulo animated fadeIn">
       <a>{{ 'header.mensajeCabeceraAnyos' | translate }}
           <img src="assets/icons/viajes.png" alt="" class="iconosImg4 animated rollIn">
@@ -12,43 +25,56 @@
   </h2>
 </div>
 
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br>
-  <app-login></app-login>
-  <br>
+<!-- Contenido principal -->
+<div class="container py-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <ng-container *ngIf="anyos$ | async as anyos; else cargando">
+        <div *ngIf="(servicioViajes.error$ | async) === true" class="aviso">{{ 'app.errorCarga' | translate }}</div>
+        <div class="row fh5co-post-entry">
+          <div *ngFor="let a of ordenados(anyos)">
+            <article class="bloqueAnyo">
+              <span [routerLink]="['/viajesFiltrados', a.anyo]" class="fh5co-meta fh5co-date">{{ a.anyo }}</span>
+              <div class="contenedor-imagen">
+                  <a [routerLink]="['/viajesFiltrados', a.anyo]">
+                    <img *ngIf="a.portada" [src]="'assets/images/' + a.portada" [alt]="'' + a.anyo" class="img-responsive" loading="lazy">
+                  </a>
+                  <div [routerLink]="['/viajesFiltrados', a.anyo]" class="textoEnImagen img-responsiveAnyo">{{ a.anyo }}
+                      <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulse iconoFlechaPeque" [routerLink]="['/viajesFiltrados', a.anyo]">
+                  </div>
+              </div>
+              <div *ngFor="let destino of a.destinos">
+                  <h2 class="fh5co-article-title"><a [routerLink]="['/viajesFiltrados', a.anyo]">{{ destino }}</a></h2>
+              </div>
+            </article>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #cargando>
+        <div class="spinner-container">
+          <div class="spinner"></div>
+          <span> &nbsp; {{ 'app.cargando' | translate }}</span>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
 </div>
 
-<div *ngIf="authenticationService.isLoggedIn()">
-  <ng-container *ngIf="anyos$ | async as anyos; else cargando">
-    <div *ngIf="(servicioViajes.error$ | async) === true" class="aviso">{{ 'app.errorCarga' | translate }}</div>
-    <div class="row fh5co-post-entry">
-      <div *ngFor="let a of ordenados(anyos)">
-        <article class="bloqueAnyo">
-          <span [routerLink]="['/viajesFiltrados', a.anyo]" class="fh5co-meta fh5co-date">{{ a.anyo }}</span>
-          <div class="contenedor-imagen">
-              <a [routerLink]="['/viajesFiltrados', a.anyo]">
-                <img *ngIf="a.portada" [src]="'assets/images/' + a.portada" [alt]="'' + a.anyo" class="img-responsive" loading="lazy">
-              </a>
-              <div [routerLink]="['/viajesFiltrados', a.anyo]" class="textoEnImagen img-responsiveAnyo">{{ a.anyo }}
-                  <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulse iconoFlechaPeque" [routerLink]="['/viajesFiltrados', a.anyo]">
-              </div>
-          </div>
-          <div *ngFor="let destino of a.destinos">
-              <h2 class="fh5co-article-title"><a [routerLink]="['/viajesFiltrados', a.anyo]">{{ destino }}</a></h2>
-          </div>
-        </article>
-      </div>
+<!-- TOOLBAR INFERIOR: Para repetir la opción de volver al final de la página de forma limpia -->
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <app-toolbar
+        [volverLink]="'/principal'"
+        [mostrarBotonNuevo]="false"
+        [mostrarBotonConfig]="false"
+        [mostrarBotonOrdenar]="false">>
+      </app-toolbar>
+
     </div>
-  </ng-container>
-  <ng-template #cargando>
-    <div class="spinner-container">
-      <div class="spinner"></div>
-      <span> &nbsp; {{ 'app.cargando' | translate }}</span>
-    </div>
-  </ng-template>
-</div> <!-- de la autenticacion -->
-<br>
-<div class="divRight3">
-  <img src="assets/icons/flechaAtras.png" class="animated zoomInDown iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
+  </div>
 </div>

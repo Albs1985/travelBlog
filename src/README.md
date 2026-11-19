@@ -31,7 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```
 npm start            # genera los datos de los viajes y arranca en http://localhost:4200
 npm run build        # genera los datos y compila en docs/ (esto es lo que se sube a GitHub Pages)
-npm run datos        # solo regenera los datos de los viajes (src/assets/data/generated/)
+npm run datos        # solo regenera los datos de los viajes (src/assets/data/)
 ```
 - Usa siempre `npm start` / `npm run build` (no `ng serve` / `ng build` a pelo): así los datos de los viajes se regeneran antes.
 - Para subirlo: `git add .` · `git commit -m "Texto"` · (a veces `git pull`) · `git push -u origin main`
@@ -50,7 +50,7 @@ content/                       <- LO ÚNICO QUE SE ESCRIBE A MANO (datos + texto
 src/assets/images/<carpeta>/   <- las fotos (se descubren solas por su nombre, con cualquier extensión)
 scripts/build-data.mjs         <- valida y genera los datos para la web (se ejecuta solo)
   lib/                            (una pieza por tipo de contenido)
-src/assets/data/generated/     <- GENERADO. No editar a mano.
+src/assets/data/     <- GENERADO. No editar a mano.
 src/assets/i18n/es.json, val.json  <- solo textos de la interfaz (menús, botones...)
 ```
 En el código: `ContenidoService` (carga de colecciones y relatos), `ViajesService` (viajes), `L10nPipe`

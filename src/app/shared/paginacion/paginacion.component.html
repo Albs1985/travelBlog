@@ -1,0 +1,19 @@
+<div class="paginacion-toolbar">
+
+  <!-- Botón Anterior (Izquierda) -->
+  <div class="paginacion-slot">
+    <a *ngIf="linkAnterior" [routerLink]="linkAnterior" class="toolbar-btn animated fadeIn" [title]="textoAnterior | translate">
+      <img src="assets/icons/flechaIzq.png" alt="" [class]="claseIcono">
+      <span class="btn-text">{{ textoAnterior | translate }}</span>
+    </a>
+  </div>
+
+  <!-- Botón Siguiente (Derecha) -->
+  <div class="paginacion-slot">
+    <a *ngIf="linkSiguiente" [routerLink]="linkSiguiente" class="toolbar-btn animated fadeIn" [title]="textoSiguiente | translate">
+      <span class="btn-text">{{ textoSiguiente | translate }}</span>
+      <img src="assets/icons/flechaDer.png" alt="" [class]="claseIcono">
+    </a>
+  </div>
+
+</div>

@@ -37,30 +37,261 @@ li {
   text-decoration: underline;
 }
 
-.custom-tooltip {
+/* ========================================================
+   POPOVER / FICHA DETALLADA DEL VIAJE (ESTILO BITÁCORA)
+   ======================================================== */
+.viaje-popover-backdrop {
   position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: medium;
-  background-color: rgb(255, 233, 194);
-  width: 80%;
-  height: auto;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  border-radius: 15px;
+  inset: 0;
   z-index: 9999;
-  box-shadow: 5px 10px 8px #888888;
-  text-align: left;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  animation: fadeBackdrop 0.16s ease-out;
 }
 
-.custom-tooltip ul {
-  word-wrap: break-word;
+.custom-tooltip {
+  background: linear-gradient(180deg, #fffdf9 0%, #ffffff 100%);
+  border-radius: 20px;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.32);
+  border: 2px solid #fbbf24;
+  width: 100%;
+  max-width: 480px;
+  max-height: 88dvh;
+  overflow-y: auto;
+  color: #1e293b;
+  text-align: left;
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.viaje-popover-header {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  padding: 12px 14px;
+  border-bottom: 1.5px solid #fcd34d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.viaje-popover-titulo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 800;
+  color: #78350f;
+  font-size: clamp(0.92rem, 3.8vw, 1.08rem);
+  flex: 1;
+  min-width: 0;
+}
+
+.viaje-popover-titulo span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popover-mini-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.viaje-popover-anyo {
+  background: #ffffff;
+  color: #b45309;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid #f59e0b;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.viaje-popover-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(180, 83, 9, 0.3);
+  background: #ffffff;
+  color: #78350f;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.viaje-popover-close:hover {
+  background: #f59e0b;
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.viaje-popover-body {
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.viaje-datos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+  gap: 8px;
+}
+
+.viaje-dato-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 11px;
+  padding: 7px 10px;
+  font-size: 0.84rem;
+  color: #334155;
+}
+
+.viaje-dato-item b {
+  color: #0f172a;
+}
+
+.popover-dato-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.viaje-popover-viajeros-bloque {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 12px;
+}
+
+.viaje-popover-subtitulo {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #78350f;
+  margin-bottom: 8px;
+}
+
+.viaje-popover-viajeros-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.viajero-ficha {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1.5px solid #fde68a;
+  border-radius: 14px;
+  padding: 5px 10px 5px 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.viajero-ficha-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #f59e0b;
+  flex-shrink: 0;
+}
+
+.viajero-ficha-texto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.viajero-ficha-nombre {
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.viajero-ficha-edad {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #b45309;
+}
+
+@keyframes fadeBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ========================================================
+   METADATOS, ICONOS Y PERFILES EN LA PÁGINA DEL VIAJE
+   ======================================================== */
+.viaje-meta-barra {
+  margin: 10px 0;
+}
+
+.anyo-pill {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-left: 4px;
+}
+
+.perfiles-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0 16px;
 }
 
 .infoButton {
-  background: transparent;
-  border-color: transparent;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.infoButton:hover {
+  background: #fef3c7;
+  transform: scale(1.08);
+}
+
+.transportes-pista {
+  overflow: hidden;
+  width: 100%;
+  margin: 8px 0;
 }
 
 .iconos {
@@ -85,6 +316,7 @@ li {
   width: 50px;
   height: 50px;
   padding: 5px;
+  object-fit: cover;
 }
 
 .fh5co-post-entry article .fh5co-meta {
@@ -93,8 +325,9 @@ li {
 
 .iconoAirbnb {
   padding: 2px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
   align-self: center;
 }
 
@@ -121,11 +354,11 @@ li {
 }
 
 @keyframes muevePorPantalla {
-  0% { left: 0px; top: 0px; }
-  25% { left: 200%; top: 0px; }
-  50% { left: 0px; top: 0px; }
-  75% { left: -200%; top: 0px; }
-  100% { left: 0px; top: 0px; }
+  0% { transform: translateX(0); }
+  25% { transform: translateX(48px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-48px); }
+  100% { transform: translateX(0); }
 }
 
 .textoFoto {

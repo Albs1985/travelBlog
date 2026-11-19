@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ViajerosService } from 'src/app/services/viajeros.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
 })
 export class PrincipalComponent {
 
+  public viajerosService = inject(ViajerosService);
+  constructor(){}
 }

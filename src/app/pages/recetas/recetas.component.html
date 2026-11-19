@@ -16,15 +16,7 @@
   <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
 </div>
 
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br><br><br>
-  <app-login></app-login>
-  <br>
-</div>
-
-
-<div *ngIf="authenticationService.isLoggedIn()">
+<div>
   <ng-container *ngIf="vista$ | async as vista; else cargando">
     <br><br>
     <app-buscador [placeholder]="'app.recetasFiltrado' | translate" (buscar)="buscar($event)"></app-buscador>

@@ -27,14 +27,12 @@ export interface VistaRelato extends VistaBloques {
 })
 export class RelatoComponent implements OnDestroy {
   fotoAbierta: number | null = null;
-  esModoLibro = false;
 
   /** null mientras carga; si no existe el relato, `relato` es undefined. */
   readonly vista$: Observable<VistaRelato | { relato: undefined }> = this.route.paramMap.pipe(
     map((p) => p.get('slug') ?? ''),
     switchMap((slug) => this.contenido.relato(slug)),
     tap((relato) => {
-      this.esModoLibro = false;
       this.commonService.modoLibro$.next(false);
       this.commonService.sinIdioma$.next(!!relato?.sinIdioma);
     }),
@@ -62,13 +60,11 @@ export class RelatoComponent implements OnDestroy {
   }
 
   /** Cada relato puede usar la contraseña general o la propia de los relatos de la familia. */
-  estaAutenticado(relato?: Relato): boolean {
-    return relato?.protegido ? this.authenticationService.isLoggedInRelatoIaia() : this.authenticationService.isLoggedIn();
-  }
-
-  cambiarModo(): void {
-    this.esModoLibro = !this.esModoLibro;
-    this.commonService.modoLibro$.next(this.esModoLibro);
+  // estaAutenticado(relato?: Relato): boolean {
+  //   return relato?.protegido ? this.authenticationService.isLoggedInRelatoIaia() : this.authenticationService.isLoggedIn();
+  // }
+  tieneTokenAdmin(): boolean {
+    return !!localStorage.getItem('gh_travel_token');
   }
 
   ngOnDestroy(): void {

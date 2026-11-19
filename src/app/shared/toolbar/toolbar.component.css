@@ -1,0 +1,110 @@
+.admin-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+}
+
+.admin-actions-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Estilo unificado para TODOS los botones basado en el botón de volver */
+.toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #d97706;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: #ffffff;
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 2px solid #fde68a;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
+  min-height: 46px;
+  cursor: pointer;
+}
+
+.toolbar-btn:hover {
+  background: #fffbeb;
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+}
+
+.iconoFlecha {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* Panel de Token con tonos ligeros y cálidos */
+.admin-panel-token {
+  background: #fffdfb;
+  border: 1px solid #f0e9e5;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.token-title { margin: 0 0 10px; color: #65515a; font-family: Georgia, serif; }
+.token-desc { margin: 0 0 12px; font-size: 12px; color: #a39ba0; }
+.token-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.token-input { flex: 1; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; outline: none; font-size: 13px; min-width: 200px; }
+.btn-save-token { padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+
+/* Barra flotante para borrado múltiple */
+.floating-batch-bar {
+  background: #fffdfb;
+  padding: 8px 16px;
+  border-radius: 50px;
+  border: 2px solid #fde68a;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.batch-count { font-size: 13px; font-weight: bold; color: #d97706; }
+.btn-confirm-batch { background: #fde68a; color: #92400e; border: none; padding: 6px 14px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 12px; transition: background 0.2s; }
+.btn-confirm-batch:hover { background: #f59e0b; color: white; }
+
+
+  /* ==========================================================
+  📱 RESPONSIVE PARA MÓVILES (Botones pequeños, solo iconos)
+   ========================================================== */
+@media only screen and (max-width: 600px) {
+  .admin-toolbar {
+    gap: 6px;
+  }
+
+  .admin-actions-group {
+    gap: 6px;
+  }
+
+  /* Reducimos padding y ocultamos el texto dejando solo los iconos en móvil */
+  .toolbar-btn {
+    padding: 8px 12px;
+    min-height: 40px;
+    font-size: 0.85rem;
+  }
+
+  .toolbar-btn .btn-text {
+    display: none;
+  }
+}

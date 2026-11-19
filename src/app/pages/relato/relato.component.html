@@ -1,74 +1,91 @@
 <ng-container *ngIf="vista$ | async as vista; else cargando">
 
-  <div *ngIf="!esVista(vista)" class="aviso">
-    <p>{{ 'app.sinResultados' | translate }}</p>
-    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/principal"><a routerLink="/principal">  {{ 'app.listaViajes' | translate }}</a></span>
+  <!-- Aviso de relato no encontrado -->
+  <div *ngIf="!esVista(vista)" class="aviso text-center py-5">
+    <p class="mb-3">{{ 'app.sinResultados' | translate }}</p>
+    <a routerLink="/principal" class="btn-volver-enlace d-inline-flex align-items-center gap-2 text-decoration-none">
+      <img src="assets/icons/flechaAtras.png" class="iconoFlecha" alt="">
+      <span>{{ 'app.listaViajes' | translate }}</span>
+    </a>
   </div>
 
   <ng-container *ngIf="esVista(vista)">
 
-    <!-- Para autenticarse en la aplicación -->
-    <div *ngIf="!estaAutenticado(vista.relato)">
-      <br><br><br><br><br><br><br>
-      <div class="centrada">
-        <img src="assets/icons/seguridad.png" alt="" class="iconSeguridad animated fadeIn pulse">
-      </div>
-      <br><br>
-      <div class="centrada">
-        <app-login></app-login>
-      </div>
-      <div class="divVolver">
-        <br><br><br><br>
-        <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate }}</a></span>
-      </div>
-      <br>
-    </div>
+    <!-- Contenido del Relato (Controlando protección por Token de GitHub en lugar de login antiguo) -->
+    <div class="container-fluid px-2 px-md-4 py-3">
+      <div class="row justify-content-center">
+        <article class="col-12 col-md-10 col-lg-8 mx-auto px-3 px-md-4">
 
-    <div *ngIf="estaAutenticado(vista.relato)">
+          <!-- Barra de Herramientas unificada con el panel de Token -->
+          <div class="mb-4">
+            <app-toolbar
+              [volverLink]="'/principal'"
+              [mostrarBotonNuevo]="false"
+              [mostrarBotonConfig]="true">
+            </app-toolbar>
+          </div>
 
-      <!-- Modo libro -->
-      <div *ngIf="esModoLibro">
-        <div class="divRight2">
-          <span class="fh5co-meta"><img src="assets/icons/libro.png" alt="" class="animated fadeIn pulse iconoLibro" (click)="cambiarModo()"><a (click)="cambiarModo()">{{ 'app.versionWeb' | translate }}</a></span>
-        </div>
-        <app-libro [paginas]="vista.paginas" [titulo]="vista.relato.titulo" [subtitulo]="vista.relato.fecha"></app-libro>
-      </div>
-
-      <!-- Modo web -->
-      <div *ngIf="!esModoLibro" class="container-fluid">
-        <div class="row fh5co-post-entry single-entry">
-          <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-            <div *ngIf="vista.relato.modoLibro" class="divRight2">
-              <span class="fh5co-meta"><img src="assets/icons/libro.png" alt="" class="animated fadeIn pulse iconoLibro" (click)="cambiarModo()"><a (click)="cambiarModo()">{{ 'app.versionLibro' | translate }}</a></span>
+          <!-- Si el relato está protegido y el usuario NO tiene configurado el token de admin -->
+          <div *ngIf="vista.relato.protegido && !tieneTokenAdmin()" class="card border-0 shadow-sm p-5 text-center my-5 rounded-4 bg-light">
+            <div class="mb-3">
+              <img src="assets/icons/seguridad.png" alt="" class="iconSeguridad animated fadeIn pulse">
             </div>
-            <div class="divVolver">
-              <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="animated fadeIn pulse iconoFlecha" routerLink="/principal/"><a routerLink="/principal/">  {{ 'app.listaViajes' | translate }}</a></span>
+            <h3 class="fw-bold text-dark mb-2">{{ 'app.relatoProtegidoTitulo' | translate }}</h3>
+            <p class="text-muted mb-4">{{ 'app.relatoProtegidoDesc' | translate }}</p>
+          </div>
+
+          <!-- Si NO está protegido O SÍ tiene token, mostramos el contenido con centrado simétrico -->
+          <ng-container *ngIf="!vista.relato.protegido || tieneTokenAdmin()">
+
+            <!-- Cabecera del relato -->
+            <div class="text-center mb-4">
+              <span class="d-block text-uppercase text-muted fw-bold small tracking-wider mb-2" *ngIf="vista.relato.supra">
+                {{ vista.relato.supra | l10n }}<ng-container *ngIf="vista.edad !== undefined"> ({{ vista.edad }} {{ 'app.edad' | translate }})</ng-container>
+              </span>
+
+              <div class="d-flex justify-content-center align-items-center gap-2 mb-3" *ngIf="vista.relato.icono">
+                <img [src]="'assets/icons/' + vista.relato.icono" alt="" class="icon animated fadeIn" style="width: 32px; height: 32px;">
+                <img src="assets/icons/relatos.png" alt="" class="icon animated fadeIn" style="width: 32px; height: 32px;">
+              </div>
+
+              <h2 class="fw-bold display-6 text-dark mb-2">
+                {{ vista.relato.titulo | l10n }}
+              </h2>
+
+              <span class="text-muted small fst-italic" *ngIf="vista.relato.fecha">
+                {{ vista.relato.fecha | l10n }}
+              </span>
             </div>
 
-            <span class="fh5co-meta" *ngIf="vista.relato.supra">
-              <a>{{ vista.relato.supra | l10n }}<ng-container *ngIf="vista.edad !== undefined"> ({{ vista.edad }} {{ 'app.edad' | translate }})</ng-container></a>
-            </span>
-            <img *ngIf="vista.relato.icono" [src]="'assets/icons/' + vista.relato.icono" alt="" class="icon animated fadeIn">
-            <img src="assets/icons/relatos.png" alt="" class="icon animated fadeIn">
-            <h2 class="fh5co-article-title"><a>{{ vista.relato.titulo | l10n }}</a></h2>
-            <span class="fh5co-meta fh5co-date" *ngIf="vista.relato.fecha">{{ vista.relato.fecha | l10n }}</span>
-            <br>
-
-            <figure *ngIf="vista.relato.portada as portada" class="animated zoomInDown">
-              <button type="button" class="foto-btn" (click)="fotoAbierta = 0">
-                <img [src]="'assets/images/' + portada.src" alt="" class="img-responsive">
+            <!-- Portada opcional -->
+            <figure *ngIf="vista.relato.portada as portada" class="animated zoomInDown my-4 text-center">
+              <button type="button" class="foto-btn p-0 border-0 bg-transparent w-100" (click)="fotoAbierta = 0">
+                <img [src]="'assets/images/' + portada.src" alt="" class="img-fluid rounded-4 shadow-sm">
               </button>
-              <figcaption class="textoFoto" *ngIf="portada.desc">{{ portada.desc | l10n }}</figcaption>
+              <figcaption class="textoFoto text-muted small mt-2" *ngIf="portada.desc">{{ portada.desc | l10n }}</figcaption>
             </figure>
 
-            <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.relato.mapa" (abrir)="fotoAbierta = $event"></app-bloques>
-
-            <div *ngIf="vista.relato.siguiente" class="divRight">
-              <a [routerLink]="['/viaje', vista.relato.siguiente]">  {{ 'viaje.empezar' | translate }}</a>&nbsp;
-              <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulse iconoFlecha" [routerLink]="['/viaje', vista.relato.siguiente]">
+            <!-- Bloques de contenido dinámicos -->
+            <div class="my-4">
+              <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.relato.mapa" (abrir)="fotoAbierta = $event"></app-bloques>
             </div>
-          </article>
-        </div>
+
+            <!-- Enlace al siguiente viaje / relato -->
+            <div class="d-flex justify-content-between align-items-center my-5 pt-4 border-top" *ngIf="vista.relato.siguiente">
+              <a routerLink="/principal/" class="btn-volver-enlace d-inline-flex align-items-center gap-2 text-decoration-none">
+                <img src="assets/icons/flechaAtras.png" class="iconoFlecha animated fadeIn pulse" alt="">
+                <span>{{ 'app.listaViajes' | translate }}</span>
+              </a>
+
+              <a [routerLink]="['/viaje', vista.relato.siguiente]" class="btn-siguiente-enlace d-inline-flex align-items-center gap-2 text-decoration-none fw-bold text-warning">
+                <span>{{ 'viaje.empezar' | translate }}</span>
+                <img src="assets/icons/flechaDer.png" class="iconoFlecha animated fadeIn pulse" alt="">
+              </a>
+            </div>
+
+          </ng-container>
+
+        </article>
       </div>
 
       <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="vista.galeria" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
@@ -77,8 +94,8 @@
 </ng-container>
 
 <ng-template #cargando>
-  <div class="spinner-container">
+  <div class="spinner-container d-flex justify-content-center align-items-center py-5">
     <div class="spinner"></div>
-    <span> &nbsp; {{ 'app.cargando' | translate }}</span>
+    <span class="ms-2"> &nbsp; {{ 'app.cargando' | translate }}</span>
   </div>
 </ng-template>

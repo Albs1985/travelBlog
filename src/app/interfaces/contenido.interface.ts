@@ -11,13 +11,17 @@ export interface Frase {
 }
 
 export interface Dibujo {
-  id: number;
-  /** relativo a assets/images/ */
-  src: string;
+  id?: number | string;
   persona: string;
-  anyo?: number;
-  edad?: number;
-  detalle?: Texto;
+  anyo: string;
+  edad: string;
+  detalle: string;
+  src: string; // Ruta o nombre del fichero de imagen
+}
+
+export interface FotoDibujo {
+  src: string;
+  desc?: string;
 }
 
 export interface FotoFavorita {
@@ -26,7 +30,7 @@ export interface FotoFavorita {
   lugar?: string;
   etiquetas?: string;
   personas: string[];
-  desc?: Texto;
+  desc?: string; // Como un string simple
 }
 
 export type TipoReceta = 'frio' | 'caliente' | 'dulce';

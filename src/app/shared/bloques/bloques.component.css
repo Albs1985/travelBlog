@@ -39,10 +39,14 @@
   gap: 12px;
   margin: 20px 0;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  contain: layout style;
 }
 
 .fotos-grid figure {
   margin: 0;
+  background: #f5efe8;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .fotos-grid img {
@@ -50,12 +54,19 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
+  display: block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Una sola foto: se ve entera y centrada */
 .fotos-una {
   grid-template-columns: minmax(0, 640px);
   justify-content: center;
+}
+
+.fotos-una figure {
+  background: transparent;
 }
 
 .fotos-una img {

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
-import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
@@ -32,7 +31,7 @@ import { ImpostorComponent } from './pages/games/impostor/impostor.component';
 import { SimonComponent } from './pages/games/simon/simon.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { Conecta4Component } from './pages/games/conecta4/conecta4.component';
-import { TicketTrenComponent } from './pages/games/ticket-tren/ticket-tren.component';
+import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -42,11 +41,7 @@ const app_routes: Routes = [
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
   { path: 'contactQR', component : ContactQRComponent},
-  { path: 'bookMode', component : BookModeComponent},
   { path: 'historias/:slug', component : RelatoComponent},
-  // { path: 'historias/relatoIaiaAna', component : RelatoIaiaAnaComponent},
-  // { path: 'historias/relatoAlbert', component : RelatoAlbertComponent},
-  // { path: 'historias/relatoBodaEsteve', component : RelatoBodaEsteveComponent},
   { path: 'games', component : GamesComponent},
   { path: 'games/memory', component : MemoryComponent},
   { path: 'games/quien-es-quien', component : QuienEsQuienComponent},
@@ -62,12 +57,12 @@ const app_routes: Routes = [
   { path: 'games/simon', component : SimonComponent},
   { path: 'games/puzzle', component : PuzzleComponent},
   { path: 'games/conecta4', component : Conecta4Component},
-  { path: 'games/ticket-tren', component : TicketTrenComponent},
   { path: 'frases', component : FrasesComponent},
   { path: 'recetas', component : RecetasComponent},
   { path: 'apodos', component : ApodosComponent},
   { path: 'dibujos', component : DibujosComponent},
   { path: 'mapa', component : MapComponent},
+  { path: 'cumpleanyos', component: CumpleanosComponent },
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

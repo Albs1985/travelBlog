@@ -6,7 +6,6 @@ export interface FotoViaje {
   src: string;
   desc?: Texto;
 }
-
 export interface BloqueTexto {
   tipo: 'titulo' | 'subtitulo' | 'parrafo' | 'nota';
   texto: Texto;

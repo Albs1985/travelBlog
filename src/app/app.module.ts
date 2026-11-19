@@ -18,7 +18,6 @@ import { LibroComponent } from './shared/libro/libro.component';
 import { L10nPipe } from './pipes/l10n.pipe';
 import { LightboxComponent } from './shared/lightbox/lightbox.component';
 import { CarruselComponent } from './shared/carrusel/carrusel.component';
-import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
@@ -28,8 +27,7 @@ import { FrasesComponent } from './pages/frases/frases.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
 import { DibujosComponent } from './pages/dibujos/dibujos.component';
 import { ApodosComponent } from './pages/apodos/apodos.component';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { MemoryComponent } from './pages/games/memory/memory.component';
 import { GamesComponent } from './pages/games/games.component';
@@ -40,6 +38,9 @@ import { MapComponent } from './pages/map/map.component';
 import { GraficaComponent } from './pages/map/grafica/grafica.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { PaginacionComponent } from './shared/paginacion/paginacion.component';
+import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,6 @@ import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cu
     LibroComponent,
     LightboxComponent,
     CarruselComponent,
-    BookModeComponent,
     GaleriaComponent,
     PrincipalComponent,
     FavoritosComponent,
@@ -65,7 +65,6 @@ import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cu
     ViajesComponent,
     DibujosComponent,
     ApodosComponent,
-    LoginComponent,
     RecetasComponent,
     MemoryComponent,
     GamesComponent,
@@ -76,6 +75,9 @@ import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cu
     GraficaComponent,
     TablerosComponent,
     MisionCumplidaComponent,
+    ToolbarComponent,
+    PaginacionComponent,
+    CumpleanosComponent,
   ],
   imports: [
     BrowserModule,

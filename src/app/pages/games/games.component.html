@@ -1,20 +1,25 @@
 <div class="games-home-wrapper">
 
-  <!-- Botón Volver Flotante Superior -->
-  <div class="top-nav-bar">
-    <a class="btn-volver-glass animated zoomInDown" routerLink="/principal">
-      <img src="assets/icons/flechaAtras.png" class="iconoFlecha">
-      <span>{{ 'viaje.volver' | translate}}</span>
-    </a>
+  <div class="padding3">
+    <app-toolbar
+      [volverLink]="'/principal'"
+      [mostrarBotonNuevo]="false"
+      [mostrarBotonConfig]="false">
+    </app-toolbar>
   </div>
 
   <!-- Contenido Protegido / Home de Juegos -->
   <div class="games-hero-section">
 
-    <!-- Imagen de fondo difuminada cubriendo el máximo disponible -->
+    <!-- Contenedor de la imagen de fondo difuminada -->
+    <!-- Contenedor de la imagen de fondo difuminada -->
     <div class="hero-bg-container">
-      <img src="assets/images/games/portadaJuegos.jpg" loading="lazy" alt="inicio" class="hero-bg-image">
+      <img src="assets/images/games/backgroundGames.jpg" loading="lazy" alt="inicio" class="hero-bg-image">
       <div class="hero-dark-overlay"></div>
+      <!-- Capa de fundido superior hacia blanco -->
+      <div class="hero-white-fade-top"></div>
+      <!-- 👈 Añadido: Capa de fundido inferior hacia blanco -->
+      <div class="hero-white-fade-bottom"></div>
     </div>
 
     <!-- Contenido Principal Superpuesto sobre la imagen -->
@@ -122,12 +127,6 @@
           <div class="game-icon-card" title="Conecta 4">
             <a class="js-fh5co-close-offcanvas" routerLink="/games/conecta4/">
               <img src="assets/icons/conecta4.jpeg" alt="Conecta 4">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Ticket al Tren">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/ticket-tren/">
-              <img src="assets/icons/ticket-tren.jpeg" alt="Ticket al Tren">
             </a>
           </div>
 

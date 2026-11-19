@@ -1,17 +1,35 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import { OSM, Vector as VectorSource } from 'ol/source';
+import { Cluster, Vector as VectorSource, XYZ } from 'ol/source';
 import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
-import { Feature, Overlay } from 'ol';
+import { Feature } from 'ol';
 import { Point } from 'ol/geom';
 import { fromLonLat } from 'ol/proj';
 import Style from 'ol/style/Style';
 import Icon from 'ol/style/Icon';
+import CircleStyle from 'ol/style/Circle';
+import Fill from 'ol/style/Fill';
+import Stroke from 'ol/style/Stroke';
+import Text from 'ol/style/Text';
 
 import { LocalizacionesService } from 'src/app/services/localizaciones.service';
+import { CommonService } from 'src/app/services/common.service';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+
+export interface ViajeroDetalle {
+  nombre: string;
+  foto: string;
+  edad: number | null;
+}
+
+export interface DetalleUbicacion {
+  pais: string;
+  anyo: string;
+  viajeros: ViajeroDetalle[];
+  descripcion: string;
+}
 
 @Component({
   selector: 'app-map',
@@ -21,34 +39,38 @@ import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 export class MapComponent implements OnInit, OnDestroy {
 
   public map!: Map | null;
-  public vectorLayer = new VectorLayer();
-  overlay!: Overlay;
+  public fuentePuntos = new VectorSource<Feature<Point>>();
+  public fuenteCluster = new Cluster({
+    distance: 45,
+    minDistance: 20,
+    source: this.fuentePuntos
+  });
+  public clusterLayer = new VectorLayer({
+    source: this.fuenteCluster,
+    style: (feature) => this.estiloCluster(feature as Feature<Point>)
+  });
+
+  detalleSeleccionado: DetalleUbicacion | null = null;
+  totalMostrados: number = 0;
 
   destroy$: Subject<void> = new Subject<void>();
   finCargaPaises: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  personas = ['Mateu', 'Marina', 'Alba', 'Albert', 'Todos', 'Mateu,Alba,Albert', 'Alba,Albert'];
-  colores: { [key: string]: string } = {
-    'Mateu': 'red',
-    'Marina': 'pink',
-    'Alba': 'blue',
-    'Albert': 'green',
-    'Todos': 'yellow',
-    'Mateu,Alba,Albert': 'brown',
-    'Alba,Albert': 'orange'
-  };
 
   coordenadasIniciales: [number, number];
   filtro: string = '';
 
   paisesVisitados: { [key: string]: number } = {};
   dataGrafica: { country: string, visits: number }[] = [];
-  tipoGrafico: string = 'barras'; // 'barras' o 'resumen'
+  tipoGrafico: string = 'barras';
 
   totalPaisesVisitados: number = 0;
   totalVisitasGlobales: number = 0;
 
-  constructor(public servicioLocalizaciones: LocalizacionesService) {
+  constructor(
+    public servicioLocalizaciones: LocalizacionesService,
+    private commonService: CommonService,
+    private ngZone: NgZone
+  ) {
     this.coordenadasIniciales = [0, 0];
   }
 
@@ -70,121 +92,191 @@ export class MapComponent implements OnInit, OnDestroy {
       }
 
       this.coordenadasIniciales = localizaciones[0].coordinates;
-      this.paisesVisitados = {}; // Reiniciar contador
+      this.calcularEstadisticas(localizaciones);
 
-      this.map = new Map({
-        layers: [
-          new TileLayer({
-            source: new OSM({ attributions: '' }),
+      const features = localizaciones.map(loc => this.getFeature(loc));
+      this.totalMostrados = features.length;
+      this.fuentePuntos.clear();
+      this.fuentePuntos.addFeatures(features);
+
+      if (!this.map) {
+        this.map = new Map({
+          layers: [
+            new TileLayer({
+              source: new XYZ({
+                url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                attributions: ''
+              })
+            }),
+            this.clusterLayer
+          ],
+          target: 'map',
+          view: new View({
+            center: fromLonLat(localizaciones[0].coordinates),
+            zoom: 4
           }),
-          this.vectorLayer = new VectorLayer({
-            source: new VectorSource({
-              features: localizaciones.map(loc => this.getFeature(loc))
-            })
-          })
-        ],
-        target: 'map',
-        view: new View({
-          center: fromLonLat(localizaciones[0].coordinates),
-          zoom: 4
-        }),
-        controls: []
-      });
+          controls: []
+        });
 
-      this.overlay = new Overlay({
-        element: document.getElementById('tooltip')!,
-        autoPan: true
-      });
-      this.map.addOverlay(this.overlay);
+        this.map.on('click', (event) => {
+          if (event.dragging) {
+            return;
+          }
 
-      this.map.on('click', (event) => {
-        const pixel = event.pixel;
-        if (this.overlay) {
-          this.overlay.setPosition(undefined);
-        }
+          const hit = this.map!.forEachFeatureAtPixel(
+            event.pixel,
+            (feature) => feature,
+            { hitTolerance: 14 }
+          );
 
-        this.map!.forEachFeatureAtPixel(pixel, (feature) => {
-          if (feature) {
-            const geometry = feature.getGeometry();
-            if (geometry instanceof Point) {
-              const featureCoord = geometry.getCoordinates();
-              const tooltipElement = this.overlay.getElement();
+          if (!hit) {
+            return;
+          }
 
-              if (tooltipElement) {
-                tooltipElement.innerHTML = `
-                  <div class="popup-card-content">
-                    <div class="popup-header">
-                      <span class="popup-tag">📍 ${feature.get('pais')}</span>
-                      <span class="popup-year">🗓️ ${feature.get('año')}</span>
-                    </div>
-                    <div class="popup-travelers">
-                      <strong>Viajeros:</strong> ${feature.get('persona')}
-                    </div>
-                    <p class="popup-desc">${feature.get('descripcion')}</p>
-                    <span class="popup-close-hint">Haz clic para cerrar</span>
-                  </div>
-                `;
-              }
-              this.overlay.setPosition(featureCoord);
+          this.ngZone.run(() => {
+            const miembros: Feature<Point>[] = hit.get('features') ?? [];
+            if (miembros.length > 1) {
+              const geom = hit.getGeometry() as Point;
+              const vista = this.map!.getView();
+              const zoomActual = vista.getZoom() ?? 4;
+              vista.animate({
+                center: geom.getCoordinates(),
+                zoom: Math.min(zoomActual + 2, 16),
+                duration: 350
+              });
+              return;
             }
+
+            const origen = miembros[0] ?? hit;
+            const anyoStr = String(origen.get('año') ?? '');
+            const personaRaw = String(origen.get('persona') ?? '');
+            const mes = origen.get('mes') as number | undefined;
+            const dia = origen.get('dia') as number | undefined;
+
+            this.detalleSeleccionado = {
+              pais: String(origen.get('pais') ?? ''),
+              anyo: anyoStr,
+              viajeros: this.construirViajeros(personaRaw, anyoStr, mes, dia),
+              descripcion: String(origen.get('descripcion') ?? '')
+            };
+          });
+        });
+
+        this.map.on('pointermove', (event) => {
+          if (event.dragging) {
+            return;
+          }
+          const hayPin = this.map!.hasFeatureAtPixel(event.pixel, { hitTolerance: 14 });
+          const target = this.map!.getTargetElement();
+          if (target) {
+            target.style.cursor = hayPin ? 'pointer' : '';
           }
         });
-      });
-
-      // Calcular datos para gráficos y estadísticas
-      this.dataGrafica = Object.entries(this.paisesVisitados).map(([country, visits]) => ({ country, visits }));
-      this.totalPaisesVisitados = Object.keys(this.paisesVisitados).length;
-      this.totalVisitasGlobales = Object.values(this.paisesVisitados).reduce((a, b) => a + b, 0);
+      }
 
       this.finCargaPaises.next(true);
       this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
     });
   }
 
-  getFeature(loc: any) {
-    const feature = new Feature({
+  private construirViajeros(personaRaw: string, anyoStr: string, mes?: number, dia?: number): ViajeroDetalle[] {
+    const anyoNum = parseInt(anyoStr, 10);
+    const limpio = personaRaw.trim();
+
+    let nombres: string[];
+    if (!limpio || limpio.toLowerCase() === 'todos') {
+      nombres = [...this.commonService.nombresFamilia];
+    } else {
+      nombres = limpio
+        .split(',')
+        .map((n) => n.trim())
+        .filter((n) => n.length > 0);
+    }
+
+    return nombres.map((nombre) => {
+      const clave = nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase();
+      const edad = !Number.isNaN(anyoNum)
+        ? this.commonService.calcularEdadEnAnyo(clave, anyoNum, mes, dia)
+        : null;
+
+      return {
+        nombre: clave,
+        foto: `assets/images/perfiles/fotoPerfil${clave}.jpg`,
+        edad
+      };
+    });
+  }
+
+  ocultarFotoPerfil(evento: Event): void {
+    (evento.target as HTMLElement).style.display = 'none';
+  }
+
+  private estiloCluster(feature: Feature<Point>): Style {
+    const miembros: Feature<Point>[] = feature.get('features') ?? [];
+    const cantidad = miembros.length;
+
+    if (cantidad <= 1) {
+      return new Style({
+        image: new Icon({
+          src: 'assets/icons/ubicacionAmarillo.png',
+          scale: 0.048,
+          rotation: 0
+        })
+      });
+    }
+
+    return new Style({
+      image: new CircleStyle({
+        radius: cantidad >= 10 ? 20 : 16,
+        fill: new Fill({ color: 'rgba(245, 158, 11, 0.92)' }),
+        stroke: new Stroke({ color: '#ffffff', width: 3 })
+      }),
+      text: new Text({
+        text: String(cantidad),
+        fill: new Fill({ color: '#ffffff' }),
+        font: 'bold 13px Arial, sans-serif'
+      })
+    });
+  }
+
+  private calcularEstadisticas(localizaciones: any[]): void {
+    this.paisesVisitados = {};
+    for (const loc of localizaciones) {
+      const pais = String(loc.pais ?? '');
+      if (!pais) continue;
+      this.paisesVisitados[pais] = (this.paisesVisitados[pais] ?? 0) + 1;
+    }
+    this.dataGrafica = Object.entries(this.paisesVisitados).map(([country, visits]) => ({ country, visits }));
+    this.totalPaisesVisitados = Object.keys(this.paisesVisitados).length;
+    this.totalVisitasGlobales = Object.values(this.paisesVisitados).reduce((a, b) => a + b, 0);
+  }
+
+  getFeature(loc: any): Feature<Point> {
+    return new Feature({
       geometry: new Point(fromLonLat(loc.coordinates)),
       persona: loc.personas,
       año: loc.año,
+      mes: loc.mes,
+      dia: loc.dia,
       descripcion: loc.descripcion,
       pais: loc.pais
     });
-
-    this.actualizarVisitas(String(feature.get('pais')));
-
-    feature.setStyle(new Style({
-      image: new Icon({
-        src: 'assets/icons/ubicacionAmarillo.png',
-        scale: 0.045,
-        rotation: 0
-      })
-    }));
-    return feature;
   }
 
-  buttonCloseTooltip() {
-    if (this.overlay) {
-      this.overlay.setPosition(undefined);
-    }
-  }
-
-  actualizarVisitas(pais: string): void {
-    if (this.paisesVisitados[pais] !== undefined) {
-      this.paisesVisitados[pais]++;
-    } else {
-      this.paisesVisitados[pais] = 1;
-    }
+  cerrarPopover(): void {
+    this.detalleSeleccionado = null;
   }
 
   centrarMapa(): void {
     if (!this.map) return;
     const initialCenter = fromLonLat(this.coordenadasIniciales);
-    this.map.getView().setCenter(initialCenter);
-    this.map.getView().setRotation(0);
-    this.map.getView().setZoom(4);
-    if (this.overlay) {
-      this.overlay.setPosition(undefined);
-    }
+    this.map.getView().animate({
+      center: initialCenter,
+      rotation: 0,
+      zoom: 4,
+      duration: 450
+    });
+    this.cerrarPopover();
   }
 
   destruirMapa(): void {
@@ -196,27 +288,39 @@ export class MapComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  limpiarFiltro(): void {
+    this.filtro = '';
+    this.buscar();
+  }
+
   buscar(): void {
     this.servicioLocalizaciones.getLocations().pipe(takeUntil(this.destroy$)).subscribe((localizaciones) => {
-      this.vectorLayer.getSource()!.clear();
+      const termino = this.filtro.trim().toLowerCase();
+      const filtradas: Feature<Point>[] = [];
 
       localizaciones.forEach(loc => {
         const feature = this.getFeature(loc);
-        if (this.filtro.trim() === '' ||
-            String(feature.get('año')).toLowerCase().includes(this.filtro.toLowerCase()) ||
-            String(feature.get('persona')).toLowerCase().includes(this.filtro.toLowerCase()) ||
-            String(feature.get('descripcion')).toLowerCase().includes(this.filtro.toLowerCase()) ||
-            String(feature.get('pais')).toLowerCase().includes(this.filtro.toLowerCase())) {
-          this.vectorLayer.getSource()!.addFeature(feature);
+        const coincide =
+          termino === '' ||
+          String(feature.get('año') ?? '').toLowerCase().includes(termino) ||
+          String(feature.get('persona') ?? '').toLowerCase().includes(termino) ||
+          String(feature.get('descripcion') ?? '').toLowerCase().includes(termino) ||
+          String(feature.get('pais') ?? '').toLowerCase().includes(termino);
+
+        if (coincide) {
+          filtradas.push(feature);
         }
       });
 
-      this.map!.updateSize();
+      this.fuentePuntos.clear();
+      this.fuentePuntos.addFeatures(filtradas);
+      this.totalMostrados = filtradas.length;
+      this.map?.updateSize();
       this.servicioLocalizaciones.cargandoLocalizaciones$.next(false);
     });
   }
 
-  cambiaGrafico(valor: string) {
+  cambiaGrafico(valor: string): void {
     this.tipoGrafico = valor;
   }
 }

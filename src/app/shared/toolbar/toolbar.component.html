@@ -1,0 +1,64 @@
+<div class="admin-toolbar">
+
+  <!-- Enlace de Volver (Siempre visible) -->
+  <div class="back-link animated fadeIn">
+    <a class="toolbar-btn" [routerLink]="volverLink">
+      <img src="assets/icons/flechaAtras.png" class="iconoFlecha" alt="">
+      <span class="btn-text">{{ 'viaje.volver' | translate }}</span>
+    </a>
+  </div>
+
+  <!-- Botón Extra (Modo Libro / Web) -> Siempre visible si está configurado -->
+  <button *ngIf="textoBotonExtra" class="toolbar-btn animated fadeIn" (click)="accionExtra.emit()" [title]="textoBotonExtra | translate">
+    <img *ngIf="iconoBotonExtra" [src]="iconoBotonExtra" class="iconoFlecha" alt="">
+    <span class="btn-text">{{ textoBotonExtra | translate }}</span>
+  </button>
+
+  <!-- Grupo de Botones de Administración (Solo si está logueado) -->
+  <div class="admin-actions-group animated fadeIn">
+
+    <!-- Botón Ordenar -->
+    <button *ngIf="mostrarBotonOrdenar" class="toolbar-btn" (click)="ordenar.emit()" [title]="'app.ordenarPorAnyo' | translate">
+      <img *ngIf="!orderDesc" src="assets/icons/flechaAbajo.png" class="iconoFlecha" alt="">
+      <img *ngIf="orderDesc" src="assets/icons/flechaArriba.png" class="iconoFlecha" alt="">
+      <span class="btn-text">{{ 'app.ordenarPorAnyo' | translate }}</span>
+    </button>
+
+    <!-- Botón Configurar Token -->
+    <button *ngIf="mostrarBotonConfig" class="toolbar-btn" (click)="mostrarPanelToken = !mostrarPanelToken" [title]="githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate)">
+      <img src="assets/icons/login.png" class="iconoFlecha" alt="">
+      <span class="btn-text">{{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}</span>
+    </button>
+
+    <!-- Botón Activar / Desactivar Selección Múltiple -->
+    <button *ngIf="mostrarBotonSeleccionMultiple && githubToken" class="toolbar-btn" (click)="toggleSeleccionMultiple.emit()" [title]="modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate)">
+      <img src="assets/icons/bin.png" class="iconoFlecha" alt="">
+      <span class="btn-text">{{ modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate) }}</span>
+    </button>
+
+    <!-- Botón Crear Nuevo Elemento -->
+    <button *ngIf="mostrarBotonNuevo && githubToken" class="toolbar-btn" (click)="nuevo.emit()" [title]="textoNuevo | translate">
+      <img src="assets/icons/add2.png" class="iconoFlecha" alt="">
+      <span class="btn-text">{{ textoNuevo | translate }}</span>
+    </button>
+
+  </div>
+</div>
+
+<!-- Barra flotante de confirmación para borrado múltiple -->
+<div *ngIf="modoSeleccionMultiple && cantidadSeleccionada > 0" class="floating-batch-bar">
+  <span class="batch-count">{{ cantidadSeleccionada }} {{ 'app.seleccionadas' | translate }}</span>
+  <button class="btn-confirm-batch" (click)="confirmarBorradoMultiple.emit()">
+    {{ 'app.confirmarBorradoMultiple' | translate }}
+  </button>
+</div>
+
+<!-- Panel Desplegable para configurar el Token -->
+<div *ngIf="mostrarPanelToken" class="admin-panel-token animated fadeIn">
+  <h4 class="token-title">{{ 'app.adminTokenConfig' | translate }}</h4>
+  <p class="token-desc">{{ 'app.adminTokenDescripcion' | translate }}</p>
+  <div class="token-form">
+    <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" class="token-input" />
+    <button class="btn-save-token" (click)="guardarToken(tokenInput.value)">{{ 'app.guardar' | translate }}</button>
+  </div>
+</div>

@@ -24,32 +24,11 @@
     </div>
   </header>
 
-  <!-- Barra de Acciones y Token -->
-  <div class="admin-toolbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
-    <div class="back-link" style="margin: 0;">
-      <img src="assets/icons/flechaAtras.png" class="iconoFlecha" routerLink="/principal" alt="">
-      <a routerLink="/principal">{{ 'viaje.volver' | translate }}</a>
-    </div>
-
-    <div style="display: flex; gap: 10px;">
-      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" (click)="mostrarPanelToken = !mostrarPanelToken">
-        🔑 {{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}
-      </button>
-      <button style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;" *ngIf="githubToken" (click)="abrirCrear()">
-        ✨ {{ 'app.nuevaFrase' | translate }}
-      </button>
-    </div>
-  </div>
-
-  <!-- Panel Desplegable para configurar el Token -->
-  <div *ngIf="mostrarPanelToken" class="admin-panel-token" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 20px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
-    <h4 style="margin: 0 0 10px; color: #65515a; font-family: Georgia, serif;">{{ 'app.adminTokenConfig' | translate }}</h4>
-    <p style="margin: 0 0 12px; font-size: 12px; color: #a39ba0;">{{ 'app.adminTokenDescripcion' | translate }}</p>
-    <div style="display: flex; gap: 10px;">
-      <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" style="flex: 1; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; outline: none; font-size: 13px;" />
-      <button (click)="guardarToken(tokenInput.value)" style="padding: 10px 20px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.guardar' | translate }}</button>
-    </div>
-  </div>
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [textoNuevo]="'app.nuevaFrase'"
+    (nuevo)="mostrarFormulario = true">
+  </app-toolbar>
 
   <!-- Modal / Formulario Crear o Editar Frase -->
   <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
@@ -88,12 +67,7 @@
     </div>
   </div>
 
-  <!-- Autenticación previa de la app (si aplica) -->
-  <div *ngIf="authenticationService.isLoggedIn() === false" class="login-container">
-    <app-login></app-login>
-  </div>
-
-  <div *ngIf="authenticationService.isLoggedIn()">
+  <div>
 
     <ng-container *ngIf="frases$ | async as frases; else cargando">
 
@@ -145,7 +119,15 @@
             itemsPerPage: pageSize,
             currentPage: p
           }"
-          class="frase-card">
+          class="frase-card"
+          [style.opacity]="idsEliminando.has(frase.id!) ? '0.6' : '1'"
+          style="position: relative;">
+
+          <!-- 👈 OVERLAY DE PROCESANDO SI SE ESTÁ ELIMINANDO -->
+          <div *ngIf="idsEliminando.has(frase.id!)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px; border-radius: 12px;">
+            <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
+            <span style="font-size: 11px; font-weight: bold; color: #d97706;">Eliminando...</span>
+          </div>
 
           <!-- Año -->
           <div class="frase-year">
@@ -194,8 +176,8 @@
 
             <!-- Botones de administración visibles si hay token -->
             <div *ngIf="githubToken" style="display: flex; gap: 8px; margin: 15px 0 5px; justify-content: flex-end;">
-              <button (click)="abrirEditar(frase)" style="background: #fff2e1; border: 1px solid #f2d7bd; color: #bd8c58; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ {{ 'app.editarBtn' | translate }}</button>
-              <button (click)="eliminar(frase.id)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
+              <button (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)" style="background: #fff2e1; border: 1px solid #f2d7bd; color: #bd8c58; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ {{ 'app.editarBtn' | translate }}</button>
+              <button (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
             </div>
 
             <!-- Decoración -->

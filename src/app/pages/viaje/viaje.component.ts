@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { AutenticationService } from 'src/app/services/autentication.service';
 import { Viaje } from '../../interfaces/viaje.interface';
 import { VistaBloques, prepararBloques } from '../../services/bloques.util';
 import { iconoAlojamiento, iconoCategoria, iconoTransporte } from '../../services/viajes.catalogo';
+import { CommonService } from 'src/app/services/common.service';
 
 export interface VistaViaje extends VistaBloques {
   viaje: Viaje;
@@ -35,8 +36,32 @@ export class ViajeComponent {
   constructor(
     private route: ActivatedRoute,
     public servicioViajes: ViajesService,
-    public authenticationService: AutenticationService
+    public authenticationService: AutenticationService,
+    public commonService: CommonService
   ) {}
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.showMsg) {
+      this.showMsg = false;
+    }
+  }
+
+  edadViajero(persona: string, anyo?: number | string, mes?: number | string, dia?: number | string): number | null {
+    const anyoNum = typeof anyo === 'number' ? anyo : parseInt(String(anyo ?? ''), 10);
+    const mesNum = typeof mes === 'number' ? mes : parseInt(String(mes ?? ''), 10);
+    const diaNum = typeof dia === 'number' ? dia : parseInt(String(dia ?? ''), 10);
+    if (Number.isNaN(anyoNum)) {
+      return null;
+    }
+    if (Number.isNaN(mesNum)) {
+      return null;
+    }
+    if (Number.isNaN(diaNum)) {
+      return null;
+    }
+    return this.commonService.calcularEdadEnAnyo(persona, anyoNum, mesNum, diaNum);
+  }
 
   showTooltip(): void {
     this.showMsg = !this.showMsg;

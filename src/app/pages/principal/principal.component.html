@@ -19,7 +19,20 @@
       <!-- </a> -->
     </h3>
   </div>
-
+</div>
+<!-- Avatares de Viajeros -->
+<div class="viajeros-stories-section" *ngIf="viajerosService.viajeros$ | async as viajeros">
+  <div class="stories-container-centered">
+    <div *ngFor="let viajero of viajeros" class="story-item animated fadeInUp">
+      <a target="_blank" rel="noopener" [href]="viajero.fotoPerfil" class="story-ring">
+        <img [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" class="img-story">
+      </a>
+      <div class="story-meta">
+        <span class="nombre">{{viajero.nombreCorto}}</span>
+        <span class="edad">{{viajero.edad}} {{ 'app.edad' | translate}}</span>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="cuerpoImagenes">
   <div class="icon-container">
@@ -36,6 +49,7 @@
     <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/games/"><img src="assets/icons/consola.png" alt="" class="icon animated fadeIn pulse"></a></div>
     <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/mapa/"><img src="assets/icons/mapa.png" alt="" class="icon animated fadeIn pulse"></a></div>
     <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/contactQR/"><img src="assets/icons/correo.png" alt="" class="icon animated fadeIn pulse"></a></div>
+    <div class="icon"><a class="js-fh5co-close-offcanvas" routerLink="/cumpleanyos/"><img src="assets/icons/calendario.png" alt="" class="icon animated fadeIn pulse"></a></div>
   </div>
 </div>
 

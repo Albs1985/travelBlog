@@ -1,79 +1,120 @@
-<div class="tituloOrdenar">
-  <div class="divOrdenar">
-    <button class="botonOrdenar animated zoomInDown" (click)="ordenar()">
-      <img [src]="invertido ? 'assets/icons/flechaArriba.png' : 'assets/icons/flechaAbajo.png'" alt="" class="iconoFlecha"> {{ 'app.ordenar' | translate }}
-    </button>
-  </div>
-  <div class="divVolver2">
-    <span class="fh5co-meta"><img src="assets/icons/flechaAtras.png" class="iconoFlecha animated pulsePeque zoomInDown" routerLink="/viajes"><a routerLink="/viajes">  {{ 'viaje.volver' | translate}}</a></span>
+<!-- TOOLBAR SUPERIOR: Sustituye los botones de ordenar y volver dispersos -->
+<div class="container py-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <app-toolbar
+        [volverLink]="'/viajes'"
+        [mostrarBotonNuevo]="false"
+        [mostrarBotonConfig]="false"
+        [mostrarBotonOrdenar]="true"
+        [orderDesc]="invertido"
+        (ordenar)="ordenar()">
+      </app-toolbar>
+
+    </div>
   </div>
 </div>
 
-<!-- Para autenticarse en la aplicación -->
-<div *ngIf="authenticationService.isLoggedIn() === false">
-  <br><br><br>
-  <app-login></app-login>
-  <br>
-</div>
-
-<div *ngIf="authenticationService.isLoggedIn()">
+<div class="container py-2">
   <ng-container *ngIf="vista$ | async as vista; else cargando">
 
-    <h2 *ngIf="vista.modo === 'anyo'" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{ vista.filtro }}</b>&nbsp;
-      <img src="assets/icons/calendario.png" alt="" class="iconosImgCalendario animated rollIn">
-    </a></h2>
-    <h2 *ngIf="vista.modo === 'categoria'" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{ 'header.' + vista.filtro | translate }}</b>&nbsp;
-      <img [src]="vista.icono" alt="" class="iconosImg animated rollIn">
-    </a></h2>
-    <h2 *ngIf="vista.modo === 'palabra'" class="fh5co-article-title subtitulo"><a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{ vista.filtro }}</b>&nbsp;
-      <img src="assets/icons/palabraClave.png" alt="" class="iconosImg animated rollIn">
-    </a></h2>
+    <!-- Cabecera dinámica según el modo de filtrado -->
+    <div class="text-center mb-4">
+      <h2 *ngIf="vista.modo === 'anyo'" class="fh5co-article-title subtitulo">
+        <a>{{ 'header.mensajeCabeceraAny' | translate }} <b>{{ vista.filtro }}</b>
+          <img src="assets/icons/calendario.png" alt="" class="iconosImgCalendario animated rollIn ms-2">
+        </a>
+      </h2>
+      <h2 *ngIf="vista.modo === 'categoria'" class="fh5co-article-title subtitulo">
+        <a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{ 'header.' + vista.filtro | translate }}</b>
+          <img [src]="vista.icono" alt="" class="iconosImg animated rollIn ms-2">
+        </a>
+      </h2>
+      <h2 *ngIf="vista.modo === 'palabra'" class="fh5co-article-title subtitulo">
+        <a>{{ 'header.mensajeCabeceraFiltrar' | translate }} <b>{{ vista.filtro }}</b>
+          <img src="assets/icons/palabraClave.png" alt="" class="iconosImg animated rollIn ms-2">
+        </a>
+      </h2>
+    </div>
 
-    <div *ngIf="(servicioViajes.error$ | async) === true" class="sin-resultados">{{ 'app.errorCarga' | translate }}</div>
-    <div *ngIf="vista.tarjetas.length === 0 && (servicioViajes.error$ | async) === false" class="sin-resultados">{{ 'app.sinResultados' | translate }}</div>
+    <!-- Avisos de error o sin resultados -->
+    <div *ngIf="(servicioViajes.error$ | async) === true" class="sin-resultados text-center py-4">{{ 'app.errorCarga' | translate }}</div>
+    <div *ngIf="vista.tarjetas.length === 0 && (servicioViajes.error$ | async) === false" class="sin-resultados text-center py-4">{{ 'app.sinResultados' | translate }}</div>
 
+    <!-- Listado de tarjetas de viajes -->
     <div class="container-fluid animated fadeIn">
-      <div class="row fh5co-post-entry">
-        <div *ngFor="let t of ordenadas(vista.tarjetas)">
+      <div class="row fh5co-post-entry justify-content-center">
+        <div *ngFor="let t of ordenadas(vista.tarjetas)" class="col-12 col-md-10 col-lg-8 mx-auto mb-5">
           <article>
-            <app-carrusel [imagenes]="t.imagenes" [enlace]="['/viaje', t.viaje.id]" [alt]="t.viaje.destino"></app-carrusel>
-            <br>
+
+            <div class="mb-3">
+              <app-carrusel [imagenes]="t.imagenes" [enlace]="['/viaje', t.viaje.id]" [alt]="t.viaje.destino"></app-carrusel>
+            </div>
+
             <div *ngFor="let persona of t.viaje.personas" class="disposicion">
               <img [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'" [alt]="persona" loading="lazy" class="img-responsive fotoPerfil animated bounceInRight backInLeft" (error)="ocultar($event)">
             </div>
-            <span class="fh5co-meta"><a [routerLink]="['/viaje', t.viaje.id]">
-              <img *ngIf="t.categoriaIcono" [src]="t.categoriaIcono" alt="" class="iconosImg animated rollIn">
-              <img *ngIf="t.alojamientoIcono" [src]="t.alojamientoIcono" alt="" class="iconosImg animated rollIn">
-              &nbsp;{{ t.viaje.provincia }} &nbsp;{{ t.viaje.anyo }}</a></span>
-            <h2 class="fh5co-article-title"><a [routerLink]="['/viaje', t.viaje.id]">{{ t.viaje.destino }} &nbsp;<img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulseGrande iconoFlechaColor" [routerLink]="['/viaje', t.viaje.id]"></a></h2>
+
+            <span class="fh5co-meta">
+              <a [routerLink]="['/viaje', t.viaje.id]">
+                <img *ngIf="t.categoriaIcono" [src]="t.categoriaIcono" alt="" class="iconosImg animated rollIn">
+                <img *ngIf="t.alojamientoIcono" [src]="t.alojamientoIcono" alt="" class="iconosImg animated rollIn">
+                <span class="ms-1">{{ t.viaje.provincia }} {{ t.viaje.anyo }}</span>
+              </a>
+            </span>
+
+            <h2 class="fh5co-article-title">
+              <a [routerLink]="['/viaje', t.viaje.id]">
+                {{ t.viaje.destino }}
+                <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulseGrande iconoFlechaColor ms-2" [routerLink]="['/viaje', t.viaje.id]">
+              </a>
+            </h2>
+
             <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{ t.viaje.diaInicio }} de {{ 'mesAnyo.' + t.viaje.mesInicio | translate }}</b></span>
             <span class="fh5co-meta fh5co-date">{{ 'viaje.hasta' | translate }} <b>{{ t.viaje.diaFin }} de {{ 'mesAnyo.' + t.viaje.mesFin | translate }}</b></span>
+
             <div *ngFor="let icono of t.transporteIconos" class="disposicion">
               <img [src]="icono" alt="" class="img-responsive iconos animated rollIn mueveTransporte">
             </div>
+
           </article>
         </div>
       </div>
     </div>
-    <div class="clearfix visible-xs-block"></div>
 
-    <!-- Año anterior / siguiente: salen de los años que realmente tienen viajes -->
-    <div *ngIf="vista.modo === 'anyo'">
-      <div *ngIf="vista.anyoAnterior" class="divLeft2">
-        <img src="assets/icons/flechaIzq.png" alt="" class="animated fadeIn pulseGrande iconoFlecha" [routerLink]="['/viajesFiltrados', vista.anyoAnterior]">&nbsp;
-        <a [routerLink]="['/viajesFiltrados', vista.anyoAnterior]">  {{ 'viaje.anteriores' | translate }}</a>
-      </div>
-      <div *ngIf="vista.anyoSiguiente" class="divRight4">
-        <a [routerLink]="['/viajesFiltrados', vista.anyoSiguiente]">  {{ 'viaje.siguientes' | translate }}</a>&nbsp;
-        <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulseGrande iconoFlecha" [routerLink]="['/viajesFiltrados', vista.anyoSiguiente]">
-      </div>
-    </div>
+    <!-- Paginación entre años anteriores y siguientes -->
+    <app-paginacion
+      *ngIf="vista.modo === 'anyo'"
+      [linkAnterior]="vista.anyoAnterior ? ['/viajesFiltrados', vista.anyoAnterior] : undefined"
+      [textoAnterior]="'viaje.anteriores'"
+      [linkSiguiente]="vista.anyoSiguiente ? ['/viajesFiltrados', vista.anyoSiguiente] : undefined"
+      [textoSiguiente]="'viaje.siguientes'"
+      [claseIcono]="'animated fadeIn pulseGrande iconoFlecha'">
+    </app-paginacion>
+
   </ng-container>
 
   <ng-template #cargando>
-    <div class="spinner-container">
+    <div class="spinner-container d-flex justify-content-center align-items-center py-5">
       <div class="spinner"></div>
-      <span> &nbsp; {{ 'app.cargando' | translate }}</span>
+      <span class="ms-2">{{ 'app.cargando' | translate }}</span>
     </div>
   </ng-template>
-</div> <!-- de la autenticacion -->
+</div>
+
+<!-- TOOLBAR INFERIOR: Acceso directo para volver sin tener que hacer scroll hasta arriba -->
+<!-- <div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+
+      <app-toolbar
+        [volverLink]="'/viajes'"
+        [mostrarBotonNuevo]="false"
+        [mostrarBotonConfig]="false"
+        [mostrarBotonOrdenar]="false">
+      </app-toolbar>
+
+    </div>
+  </div>
+</div> -->

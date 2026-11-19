@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
+import { map, switchMap, startWith } from 'rxjs/operators';
 import { Frase } from '../../interfaces/contenido.interface';
 import { FrasesService } from '../../services/frases.service';
 import { AutenticationService } from '../../services/autentication.service';
@@ -22,13 +22,20 @@ export class FrasesComponent {
   modoEdicion = false;
   cargandoAccion = false;
 
+  // 👈 NUEVO: Control de elementos que se están eliminando actualmente
+  idsEliminando: Set<number | string> = new Set();
+
   // Objeto formulario
   fraseForm: Frase = this.inicializarFraseVacia();
 
   private readonly termino$ = new BehaviorSubject<string>('');
+  private readonly recargar$ = new BehaviorSubject<void>(undefined);
 
-  readonly frases$: Observable<Frase[]> = this.termino$.pipe(
-    switchMap((termino) => this.servicioFrases.buscar(termino)),
+  readonly frases$: Observable<Frase[]> = combineLatest([
+    this.termino$,
+    this.recargar$.pipe(startWith(undefined))
+  ]).pipe(
+    switchMap(([termino]) => this.servicioFrases.obtenerFrasesYFiltrar(termino)),
     map(frases => [...frases].sort((a, b) =>
       Number(b.fecha) - Number(a.fecha) || Number(b.id) - Number(a.id)
     ))
@@ -39,6 +46,10 @@ export class FrasesComponent {
   buscar(termino: string): void {
     this.p = 1;
     this.termino$.next(termino);
+  }
+
+  recargarLista(): void {
+    this.recargar$.next();
   }
 
   guardarToken(token: string): void {
@@ -65,7 +76,6 @@ export class FrasesComponent {
 
   abrirEditar(frase: Frase): void {
     this.modoEdicion = true;
-    // Clonamos para evitar modificar la tabla en vivo antes de guardar
     this.fraseForm = JSON.parse(JSON.stringify(frase));
     this.mostrarFormulario = true;
   }
@@ -96,20 +106,23 @@ export class FrasesComponent {
       next: () => {
         this.cargandoAccion = false;
         this.cerrarFormulario();
-        this.buscar('');
+        this.recargarLista();
       },
       error: (err) => {
         this.cargandoAccion = false;
-        console.error('Error detallado de GitHub:', err); // 👈 Mira esto en la consola del navegador (F12)
-
-        // Mostramos el mensaje exacto que devuelve GitHub si lo hay
+        console.error('Error detallado de GitHub:', err);
         const mensajeGitHub = err.error?.message || err.message || 'Desconocido';
         alert(`Error al guardar en GitHub: ${mensajeGitHub}`);
       }
     });
   }
 
-  eliminar(id: number): void {
+  eliminar(id: number | string | undefined, event: Event): void {
+    // 👈 Evitamos cualquier propagación o comportamiento por defecto del evento
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (!id) return;
     if (!this.githubToken) {
       alert('Por favor, introduce primero tu token de GitHub.');
       this.mostrarPanelToken = true;
@@ -117,14 +130,16 @@ export class FrasesComponent {
     }
 
     if (confirm('¿Estás seguro de que deseas eliminar este recuerdo?')) {
-      this.cargandoAccion = true;
-      this.servicioFrases.eliminarFrase(id, this.githubToken).subscribe({
+      // 1. Añadimos el ID al Set para bloquear y mostrar estado visual de carga
+      this.idsEliminando.add(id);
+
+      this.servicioFrases.eliminarFrase(Number(id), this.githubToken).subscribe({
         next: () => {
-          this.cargandoAccion = false;
-          this.buscar('');
+          this.idsEliminando.delete(id);
+          this.recargarLista();
         },
         error: (err) => {
-          this.cargandoAccion = false;
+          this.idsEliminando.delete(id);
           console.error(err);
           alert('Error al eliminar en GitHub.');
         }
