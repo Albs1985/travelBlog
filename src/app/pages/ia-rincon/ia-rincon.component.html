@@ -1,0 +1,195 @@
+<div class="rincon-wrapper">
+
+  <!-- Cabecera Hero -->
+  <header class="rincon-hero">
+    <h2 class="rincon-titulo">
+      <span>✨ {{ 'iaRincon.titulo' | translate }}</span>
+    </h2>
+    <p class="rincon-subtitulo">{{ 'iaRincon.subtitulo' | translate }}</p>
+  </header>
+
+  <!-- Toolbar de la app configurada para token de IA -->
+  <app-toolbar
+    [volverLink]="'/principal'"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="true"
+    [tipoToken]="'ia'"
+    (tokenGuardado)="onTokenIaGuardado($event)">
+  </app-toolbar>
+
+  <!-- Selector de Modo (Familia / Cuentos) -->
+  <div class="barra-controles-superior">
+    <div class="selector-modo-grupo" role="group" [attr.aria-label]="'iaRincon.ariaModo' | translate">
+      <button
+        type="button"
+        class="btn-modo-pill"
+        [class.activo]="modo === 'familia'"
+        (click)="seleccionarModo('familia')">
+        🏡 {{ 'iaRincon.modoFamilia' | translate }}
+      </button>
+      <button
+        type="button"
+        class="btn-modo-pill"
+        [class.activo]="modo === 'cuento'"
+        (click)="seleccionarModo('cuento')">
+        📖 {{ 'iaRincon.modoCuento' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Buscador sencillo estilo Google -->
+  <section class="buscador-google-seccion">
+    <form (ngSubmit)="ejecutarConsulta()" class="buscador-google-barra">
+      <span class="icono-lupa" aria-hidden="true">🔍</span>
+      <input
+        type="text"
+        name="consulta"
+        [(ngModel)]="consulta"
+        [placeholder]="
+          (modo === 'familia'
+            ? 'iaRincon.placeholderFamilia'
+            : 'iaRincon.placeholderCuento') | translate
+        "
+        class="buscador-google-input"
+        autocomplete="off">
+      <button
+        *ngIf="consulta"
+        type="button"
+        class="btn-limpiar-texto"
+        (click)="consulta = ''"
+        [attr.title]="'iaRincon.borrarTexto' | translate">✕</button>
+      <button
+        type="submit"
+        class="btn-primario btn-buscar-submit"
+        [disabled]="cargando || !consulta.trim()">
+        {{
+          (cargando
+            ? (modo === 'familia' ? 'iaRincon.pensandoFamilia' : 'iaRincon.pensandoCuento')
+            : (modo === 'familia' ? 'iaRincon.btnPreguntar' : 'iaRincon.btnCrearCuento')) | translate
+        }}
+      </button>
+    </form>
+
+    <div class="sugerencias-lista">
+      <button
+        *ngFor="let sug of (modo === 'familia' ? sugerenciasFamilia : sugerenciasCuento)"
+        type="button"
+        class="chip-sugerencia"
+        [disabled]="cargando"
+        (click)="usarSugerencia(sug)">
+        {{ sug | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="errorMsg" class="aviso-error-ia">
+      {{ errorMsg }}
+    </div>
+  </section>
+
+  <!-- ======================================================
+       RESPUESTA 1: MODO FAMILIA -> CHAT DE CONVERSACIÓN
+       ====================================================== -->
+  <section *ngIf="modo === 'familia'" class="panel-chat-familia">
+    <div class="panel-cabecera">
+      <h3>💬 {{ 'iaRincon.chatTitulo' | translate }}</h3>
+      <button
+        *ngIf="mensajesChat.length > 0"
+        type="button"
+        class="btn-secundario btn-xs"
+        (click)="limpiarConversacion()">
+        {{ 'iaRincon.limpiarChat' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="mensajesChat.length === 0 && !cargando" class="estado-vacio-panel">
+      {{ 'iaRincon.chatVacio' | translate }}
+    </div>
+
+    <div class="chat-mensajes">
+      <div
+        *ngFor="let msg of mensajesChat"
+        class="chat-fila"
+        [class.usuario]="msg.remitente === 'usuario'"
+        [class.ia]="msg.remitente === 'ia'">
+        <div class="chat-burbuja">
+          <div class="chat-texto">{{ msg.texto }}</div>
+          <span class="chat-hora">{{ msg.hora }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="cargando" class="chat-fila ia">
+        <div class="chat-burbuja escribiendo">
+          {{ 'iaRincon.buscandoRecuerdos' | translate }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       RESPUESTA 2: MODO CUENTOS -> ESTILO LIBRO INFANTIL
+       ====================================================== -->
+  <section *ngIf="modo === 'cuento'" class="panel-cuento-infantil">
+    <div *ngIf="cargando" class="cuento-estado-card">
+      ✨ {{ 'iaRincon.escribiendoCuento' | translate }}
+    </div>
+
+    <div *ngIf="!cargando && parrafosCuento.length === 0" class="cuento-estado-card">
+      {{ 'iaRincon.cuentoVacio' | translate }}
+    </div>
+
+    <article *ngIf="!cargando && parrafosCuento.length > 0" class="libro-cuento-card">
+      <div class="libro-cuento-top">
+        <span class="etiqueta-cuento">📚 {{ 'iaRincon.selloCuento' | translate }}</span>
+        <button type="button" class="btn-secundario btn-xs" (click)="limpiarCuento()">
+          {{ 'iaRincon.cerrarCuento' | translate }}
+        </button>
+      </div>
+
+      <h3 class="libro-cuento-titulo">{{ tituloCuento }}</h3>
+
+      <!-- Espacio reservado para ilustración generada por IA -->
+      <!-- <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
+        <div class="ilustracion-caja">
+          <span class="ilustracion-emoji">🖼️</span>
+          <strong>{{ 'iaRincon.ilustracionTitulo' | translate }}</strong>
+          <small>{{ 'iaRincon.ilustracionSub' | translate }}</small>
+        </div>
+      </div> -->
+      <!-- Espacio reservado para ilustración generada por IA -->
+      <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
+        <img
+          *ngIf="imagenCuentoUrl"
+          [src]="imagenCuentoUrl"
+          [alt]="tituloCuento"
+          class="ilustracion-cuento-img">
+
+        <div *ngIf="!imagenCuentoUrl" class="ilustracion-caja">
+          <span class="ilustracion-emoji">{{ cargandoImagenCuento ? '✨' : '🖼️' }}</span>
+          <strong>
+            {{
+              (cargandoImagenCuento
+                ? 'iaRincon.generandoIlustracion'
+                : 'iaRincon.ilustracionTitulo') | translate
+            }}
+          </strong>
+          <small>{{ 'iaRincon.ilustracionSub' | translate }}</small>
+        </div>
+      </div>
+
+      <div class="libro-cuento-paginas">
+        <p *ngFor="let p of parrafosCuento" class="libro-cuento-parrafo">
+          {{ p }}
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- Botón Volver Inferior -->
+  <div class="footer-back-wrapper">
+    <a routerLink="/principal" class="btn-volver-pill">
+      <img src="assets/icons/flechaAtras.png" loading="lazy" class="iconoFlecha" alt="">
+      <span>{{ 'viaje.volver' | translate }}</span>
+    </a>
+  </div>
+
+</div>

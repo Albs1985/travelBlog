@@ -14,7 +14,7 @@
     <span class="btn-text">{{ textoBotonExtra | translate }}</span>
   </button>
 
-  <!-- Grupo de Botones de Administración (Solo si está logueado) -->
+  <!-- Grupo de Botones de Administración -->
   <div class="admin-actions-group animated fadeIn">
 
     <!-- Botón Ordenar -->
@@ -24,20 +24,24 @@
       <span class="btn-text">{{ 'app.ordenarPorAnyo' | translate }}</span>
     </button>
 
-    <!-- Botón Configurar Token -->
-    <button *ngIf="mostrarBotonConfig" class="toolbar-btn" (click)="mostrarPanelToken = !mostrarPanelToken" [title]="githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate)">
+    <!-- Botón Configurar Token (GitHub o IA) -->
+    <button
+      *ngIf="mostrarBotonConfig"
+      class="toolbar-btn"
+      (click)="mostrarPanelToken = !mostrarPanelToken"
+      [title]="tokenActual ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate)">
       <img src="assets/icons/login.png" class="iconoFlecha" alt="">
-      <span class="btn-text">{{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}</span>
+      <span class="btn-text">{{ tokenActual ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}</span>
     </button>
 
     <!-- Botón Activar / Desactivar Selección Múltiple -->
-    <button *ngIf="mostrarBotonSeleccionMultiple && githubToken" class="toolbar-btn" (click)="toggleSeleccionMultiple.emit()" [title]="modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate)">
+    <button *ngIf="mostrarBotonSeleccionMultiple && tokenActual" class="toolbar-btn" (click)="toggleSeleccionMultiple.emit()" [title]="modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate)">
       <img src="assets/icons/bin.png" class="iconoFlecha" alt="">
       <span class="btn-text">{{ modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate) }}</span>
     </button>
 
     <!-- Botón Crear Nuevo Elemento -->
-    <button *ngIf="mostrarBotonNuevo && githubToken" class="toolbar-btn" (click)="nuevo.emit()" [title]="textoNuevo | translate">
+    <button *ngIf="mostrarBotonNuevo && tokenActual" class="toolbar-btn" (click)="nuevo.emit()" [title]="textoNuevo | translate">
       <img src="assets/icons/add2.png" class="iconoFlecha" alt="">
       <span class="btn-text">{{ textoNuevo | translate }}</span>
     </button>
@@ -55,10 +59,21 @@
 
 <!-- Panel Desplegable para configurar el Token -->
 <div *ngIf="mostrarPanelToken" class="admin-panel-token animated fadeIn">
-  <h4 class="token-title">{{ 'app.adminTokenConfig' | translate }}</h4>
-  <p class="token-desc">{{ 'app.adminTokenDescripcion' | translate }}</p>
+  <h4 class="token-title">
+    {{ tipoToken === 'ia' ? 'Configurar Token / API Key de IA' : ('app.adminTokenConfig' | translate) }}
+  </h4>
+  <p class="token-desc">
+    {{ tipoToken === 'ia'
+      ? 'Introduce tu clave de Google AI Studio (proyecto Familia). Se guardará en este navegador.'
+      : ('app.adminTokenDescripcion' | translate) }}
+  </p>
   <div class="token-form">
-    <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" class="token-input" />
+    <input
+      type="password"
+      #tokenInput
+      [value]="tokenActual"
+      [placeholder]="tipoToken === 'ia' ? 'Pega aquí tu clave de IA...' : ('app.adminTokenPlaceholder' | translate)"
+      class="token-input" />
     <button class="btn-save-token" (click)="guardarToken(tokenInput.value)">{{ 'app.guardar' | translate }}</button>
   </div>
 </div>

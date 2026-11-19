@@ -32,6 +32,7 @@ import { SimonComponent } from './pages/games/simon/simon.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { Conecta4Component } from './pages/games/conecta4/conecta4.component';
 import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
+import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -63,6 +64,7 @@ const app_routes: Routes = [
   { path: 'dibujos', component : DibujosComponent},
   { path: 'mapa', component : MapComponent},
   { path: 'cumpleanyos', component: CumpleanosComponent },
+  { path: 'ia', component: IaRinconComponent },
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

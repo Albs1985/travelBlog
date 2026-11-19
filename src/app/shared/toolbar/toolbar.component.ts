@@ -1,14 +1,16 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { AutenticationService } from 'src/app/services/autentication.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+
+export type TipoTokenToolbar = 'github' | 'ia';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
   // Configuración de rutas y textos mediante Inputs
   @Input() volverLink: string = '/principal';
   @Input() textoNuevo: string = 'app.nuevoElemento';
@@ -16,6 +18,7 @@ export class ToolbarComponent {
   @Input() mostrarBotonConfig: boolean = true;
   @Input() textoBotonExtra: string = '';
   @Input() iconoBotonExtra: string = '';
+  @Input() tipoToken: TipoTokenToolbar = 'github';
 
   // Opciones de ordenación (opcional)
   @Input() mostrarBotonOrdenar: boolean = false;
@@ -32,18 +35,38 @@ export class ToolbarComponent {
   @Output() toggleSeleccionMultiple = new EventEmitter<void>();
   @Output() confirmarBorradoMultiple = new EventEmitter<void>();
   @Output() accionExtra = new EventEmitter<void>();
+  @Output() tokenGuardado = new EventEmitter<string>();
 
-  // Gestión interna del Token de GitHub y su panel
-  githubToken: string = localStorage.getItem('gh_travel_token') || '';
+  tokenActual: string = '';
   mostrarPanelToken = false;
 
-  public authenticationService = inject(AutenticationService)
+  public authenticationService = inject(AutenticationService);
 
   constructor() {}
 
+  ngOnInit(): void {
+    this.cargarTokenDesdeStorage();
+  }
+
+  private get storageKey(): string {
+    return this.tipoToken === 'ia' ? 'gemini_familia_api_key' : 'gh_travel_token';
+  }
+
+  private cargarTokenDesdeStorage(): void {
+    this.tokenActual = localStorage.getItem(this.storageKey) || '';
+  }
+
   guardarToken(token: string): void {
-    this.githubToken = token.trim();
-    localStorage.setItem('gh_travel_token', this.githubToken);
+    const limpio = (token ?? '').trim();
+    this.tokenActual = limpio;
+
+    if (limpio) {
+      localStorage.setItem(this.storageKey, limpio);
+    } else {
+      localStorage.removeItem(this.storageKey);
+    }
+
+    this.tokenGuardado.emit(this.tokenActual);
     this.mostrarPanelToken = false;
   }
 }
