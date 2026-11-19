@@ -39,32 +39,99 @@
             <figcaption class="textoFoto" *ngIf="vista.viaje.descPrincipal">{{ vista.viaje.descPrincipal | l10n }}</figcaption>
           </figure>
 
-          <div *ngFor="let icono of vista.transporteIconos" class="disposicion">
-            <img [src]="icono" alt="" class="img-responsive iconos animated rollIn mueveTransporte">
-          </div>
-          <span class="fh5co-meta">
-            <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="iconosImg animated rollIn">
-            <img *ngIf="vista.alojamientoIcono" [src]="vista.alojamientoIcono" alt="" class="iconosImg animated rollIn">
-            &nbsp;{{ vista.viaje.anyo }}
-            <button type="button" class="infoButton" (click)="showTooltip()"><img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rubberBand"></button>
-            <div class="custom-tooltip" (click)="showTooltip()" *ngIf="showMsg">
-              <ul>{{ 'header.categoria' | translate }}: <b>{{ 'categoria.' + vista.viaje.categoria | translate }}</b></ul>
-              <ul>{{ 'viaje.provincia' | translate }}: <b>{{ vista.viaje.provincia }}</b></ul>
-              <ul>{{ 'viaje.pais' | translate }}: <b>{{ 'localidad.' + vista.viaje.pais | translate }}</b></ul>
-              <ul>{{ 'viaje.precio' | translate }}: <b>{{ vista.viaje.precio }}€</b></ul>
-              <ul>{{ 'viaje.estancia' | translate }}: <b>{{ vista.viaje.estancia }}</b></ul>
-              <ul>{{ 'viaje.tipoEstancia' | translate }}: <b>{{ 'tipoEstancia.' + vista.viaje.tipoEstancia | translate }}</b></ul>
-              <ul>{{ 'app.viajeros' | translate }}: <b>{{ vista.viaje.personas.join(', ') }}</b></ul>
+          <div class="transportes-pista" *ngIf="vista.transporteIconos?.length">
+            <div *ngFor="let icono of vista.transporteIconos" class="disposicion">
+              <img [src]="icono" alt="" class="img-responsive iconos animated rollIn mueveTransporte">
             </div>
-          </span>
-          <div class="disposicion">
-            <img *ngIf="vista.viaje.tipoEstancia === 'Airbnb'" src="assets/icons/airbnb.png" alt="" class="iconoAirbnb animated rollIn">
+          </div>
+
+          <div class="viaje-meta-barra">
+            <span class="fh5co-meta">
+              <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="iconosImg animated rollIn">
+              <img *ngIf="vista.alojamientoIcono" [src]="vista.alojamientoIcono" alt="" class="iconosImg animated rollIn">
+              <img *ngIf="vista.viaje.tipoEstancia === 'Airbnb'" src="assets/icons/airbnb.png" alt="" class="iconoAirbnb animated rollIn">
+              <span class="anyo-pill">{{ vista.viaje.anyo }}</span>
+
+              <button type="button" class="infoButton" (click)="showTooltip()" [attr.aria-label]="'app.verDetalle' | translate">
+                <img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rubberBand">
+              </button>
+            </span>
+          </div>
+
+          <!-- Popover / Ficha Detallada del Viaje -->
+          <div *ngIf="showMsg" class="viaje-popover-backdrop" (click)="showTooltip()">
+            <div class="custom-tooltip" (click)="$event.stopPropagation()">
+              <div class="viaje-popover-header">
+                <div class="viaje-popover-titulo">
+                  <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="popover-mini-icon">
+                  <span>{{ vista.viaje.destino }}</span>
+                </div>
+                <span class="viaje-popover-anyo">🗓️ {{ vista.viaje.anyo }}</span>
+                <button type="button" class="viaje-popover-close" (click)="showTooltip()" aria-label="Cerrar" title="Cerrar">✕</button>
+              </div>
+
+              <div class="viaje-popover-body">
+                <div class="viaje-datos-grid">
+                  <div class="viaje-dato-item">
+                    <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="popover-dato-icon">
+                    <span>🏷️ {{ 'header.categoria' | translate }}: <b>{{ 'categoria.' + vista.viaje.categoria | translate }}</b></span>
+                  </div>
+
+                  <div class="viaje-dato-item">
+                    <img src="assets/icons/mapa.png" alt="" class="popover-dato-icon">
+                    <span>📌 {{ 'viaje.provincia' | translate }}: <b>{{ vista.viaje.provincia }}</b></span>
+                  </div>
+
+                  <div class="viaje-dato-item">
+                    <img src="assets/icons/viajarMundo.png" alt="" class="popover-dato-icon">
+                    <span>🌍 {{ 'viaje.pais' | translate }}: <b>{{ 'localidad.' + vista.viaje.pais | translate }}</b></span>
+                  </div>
+
+                  <div class="viaje-dato-item">
+                    <span>💶 {{ 'viaje.precio' | translate }}: <b>{{ vista.viaje.precio }}€</b></span>
+                  </div>
+
+                  <div class="viaje-dato-item">
+                    <img src="assets/icons/calendario.png" alt="" class="popover-dato-icon">
+                    <span>⏳ {{ 'viaje.estancia' | translate }}: <b>{{ vista.viaje.estancia }}</b></span>
+                  </div>
+
+                  <div class="viaje-dato-item">
+                    <img *ngIf="vista.viaje.tipoEstancia === 'Airbnb'" src="assets/icons/airbnb.png" alt="" class="popover-dato-icon">
+                    <img *ngIf="vista.viaje.tipoEstancia !== 'Airbnb' && vista.alojamientoIcono" [src]="vista.alojamientoIcono" alt="" class="popover-dato-icon">
+                    <span>🏠 {{ 'viaje.tipoEstancia' | translate }}: <b>{{ 'tipoEstancia.' + vista.viaje.tipoEstancia | translate }}</b></span>
+                  </div>
+                </div>
+
+                <div class="viaje-popover-viajeros-bloque" *ngIf="vista.viaje.personas?.length">
+                  <div class="viaje-popover-subtitulo">🧭 {{ 'app.viajeros' | translate }}</div>
+                  <div class="viaje-popover-viajeros-lista">
+                    <div class="viajero-ficha" *ngFor="let persona of vista.viaje.personas">
+                      <img
+                        [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'"
+                        [alt]="persona"
+                        class="viajero-ficha-avatar"
+                        loading="lazy"
+                        (error)="ocultar($event)">
+                      <div class="viajero-ficha-texto">
+                        <span class="viajero-ficha-nombre">{{ persona }}</span>
+                        <span class="viajero-ficha-edad" *ngIf="edadViajero(persona, vista.viaje.anyo, vista.viaje.mesInicio, vista.viaje.diaInicio) as edad">
+                          {{ edad }} {{ edad === 1 ? 'año' : 'años' }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{ vista.viaje.diaInicio }} de {{ 'mesAnyo.' + vista.viaje.mesInicio | translate }}</b> {{ 'viaje.hasta' | translate }} <b>{{ vista.viaje.diaFin }} de {{ 'mesAnyo.' + vista.viaje.mesFin | translate }}</b></span>
 
-          <div *ngFor="let persona of vista.viaje.personas" class="disposicion">
-            <img [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'" [alt]="persona" loading="lazy" class="img-responsive fotoPerfil animated bounceInRight" (error)="ocultar($event)">
+          <div class="perfiles-barra" *ngIf="vista.viaje.personas?.length">
+            <div *ngFor="let persona of vista.viaje.personas" class="disposicion">
+              <img [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'" [alt]="persona" loading="lazy" class="img-responsive fotoPerfil animated bounceInRight" (error)="ocultar($event)">
+            </div>
           </div>
 
           <!-- Contenido del viaje: cada bloque se pinta según su tipo, en el orden del archivo del viaje -->
@@ -94,7 +161,7 @@
       <app-lightbox *ngIf="esVista(vista) && fotoAbierta !== null" [fotos]="vista.galeria" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
     </ng-container>
 
-  </div> <!-- de la autenticacion -->
+  </div>
 
   <ng-template #cargando>
     <div class="spinner-container">

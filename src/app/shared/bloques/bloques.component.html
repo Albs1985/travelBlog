@@ -15,9 +15,15 @@
     </div>
     <iframe *ngSwitchCase="'mapa'" class="mapa" [src]="mapa | safe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div *ngSwitchCase="'fotos'" class="fotos-grid" [class.fotos-una]="b.fotos?.length === 1">
-      <figure *ngFor="let f of b.fotos">
+      <figure *ngFor="let f of b.fotos; let i = index">
         <button type="button" class="foto-btn" (click)="abrir.emit(f.idx)">
-          <img [src]="'assets/images/' + f.foto.src" [alt]="f.foto.desc ? (f.foto.desc | l10n) : alt" loading="lazy">
+          <img
+            [src]="'assets/images/' + f.foto.src"
+            [alt]="f.foto.desc ? (f.foto.desc | l10n) : alt"
+            loading="eager"
+            [attr.decoding]="i === 0 ? 'sync' : 'async'"
+            [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
+            (error)="ocultar($event)">
         </button>
         <figcaption class="textoFoto" *ngIf="f.foto.desc">{{ f.foto.desc | l10n }}</figcaption>
       </figure>
@@ -27,9 +33,14 @@
   <ng-container *ngIf="extra.length">
     <h3 class="bloque-texto">{{ 'viaje.masFotos' | translate }}</h3>
     <div class="fotos-grid">
-      <figure *ngFor="let f of extra">
+      <figure *ngFor="let f of extra; let i = index">
         <button type="button" class="foto-btn" (click)="abrir.emit(f.idx)">
-          <img [src]="'assets/images/' + f.foto.src" [alt]="alt" loading="lazy">
+          <img
+            [src]="'assets/images/' + f.foto.src"
+            [alt]="alt"
+            loading="eager"
+            [attr.decoding]="i === 0 ? 'sync' : 'async'"
+            (error)="ocultar($event)">
         </button>
       </figure>
     </div>
