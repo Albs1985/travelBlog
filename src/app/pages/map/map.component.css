@@ -14,7 +14,7 @@
 }
 
 /* ========================================================
-   CABECERA HERO EDITORIAL (Protegida para móvil sin romper layout)
+   CABECERA HERO EDITORIAL
    ======================================================== */
 .apodos-hero-header {
   text-align: center;
@@ -122,7 +122,7 @@
 }
 
 /* ========================================================
-   MAPA MODERNO Y ELEGANTE
+   MAPA MODERNO Y CONTROLES FLOTANTES
    ======================================================== */
 .contenedor-mapa-glass {
   width: 100%;
@@ -135,13 +135,13 @@
 .map-modern {
   width: 100%;
   max-width: 1300px;
-  height: 520px;
+  height: 540px;
   border-radius: 24px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
   border: 2px solid #e2e8f0;
   position: relative;
   overflow: hidden;
-  background: #f8fafc;
+  background: #0f172a;
 }
 
 /* Botón Centrar Mapa */
@@ -149,7 +149,8 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
   border: 1.5px solid #cbd5e1;
   border-radius: 50%;
   width: 44px;
@@ -159,7 +160,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.18);
   transition: all 0.2s ease;
 }
 
@@ -182,41 +183,62 @@
   z-index: 1000;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(8px);
-  padding: 8px 12px;
-  border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  padding: 6px 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.16);
   border: 1px solid #e2e8f0;
 }
 
 .buscador-modern form {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .buscador-modern input[type="text"] {
-  width: 150px;
+  width: 160px;
   padding: 6px 10px;
   border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 0.85rem;
   outline: none;
+  background: #ffffff;
 }
 
 .buscador-modern input[type="text"]:focus {
   border-color: #f59e0b;
 }
 
-.buscador-modern button {
-  background: #f59e0b;
+.btn-limpiar-filtro {
+  background: #f1f5f9;
+  color: #475569;
   border: none;
   border-radius: 8px;
+  width: 26px;
+  height: 26px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-buscar-ubi {
+  background: #f59e0b;
+  border: none;
+  border-radius: 10px;
   width: 32px;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-buscar-ubi:hover {
+  background: #d97706;
 }
 
 .iconSearch {
@@ -225,77 +247,195 @@
   filter: brightness(0) invert(1);
 }
 
-/* ========================================================
-   POPOVER / TOOLTIP MODERNO (Tarjeta de Pasaporte)
-   ======================================================== */
-.travel-popup-card {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 14px 35px rgba(0,0,0,0.15);
-  border: 1.5px solid #fde68a;
-  padding: 16px 20px;
+.map-counter-badge {
   position: absolute;
-  z-index: 9998;
-  max-width: 290px;
-  cursor: pointer;
-  animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  border-bottom: 1.5px solid #f8fafc;
-  padding-bottom: 6px;
-}
-
-.popup-tag {
-  font-weight: 800;
-  color: #0f172a;
-  font-size: 0.95rem;
-}
-
-.popup-year {
-  background: #fef3c7;
-  color: #d97706;
-  font-size: 0.75rem;
-  padding: 3px 8px;
-  border-radius: 8px;
+  bottom: 14px;
+  left: 16px;
+  z-index: 900;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 50px;
+  font-size: 0.78rem;
   font-weight: 700;
-  border: 1px solid #fde68a;
+  letter-spacing: 0.2px;
 }
+/* ========================================================
+   POPOVER SUPERPUESTO AJUSTADO AL CONTENIDO (SIN SCROLL)
+   ======================================================== */
+   .popover-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    animation: fadeBackdrop 0.16s ease-out;
+  }
 
-.popup-travelers {
-  font-size: 0.82rem;
-  color: #475569;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
+  .travel-popup-card {
+    background: linear-gradient(180deg, #fffdf9 0%, #ffffff 100%);
+    border-radius: 18px;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.32);
+    border: 2px solid #fbbf24;
+    overflow: hidden;
+    width: fit-content;
+    min-width: 240px;
+    max-width: 340px;
+    max-height: 92dvh;
+    display: flex;
+    flex-direction: column;
+    animation: popIn 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
 
-.popup-desc {
-  margin: 0 0 8px 0;
-  font-size: 0.85rem;
-  color: #334155;
-  line-height: 1.4;
-}
+  .popup-top-banner {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 9px 12px;
+    border-bottom: 1.5px solid #fcd34d;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+  }
 
-.popup-close-hint {
-  display: block;
-  text-align: right;
-  font-size: 0.7rem;
-  color: #94a3b8;
-  font-style: italic;
-}
+  .popup-tag {
+    font-weight: 800;
+    color: #78350f;
+    font-size: clamp(0.85rem, 3.6vw, 0.96rem);
+    letter-spacing: -0.2px;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.9) translateY(6px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
+  .popup-year {
+    background: #ffffff;
+    color: #b45309;
+    font-size: clamp(0.7rem, 2.9vw, 0.76rem);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 800;
+    border: 1px solid #f59e0b;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .popup-close-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(180, 83, 9, 0.28);
+    background: #ffffff;
+    color: #78350f;
+    font-size: 0.82rem;
+    font-weight: 800;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .popup-close-btn:hover {
+    background: #f59e0b;
+    color: #ffffff;
+    transform: scale(1.06);
+  }
+
+  .popup-card-content {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+  }
+
+  .popup-travelers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .viajero-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 12px;
+    padding: 4px 9px 4px 5px;
+  }
+
+  .viajero-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #f59e0b;
+    flex-shrink: 0;
+  }
+
+  .viajero-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .viajero-nombre {
+    font-size: clamp(0.76rem, 3.2vw, 0.84rem);
+    font-weight: 800;
+    color: #1e293b;
+  }
+
+  .viajero-edad {
+    font-size: clamp(0.66rem, 2.7vw, 0.72rem);
+    font-weight: 700;
+    color: #b45309;
+  }
+
+  .popup-desc {
+    margin: 0;
+    font-size: clamp(0.78rem, 3.3vw, 0.88rem);
+    color: #334155;
+    line-height: 1.38;
+    word-break: break-word;
+    overflow: hidden;
+  }
+
+  /* MÓVIL: Ancho cómodo sin desbordar y alto ajustado al contenido */
+  @media only screen and (max-width: 768px) {
+    .travel-popup-card {
+      max-width: 92vw;
+      width: auto;
+    }
+
+    .viajero-avatar {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  @keyframes fadeBackdrop {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.94); }
+    to { opacity: 1; transform: scale(1); }
+  }
 
 /* ========================================================
    SECCIÓN DE GRÁFICAS Y ESTADÍSTICAS
-   ================================================        */
+   ======================================================== */
 .grafica-section-container {
   max-width: 1300px;
   margin: 0 auto;
@@ -327,7 +467,6 @@
   font-weight: 800;
 }
 
-/* Pestañas de Gráficos */
 .graficos-tabs {
   display: flex;
   gap: 10px;
@@ -356,7 +495,6 @@
   box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
 }
 
-/* Tarjetas de Estadísticas Globales */
 .stats-hero-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -393,7 +531,6 @@
   justify-content: center;
 }
 
-/* Spinner */
 .spinner-container-creative {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
 <div class="apodos-wrapper">
 
-  <!-- Cabecera Hero Editorial (Protegida contra solapamientos en móvil) -->
+  <!-- Cabecera Hero Editorial -->
   <header class="apodos-hero-header">
     <div class="hero-content">
       <h2 class="titulo animated fadeInDown">
@@ -28,30 +28,70 @@
     <span>{{ 'app.cargando' | translate}}</span>
   </div>
 
-  <!-- Contenedor del Mapa con Estilo Moderno -->
+  <!-- Contenedor del Mapa (Vista Satélite por defecto) -->
   <div class="contenedor-mapa-glass animated fadeInUp">
     <div id="map" class="map-modern">
-
-      <!-- Botón Centrar Mapa -->
-      <button class="buttonCentrar-modern" (click)="centrarMapa()" title="Centrar mapa">
-        <img src="assets/icons/casa2.png" alt="" class="iconoCasa animated rollIn">
-      </button>
 
       <!-- Buscador Flotante Estilizado -->
       <div class="buscador-modern">
         <form (submit)="buscar(); $event.preventDefault()">
-          <input type="text" placeholder="{{ 'app.frasesFiltrado' | translate }}" [(ngModel)]="filtro" name="filtro">
-          <button type="submit">
+          <input
+            type="text"
+            placeholder="{{ 'app.frasesFiltrado' | translate }}"
+            [(ngModel)]="filtro"
+            (ngModelChange)="buscar()"
+            name="filtro">
+          <button *ngIf="filtro" type="button" class="btn-limpiar-filtro" (click)="limpiarFiltro()" title="Limpiar">
+            ✕
+          </button>
+          <button type="submit" class="btn-buscar-ubi" title="Buscar">
             <img src="assets/icons/buscarUbi.png" alt="" class="iconSearch">
           </button>
         </form>
       </div>
 
+      <!-- Botón Centrar Mapa -->
+      <button type="button" class="buttonCentrar-modern" (click)="centrarMapa()" title="Centrar mapa">
+        <img src="assets/icons/casa2.png" alt="" class="iconoCasa animated rollIn">
+      </button>
+
+      <!-- Badge inferior con total de pines mostrados -->
+      <div class="map-counter-badge" *ngIf="totalMostrados > 0">
+        📍 {{ totalMostrados }} {{ totalMostrados === 1 ? 'destino' : 'destinos' }}
+      </div>
+
     </div>
   </div>
 
-  <!-- Popover / Tooltip Estilo Pasaporte con Foto -->
-  <div id="tooltip" class="travel-popup-card" (click)="buttonCloseTooltip()"></div>
+  <!-- Popover Superpuesto Ajustado al Contenido -->
+  <div *ngIf="detalleSeleccionado as d" class="popover-backdrop" (click)="cerrarPopover()">
+    <div class="travel-popup-card" (click)="$event.stopPropagation()">
+      <div class="popup-top-banner">
+        <span class="popup-tag">📍 {{ d.pais }}</span>
+        <span class="popup-year">🗓️ {{ d.anyo }}</span>
+        <button type="button" class="popup-close-btn" (click)="cerrarPopover()" aria-label="Cerrar" title="Cerrar">✕</button>
+      </div>
+
+      <div class="popup-card-content">
+        <div class="popup-travelers-grid">
+          <div class="viajero-chip" *ngFor="let v of d.viajeros">
+            <img
+              [src]="v.foto"
+              [alt]="v.nombre"
+              class="viajero-avatar"
+              loading="lazy"
+              (error)="ocultarFotoPerfil($event)">
+            <div class="viajero-info">
+              <span class="viajero-nombre">{{ v.nombre }}</span>
+              <span class="viajero-edad" *ngIf="v.edad !== null">{{ v.edad }} {{ v.edad === 1 ? 'año' : 'años' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="popup-desc" *ngIf="d.descripcion">{{ d.descripcion }}</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Sección de Gráficas y Estadísticas -->
   <div class="grafica-section-container animated fadeInUp">
