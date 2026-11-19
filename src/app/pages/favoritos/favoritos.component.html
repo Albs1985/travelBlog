@@ -43,26 +43,30 @@
         <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; background: #fffdfb;" />
       </div>
 
-      <div *ngIf="fotosPendientes.length > 0" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; max-height: 400px; overflow-y: auto; padding-right: 5px;">
-        <div *ngFor="let item of fotosPendientes; let i = index" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 15px; border-radius: 14px; display: flex; gap: 15px; align-items: flex-start;">
+      <div *ngIf="fotosPendientes.length > 0" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; max-height: 400px; overflow-y: auto; padding-right: 5px; min-width: 0;">
+        <div *ngFor="let item of fotosPendientes; let i = index" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 15px; border-radius: 14px; display: flex; gap: 15px; align-items: flex-start; min-width: 0;">
 
           <div style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #eee;">
             <img [src]="item.previewUrl" style="width: 100%; height: 100%; object-fit: cover;" alt="">
           </div>
 
-          <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; gap: 10px;">
-              <input type="text" [(ngModel)]="item.anyo" [placeholder]="'app.anyoPlaceholder' | translate" style="width: 80px; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
-              <input type="text" [(ngModel)]="item.lugar" [placeholder]="'app.lugarPlaceholder' | translate" style="flex: 1; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
+              <input type="text" [(ngModel)]="item.anyo" [placeholder]="'app.anyoPlaceholder' | translate" style="flex: 0 0 76px; width: 76px; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
             </div>
-            <div style="display: flex; gap: 10px;">
-              <input type="text" [(ngModel)]="item.etiquetas" [placeholder]="'app.etiquetasPlaceholder' | translate" style="flex: 1; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
-              <input type="text" [(ngModel)]="item.personasStr" [placeholder]="'app.personasPlaceholder' | translate" style="flex: 1; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
+            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
+              <input type="text" [(ngModel)]="item.lugar" [placeholder]="'app.lugarPlaceholder' | translate" style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
             </div>
-            <input type="text" [(ngModel)]="item.desc" [placeholder]="'app.descPlaceholder' | translate" style="width: 100%; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
+            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
+              <input type="text" [(ngModel)]="item.etiquetas" [placeholder]="'app.etiquetasPlaceholder' | translate" style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
+            </div>
+            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
+              <input type="text" [(ngModel)]="item.personasStr" [placeholder]="'app.personasPlaceholder' | translate" style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
+            </div>
+            <input type="text" [(ngModel)]="item.desc" [placeholder]="'app.descPlaceholder' | translate" style="width: 100%; max-width: 100%; min-width: 0; min-height: 10rem; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
           </div>
 
-          <button (click)="quitarPendiente(i)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 12px;" [title]="'app.quitar' | translate">×</button>
+          <button (click)="quitarPendiente(i)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 12px;" [title]="'app.quitar' | translate">×</button>
         </div>
       </div>
 

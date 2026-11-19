@@ -94,9 +94,9 @@ export class FavoritosComponent {
           file: file,
           previewUrl: previewUrl,
           anyo: anioActual,
-          lugar: '',
-          etiquetas: '',
-          personasStr: '',
+          lugar: 'Godella, Pitufo',
+          etiquetas: 'Xiquets, Germans',
+          personasStr: 'Mateu, Marina',
           desc: ''
         });
       }

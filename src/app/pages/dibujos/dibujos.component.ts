@@ -6,6 +6,7 @@ import { FotoViaje } from '../../interfaces/viaje.interface';
 import { ContenidoService } from '../../services/contenido.service';
 import { DibujosService } from '../../services/dibujos.service';
 import { AutenticationService } from '../../services/autentication.service';
+import { CommonService } from '../../services/common.service';
 import { filtrar } from '../../services/buscar.util';
 
 // Interfaz auxiliar para la cola de subida múltiple
@@ -34,7 +35,7 @@ export class DibujosComponent {
   mostrarFormulario = false;
   cargandoAccion = false;
 
-  // 👈 NUEVA COLA DE DIBUJOS PENDIENTES
+  // Cola de dibujos pendientes
   dibujosPendientes: DibujoPendiente[] = [];
 
   idsEliminando: Set<number | string> = new Set();
@@ -57,7 +58,8 @@ export class DibujosComponent {
   constructor(
     private contenido: ContenidoService,
     private dibujosService: DibujosService,
-    public authenticationService: AutenticationService
+    public authenticationService: AutenticationService,
+    public commonService: CommonService
   ) {}
 
   buscar(termino: string): void {
@@ -75,11 +77,34 @@ export class DibujosComponent {
     this.mostrarPanelToken = false;
   }
 
-  // 👈 CAPTURA MÚLTIPLE DE FICHEROS Y CREA LA COLA
+  /** Calcula la edad por defecto en base a la fecha actual (o al año indicado si cambia). */
+  private calcularEdadPorDefecto(persona: string, anyoStr: string): string {
+    const hoy = new Date();
+    const anyoNum = parseInt(anyoStr, 10);
+    const anyoReferencia = Number.isNaN(anyoNum) ? hoy.getFullYear() : anyoNum;
+    const usarFechaActual = anyoReferencia === hoy.getFullYear();
+
+    const edad = this.commonService.calcularEdadEnAnyo(
+      persona,
+      anyoReferencia,
+      usarFechaActual ? hoy.getMonth() + 1 : undefined,
+      usarFechaActual ? hoy.getDate() : undefined
+    );
+
+    return edad !== null ? String(edad) : '';
+  }
+
+  actualizarEdadPendiente(item: DibujoPendiente): void {
+    item.edad = this.calcularEdadPorDefecto(item.persona, item.anyo);
+  }
+
+  // Captura múltiple de ficheros y crea la cola
   onFilesSelected(event: any): void {
     const files: FileList = event.target.files;
     if (files && files.length > 0) {
+      const personaPorDefecto = 'Mateu';
       const anioActual = new Date().getFullYear().toString();
+      const edadPorDefecto = this.calcularEdadPorDefecto(personaPorDefecto, anioActual);
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -88,9 +113,9 @@ export class DibujosComponent {
         this.dibujosPendientes.push({
           file: file,
           previewUrl: previewUrl,
-          persona: 'Mateu', // Valor por defecto
+          persona: personaPorDefecto,
           anyo: anioActual,
-          edad: '',
+          edad: edadPorDefecto,
           detalle: ''
         });
       }
@@ -144,9 +169,7 @@ export class DibujosComponent {
       this.idsEliminando.add(id);
       this.dibujosService.eliminarDibujo(id, this.githubToken).subscribe({
         next: () => {
-          // this.idsEliminando.delete(id);
           this.contenido.invalidarCache('dibujos');
-          // this.buscar('');
         },
         error: (err) => {
           this.idsEliminando.delete(id);

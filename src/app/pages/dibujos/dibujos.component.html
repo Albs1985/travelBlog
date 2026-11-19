@@ -57,16 +57,36 @@
           </div>
 
           <!-- Campos editables por cada imagen -->
-          <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; gap: 10px;">
-              <select [(ngModel)]="item.persona" style="flex: 1; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;">
-                <option value="Mateu">Mateu</option>
-                <option value="Marina">Marina</option>
-              </select>
-              <input type="text" [(ngModel)]="item.anyo" placeholder="Año" style="width: 70px; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
-              <input type="text" [(ngModel)]="item.edad" placeholder="Edad" style="width: 60px; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px;" />
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <select
+              [(ngModel)]="item.persona"
+              (ngModelChange)="actualizarEdadPendiente(item)"
+              style="width: 100%; max-width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; background: #fff; box-sizing: border-box;">
+              <option value="Mateu">Mateu</option>
+              <option value="Marina">Marina</option>
+              <option value="Alba">Alba</option>
+              <option value="Albert">Albert</option>
+            </select>
+
+            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
+              <input
+                type="text"
+                [(ngModel)]="item.anyo"
+                (ngModelChange)="actualizarEdadPendiente(item)"
+                placeholder="Año"
+                style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
+              <input
+                type="text"
+                [(ngModel)]="item.edad"
+                placeholder="Edad"
+                style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
             </div>
-            <textarea [(ngModel)]="item.detalle" placeholder="Detalle / Descripción" rows="2" style="width: 100%; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; resize: vertical; box-sizing: border-box;"></textarea>
+
+            <textarea
+              [(ngModel)]="item.detalle"
+              placeholder="Detalle / Descripción"
+              rows="2"
+              style="width: 100%; max-width: 100%; min-width: 0; min-height: 10rem; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; resize: vertical; box-sizing: border-box;"></textarea>
           </div>
 
           <!-- Botón quitar de la cola -->
