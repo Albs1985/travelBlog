@@ -18,7 +18,6 @@ import { LibroComponent } from './shared/libro/libro.component';
 import { L10nPipe } from './pipes/l10n.pipe';
 import { LightboxComponent } from './shared/lightbox/lightbox.component';
 import { CarruselComponent } from './shared/carrusel/carrusel.component';
-import { BookModeComponent } from './pages/book-mode/book-mode.component';
 import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { FavoritosComponent } from './pages/favoritos/favoritos.component';
@@ -57,7 +56,6 @@ import { PaginacionComponent } from './shared/paginacion/paginacion.component';
     LibroComponent,
     LightboxComponent,
     CarruselComponent,
-    BookModeComponent,
     GaleriaComponent,
     PrincipalComponent,
     FavoritosComponent,

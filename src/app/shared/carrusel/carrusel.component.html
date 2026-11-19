@@ -1,15 +1,21 @@
 <div class="car" *ngIf="imagenes.length">
   <div class="car-pista" #pista>
-    <a *ngFor="let img of imagenes" class="car-item" [routerLink]="enlace">
-      <img [src]="'assets/images/' + img" [alt]="alt" loading="lazy" (error)="ocultar($event)">
+    <a *ngFor="let img of imagenes; let i = index" class="car-item" [routerLink]="enlace">
+      <img
+        [src]="'assets/images/' + img"
+        [alt]="alt"
+        loading="eager"
+        [attr.decoding]="i === 0 ? 'sync' : 'async'"
+        [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
+        (error)="ocultar($event)">
     </a>
   </div>
   <ng-container *ngIf="imagenes.length > 1">
     <button type="button" class="car-btn car-izq" (click)="mover(pista, -1)" [attr.aria-label]="'app.anterior' | translate">
-      <img src="assets/icons/flechaIzq.png" alt="">
+      <img src="assets/icons/flechaIzq.png" alt="" decoding="async">
     </button>
     <button type="button" class="car-btn car-der" (click)="mover(pista, 1)" [attr.aria-label]="'app.siguiente' | translate">
-      <img src="assets/icons/flechaDer.png" alt="">
+      <img src="assets/icons/flechaDer.png" alt="" decoding="async">
     </button>
   </ng-container>
 </div>

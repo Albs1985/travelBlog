@@ -7,8 +7,11 @@
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   border-radius: 15px;
+  background: #f5efe8;
 }
 .car-pista::-webkit-scrollbar {
   display: none;
@@ -16,12 +19,16 @@
 .car-item {
   flex: 0 0 100%;
   scroll-snap-align: center;
+  background: #f5efe8;
+  overflow: hidden;
 }
 .car-item img {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .car-btn {
   position: absolute;
@@ -37,6 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 .car-btn img {
   width: 24px;
