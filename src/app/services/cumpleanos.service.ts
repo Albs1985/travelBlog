@@ -200,7 +200,7 @@ export class CumpleanosService {
           ...item,
           dia: diaNum,
           mes: mesIdx + 1,
-          foto: this.obtenerFotoPerfil(item.nombre),
+          foto: this.obtenerFotoPerfil(item.id),
           edadActual: edad,
           esHoy,
           diasHastaProximo

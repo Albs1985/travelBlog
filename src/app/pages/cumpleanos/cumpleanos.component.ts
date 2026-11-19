@@ -236,6 +236,6 @@ export class CumpleanosComponent implements OnInit {
   }
 
   mostrarAvatar(item: CumpleanosEnriquecido): void {
-    item.foto = 'assets/icons/iconoFamiliar.png';
+    item.foto = 'assets/icons/avatar.png';
   }
 }
