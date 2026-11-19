@@ -29,9 +29,10 @@ interface GithubContentResponse {
   providedIn: 'root'
 })
 export class CumpleanosService {
-  private readonly jsonPath = 'assets/data/cumpleanyos.json';
+  private readonly jsonPath = 'src/assets/data/cumpleanyos.json';
   private readonly jsonUrl = 'assets/data/cumpleanyos.json';
   private readonly perfilesCarpeta = 'assets/images/perfiles';
+  private readonly perfilesRepoCarpeta = 'src/assets/images/perfiles';
 
   private readonly repoOwner = 'Albs1985';
   private readonly repoName = 'travelBlog';
@@ -181,7 +182,7 @@ export class CumpleanosService {
     }
 
     const nombreArchivo = this.obtenerNombreArchivoPerfil(idPersona);
-    const rutaArchivo = `${this.perfilesCarpeta}/${nombreArchivo}`;
+    const rutaArchivo = `${this.perfilesRepoCarpeta}/${nombreArchivo}`;
 
     return this.leerArchivoComoBase64(archivoImagen).pipe(
       switchMap((base64) =>
