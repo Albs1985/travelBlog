@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
-import { finalize, of, switchMap } from 'rxjs';
+import { catchError, finalize, of, switchMap } from 'rxjs';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
@@ -49,7 +49,6 @@ export class IaRinconComponent implements OnInit {
     'iaRincon.sugerenciaCuento2',
     'iaRincon.sugerenciaCuento3'
   ];
-
 
   constructor(
     private iaService: IaFamiliaService,
@@ -147,6 +146,10 @@ export class IaRinconComponent implements OnInit {
       this.imagenCuentoUrl = null;
       this.cargandoImagenCuento = true;
 
+      // 1. Collage de fotos reales en paralelo (rápido y sin errores 429 de imagen)
+      this.cargarIlustracionOCollage(texto);
+
+      // 2. Generación del cuento en paralelo
       this.iaService
         .inventarCuento(
           {
@@ -160,33 +163,41 @@ export class IaRinconComponent implements OnInit {
         .subscribe({
           next: (cuentoRaw) => {
             this.formatearCuento(cuentoRaw, texto);
-
-            this.iaService
-              .generarIlustracionParaCuento(texto)
-              .pipe(
-                switchMap((imgIa) => {
-                  if (imgIa) {
-                    return of(imgIa);
-                  }
-                  return this.iaService.crearCollageDesdePrompt(texto);
-                }),
-                finalize(() => (this.cargandoImagenCuento = false))
-              )
-              .subscribe({
-                next: (imgDataUrl) => {
-                  this.imagenCuentoUrl = imgDataUrl;
-                },
-                error: () => {
-                  this.imagenCuentoUrl = null;
-                }
-              });
           },
-          error: (err) => {
-            this.cargandoImagenCuento = false;
-            this.errorMsg = this.obtenerMensajeErrorAmigable(err);
+          error: () => {
+            // Si el modelo de texto está en 503 o se agotó la cuota diaria (429), generamos cuento base local
+            const cuentoRespaldo = this.crearCuentoRespaldoLocal(texto);
+            this.formatearCuento(cuentoRespaldo, texto);
           }
         });
     }
+  }
+
+  private cargarIlustracionOCollage(promptTexto: string): void {
+    this.cargandoImagenCuento = true;
+
+    this.iaService
+      .generarIlustracionParaCuento(promptTexto)
+      .pipe(
+        catchError(() => of(null)),
+        switchMap((imgIa) => {
+          if (imgIa) {
+            return of(imgIa);
+          }
+          return this.iaService
+            .crearCollageDesdePrompt(promptTexto)
+            .pipe(catchError(() => of(null)));
+        }),
+        finalize(() => (this.cargandoImagenCuento = false))
+      )
+      .subscribe({
+        next: (imgDataUrl) => {
+          this.imagenCuentoUrl = imgDataUrl;
+        },
+        error: () => {
+          this.imagenCuentoUrl = null;
+        }
+      });
   }
 
   private formatearCuento(raw: string, promptOriginal: string): void {
@@ -253,5 +264,23 @@ export class IaRinconComponent implements OnInit {
     }
 
     return this.translate.instant('iaRincon.errorGenerico');
+  }
+
+  private crearCuentoRespaldoLocal(promptTexto: string): string {
+    if (this.obtenerIdiomaActivo() === 'val') {
+      return [
+        `Una gran aventura inspirada en: ${promptTexto}`,
+        `Hi havia una vegada una expedició plena d'il·lusió inspirada en ${promptTexto}. Amb una brúixola daurada i un mapa dibuixat a mà, els protagonistes van salpar cap a cales d'aigua cristal·lina.`,
+        `Entre onades suaus, gavines juganeres i pistes amagades entre les roques, van descobrir que el millor tresor de tots era compartir aquella aventura junts.`,
+        `Quan el sol es va pondre tenyint el cel de taronja, van tornar a port amb un munt de rialles i records per a tota la vida.`
+      ].join('\n\n');
+    }
+
+    return [
+      `Una gran aventura inspirada en: ${promptTexto}`,
+      `Había una vez una expedición llena de ilusión inspirada en ${promptTexto}. Con una brújula dorada y un mapa dibujado a mano, los protagonistas zarparon hacia calas de agua cristalina.`,
+      `Entre olas tranquilas, gaviotas juguetonas y pistas escondidas junto a la orilla, descubrieron que el mejor tesoro de todos era compartir aquella aventura juntos.`,
+      `Cuando el sol empezó a esconderse tiñendo el cielo de naranja, regresaron a puerto con un montón de risas y recuerdos inolvidables.`
+    ].join('\n\n');
   }
 }

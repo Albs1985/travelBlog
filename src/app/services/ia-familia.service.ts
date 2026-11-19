@@ -16,33 +16,30 @@ interface GithubDirItem {
   name: string;
   type: string;
 }
+interface ItemViajeResumen {
+  nombreArchivo: string;
+  jsonViaje: unknown;
+  linea: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class IaFamiliaService {
   private readonly storageKey = 'gemini_familia_api_key';
-  // private readonly modeloDefecto = 'gemini-flash-latest';
-  // private readonly modeloDefecto = 'gemini-2.5-flash';
-  // private readonly modeloDefecto = 'gemini-3.8-flash';
-  // private readonly modeloDefecto = 'gemini-3.5-flash-lite';
-  // private readonly modeloDefecto = 'gemini-3.1-flash-lite-preview';
-  // private readonly modeloDefecto = 'gemini-2.5-flash';
 
-// Quiero un cuento para niños de 6 años, con protagonistas a Mateu y Marina, que son piratas en Menorca y Formentera.
   private readonly modelosCandidatos = [
     'gemini-3.5-flash-lite',
-    'gemini-3.1-flash-lite-preview',
+    // 'gemini-3.1-flash-lite-preview',
     'gemini-3.8-flash',
-    'gemini-2.5-flash'
+    // 'gemini-2.5-flash'
   ];
 
   private readonly modelosImagenCandidatos = [
-    'gemini-2.5-flash-image',
-    // 'gemini-2.5-flash-preview-image',
-    // 'imagen-3.0-generate-002'
+    'gemini-2.5-flash-image'
   ];
 
+  private readonly cacheCarpetasGithub = new Map<string, string[]>();
 
   private readonly repoOwner = 'Albs1985';
   private readonly repoName = 'travelBlog';
@@ -81,7 +78,7 @@ export class IaFamiliaService {
       return throwError(() => new Error('Escribe una pregunta primero.'));
     }
 
-    return this.obtenerContextoFamiliar().pipe(
+    return this.obtenerContextoFamiliar(preguntaLimpia).pipe(
       switchMap((contexto) => {
         const instruccionIdioma =
           idioma === 'val'
@@ -108,7 +105,9 @@ export class IaFamiliaService {
   }
 
   inventarCuento(opciones: OpcionesCuento, idioma: IdiomaIa = 'es'): Observable<string> {
-    return this.obtenerContextoFamiliar().pipe(
+    const textoBusqueda = `${opciones.protagonistas ?? ''} ${opciones.lugar ?? ''}`.trim();
+
+    return this.obtenerContextoParaCuento(textoBusqueda).pipe(
       switchMap((contexto) => {
         const instruccionIdioma =
           idioma === 'val'
@@ -142,6 +141,36 @@ export class IaFamiliaService {
     );
   }
 
+  private obtenerContextoParaCuento(filtroPrompt = ''): Observable<string> {
+    const leerJsonEs = (ruta: string) =>
+      this.http.get<unknown>(ruta).pipe(
+        catchError(() => of(null)),
+        map((data) => (data ? this.extraerSoloEs(data) : null))
+      );
+
+    return forkJoin({
+      viajesResumen: this.cargarViajesEs(filtroPrompt, 4),
+      relatosResumen: this.cargarRelatosEs(),
+      viajeros: leerJsonEs('assets/data/viajeros.json')
+    }).pipe(
+      map((datos) => {
+        const partes: string[] = [];
+
+        if (datos.viajesResumen) {
+          partes.push(`VIAJES RELEVANTES:\n${this.resumirTexto(datos.viajesResumen, 1400)}`);
+        }
+        if (datos.viajeros) {
+          partes.push(`VIAJEROS: ${this.resumirTexto(datos.viajeros, 800)}`);
+        }
+        if (datos.relatosResumen) {
+          partes.push(`RELATOS:\n${this.resumirTexto(datos.relatosResumen, 900)}`);
+        }
+
+        return partes.join('\n\n');
+      })
+    );
+  }
+
   private llamarGemini(contents: string, systemInstruction: string): Observable<string> {
     const apiKey = this.obtenerApiKey();
     if (!apiKey) {
@@ -169,17 +198,10 @@ export class IaFamiliaService {
           })
         );
       }).pipe(
-        timeout(30000),
+        timeout(15000),
         retry({
-          count: 1,
-          delay: (error) => {
-            const codigo = error?.status ?? error?.error?.code;
-            const esTemporal = codigo === 503 || codigo === 429 || error?.status === 'UNAVAILABLE';
-            if (!esTemporal) {
-              throw error;
-            }
-            return timer(1000);
-          }
+          count: 0,
+          delay: (error) => throwError(() => error)
         }),
         map((response) => {
           const texto = (response?.text ?? '').trim();
@@ -208,7 +230,7 @@ export class IaFamiliaService {
     return intentarConModelos(0);
   }
 
-  private obtenerContextoFamiliar(): Observable<string> {
+  private obtenerContextoFamiliar(filtroPrompt = ''): Observable<string> {
     const leerJsonEs = (ruta: string) =>
       this.http.get<unknown>(ruta).pipe(
         catchError(() => of(null)),
@@ -216,7 +238,7 @@ export class IaFamiliaService {
       );
 
     return forkJoin({
-      viajesResumen: this.cargarViajesEs(),
+      viajesResumen: this.cargarViajesEs(filtroPrompt),
       relatosResumen: this.cargarRelatosEs(),
       viajeros: leerJsonEs('assets/data/viajeros.json'),
       cumpleanyos: leerJsonEs('assets/data/cumpleanyos.json'),
@@ -262,33 +284,146 @@ export class IaFamiliaService {
     );
   }
 
-  private cargarViajesEs(): Observable<string> {
+  private cargarViajesEs(filtroPrompt = '', maxViajesSalida = 6): Observable<string> {
     return this.listarJsonEnCarpeta(this.viajesRepoFolder).pipe(
       switchMap((archivos) => {
         if (archivos.length === 0) {
           return of('');
         }
 
-        const ordenados = [...archivos].sort((a, b) => b.localeCompare(a)).slice(0, this.MAX_VIAJES_A_TRATAR);
+        const ordenados = [...archivos]
+          .sort((a, b) => b.localeCompare(a))
+          .slice(0, this.MAX_VIAJES_A_TRATAR);
 
         const peticiones = ordenados.map((nombreArchivo) =>
           this.http.get<unknown>(`${this.viajesAssetsFolder}/${nombreArchivo}`).pipe(
             catchError(() => of(null)),
-            map((jsonViaje) => {
+            map((jsonViaje): ItemViajeResumen | null => {
               if (!jsonViaje) {
-                return '';
+                return null;
               }
               const info = this.resumirViajeEs(nombreArchivo, jsonViaje);
-              return `- ${info}`;
+              return {
+                nombreArchivo,
+                jsonViaje,
+                linea: `- ${this.resumirTexto(info, 220)}`
+              };
             })
           )
         );
 
         return forkJoin(peticiones).pipe(
-          map((lineas) => lineas.filter(Boolean).join('\n'))
+          map((items) => {
+            const validos = items.filter(
+              (item): item is ItemViajeResumen => item !== null && Boolean(item.linea)
+            );
+
+            if (validos.length === 0) {
+              return '';
+            }
+
+            const filtrados = this.filtrarItemsViajePorPrompt(validos, filtroPrompt);
+            return filtrados
+              .slice(0, maxViajesSalida)
+              .map((item) => item.linea)
+              .join('\n');
+          })
         );
       })
     );
+  }
+
+  private filtrarItemsViajePorPrompt(
+    items: Array<{ nombreArchivo: string; jsonViaje: unknown; linea: string }>,
+    filtroPrompt: string
+  ): Array<{ nombreArchivo: string; jsonViaje: unknown; linea: string }> {
+    const promptNorm = this.normalizarTexto(filtroPrompt).trim();
+    if (!promptNorm) {
+      return items;
+    }
+
+    const gruposTematicos: Array<{ claves: string[]; afines: string[]; opuestos: string[] }> = [
+      {
+        claves: [
+          'pirata', 'piratas', 'mar', 'playa', 'cala', 'isla', 'islas',
+          'barco', 'vela', 'buceo', 'snorkel', 'arena', 'sol'
+        ],
+        afines: [
+          'playa', 'cala', 'isla', 'menorca', 'formentera', 'mallorca',
+          'ibiza', 'mar', 'costa', 'barco', 'puerto', 'faro'
+        ],
+        opuestos: [
+          'montana', 'montanas', 'pico', 'cumbre', 'senderismo',
+          'nieve', 'esqui', 'ciudad', 'museo', 'catedral', 'metro'
+        ]
+      },
+      {
+        claves: [
+          'montana', 'montanas', 'senderismo', 'cumbre', 'pico',
+          'bosque', 'nieve', 'esqui', 'valle'
+        ],
+        afines: [
+          'montana', 'sierra', 'pico', 'valle', 'bosque',
+          'senderismo', 'ruta', 'pirineos', 'picos'
+        ],
+        opuestos: [
+          'playa', 'cala', 'buceo', 'snorkel', 'chiringuito', 'paseo maritimo'
+        ]
+      },
+      {
+        claves: [
+          'ciudad', 'museo', 'monumento', 'calle', 'plaza',
+          'castillo', 'palacio', 'mercado'
+        ],
+        afines: [
+          'ciudad', 'capital', 'centro', 'casco antiguo',
+          'museo', 'plaza', 'avenida'
+        ],
+        opuestos: [
+          'playa', 'cala', 'buceo', 'senderismo', 'camping'
+        ]
+      }
+    ];
+
+    const palabrasPrompt = promptNorm
+      .split(/[^a-z0-9]+/)
+      .filter((p) => p.length >= 3);
+
+    const puntuados = items.map((item, idx) => {
+      const textoViaje = this.normalizarTexto(
+        `${item.nombreArchivo} ${item.linea} ${JSON.stringify(item.jsonViaje)}`
+      );
+      let puntuacion = 0;
+
+      for (const palabra of palabrasPrompt) {
+        if (textoViaje.includes(palabra)) {
+          puntuacion += 5;
+        }
+      }
+
+      for (const grupo of gruposTematicos) {
+        const promptTieneTema = grupo.claves.some((c) => promptNorm.includes(c));
+        if (promptTieneTema) {
+          if (grupo.afines.some((a) => textoViaje.includes(a))) {
+            puntuacion += 4;
+          }
+          if (grupo.opuestos.some((o) => textoViaje.includes(o))) {
+            puntuacion -= 6;
+          }
+        }
+      }
+
+      puntuacion += Math.max(0, 2 - Math.floor(idx / 5));
+
+      return { item, puntuacion, idx };
+    });
+
+    const positivos = puntuados
+      .filter((entry) => entry.puntuacion > 0)
+      .sort((a, b) => b.puntuacion - a.puntuacion || a.idx - b.idx)
+      .map((entry) => entry.item);
+
+    return positivos.length > 0 ? positivos : items;
   }
 
   private cargarRelatosEs(): Observable<string> {
@@ -320,14 +455,33 @@ export class IaFamiliaService {
   }
 
   private listarJsonEnCarpeta(repoFolder: string): Observable<string[]> {
+    const cacheado = this.cacheCarpetasGithub.get(repoFolder);
+    if (cacheado && cacheado.length > 0) {
+      return of(cacheado);
+    }
+
     const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${repoFolder}?ref=${this.repoBranch}`;
-    return this.http.get<GithubDirItem[]>(apiUrl).pipe(
-      catchError(() => of([] as GithubDirItem[])),
-      map((items) =>
-        (Array.isArray(items) ? items : [])
+    const githubToken =
+      (localStorage.getItem('github_token') ||
+        localStorage.getItem('token') ||
+        '').trim();
+
+    const opcionesHttp = githubToken
+      ? { headers: { Authorization: `Bearer ${githubToken}` } }
+      : {};
+
+    return this.http.get<GithubDirItem[]>(apiUrl, opcionesHttp).pipe(
+      map((items) => {
+        const archivos = (Array.isArray(items) ? items : [])
           .filter((item) => item.type === 'file' && item.name.toLowerCase().endsWith('.json'))
-          .map((item) => item.name)
-      )
+          .map((item) => item.name);
+
+        if (archivos.length > 0) {
+          this.cacheCarpetasGithub.set(repoFolder, archivos);
+        }
+        return archivos;
+      }),
+      catchError(() => of(cacheado ?? ([] as string[])))
     );
   }
 
@@ -445,7 +599,6 @@ export class IaFamiliaService {
     const claves = Object.keys(obj);
     const clavesLower = claves.map((k) => k.toLowerCase());
 
-    // Si el objeto tiene explícitamente clave 'es' (ej. { es: '...', val: '...' })
     const claveEs = claves.find((k) => k.toLowerCase() === 'es');
     const tieneOtrosIdiomas = clavesLower.some((k) => k === 'val' || k === 'ca' || k === 'en' || k === 'fr');
 
@@ -456,7 +609,6 @@ export class IaFamiliaService {
     const resultado: Record<string, unknown> = {};
     for (const [clave, valor] of Object.entries(obj)) {
       const cLower = clave.toLowerCase();
-      // Ignoramos claves exclusivas de otros idiomas si no son 'es'
       if (cLower === 'val' || cLower === 'ca' || cLower === 'en' || cLower === 'fr') {
         continue;
       }
@@ -495,7 +647,6 @@ export class IaFamiliaService {
 
         return from(
           ai.models.generateContent({
-            // Usa el modelo de generación de imágenes habilitado en tu proyecto de AI Studio
             model: 'gemini-2.5-flash-image',
             contents: [
               {
@@ -549,64 +700,68 @@ export class IaFamiliaService {
     );
   }
 
-  generarIlustracionParaCuento(promptCuento: string): Observable<string | null> {
-    const apiKey = this.obtenerApiKey();
-    if (!apiKey) {
-      return of(null);
-    }
-
-    const textoNormalizado = this.normalizarTexto(promptCuento);
-
-    return forkJoin({
-      fotosPerfiles: this.buscarFotosPerfilesPorPrompt(textoNormalizado),
-      fotosViajes: this.buscarFotosViajesPorPrompt(textoNormalizado)
-    }).pipe(
-      switchMap(({ fotosPerfiles, fotosViajes }) => {
-        // Limitamos a 3 imágenes de referencia en total (ej. perfiles + viajes) para mantenerlo ágil
-        const rutasReferencia = [...fotosPerfiles, ...fotosViajes]
-          .filter(Boolean)
-          .slice(0, 3);
-
-        if (rutasReferencia.length === 0) {
-          return of(null);
-        }
-
-        const cargas = rutasReferencia.map((ruta) =>
-          this.obtenerBase64YTipoDesdeAssets(ruta).pipe(catchError(() => of(null)))
-        );
-
-        return forkJoin(cargas).pipe(
-          switchMap((imagenesCargadas) => {
-            const validas = imagenesCargadas.filter(
-              (img): img is { base64: string; mimeType: string } => Boolean(img && img.base64)
-            );
-
-            if (validas.length === 0) {
-              return of(null);
-            }
-
-            const partesContenido: any[] = validas.map((img) => ({
-              inlineData: {
-                mimeType: img.mimeType,
-                data: img.base64
-              }
-            }));
-
-            partesContenido.push({
-              text: [
-                'Crea una única ilustración de cuento infantil colorida, alegre y tierna, inspirada en las personas de las fotos de perfil y los lugares/escenarios de las fotos de viaje proporcionadas.',
-                `Petición del cuento: ${promptCuento}`,
-                'Estilo: ilustración infantil de libro de cuentos, amigable, luminosa, sin texto ni marcas de agua.'
-              ].join(' ')
-            });
-
-            return this.probarModelosImagen(apiKey, partesContenido, 0);
-          })
-        );
-      }),
-      catchError(() => of(null))
-    );
+  generarIlustracionParaCuento(_promptCuento: string): Observable<string | null> {
+    // En Free Tier los modelos de imagen tienen cuota 0; delegamos directamente al collage
+    return of(null);
   }
+  //TODO de momento no parece funcionar con el modelo de generar imágenes, pendiente de encontrar otro
+  // generarIlustracionParaCuento(promptCuento: string): Observable<string | null> {
+  //   const apiKey = this.obtenerApiKey();
+  //   if (!apiKey) {
+  //     return of(null);
+  //   }
+
+  //   const textoNormalizado = this.normalizarTexto(promptCuento);
+
+  //   return forkJoin({
+  //     fotosPerfiles: this.buscarFotosPerfilesPorPrompt(textoNormalizado),
+  //     fotosViajes: this.buscarFotosViajesPorPrompt(textoNormalizado)
+  //   }).pipe(
+  //     switchMap(({ fotosPerfiles, fotosViajes }) => {
+  //       const rutasReferencia = [...fotosPerfiles, ...fotosViajes]
+  //         .filter(Boolean)
+  //         .slice(0, 3);
+
+  //       if (rutasReferencia.length === 0) {
+  //         return of(null);
+  //       }
+
+  //       const cargas = rutasReferencia.map((ruta) =>
+  //         this.obtenerBase64YTipoDesdeAssets(ruta).pipe(catchError(() => of(null)))
+  //       );
+
+  //       return forkJoin(cargas).pipe(
+  //         switchMap((imagenesCargadas) => {
+  //           const validas = imagenesCargadas.filter(
+  //             (img): img is { base64: string; mimeType: string } => Boolean(img && img.base64)
+  //           );
+
+  //           if (validas.length === 0) {
+  //             return of(null);
+  //           }
+
+  //           const partesContenido: any[] = validas.map((img) => ({
+  //             inlineData: {
+  //               mimeType: img.mimeType,
+  //               data: img.base64
+  //             }
+  //           }));
+
+  //           partesContenido.push({
+  //             text: [
+  //               'Crea una única ilustración de cuento infantil colorida, alegre y tierna, inspirada en las personas de las fotos de perfil y los lugares/escenarios de las fotos de viaje proporcionadas.',
+  //               `Petición del cuento: ${promptCuento}`,
+  //               'Estilo: ilustración infantil de libro de cuentos, amigable, luminosa, sin texto ni marcas de agua.'
+  //             ].join(' ')
+  //           });
+
+  //           return this.probarModelosImagen(apiKey, partesContenido, 0);
+  //         })
+  //       );
+  //     }),
+  //     catchError(() => of(null))
+  //   );
+  // }
 
   private probarModelosImagen(
     apiKey: string,
@@ -689,7 +844,6 @@ export class IaFamiliaService {
           return of([]);
         }
 
-        // Filtramos archivos cuyo nombre contenga alguna palabra clave del prompt (ej. menorca, formentera)
         const palabrasClave = textoNormalizado
           .split(/[^a-z0-9]+/)
           .filter((p) => p.length >= 4 && !['cuento', 'ninos', 'anos', 'para', 'con', 'que', 'son', 'los', 'las', 'unos', 'unas'].includes(p));
@@ -776,7 +930,6 @@ export class IaFamiliaService {
       .toLowerCase();
   }
 
-
   crearCollageDesdePrompt(promptCuento: string): Observable<string | null> {
     const textoNormalizado = this.normalizarTexto(promptCuento);
 
@@ -785,7 +938,6 @@ export class IaFamiliaService {
       fotosViajes: this.buscarFotosViajesPorPrompt(textoNormalizado)
     }).pipe(
       switchMap(({ fotosPerfiles, fotosViajes }) => {
-        // Combinamos perfiles y viajes (máximo 4 fotos para un collage equilibrado)
         const rutas = Array.from(new Set([...fotosPerfiles, ...fotosViajes]))
           .filter(Boolean)
           .slice(0, 4);
@@ -844,7 +996,6 @@ export class IaFamiliaService {
       return null;
     }
 
-    // Fondo cálido estilo álbum/cuento
     const gradiente = ctx.createLinearGradient(0, 0, ancho, alto);
     gradiente.addColorStop(0, '#fffbeb');
     gradiente.addColorStop(1, '#fef3c7');
@@ -897,7 +1048,6 @@ export class IaFamiliaService {
       this.trazarRectanguloRedondeado(ctx, celda.x, celda.y, celda.w, celda.h, 16);
       ctx.clip();
 
-      // Ajuste tipo "object-fit: cover" sin deformar
       const imgRatio = img.width / img.height;
       const celdaRatio = celda.w / celda.h;
 
@@ -917,7 +1067,6 @@ export class IaFamiliaService {
       ctx.drawImage(img, drawX, drawY, drawW, drawH);
       ctx.restore();
 
-      // Borde suave alrededor de cada foto
       ctx.save();
       this.trazarRectanguloRedondeado(ctx, celda.x, celda.y, celda.w, celda.h, 16);
       ctx.lineWidth = 3;
@@ -946,6 +1095,4 @@ export class IaFamiliaService {
     ctx.arcTo(x, y, x + w, y, radio);
     ctx.closePath();
   }
-
-
 }
