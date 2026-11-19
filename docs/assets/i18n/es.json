@@ -233,7 +233,8 @@
     "notaPlaceholder": "Alguna idea de regalo, tarta o recuerdo...",
     "guardarCambios": "Guardar",
     "mesAnterior": "Mes anterior",
-    "mesSiguiente": "Mes siguiente"
+    "mesSiguiente": "Mes siguiente",
+    "fotoLabel": "Foto de perfil (opcional)"
   },
   "header": {
     "categoria": "Categorias",

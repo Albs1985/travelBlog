@@ -31,13 +31,14 @@ interface GithubContentResponse {
 export class CumpleanosService {
   private readonly jsonPath = 'assets/data/cumpleanyos.json';
   private readonly jsonUrl = 'assets/data/cumpleanyos.json';
+  private readonly perfilesCarpeta = 'assets/images/perfiles';
 
-  // Ajusta owner y repo a los de tu repositorio en GitHub
   private readonly repoOwner = 'Albs1985';
   private readonly repoName = 'travelBlog';
-  private readonly repoBranch = 'main'; // O tu rama actual
+  private readonly repoBranch = 'main';
 
   private readonly items$ = new BehaviorSubject<CumpleanosItem[]>([]);
+  private readonly versionFoto = new Map<string, number>();
   private cargado = false;
 
   readonly lista$: Observable<CumpleanosEnriquecido[]> = this.items$.pipe(
@@ -53,7 +54,7 @@ export class CumpleanosService {
     private commonService: CommonService,
     private contenidoService: ContenidoService
   ) {
-    this.cargarDesdeJson();
+    this.cargarDesdeJson().subscribe();
   }
 
   cargarDesdeJson(forzar = false): Observable<CumpleanosItem[]> {
@@ -72,57 +73,165 @@ export class CumpleanosService {
     );
   }
 
-  agregar(nuevo: Omit<CumpleanosItem, 'id'>, token: string): Observable<void> {
-    const item: CumpleanosItem = {
-      ...nuevo,
-      id: this.generarId(nuevo.nombre)
-    };
-    const nuevaLista = [...this.items$.value, item];
-    return this.guardarEnGithub(nuevaLista, token, `feat(cumpleanos): añadir cumpleaños de ${item.nombre}`);
+  /**
+   * Genera el nombre de archivo estándar a partir del id: fotoPerfilXXXX.jpg
+   * Ej.: "mateu" -> "fotoPerfilMateu.jpg", "iaia-ana" -> "fotoPerfilIaiaAna.jpg"
+   */
+  obtenerNombreArchivoPerfil(id: string): string {
+    const limpio = (id ?? '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9]+/g, ' ')
+      .trim();
+
+    if (!limpio) {
+      return 'fotoPerfilFamiliar.jpg';
+    }
+
+    const xxxx = limpio
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((parte) => parte.charAt(0).toUpperCase() + parte.slice(1).toLowerCase())
+      .join('');
+
+    return `fotoPerfil${xxxx}.jpg`;
   }
 
-  actualizar(editado: CumpleanosItem, token: string): Observable<void> {
+  obtenerRutaPerfil(id: string): string {
+    const archivo = this.obtenerNombreArchivoPerfil(id);
+    const base = `${this.perfilesCarpeta}/${archivo}`;
+    const ver = this.versionFoto.get(archivo);
+    return ver ? `${base}?v=${ver}` : base;
+  }
+
+  agregar(
+    nuevo: Omit<CumpleanosItem, 'id'>,
+    token: string,
+    archivoImagen?: File | null
+  ): Observable<void> {
+    const idGenerado = this.generarId(nuevo.nombre);
+    const item: CumpleanosItem = {
+      ...nuevo,
+      id: idGenerado
+    };
+    const nuevaLista = [...this.items$.value, item];
+
+    return this.subirImagenSiExiste(item.id, token, archivoImagen).pipe(
+      switchMap(() =>
+        this.guardarJsonEnGithub(nuevaLista, token, `feat(cumpleanos): añadir cumpleaños de ${item.nombre}`)
+      ),
+      tap(() => {
+        this.items$.next(nuevaLista);
+        this.cargado = true;
+        this.contenidoService.invalidarCache('cumpleanos');
+      }),
+      map(() => void 0)
+    );
+  }
+
+  actualizar(
+    editado: CumpleanosItem,
+    token: string,
+    archivoImagen?: File | null
+  ): Observable<void> {
     const nuevaLista = this.items$.value.map((item) =>
       item.id === editado.id ? { ...editado } : item
     );
-    return this.guardarEnGithub(nuevaLista, token, `feat(cumpleanos): actualizar cumpleaños de ${editado.nombre}`);
+
+    return this.subirImagenSiExiste(editado.id, token, archivoImagen).pipe(
+      switchMap(() =>
+        this.guardarJsonEnGithub(nuevaLista, token, `feat(cumpleanos): actualizar cumpleaños de ${editado.nombre}`)
+      ),
+      tap(() => {
+        this.items$.next(nuevaLista);
+        this.cargado = true;
+        this.contenidoService.invalidarCache('cumpleanos');
+      }),
+      map(() => void 0)
+    );
   }
 
   eliminar(id: string, token: string): Observable<void> {
     const objetivo = this.items$.value.find((item) => item.id === id);
     const nuevaLista = this.items$.value.filter((item) => item.id !== id);
     const etiqueta = objetivo ? objetivo.nombre : id;
-    return this.guardarEnGithub(nuevaLista, token, `feat(cumpleanos): eliminar cumpleaños de ${etiqueta}`);
+
+    return this.guardarJsonEnGithub(nuevaLista, token, `feat(cumpleanos): eliminar cumpleaños de ${etiqueta}`).pipe(
+      tap(() => {
+        this.items$.next(nuevaLista);
+        this.cargado = true;
+        this.contenidoService.invalidarCache('cumpleanos');
+      }),
+      map(() => void 0)
+    );
   }
 
-  obtenerFotoPerfil(nombre: string): string {
-    const limpio = (nombre ?? '').trim();
-    if (!limpio) {
-      return 'assets/icons/iconoFamiliar.png';
+  private subirImagenSiExiste(
+    idPersona: string,
+    token: string,
+    archivoImagen?: File | null
+  ): Observable<void> {
+    if (!archivoImagen) {
+      return of(void 0);
     }
-    const clave = limpio.charAt(0).toUpperCase() + limpio.slice(1).toLowerCase();
-    return `assets/images/perfiles/fotoPerfil${clave}.jpg`;
-  }
 
-  private guardarEnGithub(nuevaLista: CumpleanosItem[], token: string, mensaje: string): Observable<void> {
     const tokenLimpio = (token ?? '').trim();
     if (!tokenLimpio) {
       return throwError(() => new Error('Falta el token de GitHub'));
     }
 
-    const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${this.jsonPath}`;
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${tokenLimpio}`,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json'
-    });
+    const nombreArchivo = this.obtenerNombreArchivoPerfil(idPersona);
+    const rutaArchivo = `${this.perfilesCarpeta}/${nombreArchivo}`;
+
+    return this.leerArchivoComoBase64(archivoImagen).pipe(
+      switchMap((base64) =>
+        this.subirArchivoAGithub(
+          rutaArchivo,
+          base64,
+          tokenLimpio,
+          `feat(perfiles): actualizar foto ${nombreArchivo}`
+        )
+      ),
+      tap(() => {
+        this.versionFoto.set(nombreArchivo, Date.now());
+      }),
+      map(() => void 0)
+    );
+  }
+
+  private guardarJsonEnGithub(
+    nuevaLista: CumpleanosItem[],
+    token: string,
+    mensaje: string
+  ): Observable<void> {
+    const tokenLimpio = (token ?? '').trim();
+    if (!tokenLimpio) {
+      return throwError(() => new Error('Falta el token de GitHub'));
+    }
 
     const contenidoFormateado = JSON.stringify(nuevaLista, null, 2) + '\n';
     const contentBase64 = this.codificarBase64Utf8(contenidoFormateado);
 
+    return this.subirArchivoAGithub(this.jsonPath, contentBase64, tokenLimpio, mensaje).pipe(
+      map(() => void 0)
+    );
+  }
+
+  private subirArchivoAGithub(
+    rutaRepo: string,
+    contentBase64: string,
+    token: string,
+    mensaje: string
+  ): Observable<unknown> {
+    const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${rutaRepo}`;
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    });
+
     return this.http.get<GithubContentResponse>(`${apiUrl}?ref=${this.repoBranch}`, { headers }).pipe(
       catchError((err) => {
-        // Si el archivo aún no existe (404), permitimos crearlo sin sha
         if (err?.status === 404) {
           return of({ sha: undefined } as GithubContentResponse);
         }
@@ -138,14 +247,27 @@ export class CumpleanosService {
           body['sha'] = fileMeta.sha;
         }
         return this.http.put(apiUrl, body, { headers });
-      }),
-      tap(() => {
-        this.items$.next(nuevaLista);
-        this.cargado = true;
-        this.contenidoService.invalidarCache('cumpleanos');
-      }),
-      map(() => void 0)
+      })
     );
+  }
+
+  private leerArchivoComoBase64(archivo: File): Observable<string> {
+    return new Observable<string>((observer) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const resultado = String(reader.result || '');
+        const partes = resultado.split(',');
+        const base64 = partes.length > 1 ? partes[1] : '';
+        if (!base64) {
+          observer.error(new Error('No se pudo leer la imagen seleccionada'));
+          return;
+        }
+        observer.next(base64);
+        observer.complete();
+      };
+      reader.onerror = () => observer.error(reader.error || new Error('Error leyendo archivo'));
+      reader.readAsDataURL(archivo);
+    });
   }
 
   private codificarBase64Utf8(texto: string): string {
@@ -157,14 +279,16 @@ export class CumpleanosService {
     return btoa(binario);
   }
 
-  private generarId(nombre: string): string {
+  generarId(nombre: string): string {
     const base = (nombre ?? 'cumple')
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
-    return `${base || 'cumple'}-${Date.now()}`;
+    const candidato = base || 'cumple';
+    const existe = this.items$.value.some((item) => item.id === candidato);
+    return existe ? `${candidato}-${Date.now()}` : candidato;
   }
 
   private enriquecerYOrdenar(items: CumpleanosItem[]): CumpleanosEnriquecido[] {
@@ -200,7 +324,7 @@ export class CumpleanosService {
           ...item,
           dia: diaNum,
           mes: mesIdx + 1,
-          foto: this.obtenerFotoPerfil(item.id),
+          foto: this.obtenerRutaPerfil(item.id),
           edadActual: edad,
           esHoy,
           diasHastaProximo

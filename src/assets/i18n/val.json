@@ -233,7 +233,8 @@
     "notaPlaceholder": "Alguna idea de regal, pastís o record...",
     "guardarCambios": "Guardar",
     "mesAnterior": "Mes anterior",
-    "mesSiguiente": "Mes següent"
+    "mesSiguiente": "Mes següent",
+    "fotoLabel": "Foto de perfil (opcional)"
   },
   "header": {
     "categoria": "Categoríes",

@@ -35,6 +35,9 @@ export class CumpleanosComponent implements OnInit {
   mostrarPanelToken = false;
   cargandoAccion = false;
 
+  archivoImagenSeleccionado: File | null = null;
+  previewImagenUrl: string | null = null;
+
   readonly meses$: Observable<MesCalendario[]> = this.lista$.pipe(
     map((todos) => {
       const hoy = new Date();
@@ -92,6 +95,26 @@ export class CumpleanosComponent implements OnInit {
     nota: ''
   };
 
+  get nombreArchivoDestino(): string {
+    const idObjetivo = this.editandoId
+      ? this.editandoId
+      : this.cumpleanosService.generarId(this.form.nombre || '');
+    return this.cumpleanosService.obtenerNombreArchivoPerfil(idObjetivo);
+  }
+
+  get fotoActualPreview(): string {
+    if (this.previewImagenUrl) {
+      return this.previewImagenUrl;
+    }
+    const idObjetivo = this.editandoId
+      ? this.editandoId
+      : (this.form.nombre?.trim() ? this.cumpleanosService.generarId(this.form.nombre) : '');
+    if (idObjetivo) {
+      return this.cumpleanosService.obtenerRutaPerfil(idObjetivo);
+    }
+    return 'assets/icons/iconoFamiliar.png';
+  }
+
   constructor(public cumpleanosService: CumpleanosService) {}
 
   ngOnInit(): void {
@@ -125,6 +148,8 @@ export class CumpleanosComponent implements OnInit {
       return;
     }
     this.editandoId = null;
+    this.archivoImagenSeleccionado = null;
+    this.previewImagenUrl = null;
     this.form = {
       nombre: '',
       dia: diaPreseleccionado ?? 1,
@@ -142,6 +167,8 @@ export class CumpleanosComponent implements OnInit {
       return;
     }
     this.editandoId = item.id;
+    this.archivoImagenSeleccionado = null;
+    this.previewImagenUrl = null;
     this.form = {
       nombre: item.nombre,
       dia: item.dia,
@@ -158,6 +185,28 @@ export class CumpleanosComponent implements OnInit {
     }
     this.mostrarFormulario = false;
     this.editandoId = null;
+    this.archivoImagenSeleccionado = null;
+    this.previewImagenUrl = null;
+  }
+
+  onSeleccionarImagen(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files && input.files.length > 0 ? input.files[0] : null;
+    if (!file) {
+      return;
+    }
+
+    this.archivoImagenSeleccionado = file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewImagenUrl = String(reader.result || '');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  limpiarImagenSeleccionada(): void {
+    this.archivoImagenSeleccionado = null;
+    this.previewImagenUrl = null;
   }
 
   guardar(): void {
@@ -188,8 +237,16 @@ export class CumpleanosComponent implements OnInit {
     this.cargandoAccion = true;
 
     const peticion$ = this.editandoId
-      ? this.cumpleanosService.actualizar({ id: this.editandoId, ...payload }, this.githubToken)
-      : this.cumpleanosService.agregar(payload, this.githubToken);
+      ? this.cumpleanosService.actualizar(
+          { id: this.editandoId, ...payload },
+          this.githubToken,
+          this.archivoImagenSeleccionado
+        )
+      : this.cumpleanosService.agregar(
+          payload,
+          this.githubToken,
+          this.archivoImagenSeleccionado
+        );
 
     peticion$.subscribe({
       next: () => {
