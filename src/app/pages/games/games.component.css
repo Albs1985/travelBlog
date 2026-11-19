@@ -3,10 +3,13 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  padding: 3rem;
   font-family: inherit;
   overflow-x: hidden;
   box-sizing: border-box;
+}
+
+.padding3{
+  padding: 3rem;
 }
 
 *, *:before, *:after {
