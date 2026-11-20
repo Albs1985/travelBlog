@@ -113,7 +113,7 @@
         [class.ia]="msg.remitente === 'ia'">
         <div class="chat-burbuja">
           <div class="chat-texto">{{ msg.texto }}</div>
-          <span class="chat-hora">{{ msg.hora }}</span>
+          <span class="chat-hora">{{ msg.hora }}<ng-container *ngIf="msg.proveedor"> · {{ msg.proveedor }}</ng-container></span>
         </div>
       </div>
 
@@ -148,14 +148,6 @@
       <h3 class="libro-cuento-titulo">{{ tituloCuento }}</h3>
 
       <!-- Espacio reservado para ilustración generada por IA -->
-      <!-- <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
-        <div class="ilustracion-caja">
-          <span class="ilustracion-emoji">🖼️</span>
-          <strong>{{ 'iaRincon.ilustracionTitulo' | translate }}</strong>
-          <small>{{ 'iaRincon.ilustracionSub' | translate }}</small>
-        </div>
-      </div> -->
-      <!-- Espacio reservado para ilustración generada por IA -->
       <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
         <img
           *ngIf="imagenCuentoUrl"
@@ -174,6 +166,16 @@
           </strong>
           <small>{{ 'iaRincon.ilustracionSub' | translate }}</small>
         </div>
+      </div>
+
+      <div class="acciones-ilustracion">
+        <button
+          type="button"
+          class="btn-secundario btn-xs"
+          [disabled]="cargandoPuter"
+          (click)="ilustrarConPuter()">
+          🎨 {{ (cargandoPuter ? 'iaRincon.ilustrandoIa' : 'iaRincon.btnIlustrarIa') | translate }}
+        </button>
       </div>
 
       <div class="libro-cuento-paginas">

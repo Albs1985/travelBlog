@@ -1,0 +1,44 @@
+{
+  "_nota": "BORRADOR para revisar y completar. Va en src/assets/data/personajes.json. Solo se envía a la IA lo que pongas aquí (rol, relaciones, rasgos, detalles) más nombre, apodos y edad. No pongas apellidos, fechas exactas ni datos sensibles.",
+  "personajes": [
+    {
+      "id": "mateu",
+      "rol": "Hijo mayor",
+      "relaciones": "Hijo de Alba y Albert, hermano mayor de Marina",
+      "rasgos": [
+        "ocurrente y con mucho sentido del humor",
+        "inventa palabras graciosas",
+        "le encantan el baloncesto y los superhéroes",
+        "quiere ser ceramista como la iaia Ana",
+        "se toma muy en serio sus propios 'cálculos'"
+      ],
+      "detalles": []
+    },
+    {
+      "id": "marina",
+      "rol": "Hija pequeña",
+      "relaciones": "Hija de Alba y Albert, hermana pequeña de Mateu",
+      "rasgos": [
+        "muy parlanchina y cariñosa",
+        "pide abrazos ('apachito')",
+        "le gustan Bluey, Bingo y los cocodrilos",
+        "madrugadora y con las cosas muy claras"
+      ],
+      "detalles": []
+    },
+    {
+      "id": "alba",
+      "rol": "Mamá",
+      "relaciones": "Madre de Mateu y Marina, pareja de Albert",
+      "rasgos": [],
+      "detalles": ["fan de Friends"]
+    },
+    {
+      "id": "albert",
+      "rol": "Papá",
+      "relaciones": "Padre de Mateu y Marina, pareja de Alba",
+      "rasgos": [],
+      "detalles": ["fan de Friends"]
+    }
+  ]
+}

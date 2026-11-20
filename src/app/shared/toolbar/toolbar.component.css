@@ -108,3 +108,44 @@
     display: none;
   }
 }
+
+
+
+
+
+
+/* AÃ±adir al final de toolbar.component.css */
+.token-ia-grid {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.token-ia-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.token-ia-label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.token-ia-estado {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.token-ia-hint {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.token-ia-acciones {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}

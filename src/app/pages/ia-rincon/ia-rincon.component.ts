@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
-import { catchError, finalize, of, switchMap } from 'rxjs';
+import { finalize } from 'rxjs';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
   texto: string;
   hora: string;
+  proveedor?: string;
 }
 
 @Component({
@@ -17,7 +18,8 @@ export interface MensajeChatFamilia {
 export class IaRinconComponent implements OnInit {
   modo: 'familia' | 'cuento' = 'familia';
 
-  // Gestión de clave/token de IA (similar al token de GitHub, guardado en localStorage)
+  // Gestión de clave/token de IA (guardada en localStorage). Admite varias claves a la vez
+  // (Groq + Gemini) separadas por coma o espacio.
   apiKeyInput = '';
   claveGuardada = false;
   mostrarPanelToken = false;
@@ -34,6 +36,7 @@ export class IaRinconComponent implements OnInit {
   mostrarHuecoImagen = true;
   imagenCuentoUrl: string | null = null;
   cargandoImagenCuento = false;
+  cargandoPuter = false;
 
   cargando = false;
   errorMsg = '';
@@ -101,6 +104,7 @@ export class IaRinconComponent implements OnInit {
     this.parrafosCuento = [];
     this.imagenCuentoUrl = null;
     this.cargandoImagenCuento = false;
+    this.cargandoPuter = false;
     this.errorMsg = '';
   }
 
@@ -135,7 +139,8 @@ export class IaRinconComponent implements OnInit {
             this.mensajesChat.push({
               remitente: 'ia',
               texto: respuesta,
-              hora: this.obtenerHoraActual()
+              hora: this.obtenerHoraActual(),
+              proveedor: this.iaService.ultimoProveedorUsado
             });
           },
           error: (err) => {
@@ -144,12 +149,11 @@ export class IaRinconComponent implements OnInit {
         });
     } else {
       this.imagenCuentoUrl = null;
-      this.cargandoImagenCuento = true;
 
-      // 1. Collage de fotos reales en paralelo (rápido y sin errores 429 de imagen)
-      this.cargarIlustracionOCollage(texto);
+      // 1. Collage de fotos reales en paralelo (gratis e instantáneo)
+      this.cargarCollage(texto);
 
-      // 2. Generación del cuento en paralelo
+      // 2. Generación del cuento (Groq → Gemini → cuento de respaldo local)
       this.iaService
         .inventarCuento(
           {
@@ -164,8 +168,9 @@ export class IaRinconComponent implements OnInit {
           next: (cuentoRaw) => {
             this.formatearCuento(cuentoRaw, texto);
           },
-          error: () => {
-            // Si el modelo de texto está en 503 o se agotó la cuota diaria (429), generamos cuento base local
+          error: (err) => {
+            // Se muestra el motivo (cuota, sobrecarga, clave...) y se genera un cuento base local
+            this.errorMsg = this.obtenerMensajeErrorAmigable(err);
             const cuentoRespaldo = this.crearCuentoRespaldoLocal(texto);
             this.formatearCuento(cuentoRespaldo, texto);
           }
@@ -173,26 +178,40 @@ export class IaRinconComponent implements OnInit {
     }
   }
 
-  private cargarIlustracionOCollage(promptTexto: string): void {
+  /** Ilustración con IA (Puter). Debe lanzarse desde un clic para que el popup de login no se bloquee. */
+  ilustrarConPuter(): void {
+    if (this.cargandoPuter || this.parrafosCuento.length === 0) {
+      return;
+    }
+
+    this.cargandoPuter = true;
+    this.errorMsg = '';
+
+    this.iaService
+      .generarIlustracionPuter(this.tituloCuento, this.parrafosCuento[0])
+      .pipe(finalize(() => (this.cargandoPuter = false)))
+      .subscribe({
+        next: (url) => {
+          this.imagenCuentoUrl = url;
+        },
+        error: () => {
+          this.errorMsg = this.translate.instant('iaRincon.errorIlustracion');
+        }
+      });
+  }
+
+  private cargarCollage(promptTexto: string): void {
     this.cargandoImagenCuento = true;
 
     this.iaService
-      .generarIlustracionParaCuento(promptTexto)
-      .pipe(
-        catchError(() => of(null)),
-        switchMap((imgIa) => {
-          if (imgIa) {
-            return of(imgIa);
-          }
-          return this.iaService
-            .crearCollageDesdePrompt(promptTexto)
-            .pipe(catchError(() => of(null)));
-        }),
-        finalize(() => (this.cargandoImagenCuento = false))
-      )
+      .crearCollageDesdePrompt(promptTexto)
+      .pipe(finalize(() => (this.cargandoImagenCuento = false)))
       .subscribe({
         next: (imgDataUrl) => {
-          this.imagenCuentoUrl = imgDataUrl;
+          // No pisar una ilustración de Puter si ya llegó
+          if (!this.cargandoPuter) {
+            this.imagenCuentoUrl = imgDataUrl;
+          }
         },
         error: () => {
           this.imagenCuentoUrl = null;
@@ -237,11 +256,12 @@ export class IaRinconComponent implements OnInit {
   private obtenerMensajeErrorAmigable(err: any): string {
     const rawMensaje =
       err?.error?.message ||
+      err?.error?.error?.message ||
       err?.message ||
       (typeof err === 'string' ? err : '');
 
     const textoMinusculas = String(rawMensaje).toLowerCase();
-    const codigo = err?.status ?? err?.error?.code;
+    const codigo = err?.status ?? err?.error?.code ?? err?.error?.error?.code;
     const estado = err?.statusText || err?.error?.status;
 
     const esSobrecarga503 =
@@ -259,7 +279,13 @@ export class IaRinconComponent implements OnInit {
       return this.translate.instant('iaRincon.errorCuota');
     }
 
-    if (textoMinusculas.includes('clave') || textoMinusculas.includes('api key')) {
+    // Clave ausente o rechazada por el proveedor (401/403)
+    if (
+      codigo === 401 ||
+      codigo === 403 ||
+      textoMinusculas.includes('clave') ||
+      textoMinusculas.includes('api key')
+    ) {
       return this.translate.instant('iaRincon.errorFaltaToken');
     }
 
