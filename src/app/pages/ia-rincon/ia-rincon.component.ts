@@ -88,6 +88,8 @@ export class IaRinconComponent implements OnInit {
 
   proveedoresImagenesCuento: Array<string | null> = [null, null, null];
 
+  private esImagenRealIa: boolean[] = [false, false, false];
+
   constructor(
     private iaService: IaFamiliaService,
     private translate: TranslateService,
@@ -226,6 +228,7 @@ export class IaRinconComponent implements OnInit {
       this.subIlustraciones?.unsubscribe();
       this.imagenesCuento = [null, null, null];
       this.proveedoresImagenesCuento = [null, null, null];
+      this.esImagenRealIa = [false, false, false];
       this.cargandoImagenes = [true, false, false];
       this.cargandoImagenCuento = true;
       this.imagenCuentoUrl = null;
@@ -236,9 +239,11 @@ export class IaRinconComponent implements OnInit {
         .pipe(catchError(() => of(null)))
         .subscribe((collageUrl) => {
           if (collageUrl) {
-            this.imagenesCuento = this.imagenesCuento.map((actual) => actual ?? collageUrl);
-            this.proveedoresImagenesCuento = this.proveedoresImagenesCuento.map(
-              (prov) => prov ?? 'Collage familiar (respaldo)'
+            this.imagenesCuento = this.imagenesCuento.map((actual, idx) =>
+              this.esImagenRealIa[idx] ? actual : (actual ?? collageUrl)
+            );
+            this.proveedoresImagenesCuento = this.proveedoresImagenesCuento.map((prov, idx) =>
+              this.esImagenRealIa[idx] ? prov : (prov ?? 'Collage familiar (respaldo)')
             );
             this.imagenCuentoUrl = this.imagenesCuento[0];
           }
@@ -268,7 +273,7 @@ export class IaRinconComponent implements OnInit {
 
       // 3. Secuencia escalonada de 3 ilustraciones cada 16s: 0s (inicio), 16s (mitad), 32s (final)
       this.subIlustraciones = this.iaService
-        .generarTresIlustracionesEscalonadas(texto, [texto, texto, texto], 16000)
+        .generarIlustracionesProgresivas(texto, [texto, texto, texto], 3, 2500)
         .pipe(
           finalize(() => {
             this.cargandoImagenes = [false, false, false];
@@ -276,17 +281,25 @@ export class IaRinconComponent implements OnInit {
           })
         )
         .subscribe({
-          next: ({ indice, url, proveedor }) => {
-            this.cargandoImagenes[indice] = false;
-            if (indice + 1 < 3) {
-              this.cargandoImagenes[indice + 1] = true;
+          next: ({ url, proveedor }) => {
+            const huecoLibre = this.esImagenRealIa.findIndex((ocupado) => !ocupado);
+            if (huecoLibre === -1) {
+              return;
             }
-            if (url) {
-              this.imagenesCuento[indice] = url;
-              this.proveedoresImagenesCuento[indice] = proveedor || 'IA';
-              if (indice === 0) {
-                this.imagenCuentoUrl = url;
-              }
+
+            this.imagenesCuento[huecoLibre] = url;
+            this.proveedoresImagenesCuento[huecoLibre] = proveedor;
+            this.esImagenRealIa[huecoLibre] = true;
+            this.cargandoImagenes[huecoLibre] = false;
+
+            const siguienteHueco = this.esImagenRealIa.findIndex((ocupado) => !ocupado);
+            this.cargandoImagenes = [false, false, false];
+            if (siguienteHueco !== -1) {
+              this.cargandoImagenes[siguienteHueco] = true;
+            }
+
+            if (huecoLibre === 0) {
+              this.imagenCuentoUrl = url;
             }
           }
         });

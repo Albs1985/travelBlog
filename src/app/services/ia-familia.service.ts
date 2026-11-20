@@ -122,8 +122,8 @@ export class IaFamiliaService {
   ];
 
   private readonly modelosImagenHuggingFace = [
-    'black-forest-labs/FLUX.1-schnell',
-    'stabilityai/stable-diffusion-xl-base-1.0'
+    // 'black-forest-labs/FLUX.1-schnell',
+    // 'stabilityai/stable-diffusion-xl-base-1.0'
   ];
 
   private readonly timeoutHuggingFaceImagenMs = 45000;
@@ -1440,6 +1440,95 @@ export class IaFamiliaService {
         );
       })
     );
+  }
+
+  /**
+   * Solicita ilustraciones de forma continua hasta completar `cantidad` (por defecto 3).
+   * Cada vez que una petición sale bien, emite la imagen para colocarla en el primer hueco libre.
+   */
+  generarIlustracionesProgresivas(
+    promptCuento: string,
+    tramosEscena: [string, string, string],
+    cantidad = 3,
+    pausaEntreExitosMs = 2500
+  ): Observable<{ url: string; proveedor: string }> {
+    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
+    const maxIntentosTotales = cantidad * 3;
+
+    return defer(() => {
+      let conseguidas = 0;
+      let intentos = 0;
+
+      const siguientePaso$ = (): Observable<{ url: string; proveedor: string } | null> => {
+        if (conseguidas >= cantidad || intentos >= maxIntentosTotales) {
+          return of(null);
+        }
+
+        const slotEscena = Math.min(2, conseguidas);
+        const escena = `${etiquetas[slotEscena]} (${promptCuento}): ${tramosEscena[slotEscena] || promptCuento}`;
+        intentos++;
+        this.ultimoProveedorUsado = '';
+
+        return this.generarIlustracionCuentoConReferencias(promptCuento, escena).pipe(
+          map((url) => {
+            if (!url) {
+              return null;
+            }
+            conseguidas++;
+            return {
+              url,
+              proveedor: this.ultimoProveedorUsado || 'IA'
+            };
+          }),
+          catchError(() => of(null))
+        );
+      };
+
+      const ejecutarBucle = (): Observable<{ url: string; proveedor: string }> => {
+        return siguientePaso$().pipe(
+          switchMap((resultado) => {
+            if (conseguidas >= cantidad || intentos >= maxIntentosTotales) {
+              return resultado ? of(resultado) : of();
+            }
+
+            const espera = resultado ? pausaEntreExitosMs : 4000;
+            const siguiente$ = timer(espera).pipe(switchMap(() => ejecutarBucle()));
+
+            return resultado ? of(resultado).pipe(switchMap((res) => of(res).pipe(switchMap(() => timer(0).pipe(switchMap(() => of(res))))))) : siguiente$;
+          })
+        );
+      };
+
+      // Emitimos cada resultado válido inmediatamente y encadenamos la siguiente petición
+      const pasoConEmision = (): Observable<{ url: string; proveedor: string }> => {
+        return siguientePaso$().pipe(
+          switchMap((resultado) => {
+            if (conseguidas >= cantidad || intentos >= maxIntentosTotales) {
+              return resultado ? of(resultado) : of();
+            }
+
+            const espera = resultado ? pausaEntreExitosMs : 4000;
+            if (resultado) {
+              return new Observable<{ url: string; proveedor: string }>((observer) => {
+                observer.next(resultado);
+                const sub = timer(espera)
+                  .pipe(switchMap(() => pasoConEmision()))
+                  .subscribe({
+                    next: (v) => observer.next(v),
+                    error: (e) => observer.error(e),
+                    complete: () => observer.complete()
+                  });
+                return () => sub.unsubscribe();
+              });
+            }
+
+            return timer(espera).pipe(switchMap(() => pasoConEmision()));
+          })
+        );
+      };
+
+      return pasoConEmision();
+    });
   }
 
   private intentarHuggingFaceImagen(prompt: string): Observable<string | null> {
