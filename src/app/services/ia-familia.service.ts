@@ -85,22 +85,25 @@ interface Persona {
   detalles: string[];
 }
 
+interface ConfigCloudflareImagen {
+  accountId: string;
+  apiToken: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class IaFamiliaService {
   // ───────────────────────── Claves ─────────────────────────
-  // storageKey es la clave "histórica" (la que usa el toolbar). Ahora admite VARIAS claves
-  // separadas por coma, espacio o salto de línea: "gsk_xxx, AIzaxxx". El proveedor se detecta
-  // por el prefijo (gsk_ = Groq; el resto = Gemini).
   private readonly storageKey = 'gemini_familia_api_key';
   private readonly storageKeyGroq = 'groq_familia_api_key';
   private readonly storageKeyImagen = 'imagen_familia_api_key';
 
+  // Opcional: si guardas en localStorage solo el token de Cloudflare (sin "accountId:"),
+  // puedes poner aquí tu Account ID por defecto.
+  private readonly cloudflareAccountIdPorDefecto = '';
+
   // ───────────────────────── Proveedores y modelos ─────────────────────────
-  // Orden de intento: primero Groq (rápido), después Gemini como respaldo.
-  // Cada modelo de Groq tiene su propia cuota, así que encadenarlos multiplica el margen.
-  // Revisa los IDs vigentes en https://console.groq.com/docs/models
   private readonly ordenProveedores: ProveedorIa[] = ['groq', 'gemini'];
   private readonly modelosGroq = [
     'openai/gpt-oss-120b',
@@ -108,26 +111,32 @@ export class IaFamiliaService {
     'llama-3.3-70b-versatile'
   ];
   private readonly modelosGemini = ['gemini-3.5-flash-lite', 'gemini-3.8-flash'];
-  private readonly modelosImagenGemini = [
-    'gemini-2.5-flash-image',
-    'gemini-3.1-flash-lite-image'
+
+  private readonly modelosImagenCloudflare = [
+    '@cf/black-forest-labs/flux-1-schnell',
+    '@cf/stabilityai/stable-diffusion-xl-base-1.0'
   ];
 
   private readonly timeoutGroqMs = 20000;
   private readonly timeoutGeminiMs = 25000;
+  private readonly timeoutCloudflareImagenMs = 35000;
 
-  // Modelos de imagen de Puter (se prueban en orden; el último, undefined, usa el modelo por defecto)
-  // Catálogo: https://developer.puter.com/ai/
+  // Modelos de imagen de Puter (se prueban en orden; {} usa el modelo por defecto)
   private readonly modelosImagenPuter: Array<{ model?: string; quality?: 'low' | 'medium' | 'high' }> = [
     { model: 'openai/gpt-image-2.6-flare', quality: 'low' },
     { model: 'google/gemini-3.1-flash-lite-image' },
-    {} // modelo por defecto de Puter
+    {}
   ];
+
+  private readonly guiaEstiloInfantil =
+    'Ilustración de álbum infantil, acuarela cálida y luminosa, colores suaves y alegres, ' +
+    'personajes tiernos y expresivos con apariencia coherente, escena clara y acogedora, ' +
+    'sin texto, sin letras, sin bocadillos ni marcas de agua.';
 
   /** Para mostrar en la UI quién ha respondido (p. ej. "Groq · openai/gpt-oss-120b"). */
   ultimoProveedorUsado = '';
 
-  // modelos "en espera" tras un 429/503, para no volver a perder tiempo con ellos
+  // modelos/proveedores "en espera" tras un 429/503/error, para no perder tiempo
   private readonly enfriamiento = new Map<string, number>();
 
   // ───────────────────────── GitHub / datos ─────────────────────────
@@ -148,13 +157,10 @@ export class IaFamiliaService {
 
   private readonly MAX_VIAJES_A_TRATAR = 1000;
 
-  // Índice de viajes cacheado en localStorage para no releer toda la carpeta en cada visita
   private readonly storageIndice = 'ia_indice_viajes';
   private readonly versionIndice = 1;
   private readonly ttlIndiceMs = 12 * 3600 * 1000;
 
-  // Presupuesto de contexto (caracteres). ~4 caracteres ≈ 1 token.
-  // Groq gratis: 8.000 tokens/minuto por modelo → mantenemos el prompt en ~1.500-2.000 tokens.
   private readonly MAX_CHARS_CUENTO = 4500;
   private readonly MAX_CHARS_CHAT = 6500;
 
@@ -202,7 +208,6 @@ export class IaFamiliaService {
     }
   ];
 
-  // Palabras genéricas que remiten a varios personajes a la vez
   private readonly colectivos: Array<{ palabras: string[]; ids: string[] }> = [
     { palabras: ['nino', 'nina', 'hijo', 'hija', 'peque', 'pequeno', 'hermano', 'hermana', 'xiquet', 'xiqueta', 'crio', 'nen', 'nena', 'ninos', 'hijos', 'hermanos'], ids: ['mateu', 'marina'] },
     { palabras: ['padres', 'papas', 'papis', 'papa', 'mama', 'pare', 'mare', 'padre', 'madre', 'papi', 'mami'], ids: ['albert', 'alba'] },
@@ -227,6 +232,31 @@ export class IaFamiliaService {
     } else {
       localStorage.removeItem(this.storageKey);
     }
+  }
+
+  obtenerImagenApiKey(): string {
+    return (localStorage.getItem(this.storageKeyImagen) ?? '').trim();
+  }
+
+  obtenerConfigCloudflareImagen(): ConfigCloudflareImagen | null {
+    const cruda = this.obtenerImagenApiKey();
+    if (!cruda) {
+      return null;
+    }
+
+    const partes = cruda.split(/[:|]+/).map((p) => p.trim()).filter(Boolean);
+    if (partes.length >= 2) {
+      return { accountId: partes[0], apiToken: partes.slice(1).join(':') };
+    }
+
+    if (this.cloudflareAccountIdPorDefecto.trim()) {
+      return {
+        accountId: this.cloudflareAccountIdPorDefecto.trim(),
+        apiToken: cruda
+      };
+    }
+
+    return null;
   }
 
   obtenerClaves(): Partial<Record<ProveedorIa, string>> {
@@ -255,7 +285,7 @@ export class IaFamiliaService {
   }
 
   // ═════════════════════════════════════════════════════════
-  //  API PÚBLICA
+  //  API PÚBLICA (TEXTO)
   // ═════════════════════════════════════════════════════════
 
   preguntarFamilia(pregunta: string, idioma: IdiomaIa = 'es'): Observable<string> {
@@ -338,7 +368,6 @@ export class IaFamiliaService {
     );
   }
 
-  /** Borra el índice de viajes cacheado (úsalo tras añadir viajes nuevos). */
   limpiarCacheContexto(): void {
     try {
       localStorage.removeItem(this.storageIndice);
@@ -352,7 +381,7 @@ export class IaFamiliaService {
   }
 
   // ═════════════════════════════════════════════════════════
-  //  ORQUESTACIÓN DE PROVEEDORES (Groq → Gemini)
+  //  ORQUESTACIÓN DE PROVEEDORES DE TEXTO (Groq → Gemini)
   // ═════════════════════════════════════════════════════════
 
   private generarTexto(prompt: string, system: string, opts: OpcionesGeneracion): Observable<string> {
@@ -449,7 +478,6 @@ export class IaFamiliaService {
       max_completion_tokens: opts.maxTokens
     };
 
-    // Los modelos gpt-oss "razonan": con esfuerzo bajo gastan menos tokens (y cuota) antes de escribir
     if (paso.modelo.startsWith('openai/gpt-oss')) {
       body['reasoning_effort'] = 'low';
     }
@@ -543,7 +571,6 @@ export class IaFamiliaService {
       personajes: this.leerJson('assets/data/personajes.json'),
       cumple: this.leerJson('assets/data/cumpleanyos.json'),
       frases: this.leerJson('assets/data/frases.json'),
-      // apodos: this.leerJson('assets/data/apodos.json'),
       viajes: this.cargarIndiceViajes(),
       relatos: this.cargarRelatos()
     }).pipe(
@@ -552,14 +579,11 @@ export class IaFamiliaService {
         const mencionados = this.detectarPersonas(q, personas);
         const partes: string[] = [];
 
-        // A) SIEMPRE: los cuatro personajes principales
         partes.push(this.bloquePersonajes(personas, mencionados));
 
-        // Familia extendida, solo si se menciona
         const extendida = this.bloqueExtendida(personas, mencionados);
         if (extendida) partes.push(extendida);
 
-        // B) VARIABLE: viajes, frases, relatos según la temática
         const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 3, false);
         if (viajes.length) {
           partes.push(`VIAJES RELACIONADOS CON LA TEMÁTICA:\n${viajes.map((v) => this.lineaViaje(v, 330)).join('\n')}`);
@@ -574,11 +598,6 @@ export class IaFamiliaService {
         if (relatos.length) {
           partes.push(`RELATOS FAMILIARES:\n${relatos.join('\n')}`);
         }
-
-        // const apodos = this.seleccionarLineas(this.aLineas(d.apodos), q, 4, 0, 140);
-        // if (apodos.length) {
-        //   partes.push(`OTROS APODOS:\n${apodos.map((l) => `- ${l}`).join('\n')}`);
-        // }
 
         return this.recortarContexto(partes, this.MAX_CHARS_CUENTO);
       })
@@ -608,7 +627,6 @@ export class IaFamiliaService {
       frases: this.leerJson('assets/data/frases.json'),
       recetas: this.leerJson('assets/data/recetas.json'),
       preguntas: this.leerJson('assets/data/preguntas.json'),
-      // apodos: this.leerJson('assets/data/apodos.json'),
       dibujos: this.leerJson('assets/data/dibujos.json'),
       viajes: this.cargarIndiceViajes(),
       relatos: this.cargarRelatos()
@@ -649,7 +667,6 @@ export class IaFamiliaService {
         const genericas: Array<[string, boolean, unknown]> = [
           ['RECETAS', cats.recetas, d.recetas],
           ['PREGUNTAS', cats.preguntas, d.preguntas],
-          // ['APODOS', cats.apodos, d.apodos],
           ['DIBUJOS', cats.dibujos, d.dibujos]
         ];
         for (const [titulo, pedida, datos] of genericas) {
@@ -863,7 +880,7 @@ export class IaFamiliaService {
     return candidatas
       .map((f) => {
         const texto = this.normalizarTexto(`${f['frase']} ${f['explicacion'] ?? ''}`);
-        const puntos = this.puntuarTexto(texto, q) + Math.random() * 2; // algo de azar = variedad
+        const puntos = this.puntuarTexto(texto, q) + Math.random() * 2;
         return { f, puntos };
       })
       .sort((a, b) => b.puntos - a.puntos)
@@ -874,12 +891,10 @@ export class IaFamiliaService {
       });
   }
 
-  /** Texto normalizado, sin signos y rodeado de espacios, para buscar por inicio de palabra. */
   private prepararTexto(texto: string): string {
     return ` ${this.normalizarTexto(texto).replace(/[^a-z0-9]+/g, ' ')} `;
   }
 
-  /** ¿Aparece alguna palabra que EMPIECE por `raiz`? (playa ⊂ playas, pero cala ⊄ escalar) */
   private contienePalabra(textoPreparado: string, raiz: string): boolean {
     return textoPreparado.includes(` ${raiz}`);
   }
@@ -917,7 +932,6 @@ export class IaFamiliaService {
       .filter(Boolean);
   }
 
-  /** Elige las líneas que mejor encajan con la consulta; `relleno` = cuántas devolver aunque nada puntúe. */
   private seleccionarLineas(
     lineas: string[],
     q: ConsultaAnalizada,
@@ -969,7 +983,7 @@ export class IaFamiliaService {
               if (indice.length > 0) {
                 this.guardarIndice(indice);
               } else {
-                this.indiceViajes$ = undefined; // no "congelar" un fallo de red
+                this.indiceViajes$ = undefined;
               }
             })
           );
@@ -1077,7 +1091,6 @@ export class IaFamiliaService {
       return positivos;
     }
 
-    // Nada encaja: unos pocos recientes (el índice viene del más nuevo al más antiguo)
     return indice.slice(0, Math.min(2, max));
   }
 
@@ -1113,7 +1126,7 @@ export class IaFamiliaService {
       const g: IndiceGuardado = { version: this.versionIndice, creado: Date.now(), viajes };
       localStorage.setItem(this.storageIndice, JSON.stringify(g));
     } catch {
-      /* cuota de localStorage llena: seguimos solo con la caché en memoria */
+      /* cuota de localStorage llena */
     }
   }
 
@@ -1221,10 +1234,6 @@ export class IaFamiliaService {
     return Object.keys(resultados).length > 0 ? resultados : null;
   }
 
-  /**
-   * Extrae únicamente el contenido en español ('es') cuando encuentra objetos bilingües
-   * (ej. { es: '...', val: '...' }) y descarta claves de otros idiomas como 'val' o 'ca'.
-   */
   private extraerSoloEs(nodo: unknown): unknown {
     if (nodo === null || nodo === undefined) {
       return null;
@@ -1283,7 +1292,7 @@ export class IaFamiliaService {
   }
 
   private fechaHoy(): string {
-    return new Date().toLocaleDateString('sv-SE'); // AAAA-MM-DD en hora local
+    return new Date().toLocaleDateString('sv-SE');
   }
 
   private normalizarTexto(texto: string): string {
@@ -1294,25 +1303,202 @@ export class IaFamiliaService {
   }
 
   // ═════════════════════════════════════════════════════════
-  //  ILUSTRACIONES
+  //  ILUSTRACIONES: 1) CLOUDFLARE → 2) PUTER → 3) COLLAGE
   // ═════════════════════════════════════════════════════════
 
   /**
-   * Ilustración con IA vía Puter.js ("user-pays": el uso se carga a la cuenta de Puter de quien
-   * lo ejecuta; la primera vez abre un popup de inicio de sesión → llamarlo desde un clic directo).
+   * Flujo principal de ilustración de cuento:
+   * 1. Cloudflare Workers AI (con prompt enriquecido a partir del texto del cuento y contexto visual)
+   * 2. Puter.js (si el CDN está disponible y no falla)
+   * 3. Collage con fotos reales de la familia y viajes en <canvas>
+   */
+  generarIlustracionCuentoConReferencias(
+    promptCuento: string,
+    textoCuento: string
+  ): Observable<string | null> {
+    const q = this.analizarConsulta(`${promptCuento} ${textoCuento}`);
+    const promptIlustracion = this.construirPromptIlustracion(promptCuento, textoCuento);
+
+    return forkJoin({
+      viajeros: this.leerJson('assets/data/viajeros.json'),
+      personajes: this.leerJson('assets/data/personajes.json'),
+      cumple: this.leerJson('assets/data/cumpleanyos.json'),
+      viajes: this.cargarIndiceViajes()
+    }).pipe(
+      switchMap((d) => {
+        const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
+        const mencionados = this.detectarPersonas(q, personas);
+        const descripcionPersonajes = this.resumenVisualPersonajes(personas, mencionados);
+        const viajesAfin = this.seleccionarViajes(d.viajes, q, mencionados, 2, false);
+        const contextoEscenario = viajesAfin
+          .map((v) => `${v.destino}${v.pais ? ` (${v.pais})` : ''}`)
+          .join(', ');
+
+        const promptFinal = [
+          promptIlustracion,
+          descripcionPersonajes ? `Personajes: ${descripcionPersonajes}.` : '',
+          contextoEscenario ? `Lugar de inspiración: ${contextoEscenario}.` : '',
+          this.guiaEstiloInfantil
+        ]
+          .filter(Boolean)
+          .join(' ');
+
+        return this.intentarCloudflareImagen(promptFinal).pipe(
+          switchMap((imgCloudflare) => {
+            if (imgCloudflare) {
+              return of(imgCloudflare);
+            }
+            return this.intentarPuterImagen(promptFinal).pipe(
+              switchMap((imgPuter) => {
+                if (imgPuter) {
+                  return of(imgPuter);
+                }
+                return this.crearCollageDesdePrompt(promptCuento);
+              })
+            );
+          })
+        );
+      }),
+      catchError(() => this.crearCollageDesdePrompt(promptCuento))
+    );
+  }
+
+  private intentarCloudflareImagen(prompt: string): Observable<string | null> {
+    const config = this.obtenerConfigCloudflareImagen();
+    if (!config) {
+      return of(null);
+    }
+
+    const modelosLibres = this.modelosImagenCloudflare.filter((m) => {
+      const exp = this.enfriamiento.get(`cf-img:${m}`) ?? 0;
+      return exp <= Date.now();
+    });
+    const candidatos = modelosLibres.length > 0 ? modelosLibres : this.modelosImagenCloudflare;
+
+    const probarModelo = (idx: number): Observable<string | null> => {
+      if (idx >= candidatos.length) {
+        return of(null);
+      }
+      const modelo = candidatos[idx];
+      return this.llamarCloudflareImagen(config, modelo, prompt).pipe(
+        tap(() => {
+          this.ultimoProveedorUsado = `Cloudflare · ${modelo}`;
+        }),
+        catchError((err) => {
+          const info = this.clasificarError(err);
+          this.enfriamiento.set(`cf-img:${modelo}`, Date.now() + info.esperaMs);
+          console.warn(`[IA Imagen] Cloudflare (${modelo}) falló (${info.codigo}). Probando siguiente…`);
+          return probarModelo(idx + 1);
+        })
+      );
+    };
+
+    return probarModelo(0);
+  }
+
+  private llamarCloudflareImagen(
+    config: ConfigCloudflareImagen,
+    modelo: string,
+    prompt: string
+  ): Observable<string | null> {
+    const url = `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(
+      config.accountId
+    )}/ai/run/${modelo}`;
+
+    return this.http
+      .post<any>(
+        url,
+        {
+          prompt: this.resumirTexto(prompt, 1400),
+          width: 1024,
+          height: 1024
+        },
+        {
+          headers: new HttpHeaders({
+            Authorization: `Bearer ${config.apiToken}`,
+            'Content-Type': 'application/json'
+          })
+        }
+      )
+      .pipe(
+        timeout(this.timeoutCloudflareImagenMs),
+        map((resp) => {
+          const base64 = resp?.result?.image ?? resp?.image;
+          if (typeof base64 === 'string' && base64.trim()) {
+            const limpia = base64.trim();
+            return limpia.startsWith('data:') ? limpia : `data:image/png;base64,${limpia}`;
+          }
+          return null;
+        })
+      );
+  }
+
+  private intentarPuterImagen(prompt: string): Observable<string | null> {
+    if ((this.enfriamiento.get('puter-img') ?? 0) > Date.now()) {
+      return of(null);
+    }
+
+    return defer(() => from(this.cargarPuter())).pipe(
+      switchMap((puter) => from(this.probarModelosPuter(puter, this.resumirTexto(prompt, 1200), 0))),
+      timeout(45000),
+      tap(() => {
+        this.ultimoProveedorUsado = 'Puter';
+      }),
+      catchError((err) => {
+        this.enfriamiento.set('puter-img', Date.now() + 60000);
+        console.warn('[IA Imagen] Puter no disponible, pasando a collage.', err);
+        return of(null);
+      })
+    );
+  }
+
+  /**
+   * Mantiene la llamada directa desde botón de Puter si el usuario quiere forzarlo.
    */
   generarIlustracionPuter(titulo: string, escena: string): Observable<string> {
     const prompt = [
-      'Ilustración de libro de cuentos infantil, acuarela cálida y luminosa, personajes tiernos y sonrientes,',
-      'composición clara, sin texto ni letras ni marcas de agua.',
+      this.guiaEstiloInfantil,
       `Cuento: ${titulo}.`,
-      `Escena: ${this.resumirTexto(escena, 350)}`
+      `Escena: ${this.resumirTexto(escena, 450)}`
     ].join(' ');
 
     return defer(() => from(this.cargarPuter())).pipe(
       switchMap((puter) => from(this.probarModelosPuter(puter, prompt, 0))),
       timeout(120000)
     );
+  }
+
+  private construirPromptIlustracion(promptCuento: string, textoCuento: string): string {
+    const bloques = (textoCuento || '')
+      .split(/\n\s*\n/)
+      .map((b) => b.replace(/^#+\s*|\*\*/g, '').trim())
+      .filter(Boolean);
+
+    const titulo = bloques[0] && bloques[0].length < 95 && !bloques[0].endsWith('.') ? bloques[0] : '';
+    const cuerpo = titulo ? bloques.slice(1).join(' ') : bloques.join(' ');
+    const extracto = this.resumirTexto(cuerpo.replace(/\s+/g, ' ').trim(), 420);
+
+    return [
+      promptCuento ? `Idea: ${promptCuento}.` : '',
+      titulo ? `Título: ${titulo}.` : '',
+      extracto ? `Escena del cuento: ${extracto}.` : ''
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  private resumenVisualPersonajes(personas: Persona[], mencionados: Set<string>): string {
+    const nucleo = personas.filter((p) => p.nucleo);
+    const seleccionados =
+      mencionados.size > 0 ? nucleo.filter((p) => mencionados.has(p.id)) : nucleo.slice(0, 4);
+
+    return seleccionados
+      .map((p) => {
+        const edad = this.textoEdad(p);
+        const rasgos = p.rasgos.slice(0, 2).join(', ');
+        return [p.nombre, edad, rasgos].filter(Boolean).join(' - ');
+      })
+      .join('; ');
   }
 
   private cargarPuter(): Promise<any> {
@@ -1356,7 +1542,6 @@ export class IaFamiliaService {
     }
   }
 
-  /** Convierte blob:/http: en data: para que Angular lo acepte siempre en [src]. */
   private async aDataUrl(src: string): Promise<string> {
     if (src.startsWith('data:')) return src;
     try {
@@ -1592,231 +1777,5 @@ export class IaFamiliaService {
     ctx.arcTo(x, y + h, x, y, radio);
     ctx.arcTo(x, y, x + w, y, radio);
     ctx.closePath();
-  }
-
-
-  //*****************************************************************************
-  //***************** PARA LA GENERACIÓN DE IMÁGENES ****************************
-  //*****************************************************************************
-
-  obtenerImagenApiKey(): string {
-    return (localStorage.getItem(this.storageKeyImagen) ?? '').trim();
-  }
-
-  /**
-   * Intenta generar una ilustración combinando imágenes de referencia (perfiles/viajes)
-   * y el texto del cuento a través de varios proveedores; si todos fallan o no hay
-   * cuota/clave, devuelve el collage de fotos reales en canvas.
-   */
-  generarIlustracionCuentoConReferencias(
-    promptCuento: string,
-    textoCuento: string
-  ): Observable<string | null> {
-    const q = this.analizarConsulta(`${promptCuento} ${textoCuento}`);
-    const resumenEscena = this.resumirEscenaParaIlustracion(promptCuento, textoCuento);
-
-    return forkJoin({
-      fotosPerfiles: this.buscarFotosPerfilesPorPrompt(q),
-      fotosViajes: this.buscarFotosViajesPorPrompt(q)
-    }).pipe(
-      switchMap(({ fotosPerfiles, fotosViajes }) => {
-        const rutasReferencia = Array.from(new Set([...fotosPerfiles, ...fotosViajes]))
-          .filter(Boolean)
-          .slice(0, 3);
-
-        const cargasBase64 = rutasReferencia.map((ruta) =>
-          this.obtenerBase64Asset(ruta).pipe(catchError(() => of(null)))
-        );
-
-        const referencias$: Observable<Array<{ base64: string; mimeType: string }>> =
-          cargasBase64.length > 0
-            ? forkJoin(cargasBase64).pipe(
-                map((items) =>
-                  items.filter((x): x is { base64: string; mimeType: string } =>
-                    Boolean(x && x.base64)
-                  )
-                )
-              )
-            : of([]);
-
-        return referencias$.pipe(
-          switchMap((imagenesRef) =>
-            this.probarCadenaProveedoresImagen(imagenesRef, resumenEscena, promptCuento)
-          )
-        );
-      }),
-      catchError(() => this.crearCollageDesdePrompt(promptCuento))
-    );
-  }
-
-  private probarCadenaProveedoresImagen(
-    imagenesRef: Array<{ base64: string; mimeType: string }>,
-    resumenEscena: string,
-    promptOriginal: string
-  ): Observable<string | null> {
-    const claves = this.obtenerClaves();
-    const geminiKey = claves.gemini;
-    const imagenKey = this.obtenerImagenApiKey();
-
-    const pasos: Array<() => Observable<string | null>> = [];
-
-    // 1. Gemini multimodal con imágenes de referencia + descripción del cuento
-    if (geminiKey) {
-      for (const modelo of this.modelosImagenGemini) {
-        if (this.enfriamiento.has(`gemini-img:${modelo}`) && (this.enfriamiento.get(`gemini-img:${modelo}`) ?? 0) > Date.now()) {
-          continue;
-        }
-        pasos.push(() =>
-          this.llamarGeminiImagenConReferencias(geminiKey, modelo, imagenesRef, resumenEscena).pipe(
-            catchError((err) => {
-              const info = this.clasificarError(err);
-              this.enfriamiento.set(`gemini-img:${modelo}`, Date.now() + info.esperaMs);
-              return of(null);
-            })
-          )
-        );
-      }
-    }
-
-    // 2. Proveedor externo de imágenes con clave propia (imagen_familia_api_key)
-    if (imagenKey) {
-      pasos.push(() =>
-        this.llamarProveedorImagenExterno(imagenKey, resumenEscena, imagenesRef[0]).pipe(
-          catchError(() => of(null))
-        )
-      );
-    }
-
-    // 3. Respaldo garantizado: collage con fotos reales de la familia
-    pasos.push(() => this.crearCollageDesdePrompt(promptOriginal));
-
-    const ejecutarPaso = (idx: number): Observable<string | null> => {
-      if (idx >= pasos.length) {
-        return of(null);
-      }
-      return pasos[idx]().pipe(
-        switchMap((resultado) => (resultado ? of(resultado) : ejecutarPaso(idx + 1)))
-      );
-    };
-
-    return ejecutarPaso(0);
-  }
-
-  private llamarGeminiImagenConReferencias(
-    apiKey: string,
-    modelo: string,
-    imagenesRef: Array<{ base64: string; mimeType: string }>,
-    resumenEscena: string
-  ): Observable<string | null> {
-    const partes: any[] = imagenesRef.map((img) => ({
-      inlineData: {
-        mimeType: img.mimeType,
-        data: img.base64
-      }
-    }));
-
-    partes.push({
-      text: [
-        'Crea una ilustración infantil cálida, colorida y alegre para un libro de cuentos.',
-        'Usa las imágenes de referencia como inspiración para los personajes y/o escenarios.',
-        `Escena y trama del cuento: ${resumenEscena}`,
-        'Estilo: acuarela o ilustración infantil amigable y luminosa, sin texto ni marcas de agua.'
-      ].join(' ')
-    });
-
-    return defer(() => {
-      const ai = new GoogleGenAI({ apiKey });
-      return from(
-        ai.models.generateContent({
-          model: modelo,
-          contents: partes
-        })
-      );
-    }).pipe(
-      timeout(25000),
-      map((response) => {
-        const candidates = (response as any)?.candidates ?? [];
-        const parts = candidates[0]?.content?.parts ?? (response as any)?.parts ?? [];
-        const imgPart = parts.find((p: any) => p?.inlineData?.data);
-        if (!imgPart?.inlineData?.data) {
-          return null;
-        }
-        const mime = imgPart.inlineData.mimeType || 'image/png';
-        return `data:${mime};base64,${imgPart.inlineData.data}`;
-      })
-    );
-  }
-
-  /**
-   * Conector listo para un proveedor de imágenes vía REST usando `imagen_familia_api_key`.
-   * Ajusta la URL y el cuerpo según el proveedor que elijas (p. ej. endpoint de generación/edición).
-   */
-  private llamarProveedorImagenExterno(
-    apiKey: string,
-    resumenEscena: string,
-    primeraImagenRef?: { base64: string; mimeType: string }
-  ): Observable<string | null> {
-    const endpoint = ''; // Configura aquí el endpoint REST de tu proveedor de imágenes
-    if (!endpoint) {
-      return of(null);
-    }
-
-    const payload: Record<string, unknown> = {
-      prompt: `Ilustración infantil colorida y tierna, sin texto: ${resumenEscena}`,
-      ...(primeraImagenRef
-        ? {
-            image_base64: primeraImagenRef.base64,
-            mime_type: primeraImagenRef.mimeType
-          }
-        : {})
-    };
-
-    return this.http
-      .post<any>(endpoint, payload, {
-        headers: new HttpHeaders({
-          Authorization: `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        })
-      })
-      .pipe(
-        timeout(25000),
-        map((res) => {
-          if (typeof res?.image === 'string' && res.image) {
-            return res.image.startsWith('data:') ? res.image : `data:image/png;base64,${res.image}`;
-          }
-          if (typeof res?.url === 'string' && res.url) {
-            return res.url;
-          }
-          return null;
-        })
-      );
-  }
-
-  private obtenerBase64Asset(ruta: string): Observable<{ base64: string; mimeType: string }> {
-    return this.http.get(ruta, { responseType: 'blob' }).pipe(
-      switchMap(
-        (blob) =>
-          new Observable<{ base64: string; mimeType: string }>((observer) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const raw = String(reader.result || '');
-              const base64 = raw.split(',')[1] || '';
-              const mimeType = blob.type || 'image/jpeg';
-              observer.next({ base64, mimeType });
-              observer.complete();
-            };
-            reader.onerror = (err) => observer.error(err);
-            reader.readAsDataURL(blob);
-          })
-      )
-    );
-  }
-
-  private resumirEscenaParaIlustracion(promptCuento: string, textoCuento: string): string {
-    const limpio = (textoCuento || '')
-      .replace(/\s+/g, ' ')
-      .trim();
-    const extracto = this.resumirTexto(limpio, 380);
-    return `Petición: ${promptCuento}. Historia: ${extracto}`;
   }
 }
