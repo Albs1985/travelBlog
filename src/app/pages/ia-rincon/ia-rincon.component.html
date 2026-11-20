@@ -119,7 +119,7 @@
         [class.usuario]="msg.remitente === 'usuario'"
         [class.ia]="msg.remitente === 'ia'">
         <div class="chat-burbuja">
-          <div class="chat-texto">{{ msg.texto }}</div>
+          <div class="chat-texto"><ng-container *ngFor="let seg of obtenerSegmentosChat(msg)"><strong *ngIf="seg.negrita">{{ seg.texto }}</strong><ng-container *ngIf="!seg.negrita">{{ seg.texto }}</ng-container></ng-container></div>
           <span class="chat-hora">{{ msg.hora }}<ng-container *ngIf="msg.proveedor"> · {{ msg.proveedor }}</ng-container></span>
         </div>
       </div>

@@ -11,6 +11,11 @@ export interface MensajeChatFamilia {
   proveedor?: string;
 }
 
+export interface SegmentoTextoChat {
+  texto: string;
+  negrita: boolean;
+}
+
 export interface CuentoGuardadoItem {
   nombreArchivo: string;
   titulo: string;
@@ -99,6 +104,46 @@ export class IaRinconComponent implements OnInit {
 
   get indiceMitadCuento(): number {
     return Math.max(1, Math.floor(this.parrafosCuento.length / 2));
+  }
+
+  obtenerSegmentosChat(msg: MensajeChatFamilia): SegmentoTextoChat[] {
+    return this.parsearSegmentosChat(msg?.texto ?? '');
+  }
+
+  private parsearSegmentosChat(texto: string): SegmentoTextoChat[] {
+    if (!texto) {
+      return [];
+    }
+
+    const segmentos: SegmentoTextoChat[] = [];
+    const regex = /\*\*([^*]+)\*\*/g;
+    let ultimoIndice = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(texto)) !== null) {
+      if (match.index > ultimoIndice) {
+        segmentos.push({
+          texto: texto.slice(ultimoIndice, match.index),
+          negrita: false
+        });
+      }
+
+      segmentos.push({
+        texto: match[1],
+        negrita: true
+      });
+
+      ultimoIndice = regex.lastIndex;
+    }
+
+    if (ultimoIndice < texto.length) {
+      segmentos.push({
+        texto: texto.slice(ultimoIndice),
+        negrita: false
+      });
+    }
+
+    return segmentos;
   }
 
   seleccionarModo(nuevoModo: 'familia' | 'cuento' | 'biblioteca'): void {
