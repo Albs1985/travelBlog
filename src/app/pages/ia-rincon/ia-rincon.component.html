@@ -30,16 +30,16 @@
       <button
         type="button"
         class="btn-modo-pill"
-        [class.activo]="modo === 'familia'"
-        (click)="seleccionarModo('familia')">
-        🏡 {{ 'iaRincon.modoFamilia' | translate }}
+        [class.activo]="modo === 'biblioteca'"
+        (click)="seleccionarModo('biblioteca')">
+        📄 {{ 'iaRincon.modoCuentosPdf' | translate }}
       </button>
       <button
         type="button"
         class="btn-modo-pill"
-        [class.activo]="modo === 'biblioteca'"
-        (click)="seleccionarModo('biblioteca')">
-        📄 {{ 'iaRincon.modoCuentosPdf' | translate }}
+        [class.activo]="modo === 'familia'"
+        (click)="seleccionarModo('familia')">
+        🏡 {{ 'iaRincon.modoFamilia' | translate }}
       </button>
     </div>
   </div>

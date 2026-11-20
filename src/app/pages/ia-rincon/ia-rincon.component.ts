@@ -286,83 +286,6 @@ export class IaRinconComponent implements OnInit {
       }
   }
 
-  private solicitarTresIlustraciones(promptTexto: string, textoCuento: string): void {
-    const tramos = this.obtenerTramosCuento(textoCuento);
-    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
-
-    tramos.forEach((tramo, idx) => {
-      this.cargandoImagenes[idx] = true;
-      const escenaTramo = `${etiquetas[idx]} (${promptTexto}): ${tramo || promptTexto}`;
-
-      this.iaService
-        .generarIlustracionCuentoConReferencias(promptTexto, escenaTramo)
-        .pipe(
-          catchError(() => this.iaService.crearCollageDesdePrompt(promptTexto)),
-          finalize(() => {
-            this.cargandoImagenes[idx] = false;
-            this.imagenCuentoUrl = this.imagenesCuento[0];
-            this.cargandoImagenCuento = this.cargandoImagenes.some(Boolean);
-          })
-        )
-        .subscribe((url) => {
-          if (url) {
-            this.imagenesCuento[idx] = url;
-            if (idx === 0) {
-              this.imagenCuentoUrl = url;
-            }
-          }
-        });
-    });
-  }
-
-  private refinarTresIlustracionesConTexto(promptTexto: string, cuentoRaw: string): void {
-    const tramos = this.obtenerTramosCuento(cuentoRaw);
-    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
-
-    tramos.forEach((tramo, idx) => {
-      if (!this.imagenesCuento[idx] && !this.cargandoImagenes[idx]) {
-        this.cargandoImagenes[idx] = true;
-        this.iaService
-          .generarIlustracionCuentoConReferencias(promptTexto, `${etiquetas[idx]}: ${tramo}`)
-          .pipe(
-            catchError(() => this.iaService.crearCollageDesdePrompt(promptTexto)),
-            finalize(() => {
-              this.cargandoImagenes[idx] = false;
-              this.imagenCuentoUrl = this.imagenesCuento[0];
-              this.cargandoImagenCuento = this.cargandoImagenes.some(Boolean);
-            })
-          )
-          .subscribe((url) => {
-            if (url) {
-              this.imagenesCuento[idx] = url;
-              if (idx === 0) {
-                this.imagenCuentoUrl = url;
-              }
-            }
-          });
-      }
-    });
-  }
-
-  private obtenerTramosCuento(textoCuento: string): [string, string, string] {
-    const parrafos = (textoCuento || '')
-      .split(/\n\s*\n/)
-      .map((p) => p.trim())
-      .filter(Boolean);
-
-    if (parrafos.length <= 1) {
-      return [textoCuento, textoCuento, textoCuento];
-    }
-
-    const inicio = parrafos.slice(0, Math.max(1, Math.ceil(parrafos.length / 3))).join(' ');
-    const medioStart = Math.floor(parrafos.length / 3);
-    const medioEnd = Math.max(medioStart + 1, Math.floor((2 * parrafos.length) / 3));
-    const medio = parrafos.slice(medioStart, medioEnd).join(' ');
-    const fin = parrafos.slice(medioEnd).join(' ') || parrafos[parrafos.length - 1];
-
-    return [inicio, medio, fin];
-  }
-
   /** Ilustración con IA desde botón. */
   ilustrarConPuter(): void {
     if (this.cargandoPuter || this.parrafosCuento.length === 0) {
@@ -396,13 +319,21 @@ export class IaRinconComponent implements OnInit {
   //  PDF LIGERO CON IMÁGENES + GUARDAR EN GITHUB + CONSULTA
   // ═════════════════════════════════════════════════════════
 
+  private obtenerNombreArchivoPdfCuento(titulo: string, fechaStr = new Date().toISOString().slice(0, 10)): string {
+    const tituloLimpio = (titulo || 'cuento-familiar').trim();
+    const baseTitulo = this.slugArchivoCuento(tituloLimpio);
+    return `${baseTitulo}-${fechaStr}.pdf`;
+  }
+
   async descargarCuentoPdfLocal(): Promise<void> {
     if (!this.parrafosCuento.length || this.generandoPdf) return;
     this.generandoPdf = true;
     this.errorMsg = '';
     try {
+      const titulo = (this.tituloCuento || 'Cuento familiar').trim();
+      const nombreArchivo = this.obtenerNombreArchivoPdfCuento(titulo);
       const pdfBytes = await this.construirPdfLigeroConImagenes(
-        this.tituloCuento || 'Cuento familiar',
+        titulo,
         this.parrafosCuento,
         this.imagenesCuento
       );
@@ -410,11 +341,15 @@ export class IaRinconComponent implements OnInit {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `${this.slugArchivoCuento(this.tituloCuento)}.pdf`;
+      a.download = nombreArchivo;
+      a.rel = 'noopener';
+      document.body.appendChild(a);
       a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+
       const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
-      this.mensajeEstadoPdf = `PDF ligero descargado (${kb} KB) con texto e imágenes.`;
+      this.mensajeEstadoPdf = `PDF ligero descargado (${kb} KB): ${nombreArchivo}`;
     } catch {
       this.errorMsg = 'No se pudo generar el PDF ligero.';
     } finally {
@@ -437,9 +372,9 @@ export class IaRinconComponent implements OnInit {
     this.mensajeEstadoPdf = '';
 
     try {
-      const nombreBase = this.slugArchivoCuento(this.tituloCuento || 'cuento');
+      const nombreBase = (this.tituloCuento || 'Cuento familiar').trim();
       const fechaStr = new Date().toISOString().slice(0, 10);
-      const nombreArchivo = `${fechaStr}-${nombreBase}.pdf`;
+      const nombreArchivo = this.obtenerNombreArchivoPdfCuento(nombreBase, fechaStr);
       const rutaRepo = `${this.carpetaCuentosPdfRepo}/${nombreArchivo}`;
 
       const pdfBytes = await this.construirPdfLigeroConImagenes(
