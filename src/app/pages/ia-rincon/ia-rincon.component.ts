@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
-import { finalize, of, catchError, map } from 'rxjs';
+import { finalize, of, catchError, map, Subscription } from 'rxjs';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
@@ -59,6 +59,8 @@ export class IaRinconComponent implements OnInit {
   cuentosGuardados: CuentoGuardadoItem[] = [];
   cargandoBiblioteca = false;
 
+  private subIlustraciones?: Subscription;
+
   cargando = false;
   errorMsg = '';
 
@@ -91,6 +93,10 @@ export class IaRinconComponent implements OnInit {
     this.iaService.limpiarCacheContexto();
   }
 
+  ngOnDestroy(): void {
+    this.subIlustraciones?.unsubscribe();
+  }
+
   get indiceMitadCuento(): number {
     return Math.max(1, Math.floor(this.parrafosCuento.length / 2));
   }
@@ -116,6 +122,8 @@ export class IaRinconComponent implements OnInit {
   }
 
   limpiarCuento(): void {
+    this.subIlustraciones?.unsubscribe();
+    this.subIlustraciones = undefined;
     this.tituloCuento = '';
     this.parrafosCuento = [];
     this.imagenesCuento = [null, null, null];
@@ -168,34 +176,44 @@ export class IaRinconComponent implements OnInit {
           }
         });
     } else {
+      this.subIlustraciones?.unsubscribe();
       this.imagenesCuento = [null, null, null];
-      this.cargandoImagenes = [true, true, true];
+      this.cargandoImagenes = [true, false, false];
+      this.cargandoImagenCuento = true;
       this.imagenCuentoUrl = null;
 
-      // Pedimos las 3 imágenes (inicio, medio, final) desde el primer momento
-      this.solicitarTresIlustraciones(texto, '');
-
-      // Generación del cuento
+      // Collage rápido de respaldo mientras se generan las ilustraciones con IA
       this.iaService
-        .inventarCuento(
-          {
-            protagonistas: texto,
-            lugar: texto,
-            tono: 'tierno, mágico y divertido'
-          },
-          this.obtenerIdiomaActivo()
+        .crearCollageDesdePrompt(texto)
+        .pipe(catchError(() => of(null)))
+        .subscribe((collageUrl) => {
+          if (collageUrl) {
+            this.imagenesCuento = this.imagenesCuento.map((actual) => actual ?? collageUrl);
+            this.imagenCuentoUrl = this.imagenesCuento[0];
+          }
+        });
+
+      // Secuencia escalonada cada 16s: 0s (inicio), 16s (mitad), 32s (final)
+      this.subIlustraciones = this.iaService
+        .generarTresIlustracionesEscalonadas(texto, [texto, texto, texto], 16000)
+        .pipe(
+          finalize(() => {
+            this.cargandoImagenes = [false, false, false];
+            this.cargandoImagenCuento = false;
+          })
         )
-        .pipe(finalize(() => (this.cargando = false)))
         .subscribe({
-          next: (cuentoRaw) => {
-            this.formatearCuento(cuentoRaw, texto);
-            this.refinarTresIlustracionesConTexto(texto, cuentoRaw);
-          },
-          error: (err) => {
-            this.errorMsg = this.obtenerMensajeErrorAmigable(err);
-            const cuentoRespaldo = this.crearCuentoRespaldoLocal(texto);
-            this.formatearCuento(cuentoRespaldo, texto);
-            this.refinarTresIlustracionesConTexto(texto, cuentoRespaldo);
+          next: ({ indice, url }) => {
+            this.cargandoImagenes[indice] = false;
+            if (indice + 1 < 3) {
+              this.cargandoImagenes[indice + 1] = true;
+            }
+            if (url) {
+              this.imagenesCuento[indice] = url;
+              if (indice === 0) {
+                this.imagenCuentoUrl = url;
+              }
+            }
           }
         });
     }

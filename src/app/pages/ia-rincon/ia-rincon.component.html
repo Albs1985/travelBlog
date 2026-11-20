@@ -157,11 +157,16 @@
       <!-- 1. ILUSTRACIÓN DEL INICIO -->
       <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
         <span class="etiqueta-escena">🌅 {{ 'iaRincon.escenaInicio' | translate }}</span>
-        <img
-          *ngIf="imagenesCuento[0]"
-          [src]="imagenesCuento[0]"
-          [alt]="tituloCuento + ' - ' + ('iaRincon.escenaInicio' | translate)"
-          class="ilustracion-cuento-img">
+
+        <div *ngIf="imagenesCuento[0]" class="marco-imagen-cuento">
+          <img
+            [src]="imagenesCuento[0]"
+            [alt]="tituloCuento + ' - ' + ('iaRincon.escenaInicio' | translate)"
+            class="ilustracion-cuento-img">
+          <span *ngIf="cargandoImagenes[0]" class="badge-ia-en-camino">
+            ✨ {{ 'iaRincon.imagenEnCamino' | translate }}
+          </span>
+        </div>
 
         <div *ngIf="!imagenesCuento[0]" class="ilustracion-caja" [class.skeleton-activo]="cargandoImagenes[0]">
           <span class="ilustracion-emoji">{{ cargandoImagenes[0] ? '✨' : '🖼️' }}</span>
@@ -189,11 +194,16 @@
           <!-- 2. ILUSTRACIÓN DE LA MITAD DEL CUENTO -->
           <div *ngIf="mostrarHuecoImagen && i === indiceMitadCuento - 1" class="espacio-ilustracion-cuento">
             <span class="etiqueta-escena">🧭 {{ 'iaRincon.escenaMitad' | translate }}</span>
-            <img
-              *ngIf="imagenesCuento[1]"
-              [src]="imagenesCuento[1]"
-              [alt]="tituloCuento + ' - ' + ('iaRincon.escenaMitad' | translate)"
-              class="ilustracion-cuento-img">
+
+            <div *ngIf="imagenesCuento[1]" class="marco-imagen-cuento">
+              <img
+                [src]="imagenesCuento[1]"
+                [alt]="tituloCuento + ' - ' + ('iaRincon.escenaMitad' | translate)"
+                class="ilustracion-cuento-img">
+              <span *ngIf="cargandoImagenes[1]" class="badge-ia-en-camino">
+                ✨ {{ 'iaRincon.imagenEnCamino' | translate }}
+              </span>
+            </div>
 
             <div *ngIf="!imagenesCuento[1]" class="ilustracion-caja" [class.skeleton-activo]="cargandoImagenes[1]">
               <span class="ilustracion-emoji">{{ cargandoImagenes[1] ? '✨' : '🖼️' }}</span>
@@ -219,11 +229,16 @@
       <!-- 3. ILUSTRACIÓN DEL FINAL DEL CUENTO -->
       <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento espacio-ilustracion-final">
         <span class="etiqueta-escena">🌟 {{ 'iaRincon.escenaFinal' | translate }}</span>
-        <img
-          *ngIf="imagenesCuento[2]"
-          [src]="imagenesCuento[2]"
-          [alt]="tituloCuento + ' - ' + ('iaRincon.escenaFinal' | translate)"
-          class="ilustracion-cuento-img">
+
+        <div *ngIf="imagenesCuento[2]" class="marco-imagen-cuento">
+          <img
+            [src]="imagenesCuento[2]"
+            [alt]="tituloCuento + ' - ' + ('iaRincon.escenaFinal' | translate)"
+            class="ilustracion-cuento-img">
+          <span *ngIf="cargandoImagenes[2]" class="badge-ia-en-camino">
+            ✨ {{ 'iaRincon.imagenEnCamino' | translate }}
+          </span>
+        </div>
 
         <div *ngIf="!imagenesCuento[2]" class="ilustracion-caja" [class.skeleton-activo]="cargandoImagenes[2]">
           <span class="ilustracion-emoji">{{ cargandoImagenes[2] ? '✨' : '🖼️' }}</span>

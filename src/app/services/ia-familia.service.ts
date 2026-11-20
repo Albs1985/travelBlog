@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, defer, forkJoin, from, of, throwError } from 'rxjs';
+import { Observable, defer, forkJoin, from, of, throwError, timer } from 'rxjs';
 import { catchError, map, shareReplay, switchMap, tap, timeout } from 'rxjs/operators';
 import { GoogleGenAI } from '@google/genai';
 
@@ -1360,6 +1360,35 @@ export class IaFamiliaService {
         );
       }),
       catchError(() => this.crearCollageDesdePrompt(promptCuento))
+    );
+  }
+
+  /**
+   * Genera las 3 ilustraciones del cuento (0: inicio, 1: mitad, 2: final)
+   * escalonadas cada 16 segundos para evitar saturar límites de frecuencia.
+   */
+  generarTresIlustracionesEscalonadas(
+    promptCuento: string,
+    tramosEscena: [string, string, string],
+    intervaloMs = 16000
+  ): Observable<{ indice: 0 | 1 | 2; url: string | null }> {
+    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
+    const indices: Array<0 | 1 | 2> = [0, 1, 2];
+
+    return from(indices).pipe(
+      switchMap((indice) => {
+        const retraso = indice * intervaloMs;
+        const escena = `${etiquetas[indice]} (${promptCuento}): ${tramosEscena[indice] || promptCuento}`;
+
+        return timer(retraso).pipe(
+          switchMap(() =>
+            this.generarIlustracionCuentoConReferencias(promptCuento, escena).pipe(
+              catchError(() => this.crearCollageDesdePrompt(promptCuento)),
+              map((url) => ({ indice, url }))
+            )
+          )
+        );
+      })
     );
   }
 

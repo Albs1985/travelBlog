@@ -301,7 +301,8 @@
     "errorAltaDemanda": "El servei està tenint molta demanda en este moment. Torna-ho a intentar d'ací a uns segons.",
     "errorCuota": "S'ha assolit el límit d'ús disponible per ara. Prova més tard o revisa la teua clau.",
     "errorGenerico": "S'ha produït un problema en connectar amb la IA. Torna-ho a intentar.",
-    "errorIlustracion": "No s'ha pogut generar la il·lustració amb IA en este moment."
+    "errorIlustracion": "No s'ha pogut generar la il·lustració amb IA en este moment.",
+    "imagenEnCamino": "Imatge generada per IA en camí..."
   },
   "header": {
     "categoria": "Categoríes",

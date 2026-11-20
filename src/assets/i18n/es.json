@@ -301,7 +301,8 @@
     "errorAltaDemanda": "El servicio está teniendo mucha demanda en este momento. Inténtalo de nuevo en unos segundos.",
     "errorCuota": "Se ha alcanzado el límite de uso disponible por ahora. Prueba más tarde o revisa tu clave.",
     "errorGenerico": "Ha ocurrido un problema al conectar con la IA. Inténtalo de nuevo.",
-    "errorIlustracion": "No se ha podido generar la ilustración con IA en este momento."
+    "errorIlustracion": "No se ha podido generar la ilustración con IA en este momento.",
+    "imagenEnCamino": "Imagen generada por IA en camino..."
   },
   "header": {
     "categoria": "Categorias",
