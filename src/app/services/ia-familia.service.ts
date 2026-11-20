@@ -95,6 +95,7 @@ export class IaFamiliaService {
   // por el prefijo (gsk_ = Groq; el resto = Gemini).
   private readonly storageKey = 'gemini_familia_api_key';
   private readonly storageKeyGroq = 'groq_familia_api_key';
+  private readonly storageKeyImagen = 'imagen_familia_api_key';
 
   // ───────────────────────── Proveedores y modelos ─────────────────────────
   // Orden de intento: primero Groq (rápido), después Gemini como respaldo.
@@ -107,14 +108,20 @@ export class IaFamiliaService {
     'llama-3.3-70b-versatile'
   ];
   private readonly modelosGemini = ['gemini-3.5-flash-lite', 'gemini-3.8-flash'];
+  private readonly modelosImagenGemini = [
+    'gemini-2.5-flash-image',
+    'gemini-3.1-flash-lite-image'
+  ];
+
   private readonly timeoutGroqMs = 20000;
   private readonly timeoutGeminiMs = 25000;
 
   // Modelos de imagen de Puter (se prueban en orden; el último, undefined, usa el modelo por defecto)
   // Catálogo: https://developer.puter.com/ai/
-  private readonly modelosImagenPuter: Array<string | undefined> = [
-    'google/gemini-3.1-flash-lite-image',
-    undefined
+  private readonly modelosImagenPuter: Array<{ model?: string; quality?: 'low' | 'medium' | 'high' }> = [
+    { model: 'openai/gpt-image-2.6-flare', quality: 'low' },
+    { model: 'google/gemini-3.1-flash-lite-image' },
+    {} // modelo por defecto de Puter
   ];
 
   /** Para mostrar en la UI quién ha respondido (p. ej. "Groq · openai/gpt-oss-120b"). */
@@ -536,7 +543,7 @@ export class IaFamiliaService {
       personajes: this.leerJson('assets/data/personajes.json'),
       cumple: this.leerJson('assets/data/cumpleanyos.json'),
       frases: this.leerJson('assets/data/frases.json'),
-      apodos: this.leerJson('assets/data/apodos.json'),
+      // apodos: this.leerJson('assets/data/apodos.json'),
       viajes: this.cargarIndiceViajes(),
       relatos: this.cargarRelatos()
     }).pipe(
@@ -568,10 +575,10 @@ export class IaFamiliaService {
           partes.push(`RELATOS FAMILIARES:\n${relatos.join('\n')}`);
         }
 
-        const apodos = this.seleccionarLineas(this.aLineas(d.apodos), q, 4, 0, 140);
-        if (apodos.length) {
-          partes.push(`OTROS APODOS:\n${apodos.map((l) => `- ${l}`).join('\n')}`);
-        }
+        // const apodos = this.seleccionarLineas(this.aLineas(d.apodos), q, 4, 0, 140);
+        // if (apodos.length) {
+        //   partes.push(`OTROS APODOS:\n${apodos.map((l) => `- ${l}`).join('\n')}`);
+        // }
 
         return this.recortarContexto(partes, this.MAX_CHARS_CUENTO);
       })
@@ -601,7 +608,7 @@ export class IaFamiliaService {
       frases: this.leerJson('assets/data/frases.json'),
       recetas: this.leerJson('assets/data/recetas.json'),
       preguntas: this.leerJson('assets/data/preguntas.json'),
-      apodos: this.leerJson('assets/data/apodos.json'),
+      // apodos: this.leerJson('assets/data/apodos.json'),
       dibujos: this.leerJson('assets/data/dibujos.json'),
       viajes: this.cargarIndiceViajes(),
       relatos: this.cargarRelatos()
@@ -642,7 +649,7 @@ export class IaFamiliaService {
         const genericas: Array<[string, boolean, unknown]> = [
           ['RECETAS', cats.recetas, d.recetas],
           ['PREGUNTAS', cats.preguntas, d.preguntas],
-          ['APODOS', cats.apodos, d.apodos],
+          // ['APODOS', cats.apodos, d.apodos],
           ['DIBUJOS', cats.dibujos, d.dibujos]
         ];
         for (const [titulo, pedida, datos] of genericas) {
@@ -1092,7 +1099,10 @@ export class IaFamiliaService {
       if (g.version !== this.versionIndice || Date.now() - g.creado > this.ttlIndiceMs || !g.viajes?.length) {
         return null;
       }
-      return g.viajes;
+      return g.viajes.map((v) => ({
+        ...v,
+        foto: this.normalizarRutaAsset(v.foto)
+      }));
     } catch {
       return null;
     }
@@ -1147,7 +1157,12 @@ export class IaFamiliaService {
     }
 
     const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${repoFolder}?ref=${this.repoBranch}`;
-    const githubToken = (localStorage.getItem('github_token') || localStorage.getItem('token') || '').trim();
+    const githubToken = (
+      localStorage.getItem('gh_travel_token') ||
+      localStorage.getItem('github_token') ||
+      localStorage.getItem('token') ||
+      ''
+    ).trim();
     const opcionesHttp = githubToken ? { headers: { Authorization: `Bearer ${githubToken}` } } : {};
 
     return this.http.get<GithubDirItem[]>(apiUrl, opcionesHttp).pipe(
@@ -1322,9 +1337,12 @@ export class IaFamiliaService {
   }
 
   private async probarModelosPuter(puter: any, prompt: string, indice: number): Promise<string> {
-    const modelo = this.modelosImagenPuter[indice];
+    const cfg = this.modelosImagenPuter[indice];
     try {
-      const img: HTMLImageElement = await puter.ai.txt2img(prompt, modelo ? { model: modelo } : undefined);
+      const opciones = cfg?.model
+        ? { model: cfg.model, ...(cfg.quality ? { quality: cfg.quality } : {}) }
+        : undefined;
+      const img: HTMLImageElement = await puter.ai.txt2img(prompt, opciones);
       const src = img?.src;
       if (!src) {
         throw new Error('Puter no devolvió ninguna imagen.');
@@ -1378,7 +1396,7 @@ export class IaFamiliaService {
     return this.cargarIndiceViajes().pipe(
       map((indice) =>
         this.seleccionarViajes(indice, q, new Set<string>(), 4, true)
-          .map((v) => v.foto)
+          .map((v) => this.normalizarRutaAsset(v.foto))
           .filter(Boolean)
       )
     );
@@ -1412,10 +1430,17 @@ export class IaFamiliaService {
   }
 
   private normalizarRutaAsset(ruta: string): string {
-    if (ruta.startsWith('http') || ruta.startsWith('assets/') || ruta.startsWith('/assets/')) {
-      return ruta.replace(/^\/+/, '');
+    const limpia = (ruta || '').trim().replace(/^\/+/, '');
+    if (!limpia) {
+      return '';
     }
-    return `assets/${ruta.replace(/^\/+/, '')}`;
+    if (limpia.startsWith('http') || limpia.startsWith('assets/')) {
+      return limpia;
+    }
+    if (limpia.startsWith('images/')) {
+      return `assets/${limpia}`;
+    }
+    return `assets/images/${limpia}`;
   }
 
   crearCollageDesdePrompt(promptCuento: string): Observable<string | null> {
@@ -1567,5 +1592,231 @@ export class IaFamiliaService {
     ctx.arcTo(x, y + h, x, y, radio);
     ctx.arcTo(x, y, x + w, y, radio);
     ctx.closePath();
+  }
+
+
+  //*****************************************************************************
+  //***************** PARA LA GENERACIÓN DE IMÁGENES ****************************
+  //*****************************************************************************
+
+  obtenerImagenApiKey(): string {
+    return (localStorage.getItem(this.storageKeyImagen) ?? '').trim();
+  }
+
+  /**
+   * Intenta generar una ilustración combinando imágenes de referencia (perfiles/viajes)
+   * y el texto del cuento a través de varios proveedores; si todos fallan o no hay
+   * cuota/clave, devuelve el collage de fotos reales en canvas.
+   */
+  generarIlustracionCuentoConReferencias(
+    promptCuento: string,
+    textoCuento: string
+  ): Observable<string | null> {
+    const q = this.analizarConsulta(`${promptCuento} ${textoCuento}`);
+    const resumenEscena = this.resumirEscenaParaIlustracion(promptCuento, textoCuento);
+
+    return forkJoin({
+      fotosPerfiles: this.buscarFotosPerfilesPorPrompt(q),
+      fotosViajes: this.buscarFotosViajesPorPrompt(q)
+    }).pipe(
+      switchMap(({ fotosPerfiles, fotosViajes }) => {
+        const rutasReferencia = Array.from(new Set([...fotosPerfiles, ...fotosViajes]))
+          .filter(Boolean)
+          .slice(0, 3);
+
+        const cargasBase64 = rutasReferencia.map((ruta) =>
+          this.obtenerBase64Asset(ruta).pipe(catchError(() => of(null)))
+        );
+
+        const referencias$: Observable<Array<{ base64: string; mimeType: string }>> =
+          cargasBase64.length > 0
+            ? forkJoin(cargasBase64).pipe(
+                map((items) =>
+                  items.filter((x): x is { base64: string; mimeType: string } =>
+                    Boolean(x && x.base64)
+                  )
+                )
+              )
+            : of([]);
+
+        return referencias$.pipe(
+          switchMap((imagenesRef) =>
+            this.probarCadenaProveedoresImagen(imagenesRef, resumenEscena, promptCuento)
+          )
+        );
+      }),
+      catchError(() => this.crearCollageDesdePrompt(promptCuento))
+    );
+  }
+
+  private probarCadenaProveedoresImagen(
+    imagenesRef: Array<{ base64: string; mimeType: string }>,
+    resumenEscena: string,
+    promptOriginal: string
+  ): Observable<string | null> {
+    const claves = this.obtenerClaves();
+    const geminiKey = claves.gemini;
+    const imagenKey = this.obtenerImagenApiKey();
+
+    const pasos: Array<() => Observable<string | null>> = [];
+
+    // 1. Gemini multimodal con imágenes de referencia + descripción del cuento
+    if (geminiKey) {
+      for (const modelo of this.modelosImagenGemini) {
+        if (this.enfriamiento.has(`gemini-img:${modelo}`) && (this.enfriamiento.get(`gemini-img:${modelo}`) ?? 0) > Date.now()) {
+          continue;
+        }
+        pasos.push(() =>
+          this.llamarGeminiImagenConReferencias(geminiKey, modelo, imagenesRef, resumenEscena).pipe(
+            catchError((err) => {
+              const info = this.clasificarError(err);
+              this.enfriamiento.set(`gemini-img:${modelo}`, Date.now() + info.esperaMs);
+              return of(null);
+            })
+          )
+        );
+      }
+    }
+
+    // 2. Proveedor externo de imágenes con clave propia (imagen_familia_api_key)
+    if (imagenKey) {
+      pasos.push(() =>
+        this.llamarProveedorImagenExterno(imagenKey, resumenEscena, imagenesRef[0]).pipe(
+          catchError(() => of(null))
+        )
+      );
+    }
+
+    // 3. Respaldo garantizado: collage con fotos reales de la familia
+    pasos.push(() => this.crearCollageDesdePrompt(promptOriginal));
+
+    const ejecutarPaso = (idx: number): Observable<string | null> => {
+      if (idx >= pasos.length) {
+        return of(null);
+      }
+      return pasos[idx]().pipe(
+        switchMap((resultado) => (resultado ? of(resultado) : ejecutarPaso(idx + 1)))
+      );
+    };
+
+    return ejecutarPaso(0);
+  }
+
+  private llamarGeminiImagenConReferencias(
+    apiKey: string,
+    modelo: string,
+    imagenesRef: Array<{ base64: string; mimeType: string }>,
+    resumenEscena: string
+  ): Observable<string | null> {
+    const partes: any[] = imagenesRef.map((img) => ({
+      inlineData: {
+        mimeType: img.mimeType,
+        data: img.base64
+      }
+    }));
+
+    partes.push({
+      text: [
+        'Crea una ilustración infantil cálida, colorida y alegre para un libro de cuentos.',
+        'Usa las imágenes de referencia como inspiración para los personajes y/o escenarios.',
+        `Escena y trama del cuento: ${resumenEscena}`,
+        'Estilo: acuarela o ilustración infantil amigable y luminosa, sin texto ni marcas de agua.'
+      ].join(' ')
+    });
+
+    return defer(() => {
+      const ai = new GoogleGenAI({ apiKey });
+      return from(
+        ai.models.generateContent({
+          model: modelo,
+          contents: partes
+        })
+      );
+    }).pipe(
+      timeout(25000),
+      map((response) => {
+        const candidates = (response as any)?.candidates ?? [];
+        const parts = candidates[0]?.content?.parts ?? (response as any)?.parts ?? [];
+        const imgPart = parts.find((p: any) => p?.inlineData?.data);
+        if (!imgPart?.inlineData?.data) {
+          return null;
+        }
+        const mime = imgPart.inlineData.mimeType || 'image/png';
+        return `data:${mime};base64,${imgPart.inlineData.data}`;
+      })
+    );
+  }
+
+  /**
+   * Conector listo para un proveedor de imágenes vía REST usando `imagen_familia_api_key`.
+   * Ajusta la URL y el cuerpo según el proveedor que elijas (p. ej. endpoint de generación/edición).
+   */
+  private llamarProveedorImagenExterno(
+    apiKey: string,
+    resumenEscena: string,
+    primeraImagenRef?: { base64: string; mimeType: string }
+  ): Observable<string | null> {
+    const endpoint = ''; // Configura aquí el endpoint REST de tu proveedor de imágenes
+    if (!endpoint) {
+      return of(null);
+    }
+
+    const payload: Record<string, unknown> = {
+      prompt: `Ilustración infantil colorida y tierna, sin texto: ${resumenEscena}`,
+      ...(primeraImagenRef
+        ? {
+            image_base64: primeraImagenRef.base64,
+            mime_type: primeraImagenRef.mimeType
+          }
+        : {})
+    };
+
+    return this.http
+      .post<any>(endpoint, payload, {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(
+        timeout(25000),
+        map((res) => {
+          if (typeof res?.image === 'string' && res.image) {
+            return res.image.startsWith('data:') ? res.image : `data:image/png;base64,${res.image}`;
+          }
+          if (typeof res?.url === 'string' && res.url) {
+            return res.url;
+          }
+          return null;
+        })
+      );
+  }
+
+  private obtenerBase64Asset(ruta: string): Observable<{ base64: string; mimeType: string }> {
+    return this.http.get(ruta, { responseType: 'blob' }).pipe(
+      switchMap(
+        (blob) =>
+          new Observable<{ base64: string; mimeType: string }>((observer) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const raw = String(reader.result || '');
+              const base64 = raw.split(',')[1] || '';
+              const mimeType = blob.type || 'image/jpeg';
+              observer.next({ base64, mimeType });
+              observer.complete();
+            };
+            reader.onerror = (err) => observer.error(err);
+            reader.readAsDataURL(blob);
+          })
+      )
+    );
+  }
+
+  private resumirEscenaParaIlustracion(promptCuento: string, textoCuento: string): string {
+    const limpio = (textoCuento || '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const extracto = this.resumirTexto(limpio, 380);
+    return `Petición: ${promptCuento}. Historia: ${extracto}`;
   }
 }

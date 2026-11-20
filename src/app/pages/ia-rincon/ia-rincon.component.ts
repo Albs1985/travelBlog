@@ -16,7 +16,7 @@ export interface MensajeChatFamilia {
   styleUrls: ['./ia-rincon.component.css']
 })
 export class IaRinconComponent implements OnInit {
-  modo: 'familia' | 'cuento' = 'familia';
+  modo: 'familia' | 'cuento' = 'cuento';
 
   // Gestión de clave/token de IA (guardada en localStorage). Admite varias claves a la vez
   // (Groq + Gemini) separadas por coma o espacio.
@@ -61,6 +61,7 @@ export class IaRinconComponent implements OnInit {
   ngOnInit(): void {
     this.apiKeyInput = this.iaService.obtenerApiKey();
     this.claveGuardada = this.iaService.tieneApiKey();
+    this.iaService.limpiarCacheContexto();
   }
 
   togglePanelToken(): void {
@@ -150,10 +151,10 @@ export class IaRinconComponent implements OnInit {
     } else {
       this.imagenCuentoUrl = null;
 
-      // 1. Collage de fotos reales en paralelo (gratis e instantáneo)
+      // 1. Collage rápido con fotos reales mientras se genera el cuento
       this.cargarCollage(texto);
 
-      // 2. Generación del cuento (Groq → Gemini → cuento de respaldo local)
+      // 2. Generación del cuento (Groq → Gemini → respaldo local)
       this.iaService
         .inventarCuento(
           {
@@ -167,15 +168,37 @@ export class IaRinconComponent implements OnInit {
         .subscribe({
           next: (cuentoRaw) => {
             this.formatearCuento(cuentoRaw, texto);
+            this.actualizarIlustracionConCuento(texto, cuentoRaw);
           },
           error: (err) => {
-            // Se muestra el motivo (cuota, sobrecarga, clave...) y se genera un cuento base local
             this.errorMsg = this.obtenerMensajeErrorAmigable(err);
             const cuentoRespaldo = this.crearCuentoRespaldoLocal(texto);
             this.formatearCuento(cuentoRespaldo, texto);
+            this.actualizarIlustracionConCuento(texto, cuentoRespaldo);
           }
         });
     }
+  }
+
+  private actualizarIlustracionConCuento(promptTexto: string, textoCuento: string): void {
+    if (this.cargandoPuter) {
+      return;
+    }
+
+    this.cargandoImagenCuento = true;
+    this.iaService
+      .generarIlustracionCuentoConReferencias(promptTexto, textoCuento)
+      .pipe(finalize(() => (this.cargandoImagenCuento = false)))
+      .subscribe({
+        next: (imgUrl) => {
+          if (imgUrl && !this.cargandoPuter) {
+            this.imagenCuentoUrl = imgUrl;
+          }
+        },
+        error: () => {
+          // Mantiene el collage si ya estaba cargado
+        }
+      });
   }
 
   /** Ilustración con IA (Puter). Debe lanzarse desde un clic para que el popup de login no se bloquee. */
@@ -194,8 +217,8 @@ export class IaRinconComponent implements OnInit {
         next: (url) => {
           this.imagenCuentoUrl = url;
         },
-        error: () => {
-          this.errorMsg = this.translate.instant('iaRincon.errorIlustracion');
+        error: (e) => {
+          this.errorMsg = this.translate.instant('iaRincon.errorIlustracion', e);
         }
       });
   }

@@ -21,19 +21,19 @@
   <div class="barra-controles-superior">
     <div class="selector-modo-grupo" role="group" [attr.aria-label]="'iaRincon.ariaModo' | translate">
       <button
-        type="button"
-        class="btn-modo-pill"
-        [class.activo]="modo === 'familia'"
-        (click)="seleccionarModo('familia')">
-        🏡 {{ 'iaRincon.modoFamilia' | translate }}
-      </button>
-      <button
-        type="button"
-        class="btn-modo-pill"
-        [class.activo]="modo === 'cuento'"
-        (click)="seleccionarModo('cuento')">
-        📖 {{ 'iaRincon.modoCuento' | translate }}
-      </button>
+      type="button"
+      class="btn-modo-pill"
+      [class.activo]="modo === 'cuento'"
+      (click)="seleccionarModo('cuento')">
+      📖 {{ 'iaRincon.modoCuento' | translate }}
+    </button>
+    <button
+      type="button"
+      class="btn-modo-pill"
+      [class.activo]="modo === 'familia'"
+      (click)="seleccionarModo('familia')">
+      🏡 {{ 'iaRincon.modoFamilia' | translate }}
+    </button>
     </div>
   </div>
 
