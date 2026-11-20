@@ -1564,6 +1564,18 @@ export class IaFamiliaService {
       }
       return await this.aDataUrl(src);
     } catch (err) {
+      const msg = String((err as any)?.error?.message ?? (err as any)?.message ?? '').toLowerCase();
+      const status = (err as any)?.status ?? (err as any)?.error?.status;
+      const esLimiteOPlan =
+        status === 402 ||
+        status === 429 ||
+        /upgrade|plan|limit|quota|rate|insufficient|credit/i.test(msg);
+
+      if (esLimiteOPlan) {
+        this.enfriamiento.set('puter-img', Date.now() + 5 * 60 * 1000);
+        throw err instanceof Error ? err : new Error(msg || 'Límite de plan en Puter');
+      }
+
       if (indice + 1 < this.modelosImagenPuter.length) {
         return this.probarModelosPuter(puter, prompt, indice + 1);
       }

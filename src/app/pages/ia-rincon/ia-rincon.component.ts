@@ -182,7 +182,7 @@ export class IaRinconComponent implements OnInit {
       this.cargandoImagenCuento = true;
       this.imagenCuentoUrl = null;
 
-      // Collage rápido de respaldo mientras se generan las ilustraciones con IA
+      // 1. Collage rápido de respaldo mientras se generan las ilustraciones con IA
       this.iaService
         .crearCollageDesdePrompt(texto)
         .pipe(catchError(() => of(null)))
@@ -193,7 +193,29 @@ export class IaRinconComponent implements OnInit {
           }
         });
 
-      // Secuencia escalonada cada 16s: 0s (inicio), 16s (mitad), 32s (final)
+      // 2. Generación del texto del cuento (apaga "cargando" al terminar)
+      this.iaService
+        .inventarCuento(
+          {
+            protagonistas: texto,
+            lugar: texto,
+            tono: 'tierno, mágico y divertido'
+          },
+          this.obtenerIdiomaActivo()
+        )
+        .pipe(finalize(() => (this.cargando = false)))
+        .subscribe({
+          next: (cuentoRaw) => {
+            this.formatearCuento(cuentoRaw, texto);
+          },
+          error: (err) => {
+            this.errorMsg = this.obtenerMensajeErrorAmigable(err);
+            const cuentoRespaldo = this.crearCuentoRespaldoLocal(texto);
+            this.formatearCuento(cuentoRespaldo, texto);
+          }
+        });
+
+      // 3. Secuencia escalonada de 3 ilustraciones cada 16s: 0s (inicio), 16s (mitad), 32s (final)
       this.subIlustraciones = this.iaService
         .generarTresIlustracionesEscalonadas(texto, [texto, texto, texto], 16000)
         .pipe(
@@ -216,7 +238,7 @@ export class IaRinconComponent implements OnInit {
             }
           }
         });
-    }
+      }
   }
 
   private solicitarTresIlustraciones(promptTexto: string, textoCuento: string): void {
