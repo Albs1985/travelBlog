@@ -4,7 +4,7 @@ import { AutenticationService } from 'src/app/services/autentication.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
 export type TipoTokenToolbar = 'github' | 'ia';
-export type IdCampoIa = 'groq' | 'gemini' | 'imagen';
+export type IdCampoIa = 'groq' | 'gemini' | 'huggingface' | 'pollinations' | 'cloudflare';
 
 export interface CampoTokenIa {
   id: IdCampoIa;
@@ -78,11 +78,29 @@ export class ToolbarComponent implements OnInit {
       paraTexto: true
     },
     {
-      id: 'imagen',
-      etiqueta: 'Imágenes (opcional)',
-      ayuda: 'Reservado para un futuro proveedor de imágenes. De momento no se usa.',
-      placeholder: 'Clave de imágenes...',
-      storageKey: 'imagen_familia_api_key',
+      id: 'huggingface',
+      etiqueta: 'Imágenes · Hugging Face',
+      ayuda: 'Token gratuito de Hugging Face para generar ilustraciones. Empieza por hf_',
+      placeholder: 'hf_...',
+      storageKey: 'huggingface_familia_api_key',
+      valor: '',
+      paraTexto: false
+    },
+    {
+      id: 'pollinations',
+      etiqueta: 'Imágenes · Pollinations.ai',
+      ayuda: 'API key de Pollinations.ai (opcional si el endpoint permite acceso sin clave).',
+      placeholder: 'Clave de Pollinations...',
+      storageKey: 'pollinations_familia_api_key',
+      valor: '',
+      paraTexto: false
+    },
+    {
+      id: 'cloudflare',
+      etiqueta: 'Imágenes · Cloudflare Workers AI',
+      ayuda: 'Formato accountId:apiToken de Cloudflare Workers AI.',
+      placeholder: 'accountId:apiToken',
+      storageKey: 'cloudflare_imagen_api_key',
       valor: '',
       paraTexto: false
     }

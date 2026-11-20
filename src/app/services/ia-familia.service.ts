@@ -97,6 +97,10 @@ export class IaFamiliaService {
   // ───────────────────────── Claves ─────────────────────────
   private readonly storageKey = 'gemini_familia_api_key';
   private readonly storageKeyGroq = 'groq_familia_api_key';
+  private readonly storageKeyHuggingFace = 'huggingface_familia_api_key';
+  private readonly storageKeyPollinations = 'pollinations_familia_api_key';
+  private readonly storageKeyCloudflareImagen = 'cloudflare_imagen_api_key';
+  //OLD
   private readonly storageKeyImagen = 'imagen_familia_api_key';
 
   // Opcional: si guardas en localStorage solo el token de Cloudflare (sin "accountId:"),
@@ -116,6 +120,14 @@ export class IaFamiliaService {
     '@cf/black-forest-labs/flux-1-schnell',
     '@cf/stabilityai/stable-diffusion-xl-base-1.0'
   ];
+
+  private readonly modelosImagenHuggingFace = [
+    'black-forest-labs/FLUX.1-schnell',
+    'stabilityai/stable-diffusion-xl-base-1.0'
+  ];
+
+  private readonly timeoutHuggingFaceImagenMs = 45000;
+  private readonly timeoutPollinationsImagenMs = 35000;
 
   private readonly timeoutGroqMs = 20000;
   private readonly timeoutGeminiMs = 25000;
@@ -238,8 +250,24 @@ export class IaFamiliaService {
     return (localStorage.getItem(this.storageKeyImagen) ?? '').trim();
   }
 
+  obtenerTokenHuggingFaceImagen(): string {
+    const directo = (localStorage.getItem(this.storageKeyHuggingFace) ?? '').trim();
+    if (directo) {
+      return directo;
+    }
+    const legado = this.obtenerImagenApiKey();
+    return legado.startsWith('hf_') ? legado : '';
+  }
+
+  obtenerApiKeyPollinationsImagen(): string {
+    return (localStorage.getItem(this.storageKeyPollinations) ?? '').trim();
+  }
+
   obtenerConfigCloudflareImagen(): ConfigCloudflareImagen | null {
-    const cruda = this.obtenerImagenApiKey();
+    const directa = (localStorage.getItem(this.storageKeyCloudflareImagen) ?? '').trim();
+    const legado = this.obtenerImagenApiKey();
+    const cruda = directa || (!legado.startsWith('hf_') ? legado : '');
+
     if (!cruda) {
       return null;
     }
@@ -1343,21 +1371,35 @@ export class IaFamiliaService {
           .filter(Boolean)
           .join(' ');
 
-        return this.intentarCloudflareImagen(promptFinal).pipe(
-          switchMap((imgCloudflare) => {
-            if (imgCloudflare) {
-              return of(imgCloudflare);
-            }
-            return this.intentarPuterImagen(promptFinal).pipe(
-              switchMap((imgPuter) => {
-                if (imgPuter) {
-                  return of(imgPuter);
-                }
-                return this.crearCollageDesdePrompt(promptCuento);
-              })
-            );
-          })
-        );
+          return this.intentarHuggingFaceImagen(promptFinal).pipe(
+            switchMap((imgHf) => {
+              if (imgHf) {
+                return of(imgHf);
+              }
+              return this.intentarPollinationsImagen(promptFinal).pipe(
+                switchMap((imgPoll) => {
+                  if (imgPoll) {
+                    return of(imgPoll);
+                  }
+                  return this.intentarCloudflareImagen(promptFinal).pipe(
+                    switchMap((imgCloudflare) => {
+                      if (imgCloudflare) {
+                        return of(imgCloudflare);
+                      }
+                      return this.intentarPuterImagen(promptFinal).pipe(
+                        switchMap((imgPuter) => {
+                          if (imgPuter) {
+                            return of(imgPuter);
+                          }
+                          return this.crearCollageDesdePrompt(promptCuento);
+                        })
+                      );
+                    })
+                  );
+                })
+              );
+            })
+          );
       }),
       catchError(() => this.crearCollageDesdePrompt(promptCuento))
     );
@@ -1390,6 +1432,113 @@ export class IaFamiliaService {
         );
       })
     );
+  }
+
+  private intentarHuggingFaceImagen(prompt: string): Observable<string | null> {
+    const token = this.obtenerTokenHuggingFaceImagen();
+    if (!token) {
+      return of(null);
+    }
+
+    const modelosLibres = this.modelosImagenHuggingFace.filter((m) => {
+      const exp = this.enfriamiento.get(`hf-img:${m}`) ?? 0;
+      return exp <= Date.now();
+    });
+    const candidatos = modelosLibres.length > 0 ? modelosLibres : this.modelosImagenHuggingFace;
+
+    const probarModelo = (idx: number): Observable<string | null> => {
+      if (idx >= candidatos.length) {
+        return of(null);
+      }
+      const modelo = candidatos[idx];
+      const url = `https://router.huggingface.co/hf-inference/models/${modelo}`;
+
+      return this.http
+        .post(
+          url,
+          { inputs: this.resumirTexto(prompt, 900) },
+          {
+            headers: new HttpHeaders({
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }),
+            responseType: 'blob'
+          }
+        )
+        .pipe(
+          timeout(this.timeoutHuggingFaceImagenMs),
+          switchMap((blob) => {
+            if (!blob || blob.size === 0) {
+              return of(null);
+            }
+            return from(this.blobADataUrl(blob));
+          }),
+          tap((dataUrl) => {
+            if (dataUrl) {
+              this.ultimoProveedorUsado = `Hugging Face · ${modelo}`;
+            }
+          }),
+          catchError((err) => {
+            const info = this.clasificarError(err);
+            this.enfriamiento.set(`hf-img:${modelo}`, Date.now() + info.esperaMs);
+            console.warn(`[IA Imagen] Hugging Face (${modelo}) falló (${info.codigo}). Probando siguiente…`);
+            return probarModelo(idx + 1);
+          })
+        );
+    };
+
+    return probarModelo(0);
+  }
+
+  private intentarPollinationsImagen(prompt: string): Observable<string | null> {
+    if ((this.enfriamiento.get('poll-img') ?? 0) > Date.now()) {
+      return of(null);
+    }
+
+    const apiKey = this.obtenerApiKeyPollinationsImagen();
+    const promptCorto = this.resumirTexto(prompt, 500);
+    const url = `https://gen.pollinations.ai/image/${encodeURIComponent(
+      promptCorto
+    )}?model=flux&width=1024&height=1024`;
+
+    const opcionesHttp: { headers?: HttpHeaders; responseType: 'blob' } = {
+      responseType: 'blob'
+    };
+    if (apiKey) {
+      opcionesHttp.headers = new HttpHeaders({
+        Authorization: `Bearer ${apiKey}`
+      });
+    }
+
+    return this.http.get(url, opcionesHttp).pipe(
+      timeout(this.timeoutPollinationsImagenMs),
+      switchMap((blob) => {
+        if (!blob || blob.size === 0) {
+          return of(null);
+        }
+        return from(this.blobADataUrl(blob));
+      }),
+      tap((dataUrl) => {
+        if (dataUrl) {
+          this.ultimoProveedorUsado = 'Pollinations.ai · flux';
+        }
+      }),
+      catchError((err) => {
+        const info = this.clasificarError(err);
+        this.enfriamiento.set('poll-img', Date.now() + Math.max(info.esperaMs, 30000));
+        console.warn(`[IA Imagen] Pollinations.ai falló (${info.codigo}).`, err);
+        return of(null);
+      })
+    );
+  }
+
+  private blobADataUrl(blob: Blob): Promise<string | null> {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(typeof reader.result === 'string' ? reader.result : null);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(blob);
+    });
   }
 
   private intentarCloudflareImagen(prompt: string): Observable<string | null> {
