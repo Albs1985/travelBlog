@@ -131,7 +131,7 @@
   outline: none;
   background: transparent;
   color: #1e293b;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-family: inherit;
   padding: 6px 4px;
 }
@@ -319,6 +319,8 @@
   color: #78350f;
   font-family: 'Comic Sans MS', 'Chalkboard SE', 'Trebuchet MS', cursive, sans-serif;
   font-size: 2rem;
+
+
 }
 
 .libro-cuento-card {
@@ -396,7 +398,7 @@
 
 .libro-cuento-parrafo {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.75rem;
   line-height: 1.75;
   color: #2c3e50;
   text-indent: 1.2rem;
