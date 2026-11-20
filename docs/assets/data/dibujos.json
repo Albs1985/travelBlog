@@ -117,5 +117,37 @@
     "anyo": "2026",
     "edad": "6",
     "detalle": "El de dalt el va dibuixar mami. El de baix l’ha dibuixat Mateu en el col•le sense mirar l’original."
+  },
+  {
+    "id": 16,
+    "src": "dibujos/dibujo_1795108793091_0.jpg",
+    "persona": "Marina",
+    "anyo": "2026",
+    "edad": "3",
+    "detalle": "Un carranc"
+  },
+  {
+    "id": 17,
+    "src": "dibujos/dibujo_1795108793092_1.jpg",
+    "persona": "Marina",
+    "anyo": "2026",
+    "edad": "3",
+    "detalle": "Finestra de la tardor"
+  },
+  {
+    "id": 18,
+    "src": "dibujos/dibujo_1795108941901_0.jpg",
+    "persona": "Mateu",
+    "anyo": "2026",
+    "edad": "6",
+    "detalle": "Carabasds, tomata, fantasma i la tardor"
+  },
+  {
+    "id": 19,
+    "src": "dibujos/dibujo_1795109024740_0.jpg",
+    "persona": "Marina",
+    "anyo": "2026",
+    "edad": "3",
+    "detalle": "Caragols i fantasme"
   }
 ]
