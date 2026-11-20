@@ -122,8 +122,9 @@ export class IaFamiliaService {
   ];
 
   private readonly modelosImagenHuggingFace = [
-    // 'black-forest-labs/FLUX.1-schnell',
-    // 'stabilityai/stable-diffusion-xl-base-1.0'
+    // 'black-forest-labs/FLUX.1-Krea-dev',
+    // 'Qwen/Qwen-Image',
+    // 'Tongyi-MAI/Z-Image-Turbo'
   ];
 
   private readonly timeoutHuggingFaceImagenMs = 45000;
