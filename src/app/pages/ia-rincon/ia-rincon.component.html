@@ -17,28 +17,35 @@
     (tokenGuardado)="onTokenIaGuardado($event)">
   </app-toolbar>
 
-  <!-- Selector de Modo (Familia / Cuentos) -->
+  <!-- Selector de Modo (Cuentos / Familia / Cuentos PDF) -->
   <div class="barra-controles-superior">
     <div class="selector-modo-grupo" role="group" [attr.aria-label]="'iaRincon.ariaModo' | translate">
       <button
-      type="button"
-      class="btn-modo-pill"
-      [class.activo]="modo === 'cuento'"
-      (click)="seleccionarModo('cuento')">
-      📖 {{ 'iaRincon.modoCuento' | translate }}
-    </button>
-    <button
-      type="button"
-      class="btn-modo-pill"
-      [class.activo]="modo === 'familia'"
-      (click)="seleccionarModo('familia')">
-      🏡 {{ 'iaRincon.modoFamilia' | translate }}
-    </button>
+        type="button"
+        class="btn-modo-pill"
+        [class.activo]="modo === 'cuento'"
+        (click)="seleccionarModo('cuento')">
+        📖 {{ 'iaRincon.modoCuento' | translate }}
+      </button>
+      <button
+        type="button"
+        class="btn-modo-pill"
+        [class.activo]="modo === 'familia'"
+        (click)="seleccionarModo('familia')">
+        🏡 {{ 'iaRincon.modoFamilia' | translate }}
+      </button>
+      <button
+        type="button"
+        class="btn-modo-pill"
+        [class.activo]="modo === 'biblioteca'"
+        (click)="seleccionarModo('biblioteca')">
+        📄 {{ 'iaRincon.modoCuentosPdf' | translate }}
+      </button>
     </div>
   </div>
 
   <!-- Buscador sencillo estilo Google -->
-  <section class="buscador-google-seccion">
+  <section *ngIf="modo !== 'biblioteca'" class="buscador-google-seccion">
     <form (ngSubmit)="ejecutarConsulta()" class="buscador-google-barra">
       <span class="icono-lupa" aria-hidden="true">🔍</span>
       <input
@@ -126,7 +133,7 @@
   </section>
 
   <!-- ======================================================
-       RESPUESTA 2: MODO CUENTOS -> ESTILO LIBRO INFANTIL
+       RESPUESTA 2: MODO CUENTOS -> 3 ILUSTRACIONES + PDF LIGERO
        ====================================================== -->
   <section *ngIf="modo === 'cuento'" class="panel-cuento-infantil">
     <div *ngIf="cargando" class="cuento-estado-card">
@@ -140,50 +147,166 @@
     <article *ngIf="!cargando && parrafosCuento.length > 0" class="libro-cuento-card">
       <div class="libro-cuento-top">
         <span class="etiqueta-cuento">📚 {{ 'iaRincon.selloCuento' | translate }}</span>
-        <button type="button" class="btn-secundario btn-xs" (click)="limpiarCuento()">
+        <button type="button" class="btn-secundario btn-accion-cuento" (click)="limpiarCuento()">
           {{ 'iaRincon.cerrarCuento' | translate }}
         </button>
       </div>
 
       <h3 class="libro-cuento-titulo">{{ tituloCuento }}</h3>
 
-      <!-- Espacio reservado para ilustración generada por IA -->
+      <!-- 1. ILUSTRACIÓN DEL INICIO -->
       <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
+        <span class="etiqueta-escena">🌅 {{ 'iaRincon.escenaInicio' | translate }}</span>
         <img
-          *ngIf="imagenCuentoUrl"
-          [src]="imagenCuentoUrl"
-          [alt]="tituloCuento"
+          *ngIf="imagenesCuento[0]"
+          [src]="imagenesCuento[0]"
+          [alt]="tituloCuento + ' - ' + ('iaRincon.escenaInicio' | translate)"
           class="ilustracion-cuento-img">
 
-        <div *ngIf="!imagenCuentoUrl" class="ilustracion-caja">
-          <span class="ilustracion-emoji">{{ cargandoImagenCuento ? '✨' : '🖼️' }}</span>
+        <div *ngIf="!imagenesCuento[0]" class="ilustracion-caja" [class.skeleton-activo]="cargandoImagenes[0]">
+          <span class="ilustracion-emoji">{{ cargandoImagenes[0] ? '✨' : '🖼️' }}</span>
           <strong>
             {{
-              (cargandoImagenCuento
-                ? 'iaRincon.generandoIlustracion'
-                : 'iaRincon.ilustracionTitulo') | translate
+              (cargandoImagenes[0]
+                ? 'iaRincon.generandoIlustracionInicio'
+                : 'iaRincon.ilustracionInicioTitulo') | translate
             }}
           </strong>
-          <small>{{ 'iaRincon.ilustracionSub' | translate }}</small>
+          <small>
+            {{
+              (cargandoImagenes[0]
+                ? 'iaRincon.preparandoInicio'
+                : 'iaRincon.ilustracionSub') | translate
+            }}
+          </small>
         </div>
       </div>
 
-      <div class="acciones-ilustracion">
+      <div class="libro-cuento-paginas">
+        <ng-container *ngFor="let p of parrafosCuento; let i = index">
+          <p class="libro-cuento-parrafo">{{ p }}</p>
+
+          <!-- 2. ILUSTRACIÓN DE LA MITAD DEL CUENTO -->
+          <div *ngIf="mostrarHuecoImagen && i === indiceMitadCuento - 1" class="espacio-ilustracion-cuento">
+            <span class="etiqueta-escena">🧭 {{ 'iaRincon.escenaMitad' | translate }}</span>
+            <img
+              *ngIf="imagenesCuento[1]"
+              [src]="imagenesCuento[1]"
+              [alt]="tituloCuento + ' - ' + ('iaRincon.escenaMitad' | translate)"
+              class="ilustracion-cuento-img">
+
+            <div *ngIf="!imagenesCuento[1]" class="ilustracion-caja" [class.skeleton-activo]="cargandoImagenes[1]">
+              <span class="ilustracion-emoji">{{ cargandoImagenes[1] ? '✨' : '🖼️' }}</span>
+              <strong>
+                {{
+                  (cargandoImagenes[1]
+                    ? 'iaRincon.generandoIlustracionMitad'
+                    : 'iaRincon.ilustracionMitadTitulo') | translate
+                }}
+              </strong>
+              <small>
+                {{
+                  (cargandoImagenes[1]
+                    ? 'iaRincon.preparandoMitad'
+                    : 'iaRincon.ilustracionSub') | translate
+                }}
+              </small>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- 3. ILUSTRACIÓN DEL FINAL DEL CUENTO -->
+      <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento espacio-ilustracion-final">
+        <span class="etiqueta-escena">🌟 {{ 'iaRincon.escenaFinal' | translate }}</span>
+        <img
+          *ngIf="imagenesCuento[2]"
+          [src]="imagenesCuento[2]"
+          [alt]="tituloCuento + ' - ' + ('iaRincon.escenaFinal' | translate)"
+          class="ilustracion-cuento-img">
+
+        <div *ngIf="!imagenesCuento[2]" class="ilustracion-caja" [class.skeleton-activo]="cargandoImagenes[2]">
+          <span class="ilustracion-emoji">{{ cargandoImagenes[2] ? '✨' : '🖼️' }}</span>
+          <strong>
+            {{
+              (cargandoImagenes[2]
+                ? 'iaRincon.generandoIlustracionFinal'
+                : 'iaRincon.ilustracionFinalTitulo') | translate
+            }}
+          </strong>
+          <small>
+            {{
+              (cargandoImagenes[2]
+                ? 'iaRincon.preparandoFinal'
+                : 'iaRincon.ilustracionSub') | translate
+            }}
+          </small>
+        </div>
+      </div>
+
+      <!-- Acciones al final del cuento, bien separadas -->
+      <div class="acciones-cuento-pie">
         <button
           type="button"
-          class="btn-secundario btn-xs"
+          class="btn-secundario btn-accion-cuento"
           [disabled]="cargandoPuter"
           (click)="ilustrarConPuter()">
           🎨 {{ (cargandoPuter ? 'iaRincon.ilustrandoIa' : 'iaRincon.btnIlustrarIa') | translate }}
         </button>
+
+        <button
+          type="button"
+          class="btn-secundario btn-accion-cuento"
+          [disabled]="generandoPdf"
+          (click)="descargarCuentoPdfLocal()">
+          📥 {{ (generandoPdf ? 'iaRincon.creandoPdf' : 'iaRincon.btnDescargarPdf') | translate }}
+        </button>
+
+        <button
+          type="button"
+          class="btn-primario btn-accion-cuento"
+          [disabled]="guardandoGithub || generandoPdf"
+          (click)="guardarCuentoEnGithubPdf()">
+          ☁️ {{ (guardandoGithub ? 'iaRincon.guardandoGithub' : 'iaRincon.btnGuardarGithub') | translate }}
+        </button>
       </div>
 
-      <div class="libro-cuento-paginas">
-        <p *ngFor="let p of parrafosCuento" class="libro-cuento-parrafo">
-          {{ p }}
-        </p>
+      <div *ngIf="mensajeEstadoPdf" class="aviso-estado-pdf">
+        {{ mensajeEstadoPdf }}
       </div>
     </article>
+  </section>
+
+  <!-- ======================================================
+       RESPUESTA 3: CUENTOS GUARDADOS EN PDF
+       ====================================================== -->
+  <section *ngIf="modo === 'biblioteca'" class="panel-chat-familia">
+    <div class="panel-cabecera">
+      <h3>📄 {{ 'iaRincon.bibliotecaTitulo' | translate }}</h3>
+      <button type="button" class="btn-secundario btn-xs" (click)="cargarCuentosGuardadosGithub()">
+        🔄 {{ 'iaRincon.btnActualizarPdf' | translate }}
+      </button>
+    </div>
+
+    <div *ngIf="cargandoBiblioteca" class="estado-vacio-panel">
+      {{ 'iaRincon.cargandoPdfs' | translate }}
+    </div>
+
+    <div *ngIf="!cargandoBiblioteca && cuentosGuardados.length === 0" class="estado-vacio-panel">
+      {{ 'iaRincon.bibliotecaVacia' | translate }}
+    </div>
+
+    <div *ngIf="!cargandoBiblioteca && cuentosGuardados.length > 0" class="lista-pdfs-guardados">
+      <div *ngFor="let item of cuentosGuardados" class="fila-pdf-guardado">
+        <div>
+          <strong>{{ item.titulo }}</strong>
+          <small class="fecha-pdf">{{ item.fecha }} · {{ item.nombreArchivo }}</small>
+        </div>
+        <button type="button" class="btn-primario btn-xs" (click)="abrirCuentoPdf(item)">
+          {{ 'iaRincon.btnAbrirPdf' | translate }}
+        </button>
+      </div>
+    </div>
   </section>
 
   <!-- Botón Volver Inferior -->

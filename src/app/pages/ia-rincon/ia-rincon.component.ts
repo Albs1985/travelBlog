@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
-import { finalize } from 'rxjs';
+import { finalize, of, catchError, map } from 'rxjs';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
@@ -10,36 +11,61 @@ export interface MensajeChatFamilia {
   proveedor?: string;
 }
 
+export interface CuentoGuardadoItem {
+  nombreArchivo: string;
+  titulo: string;
+  fecha: string;
+  downloadUrl?: string;
+  pdfBase64?: string;
+}
+
+interface ImagenPdfLista {
+  dataUrl: string;
+  width: number;
+  height: number;
+  bytes: Uint8Array;
+}
+
 @Component({
   selector: 'app-ia-rincon',
   templateUrl: './ia-rincon.component.html',
   styleUrls: ['./ia-rincon.component.css']
 })
 export class IaRinconComponent implements OnInit {
-  modo: 'familia' | 'cuento' = 'cuento';
+  modo: 'familia' | 'cuento' | 'biblioteca' = 'cuento';
 
-  // Gestión de clave/token de IA (guardada en localStorage). Admite varias claves a la vez
-  // (Groq + Gemini) separadas por coma o espacio.
   apiKeyInput = '';
   claveGuardada = false;
   mostrarPanelToken = false;
 
-  // Buscador / entrada principal estilo Google
   consulta = '';
-
-  // Modo Familia: conversación tipo chat
   mensajesChat: MensajeChatFamilia[] = [];
 
-  // Modo Cuentos: formato libro infantil
+  // Modo Cuentos: 3 ilustraciones (inicio, medio, final) + skeletons
   tituloCuento = '';
   parrafosCuento: string[] = [];
   mostrarHuecoImagen = true;
+
+  imagenesCuento: Array<string | null> = [null, null, null];
+  cargandoImagenes: boolean[] = [false, false, false];
   imagenCuentoUrl: string | null = null;
   cargandoImagenCuento = false;
   cargandoPuter = false;
 
+  // Guardado PDF ligero y GitHub + Biblioteca de PDFs
+  generandoPdf = false;
+  guardandoGithub = false;
+  mensajeEstadoPdf = '';
+  cuentosGuardados: CuentoGuardadoItem[] = [];
+  cargandoBiblioteca = false;
+
   cargando = false;
   errorMsg = '';
+
+  private readonly repoOwner = 'Albs1985';
+  private readonly repoName = 'travelBlog';
+  private readonly repoBranch = 'main';
+  private readonly carpetaCuentosPdfRepo = 'src/assets/cuentos-pdf';
 
   readonly sugerenciasFamilia = [
     'iaRincon.sugerenciaFamilia1',
@@ -55,7 +81,8 @@ export class IaRinconComponent implements OnInit {
 
   constructor(
     private iaService: IaFamiliaService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -64,30 +91,18 @@ export class IaRinconComponent implements OnInit {
     this.iaService.limpiarCacheContexto();
   }
 
-  togglePanelToken(): void {
-    this.apiKeyInput = this.iaService.obtenerApiKey();
-    this.mostrarPanelToken = !this.mostrarPanelToken;
-    this.errorMsg = '';
+  get indiceMitadCuento(): number {
+    return Math.max(1, Math.floor(this.parrafosCuento.length / 2));
   }
 
-  guardarTokenIa(): void {
-    this.iaService.guardarApiKey(this.apiKeyInput);
-    this.claveGuardada = this.iaService.tieneApiKey();
-    this.mostrarPanelToken = false;
-    this.errorMsg = '';
-  }
-
-  borrarTokenIa(): void {
-    this.iaService.guardarApiKey('');
-    this.apiKeyInput = '';
-    this.claveGuardada = false;
-    this.errorMsg = '';
-  }
-
-  seleccionarModo(nuevoModo: 'familia' | 'cuento'): void {
+  seleccionarModo(nuevoModo: 'familia' | 'cuento' | 'biblioteca'): void {
     this.modo = nuevoModo;
     this.errorMsg = '';
+    this.mensajeEstadoPdf = '';
     this.consulta = '';
+    if (nuevoModo === 'biblioteca') {
+      this.cargarCuentosGuardadosGithub();
+    }
   }
 
   usarSugerencia(claveTraduccion: string): void {
@@ -103,9 +118,12 @@ export class IaRinconComponent implements OnInit {
   limpiarCuento(): void {
     this.tituloCuento = '';
     this.parrafosCuento = [];
+    this.imagenesCuento = [null, null, null];
+    this.cargandoImagenes = [false, false, false];
     this.imagenCuentoUrl = null;
     this.cargandoImagenCuento = false;
     this.cargandoPuter = false;
+    this.mensajeEstadoPdf = '';
     this.errorMsg = '';
   }
 
@@ -122,6 +140,7 @@ export class IaRinconComponent implements OnInit {
     }
 
     this.errorMsg = '';
+    this.mensajeEstadoPdf = '';
     this.cargando = true;
 
     if (this.modo === 'familia') {
@@ -149,12 +168,14 @@ export class IaRinconComponent implements OnInit {
           }
         });
     } else {
+      this.imagenesCuento = [null, null, null];
+      this.cargandoImagenes = [true, true, true];
       this.imagenCuentoUrl = null;
 
-      // 1. Collage rápido con fotos reales mientras se genera el cuento
-      this.cargarCollage(texto);
+      // Pedimos las 3 imágenes (inicio, medio, final) desde el primer momento
+      this.solicitarTresIlustraciones(texto, '');
 
-      // 2. Generación del cuento (Groq → Gemini → respaldo local)
+      // Generación del cuento
       this.iaService
         .inventarCuento(
           {
@@ -168,53 +189,116 @@ export class IaRinconComponent implements OnInit {
         .subscribe({
           next: (cuentoRaw) => {
             this.formatearCuento(cuentoRaw, texto);
-            this.actualizarIlustracionConCuento(texto, cuentoRaw);
+            this.refinarTresIlustracionesConTexto(texto, cuentoRaw);
           },
           error: (err) => {
             this.errorMsg = this.obtenerMensajeErrorAmigable(err);
             const cuentoRespaldo = this.crearCuentoRespaldoLocal(texto);
             this.formatearCuento(cuentoRespaldo, texto);
-            this.actualizarIlustracionConCuento(texto, cuentoRespaldo);
+            this.refinarTresIlustracionesConTexto(texto, cuentoRespaldo);
           }
         });
     }
   }
 
-  private actualizarIlustracionConCuento(promptTexto: string, textoCuento: string): void {
-    if (this.cargandoPuter) {
-      return;
-    }
+  private solicitarTresIlustraciones(promptTexto: string, textoCuento: string): void {
+    const tramos = this.obtenerTramosCuento(textoCuento);
+    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
 
-    this.cargandoImagenCuento = true;
-    this.iaService
-      .generarIlustracionCuentoConReferencias(promptTexto, textoCuento)
-      .pipe(finalize(() => (this.cargandoImagenCuento = false)))
-      .subscribe({
-        next: (imgUrl) => {
-          if (imgUrl && !this.cargandoPuter) {
-            this.imagenCuentoUrl = imgUrl;
+    tramos.forEach((tramo, idx) => {
+      this.cargandoImagenes[idx] = true;
+      const escenaTramo = `${etiquetas[idx]} (${promptTexto}): ${tramo || promptTexto}`;
+
+      this.iaService
+        .generarIlustracionCuentoConReferencias(promptTexto, escenaTramo)
+        .pipe(
+          catchError(() => this.iaService.crearCollageDesdePrompt(promptTexto)),
+          finalize(() => {
+            this.cargandoImagenes[idx] = false;
+            this.imagenCuentoUrl = this.imagenesCuento[0];
+            this.cargandoImagenCuento = this.cargandoImagenes.some(Boolean);
+          })
+        )
+        .subscribe((url) => {
+          if (url) {
+            this.imagenesCuento[idx] = url;
+            if (idx === 0) {
+              this.imagenCuentoUrl = url;
+            }
           }
-        },
-        error: () => {
-          // Mantiene el collage si ya estaba cargado
-        }
-      });
+        });
+    });
   }
 
-  /** Ilustración con IA (Puter). Debe lanzarse desde un clic para que el popup de login no se bloquee. */
+  private refinarTresIlustracionesConTexto(promptTexto: string, cuentoRaw: string): void {
+    const tramos = this.obtenerTramosCuento(cuentoRaw);
+    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
+
+    tramos.forEach((tramo, idx) => {
+      if (!this.imagenesCuento[idx] && !this.cargandoImagenes[idx]) {
+        this.cargandoImagenes[idx] = true;
+        this.iaService
+          .generarIlustracionCuentoConReferencias(promptTexto, `${etiquetas[idx]}: ${tramo}`)
+          .pipe(
+            catchError(() => this.iaService.crearCollageDesdePrompt(promptTexto)),
+            finalize(() => {
+              this.cargandoImagenes[idx] = false;
+              this.imagenCuentoUrl = this.imagenesCuento[0];
+              this.cargandoImagenCuento = this.cargandoImagenes.some(Boolean);
+            })
+          )
+          .subscribe((url) => {
+            if (url) {
+              this.imagenesCuento[idx] = url;
+              if (idx === 0) {
+                this.imagenCuentoUrl = url;
+              }
+            }
+          });
+      }
+    });
+  }
+
+  private obtenerTramosCuento(textoCuento: string): [string, string, string] {
+    const parrafos = (textoCuento || '')
+      .split(/\n\s*\n/)
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    if (parrafos.length <= 1) {
+      return [textoCuento, textoCuento, textoCuento];
+    }
+
+    const inicio = parrafos.slice(0, Math.max(1, Math.ceil(parrafos.length / 3))).join(' ');
+    const medioStart = Math.floor(parrafos.length / 3);
+    const medioEnd = Math.max(medioStart + 1, Math.floor((2 * parrafos.length) / 3));
+    const medio = parrafos.slice(medioStart, medioEnd).join(' ');
+    const fin = parrafos.slice(medioEnd).join(' ') || parrafos[parrafos.length - 1];
+
+    return [inicio, medio, fin];
+  }
+
+  /** Ilustración con IA desde botón. */
   ilustrarConPuter(): void {
     if (this.cargandoPuter || this.parrafosCuento.length === 0) {
       return;
     }
 
     this.cargandoPuter = true;
+    this.cargandoImagenes[0] = true;
     this.errorMsg = '';
 
     this.iaService
       .generarIlustracionPuter(this.tituloCuento, this.parrafosCuento[0])
-      .pipe(finalize(() => (this.cargandoPuter = false)))
+      .pipe(
+        finalize(() => {
+          this.cargandoPuter = false;
+          this.cargandoImagenes[0] = false;
+        })
+      )
       .subscribe({
         next: (url) => {
+          this.imagenesCuento[0] = url;
           this.imagenCuentoUrl = url;
         },
         error: (e) => {
@@ -223,23 +307,461 @@ export class IaRinconComponent implements OnInit {
       });
   }
 
-  private cargarCollage(promptTexto: string): void {
-    this.cargandoImagenCuento = true;
+  // ═════════════════════════════════════════════════════════
+  //  PDF LIGERO CON IMÁGENES + GUARDAR EN GITHUB + CONSULTA
+  // ═════════════════════════════════════════════════════════
 
-    this.iaService
-      .crearCollageDesdePrompt(promptTexto)
-      .pipe(finalize(() => (this.cargandoImagenCuento = false)))
-      .subscribe({
-        next: (imgDataUrl) => {
-          // No pisar una ilustración de Puter si ya llegó
-          if (!this.cargandoPuter) {
-            this.imagenCuentoUrl = imgDataUrl;
-          }
-        },
-        error: () => {
-          this.imagenCuentoUrl = null;
-        }
+  async descargarCuentoPdfLocal(): Promise<void> {
+    if (!this.parrafosCuento.length || this.generandoPdf) return;
+    this.generandoPdf = true;
+    this.errorMsg = '';
+    try {
+      const pdfBytes = await this.construirPdfLigeroConImagenes(
+        this.tituloCuento || 'Cuento familiar',
+        this.parrafosCuento,
+        this.imagenesCuento
+      );
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${this.slugArchivoCuento(this.tituloCuento)}.pdf`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
+      this.mensajeEstadoPdf = `PDF ligero descargado (${kb} KB) con texto e imágenes.`;
+    } catch {
+      this.errorMsg = 'No se pudo generar el PDF ligero.';
+    } finally {
+      this.generandoPdf = false;
+    }
+  }
+
+  async guardarCuentoEnGithubPdf(): Promise<void> {
+    if (!this.parrafosCuento.length || this.guardandoGithub || this.generandoPdf) return;
+
+    const token = this.obtenerTokenGithub();
+    if (!token) {
+      this.errorMsg = 'Configura tu token de GitHub (gh_travel_token) en la barra superior para guardar en GitHub.';
+      return;
+    }
+
+    this.guardandoGithub = true;
+    this.generandoPdf = true;
+    this.errorMsg = '';
+    this.mensajeEstadoPdf = '';
+
+    try {
+      const nombreBase = this.slugArchivoCuento(this.tituloCuento || 'cuento');
+      const fechaStr = new Date().toISOString().slice(0, 10);
+      const nombreArchivo = `${fechaStr}-${nombreBase}.pdf`;
+      const rutaRepo = `${this.carpetaCuentosPdfRepo}/${nombreArchivo}`;
+
+      const pdfBytes = await this.construirPdfLigeroConImagenes(
+        this.tituloCuento || 'Cuento familiar',
+        this.parrafosCuento,
+        this.imagenesCuento
+      );
+      const base64Pdf = this.bytesToBase64(pdfBytes);
+      const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
+
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
       });
+
+      const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${rutaRepo}`;
+
+      this.http
+        .get<any>(`${apiUrl}?ref=${this.repoBranch}`, { headers })
+        .pipe(
+          catchError(() => of(null)),
+          map((existente) => existente?.sha as string | undefined)
+        )
+        .subscribe({
+          next: (sha) => {
+            const body: Record<string, unknown> = {
+              message: `Añadir cuento PDF ligero: ${nombreArchivo}`,
+              content: base64Pdf,
+              branch: this.repoBranch
+            };
+            if (sha) {
+              body['sha'] = sha;
+            }
+
+            this.http
+              .put<any>(apiUrl, body, { headers })
+              .pipe(
+                finalize(() => {
+                  this.guardandoGithub = false;
+                  this.generandoPdf = false;
+                })
+              )
+              .subscribe({
+                next: (res) => {
+                  const downloadUrl = res?.content?.download_url;
+                  this.mensajeEstadoPdf = `Guardado en GitHub (${kb} KB) en ${rutaRepo}.`;
+                  this.cuentosGuardados = [
+                    {
+                      nombreArchivo,
+                      titulo: this.tituloCuento,
+                      fecha: fechaStr,
+                      downloadUrl,
+                      pdfBase64: base64Pdf
+                    },
+                    ...this.cuentosGuardados.filter((c) => c.nombreArchivo !== nombreArchivo)
+                  ];
+                },
+                error: (err) => {
+                  this.errorMsg = `No se pudo guardar en GitHub: ${err?.error?.message || err?.message || 'error'}`;
+                }
+              });
+          },
+          error: () => {
+            this.guardandoGithub = false;
+            this.generandoPdf = false;
+            this.errorMsg = 'Error al comprobar el archivo en GitHub.';
+          }
+        });
+    } catch {
+      this.guardandoGithub = false;
+      this.generandoPdf = false;
+      this.errorMsg = 'No se pudo preparar el PDF ligero.';
+    }
+  }
+
+  cargarCuentosGuardadosGithub(): void {
+    this.cargandoBiblioteca = true;
+    const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${this.carpetaCuentosPdfRepo}?ref=${this.repoBranch}`;
+    const token = this.obtenerTokenGithub();
+    const headers = token ? new HttpHeaders({ Authorization: `Bearer ${token}` }) : undefined;
+
+    this.http
+      .get<any[]>(apiUrl, headers ? { headers } : {})
+      .pipe(
+        catchError(() => of([])),
+        finalize(() => (this.cargandoBiblioteca = false))
+      )
+      .subscribe((items) => {
+        const lista = (Array.isArray(items) ? items : [])
+          .filter((it) => it.type === 'file' && String(it.name).toLowerCase().endsWith('.pdf'))
+          .sort((a, b) => String(b.name).localeCompare(String(a.name)))
+          .map((it) => ({
+            nombreArchivo: it.name,
+            titulo: String(it.name)
+              .replace(/\.pdf$/i, '')
+              .replace(/^\d{4}-\d{2}-\d{2}-/, '')
+              .replace(/-/g, ' '),
+            fecha: String(it.name).slice(0, 10),
+            downloadUrl: it.download_url
+          }));
+
+        const existentesNombres = new Set(lista.map((x) => x.nombreArchivo));
+        const localesSesion = this.cuentosGuardados.filter((x) => !existentesNombres.has(x.nombreArchivo));
+        this.cuentosGuardados = [...localesSesion, ...lista];
+      });
+  }
+
+  abrirCuentoPdf(item: CuentoGuardadoItem): void {
+    if (item.pdfBase64) {
+      const byteCharacters = atob(item.pdfBase64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const blob = new Blob([new Uint8Array(byteNumbers)], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      return;
+    }
+
+    const assetUrl = `assets/cuentos-pdf/${item.nombreArchivo}`;
+    window.open(item.downloadUrl || assetUrl, '_blank');
+  }
+
+  /**
+   * Comprime cada imagen disponible a JPEG ligero (ancho max 640px, calidad 0.58)
+   * e incrusta texto e imágenes en un PDF compacto de una o varias páginas.
+   */
+  private async construirPdfLigeroConImagenes(
+    titulo: string,
+    parrafos: string[],
+    imagenesSrc: Array<string | null>
+  ): Promise<Uint8Array> {
+    const imagenesComprimidas: Array<ImagenPdfLista | null> = await Promise.all(
+      imagenesSrc.map((src) => (src ? this.comprimirImagenParaPdf(src, 640, 0.58) : Promise.resolve(null)))
+    );
+
+    const escaparPdf = (s: string) =>
+      s
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^\x20-\x7E]/g, ' ')
+        .replace(/\\/g, '\\\\')
+        .replace(/\(/g, '\\(')
+        .replace(/\)/g, '\\)');
+
+    const envolverLineas = (texto: string, maxChars: number): string[] => {
+      const palabras = texto.split(/\s+/).filter(Boolean);
+      const lineas: string[] = [];
+      let actual = '';
+      for (const p of palabras) {
+        if ((actual + ' ' + p).trim().length > maxChars) {
+          if (actual) lineas.push(actual);
+          actual = p;
+        } else {
+          actual = actual ? `${actual} ${p}` : p;
+        }
+      }
+      if (actual) lineas.push(actual);
+      return lineas;
+    };
+
+    const pageW = 595;
+    const pageH = 842;
+    const marginX = 45;
+    const maxTextW = pageW - marginX * 2;
+
+    const paginasOps: string[][] = [];
+    const xObjectRefs: string[] = [];
+    const extraObjetos: Array<{ id: number; header: string; rawBytes: Uint8Array }> = [];
+
+    let nextObjId = 6;
+    const imgNamesBySlot: Array<string | null> = [null, null, null];
+
+    imagenesComprimidas.forEach((im, idx) => {
+      if (!im) return;
+      const objId = nextObjId++;
+      const resName = `Im${idx + 1}`;
+      imgNamesBySlot[idx] = resName;
+      xObjectRefs.push(`/${resName} ${objId} 0 R`);
+      const header = `<< /Type /XObject /Subtype /Image /Width ${im.width} /Height ${im.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${im.bytes.length} >>`;
+      extraObjetos.push({ id: objId, header, rawBytes: im.bytes });
+    });
+
+    let ops: string[] = [];
+    let y = pageH - 55;
+
+    const nuevaPagina = () => {
+      if (ops.length > 0) {
+        paginasOps.push(ops);
+      }
+      ops = [];
+      y = pageH - 55;
+    };
+
+    const asegurarEspacio = (altoNecesario: number) => {
+      if (y - altoNecesario < 50) {
+        nuevaPagina();
+      }
+    };
+
+    const dibujarTexto = (texto: string, size: number, salto: number) => {
+      asegurarEspacio(salto + 4);
+      ops.push('BT', `/F1 ${size} Tf`, `1 0 0 1 ${marginX} ${Math.round(y)} Tm`, `(${escaparPdf(texto)}) Tj`, 'ET');
+      y -= salto;
+    };
+
+    const dibujarImagenSlot = (slotIdx: number) => {
+      const resName = imgNamesBySlot[slotIdx];
+      const im = imagenesComprimidas[slotIdx];
+      if (!resName || !im) return;
+      const ratio = im.height / im.width;
+      const drawW = Math.min(maxTextW, 380);
+      const drawH = Math.min(210, Math.round(drawW * ratio));
+      const drawX = Math.round((pageW - drawW) / 2);
+
+      asegurarEspacio(drawH + 16);
+      const drawY = Math.round(y - drawH);
+      ops.push('q', `${drawW} 0 0 ${drawH} ${drawX} ${drawY} cm`, `/${resName} Do`, 'Q');
+      y = drawY - 14;
+    };
+
+    // Título
+    for (const l of envolverLineas(titulo, 52)) {
+      dibujarTexto(l, 17, 22);
+    }
+    y -= 6;
+
+    // 1. Imagen al inicio
+    dibujarImagenSlot(0);
+
+    // Párrafos + 2. Imagen a la mitad
+    const mitadIdx = Math.max(0, Math.floor(parrafos.length / 2) - 1);
+    parrafos.forEach((p, i) => {
+      for (const l of envolverLineas(p, 80)) {
+        dibujarTexto(l, 11, 15);
+      }
+      y -= 6;
+      if (i === mitadIdx) {
+        dibujarImagenSlot(1);
+      }
+    });
+
+    // 3. Imagen al final
+    dibujarImagenSlot(2);
+
+    if (ops.length > 0) {
+      paginasOps.push(ops);
+    }
+
+    // Construimos objetos PDF en bytes para incluir el stream binario JPEG sin corromperlo
+    const encoder = new TextEncoder();
+    const parts: Array<string | Uint8Array> = ['%PDF-1.4\n'];
+    const offsets: number[] = [0];
+    let currentLen = encoder.encode('%PDF-1.4\n').length;
+
+    const pushChunk = (chunk: string | Uint8Array) => {
+      const b = typeof chunk === 'string' ? encoder.encode(chunk) : chunk;
+      parts.push(b);
+      currentLen += b.length;
+    };
+
+    const pageObjIds: number[] = [];
+    const contentObjIds: number[] = [];
+    for (let p = 0; p < paginasOps.length; p++) {
+      contentObjIds.push(nextObjId++);
+      pageObjIds.push(nextObjId++);
+    }
+
+    const totalObjects = nextObjId - 1;
+    const objChunks = new Map<number, Array<string | Uint8Array>>();
+
+    objChunks.set(1, [`1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n`]);
+    objChunks.set(2, [
+      `2 0 obj\n<< /Type /Pages /Kids [${pageObjIds.map((id) => `${id} 0 R`).join(' ')}] /Count ${pageObjIds.length} >>\nendobj\n`
+    ]);
+
+    const xObjDict = xObjectRefs.length ? `/XObject << ${xObjectRefs.join(' ')} >>` : '';
+    for (let p = 0; p < paginasOps.length; p++) {
+      const streamStr = paginasOps[p].join('\n');
+      const streamBytes = encoder.encode(streamStr);
+      const cId = contentObjIds[p];
+      const pId = pageObjIds[p];
+
+      objChunks.set(cId, [
+        `${cId} 0 obj\n<< /Length ${streamBytes.length} >>\nstream\n`,
+        streamBytes,
+        `\nendstream\nendobj\n`
+      ]);
+
+      objChunks.set(pId, [
+        `${pId} 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Contents ${cId} 0 R /Resources << /Font << /F1 5 0 R >> ${xObjDict} >> >>\nendobj\n`
+      ]);
+    }
+
+    objChunks.set(5, [`5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n`]);
+
+    for (const ex of extraObjetos) {
+      objChunks.set(ex.id, [
+        `${ex.id} 0 obj\n${ex.header}\nstream\n`,
+        ex.rawBytes,
+        `\nendstream\nendobj\n`
+      ]);
+    }
+
+    for (let id = 1; id <= totalObjects; id++) {
+      offsets[id] = currentLen;
+      const chunks = objChunks.get(id) || [];
+      for (const ch of chunks) {
+        pushChunk(ch);
+      }
+    }
+
+    const xrefPos = currentLen;
+    let xrefStr = `xref\n0 ${totalObjects + 1}\n0000000000 65535 f \n`;
+    for (let id = 1; id <= totalObjects; id++) {
+      xrefStr += `${String(offsets[id]).padStart(10, '0')} 00000 n \n`;
+    }
+    xrefStr += `trailer\n<< /Size ${totalObjects + 1} /Root 1 0 R >>\nstartxref\n${xrefPos}\n%%EOF`;
+    pushChunk(xrefStr);
+
+    const out = new Uint8Array(currentLen);
+    let offset = 0;
+    for (const ch of parts) {
+      const b = ch as Uint8Array;
+      out.set(b, offset);
+      offset += b.length;
+    }
+    return out;
+  }
+
+  private async comprimirImagenParaPdf(
+    src: string,
+    maxAncho: number,
+    calidad: number
+  ): Promise<ImagenPdfLista | null> {
+    if (typeof document === 'undefined') return null;
+
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        try {
+          const natW = img.naturalWidth || img.width || 600;
+          const natH = img.naturalHeight || img.height || 400;
+          const escala = Math.min(1, maxAncho / natW);
+          const width = Math.max(120, Math.round(natW * escala));
+          const height = Math.max(90, Math.round(natH * escala));
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            resolve(null);
+            return;
+          }
+          ctx.fillStyle = '#fffdf9';
+          ctx.fillRect(0, 0, width, height);
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', calidad);
+          const base64 = dataUrl.split(',')[1] || '';
+          const bin = atob(base64);
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) {
+            bytes[i] = bin.charCodeAt(i);
+          }
+          resolve({ dataUrl, width, height, bytes });
+        } catch {
+          resolve(null);
+        }
+      };
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
+  private obtenerTokenGithub(): string {
+    return (
+      localStorage.getItem('gh_travel_token') ||
+      localStorage.getItem('github_token') ||
+      localStorage.getItem('token') ||
+      ''
+    ).trim();
+  }
+
+  private slugArchivoCuento(titulo: string): string {
+    return (
+      (titulo || 'cuento-familiar')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 50) || 'cuento-familiar'
+    );
+  }
+
+  private bytesToBase64(bytes: Uint8Array): string {
+    let binario = '';
+    const chunkSize = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      const sub = bytes.subarray(i, i + chunkSize);
+      binario += String.fromCharCode(...sub);
+    }
+    return btoa(binario);
   }
 
   private formatearCuento(raw: string, promptOriginal: string): void {
@@ -253,9 +775,10 @@ export class IaRinconComponent implements OnInit {
       this.parrafosCuento = bloques.slice(1).map((p) => p.replace(/\*\*/g, '').trim());
     } else {
       this.tituloCuento = `Un cuento sobre: ${promptOriginal}`;
-      this.parrafosCuento = bloques.length > 0
-        ? bloques.map((p) => p.replace(/\*\*/g, '').trim())
-        : [raw.replace(/\*\*/g, '').trim()];
+      this.parrafosCuento =
+        bloques.length > 0
+          ? bloques.map((p) => p.replace(/\*\*/g, '').trim())
+          : [raw.replace(/\*\*/g, '').trim()];
     }
   }
 
@@ -302,7 +825,6 @@ export class IaRinconComponent implements OnInit {
       return this.translate.instant('iaRincon.errorCuota');
     }
 
-    // Clave ausente o rechazada por el proveedor (401/403)
     if (
       codigo === 401 ||
       codigo === 403 ||
