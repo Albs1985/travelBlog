@@ -86,6 +86,8 @@ export class IaRinconComponent implements OnInit {
     'iaRincon.sugerenciaCuento3'
   ];
 
+  proveedoresImagenesCuento: Array<string | null> = [null, null, null];
+
   constructor(
     private iaService: IaFamiliaService,
     private translate: TranslateService,
@@ -223,6 +225,7 @@ export class IaRinconComponent implements OnInit {
     } else {
       this.subIlustraciones?.unsubscribe();
       this.imagenesCuento = [null, null, null];
+      this.proveedoresImagenesCuento = [null, null, null];
       this.cargandoImagenes = [true, false, false];
       this.cargandoImagenCuento = true;
       this.imagenCuentoUrl = null;
@@ -234,6 +237,9 @@ export class IaRinconComponent implements OnInit {
         .subscribe((collageUrl) => {
           if (collageUrl) {
             this.imagenesCuento = this.imagenesCuento.map((actual) => actual ?? collageUrl);
+            this.proveedoresImagenesCuento = this.proveedoresImagenesCuento.map(
+              (prov) => prov ?? 'Collage familiar (respaldo)'
+            );
             this.imagenCuentoUrl = this.imagenesCuento[0];
           }
         });
@@ -270,13 +276,14 @@ export class IaRinconComponent implements OnInit {
           })
         )
         .subscribe({
-          next: ({ indice, url }) => {
+          next: ({ indice, url, proveedor }) => {
             this.cargandoImagenes[indice] = false;
             if (indice + 1 < 3) {
               this.cargandoImagenes[indice + 1] = true;
             }
             if (url) {
               this.imagenesCuento[indice] = url;
+              this.proveedoresImagenesCuento[indice] = proveedor || 'IA';
               if (indice === 0) {
                 this.imagenCuentoUrl = url;
               }

@@ -1407,13 +1407,13 @@ export class IaFamiliaService {
 
   /**
    * Genera las 3 ilustraciones del cuento (0: inicio, 1: mitad, 2: final)
-   * escalonadas cada 16 segundos para evitar saturar límites de frecuencia.
+   * escalonadas cada X segundos para evitar saturar límites de frecuencia.
    */
   generarTresIlustracionesEscalonadas(
     promptCuento: string,
     tramosEscena: [string, string, string],
-    intervaloMs = 16000
-  ): Observable<{ indice: 0 | 1 | 2; url: string | null }> {
+    intervaloMs = 1000
+  ): Observable<{ indice: 0 | 1 | 2; url: string | null; proveedor: string | null }> {
     const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
     const indices: Array<0 | 1 | 2> = [0, 1, 2];
 
@@ -1423,12 +1423,20 @@ export class IaFamiliaService {
         const escena = `${etiquetas[indice]} (${promptCuento}): ${tramosEscena[indice] || promptCuento}`;
 
         return timer(retraso).pipe(
-          switchMap(() =>
-            this.generarIlustracionCuentoConReferencias(promptCuento, escena).pipe(
-              catchError(() => this.crearCollageDesdePrompt(promptCuento)),
-              map((url) => ({ indice, url }))
-            )
-          )
+          switchMap(() => {
+            this.ultimoProveedorUsado = '';
+            return this.generarIlustracionCuentoConReferencias(promptCuento, escena).pipe(
+              catchError(() => {
+                this.ultimoProveedorUsado = 'Collage familiar';
+                return this.crearCollageDesdePrompt(promptCuento);
+              }),
+              map((url) => ({
+                indice,
+                url,
+                proveedor: url ? (this.ultimoProveedorUsado || 'Collage familiar') : null
+              }))
+            );
+          })
         );
       })
     );
