@@ -8,6 +8,7 @@ export interface OpcionesCuento {
   protagonistas?: string;
   lugar?: string;
   tono?: string;
+  estiloVisual?: string;
 }
 
 export type IdiomaIa = 'es' | 'val';
@@ -103,8 +104,6 @@ export class IaFamiliaService {
   //OLD
   private readonly storageKeyImagen = 'imagen_familia_api_key';
 
-  // Opcional: si guardas en localStorage solo el token de Cloudflare (sin "accountId:"),
-  // puedes poner aquí tu Account ID por defecto.
   private readonly cloudflareAccountIdPorDefecto = '';
 
   // ───────────────────────── Proveedores y modelos ─────────────────────────
@@ -134,22 +133,52 @@ export class IaFamiliaService {
   private readonly timeoutGeminiMs = 25000;
   private readonly timeoutCloudflareImagenMs = 35000;
 
-  // Modelos de imagen de Puter (se prueban en orden; {} usa el modelo por defecto)
   private readonly modelosImagenPuter: Array<{ model?: string; quality?: 'low' | 'medium' | 'high' }> = [
     { model: 'openai/gpt-image-2.6-flare', quality: 'low' },
     { model: 'google/gemini-3.1-flash-lite-image' },
     {}
   ];
 
-  private readonly guiaEstiloInfantil =
-    'Ilustración de álbum infantil, acuarela cálida y luminosa, colores suaves y alegres, ' +
-    'personajes tiernos y expresivos con apariencia coherente, escena clara y acogedora, ' +
-    'sin texto, sin letras, sin bocadillos ni marcas de agua.';
+  readonly estilosIlustracionCuento: Array<{ nombre: string; prompt: string }> = [
+    {
+      nombre: 'Acuarela cálida',
+      prompt: 'Ilustración de álbum infantil en acuarela cálida y luminosa, pinceladas suaves y bordes delicados'
+    },
+    {
+      nombre: 'Animación 3D',
+      prompt: 'Estilo animación 3D de película familiar moderna, iluminación suave, texturas táctiles y personajes expresivos'
+    },
+    {
+      nombre: 'Cómic manga',
+      prompt: 'Estilo cómic manga colorido y expresivo para público familiar, línea limpia, ojos grandes y viñeta viva'
+    },
+    {
+      nombre: 'Cómic de superhéroes',
+      prompt: 'Estilo cómic de aventuras y superhéroes familiares, colores vibrantes, tinta dinámica y encuadre heroico amable'
+    },
+    {
+      nombre: 'Gouache pastel',
+      prompt: 'Pintura al gouache en tonos pastel suaves, atmósfera tierna y acogedora de cuento ilustrado'
+    },
+    {
+      nombre: 'Lápiz y acuarela',
+      prompt: 'Ilustración a lápiz de color y acuarela ligera sobre papel verjurado, trazo artesanal y encanto familiar'
+    },
+    {
+      nombre: 'Papel recortado (cutout)',
+      prompt: 'Estilo collage de papel recortado a mano con capas y relieve suave, estética artesanal de cuento infantil'
+    },
+    {
+      nombre: 'Aventura retro vintage',
+      prompt: 'Estilo ilustración retro vintage de viajes clásicos, paleta cálida nostálgica y gran detalle de escenario'
+    }
+  ];
 
-  /** Para mostrar en la UI quién ha respondido (p. ej. "Groq · openai/gpt-oss-120b"). */
+  private readonly cierreEstiloComun =
+    'personajes coherentes, escena clara y acogedora, sin texto, sin letras, sin bocadillos ni marcas de agua.';
+
   ultimoProveedorUsado = '';
 
-  // modelos/proveedores "en espera" tras un 429/503/error, para no perder tiempo
   private readonly enfriamiento = new Map<string, number>();
 
   // ───────────────────────── GitHub / datos ─────────────────────────
@@ -174,7 +203,7 @@ export class IaFamiliaService {
   private readonly versionIndice = 1;
   private readonly ttlIndiceMs = 12 * 3600 * 1000;
 
-  private readonly MAX_CHARS_CUENTO = 4500;
+  private readonly MAX_CHARS_CUENTO = 4800;
   private readonly MAX_CHARS_CHAT = 6500;
 
   private readonly STOPWORDS = new Set([
@@ -229,6 +258,20 @@ export class IaFamiliaService {
   ];
 
   constructor(private http: HttpClient) {}
+
+  obtenerEstiloAleatorioCuento(): { nombre: string; prompt: string } {
+    const idx = Math.floor(Math.random() * this.estilosIlustracionCuento.length);
+    return this.estilosIlustracionCuento[idx];
+  }
+
+  private resolverGuiaEstilo(estiloVisual?: string): string {
+    const limpio = (estiloVisual ?? '').trim();
+    if (limpio) {
+      return `${limpio}, ${this.cierreEstiloComun}`;
+    }
+    const elegido = this.estilosIlustracionCuento[0];
+    return `${elegido.prompt}, ${this.cierreEstiloComun}`;
+  }
 
   // ═════════════════════════════════════════════════════════
   //  CLAVES
@@ -367,8 +410,9 @@ export class IaFamiliaService {
         const systemInstruction = [
           'Eres un cuentacuentos creativo para una familia con niños pequeños (3 a 7 años).',
           'Escribe un cuento original, de 5 a 7 párrafos cortos, con hilo narrativo claro y final feliz.',
-          'Mantén los nombres, apodos y rasgos de los personajes tal como aparecen en los datos.',
-          'Los datos de la familia son inspiración: integra con naturalidad uno o dos detalles (un lugar, una anécdota, una palabra o frase graciosa de los niños) sin listarlos ni explicarlos.',
+          'Mantén los nombres y rasgos de los personajes tal como aparecen en los datos.',
+          'IMPORTANTE sobre apodos y frases: usa COMO MÁXIMO un apodo por personaje y COMO MÁXIMO una frase/expresión graciosa por personaje en todo el cuento. Repártelos a lo largo del nudo o el desenlace, NUNCA los amontones todos al principio ni hagas que todos suenen igual.',
+          'Inspírate de verdad en la narración y el ambiente del viaje seleccionado (lugares, detalles, sensaciones) para dar verosimilitud y variedad, sin copiar literalmente fichas técnicas.',
           'No inventes hechos reales sobre la familia que no estén en los datos; la aventura sí puede ser fantástica.',
           'Formato: la primera línea es el título (sin #, sin asteriscos y sin punto final); después los párrafos separados por una línea en blanco. Sin listas ni comentarios finales.',
           instruccionIdioma
@@ -384,7 +428,7 @@ export class IaFamiliaService {
 
         const prompt = [
           `FECHA DE HOY: ${this.fechaHoy()}`,
-          'DATOS DE LA FAMILIA (seleccionados según la temática):',
+          'DATOS DE LA FAMILIA Y VIAJES (seleccionados según la temática):',
           contexto || '(Sin datos adicionales)',
           '',
           'PETICIÓN DEL CUENTO:',
@@ -601,7 +645,7 @@ export class IaFamiliaService {
       cumple: this.leerJson('assets/data/cumpleanyos.json'),
       frases: this.leerJson('assets/data/frases.json'),
       viajes: this.cargarIndiceViajes(),
-      relatos: this.cargarRelatos()
+      // relatos: this.cargarRelatos().pipe(catchError(() => of([] as RelatoIndexado[])))
     }).pipe(
       map((d) => {
         const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
@@ -613,20 +657,26 @@ export class IaFamiliaService {
         const extendida = this.bloqueExtendida(personas, mencionados);
         if (extendida) partes.push(extendida);
 
-        const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 3, false);
+        const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 3, true);
         if (viajes.length) {
-          partes.push(`VIAJES RELACIONADOS CON LA TEMÁTICA:\n${viajes.map((v) => this.lineaViaje(v, 330)).join('\n')}`);
+          partes.push(
+            `VIAJES DE REFERENCIA (toma detalles y narración del viaje para ambientar el cuento):\n${viajes
+              .map((v) => this.lineaViaje(v, 520))
+              .join('\n')}`
+          );
         }
 
         const frases = this.seleccionarFrases(d.frases, q, mencionados, 4);
         if (frases.length) {
-          partes.push(`FRASES Y PALABRAS GRACIOSAS (úsalas con gracia, sin explicarlas):\n${frases.join('\n')}`);
+          partes.push(
+            `FRASES Y PALABRAS GRACIOSAS (máximo 1 por personaje, repartidas durante el cuento, sin explicarlas):\n${frases.join('\n')}`
+          );
         }
 
-        const relatos = this.seleccionarRelatos(d.relatos, q, 2, 320);
-        if (relatos.length) {
-          partes.push(`RELATOS FAMILIARES:\n${relatos.join('\n')}`);
-        }
+        // const relatos = this.seleccionarRelatos(d.relatos, q, 2, 340);
+        // if (relatos.length) {
+        //   partes.push(`RELATOS DE VIAJES:\n${relatos.join('\n')}`);
+        // }
 
         return this.recortarContexto(partes, this.MAX_CHARS_CUENTO);
       })
@@ -658,7 +708,7 @@ export class IaFamiliaService {
       preguntas: this.leerJson('assets/data/preguntas.json'),
       dibujos: this.leerJson('assets/data/dibujos.json'),
       viajes: this.cargarIndiceViajes(),
-      relatos: this.cargarRelatos()
+      // relatos: this.cargarRelatos().pipe(catchError(() => of([] as RelatoIndexado[])))
     }).pipe(
       map((d) => {
         const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
@@ -679,7 +729,7 @@ export class IaFamiliaService {
           const max = cats.viajes ? 6 : 3;
           const viajes = this.seleccionarViajes(d.viajes, q, mencionados, max, general);
           if (viajes.length) {
-            partes.push(`VIAJES:\n${viajes.map((v) => this.lineaViaje(v, cats.viajes ? 300 : 200)).join('\n')}`);
+            partes.push(`VIAJES:\n${viajes.map((v) => this.lineaViaje(v, cats.viajes ? 350 : 220)).join('\n')}`);
           }
         }
 
@@ -688,10 +738,10 @@ export class IaFamiliaService {
           if (frases.length) partes.push(`FRASES:\n${frases.join('\n')}`);
         }
 
-        if (cats.relatos || general) {
-          const relatos = this.seleccionarRelatos(d.relatos, q, 3, 400);
-          if (relatos.length) partes.push(`RELATOS:\n${relatos.join('\n')}`);
-        }
+        // if (cats.relatos || general) {
+        //   const relatos = this.seleccionarRelatos(d.relatos, q, 3, 400);
+        //   if (relatos.length) partes.push(`RELATOS:\n${relatos.join('\n')}`);
+        // }
 
         const genericas: Array<[string, boolean, unknown]> = [
           ['RECETAS', cats.recetas, d.recetas],
@@ -867,9 +917,11 @@ export class IaFamiliaService {
       partes.push(edad ? `${p.nombre} (${edad})` : p.nombre);
       if (p.rol) partes.push(p.rol);
       if (p.relaciones) partes.push(p.relaciones);
-      if (p.aka.length) partes.push(`Apodos: ${p.aka.join(', ')}`);
-      if (p.rasgos.length) partes.push(`Rasgos: ${p.rasgos.join('; ')}`);
-      if (p.detalles.length) partes.push(`Detalles: ${p.detalles.join('; ')}`);
+      // Máximo 1 apodo por personaje para evitar saturación
+      const apodoUnico = p.aka.filter(Boolean).slice(0, 1);
+      if (apodoUnico.length) partes.push(`Apodo opcional (usar máx. 1 vez): ${apodoUnico.join(', ')}`);
+      if (p.rasgos.length) partes.push(`Rasgos: ${p.rasgos.slice(0, 2).join('; ')}`);
+      if (p.detalles.length) partes.push(`Detalles: ${p.detalles.slice(0, 2).join('; ')}`);
       return `- ${partes.join('. ')}.`;
     });
 
@@ -906,18 +958,35 @@ export class IaFamiliaService {
     let candidatas = validas.filter((f) => nombresNucleo.has(this.normalizarTexto(String(f['persona'] ?? ''))));
     if (!candidatas.length) candidatas = validas;
 
-    return candidatas
+    const ordenadas = candidatas
       .map((f) => {
         const texto = this.normalizarTexto(`${f['frase']} ${f['explicacion'] ?? ''}`);
-        const puntos = this.puntuarTexto(texto, q) + Math.random() * 2;
+        const puntos = this.puntuarTexto(texto, q) + Math.random() * 2.5;
         return { f, puntos };
       })
-      .sort((a, b) => b.puntos - a.puntos)
-      .slice(0, max)
-      .map(({ f }) => {
-        const explic = f['explicacion'] ? ` (= ${this.resumirTexto(f['explicacion'], 90)})` : '';
-        return `- ${f['persona']}: «${this.resumirTexto(f['frase'], 110)}»${explic}`;
-      });
+      .sort((a, b) => b.puntos - a.puntos);
+
+    // Como máximo 1 frase por persona para no concentrar ni abusar de un mismo personaje
+    const vistasPorPersona = new Set<string>();
+    const seleccionadas: Dato[] = [];
+    for (const item of ordenadas) {
+      const personaKey = this.normalizarTexto(String(item.f['persona'] ?? '')).trim();
+      if (personaKey && vistasPorPersona.has(personaKey)) {
+        continue;
+      }
+      if (personaKey) {
+        vistasPorPersona.add(personaKey);
+      }
+      seleccionadas.push(item.f);
+      if (seleccionadas.length >= max) {
+        break;
+      }
+    }
+
+    return seleccionadas.map((f) => {
+      const explic = f['explicacion'] ? ` (= ${this.resumirTexto(f['explicacion'], 90)})` : '';
+      return `- ${f['persona']}: «${this.resumirTexto(f['frase'], 110)}»${explic}`;
+    });
   }
 
   private prepararTexto(texto: string): string {
@@ -978,14 +1047,15 @@ export class IaFamiliaService {
     return elegidas.map((x) => this.resumirTexto(x.l, maxChars));
   }
 
-  private seleccionarRelatos(relatos: RelatoIndexado[], q: ConsultaAnalizada, max: number, maxChars: number): string[] {
-    return relatos
-      .map((r) => ({ r, p: this.puntuarTexto(r.claves, q) }))
-      .filter((x) => x.p > 0)
-      .sort((a, b) => b.p - a.p)
-      .slice(0, max)
-      .map(({ r }) => `- ${r.archivo}: ${this.resumirTexto(r.texto, maxChars)}`);
-  }
+  // private seleccionarRelatos(relatos: RelatoIndexado[], q: ConsultaAnalizada, max: number, maxChars: number): string[] {
+  //   const positivos = relatos
+  //     .map((r) => ({ r, p: this.puntuarTexto(r.claves, q) + Math.random() }))
+  //     .filter((x) => x.p > 0.5)
+  //     .sort((a, b) => b.p - a.p)
+  //     .slice(0, max);
+
+  //   return positivos.map(({ r }) => `- ${r.archivo}: ${this.resumirTexto(r.texto, maxChars)}`);
+  // }
 
   // ───────────── Viajes: índice, selección y formato ─────────────
 
@@ -1067,9 +1137,10 @@ export class IaFamiliaService {
       .filter(Boolean)
       .join(' ');
 
+    const narracionCompleta = parrafos.join(' ').trim();
     const claves = this.normalizarTexto(
       [destino, str(o['categoria']), str(o['provincia']), str(o['pais']), estancia, transporte, personas.join(' '), str(o['anyo']), textos.join(' ')].join(' ')
-    ).slice(0, 2500);
+    ).slice(0, 2800);
 
     return {
       archivo,
@@ -1082,7 +1153,7 @@ export class IaFamiliaService {
       transporte,
       personas,
       foto: this.extraerPrimeraFotoDeViaje(o),
-      resumen: this.resumirTexto(parrafos.slice(0, 2).join(' '), 380),
+      resumen: this.resumirTexto(narracionCompleta, 620),
       claves
     };
   }
@@ -1099,13 +1170,19 @@ export class IaFamiliaService {
     const puntuados = indice.map((v, i) => {
       let p = this.puntuarTexto(v.claves, q);
       const claves = this.prepararTexto(v.claves);
+      const destinoNorm = this.normalizarTexto(v.destino);
+
+      if (destinoNorm && q.norm.includes(destinoNorm)) {
+        p += 8;
+      }
+
       for (const tema of q.temas) {
-        if (tema.afines.some((a) => this.contienePalabra(claves, a))) p += 4;
+        if (tema.afines.some((a) => this.contienePalabra(claves, a))) p += 5;
         if (tema.opuestos?.some((o) => this.contienePalabra(claves, o))) p -= 6;
       }
       const personasNorm = this.normalizarTexto(v.personas.join(' '));
       for (const id of mencionados) {
-        if (personasNorm.includes(id)) p += 1;
+        if (personasNorm.includes(id)) p += 2;
       }
       return { v, p, i, azar: Math.random() * 1.5 };
     });
@@ -1120,7 +1197,11 @@ export class IaFamiliaService {
       return positivos;
     }
 
-    return indice.slice(0, Math.min(2, max));
+    // Si no hubo coincidencia directa, elegimos un viaje con relato/resumen para ambientar
+    const conResumen = indice.filter((v) => v.resumen && v.resumen.trim().length > 40);
+    const base = conResumen.length > 0 ? conResumen : indice;
+    const inicio = Math.floor(Math.random() * base.length);
+    return [base[inicio]];
   }
 
   private lineaViaje(v: ViajeIndexado, maxResumen: number): string {
@@ -1129,7 +1210,7 @@ export class IaFamiliaService {
       .join(', ');
     const meta = [v.categoria, v.estancia, v.transporte].filter(Boolean).join(' / ');
     const con = v.personas.length ? ` Con: ${v.personas.join(', ')}.` : '';
-    const resumen = v.resumen ? ` ${this.resumirTexto(v.resumen, maxResumen)}` : '';
+    const resumen = v.resumen ? ` Narración: ${this.resumirTexto(v.resumen, maxResumen)}` : '';
     return `- ${v.anyo} · ${lugar}${meta ? ` [${meta}]` : ''}.${con}${resumen}`;
   }
 
@@ -1332,21 +1413,17 @@ export class IaFamiliaService {
   }
 
   // ═════════════════════════════════════════════════════════
-  //  ILUSTRACIONES: 1) CLOUDFLARE → 2) PUTER → 3) COLLAGE
+  //  ILUSTRACIONES: POLLINATIONS → HF → CLOUDFLARE → PUTER → COLLAGE
   // ═════════════════════════════════════════════════════════
 
-  /**
-   * Flujo principal de ilustración de cuento:
-   * 1. Cloudflare Workers AI (con prompt enriquecido a partir del texto del cuento y contexto visual)
-   * 2. Puter.js (si el CDN está disponible y no falla)
-   * 3. Collage con fotos reales de la familia y viajes en <canvas>
-   */
   generarIlustracionCuentoConReferencias(
     promptCuento: string,
-    textoCuento: string
+    textoCuento: string,
+    estiloVisual?: string
   ): Observable<string | null> {
     const q = this.analizarConsulta(`${promptCuento} ${textoCuento}`);
     const promptIlustracion = this.construirPromptIlustracion(promptCuento, textoCuento);
+    const guiaEstilo = this.resolverGuiaEstilo(estiloVisual);
 
     return forkJoin({
       viajeros: this.leerJson('assets/data/viajeros.json'),
@@ -1367,94 +1444,64 @@ export class IaFamiliaService {
           promptIlustracion,
           descripcionPersonajes ? `Personajes: ${descripcionPersonajes}.` : '',
           contextoEscenario ? `Lugar de inspiración: ${contextoEscenario}.` : '',
-          this.guiaEstiloInfantil
+          guiaEstilo
         ]
           .filter(Boolean)
           .join(' ');
 
-          return this.intentarHuggingFaceImagen(promptFinal).pipe(
-            switchMap((imgHf) => {
-              if (imgHf) {
-                return of(imgHf);
+          return this.intentarPollinationsImagen(promptFinal).pipe(
+            switchMap((imgPoll) => {
+              if (imgPoll) {
+                return of(imgPoll);
               }
-              return this.intentarPollinationsImagen(promptFinal).pipe(
-                switchMap((imgPoll) => {
-                  if (imgPoll) {
-                    return of(imgPoll);
-                  }
-                  return this.intentarCloudflareImagen(promptFinal).pipe(
-                    switchMap((imgCloudflare) => {
-                      if (imgCloudflare) {
-                        return of(imgCloudflare);
-                      }
-                      return this.intentarPuterImagen(promptFinal).pipe(
-                        switchMap((imgPuter) => {
-                          if (imgPuter) {
-                            return of(imgPuter);
-                          }
-                          return this.crearCollageDesdePrompt(promptCuento);
-                        })
-                      );
-                    })
-                  );
-                })
-              );
-            })
-          );
+              return this.intentarHuggingFaceImagen(promptFinal).pipe(
+              switchMap((imgHf) => {
+                if (imgHf) {
+                  return of(imgHf);
+                }
+                return this.intentarCloudflareImagen(promptFinal).pipe(
+                  switchMap((imgCloudflare) => {
+                    if (imgCloudflare) {
+                      return of(imgCloudflare);
+                    }
+                    return this.intentarPuterImagen(promptFinal).pipe(
+                      switchMap((imgPuter) => {
+                        if (imgPuter) {
+                          return of(imgPuter);
+                        }
+                        return this.crearCollageDesdePrompt(promptCuento);
+                      })
+                    );
+                  })
+                );
+              })
+            );
+          })
+        );
       }),
       catchError(() => this.crearCollageDesdePrompt(promptCuento))
     );
   }
 
   /**
-   * Genera las 3 ilustraciones del cuento (0: inicio, 1: mitad, 2: final)
-   * escalonadas cada X segundos para evitar saturar límites de frecuencia.
-   */
-  generarTresIlustracionesEscalonadas(
-    promptCuento: string,
-    tramosEscena: [string, string, string],
-    intervaloMs = 1000
-  ): Observable<{ indice: 0 | 1 | 2; url: string | null; proveedor: string | null }> {
-    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
-    const indices: Array<0 | 1 | 2> = [0, 1, 2];
-
-    return from(indices).pipe(
-      switchMap((indice) => {
-        const retraso = indice * intervaloMs;
-        const escena = `${etiquetas[indice]} (${promptCuento}): ${tramosEscena[indice] || promptCuento}`;
-
-        return timer(retraso).pipe(
-          switchMap(() => {
-            this.ultimoProveedorUsado = '';
-            return this.generarIlustracionCuentoConReferencias(promptCuento, escena).pipe(
-              catchError(() => {
-                this.ultimoProveedorUsado = 'Collage familiar';
-                return this.crearCollageDesdePrompt(promptCuento);
-              }),
-              map((url) => ({
-                indice,
-                url,
-                proveedor: url ? (this.ultimoProveedorUsado || 'Collage familiar') : null
-              }))
-            );
-          })
-        );
-      })
-    );
-  }
-
-  /**
    * Solicita ilustraciones de forma continua hasta completar `cantidad` (por defecto 3).
-   * Cada vez que una petición sale bien, emite la imagen para colocarla en el primer hueco libre.
+   * La 1.ª imagen arranca sin esperar al cuerpo del cuento; la 2.ª y 3.ª usan tramos distintos
+   * cuando están disponibles, manteniendo el mismo estilo del cuento en todas.
    */
   generarIlustracionesProgresivas(
     promptCuento: string,
-    tramosEscena: [string, string, string],
+    tramosEscena: [string, string, string] | (() => [string, string, string]),
     cantidad = 3,
-    pausaEntreExitosMs = 2500
+    pausaEntreExitosMs = 2500,
+    estiloVisual?: string
   ): Observable<{ url: string; proveedor: string }> {
-    const etiquetas = ['Inicio del cuento', 'Mitad de la aventura', 'Final feliz del cuento'];
+    const enfoquesVisuales = [
+      'Plano general de apertura y presentación del escenario y los personajes',
+      'Plano medio dinámico de acción, exploración o giro divertido a mitad de la historia',
+      'Encuadre luminoso y emotivo del desenlace y alegría final compartida'
+    ];
     const maxIntentosTotales = cantidad * 3;
+    const guiaEstilo = this.resolverGuiaEstilo(estiloVisual);
 
     return defer(() => {
       let conseguidas = 0;
@@ -1466,11 +1513,18 @@ export class IaFamiliaService {
         }
 
         const slotEscena = Math.min(2, conseguidas);
-        const escena = `${etiquetas[slotEscena]} (${promptCuento}): ${tramosEscena[slotEscena] || promptCuento}`;
+        const tramos = typeof tramosEscena === 'function' ? tramosEscena() : tramosEscena;
+
+        const detalleTramo =
+          slotEscena === 0
+            ? promptCuento
+            : (tramos[slotEscena] || promptCuento);
+
+        const escena = `${enfoquesVisuales[slotEscena]}. Idea: ${promptCuento}. Momento: ${detalleTramo}`;
         intentos++;
         this.ultimoProveedorUsado = '';
 
-        return this.generarIlustracionCuentoConReferencias(promptCuento, escena).pipe(
+        return this.generarIlustracionCuentoConReferencias(promptCuento, escena, guiaEstilo).pipe(
           map((url) => {
             if (!url) {
               return null;
@@ -1485,22 +1539,6 @@ export class IaFamiliaService {
         );
       };
 
-      const ejecutarBucle = (): Observable<{ url: string; proveedor: string }> => {
-        return siguientePaso$().pipe(
-          switchMap((resultado) => {
-            if (conseguidas >= cantidad || intentos >= maxIntentosTotales) {
-              return resultado ? of(resultado) : of();
-            }
-
-            const espera = resultado ? pausaEntreExitosMs : 4000;
-            const siguiente$ = timer(espera).pipe(switchMap(() => ejecutarBucle()));
-
-            return resultado ? of(resultado).pipe(switchMap((res) => of(res).pipe(switchMap(() => timer(0).pipe(switchMap(() => of(res))))))) : siguiente$;
-          })
-        );
-      };
-
-      // Emitimos cada resultado válido inmediatamente y encadenamos la siguiente petición
       const pasoConEmision = (): Observable<{ url: string; proveedor: string }> => {
         return siguientePaso$().pipe(
           switchMap((resultado) => {
@@ -1534,7 +1572,7 @@ export class IaFamiliaService {
 
   private intentarHuggingFaceImagen(prompt: string): Observable<string | null> {
     const token = this.obtenerTokenHuggingFaceImagen();
-    if (!token) {
+    if (!token || this.modelosImagenHuggingFace.length === 0) {
       return of(null);
     }
 
@@ -1728,12 +1766,9 @@ export class IaFamiliaService {
     );
   }
 
-  /**
-   * Mantiene la llamada directa desde botón de Puter si el usuario quiere forzarlo.
-   */
-  generarIlustracionPuter(titulo: string, escena: string): Observable<string> {
+  generarIlustracionPuter(titulo: string, escena: string, estiloVisual?: string): Observable<string> {
     const prompt = [
-      this.guiaEstiloInfantil,
+      this.resolverGuiaEstilo(estiloVisual),
       `Cuento: ${titulo}.`,
       `Escena: ${this.resumirTexto(escena, 450)}`
     ].join(' ');

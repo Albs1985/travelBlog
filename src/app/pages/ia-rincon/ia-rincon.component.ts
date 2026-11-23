@@ -50,6 +50,8 @@ export class IaRinconComponent implements OnInit {
   tituloCuento = '';
   parrafosCuento: string[] = [];
   mostrarHuecoImagen = true;
+  estiloCuentoNombre = '';
+  private estiloCuentoPrompt = '';
 
   imagenesCuento: Array<string | null> = [null, null, null];
   cargandoImagenes: boolean[] = [false, false, false];
@@ -175,6 +177,8 @@ export class IaRinconComponent implements OnInit {
     this.subIlustraciones = undefined;
     this.tituloCuento = '';
     this.parrafosCuento = [];
+    this.estiloCuentoNombre = '';
+    this.estiloCuentoPrompt = '';
     this.imagenesCuento = [null, null, null];
     this.cargandoImagenes = [false, false, false];
     this.imagenCuentoUrl = null;
@@ -226,6 +230,10 @@ export class IaRinconComponent implements OnInit {
         });
     } else {
       this.subIlustraciones?.unsubscribe();
+      const estiloElegido = this.iaService.obtenerEstiloAleatorioCuento();
+      this.estiloCuentoNombre = estiloElegido.nombre;
+      this.estiloCuentoPrompt = estiloElegido.prompt;
+
       this.imagenesCuento = [null, null, null];
       this.proveedoresImagenesCuento = [null, null, null];
       this.esImagenRealIa = [false, false, false];
@@ -249,13 +257,14 @@ export class IaRinconComponent implements OnInit {
           }
         });
 
-      // 2. Generación del texto del cuento (apaga "cargando" al terminar)
+      // 2. Generación del texto del cuento
       this.iaService
         .inventarCuento(
           {
             protagonistas: texto,
             lugar: texto,
-            tono: 'tierno, mágico y divertido'
+            tono: 'tierno, mágico y divertido',
+            estiloVisual: this.estiloCuentoNombre
           },
           this.obtenerIdiomaActivo()
         )
@@ -271,9 +280,15 @@ export class IaRinconComponent implements OnInit {
           }
         });
 
-      // 3. Secuencia escalonada de 3 ilustraciones cada 16s: 0s (inicio), 16s (mitad), 32s (final)
+      // 3. Generación progresiva de 3 ilustraciones con estilo aleatorio del cuento
       this.subIlustraciones = this.iaService
-        .generarIlustracionesProgresivas(texto, [texto, texto, texto], 3, 2500)
+        .generarIlustracionesProgresivas(
+          texto,
+          () => this.obtenerTramosEscenaActuales(texto),
+          3,
+          2500,
+          this.estiloCuentoPrompt
+        )
         .pipe(
           finalize(() => {
             this.cargandoImagenes = [false, false, false];
@@ -303,7 +318,25 @@ export class IaRinconComponent implements OnInit {
             }
           }
         });
-      }
+    }
+  }
+
+  private obtenerTramosEscenaActuales(promptBase: string): [string, string, string] {
+    const p = this.parrafosCuento;
+    if (!p || p.length === 0) {
+      return [
+        `Comienzo de la aventura: ${promptBase}`,
+        `Nudo y descubrimiento en la aventura: ${promptBase}`,
+        `Celebración y final feliz: ${promptBase}`
+      ];
+    }
+
+    const inicio = p[0];
+    const idxMitad = Math.max(0, Math.min(p.length - 1, Math.floor(p.length / 2)));
+    const mitad = p[idxMitad];
+    const final = p[p.length - 1];
+
+    return [inicio, mitad, final];
   }
 
   /** Ilustración con IA desde botón. */
@@ -317,7 +350,7 @@ export class IaRinconComponent implements OnInit {
     this.errorMsg = '';
 
     this.iaService
-      .generarIlustracionPuter(this.tituloCuento, this.parrafosCuento[0])
+      .generarIlustracionPuter(this.tituloCuento, this.parrafosCuento[0], this.estiloCuentoPrompt)
       .pipe(
         finalize(() => {
           this.cargandoPuter = false;
@@ -519,10 +552,6 @@ export class IaRinconComponent implements OnInit {
     window.open(item.downloadUrl || assetUrl, '_blank');
   }
 
-  /**
-   * Comprime cada imagen disponible a JPEG ligero (ancho max 640px, calidad 0.58)
-   * e incrusta texto e imágenes en un PDF compacto de una o varias páginas.
-   */
   private async construirPdfLigeroConImagenes(
     titulo: string,
     parrafos: string[],
@@ -617,16 +646,13 @@ export class IaRinconComponent implements OnInit {
       y = drawY - 14;
     };
 
-    // Título
     for (const l of envolverLineas(titulo, 52)) {
       dibujarTexto(l, 17, 22);
     }
     y -= 6;
 
-    // 1. Imagen al inicio
     dibujarImagenSlot(0);
 
-    // Párrafos + 2. Imagen a la mitad
     const mitadIdx = Math.max(0, Math.floor(parrafos.length / 2) - 1);
     parrafos.forEach((p, i) => {
       for (const l of envolverLineas(p, 80)) {
@@ -638,14 +664,12 @@ export class IaRinconComponent implements OnInit {
       }
     });
 
-    // 3. Imagen al final
     dibujarImagenSlot(2);
 
     if (ops.length > 0) {
       paginasOps.push(ops);
     }
 
-    // Construimos objetos PDF en bytes para incluir el stream binario JPEG sin corromperlo
     const encoder = new TextEncoder();
     const parts: Array<string | Uint8Array> = ['%PDF-1.4\n'];
     const offsets: number[] = [0];
