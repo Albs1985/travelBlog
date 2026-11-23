@@ -77,6 +77,71 @@
       </button>
     </form>
 
+    <!-- Selector de fuentes JSON para el modo cuento (por defecto 100% libre) -->
+    <div *ngIf="modo === 'cuento'" class="fuentes-cuento-panel">
+      <div class="fuentes-cuento-cabecera">
+        <span class="fuentes-cuento-etiqueta">🧩 Datos de referencia para el cuento:</span>
+        <div class="fuentes-presets">
+          <button
+            type="button"
+            class="btn-preset-fuente"
+            [class.activo]="esModoCuentoLibre"
+            (click)="aplicarModoLibreCuento()">
+            🎲 100% libre (sin JSON)
+          </button>
+          <button
+            type="button"
+            class="btn-preset-fuente"
+            [class.activo]="esSoloPersonajes"
+            (click)="aplicarSoloPersonajesCuento()">
+            🦸 Solo personajes
+          </button>
+        </div>
+      </div>
+
+      <div class="fuentes-chips">
+        <label class="chip-fuente" [class.marcado]="fuentesCuento.personajes">
+          <input
+            type="checkbox"
+            [checked]="fuentesCuento.personajes"
+            (change)="alternarFuenteCuento('personajes')">
+          <span>Personajes</span>
+        </label>
+
+        <label class="chip-fuente" [class.marcado]="fuentesCuento.viajes">
+          <input
+            type="checkbox"
+            [checked]="fuentesCuento.viajes"
+            (change)="alternarFuenteCuento('viajes')">
+          <span>Viajes</span>
+        </label>
+
+        <label class="chip-fuente" [class.marcado]="fuentesCuento.frases">
+          <input
+            type="checkbox"
+            [checked]="fuentesCuento.frases"
+            (change)="alternarFuenteCuento('frases')">
+          <span>Frases</span>
+        </label>
+
+        <label class="chip-fuente" [class.marcado]="fuentesCuento.viajeros">
+          <input
+            type="checkbox"
+            [checked]="fuentesCuento.viajeros"
+            (change)="alternarFuenteCuento('viajeros')">
+          <span>Viajeros</span>
+        </label>
+
+        <label class="chip-fuente" [class.marcado]="fuentesCuento.cumpleanyos">
+          <input
+            type="checkbox"
+            [checked]="fuentesCuento.cumpleanyos"
+            (change)="alternarFuenteCuento('cumpleanyos')">
+          <span>Cumpleaños</span>
+        </label>
+      </div>
+    </div>
+
     <div class="sugerencias-lista">
       <button
         *ngFor="let sug of (modo === 'familia' ? sugerenciasFamilia : sugerenciasCuento)"
@@ -156,12 +221,6 @@
 
       <!-- 1. ILUSTRACIÓN DEL INICIO -->
       <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento">
-        <!-- <span class="etiqueta-escena">🌅 {{ 'iaRincon.escenaInicio' | translate }}</span> -->
-
-        <!-- <div *ngIf="proveedoresImagenesCuento[0]" class="badge-proveedor-imagen">
-          🤖 Generada por: <strong>{{ proveedoresImagenesCuento[0] }}</strong>
-        </div> -->
-
         <div *ngIf="imagenesCuento[0]" class="marco-imagen-cuento">
           <img
             [src]="imagenesCuento[0]"
@@ -197,12 +256,6 @@
 
           <!-- 2. ILUSTRACIÓN DE LA MITAD DEL CUENTO -->
           <div *ngIf="mostrarHuecoImagen && i === indiceMitadCuento - 1" class="espacio-ilustracion-cuento">
-            <!-- <span class="etiqueta-escena">🧭 {{ 'iaRincon.escenaMitad' | translate }}</span> -->
-
-            <!-- <div *ngIf="proveedoresImagenesCuento[1]" class="badge-proveedor-imagen">
-              🤖 Generada por: <strong>{{ proveedoresImagenesCuento[1] }}</strong>
-            </div> -->
-
             <div *ngIf="imagenesCuento[1]" class="marco-imagen-cuento">
               <img
                 [src]="imagenesCuento[1]"
@@ -237,10 +290,6 @@
       <!-- 3. ILUSTRACIÓN DEL FINAL DEL CUENTO -->
       <div *ngIf="mostrarHuecoImagen" class="espacio-ilustracion-cuento espacio-ilustracion-final">
         <span class="etiqueta-escena">🌟 {{ 'iaRincon.escenaFinal' | translate }}</span>
-
-        <!-- <div *ngIf="proveedoresImagenesCuento[2]" class="badge-proveedor-imagen">
-          🤖 Generada por: <strong>{{ proveedoresImagenesCuento[2] }}</strong>
-        </div> -->
 
         <div *ngIf="imagenesCuento[2]" class="marco-imagen-cuento">
           <img

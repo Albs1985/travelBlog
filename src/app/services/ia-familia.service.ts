@@ -11,6 +11,30 @@ export interface OpcionesCuento {
   estiloVisual?: string;
 }
 
+export interface FuentesCuentoConfig {
+  personajes: boolean;
+  viajeros: boolean;
+  cumpleanyos: boolean;
+  frases: boolean;
+  viajes: boolean;
+}
+
+export const FUENTES_CUENTO_LIBRE: FuentesCuentoConfig = {
+  personajes: false,
+  viajeros: false,
+  cumpleanyos: false,
+  frases: false,
+  viajes: false
+};
+
+export const FUENTES_CUENTO_SOLO_PERSONAJES: FuentesCuentoConfig = {
+  personajes: true,
+  viajeros: false,
+  cumpleanyos: false,
+  frases: false,
+  viajes: false
+};
+
 export type IdiomaIa = 'es' | 'val';
 export type ProveedorIa = 'groq' | 'gemini';
 
@@ -82,8 +106,10 @@ interface Persona {
   nucleo: boolean;
   rol?: string;
   relaciones?: string;
+  apariencia?: string;
   rasgos: string[];
   detalles: string[];
+  favoritos: string[];
 }
 
 interface ConfigCloudflareImagen {
@@ -177,12 +203,12 @@ export class IaFamiliaService {
   private readonly cierreEstiloComun =
     'personajes coherentes, escena clara y acogedora, sin texto, sin letras, sin bocadillos ni marcas de agua.';
 
-    ultimoProveedorUsado = '';
+  ultimoProveedorUsado = '';
 
-    private readonly enfriamiento = new Map<string, number>();
-    private ultimoViajeUsadoArchivo = '';
-    private readonly ultimosApodosPorPersona = new Map<string, string>();
-    private ultimasFrasesUsadas: string[] = [];
+  private readonly enfriamiento = new Map<string, number>();
+  private ultimoViajeUsadoArchivo = '';
+  private readonly ultimosApodosPorPersona = new Map<string, string>();
+  private ultimasFrasesUsadas: string[] = [];
 
   // ───────────────────────── GitHub / datos ─────────────────────────
   private readonly cacheCarpetasGithub = new Map<string, string[]>();
@@ -396,27 +422,58 @@ export class IaFamiliaService {
     );
   }
 
-  inventarCuento(opciones: OpcionesCuento, idioma: IdiomaIa = 'es'): Observable<string> {
+  inventarCuento(
+    opciones: OpcionesCuento,
+    idioma: IdiomaIa = 'es',
+    fuentes: FuentesCuentoConfig = FUENTES_CUENTO_LIBRE
+  ): Observable<string> {
     const protagonistas = (opciones.protagonistas ?? '').trim();
     const lugar = (opciones.lugar ?? '').trim();
     const textoBusqueda = Array.from(new Set([protagonistas, lugar].filter(Boolean))).join(' ');
 
-    return this.construirContextoCuento(textoBusqueda).pipe(
+    const hayAlgunaFuente =
+      fuentes.personajes || fuentes.viajeros || fuentes.cumpleanyos || fuentes.frases || fuentes.viajes;
+
+    return this.construirContextoCuento(textoBusqueda, fuentes).pipe(
       switchMap((contexto) => {
         const instruccionIdioma =
           idioma === 'val'
-            ? 'Escriu el conte íntegrament en valencià.'
+            ? "Escriu tot el conte exclusivament en valencià normatiu, seguint els criteris lingüístics de l'Acadèmia Valenciana de la Llengua (AVL). És imprescindible que utilitzes el valencià propi de la Comunitat Valenciana, preferentment el valencià central (zona de València). No utilitzes vocabulari, expressions ni construccions pròpies del català central si existeix una forma valenciana habitual."
             : 'Escribe el cuento íntegramente en español.';
 
         const tono = (opciones.tono ?? '').trim() || 'tierno y divertido';
 
+        const reglasContexto: string[] = [];
+        if (!hayAlgunaFuente) {
+          reglasContexto.push(
+            'MODO 100 % LIBRE: no se han cargado datos de familia ni viajes. Inventa libremente los personajes, escenarios, giros y aventuras a partir de la petición del usuario, dejando volar la imaginación en cada cuento.'
+          );
+        } else {
+          if (fuentes.personajes) {
+            reglasContexto.push(
+              'Usa los personajes proporcionados como referencia de quiénes son, sus rasgos, gustos o apariencia si encajan en la historia, e inventa libremente la trama.'
+            );
+          }
+          if (fuentes.viajes) {
+            reglasContexto.push(
+              'Inspírate en la narración y el ambiente del viaje seleccionado para dar ambientación y variedad, sin copiar literalmente fichas técnicas.'
+            );
+          } else {
+            reglasContexto.push(
+              'No te ciñas a ningún viaje real: inventa libremente el escenario y la aventura con total imaginación.'
+            );
+          }
+          if (fuentes.frases || fuentes.viajeros) {
+            reglasContexto.push(
+              'Si hay apodos o frases graciosas, usa COMO MÁXIMO un apodo y una frase por personaje en todo el cuento, repartidos sin amontonarlos.'
+            );
+          }
+        }
+
         const systemInstruction = [
           'Eres un cuentacuentos creativo para una familia con niños pequeños (3 a 7 años).',
-          'Escribe un cuento original, de 5 a 7 párrafos cortos, con hilo narrativo claro y final feliz.',
-          'Mantén los nombres y rasgos de los personajes tal como aparecen en los datos.',
-          'IMPORTANTE sobre apodos y frases: usa COMO MÁXIMO un apodo por personaje y COMO MÁXIMO una frase/expresión graciosa por personaje en todo el cuento. Repártelos a lo largo del nudo o el desenlace, NUNCA los amontones todos al principio ni hagas que todos suenen igual.',
-          'Inspírate de verdad en la narración y el ambiente del viaje seleccionado (lugares, detalles, sensaciones) para dar verosimilitud y variedad, sin copiar literalmente fichas técnicas.',
-          'No inventes hechos reales sobre la familia que no estén en los datos; la aventura sí puede ser fantástica.',
+          'Escribe un cuento original, variado y sorprendente, de 5 a 7 párrafos cortos, con hilo narrativo claro y final feliz.',
+          ...reglasContexto,
           'Formato: la primera línea es el título (sin #, sin asteriscos y sin punto final); después los párrafos separados por una línea en blanco. Sin listas ni comentarios finales.',
           instruccionIdioma
         ].join(' ');
@@ -425,21 +482,20 @@ export class IaFamiliaService {
           protagonistas && protagonistas === lugar
             ? [`- Idea del cuento (personajes, escenario y trama): ${protagonistas}`]
             : [
-                `- Protagonistas: ${protagonistas || 'miembros de la familia a elegir libremente'}`,
-                `- Escenario / viaje: ${lugar || 'un lugar de los viajes o un escenario fantástico'}`
+                `- Protagonistas: ${protagonistas || 'personajes libres según la idea del cuento'}`,
+                `- Escenario: ${lugar || 'un escenario imaginativo según la petición'}`
               ];
 
-        const prompt = [
-          `FECHA DE HOY: ${this.fechaHoy()}`,
-          'DATOS DE LA FAMILIA Y VIAJES (seleccionados según la temática):',
-          contexto || '(Sin datos adicionales)',
-          '',
-          'PETICIÓN DEL CUENTO:',
-          ...peticion,
-          `- Tono: ${tono}`
-        ].join('\n');
+        const promptParts = [`FECHA DE HOY: ${this.fechaHoy()}`];
+        if (contexto) {
+          promptParts.push('DATOS SELECCIONADOS PARA EL CUENTO:', contexto, '');
+        }
+        promptParts.push('PETICIÓN DEL CUENTO:', ...peticion, `- Tono: ${tono}`);
 
-        return this.generarTexto(prompt, systemInstruction, { temperatura: 0.9, maxTokens: 1400 });
+        return this.generarTexto(promptParts.join('\n'), systemInstruction, {
+          temperatura: hayAlgunaFuente ? 0.92 : 1.0,
+          maxTokens: 1400
+        });
       })
     );
   }
@@ -642,47 +698,83 @@ export class IaFamiliaService {
   //  SELECTOR DE CONTEXTO (sin segunda llamada a IA)
   // ═════════════════════════════════════════════════════════
 
-  private construirContextoCuento(texto: string): Observable<string> {
+  private construirContextoCuento(
+    texto: string,
+    fuentes: FuentesCuentoConfig = FUENTES_CUENTO_LIBRE
+  ): Observable<string> {
+    const necesitaPersonas = fuentes.personajes || fuentes.viajeros || fuentes.cumpleanyos;
+    const hayAlguna = necesitaPersonas || fuentes.frases || fuentes.viajes;
+
+    if (!hayAlguna) {
+      return of('');
+    }
+
     const q = this.analizarConsulta(texto);
 
     return forkJoin({
-      viajeros: this.leerJson('assets/data/viajeros.json'),
-      personajes: this.leerJson('assets/data/personajes.json'),
-      cumple: this.leerJson('assets/data/cumpleanyos.json'),
-      frases: this.leerJson('assets/data/frases.json'),
-      viajes: this.cargarIndiceViajes(),
-      // relatos: this.cargarRelatos().pipe(catchError(() => of([] as RelatoIndexado[])))
+      viajeros: fuentes.viajeros ? this.leerJson('assets/data/viajeros.json') : of(null),
+      personajes: fuentes.personajes ? this.leerJson('assets/data/personajes.json') : of(null),
+      cumple: fuentes.cumpleanyos ? this.leerJson('assets/data/cumpleanyos.json') : of(null),
+      frases: fuentes.frases ? this.leerJson('assets/data/frases.json') : of(null),
+      viajes: fuentes.viajes ? this.cargarIndiceViajes() : of([] as ViajeIndexado[])
     }).pipe(
       map((d) => {
-        const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
-        const mencionados = this.detectarPersonas(q, personas);
         const partes: string[] = [];
 
-        partes.push(this.bloquePersonajes(personas, mencionados));
+        if (necesitaPersonas) {
+          const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
+          const mencionados = this.detectarPersonas(q, personas);
 
-        const extendida = this.bloqueExtendida(personas, mencionados);
-        if (extendida) partes.push(extendida);
+          if (fuentes.personajes || fuentes.viajeros) {
+            partes.push(this.bloquePersonajes(personas, mencionados, fuentes.viajeros));
+          }
 
-        const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 1, true);
-        if (viajes.length) {
-          partes.push(
-            `VIAJE DE REFERENCIA (un único viaje seleccionado aleatoriamente entre los afines; usa toda su información y narración para ambientar el cuento):\n${viajes
-              .map((v) => this.lineaViaje(v))
-              .join('\n')}`
-          );
+          if (fuentes.cumpleanyos) {
+            const extendida = this.bloqueExtendida(personas, mencionados);
+            if (extendida) partes.push(extendida);
+          }
+
+          if (fuentes.viajes && Array.isArray(d.viajes) && d.viajes.length > 0) {
+            const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 1, true);
+            if (viajes.length) {
+              partes.push(
+                `VIAJE DE REFERENCIA (un único viaje seleccionado aleatoriamente entre los afines; usa toda su información y narración para ambientar el cuento):\n${viajes
+                  .map((v) => this.lineaViaje(v))
+                  .join('\n')}`
+              );
+            }
+          }
+
+          if (fuentes.frases) {
+            const frases = this.seleccionarFrases(d.frases, q, mencionados, 4);
+            if (frases.length) {
+              partes.push(
+                `FRASES Y PALABRAS GRACIOSAS (máximo 1 por personaje, repartidas durante el cuento, sin explicarlas):\n${frases.join('\n')}`
+              );
+            }
+          }
+        } else {
+          const vacio = new Set<string>();
+          if (fuentes.viajes && Array.isArray(d.viajes) && d.viajes.length > 0) {
+            const viajes = this.seleccionarViajes(d.viajes, q, vacio, 1, true);
+            if (viajes.length) {
+              partes.push(
+                `VIAJE DE REFERENCIA (un único viaje seleccionado aleatoriamente entre los afines; usa toda su información y narración para ambientar el cuento):\n${viajes
+                  .map((v) => this.lineaViaje(v))
+                  .join('\n')}`
+              );
+            }
+          }
+
+          if (fuentes.frases) {
+            const frases = this.seleccionarFrases(d.frases, q, vacio, 4);
+            if (frases.length) {
+              partes.push(
+                `FRASES Y PALABRAS GRACIOSAS (máximo 1 por personaje, repartidas durante el cuento, sin explicarlas):\n${frases.join('\n')}`
+              );
+            }
+          }
         }
-
-        const frases = this.seleccionarFrases(d.frases, q, mencionados, 4);
-        if (frases.length) {
-          partes.push(
-            `FRASES Y PALABRAS GRACIOSAS (máximo 1 por personaje, repartidas durante el cuento, sin explicarlas):\n${frases.join('\n')}`
-          );
-        }
-
-        // const relatos = this.seleccionarRelatos(d.relatos, q, 2, 340);
-        // if (relatos.length) {
-        //   partes.push(`RELATOS DE VIAJES:\n${relatos.join('\n')}`);
-        // }
 
         return this.recortarContexto(partes, this.MAX_CHARS_CUENTO);
       })
@@ -711,7 +803,7 @@ export class IaFamiliaService {
       map((d) => {
         const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
         const mencionados = this.detectarPersonas(q, personas);
-        const partes: string[] = [this.bloquePersonajes(personas, mencionados)];
+        const partes: string[] = [this.bloquePersonajes(personas, mencionados, true)];
 
         const extendida = this.bloqueExtendida(personas, mencionados);
         if (extendida) partes.push(extendida);
@@ -813,6 +905,12 @@ export class IaFamiliaService {
 
   // ───────────── Personajes ─────────────
 
+  private capitalizarNombre(raw: string): string {
+    const t = String(raw ?? '').trim();
+    if (!t) return '';
+    return t.charAt(0).toUpperCase() + t.slice(1);
+  }
+
   private construirPersonas(viajeros: unknown, extras: unknown, cumple: unknown): Persona[] {
     const extraPorId = new Map<string, Dato>();
     for (const e of this.aLista(extras)) {
@@ -822,30 +920,52 @@ export class IaFamiliaService {
 
     const mapa = new Map<string, Persona>();
 
-    const aplicarExtra = (p: Persona) => {
-      const e = extraPorId.get(p.id);
-      if (!e) return;
+    const aplicarExtra = (p: Persona, e: Dato) => {
+      if (typeof e['nombre'] === 'string' && e['nombre'].trim()) {
+        p.nombre = e['nombre'].trim();
+      }
       p.rol = typeof e['rol'] === 'string' ? e['rol'] : p.rol;
       p.relaciones = typeof e['relaciones'] === 'string' ? e['relaciones'] : p.relaciones;
+      p.apariencia = typeof e['apariencia'] === 'string' ? e['apariencia'] : p.apariencia;
       p.rasgos = Array.isArray(e['rasgos']) ? e['rasgos'].map(String) : p.rasgos;
       p.detalles = Array.isArray(e['detalles']) ? e['detalles'].map(String) : p.detalles;
+      p.favoritos = Array.isArray(e['favoritos']) ? e['favoritos'].map(String) : p.favoritos;
     };
 
     for (const v of this.aLista(viajeros)) {
       const nombre = String(v?.['nombre'] ?? '').trim();
-      if (!nombre) continue;
-      const id = this.normalizarTexto(nombre);
+      const id = this.normalizarTexto(String(v?.['id'] ?? nombre)).trim();
+      if (!id) continue;
       const m = String(v?.['nacimiento'] ?? '').match(/^(\d{4})-(\d{2})-(\d{2})/);
       const persona: Persona = {
         id,
-        nombre,
+        nombre: nombre || this.capitalizarNombre(id),
         aka: Array.isArray(v?.['aka']) ? v['aka'].map(String) : [],
         nacimiento: m ? { y: +m[1], m: +m[2], d: +m[3] } : null,
         nucleo: true,
         rasgos: [],
-        detalles: []
+        detalles: [],
+        favoritos: []
       };
-      aplicarExtra(persona);
+      const ex = extraPorId.get(id);
+      if (ex) aplicarExtra(persona, ex);
+      mapa.set(id, persona);
+    }
+
+    for (const [id, e] of extraPorId.entries()) {
+      if (mapa.has(id)) continue;
+      const nombre = String(e['nombre'] ?? '').trim() || this.capitalizarNombre(String(e['id'] ?? id));
+      const persona: Persona = {
+        id,
+        nombre,
+        aka: Array.isArray(e['aka']) ? e['aka'].map(String) : [],
+        nacimiento: null,
+        nucleo: true,
+        rasgos: [],
+        detalles: [],
+        favoritos: []
+      };
+      aplicarExtra(persona, e);
       mapa.set(id, persona);
     }
 
@@ -862,9 +982,11 @@ export class IaFamiliaService {
           : null,
         nucleo: false,
         rasgos: [],
-        detalles: []
+        detalles: [],
+        favoritos: []
       };
-      aplicarExtra(persona);
+      const ex = extraPorId.get(id);
+      if (ex) aplicarExtra(persona, ex);
       mapa.set(id, persona);
     }
 
@@ -890,7 +1012,11 @@ export class IaFamiliaService {
     return `${edad} ${edad === 1 ? 'año' : 'años'}`;
   }
 
-  private bloquePersonajes(personas: Persona[], mencionados: Set<string>): string {
+  private bloquePersonajes(
+    personas: Persona[],
+    mencionados: Set<string>,
+    incluirApodos: boolean
+  ): string {
     const nucleo = personas.filter((p) => p.nucleo);
     const protagonistas = nucleo.filter((p) => mencionados.has(p.id)).map((p) => p.nombre);
 
@@ -901,19 +1027,23 @@ export class IaFamiliaService {
       if (p.rol) partes.push(p.rol);
       if (p.relaciones) partes.push(p.relaciones);
 
-      const apodosValidos = p.aka.map((a) => String(a ?? '').trim()).filter(Boolean);
-      if (apodosValidos.length > 0) {
-        const ultimoApodo = this.ultimosApodosPorPersona.get(p.id);
-        const candidatosApodo =
-          apodosValidos.length > 1 && ultimoApodo
-            ? apodosValidos.filter((a) => this.normalizarTexto(a) !== this.normalizarTexto(ultimoApodo))
-            : apodosValidos;
-        const apodoElegido = candidatosApodo[Math.floor(Math.random() * candidatosApodo.length)];
-        this.ultimosApodosPorPersona.set(p.id, apodoElegido);
-        partes.push(`Apodo opcional (usar máx. 1 vez): ${apodoElegido}`);
+      if (incluirApodos) {
+        const apodosValidos = p.aka.map((a) => String(a ?? '').trim()).filter(Boolean);
+        if (apodosValidos.length > 0) {
+          const ultimoApodo = this.ultimosApodosPorPersona.get(p.id);
+          const candidatosApodo =
+            apodosValidos.length > 1 && ultimoApodo
+              ? apodosValidos.filter((a) => this.normalizarTexto(a) !== this.normalizarTexto(ultimoApodo))
+              : apodosValidos;
+          const apodoElegido = candidatosApodo[Math.floor(Math.random() * candidatosApodo.length)];
+          this.ultimosApodosPorPersona.set(p.id, apodoElegido);
+          partes.push(`Apodo opcional (usar máx. 1 vez): ${apodoElegido}`);
+        }
       }
 
-      if (p.rasgos.length) partes.push(`Rasgos: ${p.rasgos.slice(0, 2).join('; ')}`);
+      if (p.apariencia) partes.push(`Aspecto: ${p.apariencia}`);
+      if (p.rasgos.length) partes.push(`Rasgos: ${p.rasgos.slice(0, 3).join('; ')}`);
+      if (p.favoritos.length) partes.push(`Gustos: ${p.favoritos.slice(0, 2).join('; ')}`);
       if (p.detalles.length) partes.push(`Detalles: ${p.detalles.slice(0, 2).join('; ')}`);
       return `- ${partes.join('. ')}.`;
     });
@@ -1493,12 +1623,12 @@ export class IaFamiliaService {
           .filter(Boolean)
           .join(' ');
 
-          return this.intentarPollinationsImagen(promptFinal).pipe(
-            switchMap((imgPoll) => {
-              if (imgPoll) {
-                return of(imgPoll);
-              }
-              return this.intentarHuggingFaceImagen(promptFinal).pipe(
+        return this.intentarPollinationsImagen(promptFinal).pipe(
+          switchMap((imgPoll) => {
+            if (imgPoll) {
+              return of(imgPoll);
+            }
+            return this.intentarHuggingFaceImagen(promptFinal).pipe(
               switchMap((imgHf) => {
                 if (imgHf) {
                   return of(imgHf);
@@ -1851,7 +1981,7 @@ export class IaFamiliaService {
       .map((p) => {
         const edad = this.textoEdad(p);
         const rasgos = p.rasgos.slice(0, 2).join(', ');
-        return [p.nombre, edad, rasgos].filter(Boolean).join(' - ');
+        return [p.nombre, edad, p.apariencia, rasgos].filter(Boolean).join(' - ');
       })
       .join('; ');
   }

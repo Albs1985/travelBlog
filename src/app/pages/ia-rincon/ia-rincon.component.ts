@@ -1,7 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
-import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
+import {
+  FUENTES_CUENTO_LIBRE,
+  FUENTES_CUENTO_SOLO_PERSONAJES,
+  FuentesCuentoConfig,
+  IdiomaIa,
+  IaFamiliaService
+} from '../../services/ia-familia.service';
 import { finalize, of, catchError, map, Subscription, Observable, forkJoin, switchMap } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
@@ -39,6 +45,9 @@ interface ImagenComprimida {
 })
 export class IaRinconComponent implements OnInit, OnDestroy {
   modo: 'familia' | 'cuento' | 'biblioteca' = 'cuento';
+
+  // Por defecto: 100 % libre (ningún JSON marcado)
+  fuentesCuento: FuentesCuentoConfig = { ...FUENTES_CUENTO_LIBRE };
 
   apiKeyInput = '';
   claveGuardada = false;
@@ -112,6 +121,41 @@ export class IaRinconComponent implements OnInit, OnDestroy {
 
   get indiceMitadCuento(): number {
     return Math.max(1, Math.floor(this.parrafosCuento.length / 2));
+  }
+
+  get esModoCuentoLibre(): boolean {
+    return (
+      !this.fuentesCuento.personajes &&
+      !this.fuentesCuento.viajeros &&
+      !this.fuentesCuento.cumpleanyos &&
+      !this.fuentesCuento.frases &&
+      !this.fuentesCuento.viajes
+    );
+  }
+
+  get esSoloPersonajes(): boolean {
+    return (
+      this.fuentesCuento.personajes &&
+      !this.fuentesCuento.viajeros &&
+      !this.fuentesCuento.cumpleanyos &&
+      !this.fuentesCuento.frases &&
+      !this.fuentesCuento.viajes
+    );
+  }
+
+  alternarFuenteCuento(campo: keyof FuentesCuentoConfig): void {
+    this.fuentesCuento = {
+      ...this.fuentesCuento,
+      [campo]: !this.fuentesCuento[campo]
+    };
+  }
+
+  aplicarModoLibreCuento(): void {
+    this.fuentesCuento = { ...FUENTES_CUENTO_LIBRE };
+  }
+
+  aplicarSoloPersonajesCuento(): void {
+    this.fuentesCuento = { ...FUENTES_CUENTO_SOLO_PERSONAJES };
   }
 
   obtenerSegmentosChat(msg: MensajeChatFamilia): SegmentoTextoChat[] {
@@ -259,7 +303,7 @@ export class IaRinconComponent implements OnInit, OnDestroy {
           }
         });
 
-      // 2. Generación del texto del cuento
+      // 2. Generación del texto del cuento con las fuentes configuradas
       this.iaService
         .inventarCuento(
           {
@@ -268,7 +312,8 @@ export class IaRinconComponent implements OnInit, OnDestroy {
             tono: 'tierno, mágico y divertido',
             estiloVisual: this.estiloCuentoNombre
           },
-          this.obtenerIdiomaActivo()
+          this.obtenerIdiomaActivo(),
+          this.fuentesCuento
         )
         .pipe(finalize(() => (this.cargando = false)))
         .subscribe({
