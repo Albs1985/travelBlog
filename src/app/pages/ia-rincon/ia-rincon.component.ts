@@ -561,16 +561,21 @@ export class IaRinconComponent implements OnInit, OnDestroy {
       .split(/\s+/)
       .filter(Boolean);
 
-    let corto = '';
-    for (const p of palabras) {
-      const candidato = corto ? `${corto}-${p}` : p;
-      if (candidato.length > 28) {
-        break;
-      }
-      corto = candidato;
+    if (palabras.length === 0) {
+      return 'cuento';
     }
 
-    return corto || palabras[0]?.slice(0, 20) || 'cuento';
+    const maxLongitud = 100;
+    let slug = '';
+    for (const p of palabras) {
+      const candidato = slug ? `${slug}-${p}` : p;
+      if (candidato.length > maxLongitud && slug) {
+        break;
+      }
+      slug = candidato;
+    }
+
+    return slug || 'cuento';
   }
 
   async descargarCuentoPdfLocal(): Promise<void> {

@@ -438,7 +438,7 @@ export class IaFamiliaService {
       switchMap((contexto) => {
         const instruccionIdioma =
           idioma === 'val'
-            ? "Escriu tot el conte exclusivament en valencià normatiu, seguint els criteris lingüístics de l'Acadèmia Valenciana de la Llengua (AVL). És imprescindible que utilitzes el valencià propi de la Comunitat Valenciana, preferentment el valencià central (zona de València). No utilitzes vocabulari, expressions ni construccions pròpies del català central si existeix una forma valenciana habitual."
+            ? "Escriu tot el conte exclusivament en valencià normatiu, seguint els criteris lingüístics de l'Acadèmia Valenciana de la Llengua (AVL). És imprescindible que utilitzes el valencià propi de la Comunitat Valenciana, preferentment el valencià central (zona de València). No utilitzes vocabulari, expressions ni construccions pròpies del català central si existeix una forma valenciana habitual. Prioritza sistemàticament les formes valencianes: «hui» (no «avui»), «xiquet/xiqueta» (no «nen/nina»), «roig» (no «vermell»), «xicotet» (no «petit»), «vesprada» (no «tarda»), «eixir» (no «sortir»), «tindre» (no «tenir»), «vindre» (no «venir»), «este/esta» (no «aquest/aquesta»), «eixe/eixa» (no «aquell/aquella» quan corresponga), «faena» (no «feina»), «beset» (no «petó»), «espill» (no «mirall»)"
             : 'Escribe el cuento íntegramente en español.';
 
         const tono = (opciones.tono ?? '').trim() || 'tierno y divertido';
