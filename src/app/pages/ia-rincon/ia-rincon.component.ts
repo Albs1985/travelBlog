@@ -22,6 +22,7 @@ export interface CuentoGuardadoItem {
   fecha: string;
   downloadUrl?: string;
   pdfBase64?: string;
+  miniaturaUrl?: string;
 }
 
 interface ImagenPdfLista {
@@ -372,10 +373,35 @@ export class IaRinconComponent implements OnInit {
   //  PDF LIGERO CON IMÁGENES + GUARDAR EN GITHUB + CONSULTA
   // ═════════════════════════════════════════════════════════
 
-  private obtenerNombreArchivoPdfCuento(titulo: string, fechaStr = new Date().toISOString().slice(0, 10)): string {
-    const tituloLimpio = (titulo || 'cuento-familiar').trim();
+  private obtenerNombreArchivoPdfCuento(titulo: string): string {
+    const tituloLimpio = (titulo || 'cuento').trim();
     const baseTitulo = this.slugArchivoCuento(tituloLimpio);
-    return `${baseTitulo}-${fechaStr}.pdf`;
+    return `${baseTitulo}.pdf`;
+  }
+
+  private slugArchivoCuento(titulo: string): string {
+    const sinPrefijo = (titulo || 'cuento')
+      .replace(/^(un cuento sobre:|cuento de|la aventura de|una gran aventura inspirada en:)\s*/i, '');
+
+    const palabras = sinPrefijo
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+
+    let corto = '';
+    for (const p of palabras) {
+      const candidato = corto ? `${corto}-${p}` : p;
+      if (candidato.length > 28) {
+        break;
+      }
+      corto = candidato;
+    }
+
+    return corto || palabras[0]?.slice(0, 20) || 'cuento';
   }
 
   async descargarCuentoPdfLocal(): Promise<void> {
@@ -390,16 +416,7 @@ export class IaRinconComponent implements OnInit {
         this.parrafosCuento,
         this.imagenesCuento
       );
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = nombreArchivo;
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      this.dispararDescargaPdfBlob(pdfBytes, nombreArchivo);
 
       const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
       this.mensajeEstadoPdf = `PDF ligero descargado (${kb} KB): ${nombreArchivo}`;
@@ -425,10 +442,15 @@ export class IaRinconComponent implements OnInit {
     this.mensajeEstadoPdf = '';
 
     try {
-      const nombreBase = (this.tituloCuento || 'Cuento familiar').trim();
+      // const nombreBase = (this.tituloCuento || 'Cuento familiar').trim();
+      const tituloFormateado = this.capitalizarInicial(this.tituloCuento || 'Cuento familiar');
       const fechaStr = new Date().toISOString().slice(0, 10);
-      const nombreArchivo = this.obtenerNombreArchivoPdfCuento(nombreBase, fechaStr);
+      const nombreArchivo = this.obtenerNombreArchivoPdfCuento(tituloFormateado);
       const rutaRepo = `${this.carpetaCuentosPdfRepo}/${nombreArchivo}`;
+
+      const miniaturaImg = this.imagenesCuento[0]
+        ? await this.comprimirImagenParaPdf(this.imagenesCuento[0], 180, 0.6)
+        : null;
 
       const pdfBytes = await this.construirPdfLigeroConImagenes(
         this.tituloCuento || 'Cuento familiar',
@@ -480,7 +502,8 @@ export class IaRinconComponent implements OnInit {
                       titulo: this.tituloCuento,
                       fecha: fechaStr,
                       downloadUrl,
-                      pdfBase64: base64Pdf
+                      pdfBase64: base64Pdf,
+                      miniaturaUrl: miniaturaImg?.dataUrl
                     },
                     ...this.cuentosGuardados.filter((c) => c.nombreArchivo !== nombreArchivo)
                   ];
@@ -516,40 +539,198 @@ export class IaRinconComponent implements OnInit {
         finalize(() => (this.cargandoBiblioteca = false))
       )
       .subscribe((items) => {
-        const lista = (Array.isArray(items) ? items : [])
+        const lista: CuentoGuardadoItem[] = (Array.isArray(items) ? items : [])
           .filter((it) => it.type === 'file' && String(it.name).toLowerCase().endsWith('.pdf'))
-          .sort((a, b) => String(b.name).localeCompare(String(a.name)))
-          .map((it) => ({
-            nombreArchivo: it.name,
-            titulo: String(it.name)
+          .sort((a, b) => String(a.name).localeCompare(String(b.name)))
+          .map((it) => {
+            const tituloSinExtension = String(it.name)
               .replace(/\.pdf$/i, '')
               .replace(/^\d{4}-\d{2}-\d{2}-/, '')
-              .replace(/-/g, ' '),
-            fecha: String(it.name).slice(0, 10),
-            downloadUrl: it.download_url
-          }));
+              .replace(/-/g, ' ');
+            return {
+              nombreArchivo: it.name,
+              titulo: this.capitalizarInicial(tituloSinExtension),
+              fecha: String(it.name).slice(0, 10),
+              downloadUrl: it.download_url
+            };
+          })
 
         const existentesNombres = new Set(lista.map((x) => x.nombreArchivo));
         const localesSesion = this.cuentosGuardados.filter((x) => !existentesNombres.has(x.nombreArchivo));
-        this.cuentosGuardados = [...localesSesion, ...lista];
+        const combinada = [...localesSesion, ...lista];
+
+        // Conservamos miniaturas ya cargadas en memoria y extraemos al vuelo las que falten
+        const prevPorNombre = new Map(this.cuentosGuardados.map((c) => [c.nombreArchivo, c]));
+        this.cuentosGuardados = combinada.map((item) => {
+          const prev = prevPorNombre.get(item.nombreArchivo);
+          return {
+            ...item,
+            pdfBase64: item.pdfBase64 || prev?.pdfBase64,
+            miniaturaUrl: item.miniaturaUrl || prev?.miniaturaUrl
+          };
+        });
+
+        this.enriquecerMiniaturasDesdePdf(this.cuentosGuardados);
       });
   }
 
-  abrirCuentoPdf(item: CuentoGuardadoItem): void {
-    if (item.pdfBase64) {
-      const byteCharacters = atob(item.pdfBase64);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
+  private enriquecerMiniaturasDesdePdf(items: CuentoGuardadoItem[]): void {
+    const pendientes = items.filter((it) => !it.miniaturaUrl);
+    if (pendientes.length === 0) return;
+
+    const token = this.obtenerTokenGithub();
+
+    for (const item of pendientes) {
+      if (item.pdfBase64) {
+        const bytes = this.base64ToBytes(item.pdfBase64);
+        this.extraerMiniaturaJpegDesdePdfBytes(bytes).then((mini) => {
+          if (mini) item.miniaturaUrl = mini;
+        });
+        continue;
       }
-      const blob = new Blob([new Uint8Array(byteNumbers)], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
+
+      const urlCandidata = item.downloadUrl || `assets/cuentos-pdf/${item.nombreArchivo}`;
+      const headers =
+        token && urlCandidata.includes('api.github.com')
+          ? new HttpHeaders({ Authorization: `Bearer ${token}` })
+          : undefined;
+
+      this.http
+        .get(urlCandidata, {
+          ...(headers ? { headers } : {}),
+          responseType: 'blob'
+        })
+        .pipe(
+          catchError(() =>
+            item.downloadUrl
+              ? this.http.get(`assets/cuentos-pdf/${item.nombreArchivo}`, { responseType: 'blob' }).pipe(catchError(() => of(null)))
+              : of(null)
+          )
+        )
+        .subscribe(async (blob) => {
+          if (!blob || blob.size === 0) return;
+          const buffer = await blob.arrayBuffer();
+          const bytes = new Uint8Array(buffer);
+          const mini = await this.extraerMiniaturaJpegDesdePdfBytes(bytes);
+          if (mini) {
+            item.miniaturaUrl = mini;
+          }
+        });
+    }
+  }
+
+  private async extraerMiniaturaJpegDesdePdfBytes(pdfBytes: Uint8Array): Promise<string | undefined> {
+    // Buscamos el primer stream JPEG incrustado (SOI: FF D8 FF ... EOI: FF D9)
+    let inicio = -1;
+    for (let i = 0; i < pdfBytes.length - 3; i++) {
+      if (pdfBytes[i] === 0xff && pdfBytes[i + 1] === 0xd8 && pdfBytes[i + 2] === 0xff) {
+        inicio = i;
+        break;
+      }
+    }
+    if (inicio === -1) return undefined;
+
+    let fin = -1;
+    for (let j = inicio + 3; j < pdfBytes.length - 1; j++) {
+      if (pdfBytes[j] === 0xff && pdfBytes[j + 1] === 0xd9) {
+        fin = j + 2;
+        break;
+      }
+    }
+    if (fin === -1 || fin <= inicio) return undefined;
+
+    const jpegBytes = pdfBytes.slice(inicio, fin);
+    const jpegBlob = new Blob([jpegBytes], { type: 'image/jpeg' });
+    const rawDataUrl = await this.blobADataUrl(jpegBlob);
+    if (!rawDataUrl) return undefined;
+
+    const mini = await this.comprimirImagenParaPdf(rawDataUrl, 160, 0.58);
+    return mini?.dataUrl || rawDataUrl;
+  }
+
+  private blobADataUrl(blob: Blob): Promise<string | null> {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(typeof reader.result === 'string' ? reader.result : null);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  abrirCuentoPdf(item: CuentoGuardadoItem): void {
+    this.errorMsg = '';
+
+    if (item.pdfBase64) {
+      const bytes = this.base64ToBytes(item.pdfBase64);
+      this.dispararDescargaPdfBlob(bytes, item.nombreArchivo);
       return;
     }
 
-    const assetUrl = `assets/cuentos-pdf/${item.nombreArchivo}`;
-    window.open(item.downloadUrl || assetUrl, '_blank');
+    const urlCandidata = item.downloadUrl || `assets/cuentos-pdf/${item.nombreArchivo}`;
+    const token = this.obtenerTokenGithub();
+    const headers =
+      token && urlCandidata.includes('api.github.com')
+        ? new HttpHeaders({ Authorization: `Bearer ${token}` })
+        : undefined;
+
+    this.cargandoBiblioteca = true;
+    this.http
+      .get(urlCandidata, {
+        ...(headers ? { headers } : {}),
+        responseType: 'blob'
+      })
+      .pipe(
+        finalize(() => (this.cargandoBiblioteca = false)),
+        catchError(() => {
+          if (item.downloadUrl) {
+            return this.http.get(`assets/cuentos-pdf/${item.nombreArchivo}`, { responseType: 'blob' });
+          }
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (blob) => {
+          if (!blob || blob.size === 0) {
+            this.errorMsg = 'No se pudo descargar el PDF en el dispositivo.';
+            return;
+          }
+          const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+          this.descargarBlobEnDispositivo(pdfBlob, item.nombreArchivo);
+        },
+        error: () => {
+          this.errorMsg = 'No se pudo abrir el PDF desde GitHub.';
+        }
+      });
+  }
+
+  private dispararDescargaPdfBlob(bytes: Uint8Array, nombreArchivo: string): void {
+    const pdfBlob = new Blob([bytes], { type: 'application/pdf' });
+    this.descargarBlobEnDispositivo(pdfBlob, nombreArchivo);
+  }
+
+  private descargarBlobEnDispositivo(blob: Blob, nombreArchivo: string): void {
+    const nombreLimpio = nombreArchivo.toLowerCase().endsWith('.pdf')
+      ? nombreArchivo
+      : `${nombreArchivo}.pdf`;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nombreLimpio;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  }
+
+  private base64ToBytes(base64: string): Uint8Array {
+    const limpio = base64.includes(',') ? base64.split(',')[1] : base64;
+    const bin = atob(limpio);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) {
+      bytes[i] = bin.charCodeAt(i);
+    }
+    return bytes;
   }
 
   private async construirPdfLigeroConImagenes(
@@ -571,7 +752,8 @@ export class IaRinconComponent implements OnInit {
         .replace(/\)/g, '\\)');
 
     const envolverLineas = (texto: string, maxChars: number): string[] => {
-      const palabras = texto.split(/\s+/).filter(Boolean);
+      const textoLimpio = texto.replace(/\*+([^*]+)\*+/g, '$1').replace(/\*/g, '');
+      const palabras = textoLimpio.split(/\s+/).filter(Boolean);
       const lineas: string[] = [];
       let actual = '';
       for (const p of palabras) {
@@ -806,18 +988,6 @@ export class IaRinconComponent implements OnInit {
     ).trim();
   }
 
-  private slugArchivoCuento(titulo: string): string {
-    return (
-      (titulo || 'cuento-familiar')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-        .slice(0, 50) || 'cuento-familiar'
-    );
-  }
-
   private bytesToBase64(bytes: Uint8Array): string {
     let binario = '';
     const chunkSize = 0x8000;
@@ -828,6 +998,51 @@ export class IaRinconComponent implements OnInit {
     return btoa(binario);
   }
 
+  obtenerSegmentosCuento(parrafo: string): SegmentoTextoChat[] {
+    if (!parrafo) {
+      return [];
+    }
+
+    const normalizado = parrafo.replace(/\*\*([^*]+)\*\*/g, '*$1*');
+    const segmentos: SegmentoTextoChat[] = [];
+    const regex = /\*([^*]+)\*/g;
+    let ultimoIndice = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(normalizado)) !== null) {
+      if (match.index > ultimoIndice) {
+        segmentos.push({
+          texto: normalizado.slice(ultimoIndice, match.index),
+          negrita: false
+        });
+      }
+
+      segmentos.push({
+        texto: match[1],
+        negrita: true
+      });
+
+      ultimoIndice = regex.lastIndex;
+    }
+
+    if (ultimoIndice < normalizado.length) {
+      segmentos.push({
+        texto: normalizado.slice(ultimoIndice),
+        negrita: false
+      });
+    }
+
+    return segmentos;
+  }
+
+  private capitalizarInicial(texto: string): string {
+    const limpio = (texto ?? '').trim();
+    if (!limpio) {
+      return '';
+    }
+    return limpio.charAt(0).toLocaleUpperCase() + limpio.slice(1);
+  }
+
   private formatearCuento(raw: string, promptOriginal: string): void {
     const bloques = raw
       .split(/\n\s*\n/)
@@ -835,14 +1050,14 @@ export class IaRinconComponent implements OnInit {
       .filter(Boolean);
 
     if (bloques.length > 1 && bloques[0].length < 95 && !bloques[0].endsWith('.')) {
-      this.tituloCuento = bloques[0].replace(/^#+\s*|\*\*/g, '').trim();
-      this.parrafosCuento = bloques.slice(1).map((p) => p.replace(/\*\*/g, '').trim());
+      this.tituloCuento = this.capitalizarInicial(bloques[0].replace(/^#+\s*|\*\*/g, '').trim());
+      this.parrafosCuento = bloques.slice(1).map((p) => p.trim());
     } else {
-      this.tituloCuento = `Un cuento sobre: ${promptOriginal}`;
+      this.tituloCuento = this.capitalizarInicial(`Un cuento sobre: ${promptOriginal}`);
       this.parrafosCuento =
         bloques.length > 0
-          ? bloques.map((p) => p.replace(/\*\*/g, '').trim())
-          : [raw.replace(/\*\*/g, '').trim()];
+          ? bloques.map((p) => p.trim())
+          : [raw.trim()];
     }
   }
 

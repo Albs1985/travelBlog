@@ -193,7 +193,7 @@
 
       <div class="libro-cuento-paginas">
         <ng-container *ngFor="let p of parrafosCuento; let i = index">
-          <p class="libro-cuento-parrafo">{{ p }}</p>
+          <p class="libro-cuento-parrafo"><ng-container *ngFor="let seg of obtenerSegmentosCuento(p)"><strong *ngIf="seg.negrita">{{ seg.texto }}</strong><ng-container *ngIf="!seg.negrita">{{ seg.texto }}</ng-container></ng-container></p>
 
           <!-- 2. ILUSTRACIÓN DE LA MITAD DEL CUENTO -->
           <div *ngIf="mostrarHuecoImagen && i === indiceMitadCuento - 1" class="espacio-ilustracion-cuento">
@@ -276,14 +276,6 @@
         <button
           type="button"
           class="btn-secundario btn-accion-cuento"
-          [disabled]="cargandoPuter"
-          (click)="ilustrarConPuter()">
-          🎨 {{ (cargandoPuter ? 'iaRincon.ilustrandoIa' : 'iaRincon.btnIlustrarIa') | translate }}
-        </button>
-
-        <button
-          type="button"
-          class="btn-secundario btn-accion-cuento"
           [disabled]="generandoPdf"
           (click)="descargarCuentoPdfLocal()">
           📥 {{ (generandoPdf ? 'iaRincon.creandoPdf' : 'iaRincon.btnDescargarPdf') | translate }}
@@ -325,9 +317,19 @@
 
     <div *ngIf="!cargandoBiblioteca && cuentosGuardados.length > 0" class="lista-pdfs-guardados">
       <div *ngFor="let item of cuentosGuardados" class="fila-pdf-guardado">
-        <div>
-          <strong>{{ item.titulo }}</strong>
-          <small class="fecha-pdf">{{ item.fecha }} · {{ item.nombreArchivo }}</small>
+        <div class="fila-pdf-info">
+          <img
+            *ngIf="item.miniaturaUrl"
+            [src]="item.miniaturaUrl"
+            [alt]="item.titulo"
+            class="miniatura-pdf-cuento">
+          <div *ngIf="!item.miniaturaUrl" class="miniatura-pdf-placeholder" aria-hidden="true">
+            📖
+          </div>
+          <div class="fila-pdf-texto">
+            <strong>{{ item.titulo }}</strong>
+            <small class="nombre-archivo-pdf">{{ item.nombreArchivo }}</small>
+          </div>
         </div>
         <button type="button" class="btn-primario btn-xs" (click)="abrirCuentoPdf(item)">
           {{ 'iaRincon.btnAbrirPdf' | translate }}
