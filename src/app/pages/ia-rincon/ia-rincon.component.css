@@ -615,3 +615,15 @@
     padding: 16px 14px 20px;
   }
 }
+
+
+.acciones-pdf-fila {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.link-sin-subrayado {
+  text-decoration: none;
+}

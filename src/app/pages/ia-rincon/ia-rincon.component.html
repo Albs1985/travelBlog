@@ -331,9 +331,26 @@
             <small class="nombre-archivo-pdf">{{ item.nombreArchivo }}</small>
           </div>
         </div>
-        <button type="button" class="btn-primario btn-xs" (click)="abrirCuentoPdf(item)">
+        <!-- <button type="button" class="btn-primario btn-xs" (click)="abrirCuentoPdf(item)">
           {{ 'iaRincon.btnAbrirPdf' | translate }}
-        </button>
+        </button> -->
+        <div class="acciones-pdf-fila">
+          <a
+            [href]="obtenerUrlVisorMovil(item)"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-primario btn-xs link-sin-subrayado">
+            👁️ {{ 'iaRincon.btnAbrirPdf' | translate }}
+          </a>
+          <a
+            [href]="obtenerUrlPublicaPdf(item)"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.download]="item.nombreArchivo"
+            class="btn-secundario btn-xs link-sin-subrayado">
+            📥
+          </a>
+        </div>
       </div>
     </div>
   </section>

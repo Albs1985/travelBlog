@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
-import { finalize, of, catchError, map, Subscription } from 'rxjs';
+import { finalize, of, catchError, map, Subscription, Observable } from 'rxjs';
+import { jsPDF } from 'jspdf';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
@@ -25,11 +26,10 @@ export interface CuentoGuardadoItem {
   miniaturaUrl?: string;
 }
 
-interface ImagenPdfLista {
+interface ImagenComprimida {
   dataUrl: string;
   width: number;
   height: number;
-  bytes: Uint8Array;
 }
 
 @Component({
@@ -37,7 +37,7 @@ interface ImagenPdfLista {
   templateUrl: './ia-rincon.component.html',
   styleUrls: ['./ia-rincon.component.css']
 })
-export class IaRinconComponent implements OnInit {
+export class IaRinconComponent implements OnInit, OnDestroy {
   modo: 'familia' | 'cuento' | 'biblioteca' = 'cuento';
 
   apiKeyInput = '';
@@ -60,7 +60,7 @@ export class IaRinconComponent implements OnInit {
   cargandoImagenCuento = false;
   cargandoPuter = false;
 
-  // Guardado PDF ligero y GitHub + Biblioteca de PDFs
+  // Guardado PDF con jsPDF y GitHub + Biblioteca de PDFs
   generandoPdf = false;
   guardandoGithub = false;
   mensajeEstadoPdf = '';
@@ -370,7 +370,7 @@ export class IaRinconComponent implements OnInit {
   }
 
   // ═════════════════════════════════════════════════════════
-  //  PDF LIGERO CON IMÁGENES + GUARDAR EN GITHUB + CONSULTA
+  //  PDF CON JSPDF + GUARDAR EN GITHUB + CONSULTA
   // ═════════════════════════════════════════════════════════
 
   private obtenerNombreArchivoPdfCuento(titulo: string): string {
@@ -419,9 +419,9 @@ export class IaRinconComponent implements OnInit {
       this.dispararDescargaPdfBlob(pdfBytes, nombreArchivo);
 
       const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
-      this.mensajeEstadoPdf = `PDF ligero descargado (${kb} KB): ${nombreArchivo}`;
+      this.mensajeEstadoPdf = `PDF descargado (${kb} KB): ${nombreArchivo}`;
     } catch {
-      this.errorMsg = 'No se pudo generar el PDF ligero.';
+      this.errorMsg = 'No se pudo generar el PDF.';
     } finally {
       this.generandoPdf = false;
     }
@@ -442,7 +442,6 @@ export class IaRinconComponent implements OnInit {
     this.mensajeEstadoPdf = '';
 
     try {
-      // const nombreBase = (this.tituloCuento || 'Cuento familiar').trim();
       const tituloFormateado = this.capitalizarInicial(this.tituloCuento || 'Cuento familiar');
       const fechaStr = new Date().toISOString().slice(0, 10);
       const nombreArchivo = this.obtenerNombreArchivoPdfCuento(tituloFormateado);
@@ -476,7 +475,7 @@ export class IaRinconComponent implements OnInit {
         .subscribe({
           next: (sha) => {
             const body: Record<string, unknown> = {
-              message: `Añadir cuento PDF ligero: ${nombreArchivo}`,
+              message: `Añadir cuento PDF: ${nombreArchivo}`,
               content: base64Pdf,
               branch: this.repoBranch
             };
@@ -522,7 +521,7 @@ export class IaRinconComponent implements OnInit {
     } catch {
       this.guardandoGithub = false;
       this.generandoPdf = false;
-      this.errorMsg = 'No se pudo preparar el PDF ligero.';
+      this.errorMsg = 'No se pudo preparar el PDF.';
     }
   }
 
@@ -553,13 +552,12 @@ export class IaRinconComponent implements OnInit {
               fecha: String(it.name).slice(0, 10),
               downloadUrl: it.download_url
             };
-          })
+          });
 
         const existentesNombres = new Set(lista.map((x) => x.nombreArchivo));
         const localesSesion = this.cuentosGuardados.filter((x) => !existentesNombres.has(x.nombreArchivo));
         const combinada = [...localesSesion, ...lista];
 
-        // Conservamos miniaturas ya cargadas en memoria y extraemos al vuelo las que falten
         const prevPorNombre = new Map(this.cuentosGuardados.map((c) => [c.nombreArchivo, c]));
         this.cuentosGuardados = combinada.map((item) => {
           const prev = prevPorNombre.get(item.nombreArchivo);
@@ -620,7 +618,6 @@ export class IaRinconComponent implements OnInit {
   }
 
   private async extraerMiniaturaJpegDesdePdfBytes(pdfBytes: Uint8Array): Promise<string | undefined> {
-    // Buscamos el primer stream JPEG incrustado (SOI: FF D8 FF ... EOI: FF D9)
     let inicio = -1;
     for (let i = 0; i < pdfBytes.length - 3; i++) {
       if (pdfBytes[i] === 0xff && pdfBytes[i + 1] === 0xd8 && pdfBytes[i + 2] === 0xff) {
@@ -662,65 +659,122 @@ export class IaRinconComponent implements OnInit {
 
     if (item.pdfBase64) {
       const bytes = this.base64ToBytes(item.pdfBase64);
-      this.dispararDescargaPdfBlob(bytes, item.nombreArchivo);
+      const pdfBlob = new Blob([new Uint8Array(bytes)], { type: 'application/pdf' });
+      this.entregarPdfAlDispositivo(pdfBlob, item.nombreArchivo);
       return;
     }
 
-    const urlCandidata = item.downloadUrl || `assets/cuentos-pdf/${item.nombreArchivo}`;
-    const token = this.obtenerTokenGithub();
-    const headers =
-      token && urlCandidata.includes('api.github.com')
-        ? new HttpHeaders({ Authorization: `Bearer ${token}` })
-        : undefined;
+    const urlsCandidatas: string[] = [];
+    if (item.downloadUrl) {
+      urlsCandidatas.push(item.downloadUrl);
+    }
+    urlsCandidatas.push(`assets/cuentos-pdf/${item.nombreArchivo}`);
 
     this.cargandoBiblioteca = true;
-    this.http
-      .get(urlCandidata, {
-        ...(headers ? { headers } : {}),
-        responseType: 'blob'
-      })
-      .pipe(
-        finalize(() => (this.cargandoBiblioteca = false)),
-        catchError(() => {
-          if (item.downloadUrl) {
-            return this.http.get(`assets/cuentos-pdf/${item.nombreArchivo}`, { responseType: 'blob' });
-          }
-          return of(null);
-        })
-      )
+    this.descargarPdfDesdeUrls(urlsCandidatas, 0)
+      .pipe(finalize(() => (this.cargandoBiblioteca = false)))
       .subscribe({
-        next: (blob) => {
+        next: async (blob) => {
           if (!blob || blob.size === 0) {
-            this.errorMsg = 'No se pudo descargar el PDF en el dispositivo.';
+            this.errorMsg = 'El archivo PDF descargado está vacío.';
             return;
           }
+
+          const esPdfValido = await this.esCabeceraPdfValida(blob);
+          if (!esPdfValido) {
+            this.errorMsg = 'El archivo recibido no tiene formato PDF válido.';
+            return;
+          }
+
           const pdfBlob = new Blob([blob], { type: 'application/pdf' });
-          this.descargarBlobEnDispositivo(pdfBlob, item.nombreArchivo);
+          this.entregarPdfAlDispositivo(pdfBlob, item.nombreArchivo);
         },
         error: () => {
-          this.errorMsg = 'No se pudo abrir el PDF desde GitHub.';
+          this.errorMsg = 'No se pudo descargar el PDF desde GitHub.';
         }
       });
   }
 
-  private dispararDescargaPdfBlob(bytes: Uint8Array, nombreArchivo: string): void {
-    const pdfBlob = new Blob([bytes], { type: 'application/pdf' });
-    this.descargarBlobEnDispositivo(pdfBlob, nombreArchivo);
+  obtenerUrlPublicaPdf(item: CuentoGuardadoItem): string {
+    if (item.downloadUrl) {
+      return item.downloadUrl;
+    }
+    return `https://raw.githubusercontent.com/${this.repoOwner}/${this.repoName}/${this.repoBranch}/${this.carpetaCuentosPdfRepo}/${encodeURIComponent(item.nombreArchivo)}`;
   }
 
-  private descargarBlobEnDispositivo(blob: Blob, nombreArchivo: string): void {
+  obtenerUrlVisorMovil(item: CuentoGuardadoItem): string {
+    const urlPdf = this.obtenerUrlPublicaPdf(item);
+    return `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(urlPdf)}`;
+  }
+
+  private descargarPdfDesdeUrls(urls: string[], indice: number): Observable<Blob | null> {
+    if (indice >= urls.length) {
+      return of(null);
+    }
+
+    const url = urls[indice];
+    const token = this.obtenerTokenGithub();
+    const esApiGithub = url.includes('api.github.com');
+    const headers =
+      token && esApiGithub
+        ? new HttpHeaders({ Authorization: `Bearer ${token}` })
+        : undefined;
+
+    return this.http
+      .get(url, {
+        ...(headers ? { headers } : {}),
+        responseType: 'blob'
+      })
+      .pipe(
+        catchError(() => this.descargarPdfDesdeUrls(urls, indice + 1))
+      );
+  }
+
+  private async esCabeceraPdfValida(blob: Blob): Promise<boolean> {
+    try {
+      const cabecera = await blob.slice(0, 5).text();
+      return cabecera === '%PDF-';
+    } catch {
+      return false;
+    }
+  }
+
+  private dispararDescargaPdfBlob(bytes: Uint8Array, nombreArchivo: string): void {
+    const pdfBlob = new Blob([new Uint8Array(bytes)], { type: 'application/pdf' });
+    this.entregarPdfAlDispositivo(pdfBlob, nombreArchivo);
+  }
+
+  private entregarPdfAlDispositivo(blob: Blob, nombreArchivo: string): void {
     const nombreLimpio = nombreArchivo.toLowerCase().endsWith('.pdf')
       ? nombreArchivo
       : `${nombreArchivo}.pdf`;
+
     const url = URL.createObjectURL(blob);
+    const esMovil =
+      typeof navigator !== 'undefined' &&
+      /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '');
+
+    if (esMovil) {
+      const ventana = window.open(url, '_blank');
+      if (!ventana) {
+        this.forzarDescargaConEnlace(url, nombreLimpio);
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 180000);
+      return;
+    }
+
+    this.forzarDescargaConEnlace(url, nombreLimpio);
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  }
+
+  private forzarDescargaConEnlace(url: string, nombreArchivo: string): void {
     const a = document.createElement('a');
     a.href = url;
-    a.download = nombreLimpio;
+    a.download = nombreArchivo;
     a.rel = 'noopener';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
   }
 
   private base64ToBytes(base64: string): Uint8Array {
@@ -733,114 +787,81 @@ export class IaRinconComponent implements OnInit {
     return bytes;
   }
 
+  private limpiarTextoParaPdf(texto: string): string {
+    return (texto || '')
+      .replace(/\*+([^*]+)\*+/g, '$1')
+      .replace(/\*/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
   private async construirPdfLigeroConImagenes(
     titulo: string,
     parrafos: string[],
     imagenesSrc: Array<string | null>
   ): Promise<Uint8Array> {
-    const imagenesComprimidas: Array<ImagenPdfLista | null> = await Promise.all(
+    const imagenesComprimidas: Array<ImagenComprimida | null> = await Promise.all(
       imagenesSrc.map((src) => (src ? this.comprimirImagenParaPdf(src, 640, 0.58) : Promise.resolve(null)))
     );
 
-    const escaparPdf = (s: string) =>
-      s
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^\x20-\x7E]/g, ' ')
-        .replace(/\\/g, '\\\\')
-        .replace(/\(/g, '\\(')
-        .replace(/\)/g, '\\)');
-
-    const envolverLineas = (texto: string, maxChars: number): string[] => {
-      const textoLimpio = texto.replace(/\*+([^*]+)\*+/g, '$1').replace(/\*/g, '');
-      const palabras = textoLimpio.split(/\s+/).filter(Boolean);
-      const lineas: string[] = [];
-      let actual = '';
-      for (const p of palabras) {
-        if ((actual + ' ' + p).trim().length > maxChars) {
-          if (actual) lineas.push(actual);
-          actual = p;
-        } else {
-          actual = actual ? `${actual} ${p}` : p;
-        }
-      }
-      if (actual) lineas.push(actual);
-      return lineas;
-    };
-
-    const pageW = 595;
-    const pageH = 842;
-    const marginX = 45;
-    const maxTextW = pageW - marginX * 2;
-
-    const paginasOps: string[][] = [];
-    const xObjectRefs: string[] = [];
-    const extraObjetos: Array<{ id: number; header: string; rawBytes: Uint8Array }> = [];
-
-    let nextObjId = 6;
-    const imgNamesBySlot: Array<string | null> = [null, null, null];
-
-    imagenesComprimidas.forEach((im, idx) => {
-      if (!im) return;
-      const objId = nextObjId++;
-      const resName = `Im${idx + 1}`;
-      imgNamesBySlot[idx] = resName;
-      xObjectRefs.push(`/${resName} ${objId} 0 R`);
-      const header = `<< /Type /XObject /Subtype /Image /Width ${im.width} /Height ${im.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${im.bytes.length} >>`;
-      extraObjetos.push({ id: objId, header, rawBytes: im.bytes });
+    const doc = new jsPDF({
+      unit: 'pt',
+      format: 'a4'
     });
 
-    let ops: string[] = [];
-    let y = pageH - 55;
+    const pageW = doc.internal.pageSize.getWidth();
+    const pageH = doc.internal.pageSize.getHeight();
+    const marginX = 45;
+    const marginTop = 55;
+    const marginBottom = 50;
+    const maxTextW = pageW - marginX * 2;
 
-    const nuevaPagina = () => {
-      if (ops.length > 0) {
-        paginasOps.push(ops);
-      }
-      ops = [];
-      y = pageH - 55;
-    };
+    let y = marginTop;
 
     const asegurarEspacio = (altoNecesario: number) => {
-      if (y - altoNecesario < 50) {
-        nuevaPagina();
+      if (y + altoNecesario > pageH - marginBottom) {
+        doc.addPage();
+        y = marginTop;
       }
     };
 
-    const dibujarTexto = (texto: string, size: number, salto: number) => {
-      asegurarEspacio(salto + 4);
-      ops.push('BT', `/F1 ${size} Tf`, `1 0 0 1 ${marginX} ${Math.round(y)} Tm`, `(${escaparPdf(texto)}) Tj`, 'ET');
-      y -= salto;
+    const dibujarLineas = (texto: string, size: number, salto: number, bold = false) => {
+      doc.setFont('helvetica', bold ? 'bold' : 'normal');
+      doc.setFontSize(size);
+      const limpio = this.limpiarTextoParaPdf(texto);
+      if (!limpio) return;
+
+      const lineas: string[] = doc.splitTextToSize(limpio, maxTextW);
+      for (const linea of lineas) {
+        asegurarEspacio(salto);
+        doc.text(linea, marginX, y + size * 0.8);
+        y += salto;
+      }
     };
 
     const dibujarImagenSlot = (slotIdx: number) => {
-      const resName = imgNamesBySlot[slotIdx];
       const im = imagenesComprimidas[slotIdx];
-      if (!resName || !im) return;
+      if (!im || !im.width || !im.height) return;
+
       const ratio = im.height / im.width;
       const drawW = Math.min(maxTextW, 380);
       const drawH = Math.min(210, Math.round(drawW * ratio));
       const drawX = Math.round((pageW - drawW) / 2);
 
-      asegurarEspacio(drawH + 16);
-      const drawY = Math.round(y - drawH);
-      ops.push('q', `${drawW} 0 0 ${drawH} ${drawX} ${drawY} cm`, `/${resName} Do`, 'Q');
-      y = drawY - 14;
+      asegurarEspacio(drawH + 14);
+      doc.addImage(im.dataUrl, 'JPEG', drawX, y, drawW, drawH, undefined, 'FAST');
+      y += drawH + 14;
     };
 
-    for (const l of envolverLineas(titulo, 52)) {
-      dibujarTexto(l, 17, 22);
-    }
-    y -= 6;
+    dibujarLineas(titulo, 17, 22, true);
+    y += 6;
 
     dibujarImagenSlot(0);
 
     const mitadIdx = Math.max(0, Math.floor(parrafos.length / 2) - 1);
     parrafos.forEach((p, i) => {
-      for (const l of envolverLineas(p, 80)) {
-        dibujarTexto(l, 11, 15);
-      }
-      y -= 6;
+      dibujarLineas(p, 11, 15, false);
+      y += 6;
       if (i === mitadIdx) {
         dibujarImagenSlot(1);
       }
@@ -848,95 +869,15 @@ export class IaRinconComponent implements OnInit {
 
     dibujarImagenSlot(2);
 
-    if (ops.length > 0) {
-      paginasOps.push(ops);
-    }
-
-    const encoder = new TextEncoder();
-    const parts: Array<string | Uint8Array> = ['%PDF-1.4\n'];
-    const offsets: number[] = [0];
-    let currentLen = encoder.encode('%PDF-1.4\n').length;
-
-    const pushChunk = (chunk: string | Uint8Array) => {
-      const b = typeof chunk === 'string' ? encoder.encode(chunk) : chunk;
-      parts.push(b);
-      currentLen += b.length;
-    };
-
-    const pageObjIds: number[] = [];
-    const contentObjIds: number[] = [];
-    for (let p = 0; p < paginasOps.length; p++) {
-      contentObjIds.push(nextObjId++);
-      pageObjIds.push(nextObjId++);
-    }
-
-    const totalObjects = nextObjId - 1;
-    const objChunks = new Map<number, Array<string | Uint8Array>>();
-
-    objChunks.set(1, [`1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n`]);
-    objChunks.set(2, [
-      `2 0 obj\n<< /Type /Pages /Kids [${pageObjIds.map((id) => `${id} 0 R`).join(' ')}] /Count ${pageObjIds.length} >>\nendobj\n`
-    ]);
-
-    const xObjDict = xObjectRefs.length ? `/XObject << ${xObjectRefs.join(' ')} >>` : '';
-    for (let p = 0; p < paginasOps.length; p++) {
-      const streamStr = paginasOps[p].join('\n');
-      const streamBytes = encoder.encode(streamStr);
-      const cId = contentObjIds[p];
-      const pId = pageObjIds[p];
-
-      objChunks.set(cId, [
-        `${cId} 0 obj\n<< /Length ${streamBytes.length} >>\nstream\n`,
-        streamBytes,
-        `\nendstream\nendobj\n`
-      ]);
-
-      objChunks.set(pId, [
-        `${pId} 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Contents ${cId} 0 R /Resources << /Font << /F1 5 0 R >> ${xObjDict} >> >>\nendobj\n`
-      ]);
-    }
-
-    objChunks.set(5, [`5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n`]);
-
-    for (const ex of extraObjetos) {
-      objChunks.set(ex.id, [
-        `${ex.id} 0 obj\n${ex.header}\nstream\n`,
-        ex.rawBytes,
-        `\nendstream\nendobj\n`
-      ]);
-    }
-
-    for (let id = 1; id <= totalObjects; id++) {
-      offsets[id] = currentLen;
-      const chunks = objChunks.get(id) || [];
-      for (const ch of chunks) {
-        pushChunk(ch);
-      }
-    }
-
-    const xrefPos = currentLen;
-    let xrefStr = `xref\n0 ${totalObjects + 1}\n0000000000 65535 f \n`;
-    for (let id = 1; id <= totalObjects; id++) {
-      xrefStr += `${String(offsets[id]).padStart(10, '0')} 00000 n \n`;
-    }
-    xrefStr += `trailer\n<< /Size ${totalObjects + 1} /Root 1 0 R >>\nstartxref\n${xrefPos}\n%%EOF`;
-    pushChunk(xrefStr);
-
-    const out = new Uint8Array(currentLen);
-    let offset = 0;
-    for (const ch of parts) {
-      const b = ch as Uint8Array;
-      out.set(b, offset);
-      offset += b.length;
-    }
-    return out;
+    const buffer = doc.output('arraybuffer');
+    return new Uint8Array(buffer);
   }
 
   private async comprimirImagenParaPdf(
     src: string,
     maxAncho: number,
     calidad: number
-  ): Promise<ImagenPdfLista | null> {
+  ): Promise<ImagenComprimida | null> {
     if (typeof document === 'undefined') return null;
 
     return new Promise((resolve) => {
@@ -963,13 +904,7 @@ export class IaRinconComponent implements OnInit {
           ctx.drawImage(img, 0, 0, width, height);
 
           const dataUrl = canvas.toDataURL('image/jpeg', calidad);
-          const base64 = dataUrl.split(',')[1] || '';
-          const bin = atob(base64);
-          const bytes = new Uint8Array(bin.length);
-          for (let i = 0; i < bin.length; i++) {
-            bytes[i] = bin.charCodeAt(i);
-          }
-          resolve({ dataUrl, width, height, bytes });
+          resolve({ dataUrl, width, height });
         } catch {
           resolve(null);
         }
