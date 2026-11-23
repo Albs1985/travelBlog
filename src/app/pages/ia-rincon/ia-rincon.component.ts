@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { IdiomaIa, IaFamiliaService } from '../../services/ia-familia.service';
-import { finalize, of, catchError, map, Subscription, Observable } from 'rxjs';
+import { finalize, of, catchError, map, Subscription, Observable, forkJoin, switchMap } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
 export interface MensajeChatFamilia {
@@ -76,6 +76,7 @@ export class IaRinconComponent implements OnInit, OnDestroy {
   private readonly repoName = 'travelBlog';
   private readonly repoBranch = 'main';
   private readonly carpetaCuentosPdfRepo = 'src/assets/cuentos-pdf';
+  private readonly carpetaCuentosPdfDocsRepo = 'docs/assets/cuentos-pdf';
 
   readonly sugerenciasFamilia = [
     'iaRincon.sugerenciaFamilia1',
@@ -373,6 +374,129 @@ export class IaRinconComponent implements OnInit, OnDestroy {
   //  PDF CON JSPDF + GUARDAR EN GITHUB + CONSULTA
   // ═════════════════════════════════════════════════════════
 
+  private guardarArchivoEnRutaGithub(
+    rutaRepo: string,
+    nombreArchivo: string,
+    base64Pdf: string,
+    headers: HttpHeaders
+  ): Observable<{ rutaRepo: string; downloadUrl?: string; error?: string }> {
+    const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${rutaRepo}`;
+
+    return this.http
+      .get<any>(`${apiUrl}?ref=${this.repoBranch}`, { headers })
+      .pipe(
+        catchError(() => of(null)),
+        map((existente) => existente?.sha as string | undefined),
+        switchMap((sha) => {
+          const body: Record<string, unknown> = {
+            message: `Añadir cuento PDF: ${nombreArchivo}`,
+            content: base64Pdf,
+            branch: this.repoBranch
+          };
+          if (sha) {
+            body['sha'] = sha;
+          }
+
+          return this.http.put<any>(apiUrl, body, { headers }).pipe(
+            map((res) => ({
+              rutaRepo,
+              downloadUrl: res?.content?.download_url as string | undefined
+            })),
+            catchError((err) =>
+              of({
+                rutaRepo,
+                error: err?.error?.message || err?.message || 'error'
+              })
+            )
+          );
+        })
+      );
+  }
+
+  async guardarCuentoEnGithubPdf(): Promise<void> {
+    if (!this.parrafosCuento.length || this.guardandoGithub || this.generandoPdf) return;
+
+    const token = this.obtenerTokenGithub();
+    if (!token) {
+      this.errorMsg = 'Configura tu token de GitHub (gh_travel_token) en la barra superior para guardar en GitHub.';
+      return;
+    }
+
+    this.guardandoGithub = true;
+    this.generandoPdf = true;
+    this.errorMsg = '';
+    this.mensajeEstadoPdf = '';
+
+    try {
+      const tituloFormateado = this.capitalizarInicial(this.tituloCuento || 'Cuento familiar');
+      const fechaStr = new Date().toISOString().slice(0, 10);
+      const nombreArchivo = this.obtenerNombreArchivoPdfCuento(tituloFormateado);
+      const rutaSrc = `${this.carpetaCuentosPdfRepo}/${nombreArchivo}`;
+      const rutaDocs = `${this.carpetaCuentosPdfDocsRepo}/${nombreArchivo}`;
+
+      const miniaturaImg = this.imagenesCuento[0]
+        ? await this.comprimirImagenParaPdf(this.imagenesCuento[0], 180, 0.6)
+        : null;
+
+      const pdfBytes = await this.construirPdfLigeroConImagenes(
+        this.tituloCuento || 'Cuento familiar',
+        this.parrafosCuento,
+        this.imagenesCuento
+      );
+      const base64Pdf = this.bytesToBase64(pdfBytes);
+      const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
+
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      });
+
+      forkJoin([
+        this.guardarArchivoEnRutaGithub(rutaSrc, nombreArchivo, base64Pdf, headers),
+        this.guardarArchivoEnRutaGithub(rutaDocs, nombreArchivo, base64Pdf, headers)
+      ])
+        .pipe(
+          finalize(() => {
+            this.guardandoGithub = false;
+            this.generandoPdf = false;
+          })
+        )
+        .subscribe(([resSrc, resDocs]) => {
+          const guardadosOk = [resSrc, resDocs].filter((r) => !r.error);
+          const fallidos = [resSrc, resDocs].filter((r) => Boolean(r.error));
+
+          if (guardadosOk.length === 0) {
+            this.errorMsg = `No se pudo guardar en GitHub: ${fallidos[0]?.error || 'error'}`;
+            return;
+          }
+
+          const downloadUrl = resDocs.downloadUrl || resSrc.downloadUrl;
+          this.mensajeEstadoPdf =
+            fallidos.length === 0
+              ? `Guardado en GitHub (${kb} KB) en ${rutaSrc} y ${rutaDocs}.`
+              : `Guardado en ${guardadosOk.map((g) => g.rutaRepo).join(' y ')}, pero falló en ${fallidos
+                  .map((f) => `${f.rutaRepo} (${f.error})`)
+                  .join(', ')}.`;
+
+          this.cuentosGuardados = [
+            {
+              nombreArchivo,
+              titulo: this.tituloCuento,
+              fecha: fechaStr,
+              downloadUrl,
+              pdfBase64: base64Pdf,
+              miniaturaUrl: miniaturaImg?.dataUrl
+            },
+            ...this.cuentosGuardados.filter((c) => c.nombreArchivo !== nombreArchivo)
+          ];
+        });
+    } catch {
+      this.guardandoGithub = false;
+      this.generandoPdf = false;
+      this.errorMsg = 'No se pudo preparar el PDF.';
+    }
+  }
+
   private obtenerNombreArchivoPdfCuento(titulo: string): string {
     const tituloLimpio = (titulo || 'cuento').trim();
     const baseTitulo = this.slugArchivoCuento(tituloLimpio);
@@ -424,104 +548,6 @@ export class IaRinconComponent implements OnInit, OnDestroy {
       this.errorMsg = 'No se pudo generar el PDF.';
     } finally {
       this.generandoPdf = false;
-    }
-  }
-
-  async guardarCuentoEnGithubPdf(): Promise<void> {
-    if (!this.parrafosCuento.length || this.guardandoGithub || this.generandoPdf) return;
-
-    const token = this.obtenerTokenGithub();
-    if (!token) {
-      this.errorMsg = 'Configura tu token de GitHub (gh_travel_token) en la barra superior para guardar en GitHub.';
-      return;
-    }
-
-    this.guardandoGithub = true;
-    this.generandoPdf = true;
-    this.errorMsg = '';
-    this.mensajeEstadoPdf = '';
-
-    try {
-      const tituloFormateado = this.capitalizarInicial(this.tituloCuento || 'Cuento familiar');
-      const fechaStr = new Date().toISOString().slice(0, 10);
-      const nombreArchivo = this.obtenerNombreArchivoPdfCuento(tituloFormateado);
-      const rutaRepo = `${this.carpetaCuentosPdfRepo}/${nombreArchivo}`;
-
-      const miniaturaImg = this.imagenesCuento[0]
-        ? await this.comprimirImagenParaPdf(this.imagenesCuento[0], 180, 0.6)
-        : null;
-
-      const pdfBytes = await this.construirPdfLigeroConImagenes(
-        this.tituloCuento || 'Cuento familiar',
-        this.parrafosCuento,
-        this.imagenesCuento
-      );
-      const base64Pdf = this.bytesToBase64(pdfBytes);
-      const kb = Math.max(1, Math.round(pdfBytes.byteLength / 1024));
-
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      });
-
-      const apiUrl = `https://api.github.com/repos/${this.repoOwner}/${this.repoName}/contents/${rutaRepo}`;
-
-      this.http
-        .get<any>(`${apiUrl}?ref=${this.repoBranch}`, { headers })
-        .pipe(
-          catchError(() => of(null)),
-          map((existente) => existente?.sha as string | undefined)
-        )
-        .subscribe({
-          next: (sha) => {
-            const body: Record<string, unknown> = {
-              message: `Añadir cuento PDF: ${nombreArchivo}`,
-              content: base64Pdf,
-              branch: this.repoBranch
-            };
-            if (sha) {
-              body['sha'] = sha;
-            }
-
-            this.http
-              .put<any>(apiUrl, body, { headers })
-              .pipe(
-                finalize(() => {
-                  this.guardandoGithub = false;
-                  this.generandoPdf = false;
-                })
-              )
-              .subscribe({
-                next: (res) => {
-                  const downloadUrl = res?.content?.download_url;
-                  this.mensajeEstadoPdf = `Guardado en GitHub (${kb} KB) en ${rutaRepo}.`;
-                  this.cuentosGuardados = [
-                    {
-                      nombreArchivo,
-                      titulo: this.tituloCuento,
-                      fecha: fechaStr,
-                      downloadUrl,
-                      pdfBase64: base64Pdf,
-                      miniaturaUrl: miniaturaImg?.dataUrl
-                    },
-                    ...this.cuentosGuardados.filter((c) => c.nombreArchivo !== nombreArchivo)
-                  ];
-                },
-                error: (err) => {
-                  this.errorMsg = `No se pudo guardar en GitHub: ${err?.error?.message || err?.message || 'error'}`;
-                }
-              });
-          },
-          error: () => {
-            this.guardandoGithub = false;
-            this.generandoPdf = false;
-            this.errorMsg = 'Error al comprobar el archivo en GitHub.';
-          }
-        });
-    } catch {
-      this.guardandoGithub = false;
-      this.generandoPdf = false;
-      this.errorMsg = 'No se pudo preparar el PDF.';
     }
   }
 

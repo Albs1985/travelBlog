@@ -518,16 +518,10 @@
   flex-direction: column;
   gap: 10px;
 }
-
 .fila-pdf-guardado {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: #fffdf9;
-  border: 1px solid #fde68a;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .fila-pdf-info {
@@ -539,35 +533,27 @@
 
 .miniatura-pdf-cuento,
 .miniatura-pdf-placeholder {
-  width: 56px;
-  height: 56px;
-  border-radius: 10px;
   flex-shrink: 0;
-  border: 1px solid #fde68a;
-}
-
-.miniatura-pdf-cuento {
-  object-fit: cover;
-}
-
-.miniatura-pdf-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fef3c7;
-  font-size: 1.4rem;
 }
 
 .fila-pdf-texto {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex: 1;
+}
 
-  strong {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+.fila-pdf-texto strong {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+
+.acciones-pdf-fila {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
 .nombre-archivo-pdf {
