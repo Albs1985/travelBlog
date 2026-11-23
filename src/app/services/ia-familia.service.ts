@@ -177,9 +177,12 @@ export class IaFamiliaService {
   private readonly cierreEstiloComun =
     'personajes coherentes, escena clara y acogedora, sin texto, sin letras, sin bocadillos ni marcas de agua.';
 
-  ultimoProveedorUsado = '';
+    ultimoProveedorUsado = '';
 
-  private readonly enfriamiento = new Map<string, number>();
+    private readonly enfriamiento = new Map<string, number>();
+    private ultimoViajeUsadoArchivo = '';
+    private readonly ultimosApodosPorPersona = new Map<string, string>();
+    private ultimasFrasesUsadas: string[] = [];
 
   // ───────────────────────── GitHub / datos ─────────────────────────
   private readonly cacheCarpetasGithub = new Map<string, string[]>();
@@ -203,7 +206,7 @@ export class IaFamiliaService {
   private readonly versionIndice = 1;
   private readonly ttlIndiceMs = 12 * 3600 * 1000;
 
-  private readonly MAX_CHARS_CUENTO = 4800;
+  private readonly MAX_CHARS_CUENTO = 9000;
   private readonly MAX_CHARS_CHAT = 6500;
 
   private readonly STOPWORDS = new Set([
@@ -451,6 +454,9 @@ export class IaFamiliaService {
     this.relatos$ = undefined;
     this.cacheJson.clear();
     this.cacheCarpetasGithub.clear();
+    this.ultimoViajeUsadoArchivo = '';
+    this.ultimosApodosPorPersona.clear();
+    this.ultimasFrasesUsadas = [];
   }
 
   // ═════════════════════════════════════════════════════════
@@ -657,11 +663,11 @@ export class IaFamiliaService {
         const extendida = this.bloqueExtendida(personas, mencionados);
         if (extendida) partes.push(extendida);
 
-        const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 3, true);
+        const viajes = this.seleccionarViajes(d.viajes, q, mencionados, 1, true);
         if (viajes.length) {
           partes.push(
-            `VIAJES DE REFERENCIA (toma detalles y narración del viaje para ambientar el cuento):\n${viajes
-              .map((v) => this.lineaViaje(v, 520))
+            `VIAJE DE REFERENCIA (un único viaje seleccionado aleatoriamente entre los afines; usa toda su información y narración para ambientar el cuento):\n${viajes
+              .map((v) => this.lineaViaje(v))
               .join('\n')}`
           );
         }
@@ -691,11 +697,7 @@ export class IaFamiliaService {
       viajes: tiene('viaj', 'vacacion', 'destino', 'fuimos', 'fueron', 'visit', 'hotel', 'airbnb', 'apartamento', 'estancia', 'escapada', 'excursion'),
       frases: tiene('frase', 'dijo', 'dice ', 'gracios', 'palabra', 'decia'),
       cumple: tiene('cumple', 'nacimiento', 'naci ', 'nacio', 'edad', 'anos tiene', 'cuantos anos', 'aniversari', 'cuando es', 'mayor', 'mas pequeno'),
-      recetas: tiene('receta', 'cocin', 'plato', 'ingrediente', 'comida', 'cena', 'postre'),
-      apodos: tiene('apodo', 'mote', 'aka', 'llaman', 'llamamos'),
-      preguntas: tiene('pregunta', 'cuestionario', 'trivial'),
-      dibujos: tiene('dibujo', 'dibuj', 'pintur', 'colorear'),
-      relatos: tiene('relato', 'anecdota', 'contar', 'cuentame')
+      apodos: tiene('apodo', 'mote', 'aka', 'llaman', 'llamamos')
     };
     const general = !Object.values(cats).some(Boolean);
 
@@ -704,11 +706,7 @@ export class IaFamiliaService {
       personajes: this.leerJson('assets/data/personajes.json'),
       cumple: this.leerJson('assets/data/cumpleanyos.json'),
       frases: this.leerJson('assets/data/frases.json'),
-      recetas: this.leerJson('assets/data/recetas.json'),
-      preguntas: this.leerJson('assets/data/preguntas.json'),
-      dibujos: this.leerJson('assets/data/dibujos.json'),
       viajes: this.cargarIndiceViajes(),
-      // relatos: this.cargarRelatos().pipe(catchError(() => of([] as RelatoIndexado[])))
     }).pipe(
       map((d) => {
         const personas = this.construirPersonas(d.viajeros, d.personajes, d.cumple);
@@ -736,21 +734,6 @@ export class IaFamiliaService {
         if (cats.frases || general) {
           const frases = this.seleccionarFrases(d.frases, q, mencionados, cats.frases ? 10 : 3);
           if (frases.length) partes.push(`FRASES:\n${frases.join('\n')}`);
-        }
-
-        // if (cats.relatos || general) {
-        //   const relatos = this.seleccionarRelatos(d.relatos, q, 3, 400);
-        //   if (relatos.length) partes.push(`RELATOS:\n${relatos.join('\n')}`);
-        // }
-
-        const genericas: Array<[string, boolean, unknown]> = [
-          ['RECETAS', cats.recetas, d.recetas],
-          ['PREGUNTAS', cats.preguntas, d.preguntas],
-          ['DIBUJOS', cats.dibujos, d.dibujos]
-        ];
-        for (const [titulo, pedida, datos] of genericas) {
-          const lineas = this.seleccionarLineas(this.aLineas(datos), q, 6, pedida ? 6 : 0, 220);
-          if (lineas.length) partes.push(`${titulo}:\n${lineas.map((l) => `- ${l}`).join('\n')}`);
         }
 
         return this.recortarContexto(partes, this.MAX_CHARS_CHAT);
@@ -917,9 +900,19 @@ export class IaFamiliaService {
       partes.push(edad ? `${p.nombre} (${edad})` : p.nombre);
       if (p.rol) partes.push(p.rol);
       if (p.relaciones) partes.push(p.relaciones);
-      // Máximo 1 apodo por personaje para evitar saturación
-      const apodoUnico = p.aka.filter(Boolean).slice(0, 1);
-      if (apodoUnico.length) partes.push(`Apodo opcional (usar máx. 1 vez): ${apodoUnico.join(', ')}`);
+
+      const apodosValidos = p.aka.map((a) => String(a ?? '').trim()).filter(Boolean);
+      if (apodosValidos.length > 0) {
+        const ultimoApodo = this.ultimosApodosPorPersona.get(p.id);
+        const candidatosApodo =
+          apodosValidos.length > 1 && ultimoApodo
+            ? apodosValidos.filter((a) => this.normalizarTexto(a) !== this.normalizarTexto(ultimoApodo))
+            : apodosValidos;
+        const apodoElegido = candidatosApodo[Math.floor(Math.random() * candidatosApodo.length)];
+        this.ultimosApodosPorPersona.set(p.id, apodoElegido);
+        partes.push(`Apodo opcional (usar máx. 1 vez): ${apodoElegido}`);
+      }
+
       if (p.rasgos.length) partes.push(`Rasgos: ${p.rasgos.slice(0, 2).join('; ')}`);
       if (p.detalles.length) partes.push(`Detalles: ${p.detalles.slice(0, 2).join('; ')}`);
       return `- ${partes.join('. ')}.`;
@@ -958,15 +951,21 @@ export class IaFamiliaService {
     let candidatas = validas.filter((f) => nombresNucleo.has(this.normalizarTexto(String(f['persona'] ?? ''))));
     if (!candidatas.length) candidatas = validas;
 
-    const ordenadas = candidatas
+    const recientes = new Set(this.ultimasFrasesUsadas);
+    const sinRepetirRecientes = candidatas.filter(
+      (f) => !recientes.has(this.normalizarTexto(String(f['frase'] ?? '')).trim())
+    );
+    const pool = sinRepetirRecientes.length > 0 ? sinRepetirRecientes : candidatas;
+
+    const ordenadas = pool
       .map((f) => {
         const texto = this.normalizarTexto(`${f['frase']} ${f['explicacion'] ?? ''}`);
-        const puntos = this.puntuarTexto(texto, q) + Math.random() * 2.5;
+        const base = this.puntuarTexto(texto, q);
+        const puntos = (base > 0 ? base : 1) + Math.random() * 8;
         return { f, puntos };
       })
       .sort((a, b) => b.puntos - a.puntos);
 
-    // Como máximo 1 frase por persona para no concentrar ni abusar de un mismo personaje
     const vistasPorPersona = new Set<string>();
     const seleccionadas: Dato[] = [];
     for (const item of ordenadas) {
@@ -983,9 +982,16 @@ export class IaFamiliaService {
       }
     }
 
+    const clavesElegidas = seleccionadas
+      .map((f) => this.normalizarTexto(String(f['frase'] ?? '')).trim())
+      .filter(Boolean);
+    if (clavesElegidas.length > 0) {
+      this.ultimasFrasesUsadas = Array.from(new Set([...clavesElegidas, ...this.ultimasFrasesUsadas])).slice(0, 12);
+    }
+
     return seleccionadas.map((f) => {
-      const explic = f['explicacion'] ? ` (= ${this.resumirTexto(f['explicacion'], 90)})` : '';
-      return `- ${f['persona']}: «${this.resumirTexto(f['frase'], 110)}»${explic}`;
+      const explic = f['explicacion'] ? ` (= ${this.resumirTexto(f['explicacion'], 110)})` : '';
+      return `- ${f['persona']}: «${this.resumirTexto(f['frase'], 130)}»${explic}`;
     });
   }
 
@@ -1153,7 +1159,7 @@ export class IaFamiliaService {
       transporte,
       personas,
       foto: this.extraerPrimeraFotoDeViaje(o),
-      resumen: this.resumirTexto(narracionCompleta, 620),
+      resumen: narracionCompleta,
       claves
     };
   }
@@ -1184,33 +1190,71 @@ export class IaFamiliaService {
       for (const id of mencionados) {
         if (personasNorm.includes(id)) p += 2;
       }
-      return { v, p, i, azar: Math.random() * 1.5 };
+      return { v, p, i };
     });
 
-    const positivos = puntuados
-      .filter((x) => x.p > 0)
+    const positivos = puntuados.filter((x) => x.p > 0);
+
+    if (max === 1) {
+      const pool = positivos.length > 0 ? positivos : puntuados;
+      if (!pool.length) return [];
+
+      if (positivos.length > 0) {
+        const mejorPuntaje = Math.max(...positivos.map((x) => x.p));
+        const umbral = Math.max(1, mejorPuntaje - 4);
+        const afines = positivos.filter((x) => x.p >= umbral);
+        const candidatosBase = afines.length > 0 ? afines : positivos;
+        const sinUltimo =
+          candidatosBase.length > 1 && this.ultimoViajeUsadoArchivo
+            ? candidatosBase.filter((x) => x.v.archivo !== this.ultimoViajeUsadoArchivo)
+            : candidatosBase;
+        const candidatos = sinUltimo.length > 0 ? sinUltimo : candidatosBase;
+        const elegido = candidatos[Math.floor(Math.random() * candidatos.length)];
+        this.ultimoViajeUsadoArchivo = elegido.v.archivo;
+        return [elegido.v];
+      }
+
+      if (!rellenarSiVacio) {
+        return [];
+      }
+
+      const conResumen = pool.filter((x) => x.v.resumen && x.v.resumen.trim().length > 40);
+      const base = conResumen.length > 0 ? conResumen : pool;
+      const sinUltimoBase =
+        base.length > 1 && this.ultimoViajeUsadoArchivo
+          ? base.filter((x) => x.v.archivo !== this.ultimoViajeUsadoArchivo)
+          : base;
+      const candidatosRespaldo = sinUltimoBase.length > 0 ? sinUltimoBase : base;
+      const elegido = candidatosRespaldo[Math.floor(Math.random() * candidatosRespaldo.length)];
+      this.ultimoViajeUsadoArchivo = elegido.v.archivo;
+      return [elegido.v];
+    }
+
+    const ordenados = positivos
+      .map((x) => ({ ...x, azar: Math.random() * 1.5 }))
       .sort((a, b) => b.p + b.azar - (a.p + a.azar))
       .slice(0, max)
       .map((x) => x.v);
 
-    if (positivos.length > 0 || !rellenarSiVacio) {
-      return positivos;
+    if (ordenados.length > 0 || !rellenarSiVacio) {
+      return ordenados;
     }
 
-    // Si no hubo coincidencia directa, elegimos un viaje con relato/resumen para ambientar
     const conResumen = indice.filter((v) => v.resumen && v.resumen.trim().length > 40);
     const base = conResumen.length > 0 ? conResumen : indice;
     const inicio = Math.floor(Math.random() * base.length);
     return [base[inicio]];
   }
 
-  private lineaViaje(v: ViajeIndexado, maxResumen: number): string {
+  private lineaViaje(v: ViajeIndexado, maxResumen?: number): string {
     const lugar = [v.destino, v.provincia && v.provincia !== v.destino ? v.provincia : '', v.pais]
       .filter(Boolean)
       .join(', ');
     const meta = [v.categoria, v.estancia, v.transporte].filter(Boolean).join(' / ');
     const con = v.personas.length ? ` Con: ${v.personas.join(', ')}.` : '';
-    const resumen = v.resumen ? ` Narración: ${this.resumirTexto(v.resumen, maxResumen)}` : '';
+    const textoNarracion =
+      typeof maxResumen === 'number' ? this.resumirTexto(v.resumen, maxResumen) : v.resumen;
+    const resumen = textoNarracion ? ` Narración completa: ${textoNarracion}` : '';
     return `- ${v.anyo} · ${lugar}${meta ? ` [${meta}]` : ''}.${con}${resumen}`;
   }
 

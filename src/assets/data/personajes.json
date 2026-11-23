@@ -1,5 +1,4 @@
 {
-  "_nota": "BORRADOR para revisar y completar. Va en src/assets/data/personajes.json. Solo se envía a la IA lo que pongas aquí (rol, relaciones, rasgos, detalles) más nombre, apodos y edad. No pongas apellidos, fechas exactas ni datos sensibles.",
   "personajes": [
     {
       "id": "mateu",
@@ -7,12 +6,21 @@
       "relaciones": "Hijo de Alba y Albert, hermano mayor de Marina",
       "rasgos": [
         "ocurrente y con mucho sentido del humor",
-        "inventa palabras graciosas",
-        "le encantan el baloncesto y los superhéroes",
+        "le encantan el baloncesto y los superhéroes como Venom, Spiderman",
         "quiere ser ceramista como la iaia Ana",
-        "se toma muy en serio sus propios 'cálculos'"
+        "le gustan las peonzas llamadas BeyBlade X",
+        "también le gustan los ninjas"
       ],
-      "detalles": []
+      "detalles": [
+        "Estudia en el colegio Barranquet de Godella",
+        "Suele hacer bromas rápidas cuando hay un apuro",
+        "le gustan las cosquillas y jugar a lo loco"
+      ],
+      "favoritos": [
+        "jugar al baloncesto",
+        "hacer manualidades con barro y cerámica"
+      ],
+      "apariencia": "Rubio, pelo corto y liso. Delgado. niño de aspecto activo y expresivo en ilustraciones infantiles"
     },
     {
       "id": "marina",
@@ -20,25 +28,61 @@
       "relaciones": "Hija de Alba y Albert, hermana pequeña de Mateu",
       "rasgos": [
         "muy parlanchina y cariñosa",
-        "pide abrazos ('apachito')",
-        "le gustan Bluey, Bingo y los cocodrilos",
-        "madrugadora y con las cosas muy claras"
+        "pide abrazos",
+        "le gustan Bluey, Bingo, Peppa Pig, y los bebés llorones",
+        "madrugadora y con las cosas muy claras",
+        "muy observadora con los pequeños detalles"
       ],
-      "detalles": []
+      "detalles": [
+        "Estudia en el colegio Barranquet de Godella",
+        "Empieza el día con mucha energía y ganas de hablar"
+      ],
+      "favoritos": [
+        "dar y pedir abrazos",
+        "jugar a imitar historias de Bluey y Peppa Pig"
+      ],
+      "maniasOMiedos": [
+        "se impacienta si no la entienden a la primera, pero se alegra rápido con un abrazo"
+      ],
+      "apariencia": "Rubia, pelo largo con flequillo y liso. Delgada. Siempre sin zapatillas y descalza"
     },
     {
       "id": "alba",
       "rol": "Mamá",
       "relaciones": "Madre de Mateu y Marina, pareja de Albert",
-      "rasgos": [],
-      "detalles": ["fan de Friends"]
+      "rasgos": [
+        "siempre está cantando",
+        "alegre y divertida",
+        "habla mucho",
+        "resuelve situaciones con entusiasmo y cercanía"
+      ],
+      "detalles": [
+        "fan de la serie Friends",
+        "ha trabajado mucho como hostelera, pero ahora trabaja en diseño e imprenta, siendo una gran profesional de la imprenta",
+        "tiene muchas manías, como que los interruptores miren hacia el mismo lado, y cosas estéticas"
+      ],
+      "favoritos": [
+        "la música y cantar en casa",
+        "el diseño, el papel y los proyectos creativos"
+      ]
     },
     {
       "id": "albert",
       "rol": "Papá",
       "relaciones": "Padre de Mateu y Marina, pareja de Alba",
-      "rasgos": [],
-      "detalles": ["fan de Friends"]
+      "rasgos": [
+        "divertido y con ideas graciosas",
+        "es muy amigable",
+        "tranquilo y resolutivo cuando toca organizar algo"
+      ],
+      "detalles": [
+        "fan de la serie Friends",
+        "es informático en Mercadona"
+      ],
+      "favoritos": [
+        "inventar planes o bromas sencillas para sacar una sonrisa",
+        "resolver problemas prácticos paso a paso"
+      ]
     }
   ]
 }
