@@ -184,7 +184,9 @@ export class ToolbarComponent implements OnInit {
     const limpio = (token ?? '').trim();
     this.tokenActual = limpio;
 
-    if (limpio) {
+    if (this.tipoToken === 'github') {
+      this.authenticationService.guardarTokenGithub(limpio);
+    } else if (limpio) {
       localStorage.setItem(this.storageKey, limpio);
     } else {
       localStorage.removeItem(this.storageKey);

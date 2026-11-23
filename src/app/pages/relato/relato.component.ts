@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -25,8 +25,11 @@ export interface VistaRelato extends VistaBloques {
   templateUrl: './relato.component.html',
   styleUrls: ['./relato.component.css'],
 })
-export class RelatoComponent implements OnDestroy {
+export class RelatoComponent implements OnInit, OnDestroy {
   fotoAbierta: number | null = null;
+  tokenValido = false;
+  validandoToken = false;
+  errorValidacionToken = '';
 
   /** null mientras carga; si no existe el relato, `relato` es undefined. */
   readonly vista$: Observable<VistaRelato | { relato: undefined }> = this.route.paramMap.pipe(
@@ -35,6 +38,9 @@ export class RelatoComponent implements OnDestroy {
     tap((relato) => {
       this.commonService.modoLibro$.next(false);
       this.commonService.sinIdioma$.next(!!relato?.sinIdioma);
+      if (relato?.protegido) {
+        this.comprobarTokenGitHub();
+      }
     }),
     map((relato) =>
       relato
@@ -55,16 +61,56 @@ export class RelatoComponent implements OnDestroy {
     public commonService: CommonService
   ) {}
 
+  ngOnInit(): void {
+    if (this.authenticationService.obtenerTokenGithub()) {
+      this.comprobarTokenGitHub();
+    }
+  }
+
   esVista(v: VistaRelato | { relato: undefined }): v is VistaRelato {
     return v.relato !== undefined;
   }
 
-  /** Cada relato puede usar la contraseña general o la propia de los relatos de la familia. */
-  // estaAutenticado(relato?: Relato): boolean {
-  //   return relato?.protegido ? this.authenticationService.isLoggedInRelatoIaia() : this.authenticationService.isLoggedIn();
-  // }
   tieneTokenAdmin(): boolean {
-    return !!localStorage.getItem('gh_travel_token');
+    return this.tokenValido;
+  }
+
+  onTokenGuardado(nuevoToken: string): void {
+    this.authenticationService.limpiarCacheValidacion();
+    this.comprobarTokenGitHub(nuevoToken, true);
+  }
+
+  comprobarTokenGitHub(token?: string, forzarRefresco = false): void {
+    const valor = (token ?? this.authenticationService.obtenerTokenGithub()).trim();
+    this.errorValidacionToken = '';
+
+    if (!valor) {
+      this.tokenValido = false;
+      this.validandoToken = false;
+      return;
+    }
+
+    this.validandoToken = true;
+    this.authenticationService.validarTokenGithub(valor, forzarRefresco).subscribe({
+      next: (res) => {
+        this.validandoToken = false;
+        this.tokenValido = res.valido;
+        if (!res.valido) {
+          if (res.motivo === 'invalido') {
+            this.errorValidacionToken = 'El token de GitHub no es válido o ha caducado.';
+          } else if (res.motivo === 'sin_acceso_repo') {
+            this.errorValidacionToken = 'El token es válido en GitHub pero no tiene acceso al repositorio.';
+          } else {
+            this.errorValidacionToken = 'No se ha podido comprobar el token con GitHub.';
+          }
+        }
+      },
+      error: () => {
+        this.validandoToken = false;
+        this.tokenValido = false;
+        this.errorValidacionToken = 'No se ha podido comprobar el token con GitHub.';
+      }
+    });
   }
 
   ngOnDestroy(): void {
