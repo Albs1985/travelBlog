@@ -41,6 +41,7 @@ import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cu
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { PaginacionComponent } from './shared/paginacion/paginacion.component';
 import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
+import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
     ToolbarComponent,
     PaginacionComponent,
     CumpleanosComponent,
+    IaRinconComponent,
   ],
   imports: [
     BrowserModule,

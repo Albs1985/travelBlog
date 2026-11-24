@@ -14,7 +14,7 @@
     <span class="btn-text">{{ textoBotonExtra | translate }}</span>
   </button>
 
-  <!-- Grupo de Botones de Administración (Solo si está logueado) -->
+  <!-- Grupo de Botones de Administración -->
   <div class="admin-actions-group animated fadeIn">
 
     <!-- Botón Ordenar -->
@@ -24,20 +24,24 @@
       <span class="btn-text">{{ 'app.ordenarPorAnyo' | translate }}</span>
     </button>
 
-    <!-- Botón Configurar Token -->
-    <button *ngIf="mostrarBotonConfig" class="toolbar-btn" (click)="mostrarPanelToken = !mostrarPanelToken" [title]="githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate)">
+    <!-- Botón Configurar Token (GitHub o IA) -->
+    <button
+      *ngIf="mostrarBotonConfig"
+      class="toolbar-btn"
+      (click)="mostrarPanelToken = !mostrarPanelToken"
+      [title]="tokenActual ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate)">
       <img src="assets/icons/login.png" class="iconoFlecha" alt="">
-      <span class="btn-text">{{ githubToken ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}</span>
+      <span class="btn-text">{{ tokenActual ? ('app.tokenConfigurado' | translate) : ('app.anadirToken' | translate) }}</span>
     </button>
 
     <!-- Botón Activar / Desactivar Selección Múltiple -->
-    <button *ngIf="mostrarBotonSeleccionMultiple && githubToken" class="toolbar-btn" (click)="toggleSeleccionMultiple.emit()" [title]="modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate)">
+    <button *ngIf="mostrarBotonSeleccionMultiple && tokenActual" class="toolbar-btn" (click)="toggleSeleccionMultiple.emit()" [title]="modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate)">
       <img src="assets/icons/bin.png" class="iconoFlecha" alt="">
       <span class="btn-text">{{ modoSeleccionMultiple ? ('app.cancelarSeleccion' | translate) : ('app.borrarVarios' | translate) }}</span>
     </button>
 
     <!-- Botón Crear Nuevo Elemento -->
-    <button *ngIf="mostrarBotonNuevo && githubToken" class="toolbar-btn" (click)="nuevo.emit()" [title]="textoNuevo | translate">
+    <button *ngIf="mostrarBotonNuevo && tokenActual" class="toolbar-btn" (click)="nuevo.emit()" [title]="textoNuevo | translate">
       <img src="assets/icons/add2.png" class="iconoFlecha" alt="">
       <span class="btn-text">{{ textoNuevo | translate }}</span>
     </button>
@@ -55,10 +59,54 @@
 
 <!-- Panel Desplegable para configurar el Token -->
 <div *ngIf="mostrarPanelToken" class="admin-panel-token animated fadeIn">
-  <h4 class="token-title">{{ 'app.adminTokenConfig' | translate }}</h4>
-  <p class="token-desc">{{ 'app.adminTokenDescripcion' | translate }}</p>
-  <div class="token-form">
-    <input type="password" #tokenInput [value]="githubToken" [placeholder]="'app.adminTokenPlaceholder' | translate" class="token-input" />
-    <button class="btn-save-token" (click)="guardarToken(tokenInput.value)">{{ 'app.guardar' | translate }}</button>
-  </div>
+
+  <!-- ===== IA: varios campos (Groq, Gemini, imágenes) ===== -->
+  <ng-container *ngIf="tipoToken === 'ia'; else panelTokenGithub">
+    <h4 class="token-title">Configurar claves de IA</h4>
+    <p class="token-desc">
+      Se guardan solo en este navegador. Basta con una de las dos primeras; si hay las dos,
+      se usa Groq y Gemini queda como respaldo.
+    </p>
+
+    <div class="token-ia-grid">
+      <div class="token-ia-field" *ngFor="let campo of camposIa">
+        <label class="token-ia-label" [attr.for]="'token-ia-' + campo.id">
+          {{ campo.etiqueta }}
+          <span class="token-ia-estado" *ngIf="campo.valor.trim()">✓ configurada</span>
+        </label>
+        <input
+          [id]="'token-ia-' + campo.id"
+          [type]="mostrarClaves ? 'text' : 'password'"
+          [value]="campo.valor"
+          (input)="onCampoInput(campo, $event)"
+          [placeholder]="campo.placeholder"
+          autocomplete="off"
+          spellcheck="false"
+          class="token-input" />
+        <small class="token-ia-hint">{{ campo.ayuda }}</small>
+      </div>
+    </div>
+
+    <div class="token-form token-ia-acciones">
+      <button type="button" class="btn-save-token btn-ver-claves" (click)="mostrarClaves = !mostrarClaves">
+        {{ mostrarClaves ? 'Ocultar claves' : 'Mostrar claves' }}
+      </button>
+      <button type="button" class="btn-save-token" (click)="guardarTokensIa()">{{ 'app.guardar' | translate }}</button>
+    </div>
+  </ng-container>
+
+  <!-- ===== GitHub: campo único (comportamiento original) ===== -->
+  <ng-template #panelTokenGithub>
+    <h4 class="token-title">{{ 'app.adminTokenConfig' | translate }}</h4>
+    <p class="token-desc">{{ 'app.adminTokenDescripcion' | translate }}</p>
+    <div class="token-form">
+      <input
+        type="password"
+        #tokenInput
+        [value]="tokenActual"
+        [placeholder]="'app.adminTokenPlaceholder' | translate"
+        class="token-input" />
+      <button class="btn-save-token" (click)="guardarToken(tokenInput.value)">{{ 'app.guardar' | translate }}</button>
+    </div>
+  </ng-template>
 </div>
