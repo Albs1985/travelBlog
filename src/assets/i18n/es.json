@@ -388,5 +388,13 @@
   "favoritos": {
     "filtrado": "Año, persona, lugar, categoría...",
     "sinTexto": ""
+  },
+  "nav": {
+    "principal": "Navegación principal",
+    "recuerdos": "Recuerdos",
+    "cumpleanos": "Cumpleaños",
+    "masOpciones": "Más opciones",
+    "irInicio": "Ir al inicio",
+    "explora": "Explora"
   }
 }

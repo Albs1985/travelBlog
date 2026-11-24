@@ -1,8 +1,20 @@
-<app-header></app-header>
+<div class="shell">
+  <app-header></app-header>
+  <app-nav></app-nav>
 
+  <main class="shell-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer></app-footer>
+</div>
+
+<!-- Aviso de cumpleaños: hoja inferior en móvil, diálogo centrado en pantallas grandes -->
 <ng-container *ngIf="cumpleanerosHoy$ | async as cumpleHoy">
   <div *ngIf="cumpleHoy.length > 0 && mostrarAvisoCumple" class="cumple-app-backdrop" (click)="mostrarAvisoCumple = false">
-    <div class="cumple-app-modal" (click)="$event.stopPropagation()">
+    <div class="cumple-app-modal" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <div class="cumple-app-grab" aria-hidden="true"></div>
+
       <div class="cumple-app-header">
         <span class="cumple-app-badge">🎉 {{ 'cumpleanos.hoyEsSuCumple' | translate }}</span>
         <button
@@ -10,7 +22,9 @@
           class="cumple-app-close"
           (click)="mostrarAvisoCumple = false"
           [attr.aria-label]="'app.cerrar' | translate"
-          [attr.title]="'app.cerrar' | translate">✕</button>
+          [attr.title]="'app.cerrar' | translate">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
       </div>
 
       <div class="cumple-app-body">
@@ -35,17 +49,13 @@
       </div>
 
       <div class="cumple-app-footer">
-        <a routerLink="/cumpleanos" class="cumple-app-btn-primario" (click)="mostrarAvisoCumple = false">
+        <a routerLink="/cumpleanyos" class="btn" (click)="mostrarAvisoCumple = false">
           🎂 {{ 'cumpleanos.verCalendario' | translate }}
         </a>
-        <button type="button" class="cumple-app-btn-secundario" (click)="mostrarAvisoCumple = false">
+        <button type="button" class="btn btn--ghost" (click)="mostrarAvisoCumple = false">
           {{ 'app.cerrar' | translate }}
         </button>
       </div>
     </div>
   </div>
 </ng-container>
-
-<router-outlet></router-outlet>
-
-<app-footer></app-footer>

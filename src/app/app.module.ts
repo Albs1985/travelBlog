@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -48,6 +49,7 @@ import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
     ViajeComponent,
     ViajesPorAnyoComponent,
     SafePipe,

@@ -1,79 +1,18 @@
-.audio {
-  margin-left: 50px;
-  margin-bottom: -50px;
-  width: 260px;
+:host { display: block; }
+
+.foot {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-2);
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding: var(--space-6) var(--gutter) var(--space-5);
+  border-top: 1px solid var(--line);
+  text-align: center;
 }
 
-.icono {
-  width: 30px;
-  height: 30px;
-  padding: 1px;
-  cursor: pointer;
-}
+.foot__brand { display: inline-flex; align-items: center; gap: .6rem; }
+.foot__name { font: 600 1.15rem/1.1 var(--font-display); }
+.foot__sub { font: 500 .8rem/1.1 var(--font-body); color: var(--ink-soft); }
 
-@media (min-width: 600px) {
-  .audio {
-    width: 460px;
-  }
-}
-@media (min-width: 900px) {
-  .audio {
-    width: 600px;
-  }
-}
-
-@media (min-width: 1100px) {
-  .audio {
-    width: 900px;
-  }
-}
-
-@media (min-width: 1100px) {
-  .audio {
-    width: 900px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .audio {
-    width: 1200px;
-  }
-}
-
-@media (min-width: 2000px) {
-  .audio {
-    width: 1800px;
-  }
-}
-
-@media (min-width: 2200px) {
-  .audio {
-    width: 2000px;
-  }
-}
-
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: linear !important;
-  animation-iteration-count: 2 !important;
-}
-
-@keyframes pulseInfinito {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulseInfinito {
-  animation-name: pulseInfinito;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
+.foot__copy { font-size: .8rem; color: var(--ink-soft); }

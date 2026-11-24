@@ -1,256 +1,198 @@
-/* --- Cabecera Superior Moderna y Equilibrada --- */
-#fh5co-header {
-  background: #ffffff;
-  border-bottom: 1px solid #f0e9e5;
-  padding: 12px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(246, 239, 228, .92);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
 }
 
-.overrideHeader {
-  padding-bottom: 2em !important;
-}
-.header-container {
+.topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  padding: 20px;
+  gap: var(--space-3);
+  height: var(--header-h);
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-/* Redefinimos el toggle hamburguesa para que encaje de forma fluida en el flexbox */
-.fh5co-nav-toggle {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  margin: 0 !important;
+/* ---------- Marca ---------- */
+.brand { display: flex; align-items: center; gap: .6rem; min-width: 0; }
+.brand__mark { width: 34px; height: 34px; }
+.brand__text { display: grid; min-width: 0; line-height: 1.05; }
+.brand__name { font: 600 1.25rem/1 var(--font-display); }
+.brand__sub {
+  margin-top: 3px;
+  font: 500 .72rem/1.2 var(--font-body);
+  color: var(--ink-soft);
+  white-space: nowrap;
 }
 
-/* Logotipo centrado de forma flexible */
-.logo-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-}
+/* ---------- Acciones ---------- */
+.actions { display: flex; align-items: center; gap: var(--space-2); }
 
-/* Grupo derecho que contiene idiomas y casa con márgenes bien definidos */
-.header-actions-right {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Espacio de separación limpio entre los idiomas y la casa */
-  justify-content: flex-end;
+.lang {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
-
-/* Selector de idiomas compacto y elegante */
-.idiomas-container {
-  display: flex;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.idioma {
-  background: #fdfbf7;
-  border: 1px solid #e9dfd7;
-  border-radius: 20px;
-  cursor: pointer;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #65515a;
-  transition: all 0.2s ease;
-}
-
-.idioma:hover {
-  background: #fffbeb;
-  border-color: #f59e0b;
-}
-
-.seleccionado {
-  border: 1px solid #d97706 !important;
-  background-color: #fde68a !important;
-  color: #92400e;
-}
-
-.disabled-button {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* Botón de Home (Casa) con estilo y tamaño proporcionado */
-.iconoCasa {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-.iconoCasa:hover {
-  transform: scale(1.1);
-}
-
-/* --- Estilos del Menú Desplegable Lateral (Offcanvas) --- */
-.imagenPerfil {
-  margin-top: -5px;
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.margenTop {
-  margin-top: -10px;
-}
-
-.iconoChancla {
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-}
-
-.iconRelatos, .iconFamilia {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-}
-
-.iconoViajeros {
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  position: relative;
-  top: -15px;
-  left: 5px;
-}
-
-.iconosImgFav6, .iconosImg {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  vertical-align: middle;
-}
-
-.liViajes {
-  margin-top: 10px !important;
-  list-style: none;
-}
-
-#botonLupa {
+.lang__btn {
+  min-width: 38px;
+  height: 34px;
+  padding: 0 .55rem;
+  border: 0;
+  border-radius: var(--r-pill);
   background: transparent;
-  border: none;
-  cursor: pointer;
+  color: var(--ink-soft);
+  font: 700 .72rem/1 var(--font-body);
+  letter-spacing: .03em;
+  transition: background .2s, color .2s;
 }
+.lang__btn.is-active { background: var(--sea-900); color: #fff; }
+.lang__btn:disabled { cursor: not-allowed; opacity: .5; }
+.lang__btn.is-active:disabled { opacity: 1; }
 
-#myInput {
-  width: 170px !important;
-  border-radius: 20px 0 0 20px;
-  padding: 5px 12px;
-  font-size: 13px;
-}
-
-#busquedaForm {
-  display: inline-flex !important;
+.icon-btn {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: background .2s;
 }
+.icon-btn:hover { background: var(--sand-200); }
+.icon-btn__label { display: none; }
 
-#fh5co-offcanvas {
-  width: 310px !important;
-  background: #fffdfb;
-}
-
-.menuBloques {
-  margin-top: -15px;
-  padding: 0 10px;
-}
-
-.menuBloques h3.heading {
-  font-size: 14px;
-  border-bottom: 1px solid #f0e9e5;
-  padding-bottom: 6px;
-  margin-bottom: 8px;
-  color: #65515a;
-}
-
-/* Menú de juegos optimizado en scroll */
-.menu-juegos-grid {
-  max-height: 220px;
+/* ---------- Hojas (diálogos nativos) ---------- */
+.sheet {
+  position: fixed;
+  inset: auto 0 0 0;               /* móvil: pegada abajo */
+  margin: 0 auto;
+  width: min(100%, 560px);
+  max-width: 100%;
+  max-height: 88dvh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 5px;
+}
+.sheet[open] { animation: sheet-sube .3s cubic-bezier(.2, .8, .2, 1); }
+.sheet::backdrop {
+  background: rgba(60, 38, 20, .5);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
 }
 
-.menu-juegos-grid::-webkit-scrollbar {
-  width: 4px;
+.sheet__inner { padding: 10px 20px calc(22px + env(safe-area-inset-bottom, 0px)); }
+.sheet__grab {
+  width: 44px;
+  height: 5px;
+  margin: 0 auto 14px;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+}
+.sheet__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); }
+.sheet__title { font-size: 1.4rem; }
+.sheet__label { margin: var(--space-5) 0 var(--space-2); font: 600 .95rem/1.2 var(--font-body); color: var(--ink-soft); }
+
+.search { display: flex; gap: var(--space-2); }
+.search__input {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  padding: 0 1.1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 16px;
+  background: var(--sand-100);
+  color: var(--ink);
+  font-size: 1rem;              /* 16px: evita el zoom de iOS */
+}
+.search__input:focus {
+  outline: none;
+  border-color: var(--sea-500);
+  box-shadow: 0 0 0 4px rgba(47, 124, 148, .22);
+}
+.search__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--terra-600);
+  color: #fff;
+}
+.search__go:hover { background: var(--terra-700); }
+
+.cats { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.cats .chip { background: var(--sand-100); }
+
+.menu-list { display: grid; gap: var(--space-2); }
+.menu-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 60px;
+  padding: 8px 12px;
+  border-radius: var(--r-md);
+  font: 600 1.05rem/1.2 var(--font-body);
+}
+.menu-row:hover { background: var(--sand-100); }
+.menu-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--sand-200);
+  color: var(--sea-700);
 }
 
-.menu-juegos-grid::-webkit-scrollbar-thumb {
-  background: #e9dfd7;
-  border-radius: 4px;
-}
-
-/* Animaciones */
-.pulse {
-  animation-name: pulse;
-  animation-timing-function: linear !important;
-  animation-iteration-count: 2 !important;
-}
-
-@keyframes pulseInfinito {
-  from { transform: scale3d(1, 1, 1); }
-  50% { transform: scale3d(1.1, 1.1, 1.1); }
-  to { transform: scale3d(1, 1, 1); }
-}
-
-.pulseInfinito {
-  animation-name: pulseInfinito;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.gradiente {
-  background: linear-gradient(-45deg, #c3deeb, #abd6eb, #96d9f8, #84d6fc);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
-}
-
-/* Desplaza el logo de la familia hacia abajo para centrarlo visualmente respecto a los laterales */
-.logo-centrado-abajo {
-  margin-top: 12px !important;
-}
-
-
-/* ==========================================================
-   🖥️ MEDIA QUERY EXCLUSIVA PARA PC (Oculta hamburguesa y ajusta)
-   ========================================================== */
-@media only screen and (min-width: 992px) {
-  /* Oculta por completo el botón de menú hamburguesa en PC */
-  .js-fh5co-nav-toggle.fh5co-nav-toggle {
-    display: none !important;
+@media (min-width: 768px) {
+  .icon-btn--search { padding: 0 1rem 0 .8rem; }
+  .icon-btn__label {
+    display: inline;
+    min-width: 150px;
+    text-align: left;
+    font: 500 .92rem/1 var(--font-body);
+    color: var(--ink-soft);
   }
 
-  /* Ajustes limpios y sutiles para escritorio */
-  #fh5co-header {
-    padding: 20px 0;
+  .sheet {
+    inset: 14vh 0 auto 0;          /* tablet/PC: diálogo centrado arriba */
+    max-height: 72dvh;
+    border-radius: var(--r-lg);
   }
+  .sheet__grab { display: none; }
+  .sheet__inner { padding: 22px 26px 26px; }
+}
 
-  #fh5co-logo {
-    font-size: 30px;
-  }
+@media (min-width: 1024px) {
+  .brand { display: none; }            /* la marca vive en la barra lateral */
+  .topbar { justify-content: flex-end; }
+  .icon-btn--more { display: none; }   /* Contacto e IA están en la barra lateral */
+}
 
-  .header-actions-right {
-    gap: 22px;
-  }
-
-  .iconoCasa {
-    width: 36px;
-    height: 36px;
-  }
+@keyframes sheet-sube {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
 }
