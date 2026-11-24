@@ -12,7 +12,7 @@
 </section>
 
 <!-- Viajeros: tarjetas con foto y el nombre dentro -->
-<section class="crew" *ngIf="viajerosService.viajeros$ | async as viajeros" aria-labelledby="viajeros-titulo">
+<!-- <section class="crew" *ngIf="viajerosService.viajeros$ | async as viajeros" aria-labelledby="viajeros-titulo">
   <h2 class="section-title" id="viajeros-titulo">{{ 'app.subTituloFav' | translate }}</h2>
   <ul class="crew__list">
     <li class="crew__item" *ngFor="let viajero of viajeros">
@@ -23,7 +23,7 @@
       </a>
     </li>
   </ul>
-</section>
+</section> -->
 
 <!-- Explora: cada grupo es una fila de cards ilustradas (carrusel en móvil, rejilla en PC) -->
 <section class="explore" aria-labelledby="explora-titulo">
@@ -61,7 +61,7 @@
     </article>
 
     <article class="block block--recuerdos">
-      <a class="block__head" routerLink="/galeria"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span><h3 class="block__title">{{ 'nav.recuerdos' | translate }}</h3></a>
+      <a class="block__head"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span><h3 class="block__title">{{ 'nav.recuerdos' | translate }}</h3></a>
       <div class="cards">
         <!-- <a class="card" routerLink="/mapa">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#EBDFCB"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M44 82l37-12 38 12 37-12v86l-37 12-38-12-37 12z" fill="#FFFCF7"/><path d="M81 70v86M119 82v86" stroke="#DCCBAE" stroke-width="2"/><path d="M62 140c20-30 40 10 60-20s24-14 32-30" fill="none" stroke="#2F7C94" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><path d="M122 96c0-9 7-15 15-15s15 6 15 15c0 11-15 26-15 26s-15-15-15-26z" fill="#C8643C"/><circle cx="137" cy="96" r="5" fill="#FFFCF7"/></g></svg>
@@ -87,7 +87,7 @@
     </article>
 
     <article class="block block--familia">
-      <a class="block__head" routerLink="/apodos"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
+      <a class="block__head"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
       <div class="cards">
         <a class="card" routerLink="/ia">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#97431F"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100.0 78.0L108.2 103.8L134.0 112.0L108.2 120.2L100.0 146.0L91.8 120.2L66.0 112.0L91.8 103.8z" fill="#E3A93C"/><path d="M148.0 62.0L151.4 72.6L162.0 76.0L151.4 79.4L148.0 90.0L144.6 79.4L134.0 76.0L144.6 72.6z" fill="#FBEBC8"/><path d="M56.0 139.0L58.6 147.4L67.0 150.0L58.6 152.6L56.0 161.0L53.4 152.6L45.0 150.0L53.4 147.4z" fill="#FBEBC8"/><path d="M150.0 142.0L151.9 148.1L158.0 150.0L151.9 151.9L150.0 158.0L148.1 151.9L142.0 150.0L148.1 148.1z" fill="#FFFCF7"/></g></svg>

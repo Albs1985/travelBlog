@@ -44,22 +44,17 @@ export class HeaderComponent {
     // this.mensajeCabecera = 'Viatges per any';
   }
 
-  buscar(){
-    // console.log('Buscar por '+$('#myInput').val());
-    if($('#myInput').val() == ''){
+  buscar(palabra: string): void {
+
+    // Limpiamos espacios y comprobamos que haya texto
+    const texto = palabra?.trim();
+
+    if (!texto) {
       return;
-    } else {
-      this.palabra = $('#myInput').val();
     }
-    // console.log("Busca por "+this.palabra);
 
-    // this.mensajeCabeceraAnyo = false;
-    // this.mensajeCabeceraFiltrar = true;
-    // this.mensajeCabeceraAny = '';
-
-    // this.mensajeCabecera = 'Filtramos por '+ this.palabra;
-    // La búsqueda la hace la página /viajesFiltrados/:palabra al abrirse
-    this.router.navigate(['/viajesFiltrados/', this.palabra]);
+    // Navegamos a la página de resultados
+    this.router.navigate(['/viajesFiltrados', texto]);
 
   }
 }

@@ -54,12 +54,27 @@
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
       </button>
     </div>
+    <form id="busquedaForm" class="search"
+      (click)="$event.preventDefault(); buscar(caja.value); buscador.close()">
 
-    <form id="busquedaForm" class="search" (submit)="$event.preventDefault(); buscar(); caja.value && buscador.close()">
-      <input #caja id="myInput" class="search__input" type="search" autocomplete="off" enterkeyhint="search"
-             [placeholder]="'header.palabra' | translate" autofocus>
-      <button type="submit" class="search__go" [attr.aria-label]="'header.buscar' | translate">
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+      <input #caja
+        id="myInput"
+        class="search__input"
+        type="search"
+        autocomplete="off"
+        enterkeyhint="search"
+        [placeholder]="'header.palabra' | translate"
+        autofocus>
+
+      <button type="submit"
+              class="search__go"
+              [attr.aria-label]="'header.buscar' | translate">
+
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.5"/>
+          <path d="m20 20-4.2-4.2"/>
+        </svg>
+
       </button>
     </form>
 
