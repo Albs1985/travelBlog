@@ -388,6 +388,17 @@
     "filtrado": "Any, persona, lloc, categoria...",
     "sinTexto": ""
   },
+  "transporte": {
+    "Barca": "Barca",
+    "Barco": "Vaixell",
+    "Coche": "Cotxe",
+    "Moto": "Moto",
+    "Avion": "Avió",
+    "Furgoneta": "Furgoneta",
+    "Caravana": "Caravana",
+    "Tren": "Tren",
+    "Boda": "Boda"
+  },
   "nav": {
     "principal": "Navegació principal",
     "recuerdos": "Records",

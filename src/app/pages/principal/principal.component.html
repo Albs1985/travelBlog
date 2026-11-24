@@ -34,15 +34,14 @@
     <article class="block block--viajes">
       <a class="block__head" routerLink="/viajes"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><h3 class="block__title">{{ 'app.viajes' | translate }}</h3></a>
       <div class="cards">
-        <a class="card" routerLink="/mapa">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#EBDFCB"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M44 82l37-12 38 12 37-12v86l-37 12-38-12-37 12z" fill="#FFFCF7"/><path d="M81 70v86M119 82v86" stroke="#DCCBAE" stroke-width="2"/><path d="M62 140c20-30 40 10 60-20s24-14 32-30" fill="none" stroke="#2F7C94" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><path d="M122 96c0-9 7-15 15-15s15 6 15 15c0 11-15 26-15 26s-15-15-15-26z" fill="#C8643C"/><circle cx="137" cy="96" r="5" fill="#FFFCF7"/></g></svg>
-          <span class="card__label">{{ 'app.mapa' | translate }}</span>
+        <a *ngFor="let a of anyos$ | async" class="card year-card" [routerLink]="['/viajesFiltrados', a.anyo]">
+          <img *ngIf="a.portada" class="year-card__img" [src]="'assets/images/' + a.portada" [alt]="'' + a.anyo" loading="lazy">
+          <span class="year-card__year">{{ a.anyo }}</span>
+          <span class="year-card__places">
+            <span *ngFor="let destino of a.destinos; let last = last">{{ destino }}{{ last ? '' : ', ' }}</span>
+          </span>
         </a>
-        <a class="card" routerLink="/favoritos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#C8643C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 152c-32-21-48-37-48-58 0-15 11-25 25-25 9 0 17 5 23 13 6-8 14-13 23-13 14 0 25 10 25 25 0 21-16 37-48 58z" fill="#FFFCF7"/><path d="M46.0 71.0L48.2 77.8L55.0 80.0L48.2 82.2L46.0 89.0L43.8 82.2L37.0 80.0L43.8 77.8z" fill="#E3A93C"/><path d="M158.0 66.0L159.4 70.6L164.0 72.0L159.4 73.4L158.0 78.0L156.6 73.4L152.0 72.0L156.6 70.6z" fill="#FBEBC8"/><path d="M152.0 137.0L153.7 142.3L159.0 144.0L153.7 145.7L152.0 151.0L150.3 145.7L145.0 144.0L150.3 142.3z" fill="#FBEBC8"/></g></svg>
-          <span class="card__label">{{ 'app.galeriaFav' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/viajesFiltrados/playa">
+        <!-- <a class="card" routerLink="/viajesFiltrados/playa">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><rect y="118" width="200" height="142" fill="#2F7C94"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="142" cy="86" r="16" fill="#E3A93C"/><path d="M70 150V102" stroke="#12313B" stroke-width="3" stroke-linecap="round"/><path d="M44 102a26 26 0 0 1 52 0z" fill="#C8643C"/><path d="M57 102a13 26 0 0 1 13-26 13 26 0 0 1 13 26" fill="none" stroke="#FFFCF7" stroke-width="2"/></g><path d="M0 146c40-12 80 4 120-4s60-4 80 0v118H0z" fill="#EBDFCB"/></svg>
           <span class="card__label">{{ 'header.playa' | translate }}</span>
         </a>
@@ -57,24 +56,54 @@
         <a class="card" routerLink="/viajesFiltrados/nieve">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><circle cx="30" cy="60" r="2" fill="#FFFCF7" opacity=".8"/><circle cx="62" cy="40" r="2.5" fill="#FFFCF7" opacity=".8"/><circle cx="96" cy="70" r="2" fill="#FFFCF7" opacity=".8"/><circle cx="140" cy="52" r="3" fill="#FFFCF7" opacity=".8"/><circle cx="172" cy="84" r="2" fill="#FFFCF7" opacity=".8"/><circle cx="24" cy="104" r="2.5" fill="#FFFCF7" opacity=".8"/><circle cx="112" cy="30" r="2" fill="#FFFCF7" opacity=".8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path fill="#5E7B4B" d="M70 104l16 26H54z"/><path fill="#5E7B4B" d="M70 116l21 36H49z"/><path fill="#5E7B4B" d="M134 90l20 32h-40z"/><path fill="#5E7B4B" d="M134 106l26 46h-52z"/></g><path d="M0 148c40-24 80-22 120-2s60 6 80-6v120H0z" fill="#FFFCF7"/></svg>
           <span class="card__label">{{ 'header.nieve' | translate }}</span>
-        </a>
+        </a> -->
       </div>
     </article>
 
     <article class="block block--recuerdos">
       <a class="block__head" routerLink="/galeria"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span><h3 class="block__title">{{ 'nav.recuerdos' | translate }}</h3></a>
       <div class="cards">
-        <a class="card" routerLink="/galeria">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(10 104 112)"><rect x="68" y="68" width="88" height="104" rx="6" fill="#DCCBAE"/></g><g transform="rotate(-8 100 112)"><rect x="50" y="64" width="96" height="112" rx="6" fill="#FFFCF7"/><rect x="58" y="72" width="80" height="76" rx="3" fill="#2F7C94"/><circle cx="118" cy="92" r="8" fill="#E3A93C"/><path d="M58 148l26-32 20 22 12-12 22 22z" fill="#5E7B4B"/></g></g></svg>
-          <span class="card__label">{{ 'app.galeria' | translate }}</span>
-        </a>
+        <!-- <a class="card" routerLink="/mapa">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#EBDFCB"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M44 82l37-12 38 12 37-12v86l-37 12-38-12-37 12z" fill="#FFFCF7"/><path d="M81 70v86M119 82v86" stroke="#DCCBAE" stroke-width="2"/><path d="M62 140c20-30 40 10 60-20s24-14 32-30" fill="none" stroke="#2F7C94" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><path d="M122 96c0-9 7-15 15-15s15 6 15 15c0 11-15 26-15 26s-15-15-15-26z" fill="#C8643C"/><circle cx="137" cy="96" r="5" fill="#FFFCF7"/></g></svg>
+          <span class="card__label">{{ 'app.mapa' | translate }}</span>
+        </a> -->
         <a class="card" routerLink="/frases">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3EBD9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M58 80h84a14 14 0 0 1 14 14v38a14 14 0 0 1-14 14h-40l-22 20v-20H58a14 14 0 0 1-14-14V94a14 14 0 0 1 14-14z" fill="#5E7B4B"/><text x="100" y="140" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#FFFCF7">&#8220;&#8221;</text></g></svg>
           <span class="card__label">{{ 'header.frases' | translate }}</span>
         </a>
+        <a class="card" routerLink="/favoritos">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#C8643C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 152c-32-21-48-37-48-58 0-15 11-25 25-25 9 0 17 5 23 13 6-8 14-13 23-13 14 0 25 10 25 25 0 21-16 37-48 58z" fill="#FFFCF7"/><path d="M46.0 71.0L48.2 77.8L55.0 80.0L48.2 82.2L46.0 89.0L43.8 82.2L37.0 80.0L43.8 77.8z" fill="#E3A93C"/><path d="M158.0 66.0L159.4 70.6L164.0 72.0L159.4 73.4L158.0 78.0L156.6 73.4L152.0 72.0L156.6 70.6z" fill="#FBEBC8"/><path d="M152.0 137.0L153.7 142.3L159.0 144.0L153.7 145.7L152.0 151.0L150.3 145.7L145.0 144.0L150.3 142.3z" fill="#FBEBC8"/></g></svg>
+          <span class="card__label">{{ 'app.galeriaFav' | translate }}</span>
+        </a>
         <a class="card" routerLink="/dibujos">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(5 100 120)"><rect x="54" y="68" width="92" height="104" rx="4" fill="#FFFCF7"/><path d="M72 144v-26l18-14 18 14v26z" fill="#C8643C"/><path d="M82 144v-14h16v14z" fill="#FBEBC8"/><circle cx="126" cy="90" r="9" fill="#E3A93C"/></g><g transform="rotate(-30 156 140)"><rect x="150" y="104" width="14" height="60" rx="3" fill="#2F7C94"/><path d="M150 104l7-14 7 14z" fill="#12313B"/></g></g></svg>
           <span class="card__label">{{ 'app.dibujos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/galeria">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(10 104 112)"><rect x="68" y="68" width="88" height="104" rx="6" fill="#DCCBAE"/></g><g transform="rotate(-8 100 112)"><rect x="50" y="64" width="96" height="112" rx="6" fill="#FFFCF7"/><rect x="58" y="72" width="80" height="76" rx="3" fill="#2F7C94"/><circle cx="118" cy="92" r="8" fill="#E3A93C"/><path d="M58 148l26-32 20 22 12-12 22 22z" fill="#5E7B4B"/></g></g></svg>
+          <span class="card__label">{{ 'app.galeria' | translate }}</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="block block--familia">
+      <a class="block__head" routerLink="/apodos"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
+      <div class="cards">
+        <a class="card" routerLink="/ia">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#97431F"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100.0 78.0L108.2 103.8L134.0 112.0L108.2 120.2L100.0 146.0L91.8 120.2L66.0 112.0L91.8 103.8z" fill="#E3A93C"/><path d="M148.0 62.0L151.4 72.6L162.0 76.0L151.4 79.4L148.0 90.0L144.6 79.4L134.0 76.0L144.6 72.6z" fill="#FBEBC8"/><path d="M56.0 139.0L58.6 147.4L67.0 150.0L58.6 152.6L56.0 161.0L53.4 152.6L45.0 150.0L53.4 147.4z" fill="#FBEBC8"/><path d="M150.0 142.0L151.9 148.1L158.0 150.0L151.9 151.9L150.0 158.0L148.1 151.9L142.0 150.0L148.1 148.1z" fill="#FFFCF7"/></g></svg>
+          <span class="card__label">{{ 'app.ia' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/recetas">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M80 96c-6-8 6-12 0-20M100 96c-6-8 6-12 0-20M120 96c-6-8 6-12 0-20" fill="none" stroke="#C8643C" stroke-width="4" stroke-linecap="round"/><path d="M56 112h88v20a24 24 0 0 1-24 24H80a24 24 0 0 1-24-24z" fill="#12313B"/><rect x="48" y="106" width="104" height="10" rx="5" fill="#1F5F73"/><path d="M150 124h22" stroke="#12313B" stroke-width="8" stroke-linecap="round"/></g></svg>
+          <span class="card__label">{{ 'header.recetas' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/cumpleanyos">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="76" width="88" height="88" rx="10" fill="#FFFCF7"/><path d="M56 98v-12a10 10 0 0 1 10-10h68a10 10 0 0 1 10 10v12z" fill="#C8643C"/><path d="M80 70v14M120 70v14" stroke="#12313B" stroke-width="5" stroke-linecap="round"/><circle cx="72" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="72" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="10" fill="#E3A93C"/></g></svg>
+          <span class="card__label">{{ 'nav.cumpleanos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/apodos">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-8 100 110)"><rect x="56" y="76" width="88" height="68" rx="12" fill="#C8643C"/><circle cx="72" cy="91" r="5" fill="#FBEBC8"/><path d="M76 118h52M76 131h34" stroke="#FFFCF7" stroke-width="5" stroke-linecap="round"/></g></g></svg>
+          <span class="card__label">{{ 'header.apodos' | translate }}</span>
         </a>
         <a class="card" routerLink="/historias/relatoAlbert">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="86" cy="116" r="28" fill="none" stroke="#FFFCF7" stroke-width="8"/><circle cx="116" cy="116" r="28" fill="none" stroke="#E3A93C" stroke-width="8"/><path d="M100.0 66.0L101.9 72.1L108.0 74.0L101.9 75.9L100.0 82.0L98.1 75.9L92.0 74.0L98.1 72.1z" fill="#FBEBC8"/></g></svg>
@@ -87,24 +116,6 @@
         <a class="card" routerLink="/historias/relatoBodaEsteve">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#5E7B4B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="62" y="130" width="76" height="26" rx="6" fill="#FFFCF7"/><rect x="74" y="106" width="52" height="26" rx="6" fill="#F6DFD2"/><rect x="88" y="84" width="24" height="24" rx="6" fill="#FFFCF7"/><path d="M100 82c-8-6-12-10-12-15a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 5-4 9-12 15z" fill="#C8643C"/></g></svg>
           <span class="card__label">{{ 'header.bodaEsteve' | translate }}</span>
-        </a>
-      </div>
-    </article>
-
-    <article class="block block--familia">
-      <a class="block__head" routerLink="/apodos"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
-      <div class="cards">
-        <a class="card" routerLink="/apodos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-8 100 110)"><rect x="56" y="76" width="88" height="68" rx="12" fill="#C8643C"/><circle cx="72" cy="91" r="5" fill="#FBEBC8"/><path d="M76 118h52M76 131h34" stroke="#FFFCF7" stroke-width="5" stroke-linecap="round"/></g></g></svg>
-          <span class="card__label">{{ 'header.apodos' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/recetas">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M80 96c-6-8 6-12 0-20M100 96c-6-8 6-12 0-20M120 96c-6-8 6-12 0-20" fill="none" stroke="#C8643C" stroke-width="4" stroke-linecap="round"/><path d="M56 112h88v20a24 24 0 0 1-24 24H80a24 24 0 0 1-24-24z" fill="#12313B"/><rect x="48" y="106" width="104" height="10" rx="5" fill="#1F5F73"/><path d="M150 124h22" stroke="#12313B" stroke-width="8" stroke-linecap="round"/></g></svg>
-          <span class="card__label">{{ 'header.recetas' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/cumpleanyos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="76" width="88" height="88" rx="10" fill="#FFFCF7"/><path d="M56 98v-12a10 10 0 0 1 10-10h68a10 10 0 0 1 10 10v12z" fill="#C8643C"/><path d="M80 70v14M120 70v14" stroke="#12313B" stroke-width="5" stroke-linecap="round"/><circle cx="72" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="72" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="10" fill="#E3A93C"/></g></svg>
-          <span class="card__label">{{ 'nav.cumpleanos' | translate }}</span>
         </a>
       </div>
     </article>
@@ -132,10 +143,182 @@
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="108" height="92" rx="12" fill="#1F5F73"/><circle cx="64" cy="94" r="8" fill="#12313B"/><circle cx="82" cy="94" r="8" fill="#12313B"/><circle cx="100" cy="94" r="8" fill="#12313B"/><circle cx="118" cy="94" r="8" fill="#12313B"/><circle cx="136" cy="94" r="8" fill="#12313B"/><circle cx="64" cy="114" r="8" fill="#12313B"/><circle cx="82" cy="114" r="8" fill="#12313B"/><circle cx="100" cy="114" r="8" fill="#C8643C"/><circle cx="118" cy="114" r="8" fill="#12313B"/><circle cx="136" cy="114" r="8" fill="#12313B"/><circle cx="64" cy="134" r="8" fill="#12313B"/><circle cx="82" cy="134" r="8" fill="#C8643C"/><circle cx="100" cy="134" r="8" fill="#E3A93C"/><circle cx="118" cy="134" r="8" fill="#12313B"/><circle cx="136" cy="134" r="8" fill="#12313B"/><circle cx="64" cy="154" r="8" fill="#C8643C"/><circle cx="82" cy="154" r="8" fill="#E3A93C"/><circle cx="100" cy="154" r="8" fill="#C8643C"/><circle cx="118" cy="154" r="8" fill="#E3A93C"/><circle cx="136" cy="154" r="8" fill="#12313B"/></g></svg>
           <span class="card__label">{{ 'app.conecta4' | translate }}</span>
         </a>
+        <!-- ADIVINA -->
+        <a class="card" routerLink="/games/adivina">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#C8643C"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="100" cy="114" r="42" fill="#F6DFD2"/>
+              <path d="M70 106a30 30 0 0 1 60 0c-15-10-45-10-60 0z" fill="#12313B"/>
+              <circle cx="88" cy="116" r="4" fill="#12313B"/>
+              <circle cx="112" cy="116" r="4" fill="#12313B"/>
+              <path d="M90 133q10 8 20 0" stroke="#12313B" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <circle cx="145" cy="75" r="18" fill="#E3A93C"/>
+              <text x="145" y="83" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="25" font-weight="700" fill="#12313B">?</text>
+              <path d="M48 154l-12 16 22-5" fill="#E3A93C"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.juegoAdivina' | translate }}</span>
+        </a>
+
+        <!-- TABLEROS -->
+        <a class="card" routerLink="/games/tableros">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#1F5F73"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <rect x="47" y="68" width="106" height="100" rx="9" fill="#FFFCF7"/>
+              <path d="M82 68v100M118 68v100M47 101h106M47 134h106" stroke="#12313B" stroke-width="2"/>
+              <rect x="52" y="73" width="25" height="23" rx="3" fill="#E3A93C"/>
+              <rect x="87" y="73" width="25" height="23" rx="3" fill="#C8643C"/>
+              <rect x="123" y="106" width="25" height="23" rx="3" fill="#5E7B4B"/>
+              <circle cx="64" cy="117" r="8" fill="#1F5F73"/>
+              <circle cx="100" cy="150" r="8" fill="#C8643C"/>
+              <circle cx="136" cy="150" r="8" fill="#E3A93C"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.juegoMesa' | translate }}</span>
+        </a>
+
+        <!-- MISIÓN CUMPLIDA -->
+        <a class="card" routerLink="/games/misionCumplida">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#5E7B4B"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="100" cy="115" r="48" fill="#E3A93C"/>
+              <circle cx="100" cy="115" r="35" fill="#FFFCF7"/>
+              <path d="M78 115l15 15 30-34" fill="none" stroke="#5E7B4B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M53 65l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" fill="#FBEBC8"/>
+              <path d="M151 142l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#C8643C"/>
+              <path d="M145 70l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#FBEBC8"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.juegoMisionCumplida' | translate }}</span>
+        </a>
+
+        <!-- FACEDOKU -->
+        <a class="card" routerLink="/games/facedoku">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#E3A93C"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <rect x="49" y="66" width="102" height="102" rx="8" fill="#FFFCF7"/>
+              <path d="M83 66v102M117 66v102M49 100h102M49 134h102" stroke="#12313B" stroke-width="2"/>
+              <circle cx="66" cy="83" r="10" fill="#F6DFD2"/>
+              <path d="M56 80q10-15 20 0" fill="#12313B"/>
+              <circle cx="100" cy="83" r="10" fill="#C8643C"/>
+              <circle cx="134" cy="83" r="10" fill="#F6DFD2"/>
+              <path d="M124 80q10-15 20 0" fill="#12313B"/>
+              <circle cx="66" cy="117" r="10" fill="#5E7B4B"/>
+              <circle cx="100" cy="117" r="10" fill="#F6DFD2"/>
+              <path d="M90 114q10-15 20 0" fill="#12313B"/>
+              <circle cx="134" cy="117" r="10" fill="#C8643C"/>
+              <circle cx="66" cy="151" r="10" fill="#F6DFD2"/>
+              <path d="M56 148q10-15 20 0" fill="#12313B"/>
+              <circle cx="100" cy="151" r="10" fill="#E3A93C"/>
+              <circle cx="134" cy="151" r="10" fill="#F6DFD2"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.faceDoku' | translate }}</span>
+        </a>
+
+        <!-- AHORCADO -->
+        <a class="card" routerLink="/games/ahorcado">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#12313B"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <path d="M55 165h90M75 165V65h55v15" stroke="#E3A93C" stroke-width="7" fill="none" stroke-linecap="round"/>
+              <circle cx="130" cy="98" r="17" fill="#F6DFD2"/>
+              <path d="M130 115v30M130 122l-17 14M130 122l17 14M130 145l-14 20M130 145l14 20" stroke="#C8643C" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M64 183h72" stroke="#FFFCF7" stroke-width="4" stroke-linecap="round"/>
+              <path d="M72 190h14M96 190h14M120 190h14" stroke="#E3A93C" stroke-width="4" stroke-linecap="round"/>
+              <text x="100" y="65" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="700" fill="#FFFCF7">A B C</text>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.ahorcado' | translate }}</span>
+        </a>
+
+        <!-- AVENTURA FAMILIAR -->
+        <a class="card" routerLink="/games/aventura">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#5E7B4B"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <path d="M38 155l35-65 29 42 22-32 38 55z" fill="#1F5F73"/>
+              <path d="M73 90l-12 23 16-7 10 12 13-17z" fill="#FFFCF7"/>
+              <path d="M102 132l22-32 13 20-10-4-8 10z" fill="#E3A93C"/>
+              <path d="M42 155q58-27 116 0v13H42z" fill="#E3A93C"/>
+              <path d="M88 145l12-23 12 23" fill="#C8643C"/>
+              <path d="M100 122v30" stroke="#12313B" stroke-width="3"/>
+              <path d="M100 124l20 9-20 5z" fill="#FFFCF7"/>
+              <circle cx="52" cy="72" r="12" fill="#E3A93C"/>
+              <path d="M52 51v-9M52 102v-9M31 72h-9M82 72h-9" stroke="#E3A93C" stroke-width="3" stroke-linecap="round"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.aventura' | translate }}</span>
+        </a>
+
+        <!-- PUZZLE DESLIZANTE -->
+        <a class="card" routerLink="/games/puzzle-deslizante">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#1F5F73"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <rect x="54" y="67" width="92" height="100" rx="8" fill="#FFFCF7"/>
+              <rect x="60" y="73" width="26" height="28" rx="4" fill="#C8643C"/>
+              <rect x="88" y="73" width="26" height="28" rx="4" fill="#E3A93C"/>
+              <rect x="116" y="73" width="24" height="28" rx="4" fill="#5E7B4B"/>
+              <rect x="60" y="103" width="26" height="28" rx="4" fill="#1F5F73"/>
+              <rect x="88" y="103" width="26" height="28" rx="4" fill="#C8643C"/>
+              <rect x="116" y="103" width="24" height="28" rx="4" fill="#E3A93C"/>
+              <rect x="60" y="133" width="26" height="28" rx="4" fill="#E3A93C"/>
+              <rect x="88" y="133" width="26" height="28" rx="4" fill="#5E7B4B"/>
+              <path d="M116 133h24v28h-24z" fill="#F6DFD2"/>
+              <path d="M125 141l9 6-9 6" stroke="#C8643C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.puzzleDeslizante' | translate }}</span>
+        </a>
+
+        <!-- IMPOSTOR -->
+        <a class="card" routerLink="/games/impostor">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#C8643C"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="75" cy="112" r="27" fill="#F6DFD2"/>
+              <path d="M49 105a27 27 0 0 1 52 0c-12-9-40-9-52 0z" fill="#12313B"/>
+              <circle cx="67" cy="116" r="3" fill="#12313B"/>
+              <circle cx="83" cy="116" r="3" fill="#12313B"/>
+              <circle cx="125" cy="112" r="27" fill="#12313B"/>
+              <path d="M99 105a27 27 0 0 1 52 0c-12-9-40-9-52 0z" fill="#E3A93C"/>
+              <rect x="110" y="106" width="30" height="16" rx="8" fill="#1F5F73" stroke="#FFFCF7" stroke-width="2"/>
+              <circle cx="125" cy="114" r="4" fill="#FFFCF7"/>
+              <path d="M94 73l6-13 6 13" fill="none" stroke="#E3A93C" stroke-width="3"/>
+              <text x="100" y="170" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="700" fill="#FFFCF7">¿QUIÉN?</text>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.impostor' | translate }}</span>
+        </a>
+
+        <!-- SIMON -->
+        <a class="card" routerLink="/games/simon">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#12313B"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="100" cy="115" r="57" fill="#FFFCF7"/>
+              <path d="M100 115V65a50 50 0 0 0-50 50z" fill="#C8643C"/>
+              <path d="M100 115h50a50 50 0 0 0-50-50z" fill="#E3A93C"/>
+              <path d="M100 115v50a50 50 0 0 0 50-50z" fill="#5E7B4B"/>
+              <path d="M100 115H50a50 50 0 0 0 50 50z" fill="#1F5F73"/>
+              <circle cx="100" cy="115" r="13" fill="#12313B"/>
+              <circle cx="75" cy="90" r="7" fill="#FFFCF7"/>
+              <circle cx="125" cy="90" r="7" fill="#FFFCF7"/>
+              <circle cx="75" cy="140" r="7" fill="#FFFCF7"/>
+              <circle cx="125" cy="140" r="7" fill="#FFFCF7"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.simon' | translate }}</span>
+        </a>
       </div>
     </article>
 
-    <article class="block block--mas">
+    <!-- <article class="block block--mas">
       <div class="block__head"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18.5" cy="12" r="1.4"/></svg></span><h3 class="block__title">{{ 'nav.masOpciones' | translate }}</h3></div>
       <div class="cards">
         <a class="card" routerLink="/contactQR">
@@ -147,7 +330,7 @@
           <span class="card__label">{{ 'app.ia' | translate }}</span>
         </a>
       </div>
-    </article>
+    </article> -->
 
   </div>
 </section>

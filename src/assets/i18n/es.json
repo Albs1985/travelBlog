@@ -389,6 +389,17 @@
     "filtrado": "Año, persona, lugar, categoría...",
     "sinTexto": ""
   },
+  "transporte": {
+    "Barca": "Barca",
+    "Barco": "Barco",
+    "Coche": "Coche",
+    "Moto": "Moto",
+    "Avion": "Avión",
+    "Furgoneta": "Furgoneta",
+    "Caravana": "Caravana",
+    "Tren": "Tren",
+    "Boda": "Boda"
+  },
   "nav": {
     "principal": "Navegación principal",
     "recuerdos": "Recuerdos",

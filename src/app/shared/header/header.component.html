@@ -36,10 +36,10 @@
     </button>
 
     <!-- Más opciones (solo móvil y tablet; en escritorio están en la barra lateral) -->
-    <button type="button" class="icon-btn icon-btn--more" (click)="menu.showModal()"
+    <!-- <button type="button" class="icon-btn icon-btn--more" (click)="menu.showModal()"
             [attr.aria-label]="'nav.masOpciones' | translate">
       <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18.5" cy="12" r="1.4"/></svg>
-    </button>
+    </button> -->
   </div>
 </header>
 
@@ -74,7 +74,7 @@
 </dialog>
 
 <!-- Hoja «Más opciones» -->
-<dialog #menu class="sheet" aria-labelledby="menu-titulo"
+<!-- <dialog #menu class="sheet" aria-labelledby="menu-titulo"
         (click)="$event.target === menu && menu.close()">
   <div class="sheet__inner">
     <div class="sheet__grab" aria-hidden="true"></div>
@@ -96,4 +96,4 @@
       </a>
     </nav>
   </div>
-</dialog>
+</dialog> -->
