@@ -8,6 +8,14 @@
   </a>
 
   <div class="actions">
+    <!-- Contraseña -->
+    <div class="lang" role="group" [attr.aria-label]="'app.contrasenya' | translate">
+      <ng-container>
+        <button type="button" class="lang__btn" [attr.title]="'app.contrasenya' | translate" (click)="configuracion.showModal()">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l3 3M14 9l2 2"/></svg>
+        </button>
+      </ng-container>
+    </div>
     <!-- Idioma -->
     <div class="lang" role="group" [attr.aria-label]="'app.idioma' | translate">
       <ng-container *ngIf="(commonService.sinIdioma$ | async) === true; else idiomasLibres">
@@ -87,6 +95,36 @@
     </div>
   </div>
 </dialog>
+
+<!-- Toolbar de la app configurada para token de IA -->
+<dialog #configuracion class="sheet" aria-labelledby="configuracion-titulo"
+  (click)="$event.target === configuracion && configuracion.close()">
+  <div class="sheet__inner">
+  <div class="sheet__grab" aria-hidden="true"></div>
+  <div class="sheet__head">
+  <h2 class="sheet__title" id="configuracion-titulo">{{ 'app.config' | translate }}</h2>
+  <button type="button" class="icon-btn" (click)="configuracion.close()" [attr.aria-label]="'app.cerrar' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  </div>
+  <app-toolbar
+    [volverLink]="''"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="false"
+    [mostrarPanelToken]="true">
+  </app-toolbar>
+  <app-toolbar
+    [volverLink]="''"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="false"
+    [mostrarPanelToken]="true"
+    [tipoToken]="'ia'"
+    (tokenGuardado)="onTokenIaGuardado($event)">
+  </app-toolbar>
+
+  </div>
+</dialog>
+
 
 <!-- Hoja «Más opciones» -->
 <!-- <dialog #menu class="sheet" aria-labelledby="menu-titulo"

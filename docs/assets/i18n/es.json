@@ -153,6 +153,7 @@
     "errorCartaNoPuedeJugar": "La carta que se juega debe ser del mismo color, el mismo número, o ambas cosas",
     "errorCarga": "No se han podido cargar los datos. Inténtalo de nuevo más tarde.",
     "adminTokenConfig": "Configuración de Administrador",
+    "config": "Configuración",
     "adminTokenDescripcion": "Introduce tu contraseña para poder añadir y editar frases directamente:",
     "adminTokenPlaceholder": "ghp_xxxxxxxxxxxx",
     "guardar": "Guardar",

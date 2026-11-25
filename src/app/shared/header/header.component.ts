@@ -57,4 +57,8 @@ export class HeaderComponent {
     this.router.navigate(['/viajesFiltrados', texto]);
 
   }
+
+  onTokenIaGuardado(token: string): void {
+    this.commonService.claveGuardada = Boolean((token ?? '').trim());
+  }
 }
