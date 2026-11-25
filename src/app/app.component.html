@@ -49,7 +49,7 @@
       </div>
 
       <div class="cumple-app-footer">
-        <a routerLink="/cumpleanyos" class="btn" (click)="mostrarAvisoCumple = false">
+        <a routerLink="/familia" [queryParams]="{ seccion: 'cumpleanos' }" class="btn" (click)="mostrarAvisoCumple = false">
           🎂 {{ 'cumpleanos.verCalendario' | translate }}
         </a>
         <button type="button" class="btn btn--ghost" (click)="mostrarAvisoCumple = false">

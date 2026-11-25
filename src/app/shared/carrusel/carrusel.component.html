@@ -1,7 +1,10 @@
 <div class="car" *ngIf="imagenes.length">
-  <div class="car-pista" #pista>
-    <a *ngFor="let img of imagenes; let i = index" class="car-item" [routerLink]="enlace">
+  <div class="car__track" #pista [class.is-locked]="bloqueado"
+       (touchstart)="alTocar($event)" (touchend)="alSoltar($event)" (touchcancel)="alSoltar($event)"
+       (scroll)="alDesplazar(pista)">
+    <a *ngFor="let img of imagenes; let i = index" class="car__slide" [routerLink]="enlace">
       <img
+        class="car__img"
         [src]="'assets/images/' + img"
         [alt]="alt"
         loading="eager"
@@ -10,12 +13,17 @@
         (error)="ocultar($event)">
     </a>
   </div>
+
   <ng-container *ngIf="imagenes.length > 1">
-    <button type="button" class="car-btn car-izq" (click)="mover(pista, -1)" [attr.aria-label]="'app.anterior' | translate">
-      <img src="assets/icons/flechaIzq.png" alt="" decoding="async">
+    <button type="button" class="car__btn car__btn--prev" (click)="mover(pista, -1)" [attr.aria-label]="'app.anterior' | translate">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
     </button>
-    <button type="button" class="car-btn car-der" (click)="mover(pista, 1)" [attr.aria-label]="'app.siguiente' | translate">
-      <img src="assets/icons/flechaDer.png" alt="" decoding="async">
+    <button type="button" class="car__btn car__btn--next" (click)="mover(pista, 1)" [attr.aria-label]="'app.siguiente' | translate">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
     </button>
+
+    <div class="car__dots" aria-hidden="true">
+      <span class="car__dot" *ngFor="let img of imagenes; let i = index" [class.is-on]="i === indice"></span>
+    </div>
   </ng-container>
 </div>

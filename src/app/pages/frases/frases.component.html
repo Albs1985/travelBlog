@@ -1,225 +1,119 @@
-<div class="frases-page">
+<section class="frases">
 
-  <!-- Cabecera -->
-  <header class="frases-hero">
-    <div class="hero-decoration hero-decoration-1"></div>
-    <div class="hero-decoration hero-decoration-2"></div>
-
-    <div class="hero-content">
-      <span class="hero-label">{{ 'app.frasesLabel' | translate }}</span>
-
-      <h2 class="titulo-frases">
-        <img src="assets/icons/goodOne.png" alt="">
-        {{ 'app.frasesTitulo' | translate }}
-      </h2>
-
-      <h3>{{ 'app.frasesSubtitulo1' | translate }}</h3>
-      <p>{{ 'app.frasesSubtitulo2' | translate }}</p>
+  <header class="sec-head">
+    <div class="sec-head__text">
+      <h2 class="sec-title">{{ 'app.frasesTitulo' | translate }}</h2>
+      <p class="sec-sub">{{ 'app.frasesSubtitulo1' | translate }} {{ 'app.frasesSubtitulo2' | translate }}</p>
     </div>
-
-    <div class="hero-illustration">
-      <span class="hero-heart">♥</span>
-      <span class="hero-stars">✦</span>
-      <span class="hero-quote">“</span>
-    </div>
+    <app-toolbar
+      [volverLink]="''"
+      [mostrarBotonConfig]="false"
+      [textoNuevo]="'app.nuevaFrase'"
+      (nuevo)="mostrarFormulario = true">
+    </app-toolbar>
   </header>
 
-  <app-toolbar
-    [volverLink]="'/principal'"
-    [textoNuevo]="'app.nuevaFrase'"
-    (nuevo)="mostrarFormulario = true">
-  </app-toolbar>
-
-  <!-- Modal / Formulario Crear o Editar Frase -->
-  <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
-    <div class="admin-modal-card" style="background: #fff; width: 100%; max-width: 550px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
-      <h3 style="margin-top: 0; color: #65515a; font-family: Georgia, serif;">{{ modoEdicion ? ('app.editarFrase' | translate) : ('app.nuevaFrase' | translate) }}</h3>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.personaLabel' | translate }}</label>
-        <select [(ngModel)]="fraseForm.persona" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; background: #fffdfb;">
-          <option value="Mateu">Mateu</option>
-          <option value="Marina">Marina</option>
-        </select>
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.anyoLabel' | translate }}</label>
-        <input type="text" [(ngModel)]="fraseForm.fecha" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.fraseEsLabel' | translate }}</label>
-        <textarea [(ngModel)]="fraseForm.frase" rows="3" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box; resize: vertical;"></textarea>
-      </div>
-
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.explicacionEsLabel' | translate }}</label>
-        <input type="text" [(ngModel)]="fraseForm.explicacion!" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; box-sizing: border-box;" />
-      </div>
-
-      <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button (click)="cerrarFormulario()" style="padding: 10px 18px; background: #f0e9e5; color: #65515a; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.cancelar' | translate }}</button>
-        <button (click)="guardarFrase()" [disabled]="cargandoAccion" style="padding: 10px 18px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
-          {{ cargandoAccion ? ('app.guardando' | translate) : ('app.guardarEnGithub' | translate) }}
+  <!-- Ventana de alta y edición -->
+  <div *ngIf="mostrarFormulario" class="modal" (click)="cerrarFormulario()">
+    <div class="modal__card" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <div class="modal__grab" aria-hidden="true"></div>
+      <div class="modal__head">
+        <h3 class="modal__title">{{ modoEdicion ? ('app.editarFrase' | translate) : ('app.nuevaFrase' | translate) }}</h3>
+        <button type="button" class="round-btn" (click)="cerrarFormulario()" [attr.aria-label]="'app.cerrar' | translate">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
         </button>
+      </div>
+
+      <div class="form">
+        <label class="field">
+          <span class="field__label">{{ 'app.personaLabel' | translate }}</span>
+          <select class="field__input" [(ngModel)]="fraseForm.persona">
+            <option value="Mateu">Mateu</option>
+            <option value="Marina">Marina</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field__label">{{ 'app.anyoLabel' | translate }}</span>
+          <input type="text" class="field__input" [(ngModel)]="fraseForm.fecha">
+        </label>
+
+        <label class="field">
+          <span class="field__label">{{ 'app.fraseEsLabel' | translate }}</span>
+          <textarea class="field__input" [(ngModel)]="fraseForm.frase" rows="3"></textarea>
+        </label>
+
+        <label class="field">
+          <span class="field__label">{{ 'app.explicacionEsLabel' | translate }}</span>
+          <input type="text" class="field__input" [(ngModel)]="fraseForm.explicacion!">
+        </label>
+
+        <div class="modal__actions">
+          <button type="button" class="btn btn--ghost" (click)="cerrarFormulario()">{{ 'app.cancelar' | translate }}</button>
+          <button type="button" class="btn" (click)="guardarFrase()" [disabled]="cargandoAccion">
+            {{ cargandoAccion ? ('app.guardando' | translate) : ('app.guardarEnGithub' | translate) }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-  <div>
+  <ng-container *ngIf="frases$ | async as frases; else cargando">
 
-    <ng-container *ngIf="frases$ | async as frases; else cargando">
+    <div class="frases__tools">
+      <app-buscador [placeholder]="'app.frasesFiltrado' | translate" (buscar)="buscar($event)"></app-buscador>
+      <p class="frases__count"><strong>{{ frases.length }}</strong> {{ 'app.recuerdosEncontrados' | translate }}</p>
+    </div>
 
-      <!-- Buscador y resumen -->
-      <section class="frases-toolbar">
+    <div *ngIf="frases.length > pageSize">
+      <pagination-controls nextLabel="{{ 'app.siguiente' | translate }}" previousLabel="{{ 'app.anterior' | translate }}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+    </div>
 
-        <div class="toolbar-heading">
-          <span class="toolbar-icon">💬</span>
-          <div>
-            <h3>{{ 'app.rinconOcurrenciasTitulo' | translate }}</h3>
-            <p>{{ 'app.rinconOcurrenciasSub' | translate }}</p>
-          </div>
+    <div class="quotes">
+      <article class="quote" *ngFor="let frase of frases | paginate: { itemsPerPage: pageSize, currentPage: p }" [class.is-busy]="idsEliminando.has(frase.id!)">
+
+        <div class="quote__busy" *ngIf="idsEliminando.has(frase.id!)">
+          <span class="loader__ring"></span>
+          <span>{{ 'app.eliminando' | translate }}</span>
         </div>
 
-        <div class="margin-top-5rem">
-          <app-buscador
-            class="mt-3"
-            [placeholder]="'app.frasesFiltrado' | translate"
-            (buscar)="buscar($event)">
-          </app-buscador>
+        <header class="quote__top">
+          <img class="quote__avatar"
+               [src]="frase.persona?.toLowerCase() === 'marina' ? 'assets/images/perfiles/fotoPerfilMarina.jpg' : 'assets/images/perfiles/fotoPerfilMateu.jpg'"
+               [alt]="'Foto de ' + frase.persona" loading="lazy" (error)="$any($event.target).style.visibility = 'hidden'">
+          <div class="quote__who">
+            <span class="quote__label">{{ 'app.unaFraseDe' | translate }}</span>
+            <h3 class="quote__name">{{ frase.persona }}</h3>
+          </div>
+          <span class="pill pill--terra">{{ frase.fecha }}</span>
+        </header>
+
+        <blockquote class="quote__text">{{ frase.frase }}</blockquote>
+
+        <p class="quote__note" *ngIf="frase.explicacion">{{ frase.explicacion }}</p>
+
+        <div class="quote__admin" *ngIf="githubToken">
+          <button type="button" class="btn btn--sm btn--ghost" (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)">{{ 'app.editarBtn' | translate }}</button>
+          <button type="button" class="btn btn--sm btn--soft" (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)">{{ 'app.eliminarBtn' | translate }}</button>
         </div>
+      </article>
+    </div>
 
-        <div class="resultados-info">
-          <span>
-            <strong>{{ frases.length }}</strong>
-            {{ 'app.recuerdosEncontrados' | translate }}
-          </span>
-          <span class="resultados-decoration">♡</span>
-        </div>
+    <div *ngIf="frases.length === 0" class="empty-note">
+      <h3>{{ 'app.sinFrasesTitulo' | translate }}</h3>
+      <p>{{ 'app.sinResultados' | translate }}</p>
+    </div>
 
-      </section>
+    <div *ngIf="frases.length > pageSize">
+      <pagination-controls nextLabel="{{ 'app.siguiente' | translate }}" previousLabel="{{ 'app.anterior' | translate }}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+    </div>
 
-      <!-- Paginación superior -->
-      <div *ngIf="frases.length > pageSize" class="paginacion">
-        <pagination-controls
-          class="my-pagination"
-          nextLabel="{{ 'app.siguiente' | translate }}"
-          previousLabel="{{ 'app.anterior' | translate }}"
-          [maxSize]="maxSizeDisplay"
-          (pageChange)="p = $event">
-        </pagination-controls>
-      </div>
+  </ng-container>
 
-      <!-- Listado de frases -->
-      <section class="frases-lista">
-
-        <article
-          *ngFor="let frase of frases | paginate: {
-            itemsPerPage: pageSize,
-            currentPage: p
-          }"
-          class="frase-card"
-          [style.opacity]="idsEliminando.has(frase.id!) ? '0.6' : '1'"
-          style="position: relative;">
-
-          <!-- 👈 OVERLAY DE PROCESANDO SI SE ESTÁ ELIMINANDO -->
-          <div *ngIf="idsEliminando.has(frase.id!)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px; border-radius: 12px;">
-            <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
-            <span style="font-size: 11px; font-weight: bold; color: #d97706;">Eliminando...</span>
-          </div>
-
-          <!-- Año -->
-          <div class="frase-year">
-            <span>{{ frase.fecha }}</span>
-          </div>
-
-          <div class="frase-card-content">
-
-            <!-- Perfil -->
-            <div class="perfil-frase">
-
-              <div class="perfil-image-wrapper">
-                <img
-                  [src]="frase.persona?.toLowerCase() === 'marina'
-                    ? 'assets/images/perfiles/fotoPerfilMarina.jpg'
-                    : 'assets/images/perfiles/fotoPerfilMateu.jpg'"
-                  [alt]="'Foto de ' + frase.persona"
-                  class="perfil-image">
-                <span class="perfil-status"></span>
-              </div>
-
-              <div class="perfil-info">
-                <span class="perfil-label">{{ 'app.unaFraseDe' | translate }}</span>
-                <h4>{{ frase.persona }}</h4>
-              </div>
-
-            </div>
-
-            <!-- Cita -->
-            <div class="frase-content">
-
-              <span class="quote-decoration">“</span>
-
-              <blockquote>
-                {{ frase.frase }}
-              </blockquote>
-
-              <div class="quote-bottom-decoration">”</div>
-
-              <div *ngIf="frase.explicacion" class="frase-explicacion">
-                <span class="explicacion-icon">✦</span>
-                <p>{{ frase.explicacion }}</p>
-              </div>
-
-            </div>
-
-            <!-- Botones de administración visibles si hay token -->
-            <div *ngIf="githubToken" style="display: flex; gap: 8px; margin: 15px 0 5px; justify-content: flex-end;">
-              <button (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)" style="background: #fff2e1; border: 1px solid #f2d7bd; color: #bd8c58; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">✏️ {{ 'app.editarBtn' | translate }}</button>
-              <button (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 4px 10px; border-radius: 8px; font-size: 11px; cursor: pointer; font-weight: bold;">🗑️ {{ 'app.eliminarBtn' | translate }}</button>
-            </div>
-
-            <!-- Decoración -->
-            <div class="frase-card-footer">
-              <span>{{ 'app.recuerdoSiempre' | translate }}</span>
-              <span class="footer-heart">♥</span>
-            </div>
-
-          </div>
-
-        </article>
-
-      </section>
-
-      <!-- Sin resultados -->
-      <div *ngIf="frases.length === 0" class="sin-frases">
-        <span>🌷</span>
-        <h3>{{ 'app.sinFrasesTitulo' | translate }}</h3>
-        <p>{{ 'app.sinResultados' | translate }}</p>
-      </div>
-
-      <!-- Paginación inferior -->
-      <div *ngIf="frases.length > pageSize" class="paginacion paginacion-bottom">
-        <pagination-controls
-          class="my-pagination"
-          nextLabel="{{ 'app.siguiente' | translate }}"
-          previousLabel="{{ 'app.anterior' | translate }}"
-          [maxSize]="maxSizeDisplay"
-          (pageChange)="p = $event">
-        </pagination-controls>
-      </div>
-
-    </ng-container>
-
-    <!-- Cargando -->
-    <ng-template #cargando>
-      <div class="spinner-container">
-        <div class="spinner"></div>
-        <span>{{ 'app.cargando' | translate }}</span>
-      </div>
-    </ng-template>
-
-  </div>
-
-</div>
+  <ng-template #cargando>
+    <div class="loader" role="status">
+      <span class="loader__ring"></span>
+      <span>{{ 'app.cargando' | translate }}</span>
+    </div>
+  </ng-template>
+</section>

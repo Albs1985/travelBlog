@@ -63,7 +63,7 @@
   display: flex;
   gap: var(--space-2);
   max-width: var(--content-max);
-  margin-inline: auto;
+  margin-inline: 16px;
   padding: 10px var(--gutter);
   overflow-x: auto;
   scroll-snap-type: x proximity;

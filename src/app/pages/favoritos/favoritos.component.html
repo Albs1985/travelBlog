@@ -1,176 +1,116 @@
-<div class="fav-gallery-wrapper">
+<section class="fav">
 
-  <!-- Cabecera estilo Banner Editorial -->
-  <header class="fav-hero-header">
-    <div class="hero-content">
-      <h2 class="titulo animated fadeInDown">
-        <img src="assets/icons/estrella.png" alt="" class="iconosImgFav animated rollIn">
-        <span>{{ 'app.galeriaImagenesFav' | translate }}</span>
-      </h2>
-      <div class="subtitulos-group animated fadeIn">
-        <h3 class="subTitulo">
-          <img src="assets/icons/iconoFamiliar.png" alt="" class="iconosImgFav animated rollIn">
-          <span>{{ 'app.subTituloFav' | translate }}</span>
-        </h3>
-        <h4 class="subTitulo2">
-          {{ 'app.subTituloFav2' | translate }}
-        </h4>
-      </div>
+  <header class="sec-head">
+    <div class="sec-head__text">
+      <h2 class="sec-title">{{ 'app.galeriaImagenesFav' | translate }}</h2>
+      <p class="sec-sub">{{ 'app.subTituloFav' | translate }} {{ 'app.subTituloFav2' | translate }}</p>
     </div>
+    <app-toolbar
+      [volverLink]="''"
+      [textoNuevo]="'app.nuevoFavorito'"
+      [mostrarBotonOrdenar]="true"
+      [orderDesc]="orderDesc"
+      [mostrarBotonSeleccionMultiple]="true"
+      [modoSeleccionMultiple]="modoSeleccionMultiple"
+      [cantidadSeleccionada]="seleccionadasParaBorrar.size"
+      (ordenar)="ordenar()"
+      (nuevo)="mostrarFormulario = true"
+      (toggleSeleccionMultiple)="modoSeleccionMultiple = !modoSeleccionMultiple; seleccionadasParaBorrar.clear()"
+      (confirmarBorradoMultiple)="eliminarSeleccionadas()">
+    </app-toolbar>
   </header>
 
-  <app-toolbar
-    [volverLink]="'/principal'"
-    [textoNuevo]="'app.nuevoFavorito'"
-    [mostrarBotonOrdenar]="true"
-    [orderDesc]="orderDesc"
-    [mostrarBotonSeleccionMultiple]="true"
-    [modoSeleccionMultiple]="modoSeleccionMultiple"
-    [cantidadSeleccionada]="seleccionadasParaBorrar.size"
-    (ordenar)="ordenar()"
-    (nuevo)="mostrarFormulario = true"
-    (toggleSeleccionMultiple)="modoSeleccionMultiple = !modoSeleccionMultiple; seleccionadasParaBorrar.clear()"
-    (confirmarBorradoMultiple)="eliminarSeleccionadas()">
-  </app-toolbar>
-
-  <!-- Modal / Formulario Múltiple por Lotes -->
-  <div *ngIf="mostrarFormulario" class="admin-modal-overlay" style="background: rgba(0,0,0,0.35); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;">
-    <div class="admin-modal-card" style="background: #fff; width: 100%; max-width: 700px; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-height: 90vh; overflow-y: auto;">
-      <h3 style="margin-top: 0; color: #65515a; font-family: Georgia, serif;">✨ {{ 'app.nuevoFavorito' | translate }}</h3>
-
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; font-size: 11px; font-weight: 800; color: #b1a0a0; margin-bottom: 5px; letter-spacing: 1px;">{{ 'app.seleccionarFotos' | translate }}</label>
-        <input type="file" (change)="onFilesSelected($event)" multiple accept="image/*" style="width: 100%; padding: 10px; border: 1px solid #e9dfd7; border-radius: 10px; background: #fffdfb;" />
+  <!-- Alta por lotes -->
+  <div *ngIf="mostrarFormulario" class="modal" (click)="mostrarFormulario = false; fotosPendientes = []">
+    <div class="modal__card" role="dialog" aria-modal="true" (click)="$event.stopPropagation()">
+      <div class="modal__grab" aria-hidden="true"></div>
+      <div class="modal__head">
+        <h3 class="modal__title">{{ 'app.nuevoFavorito' | translate }}</h3>
+        <button type="button" class="round-btn" (click)="mostrarFormulario = false; fotosPendientes = []" [attr.aria-label]="'app.cerrar' | translate">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
       </div>
 
-      <div *ngIf="fotosPendientes.length > 0" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; max-height: 400px; overflow-y: auto; padding-right: 5px; min-width: 0;">
-        <div *ngFor="let item of fotosPendientes; let i = index" style="background: #fffdfb; border: 1px solid #f0e9e5; padding: 15px; border-radius: 14px; display: flex; gap: 15px; align-items: flex-start; min-width: 0;">
+      <label class="field">
+        <span class="field__label">{{ 'app.seleccionarFotos' | translate }}</span>
+        <input type="file" class="field__input" (change)="onFilesSelected($event)" multiple accept="image/*">
+      </label>
 
-          <div style="width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; overflow: hidden; background: #eee;">
-            <img [src]="item.previewUrl" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+      <div class="batch" *ngIf="fotosPendientes.length > 0">
+        <div class="batch__item" *ngFor="let item of fotosPendientes; let i = index">
+          <div class="batch__thumb"><img [src]="item.previewUrl" alt=""></div>
+          <div class="batch__fields">
+            <input type="text" class="field__input" [(ngModel)]="item.anyo" [placeholder]="'app.anyoPlaceholder' | translate">
+            <input type="text" class="field__input" [(ngModel)]="item.lugar" [placeholder]="'app.lugarPlaceholder' | translate">
+            <input type="text" class="field__input" [(ngModel)]="item.etiquetas" [placeholder]="'app.etiquetasPlaceholder' | translate">
+            <input type="text" class="field__input" [(ngModel)]="item.personasStr" [placeholder]="'app.personasPlaceholder' | translate">
+            <textarea class="field__input" rows="2" [(ngModel)]="item.desc" [placeholder]="'app.descPlaceholder' | translate"></textarea>
           </div>
-
-          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
-            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
-              <input type="text" [(ngModel)]="item.anyo" [placeholder]="'app.anyoPlaceholder' | translate" style="flex: 0 0 76px; width: 76px; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
-            </div>
-            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
-              <input type="text" [(ngModel)]="item.lugar" [placeholder]="'app.lugarPlaceholder' | translate" style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
-            </div>
-            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
-              <input type="text" [(ngModel)]="item.etiquetas" [placeholder]="'app.etiquetasPlaceholder' | translate" style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
-            </div>
-            <div style="display: flex; gap: 10px; width: 100%; min-width: 0;">
-              <input type="text" [(ngModel)]="item.personasStr" [placeholder]="'app.personasPlaceholder' | translate" style="flex: 1 1 0; width: 100%; min-width: 0; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
-            </div>
-            <input type="text" [(ngModel)]="item.desc" [placeholder]="'app.descPlaceholder' | translate" style="width: 100%; max-width: 100%; min-width: 0; min-height: 10rem; padding: 6px; border: 1px solid #e9dfd7; border-radius: 8px; font-size: 12px; box-sizing: border-box;" />
-          </div>
-
-          <button (click)="quitarPendiente(i)" style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 12px;" [title]="'app.quitar' | translate">×</button>
+          <button type="button" class="round-btn" (click)="quitarPendiente(i)" [attr.title]="'app.quitar' | translate" [attr.aria-label]="'app.quitar' | translate">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
         </div>
       </div>
 
-      <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button (click)="mostrarFormulario = false; fotosPendientes = []" style="padding: 10px 18px; background: #f0e9e5; color: #65515a; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">{{ 'app.cancelar' | translate }}</button>
-        <button (click)="guardarTodos()" [disabled]="cargandoAccion || fotosPendientes.length === 0" style="padding: 10px 18px; background: #e9bf91; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold;">
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" (click)="mostrarFormulario = false; fotosPendientes = []">{{ 'app.cancelar' | translate }}</button>
+        <button type="button" class="btn" (click)="guardarTodos()" [disabled]="cargandoAccion || fotosPendientes.length === 0">
           {{ cargandoAccion ? ('app.guardando' | translate) : (('app.guardarLote' | translate) + ' (' + fotosPendientes.length + ')') }}
         </button>
       </div>
     </div>
   </div>
 
-  <div class="fav-main-content">
+  <div class="fav__search">
+    <app-buscador [placeholder]="'favoritos.filtrado' | translate" [sinMargenSuperior]="true" (buscar)="(buscar($event))"></app-buscador>
+  </div>
 
-    <!-- Buscador Integrado -->
-    <div class="buscador-artistic-container">
-      <app-buscador [placeholder]="'favoritos.filtrado' | translate" [sinMargenSuperior]="true" (buscar)="(buscar($event))"></app-buscador>
+  <ng-container *ngIf="vista$ | async as vista; else cargando">
+
+    <div *ngIf="vista.fotos.length > maxSizeDisplay">
+      <pagination-controls nextLabel="{{ 'app.siguiente' | translate }}" previousLabel="{{ 'app.anterior' | translate }}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
     </div>
 
-    <ng-container *ngIf="vista$ | async as vista; else cargando">
+    <div class="masonry">
+      <figure class="tile" *ngFor="let foto of vista.fotos | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index" [class.tile--busy]="idsEliminando.has(foto.src)">
 
-      <!-- Paginación superior compacta -->
-      <div class="paginacion-container" *ngIf="vista.fotos.length > maxSizeDisplay">
-        <pagination-controls class="my-pagination compact-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
-      </div>
+        <button type="button" class="tile__btn" (click)="!idsEliminando.has(foto.src) && (abierta = posicion(i))">
+          <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
+        </button>
 
-      <!-- Grid Columnas (Masonry) -->
-      <div class="masonry-gallery-grid">
-        <div *ngFor="let foto of vista.fotos | paginate: { itemsPerPage: pageSize, currentPage: p }; let i = index" class="masonry-card-wrapper animated zoomInDown">
-          <div class="gallery art-card" [style.opacity]="idsEliminando.has(foto.src) ? '0.6' : '1'">
-            <a href="#" (click)="$event.preventDefault(); !idsEliminando.has(foto.src) && (abierta = posicion(i))">
-              <div class="img-frame" style="position: relative;">
-                <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
+        <input *ngIf="modoSeleccionMultiple" type="checkbox" class="tile__check"
+               [checked]="seleccionadasParaBorrar.has(foto.src)" (change)="toggleSeleccion(foto.src)">
 
-                <!-- Checkbox de selección múltiple -->
-                <div *ngIf="modoSeleccionMultiple" style="position: absolute; top: 10px; left: 10px; z-index: 20;" (click)="$event.stopPropagation()">
-                  <input type="checkbox"
-                         [checked]="seleccionadasParaBorrar.has(foto.src)"
-                         (change)="toggleSeleccion(foto.src)"
-                         style="width: 20px; height: 20px; cursor: pointer;" />
-                </div>
-
-                <!-- Overlay de Eliminando -->
-                <div *ngIf="idsEliminando.has(foto.src)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; gap: 8px;">
-                  <div class="spinner-ring" style="width: 25px; height: 25px; border-width: 3px;"></div>
-                  <span style="font-size: 11px; font-weight: bold; color: #d97706;">{{ 'app.eliminando' | translate }}</span>
-                </div>
-
-                <div class="card-glass-overlay" *ngIf="!idsEliminando.has(foto.src) && !modoSeleccionMultiple">
-                  <span class="explore-pill">✨ {{ 'app.verDetalle' | translate }}</span>
-                </div>
-              </div>
-
-              <figcaption class="textoFoto">
-                <div style="width: 100%;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                    <div class="badge-anyo">{{foto.anyo}}</div>
-                    <button *ngIf="githubToken && !modoSeleccionMultiple"
-                            [disabled]="idsEliminando.has(foto.src)"
-                            (click)="eliminar(foto.src, $event)"
-                            style="background: #fce8e9; border: 1px solid #f2bcbe; color: #c27d82; padding: 3px 8px; border-radius: 6px; font-size: 10px; cursor: pointer; font-weight: bold;">
-                      🗑️ {{ 'app.eliminarBtn' | translate }}
-                    </button>
-                  </div>
-                  <div class="info-text">
-                    <strong>{{foto.lugar}}</strong>
-                    <p>{{ foto.desc }}</p>
-                  </div>
-                </div>
-              </figcaption>
-            </a>
-          </div>
+        <div class="tile__busy" *ngIf="idsEliminando.has(foto.src)">
+          <span class="loader__ring"></span>
+          <span>{{ 'app.eliminando' | translate }}</span>
         </div>
-      </div>
 
-      <!-- Estado vacío -->
-      <div class="centerText">
-        <span *ngIf="vista.fotos.length == 0" class="sin-resultados-box">
-          📭 {{ 'app.sinResultados' | translate}}
-        </span>
-      </div>
+        <figcaption class="tile__caption">
+          <span class="pill pill--terra">{{ foto.anyo }}</span>
+          <strong class="tile__place" *ngIf="foto.lugar">{{ foto.lugar }}</strong>
+          <p class="tile__desc" *ngIf="foto.desc">{{ foto.desc }}</p>
+          <button *ngIf="githubToken && !modoSeleccionMultiple" type="button" class="btn btn--sm btn--soft tile__del"
+                  [disabled]="idsEliminando.has(foto.src)" (click)="eliminar(foto.src, $event)">
+            {{ 'app.eliminarBtn' | translate }}
+          </button>
+        </figcaption>
+      </figure>
+    </div>
 
-      <!-- Paginación inferior compacta -->
-      <div class="paginacion-container" *ngIf="vista.fotos.length > maxSizeDisplay">
-        <pagination-controls class="my-pagination compact-pagination" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
-      </div>
+    <div class="empty-note" *ngIf="vista.fotos.length == 0">{{ 'app.sinResultados' | translate }}</div>
 
-      <!-- Visor Lightbox -->
-      <app-lightbox *ngIf="abierta !== null" [fotos]="vista.visor" [indice]="abierta" (cerrar)="abierta = null"></app-lightbox>
-    </ng-container>
+    <div *ngIf="vista.fotos.length > maxSizeDisplay">
+      <pagination-controls nextLabel="{{ 'app.siguiente' | translate }}" previousLabel="{{ 'app.anterior' | translate }}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+    </div>
 
-    <ng-template #cargando>
-      <div class="spinner-container-creative">
-        <div class="spinner-ring"></div>
-        <span>{{ 'app.cargando' | translate}}</span>
-      </div>
-    </ng-template>
-  </div>
+    <app-lightbox *ngIf="abierta !== null" [fotos]="vista.visor" [indice]="abierta" (cerrar)="abierta = null"></app-lightbox>
+  </ng-container>
 
-  <!-- Botón de vuelta inferior -->
-  <div class="footer-back-wrapper">
-    <a routerLink="/principal" class="btn-volver-pill">
-      <img src="assets/icons/flechaAtras.png" loading="lazy" class="animated fadeIn iconoFlecha" alt="">
-      <span>{{ 'viaje.volver' | translate}}</span>
-    </a>
-  </div>
-</div>
+  <ng-template #cargando>
+    <div class="loader" role="status">
+      <span class="loader__ring"></span>
+      <span>{{ 'app.cargando' | translate }}</span>
+    </div>
+  </ng-template>
+</section>

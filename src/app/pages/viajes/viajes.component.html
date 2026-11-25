@@ -27,6 +27,12 @@
   </ul>
 </ng-container>
 
+<!-- Mapa de los viajes -->
+<section class="map-section">
+  <h2 class="section-title">{{ 'app.mapa' | translate }}</h2>
+  <app-map></app-map>
+</section>
+
 <ng-template #cargando>
   <div class="loader" role="status">
     <span class="loader__ring"></span>

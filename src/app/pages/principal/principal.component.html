@@ -61,49 +61,19 @@
     </article>
 
     <article class="block block--recuerdos">
-      <a class="block__head"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span><h3 class="block__title">{{ 'nav.recuerdos' | translate }}</h3></a>
+      <a class="block__head" routerLink="/fotos"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span><h3 class="block__title">{{ 'nav.recuerdos' | translate }}</h3></a>
       <div class="cards">
-        <!-- <a class="card" routerLink="/mapa">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#EBDFCB"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M44 82l37-12 38 12 37-12v86l-37 12-38-12-37 12z" fill="#FFFCF7"/><path d="M81 70v86M119 82v86" stroke="#DCCBAE" stroke-width="2"/><path d="M62 140c20-30 40 10 60-20s24-14 32-30" fill="none" stroke="#2F7C94" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><path d="M122 96c0-9 7-15 15-15s15 6 15 15c0 11-15 26-15 26s-15-15-15-26z" fill="#C8643C"/><circle cx="137" cy="96" r="5" fill="#FFFCF7"/></g></svg>
-          <span class="card__label">{{ 'app.mapa' | translate }}</span>
-        </a> -->
-        <a class="card" routerLink="/frases">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3EBD9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M58 80h84a14 14 0 0 1 14 14v38a14 14 0 0 1-14 14h-40l-22 20v-20H58a14 14 0 0 1-14-14V94a14 14 0 0 1 14-14z" fill="#5E7B4B"/><text x="100" y="140" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#FFFCF7">&#8220;&#8221;</text></g></svg>
-          <span class="card__label">{{ 'header.frases' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/favoritos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#C8643C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 152c-32-21-48-37-48-58 0-15 11-25 25-25 9 0 17 5 23 13 6-8 14-13 23-13 14 0 25 10 25 25 0 21-16 37-48 58z" fill="#FFFCF7"/><path d="M46.0 71.0L48.2 77.8L55.0 80.0L48.2 82.2L46.0 89.0L43.8 82.2L37.0 80.0L43.8 77.8z" fill="#E3A93C"/><path d="M158.0 66.0L159.4 70.6L164.0 72.0L159.4 73.4L158.0 78.0L156.6 73.4L152.0 72.0L156.6 70.6z" fill="#FBEBC8"/><path d="M152.0 137.0L153.7 142.3L159.0 144.0L153.7 145.7L152.0 151.0L150.3 145.7L145.0 144.0L150.3 142.3z" fill="#FBEBC8"/></g></svg>
-          <span class="card__label">{{ 'app.galeriaFav' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/dibujos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(5 100 120)"><rect x="54" y="68" width="92" height="104" rx="4" fill="#FFFCF7"/><path d="M72 144v-26l18-14 18 14v26z" fill="#C8643C"/><path d="M82 144v-14h16v14z" fill="#FBEBC8"/><circle cx="126" cy="90" r="9" fill="#E3A93C"/></g><g transform="rotate(-30 156 140)"><rect x="150" y="104" width="14" height="60" rx="3" fill="#2F7C94"/><path d="M150 104l7-14 7 14z" fill="#12313B"/></g></g></svg>
-          <span class="card__label">{{ 'app.dibujos' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/galeria">
+        <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'galeria' }">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(10 104 112)"><rect x="68" y="68" width="88" height="104" rx="6" fill="#DCCBAE"/></g><g transform="rotate(-8 100 112)"><rect x="50" y="64" width="96" height="112" rx="6" fill="#FFFCF7"/><rect x="58" y="72" width="80" height="76" rx="3" fill="#2F7C94"/><circle cx="118" cy="92" r="8" fill="#E3A93C"/><path d="M58 148l26-32 20 22 12-12 22 22z" fill="#5E7B4B"/></g></g></svg>
           <span class="card__label">{{ 'app.galeria' | translate }}</span>
         </a>
-      </div>
-    </article>
-
-    <article class="block block--familia">
-      <a class="block__head"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
-      <div class="cards">
-        <a class="card" routerLink="/ia">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#97431F"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100.0 78.0L108.2 103.8L134.0 112.0L108.2 120.2L100.0 146.0L91.8 120.2L66.0 112.0L91.8 103.8z" fill="#E3A93C"/><path d="M148.0 62.0L151.4 72.6L162.0 76.0L151.4 79.4L148.0 90.0L144.6 79.4L134.0 76.0L144.6 72.6z" fill="#FBEBC8"/><path d="M56.0 139.0L58.6 147.4L67.0 150.0L58.6 152.6L56.0 161.0L53.4 152.6L45.0 150.0L53.4 147.4z" fill="#FBEBC8"/><path d="M150.0 142.0L151.9 148.1L158.0 150.0L151.9 151.9L150.0 158.0L148.1 151.9L142.0 150.0L148.1 148.1z" fill="#FFFCF7"/></g></svg>
-          <span class="card__label">{{ 'app.ia' | translate }}</span>
+        <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'favoritos' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#C8643C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 152c-32-21-48-37-48-58 0-15 11-25 25-25 9 0 17 5 23 13 6-8 14-13 23-13 14 0 25 10 25 25 0 21-16 37-48 58z" fill="#FFFCF7"/><path d="M46.0 71.0L48.2 77.8L55.0 80.0L48.2 82.2L46.0 89.0L43.8 82.2L37.0 80.0L43.8 77.8z" fill="#E3A93C"/><path d="M158.0 66.0L159.4 70.6L164.0 72.0L159.4 73.4L158.0 78.0L156.6 73.4L152.0 72.0L156.6 70.6z" fill="#FBEBC8"/><path d="M152.0 137.0L153.7 142.3L159.0 144.0L153.7 145.7L152.0 151.0L150.3 145.7L145.0 144.0L150.3 142.3z" fill="#FBEBC8"/></g></svg>
+          <span class="card__label">{{ 'app.galeriaFav' | translate }}</span>
         </a>
-        <a class="card" routerLink="/recetas">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M80 96c-6-8 6-12 0-20M100 96c-6-8 6-12 0-20M120 96c-6-8 6-12 0-20" fill="none" stroke="#C8643C" stroke-width="4" stroke-linecap="round"/><path d="M56 112h88v20a24 24 0 0 1-24 24H80a24 24 0 0 1-24-24z" fill="#12313B"/><rect x="48" y="106" width="104" height="10" rx="5" fill="#1F5F73"/><path d="M150 124h22" stroke="#12313B" stroke-width="8" stroke-linecap="round"/></g></svg>
-          <span class="card__label">{{ 'header.recetas' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/cumpleanyos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="76" width="88" height="88" rx="10" fill="#FFFCF7"/><path d="M56 98v-12a10 10 0 0 1 10-10h68a10 10 0 0 1 10 10v12z" fill="#C8643C"/><path d="M80 70v14M120 70v14" stroke="#12313B" stroke-width="5" stroke-linecap="round"/><circle cx="72" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="72" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="10" fill="#E3A93C"/></g></svg>
-          <span class="card__label">{{ 'nav.cumpleanos' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/apodos">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-8 100 110)"><rect x="56" y="76" width="88" height="68" rx="12" fill="#C8643C"/><circle cx="72" cy="91" r="5" fill="#FBEBC8"/><path d="M76 118h52M76 131h34" stroke="#FFFCF7" stroke-width="5" stroke-linecap="round"/></g></g></svg>
-          <span class="card__label">{{ 'header.apodos' | translate }}</span>
+        <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'dibujos' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(5 100 120)"><rect x="54" y="68" width="92" height="104" rx="4" fill="#FFFCF7"/><path d="M72 144v-26l18-14 18 14v26z" fill="#C8643C"/><path d="M82 144v-14h16v14z" fill="#FBEBC8"/><circle cx="126" cy="90" r="9" fill="#E3A93C"/></g><g transform="rotate(-30 156 140)"><rect x="150" y="104" width="14" height="60" rx="3" fill="#2F7C94"/><path d="M150 104l7-14 7 14z" fill="#12313B"/></g></g></svg>
+          <span class="card__label">{{ 'app.dibujos' | translate }}</span>
         </a>
         <a class="card" routerLink="/historias/relatoAlbert">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="86" cy="116" r="28" fill="none" stroke="#FFFCF7" stroke-width="8"/><circle cx="116" cy="116" r="28" fill="none" stroke="#E3A93C" stroke-width="8"/><path d="M100.0 66.0L101.9 72.1L108.0 74.0L101.9 75.9L100.0 82.0L98.1 75.9L92.0 74.0L98.1 72.1z" fill="#FBEBC8"/></g></svg>
@@ -116,6 +86,28 @@
         <a class="card" routerLink="/historias/relatoBodaEsteve">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#5E7B4B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="62" y="130" width="76" height="26" rx="6" fill="#FFFCF7"/><rect x="74" y="106" width="52" height="26" rx="6" fill="#F6DFD2"/><rect x="88" y="84" width="24" height="24" rx="6" fill="#FFFCF7"/><path d="M100 82c-8-6-12-10-12-15a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 5-4 9-12 15z" fill="#C8643C"/></g></svg>
           <span class="card__label">{{ 'header.bodaEsteve' | translate }}</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="block block--familia">
+      <a class="block__head" routerLink="/familia"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
+      <div class="cards">
+        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'apodos' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-8 100 110)"><rect x="56" y="76" width="88" height="68" rx="12" fill="#C8643C"/><circle cx="72" cy="91" r="5" fill="#FBEBC8"/><path d="M76 118h52M76 131h34" stroke="#FFFCF7" stroke-width="5" stroke-linecap="round"/></g></g></svg>
+          <span class="card__label">{{ 'header.apodos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'cumpleanos' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="76" width="88" height="88" rx="10" fill="#FFFCF7"/><path d="M56 98v-12a10 10 0 0 1 10-10h68a10 10 0 0 1 10 10v12z" fill="#C8643C"/><path d="M80 70v14M120 70v14" stroke="#12313B" stroke-width="5" stroke-linecap="round"/><circle cx="72" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="72" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="10" fill="#E3A93C"/></g></svg>
+          <span class="card__label">{{ 'nav.cumpleanos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'frases' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3EBD9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M58 80h84a14 14 0 0 1 14 14v38a14 14 0 0 1-14 14h-40l-22 20v-20H58a14 14 0 0 1-14-14V94a14 14 0 0 1 14-14z" fill="#5E7B4B"/><text x="100" y="140" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#FFFCF7">&#8220;&#8221;</text></g></svg>
+          <span class="card__label">{{ 'header.frases' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/recetas">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M80 96c-6-8 6-12 0-20M100 96c-6-8 6-12 0-20M120 96c-6-8 6-12 0-20" fill="none" stroke="#C8643C" stroke-width="4" stroke-linecap="round"/><path d="M56 112h88v20a24 24 0 0 1-24 24H80a24 24 0 0 1-24-24z" fill="#12313B"/><rect x="48" y="106" width="104" height="10" rx="5" fill="#1F5F73"/><path d="M150 124h22" stroke="#12313B" stroke-width="8" stroke-linecap="round"/></g></svg>
+          <span class="card__label">{{ 'header.recetas' | translate }}</span>
         </a>
       </div>
     </article>

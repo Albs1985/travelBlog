@@ -2,25 +2,21 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
-import { GaleriaComponent } from './pages/galeria/galeria.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
-import { FavoritosComponent } from './pages/favoritos/favoritos.component';
 import { ContactQRComponent } from './pages/contact-qr/contact-qr.component';
-import { FrasesComponent } from './pages/frases/frases.component';
 import { ViajesComponent } from './pages/viajes/viajes.component';
+import { FamiliaComponent } from './pages/familia/familia.component';
+import { FotosComponent } from './pages/fotos/fotos.component';
 import { RelatoComponent } from './pages/relato/relato.component';
 // import { RelatoIaiaAnaComponent } from './pages/historias/relato-iaia-ana/relato-iaia-ana.component';
 // import { RelatoAlbertComponent } from './pages/historias/relato-albert/relato-albert.component';
 // import { RelatoBodaEsteveComponent } from './pages/historias/relato-boda-esteve/relato-boda-esteve.component';
-import { DibujosComponent } from './pages/dibujos/dibujos.component';
-import { ApodosComponent } from './pages/apodos/apodos.component';
 import { RecetasComponent } from './pages/recetas/recetas.component';
 import { MemoryComponent } from './pages/games/memory/memory.component';
 import { GamesComponent } from './pages/games/games.component';
 import { QuienEsQuienComponent } from './pages/games/quien-es-quien/quien-es-quien.component';
 import { AdivinaComponent } from './pages/games/adivina/adivina.component';
 import { QuizComponent } from './pages/games/quiz/quiz.component';
-import { MapComponent } from './pages/map/map.component';
 import { TablerosComponent } from './pages/games/tableros/tableros.component';
 import { MisionCumplidaComponent } from './pages/games/mision-cumplida/mision-cumplida.component';
 import { FacedokuComponent } from './pages/games/facedoku/facedoku.component';
@@ -31,14 +27,15 @@ import { ImpostorComponent } from './pages/games/impostor/impostor.component';
 import { SimonComponent } from './pages/games/simon/simon.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { Conecta4Component } from './pages/games/conecta4/conecta4.component';
-import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
   { path: 'viajes', component : ViajesComponent},
-  { path: 'galeria', component : GaleriaComponent},
-  { path: 'favoritos', component : FavoritosComponent},
+  { path: 'fotos', component : FotosComponent},
+  { path: 'familia', component : FamiliaComponent},
+  { path: 'galeria', redirectTo : 'fotos', pathMatch : 'full'},
+  { path: 'favoritos', redirectTo : 'fotos', pathMatch : 'full'},
   { path: 'viajesFiltrados/:filtro', component : ViajesPorAnyoComponent},
   { path: 'viaje/:ciudad', component : ViajeComponent},
   { path: 'contactQR', component : ContactQRComponent},
@@ -58,12 +55,12 @@ const app_routes: Routes = [
   { path: 'games/simon', component : SimonComponent},
   { path: 'games/puzzle', component : PuzzleComponent},
   { path: 'games/conecta4', component : Conecta4Component},
-  { path: 'frases', component : FrasesComponent},
+  { path: 'frases', redirectTo : 'familia', pathMatch : 'full'},
   { path: 'recetas', component : RecetasComponent},
-  { path: 'apodos', component : ApodosComponent},
-  { path: 'dibujos', component : DibujosComponent},
-  { path: 'mapa', component : MapComponent},
-  { path: 'cumpleanyos', component: CumpleanosComponent },
+  { path: 'apodos', redirectTo : 'familia', pathMatch : 'full'},
+  { path: 'dibujos', redirectTo : 'fotos', pathMatch : 'full'},
+  { path: 'mapa', redirectTo : 'viajes', pathMatch : 'full'},
+  { path: 'cumpleanyos', redirectTo : 'familia', pathMatch : 'full'},
   { path: 'ia', component: IaRinconComponent },
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];

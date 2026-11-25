@@ -1,0 +1,19 @@
+<header class="page-head">
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'app.familia' | translate }}</h1>
+  </div>
+</header>
+
+<!-- Salto rápido entre secciones -->
+<nav class="jump">
+  <div class="jump__row">
+    <button type="button" class="chip" (click)="ir('apodos')">{{ 'header.apodos' | translate }}</button>
+    <button type="button" class="chip" (click)="ir('cumpleanos')">{{ 'nav.cumpleanos' | translate }}</button>
+    <button type="button" class="chip" (click)="ir('frases')">{{ 'header.frases' | translate }}</button>
+    <a class="chip" routerLink="/recetas">{{ 'header.recetas' | translate }}</a>
+  </div>
+</nav>
+
+<section class="fam-sec" id="seccion-apodos"><app-apodos></app-apodos></section>
+<section class="fam-sec" id="seccion-cumpleanos"><app-cumpleanos></app-cumpleanos></section>
+<section class="fam-sec" id="seccion-frases"><app-frases></app-frases></section>

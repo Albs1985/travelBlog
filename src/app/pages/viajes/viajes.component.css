@@ -65,3 +65,6 @@
   .years__item:nth-child(3n + 2) { margin-top: 0; }
   .years__item:nth-child(even) { margin-top: var(--space-5); }
 }
+
+/* Mapa al final del listado */
+.map-section { margin-top: var(--space-7); }

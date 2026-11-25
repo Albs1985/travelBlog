@@ -17,38 +17,28 @@ const SEGMENTO_A_GRUPO: Record<string, GrupoNav> = {
   viajesFiltrados: 'viajes',
   viaje: 'viajes',
   mapa: 'viajes',
-  favoritos: 'viajes',
+  fotos: 'recuerdos',
   galeria: 'recuerdos',
-  frases: 'recuerdos',
+  favoritos: 'recuerdos',
   dibujos: 'recuerdos',
   historias: 'recuerdos',
+  familia: 'familia',
   apodos: 'familia',
-  recetas: 'familia',
+  frases: 'familia',
   cumpleanyos: 'familia',
+  recetas: 'familia',
   games: 'juegos',
   contactQR: '',
   ia: ''
 };
 
-// Chips de segundo nivel que aparecen bajo la cabecera en cada pestaña
+// Chips de segundo nivel bajo la cabecera (solo donde hay varias páginas distintas)
 const SUBNAV: Partial<Record<GrupoNav, SubEnlace[]>> = {
-  viajes: [
-    { ruta: '/viajes', etiqueta: 'app.viajes' },
-    { ruta: '/mapa', etiqueta: 'app.mapa' },
-    { ruta: '/favoritos', etiqueta: 'app.galeriaFav' }
-  ],
   recuerdos: [
-    { ruta: '/galeria', etiqueta: 'app.galeria' },
-    { ruta: '/frases', etiqueta: 'header.frases' },
-    { ruta: '/dibujos', etiqueta: 'app.dibujos' },
+    { ruta: '/fotos', etiqueta: 'nav.fotos' },
     { ruta: '/historias/relatoAlbert', etiqueta: 'app.historiaAlbaAlbert' },
     { ruta: '/historias/relatoIaiaAna', etiqueta: 'header.iaiaAna' },
     { ruta: '/historias/relatoBodaEsteve', etiqueta: 'header.bodaEsteve' }
-  ],
-  familia: [
-    { ruta: '/apodos', etiqueta: 'header.apodos' },
-    { ruta: '/recetas', etiqueta: 'header.recetas' },
-    { ruta: '/cumpleanyos', etiqueta: 'nav.cumpleanos' }
   ]
 };
 
