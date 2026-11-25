@@ -35,9 +35,24 @@ app-toolbar {
   align-items: center;
 }
 
-.iconSeguridad {
-  width: 60px;
-  height: 60px;
+.seguridad-art {
+  display: block;
+  margin: 0 auto 20px auto;
+  width: 84px;
+  height: 109px;
+  max-width: 84px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  box-shadow: 0 6px 14px rgba(18, 49, 59, 0.08);
+}
+
+@media (min-width: 768px) {
+  .seguridad-art {
+    width: 96px;
+    height: 125px;
+    max-width: 96px;
+    margin-bottom: 24px;
+  }
 }
 
 .icon {
