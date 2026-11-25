@@ -15,7 +15,7 @@
 }
 .hero__art { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
 .hero__back { margin: var(--space-4) 0 0 var(--space-4); }
-.hero__text { max-width: 34rem; padding: var(--space-4) var(--space-5) var(--space-5); }
+.hero__text { max-width: 22rem; padding: var(--space-4) var(--space-5) var(--space-5); }
 .hero__title { color: #fff; font-size: clamp(2rem, 1.5rem + 3vw, 3.3rem); line-height: 1; }
 .hero__sub { margin-top: .5rem; color: rgba(255, 255, 255, .9); }
 
@@ -202,7 +202,7 @@
 .book__status { margin-top: var(--space-4); }
 
 /* ---------- Biblioteca: estantería ---------- */
-.shelf { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+.shelf { display: grid; grid-template-columns: repeat(1, 1fr); gap: var(--space-3); }
 .vol { --tone: var(--sea-700); display: grid; align-content: start; gap: var(--space-3); padding: var(--space-3); border-radius: var(--r-lg); background: var(--sand-100); }
 .vol.tone-0 { --tone: var(--sea-700); }
 .vol.tone-1 { --tone: var(--terra-600); }

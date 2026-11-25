@@ -29,7 +29,7 @@
   <app-toolbar
     [volverLink]="''"
     [mostrarBotonNuevo]="false"
-    [mostrarBotonConfig]="true"
+    [mostrarBotonConfig]="false"
     [tipoToken]="'ia'"
     (tokenGuardado)="onTokenIaGuardado($event)">
   </app-toolbar>
@@ -84,7 +84,7 @@
     <span class="sources__label">Datos de referencia para el cuento:</span>
 
     <div class="presets">
-      <button type="button" class="preset" [class.is-on]="esModoCuentoLibre" (click)="aplicarModoLibreCuento()">100% libre (sin JSON)</button>
+      <button type="button" class="preset" [class.is-on]="esModoCuentoLibre" (click)="aplicarModoLibreCuento()">100% libre</button>
       <button type="button" class="preset" [class.is-on]="esSoloPersonajes" (click)="aplicarSoloPersonajesCuento()">Solo personajes</button>
     </div>
 
@@ -263,7 +263,7 @@
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 20h14"/></svg>
         {{ (generandoPdf ? 'iaRincon.creandoPdf' : 'iaRincon.btnDescargarPdf') | translate }}
       </button>
-      <button type="button" class="btn" [disabled]="guardandoGithub || generandoPdf" (click)="guardarCuentoEnGithubPdf()">
+      <button type="button" class="btn" [disabled]="(this.autenticationService.tokenGithubValidoSubject$ | async) === false || guardandoGithub || generandoPdf" (click)="guardarCuentoEnGithubPdf()">
         <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.6-8.96A6 6 0 0 1 18 9.5a4 4 0 0 1-.5 8.5z"/><path d="M12 12v6M9.5 14.5 12 12l2.5 2.5"/></svg>
         {{ (guardandoGithub ? 'iaRincon.guardandoGithub' : 'iaRincon.btnGuardarGithub') | translate }}
       </button>

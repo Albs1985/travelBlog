@@ -11,6 +11,7 @@ import {
 import { finalize, of, catchError, map, Subscription, Observable, forkJoin, switchMap } from 'rxjs';
 import { jsPDF } from 'jspdf';
 import { CommonService } from 'src/app/services/common.service';
+import { AutenticationService } from 'src/app/services/autentication.service';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
@@ -108,6 +109,7 @@ export class IaRinconComponent implements OnInit, OnDestroy {
     private iaService: IaFamiliaService,
     private translate: TranslateService,
     private commonService: CommonService,
+    protected autenticationService: AutenticationService,
     private http: HttpClient
   ) {}
 

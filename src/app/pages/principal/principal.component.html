@@ -11,20 +11,6 @@
   </div>
 </section>
 
-<!-- Viajeros: tarjetas con foto y el nombre dentro -->
-<!-- <section class="crew" *ngIf="viajerosService.viajeros$ | async as viajeros" aria-labelledby="viajeros-titulo">
-  <h2 class="section-title" id="viajeros-titulo">{{ 'app.subTituloFav' | translate }}</h2>
-  <ul class="crew__list">
-    <li class="crew__item" *ngFor="let viajero of viajeros">
-      <a class="traveler" target="_blank" rel="noopener" [href]="viajero.fotoPerfil">
-        <img class="traveler__photo" [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" loading="lazy">
-        <span class="traveler__age">{{ viajero.edad }} {{ 'app.edad' | translate }}</span>
-        <span class="traveler__name">{{ viajero.nombreCorto }}</span>
-      </a>
-    </li>
-  </ul>
-</section> -->
-
 <!-- Explora: cada grupo es una fila de cards ilustradas (carrusel en móvil, rejilla en PC) -->
 <section class="explore" aria-labelledby="explora-titulo">
   <h2 class="section-title" id="explora-titulo">{{ 'nav.explora' | translate }}</h2>
@@ -41,32 +27,12 @@
             <span *ngFor="let destino of a.destinos; let last = last">{{ destino }}{{ last ? '' : ', ' }}</span>
           </span>
         </a>
-        <!-- <a class="card" routerLink="/viajesFiltrados/playa">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><rect y="118" width="200" height="142" fill="#2F7C94"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="142" cy="86" r="16" fill="#E3A93C"/><path d="M70 150V102" stroke="#12313B" stroke-width="3" stroke-linecap="round"/><path d="M44 102a26 26 0 0 1 52 0z" fill="#C8643C"/><path d="M57 102a13 26 0 0 1 13-26 13 26 0 0 1 13 26" fill="none" stroke="#FFFCF7" stroke-width="2"/></g><path d="M0 146c40-12 80 4 120-4s60-4 80 0v118H0z" fill="#EBDFCB"/></svg>
-          <span class="card__label">{{ 'header.playa' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/viajesFiltrados/montanya">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="150" cy="82" r="11" fill="#E3A93C"/><path d="M26 150l42-66 24 30 22-28 56 64z" fill="#1F5F73"/><path d="M56 104l12-20 12 16-7-5-5 6-5-6z" fill="#FFFCF7"/></g><path d="M0 148c32-26 62-26 92-4s72 12 108-14v130H0z" fill="#5E7B4B"/></svg>
-          <span class="card__label">{{ 'header.montanya' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/viajesFiltrados/ciudad">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><circle cx="100" cy="100" r="36" fill="#E3A93C" opacity=".9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="40" y="104" width="30" height="46" fill="#12313B"/><rect x="74" y="88" width="34" height="62" fill="#1F5F73"/><rect x="112" y="110" width="28" height="40" fill="#12313B"/><rect x="144" y="96" width="26" height="54" fill="#1F5F73"/><rect x="48" y="116" width="6" height="6" fill="#FBEBC8"/><rect x="58" y="116" width="6" height="6" fill="#FBEBC8"/><rect x="48" y="130" width="6" height="6" fill="#FBEBC8"/><rect x="82" y="98" width="6" height="6" fill="#FBEBC8"/><rect x="94" y="98" width="6" height="6" fill="#FBEBC8"/><rect x="82" y="112" width="6" height="6" fill="#FBEBC8"/><rect x="94" y="112" width="6" height="6" fill="#FBEBC8"/><rect x="82" y="126" width="6" height="6" fill="#FBEBC8"/><rect x="120" y="122" width="6" height="6" fill="#FBEBC8"/><rect x="130" y="122" width="6" height="6" fill="#FBEBC8"/><rect x="152" y="108" width="6" height="6" fill="#FBEBC8"/><rect x="152" y="122" width="6" height="6" fill="#FBEBC8"/></g><rect y="146" width="200" height="114" fill="#12313B"/></svg>
-          <span class="card__label">{{ 'header.ciudad' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/viajesFiltrados/nieve">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><circle cx="30" cy="60" r="2" fill="#FFFCF7" opacity=".8"/><circle cx="62" cy="40" r="2.5" fill="#FFFCF7" opacity=".8"/><circle cx="96" cy="70" r="2" fill="#FFFCF7" opacity=".8"/><circle cx="140" cy="52" r="3" fill="#FFFCF7" opacity=".8"/><circle cx="172" cy="84" r="2" fill="#FFFCF7" opacity=".8"/><circle cx="24" cy="104" r="2.5" fill="#FFFCF7" opacity=".8"/><circle cx="112" cy="30" r="2" fill="#FFFCF7" opacity=".8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path fill="#5E7B4B" d="M70 104l16 26H54z"/><path fill="#5E7B4B" d="M70 116l21 36H49z"/><path fill="#5E7B4B" d="M134 90l20 32h-40z"/><path fill="#5E7B4B" d="M134 106l26 46h-52z"/></g><path d="M0 148c40-24 80-22 120-2s60 6 80-6v120H0z" fill="#FFFCF7"/></svg>
-          <span class="card__label">{{ 'header.nieve' | translate }}</span>
-        </a> -->
       </div>
     </article>
 
     <article class="block block--recuerdos">
       <a class="block__head" routerLink="/fotos"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg></span><h3 class="block__title">{{ 'nav.recuerdos' | translate }}</h3></a>
       <div class="cards">
-        <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'galeria' }">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(10 104 112)"><rect x="68" y="68" width="88" height="104" rx="6" fill="#DCCBAE"/></g><g transform="rotate(-8 100 112)"><rect x="50" y="64" width="96" height="112" rx="6" fill="#FFFCF7"/><rect x="58" y="72" width="80" height="76" rx="3" fill="#2F7C94"/><circle cx="118" cy="92" r="8" fill="#E3A93C"/><path d="M58 148l26-32 20 22 12-12 22 22z" fill="#5E7B4B"/></g></g></svg>
-          <span class="card__label">{{ 'app.galeria' | translate }}</span>
-        </a>
         <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'favoritos' }">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#C8643C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 152c-32-21-48-37-48-58 0-15 11-25 25-25 9 0 17 5 23 13 6-8 14-13 23-13 14 0 25 10 25 25 0 21-16 37-48 58z" fill="#FFFCF7"/><path d="M46.0 71.0L48.2 77.8L55.0 80.0L48.2 82.2L46.0 89.0L43.8 82.2L37.0 80.0L43.8 77.8z" fill="#E3A93C"/><path d="M158.0 66.0L159.4 70.6L164.0 72.0L159.4 73.4L158.0 78.0L156.6 73.4L152.0 72.0L156.6 70.6z" fill="#FBEBC8"/><path d="M152.0 137.0L153.7 142.3L159.0 144.0L153.7 145.7L152.0 151.0L150.3 145.7L145.0 144.0L150.3 142.3z" fill="#FBEBC8"/></g></svg>
           <span class="card__label">{{ 'app.galeriaFav' | translate }}</span>
@@ -74,6 +40,10 @@
         <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'dibujos' }">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(5 100 120)"><rect x="54" y="68" width="92" height="104" rx="4" fill="#FFFCF7"/><path d="M72 144v-26l18-14 18 14v26z" fill="#C8643C"/><path d="M82 144v-14h16v14z" fill="#FBEBC8"/><circle cx="126" cy="90" r="9" fill="#E3A93C"/></g><g transform="rotate(-30 156 140)"><rect x="150" y="104" width="14" height="60" rx="3" fill="#2F7C94"/><path d="M150 104l7-14 7 14z" fill="#12313B"/></g></g></svg>
           <span class="card__label">{{ 'app.dibujos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/fotos" [queryParams]="{ filtro: 'galeria' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(10 104 112)"><rect x="68" y="68" width="88" height="104" rx="6" fill="#DCCBAE"/></g><g transform="rotate(-8 100 112)"><rect x="50" y="64" width="96" height="112" rx="6" fill="#FFFCF7"/><rect x="58" y="72" width="80" height="76" rx="3" fill="#2F7C94"/><circle cx="118" cy="92" r="8" fill="#E3A93C"/><path d="M58 148l26-32 20 22 12-12 22 22z" fill="#5E7B4B"/></g></g></svg>
+          <span class="card__label">{{ 'app.galeria' | translate }}</span>
         </a>
         <a class="card" routerLink="/historias/relatoAlbert">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="86" cy="116" r="28" fill="none" stroke="#FFFCF7" stroke-width="8"/><circle cx="116" cy="116" r="28" fill="none" stroke="#E3A93C" stroke-width="8"/><path d="M100.0 66.0L101.9 72.1L108.0 74.0L101.9 75.9L100.0 82.0L98.1 75.9L92.0 74.0L98.1 72.1z" fill="#FBEBC8"/></g></svg>
@@ -115,6 +85,10 @@
     <article class="block block--juegos">
       <a class="block__head" routerLink="/games"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="16" cy="11.5" r=".9"/><circle cx="18.5" cy="14" r=".9"/></svg></span><h3 class="block__title">{{ 'app.juegos' | translate }}</h3></a>
       <div class="cards">
+        <a class="card" routerLink="/ia">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#97431F"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100.0 78.0L108.2 103.8L134.0 112.0L108.2 120.2L100.0 146.0L91.8 120.2L66.0 112.0L91.8 103.8z" fill="#E3A93C"/><path d="M148.0 62.0L151.4 72.6L162.0 76.0L151.4 79.4L148.0 90.0L144.6 79.4L134.0 76.0L144.6 72.6z" fill="#FBEBC8"/><path d="M56.0 139.0L58.6 147.4L67.0 150.0L58.6 152.6L56.0 161.0L53.4 152.6L45.0 150.0L53.4 147.4z" fill="#FBEBC8"/><path d="M150.0 142.0L151.9 148.1L158.0 150.0L151.9 151.9L150.0 158.0L148.1 151.9L142.0 150.0L148.1 148.1z" fill="#FFFCF7"/></g></svg>
+          <span class="card__label">{{ 'app.ia' | translate }}</span>
+        </a>
         <a class="card" routerLink="/games/memory">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#B4532A"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="56" height="76" rx="8" fill="#FFFCF7" transform="rotate(-10 74 114)"/><circle cx="74" cy="114" r="12" fill="#C8643C"/><rect x="98" y="76" width="56" height="76" rx="8" fill="#12313B" transform="rotate(8 126 114)"/><text x="126" y="132" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="44" font-weight="700" fill="#E3A93C" transform="rotate(8 126 114)">?</text></g></svg>
           <span class="card__label">{{ 'app.memory' | translate }}</span>
