@@ -383,7 +383,10 @@
     "empezar": "Empezar a viajar: primer viaje",
     "conoceViaje": "Conoce los viajes",
     "conocerHistoria": "Conoce la historia",
-    "masFotos": "Más fotos"
+    "masFotos": "Más fotos",
+    "resumenGlobal": "Resumen Global",
+    "paisesExplorados": "Paises Explorados",
+    "aventurasTotales": "Aventuras Totales"
   },
   "favoritos": {
     "filtrado": "Año, persona, lugar, categoría...",

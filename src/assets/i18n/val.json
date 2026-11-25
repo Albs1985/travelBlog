@@ -382,7 +382,10 @@
     "empezar": "Començar a viatjar: Primer viatge",
     "conoceViaje": "Coneix els viatges",
     "conocerHistoria": "Coneix la història",
-    "masFotos": "Més fotos"
+    "masFotos": "Més fotos",
+    "resumenGlobal": "Resum Global",
+    "paisesExplorados": "Països Explorats",
+    "aventurasTotales": "Aventures Totals"
   },
   "favoritos": {
     "filtrado": "Any, persona, lloc, categoria...",

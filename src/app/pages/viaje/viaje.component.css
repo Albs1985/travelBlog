@@ -123,11 +123,22 @@
 .person__name { font-weight: 700; }
 .person__age { font-size: .8rem; color: var(--ink-soft); }
 
-.links { display: grid; gap: var(--space-2); }
+.links {
+  width: 100%;
+  min-width: 0;
+}
+
+.links li {
+  width: 100%;
+  min-width: 0;
+}
+
 .link-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--r-sm);
@@ -136,8 +147,25 @@
   color: var(--sea-700);
   font-weight: 600;
 }
-.link-row:hover { background: var(--sand-200); }
-.link-row__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.link-row:hover {
+  background: var(--sand-200);
+}
+
+.link-row__text {
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-row .ic {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+}
 
 /* ---------- Tablet y escritorio ---------- */
 @media (min-width: 768px) {

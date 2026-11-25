@@ -1,25 +1,11 @@
 <nav class="pager">
-  <a *ngIf="linkAnterior"
-     class="pager__link pager__link--prev"
-     [routerLink]="linkAnterior"
-     [title]="textoAnterior | translate">
-
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m15 5-7 7 7 7"/>
-    </svg>
-
-    <span class="pager__text">{{ textoAnterior | translate }}</span>
+  <a *ngIf="linkAnterior" class="pager__link pager__link--prev" [routerLink]="linkAnterior" [title]="textoAnterior | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+    {{ textoAnterior | translate }}
   </a>
 
-  <a *ngIf="linkSiguiente"
-     class="pager__link pager__link--next"
-     [routerLink]="linkSiguiente"
-     [title]="textoSiguiente | translate">
-
-    <span class="pager__text">{{ textoSiguiente | translate }}</span>
-
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m9 5 7 7-7 7"/>
-    </svg>
+  <a *ngIf="linkSiguiente" class="pager__link pager__link--next" [routerLink]="linkSiguiente" [title]="textoSiguiente | translate">
+    {{ textoSiguiente | translate }}
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
   </a>
 </nav>

@@ -1,26 +1,2 @@
-:host {
-  display: block;
-}
-
-/* Móvil: ocultar textos y dejar únicamente las flechas */
-@media (max-width: 767px) {
-  .pager__text {
-    display: none;
-  }
-
-  .pager__link {
-    padding: 10px 14px;
-  }
-
-  .pager__link .ic {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-/* Escritorio: mostrar textos */
-@media (min-width: 768px) {
-  .pager__text {
-    display: inline;
-  }
-}
+/* El aspecto de los enlaces (.pager, .pager__link) está en src/styles.css */
+:host { display: block; }

@@ -184,7 +184,6 @@ button { cursor: pointer; }
   scroll-snap-type: x proximity;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  margin-inline: calc(var(--gutter) * -1);
   padding: var(--space-1) var(--gutter);
 }
 .chips::-webkit-scrollbar { display: none; }
