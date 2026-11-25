@@ -173,6 +173,16 @@
 }
 .card:active { transform: scale(.98); }
 
+/* Solo cards de artículos que NO son de viajes: más compactas y cuadradas */
+.block:not(.block--viajes) .card {
+  width: clamp(122px, 34vw, 152px);
+  aspect-ratio: 1 / 1;
+}
+.block:not(.block--viajes) .card__label {
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  font-size: 1rem;
+}
+
 /* La ilustración de fondo (también vale un <img class="card__art"> con una foto) */
 .card__art {
   position: absolute;
@@ -216,6 +226,12 @@
     height: 210px;
     aspect-ratio: auto;
   }
+  .block:not(.block--viajes) .card {
+    flex: 0 0 156px;
+    width: 156px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -237,6 +253,16 @@
 
   .card { flex-basis: 170px; height: 236px; }
   .card__label { font-size: 1.25rem; }
+
+  .block:not(.block--viajes) .card {
+    flex: 0 0 172px;
+    width: 172px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .block:not(.block--viajes) .card__label {
+    font-size: 1.08rem;
+  }
 }
 
 @keyframes hero-asienta { from { transform: scale(1.07); } to { transform: none; } }
