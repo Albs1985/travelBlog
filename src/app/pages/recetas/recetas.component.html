@@ -1,130 +1,171 @@
-<br>
-<h2 class="titulo">
-    <img src="assets/icons/hambre.png" alt="" class="iconosImgFav3 animated rollIn">
-   {{ 'app.recetasTitulo' | translate }}
-</h2>
-<h3 class="subTitulo">
-    <img src="assets/icons/magdalena.png" alt="" class="iconosImgFav2 animated rollIn">
-   {{ 'app.recetasSubtitulo1' | translate }}
-</h3>
-<h4 class="subTitulo">
-  <img src="assets/icons/babear.png" alt="" class="iconosImgFav3 animated rollIn">
-    {{ 'app.recetasSubtitulo2' | translate }}
-</h4>
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
-</div>
+<header class="page-head">
+  <a class="round-btn" routerLink="/familia" [attr.aria-label]="'viaje.volver' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'app.recetasTitulo' | translate }}</h1>
+    <p class="page-head__sub">{{ 'app.recetasSubtitulo1' | translate }} {{ 'app.recetasSubtitulo2' | translate }}</p>
+  </div>
+</header>
 
-<div>
-  <ng-container *ngIf="vista$ | async as vista; else cargando">
-    <br><br>
-    <app-buscador [placeholder]="'app.recetasFiltrado' | translate" (buscar)="buscar($event)"></app-buscador>
-    <br>
-    <h3 class="centerText">
-      {{'app.categoriaRecetas' | translate}}
-    </h3>
-    <div class="cuerpoImagenes">
-      <div class="icon-container">
-        <div *ngFor="let t of tipos" class="separaImagen">
-          <a class="js-fh5co-close-offcanvas" (click)="filtrarPorTipo(t.id)">
-            <img *ngIf="tipo === t.id" [src]="'assets/icons/' + t.icono + 'Selected.png'" [alt]="t.alt" class="iconosCategoriaSelec animated fadeIn pulse">
-            <img *ngIf="tipo !== t.id" [src]="'assets/icons/' + t.icono + '.png'" [alt]="t.alt" class="icon animated fadeIn pulse">
-          </a>
-        </div>
-      </div>
+<ng-container *ngIf="vista$ | async as vista; else cargando">
+
+  <app-buscador class="search" [placeholder]="'app.recetasFiltrado' | translate" (buscar)="buscar($event)"></app-buscador>
+
+  <!-- Tipos de receta -->
+  <section class="kinds">
+    <h2 class="kinds__title">{{ 'app.categoriaRecetas' | translate }}</h2>
+
+    <div class="kinds__row">
+      <button *ngFor="let t of tipos" type="button" class="kind" [ngClass]="'kind--' + t.id"
+              [class.is-on]="tipo === t.id" [attr.aria-pressed]="tipo === t.id" (click)="filtrarPorTipo(t.id)">
+        <svg class="kind__art" viewBox="0 0 80 80" aria-hidden="true" [ngSwitch]="t.id">
+          <g *ngSwitchCase="'frio'"><path d="M40 12v56M16 26l48 28M16 54l48-28"/><path d="M33 17l7 6 7-6M33 63l7-6 7 6M18 39l9-2-2-9M62 41l-9 2 2 9M18 41l9 2-2 9M62 39l-9-2 2-9"/></g>
+          <g *ngSwitchCase="'caliente'"><path d="M40 10c3 11 17 17 17 35a17 17 0 0 1-34 0c0-9 4-14 9-18 0 7 3 10 6 10-1-9-1-17 2-27z"/><path d="M40 66a8 8 0 0 1-8-8c0-5 4-7 8-12 4 5 8 7 8 12a8 8 0 0 1-8 8z"/></g>
+          <g *ngSwitchCase="'dulce'"><path d="M24 46h32l-4 20H28z"/><path d="M32 46l2 20M48 46l-2 20"/><path d="M22 46a18 15 0 0 1 36 0z"/><circle cx="40" cy="22" r="4"/></g>
+        </svg>
+        <span class="kind__label">{{ t.etiqueta | translate }}</span>
+      </button>
     </div>
-    <h3 class="centerText">
+
+    <p class="kinds__now" *ngIf="tipo">
       <ng-container *ngFor="let t of tipos">
-        <div *ngIf="tipo === t.id" class="letraPequenya">{{'app.recetas' | translate}} <b>{{ t.etiqueta | translate}}</b></div>
+        <span *ngIf="tipo === t.id">{{ 'app.recetas' | translate }} <b>{{ t.etiqueta | translate }}</b></span>
       </ng-container>
-      <br>
-      {{'app.listaRecetas' | translate}} <a class="cursorPointer" (click)="verLista()">{{'app.lista' | translate}}</a>
-    </h3>
-    <br>
-    <div class="separator"></div>
-    <br>
+    </p>
 
-    <div class="centerText" *ngIf="vista.lista.length === 0">{{ 'app.sinResultados' | translate }}</div>
+    <p class="kinds__hint">
+      {{ 'app.listaRecetas' | translate }}
+      <button type="button" class="linklike" (click)="verLista()">{{ 'app.lista' | translate }}</button>
+    </p>
+  </section>
 
-    <div *ngIf="vista.lista.length > 1 && !vista.mostrada" class="cuerpoIndice">
-      <div class="recipe-container">
-        <div *ngFor="let receta of vista.lista" class="recipe-item">
-          <a class="full-link" (click)="abrir(receta)">
-            <img class="recipe-image" [src]="'assets/images/' + receta.imagen" [alt]="receta.nombre | l10n">
-            <div class="recipe-title">{{ receta.nombre | l10n }}</div>
-          </a>
-        </div>
-      </div>
-    </div>
+  <div class="empty-note" *ngIf="vista.lista.length === 0">{{ 'app.sinResultados' | translate }}</div>
 
-    <figure *ngIf="vista.mostrada as r">
-      <div class="centerText">
-        <h2 class="titulo">{{ r.nombre | l10n }}</h2>
-        <ng-container *ngFor="let tp of tipos">
-          <img *ngIf="r.tipos?.includes(tp.id)" [src]="'assets/icons/' + tp.icono + '.png'" [alt]="tp.alt" class="iconosCategoria animated rollIn">
-        </ng-container>
-        <br>
-        <cite *ngIf="r.frase" class="titulo">«{{ r.frase | l10n }}»</cite>
-        <br><br>
-        <div class="imagenCentrada">
-          <img [src]="'assets/images/' + r.imagen" [alt]="r.nombre | l10n" class="img-responsive">
-        </div>
-        <blockquote>
-          <h4 class="titulo">{{ 'app.especialidad' | translate}}: <b>{{r.cocinero}}</b></h4>
-          <h4 class="titulo">{{r.raciones}} {{ 'app.raciones' | translate}}</h4>
-          <h4 class="titulo">{{ 'app.dificultad' | translate}}: {{r.dificultad}}</h4>
-          <h4 class="titulo">{{ 'app.tiempoPreparacion' | translate}}:  {{r.tiempoPreparacion}} {{ 'app.minutos' | translate}}</h4>
-          <ng-container *ngIf="r.tiempoCoccion">
-            <ng-container [ngSwitch]="r.metodo">
-              <ng-container *ngSwitchCase="'horno'">
-                <h4 class="titulo">{{ 'app.tiempoHorno' | translate}}: {{r.tiempoCoccion}} {{ 'app.minutos' | translate}}<ng-container *ngIf="r.temperatura"> a {{r.temperatura}}</ng-container></h4>
-                <img src="assets/icons/horno.png" alt="horno" class="iconosCategoria animated rollIn">
-              </ng-container>
-              <ng-container *ngSwitchCase="'microondas'">
-                <h4 class="titulo">{{ 'app.tiempoMicro' | translate}}: {{r.tiempoCoccion}} {{ 'app.minutos' | translate}}/{{ 'app.segundos' | translate}}<ng-container *ngIf="r.temperatura"> a {{r.temperatura}}</ng-container></h4>
-                <img src="assets/icons/microondas.png" alt="microondas" class="iconosCategoria animated rollIn">
-              </ng-container>
-              <ng-container *ngSwitchCase="'olla'">
-                <h4 class="titulo">{{ 'app.tiempoOlla' | translate}}: {{r.tiempoCoccion}} {{ 'app.minutos' | translate}}</h4>
-                <img src="assets/icons/olla.png" alt="olla" class="iconosCategoria animated rollIn">
-              </ng-container>
-            </ng-container>
+  <!-- Carta: una plato por receta -->
+  <ul class="menu" *ngIf="vista.lista.length > 1 && !vista.mostrada">
+    <li *ngFor="let receta of vista.lista">
+      <button type="button" class="dish" (click)="abrir(receta)">
+        <span class="dish__plate">
+          <img class="dish__img" [src]="'assets/images/' + receta.imagen" [alt]="receta.nombre | l10n" loading="lazy">
+        </span>
+        <span class="dish__name">{{ receta.nombre | l10n }}</span>
+      </button>
+    </li>
+  </ul>
+
+  <!-- Receta abierta -->
+  <article class="recipe" *ngIf="vista.mostrada as r">
+
+    <button type="button" class="chip recipe__back" (click)="verLista()">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+      {{ 'app.lista' | translate }}
+    </button>
+
+    <header class="recipe__hero">
+      <img class="recipe__img" [src]="'assets/images/' + r.imagen" [alt]="r.nombre | l10n">
+      <div class="recipe__text">
+        <div class="recipe__kinds">
+          <ng-container *ngFor="let tp of tipos">
+            <span class="kindchip" *ngIf="r.tipos?.includes(tp.id)" [ngSwitch]="tp.id">
+              <svg class="kindchip__ico" viewBox="0 0 80 80" aria-hidden="true">
+                <g *ngSwitchCase="'frio'"><path d="M40 12v56M16 26l48 28M16 54l48-28"/></g>
+                <g *ngSwitchCase="'caliente'"><path d="M40 10c3 11 17 17 17 35a17 17 0 0 1-34 0c0-9 4-14 9-18 0 7 3 10 6 10-1-9-1-17 2-27z"/></g>
+                <g *ngSwitchCase="'dulce'"><path d="M24 46h32l-4 20H28z"/><path d="M22 46a18 15 0 0 1 36 0z"/><circle cx="40" cy="22" r="4"/></g>
+              </svg>
+              {{ tp.etiqueta | translate }}
+            </span>
           </ng-container>
-          <img *ngIf="!r.tiempoCoccion && r.metodo === 'nevera'" src="assets/icons/frio.png" alt="frio" class="iconosCategoria animated rollIn">
-          <h4 class="titulo">{{ 'app.tiempoTotal' | translate}}: <b>{{ tiempoTotal(r) }} {{ 'app.minutos' | translate}}</b></h4>
-        </blockquote>
-      </div>
-      <div class="separator"></div>
-      <blockquote>
-        <h3 class="recetaTituloIngred">{{ 'app.ingredientes' | translate}}</h3>
-        <div *ngFor="let ingrediente of r.ingredientes" class="bloqueReceta recetaTituloIngred">
-          <ul class="ingrediente">
-            <li>&nbsp;{{ ingrediente | l10n }}</li>
-          </ul>
         </div>
-      </blockquote>
-      <div class="centerText">
-        <blockquote>
-          <h3>{{ 'app.pasos' | translate}}</h3>
-          <div *ngFor="let paso of r.pasos; let i = index" class="bloqueReceta">
-            <ul class="pasos">
-              <h4 class="centerText">{{ i + 1 }}</h4>
-              <li>&nbsp;{{ paso | l10n }}</li>
-            </ul>
-          </div>
-        </blockquote>
+        <h2 class="recipe__title">{{ r.nombre | l10n }}</h2>
+        <p class="recipe__quote" *ngIf="r.frase">«{{ r.frase | l10n }}»</p>
       </div>
-    </figure>
-  </ng-container>
-  <ng-template #cargando>
-    <div class="spinner-container">
-      <div class="spinner"></div>
-      <span> &nbsp; {{ 'app.cargando' | translate}}</span>
+    </header>
+
+    <ul class="stats">
+      <li class="stat">
+        <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><path d="M6 17h12"/></svg></span>
+        <span class="stat__text"><span class="stat__label">{{ 'app.especialidad' | translate }}</span><b class="stat__value">{{ r.cocinero }}</b></span>
+      </li>
+
+      <li class="stat">
+        <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span>
+        <span class="stat__text"><span class="stat__label">{{ 'app.raciones' | translate }}</span><b class="stat__value">{{ r.raciones }}</b></span>
+      </li>
+
+      <li class="stat">
+        <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20v-5M12 20V9M19 20V4"/></svg></span>
+        <span class="stat__text"><span class="stat__label">{{ 'app.dificultad' | translate }}</span><b class="stat__value">{{ r.dificultad }}</b></span>
+      </li>
+
+      <li class="stat">
+        <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="stat__text"><span class="stat__label">{{ 'app.tiempoPreparacion' | translate }}</span><b class="stat__value">{{ r.tiempoPreparacion }} {{ 'app.minutos' | translate }}</b></span>
+      </li>
+
+      <!-- Cocción según el método -->
+      <ng-container *ngIf="r.tiempoCoccion">
+        <ng-container [ngSwitch]="r.metodo">
+          <li class="stat" *ngSwitchCase="'horno'">
+            <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><circle cx="7" cy="6.5" r=".6"/><circle cx="11" cy="6.5" r=".6"/><rect x="6.5" y="12" width="11" height="5" rx="1.2"/></svg></span>
+            <span class="stat__text"><span class="stat__label">{{ 'app.tiempoHorno' | translate }}</span><b class="stat__value">{{ r.tiempoCoccion }} {{ 'app.minutos' | translate }}<ng-container *ngIf="r.temperatura"> a {{ r.temperatura }}</ng-container></b></span>
+          </li>
+          <li class="stat" *ngSwitchCase="'microondas'">
+            <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><rect x="6" y="8" width="9" height="8" rx="1.5"/><path d="M18 9h.01M18 12h.01M18 15h.01"/></svg></span>
+            <span class="stat__text"><span class="stat__label">{{ 'app.tiempoMicro' | translate }}</span><b class="stat__value">{{ r.tiempoCoccion }} {{ 'app.minutos' | translate }}/{{ 'app.segundos' | translate }}<ng-container *ngIf="r.temperatura"> a {{ r.temperatura }}</ng-container></b></span>
+          </li>
+          <li class="stat" *ngSwitchCase="'olla'">
+            <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h20M9 6c0-1.5 1.5-1.5 1.5-3M14 6c0-1.5 1.5-1.5 1.5-3"/></svg></span>
+            <span class="stat__text"><span class="stat__label">{{ 'app.tiempoOlla' | translate }}</span><b class="stat__value">{{ r.tiempoCoccion }} {{ 'app.minutos' | translate }}</b></span>
+          </li>
+        </ng-container>
+      </ng-container>
+
+      <!-- Sin cocción: va a la nevera -->
+      <li class="stat" *ngIf="!r.tiempoCoccion && r.metodo === 'nevera'">
+        <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.5 4.8 12 6.8l2.5-2M9.5 19.2l2.5-2 2.5 2"/></svg></span>
+        <span class="stat__text"><span class="stat__label">{{ 'app.categoriaFrio' | translate }}</span><b class="stat__value">&nbsp;</b></span>
+      </li>
+
+      <li class="stat stat--total">
+        <span class="stat__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10M7 21h10M8 3v3a6 6 0 0 0 2.5 4.9L12 12l-1.5 1.1A6 6 0 0 0 8 18v3M16 3v3a6 6 0 0 1-2.5 4.9L12 12l1.5 1.1A6 6 0 0 1 16 18v3"/></svg></span>
+        <span class="stat__text"><span class="stat__label">{{ 'app.tiempoTotal' | translate }}</span><b class="stat__value">{{ tiempoTotal(r) }} {{ 'app.minutos' | translate }}</b></span>
+      </li>
+    </ul>
+
+    <div class="recipe__cols">
+
+      <!-- Ingredientes: se pueden ir marcando mientras se cocina -->
+      <section class="ingr">
+        <h3 class="recipe__h">{{ 'app.ingredientes' | translate }}</h3>
+        <ul class="ingr__list">
+          <li *ngFor="let ingrediente of r.ingredientes">
+            <label class="check">
+              <input type="checkbox">
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">{{ ingrediente | l10n }}</span>
+            </label>
+          </li>
+        </ul>
+      </section>
+
+      <section class="steps">
+        <h3 class="recipe__h">{{ 'app.pasos' | translate }}</h3>
+        <ol class="steps__list">
+          <li class="step" *ngFor="let paso of r.pasos; let i = index">
+            <span class="step__n">{{ i + 1 }}</span>
+            <p class="step__t">{{ paso | l10n }}</p>
+          </li>
+        </ol>
+      </section>
     </div>
-  </ng-template>
-</div><!-- de la autenticacion -->
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/principal"><a routerLink="/principal">{{ 'viaje.volver' | translate}}</a>
-</div>
+  </article>
+
+</ng-container>
+
+<ng-template #cargando>
+  <div class="loader" role="status">
+    <span class="loader__ring"></span>
+    <span>{{ 'app.cargando' | translate }}</span>
+  </div>
+</ng-template>
