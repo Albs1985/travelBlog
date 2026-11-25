@@ -97,17 +97,55 @@
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#5E7B4B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="100" cy="112" r="32" fill="#F6DFD2"/><path d="M68 108a32 32 0 0 1 64 0c-12-9-52-9-64 0z" fill="#12313B"/><circle cx="89" cy="116" r="3" fill="#12313B"/><circle cx="111" cy="116" r="3" fill="#12313B"/><path d="M91 128q9 7 18 0" stroke="#12313B" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="142" cy="80" r="15" fill="#E3A93C"/><text x="142" y="88" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="700" fill="#12313B">?</text></g></svg>
           <span class="card__label">{{ 'app.quienEsQuien' | translate }}</span>
         </a>
-        <a class="card" routerLink="/games/quiz">
+        <!-- <a class="card" routerLink="/games/quiz">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="100" cy="114" r="40" fill="#E3A93C"/><text x="100" y="136" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#12313B">?</text><path d="M52.0 68.0L53.9 74.1L60.0 76.0L53.9 77.9L52.0 84.0L50.1 77.9L44.0 76.0L50.1 74.1z" fill="#FBEBC8"/><path d="M152.0 143.0L153.7 148.3L159.0 150.0L153.7 151.7L152.0 157.0L150.3 151.7L145.0 150.0L150.3 148.3z" fill="#FBEBC8"/></g></svg>
           <span class="card__label">{{ 'app.juegoQuiz' | translate }}</span>
+        </a> -->
+        <a class="card" routerLink="/games/conecta4">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="108" height="92" rx="12" fill="#1F5F73"/><circle cx="64" cy="94" r="8" fill="#12313B"/><circle cx="82" cy="94" r="8" fill="#12313B"/><circle cx="100" cy="94" r="8" fill="#12313B"/><circle cx="118" cy="94" r="8" fill="#12313B"/><circle cx="136" cy="94" r="8" fill="#12313B"/><circle cx="64" cy="114" r="8" fill="#12313B"/><circle cx="82" cy="114" r="8" fill="#12313B"/><circle cx="100" cy="114" r="8" fill="#C8643C"/><circle cx="118" cy="114" r="8" fill="#12313B"/><circle cx="136" cy="114" r="8" fill="#12313B"/><circle cx="64" cy="134" r="8" fill="#12313B"/><circle cx="82" cy="134" r="8" fill="#C8643C"/><circle cx="100" cy="134" r="8" fill="#E3A93C"/><circle cx="118" cy="134" r="8" fill="#12313B"/><circle cx="136" cy="134" r="8" fill="#12313B"/><circle cx="64" cy="154" r="8" fill="#C8643C"/><circle cx="82" cy="154" r="8" fill="#E3A93C"/><circle cx="100" cy="154" r="8" fill="#C8643C"/><circle cx="118" cy="154" r="8" fill="#E3A93C"/><circle cx="136" cy="154" r="8" fill="#12313B"/></g></svg>
+          <span class="card__label">{{ 'app.conecta4' | translate }}</span>
+        </a>
+        <!-- IMPOSTOR -->
+        <a class="card" routerLink="/games/impostor">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#C8643C"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="75" cy="112" r="27" fill="#F6DFD2"/>
+              <path d="M49 105a27 27 0 0 1 52 0c-12-9-40-9-52 0z" fill="#12313B"/>
+              <circle cx="67" cy="116" r="3" fill="#12313B"/>
+              <circle cx="83" cy="116" r="3" fill="#12313B"/>
+              <circle cx="125" cy="112" r="27" fill="#12313B"/>
+              <path d="M99 105a27 27 0 0 1 52 0c-12-9-40-9-52 0z" fill="#E3A93C"/>
+              <rect x="110" y="106" width="30" height="16" rx="8" fill="#1F5F73" stroke="#FFFCF7" stroke-width="2"/>
+              <circle cx="125" cy="114" r="4" fill="#FFFCF7"/>
+              <path d="M94 73l6-13 6 13" fill="none" stroke="#E3A93C" stroke-width="3"/>
+              <text x="100" y="170" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="700" fill="#FFFCF7">¿QUIÉN?</text>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.impostor' | translate }}</span>
+        </a>
+        <!-- SIMON -->
+        <a class="card" routerLink="/games/simon">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#12313B"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="100" cy="115" r="57" fill="#FFFCF7"/>
+              <path d="M100 115V65a50 50 0 0 0-50 50z" fill="#C8643C"/>
+              <path d="M100 115h50a50 50 0 0 0-50-50z" fill="#E3A93C"/>
+              <path d="M100 115v50a50 50 0 0 0 50-50z" fill="#5E7B4B"/>
+              <path d="M100 115H50a50 50 0 0 0 50 50z" fill="#1F5F73"/>
+              <circle cx="100" cy="115" r="13" fill="#12313B"/>
+              <circle cx="75" cy="90" r="7" fill="#FFFCF7"/>
+              <circle cx="125" cy="90" r="7" fill="#FFFCF7"/>
+              <circle cx="75" cy="140" r="7" fill="#FFFCF7"/>
+              <circle cx="125" cy="140" r="7" fill="#FFFCF7"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.simon' | translate }}</span>
         </a>
         <a class="card" routerLink="/games/puzzle">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3A93C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="62" y="82" width="38" height="38" rx="6" fill="#C8643C"/><rect x="102" y="82" width="38" height="38" rx="6" fill="#12313B"/><rect x="62" y="122" width="38" height="38" rx="6" fill="#1F5F73"/><rect x="102" y="122" width="38" height="38" rx="6" fill="#FFFCF7"/><circle cx="101" cy="101" r="8" fill="#C8643C"/><circle cx="81" cy="121" r="8" fill="#1F5F73"/><circle cx="121" cy="121" r="8" fill="#FFFCF7"/></g></svg>
           <span class="card__label">{{ 'app.puzzle' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/games/conecta4">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="108" height="92" rx="12" fill="#1F5F73"/><circle cx="64" cy="94" r="8" fill="#12313B"/><circle cx="82" cy="94" r="8" fill="#12313B"/><circle cx="100" cy="94" r="8" fill="#12313B"/><circle cx="118" cy="94" r="8" fill="#12313B"/><circle cx="136" cy="94" r="8" fill="#12313B"/><circle cx="64" cy="114" r="8" fill="#12313B"/><circle cx="82" cy="114" r="8" fill="#12313B"/><circle cx="100" cy="114" r="8" fill="#C8643C"/><circle cx="118" cy="114" r="8" fill="#12313B"/><circle cx="136" cy="114" r="8" fill="#12313B"/><circle cx="64" cy="134" r="8" fill="#12313B"/><circle cx="82" cy="134" r="8" fill="#C8643C"/><circle cx="100" cy="134" r="8" fill="#E3A93C"/><circle cx="118" cy="134" r="8" fill="#12313B"/><circle cx="136" cy="134" r="8" fill="#12313B"/><circle cx="64" cy="154" r="8" fill="#C8643C"/><circle cx="82" cy="154" r="8" fill="#E3A93C"/><circle cx="100" cy="154" r="8" fill="#C8643C"/><circle cx="118" cy="154" r="8" fill="#E3A93C"/><circle cx="136" cy="154" r="8" fill="#12313B"/></g></svg>
-          <span class="card__label">{{ 'app.conecta4' | translate }}</span>
         </a>
         <!-- ADIVINA -->
         <a class="card" routerLink="/games/adivina">
@@ -126,41 +164,6 @@
           </svg>
           <span class="card__label">{{ 'app.juegoAdivina' | translate }}</span>
         </a>
-
-        <!-- TABLEROS -->
-        <a class="card" routerLink="/games/tableros">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="200" height="260" fill="#1F5F73"/>
-            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
-              <rect x="47" y="68" width="106" height="100" rx="9" fill="#FFFCF7"/>
-              <path d="M82 68v100M118 68v100M47 101h106M47 134h106" stroke="#12313B" stroke-width="2"/>
-              <rect x="52" y="73" width="25" height="23" rx="3" fill="#E3A93C"/>
-              <rect x="87" y="73" width="25" height="23" rx="3" fill="#C8643C"/>
-              <rect x="123" y="106" width="25" height="23" rx="3" fill="#5E7B4B"/>
-              <circle cx="64" cy="117" r="8" fill="#1F5F73"/>
-              <circle cx="100" cy="150" r="8" fill="#C8643C"/>
-              <circle cx="136" cy="150" r="8" fill="#E3A93C"/>
-            </g>
-          </svg>
-          <span class="card__label">{{ 'app.juegoMesa' | translate }}</span>
-        </a>
-
-        <!-- MISIÓN CUMPLIDA -->
-        <a class="card" routerLink="/games/misionCumplida">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="200" height="260" fill="#5E7B4B"/>
-            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
-              <circle cx="100" cy="115" r="48" fill="#E3A93C"/>
-              <circle cx="100" cy="115" r="35" fill="#FFFCF7"/>
-              <path d="M78 115l15 15 30-34" fill="none" stroke="#5E7B4B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M53 65l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" fill="#FBEBC8"/>
-              <path d="M151 142l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#C8643C"/>
-              <path d="M145 70l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#FBEBC8"/>
-            </g>
-          </svg>
-          <span class="card__label">{{ 'app.juegoMisionCumplida' | translate }}</span>
-        </a>
-
         <!-- FACEDOKU -->
         <a class="card" routerLink="/games/facedoku">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -186,8 +189,24 @@
           <span class="card__label">{{ 'app.faceDoku' | translate }}</span>
         </a>
 
+        <!-- MISIÓN CUMPLIDA -->
+        <a class="card" routerLink="/games/misionCumplida">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#5E7B4B"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <circle cx="100" cy="115" r="48" fill="#E3A93C"/>
+              <circle cx="100" cy="115" r="35" fill="#FFFCF7"/>
+              <path d="M78 115l15 15 30-34" fill="none" stroke="#5E7B4B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M53 65l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" fill="#FBEBC8"/>
+              <path d="M151 142l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#C8643C"/>
+              <path d="M145 70l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" fill="#FBEBC8"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.juegoMisionCumplida' | translate }}</span>
+        </a>
+
         <!-- AHORCADO -->
-        <a class="card" routerLink="/games/ahorcado">
+        <!-- <a class="card" routerLink="/games/ahorcado">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <rect width="200" height="260" fill="#12313B"/>
             <g transform="translate(100 116) scale(.85) translate(-100 -116)">
@@ -200,7 +219,7 @@
             </g>
           </svg>
           <span class="card__label">{{ 'app.ahorcado' | translate }}</span>
-        </a>
+        </a> -->
 
         <!-- AVENTURA FAMILIAR -->
         <a class="card" routerLink="/games/aventura">
@@ -221,8 +240,26 @@
           <span class="card__label">{{ 'app.aventura' | translate }}</span>
         </a>
 
+        <!-- TABLEROS -->
+        <a class="card" routerLink="/games/tableros">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="260" fill="#1F5F73"/>
+            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+              <rect x="47" y="68" width="106" height="100" rx="9" fill="#FFFCF7"/>
+              <path d="M82 68v100M118 68v100M47 101h106M47 134h106" stroke="#12313B" stroke-width="2"/>
+              <rect x="52" y="73" width="25" height="23" rx="3" fill="#E3A93C"/>
+              <rect x="87" y="73" width="25" height="23" rx="3" fill="#C8643C"/>
+              <rect x="123" y="106" width="25" height="23" rx="3" fill="#5E7B4B"/>
+              <circle cx="64" cy="117" r="8" fill="#1F5F73"/>
+              <circle cx="100" cy="150" r="8" fill="#C8643C"/>
+              <circle cx="136" cy="150" r="8" fill="#E3A93C"/>
+            </g>
+          </svg>
+          <span class="card__label">{{ 'app.juegoMesa' | translate }}</span>
+        </a>
+
         <!-- PUZZLE DESLIZANTE -->
-        <a class="card" routerLink="/games/puzzle-deslizante">
+        <!-- <a class="card" routerLink="/games/puzzle-deslizante">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
             <rect width="200" height="260" fill="#1F5F73"/>
             <g transform="translate(100 116) scale(.85) translate(-100 -116)">
@@ -240,47 +277,8 @@
             </g>
           </svg>
           <span class="card__label">{{ 'app.puzzleDeslizante' | translate }}</span>
-        </a>
+        </a> -->
 
-        <!-- IMPOSTOR -->
-        <a class="card" routerLink="/games/impostor">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="200" height="260" fill="#C8643C"/>
-            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
-              <circle cx="75" cy="112" r="27" fill="#F6DFD2"/>
-              <path d="M49 105a27 27 0 0 1 52 0c-12-9-40-9-52 0z" fill="#12313B"/>
-              <circle cx="67" cy="116" r="3" fill="#12313B"/>
-              <circle cx="83" cy="116" r="3" fill="#12313B"/>
-              <circle cx="125" cy="112" r="27" fill="#12313B"/>
-              <path d="M99 105a27 27 0 0 1 52 0c-12-9-40-9-52 0z" fill="#E3A93C"/>
-              <rect x="110" y="106" width="30" height="16" rx="8" fill="#1F5F73" stroke="#FFFCF7" stroke-width="2"/>
-              <circle cx="125" cy="114" r="4" fill="#FFFCF7"/>
-              <path d="M94 73l6-13 6 13" fill="none" stroke="#E3A93C" stroke-width="3"/>
-              <text x="100" y="170" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="700" fill="#FFFCF7">¿QUIÉN?</text>
-            </g>
-          </svg>
-          <span class="card__label">{{ 'app.impostor' | translate }}</span>
-        </a>
-
-        <!-- SIMON -->
-        <a class="card" routerLink="/games/simon">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="200" height="260" fill="#12313B"/>
-            <g transform="translate(100 116) scale(.85) translate(-100 -116)">
-              <circle cx="100" cy="115" r="57" fill="#FFFCF7"/>
-              <path d="M100 115V65a50 50 0 0 0-50 50z" fill="#C8643C"/>
-              <path d="M100 115h50a50 50 0 0 0-50-50z" fill="#E3A93C"/>
-              <path d="M100 115v50a50 50 0 0 0 50-50z" fill="#5E7B4B"/>
-              <path d="M100 115H50a50 50 0 0 0 50 50z" fill="#1F5F73"/>
-              <circle cx="100" cy="115" r="13" fill="#12313B"/>
-              <circle cx="75" cy="90" r="7" fill="#FFFCF7"/>
-              <circle cx="125" cy="90" r="7" fill="#FFFCF7"/>
-              <circle cx="75" cy="140" r="7" fill="#FFFCF7"/>
-              <circle cx="125" cy="140" r="7" fill="#FFFCF7"/>
-            </g>
-          </svg>
-          <span class="card__label">{{ 'app.simon' | translate }}</span>
-        </a>
       </div>
     </article>
 
