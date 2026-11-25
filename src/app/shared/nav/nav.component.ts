@@ -33,14 +33,14 @@ const SEGMENTO_A_GRUPO: Record<string, GrupoNav> = {
 };
 
 // Chips de segundo nivel bajo la cabecera (solo donde hay varias páginas distintas)
-const SUBNAV: Partial<Record<GrupoNav, SubEnlace[]>> = {
-  recuerdos: [
-    { ruta: '/fotos', etiqueta: 'nav.fotos' },
-    { ruta: '/historias/relatoAlbert', etiqueta: 'app.historiaAlbaAlbert' },
-    { ruta: '/historias/relatoIaiaAna', etiqueta: 'header.iaiaAna' },
-    { ruta: '/historias/relatoBodaEsteve', etiqueta: 'header.bodaEsteve' }
-  ]
-};
+// const SUBNAV: Partial<Record<GrupoNav, SubEnlace[]>> = {
+//   recuerdos: [
+//     { ruta: '/fotos', etiqueta: 'nav.fotos' },
+//     { ruta: '/historias/relatoAlbert', etiqueta: 'app.historiaAlbaAlbert' },
+//     { ruta: '/historias/relatoIaiaAna', etiqueta: 'header.iaiaAna' },
+//     { ruta: '/historias/relatoBodaEsteve', etiqueta: 'header.bodaEsteve' }
+//   ]
+// };
 
 @Component({
   selector: 'app-nav',
@@ -69,8 +69,8 @@ export class NavComponent implements OnDestroy {
     const partes = url.split(/[?#]/)[0].split('/').filter(Boolean);
     const segmento = partes[0] ?? 'principal';
     this.grupo = SEGMENTO_A_GRUPO[segmento] ?? '';
-    this.subitems = SUBNAV[this.grupo] ?? [];
+    // this.subitems = SUBNAV[this.grupo] ?? [];
     // En el detalle de un viaje (imagen a pantalla completa) no mostramos los chips
-    this.mostrarSubnav = this.subitems.length > 0 && segmento !== 'viaje';
+    // this.mostrarSubnav = this.subitems.length > 0 && segmento !== 'viaje';
   }
 }

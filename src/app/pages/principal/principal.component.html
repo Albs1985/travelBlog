@@ -45,6 +45,43 @@
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(10 104 112)"><rect x="68" y="68" width="88" height="104" rx="6" fill="#DCCBAE"/></g><g transform="rotate(-8 100 112)"><rect x="50" y="64" width="96" height="112" rx="6" fill="#FFFCF7"/><rect x="58" y="72" width="80" height="76" rx="3" fill="#2F7C94"/><circle cx="118" cy="92" r="8" fill="#E3A93C"/><path d="M58 148l26-32 20 22 12-12 22 22z" fill="#5E7B4B"/></g></g></svg>
           <span class="card__label">{{ 'app.galeria' | translate }}</span>
         </a>
+      </div>
+    </article>
+
+    <article class="block block--familia">
+      <a class="block__head" routerLink="/familia"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
+      <div class="cards">
+        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'frases' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3EBD9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M58 80h84a14 14 0 0 1 14 14v38a14 14 0 0 1-14 14h-40l-22 20v-20H58a14 14 0 0 1-14-14V94a14 14 0 0 1 14-14z" fill="#5E7B4B"/><text x="100" y="140" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#FFFCF7">&#8220;&#8221;</text></g></svg>
+          <span class="card__label">{{ 'header.frases' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'cumpleanos' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="76" width="88" height="88" rx="10" fill="#FFFCF7"/><path d="M56 98v-12a10 10 0 0 1 10-10h68a10 10 0 0 1 10 10v12z" fill="#C8643C"/><path d="M80 70v14M120 70v14" stroke="#12313B" stroke-width="5" stroke-linecap="round"/><circle cx="72" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="72" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="10" fill="#E3A93C"/></g></svg>
+          <span class="card__label">{{ 'nav.cumpleanos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'apodos' }">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-8 100 110)"><rect x="56" y="76" width="88" height="68" rx="12" fill="#C8643C"/><circle cx="72" cy="91" r="5" fill="#FBEBC8"/><path d="M76 118h52M76 131h34" stroke="#FFFCF7" stroke-width="5" stroke-linecap="round"/></g></g></svg>
+          <span class="card__label">{{ 'header.apodos' | translate }}</span>
+        </a>
+        <a class="card" routerLink="/recetas">
+          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M80 96c-6-8 6-12 0-20M100 96c-6-8 6-12 0-20M120 96c-6-8 6-12 0-20" fill="none" stroke="#C8643C" stroke-width="4" stroke-linecap="round"/><path d="M56 112h88v20a24 24 0 0 1-24 24H80a24 24 0 0 1-24-24z" fill="#12313B"/><rect x="48" y="106" width="104" height="10" rx="5" fill="#1F5F73"/><path d="M150 124h22" stroke="#12313B" stroke-width="8" stroke-linecap="round"/></g></svg>
+          <span class="card__label">{{ 'header.recetas' | translate }}</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="block block--recuerdos">
+      <a class="block__head">
+        <span class="block__icon">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 6.5C9.8 5 6.8 4.6 3.5 5.2v12.6c3.3-.6 6.3-.2 8.5 1.3 2.2-1.5 5.2-1.9 8.5-1.3V5.2c-3.3-.6-6.3-.2-8.5 1.3Z"/>
+            <path d="M12 6.5v12.6"/>
+            <path d="M16.5 9.2l.55 1.15 1.25.18-.9.88.22 1.25L16.5 12l-1.12.66.22-1.25-.9-.88 1.25-.18.55-1.15Z"/>
+          </svg>
+        </span>
+        <h3 class="block__title">{{ 'nav.historias' | translate }}</h3>
+      </a>
+      <div class="cards">
         <a class="card" routerLink="/historias/relatoAlbert">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="86" cy="116" r="28" fill="none" stroke="#FFFCF7" stroke-width="8"/><circle cx="116" cy="116" r="28" fill="none" stroke="#E3A93C" stroke-width="8"/><path d="M100.0 66.0L101.9 72.1L108.0 74.0L101.9 75.9L100.0 82.0L98.1 75.9L92.0 74.0L98.1 72.1z" fill="#FBEBC8"/></g></svg>
           <span class="card__label">{{ 'app.historiaAlbaAlbert' | translate }}</span>
@@ -56,28 +93,6 @@
         <a class="card" routerLink="/historias/relatoBodaEsteve">
           <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#5E7B4B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="62" y="130" width="76" height="26" rx="6" fill="#FFFCF7"/><rect x="74" y="106" width="52" height="26" rx="6" fill="#F6DFD2"/><rect x="88" y="84" width="24" height="24" rx="6" fill="#FFFCF7"/><path d="M100 82c-8-6-12-10-12-15a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 5-4 9-12 15z" fill="#C8643C"/></g></svg>
           <span class="card__label">{{ 'header.bodaEsteve' | translate }}</span>
-        </a>
-      </div>
-    </article>
-
-    <article class="block block--familia">
-      <a class="block__head" routerLink="/familia"><span class="block__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg></span><h3 class="block__title">{{ 'app.familia' | translate }}</h3></a>
-      <div class="cards">
-        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'apodos' }">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-8 100 110)"><rect x="56" y="76" width="88" height="68" rx="12" fill="#C8643C"/><circle cx="72" cy="91" r="5" fill="#FBEBC8"/><path d="M76 118h52M76 131h34" stroke="#FFFCF7" stroke-width="5" stroke-linecap="round"/></g></g></svg>
-          <span class="card__label">{{ 'header.apodos' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'cumpleanos' }">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="76" width="88" height="88" rx="10" fill="#FFFCF7"/><path d="M56 98v-12a10 10 0 0 1 10-10h68a10 10 0 0 1 10 10v12z" fill="#C8643C"/><path d="M80 70v14M120 70v14" stroke="#12313B" stroke-width="5" stroke-linecap="round"/><circle cx="72" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="72" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="90" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="124" r="3.5" fill="#DCCBAE"/><circle cx="126" cy="142" r="3.5" fill="#DCCBAE"/><circle cx="108" cy="142" r="10" fill="#E3A93C"/></g></svg>
-          <span class="card__label">{{ 'nav.cumpleanos' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/familia" [queryParams]="{ seccion: 'frases' }">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3EBD9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M58 80h84a14 14 0 0 1 14 14v38a14 14 0 0 1-14 14h-40l-22 20v-20H58a14 14 0 0 1-14-14V94a14 14 0 0 1 14-14z" fill="#5E7B4B"/><text x="100" y="140" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#FFFCF7">&#8220;&#8221;</text></g></svg>
-          <span class="card__label">{{ 'header.frases' | translate }}</span>
-        </a>
-        <a class="card" routerLink="/recetas">
-          <svg class="card__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M80 96c-6-8 6-12 0-20M100 96c-6-8 6-12 0-20M120 96c-6-8 6-12 0-20" fill="none" stroke="#C8643C" stroke-width="4" stroke-linecap="round"/><path d="M56 112h88v20a24 24 0 0 1-24 24H80a24 24 0 0 1-24-24z" fill="#12313B"/><rect x="48" y="106" width="104" height="10" rx="5" fill="#1F5F73"/><path d="M150 124h22" stroke="#12313B" stroke-width="8" stroke-linecap="round"/></g></svg>
-          <span class="card__label">{{ 'header.recetas' | translate }}</span>
         </a>
       </div>
     </article>
