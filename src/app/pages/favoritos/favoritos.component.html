@@ -7,9 +7,9 @@
     </div>
     <app-toolbar
       [volverLink]="''"
-      [textoNuevo]="'app.nuevoFavorito'"
       [mostrarBotonOrdenar]="true"
       [orderDesc]="orderDesc"
+      [textoNuevo]="'app.nuevoFavorito'"
       [mostrarBotonSeleccionMultiple]="true"
       [modoSeleccionMultiple]="modoSeleccionMultiple"
       [cantidadSeleccionada]="seleccionadasParaBorrar.size"
@@ -78,8 +78,7 @@
           <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
         </button>
 
-        <input *ngIf="modoSeleccionMultiple" type="checkbox" class="tile__check"
-               [checked]="seleccionadasParaBorrar.has(foto.src)" (change)="toggleSeleccion(foto.src)">
+        <input *ngIf="modoSeleccionMultiple" type="checkbox" class="tile__check" [checked]="seleccionadasParaBorrar.has(foto.src)" (change)="toggleSeleccion(foto.src)">
 
         <div class="tile__busy" *ngIf="idsEliminando.has(foto.src)">
           <span class="loader__ring"></span>
@@ -90,7 +89,7 @@
           <span class="pill pill--terra">{{ foto.anyo }}</span>
           <strong class="tile__place" *ngIf="foto.lugar">{{ foto.lugar }}</strong>
           <p class="tile__desc" *ngIf="foto.desc">{{ foto.desc }}</p>
-          <button *ngIf="githubToken && !modoSeleccionMultiple" type="button" class="btn btn--sm btn--soft tile__del"
+          <button *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true && !modoSeleccionMultiple" type="button" class="btn btn--sm btn--soft tile__del"
                   [disabled]="idsEliminando.has(foto.src)" (click)="eliminar(foto.src, $event)">
             {{ 'app.eliminarBtn' | translate }}
           </button>

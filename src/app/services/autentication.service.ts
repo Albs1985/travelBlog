@@ -21,7 +21,7 @@ export class AutenticationService {
   private readonly repoOwner = 'Albs1985';
   private readonly repoName = 'travelBlog';
 
-  private readonly tokenGithubValidoSubject$ = new BehaviorSubject<boolean>(false);
+  public tokenGithubValidoSubject$ = new BehaviorSubject<boolean>(false);
   readonly tokenGithubValido$ = this.tokenGithubValidoSubject$.asObservable();
 
   private readonly validandoTokenGithubSubject$ = new BehaviorSubject<boolean>(false);

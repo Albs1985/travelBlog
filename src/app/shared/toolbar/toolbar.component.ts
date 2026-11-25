@@ -27,7 +27,7 @@ export class ToolbarComponent implements OnInit {
   @Input() volverLink: string = '/principal';
   @Input() textoNuevo: string = 'app.nuevoElemento';
   @Input() mostrarBotonNuevo: boolean = true;
-  @Input() mostrarBotonConfig: boolean = true;
+  @Input() mostrarBotonConfig: boolean = false;
   @Input() textoBotonExtra: string = '';
   @Input() iconoBotonExtra: string = '';
   @Input() mostrarPanelToken: boolean = false;
@@ -194,6 +194,5 @@ export class ToolbarComponent implements OnInit {
     }
 
     this.tokenGuardado.emit(this.tokenActual);
-    this.mostrarPanelToken = false;
   }
 }

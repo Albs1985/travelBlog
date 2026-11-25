@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class HeaderComponent {
   constructor(/*private route: ActivatedRoute, */
               private translate: TranslateService,
               protected commonService : CommonService,
+              public authenticationService: AutenticationService,
               private router: Router){
 
                 // this.mensajeCabeceraAnyo = true;

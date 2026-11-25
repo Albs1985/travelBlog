@@ -97,7 +97,7 @@
             <span class="pill pill--terra">{{ dibujo.edad }} {{ 'app.edad' | translate }}</span>
           </div>
           <p class="tile__desc" *ngIf="dibujo.detalle">{{ dibujo.detalle | l10n }}</p>
-          <button *ngIf="githubToken" type="button" class="btn btn--sm btn--soft tile__del"
+          <button *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true" type="button" class="btn btn--sm btn--soft tile__del"
                   [disabled]="idsEliminando.has(dibujo.id!)" (click)="eliminar(dibujo.id, $event)">
             {{ 'app.eliminarBtn' | translate }}
           </button>

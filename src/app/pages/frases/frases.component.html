@@ -92,7 +92,7 @@
 
         <p class="quote__note" *ngIf="frase.explicacion">{{ frase.explicacion }}</p>
 
-        <div class="quote__admin" *ngIf="githubToken">
+        <div class="quote__admin" *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true">
           <button type="button" class="btn btn--sm btn--ghost" (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)">{{ 'app.editarBtn' | translate }}</button>
           <button type="button" class="btn btn--sm btn--soft" (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)">{{ 'app.eliminarBtn' | translate }}</button>
         </div>

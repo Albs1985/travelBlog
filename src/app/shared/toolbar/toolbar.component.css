@@ -73,3 +73,9 @@
 .tb-ia__hint { font-size: .8rem; color: var(--ink-soft); }
 
 @media (max-width: 480px) { .tb__group { margin-left: 0; } }
+
+.tb__icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
