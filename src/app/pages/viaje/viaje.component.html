@@ -108,7 +108,7 @@
       <!-- Contenido del viaje: cada bloque se pinta según su tipo, en el orden del archivo del viaje -->
       <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.viaje.mapa" [alt]="vista.viaje.destino" (abrir)="fotoAbierta = $event"></app-bloques>
 
-      <section class="block" *ngIf="vista.viaje.infoInteres.length">
+      <section class="block" *ngIf="vista.viaje.infoInteres.length && vista.viaje.infoInteres[0] !== ''">
         <h2 class="block__title">{{ 'app.infoInteres' | translate }}</h2>
         <ul class="links">
           <li *ngFor="let info of vista.viaje.infoInteres">
