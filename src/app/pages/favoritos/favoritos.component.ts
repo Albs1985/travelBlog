@@ -17,8 +17,8 @@ import { filtrar } from '../../services/buscar.util';
 export class FavoritosComponent {
   orderDesc = false;
   p = 1;
-  pageSize = 10;
-  maxSizeDisplay = 5;
+  pageSize = 50;
+  maxSizeDisplay = 50;
   abierta: number | null = null;
 
   // Control de token, formulario y cola por lotes

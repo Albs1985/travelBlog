@@ -12,8 +12,8 @@ import { AutenticationService } from '../../services/autentication.service';
 })
 export class FrasesComponent {
   p = 1;
-  pageSize = 10;
-  maxSizeDisplay = 10;
+  pageSize = 50;
+  maxSizeDisplay = 50;
 
   // Control de Token y UI de edición
   githubToken: string = localStorage.getItem('gh_travel_token') || '';

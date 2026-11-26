@@ -26,8 +26,8 @@ export interface DibujoPendiente {
 })
 export class DibujosComponent {
   p = 1;
-  pageSize = 10;
-  maxSizeDisplay = 10;
+  pageSize = 50;
+  maxSizeDisplay = 50;
   abierto: number | null = null;
 
   githubToken: string = localStorage.getItem('gh_travel_token') || '';
