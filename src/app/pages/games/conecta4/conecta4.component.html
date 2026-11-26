@@ -1,75 +1,85 @@
-<div class="conecta4-container">
-  <h2>🔴 Conecta 4: Batalla de Primos 🔵</h2>
-  <p class="subtit">Alinea 4 fichas de tu familiar favorito para ganar.</p>
+<header class="page-head">
+  <a class="round-btn" href="#/games" aria-label="Volver a los juegos">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">Conecta 4: Batalla de Primos</h1>
+    <p class="page-head__sub">Alinea 4 fichas de tu familiar favorito para ganar.</p>
+  </div>
+  <span class="badge"><svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="108" height="92" rx="12" fill="#1F5F73"/><circle cx="64" cy="94" r="8" fill="#12313B"/><circle cx="82" cy="94" r="8" fill="#12313B"/><circle cx="100" cy="94" r="8" fill="#12313B"/><circle cx="118" cy="94" r="8" fill="#12313B"/><circle cx="136" cy="94" r="8" fill="#12313B"/><circle cx="64" cy="114" r="8" fill="#12313B"/><circle cx="82" cy="114" r="8" fill="#12313B"/><circle cx="100" cy="114" r="8" fill="#C8643C"/><circle cx="118" cy="114" r="8" fill="#12313B"/><circle cx="136" cy="114" r="8" fill="#12313B"/><circle cx="64" cy="134" r="8" fill="#12313B"/><circle cx="82" cy="134" r="8" fill="#C8643C"/><circle cx="100" cy="134" r="8" fill="#E3A93C"/><circle cx="118" cy="134" r="8" fill="#12313B"/><circle cx="136" cy="134" r="8" fill="#12313B"/><circle cx="64" cy="154" r="8" fill="#C8643C"/><circle cx="82" cy="154" r="8" fill="#E3A93C"/><circle cx="100" cy="154" r="8" fill="#C8643C"/><circle cx="118" cy="154" r="8" fill="#E3A93C"/><circle cx="136" cy="154" r="8" fill="#12313B"/></g></svg></span>
+</header>
 
-  <!-- SECCIÓN DE CONFIGURACIÓN -->
-  <div class="config-panel" *ngIf="!juegoIniciado">
+<!-- CONFIGURACIÓN -->
+<section class="config" *ngIf="!juegoIniciado">
 
-    <div class="grupo-control">
-      <label>Jugador 1 (Fichas Rojas / Primario):</label>
-      <select [(ngModel)]="jugador1" class="input-select">
-        <option *ngFor="let p of personajes" [ngValue]="p">{{ p.nombre }}</option>
-      </select>
-    </div>
-
-    <div class="grupo-control">
-      <label>Jugador 2 (Fichas Amarillas / Retador):</label>
-      <select [(ngModel)]="jugador2" class="input-select">
-        <option *ngFor="let p of personajes" [ngValue]="p">{{ p.nombre }}</option>
-      </select>
-    </div>
-
-    <button class="btn-iniciar" (click)="iniciarPartida()">🚀 ¡Comenzar Batalla!</button>
+  <!-- Cara a cara -->
+  <div class="versus" aria-hidden="true">
+    <img class="versus__face versus__face--p1" [src]="jugador1.imageUrl" alt="">
+    <span class="versus__vs">VS</span>
+    <img class="versus__face versus__face--p2" [src]="jugador2.imageUrl" alt="">
   </div>
 
-  <!-- JUEGO ACTIVO -->
-  <div class="juego-area" *ngIf="juegoIniciado">
-
-    <!-- BARRA DE TURNO -->
-    <div class="turno-bar" *ngIf="!ganador && !esEmpate">
-      <span>Turno de:</span>
-      <div class="jugador-turno-info">
-        <img [src]="turnoJugador === 1 ? jugador1.imageUrl : jugador2.imageUrl" alt="Avatar">
-        <strong [style.color]="turnoJugador === 1 ? '#ef4444' : '#f59e0b'">
-          {{ turnoJugador === 1 ? jugador1.nombre : jugador2.nombre }}
-        </strong>
-      </div>
+  <div class="picker">
+    <h2 class="picker__title"><span class="dot dot--p1"></span>Jugador 1 (Fichas Rojas / Primario)</h2>
+    <div class="faces">
+      <button *ngFor="let p of personajes" type="button" class="face face--p1"
+              [class.is-on]="jugador1.id === p.id" [disabled]="jugador2.id === p.id" [attr.aria-pressed]="jugador1.id === p.id"
+              (click)="jugador1 = p">
+        <img class="face__img" [src]="p.imageUrl" alt="">
+        <span class="face__name">{{ p.nombre }}</span>
+      </button>
     </div>
-
-    <!-- TABLERO 6x7 -->
-    <div class="tablero-grid">
-      <div *ngFor="let fila of tablero; let f = index" class="fila">
-        <div *ngFor="let celdaId of fila; let c = index"
-             class="celda"
-             (click)="soltarFicha(c)">
-
-          <!-- Hueco vacío -->
-          <div class="hueco" *ngIf="celdaId === 0"></div>
-
-          <!-- Ficha Jugador 1 -->
-          <div class="ficha p1" *ngIf="celdaId === 1">
-            <img [src]="jugador1.imageUrl" [alt]="jugador1.nombre">
-          </div>
-
-          <!-- Ficha Jugador 2 -->
-          <div class="ficha p2" *ngIf="celdaId === 2">
-            <img [src]="jugador2.imageUrl" [alt]="jugador2.nombre">
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- PANTALLA DE VICTORIA O EMPATE -->
-    <div class="resultado-modal" *ngIf="ganador || esEmpate">
-      <h3 *ngIf="ganador">🎉 ¡Victoria para {{ ganador.nombre }}!</h3>
-      <h3 *ngIf="esEmpate">🤝 ¡Empate técnico!</h3>
-      <div class="botones-fin">
-        <button class="btn-iniciar" (click)="iniciarPartida()">Jugar Otra Revancha</button>
-        <button class="btn-reiniciar" (click)="reiniciarConfiguracion()">Cambiar Jugadores</button>
-      </div>
-    </div>
-
   </div>
 
-</div>
+  <div class="picker">
+    <h2 class="picker__title"><span class="dot dot--p2"></span>Jugador 2 (Fichas Amarillas / Retador)</h2>
+    <div class="faces">
+      <button *ngFor="let p of personajes" type="button" class="face face--p2"
+              [class.is-on]="jugador2.id === p.id" [disabled]="jugador1.id === p.id" [attr.aria-pressed]="jugador2.id === p.id"
+              (click)="jugador2 = p">
+        <img class="face__img" [src]="p.imageUrl" alt="">
+        <span class="face__name">{{ p.nombre }}</span>
+      </button>
+    </div>
+  </div>
+
+  <button type="button" class="btn start" (click)="iniciarPartida()">¡Comenzar Batalla!</button>
+</section>
+
+<!-- PARTIDA -->
+<section class="game" *ngIf="juegoIniciado">
+
+  <div class="turn" *ngIf="!ganador && !esEmpate" [class.is-p1]="turnoJugador === 1" [class.is-p2]="turnoJugador === 2">
+    <span class="turn__label">Turno de:</span>
+    <img class="turn__img" [src]="turnoJugador === 1 ? jugador1.imageUrl : jugador2.imageUrl" alt="">
+    <strong class="turn__name">{{ turnoJugador === 1 ? jugador1.nombre : jugador2.nombre }}</strong>
+  </div>
+
+  <!-- Tablero 6x7 -->
+  <div class="board">
+    <div *ngFor="let fila of tablero; let f = index" class="fila">
+      <div *ngFor="let celdaId of fila; let c = index" class="celda" (click)="soltarFicha(c)">
+        <div class="ficha p1" *ngIf="celdaId === 1"><img [src]="jugador1.imageUrl" [alt]="jugador1.nombre"></div>
+        <div class="ficha p2" *ngIf="celdaId === 2"><img [src]="jugador2.imageUrl" [alt]="jugador2.nombre"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Victoria o empate -->
+  <div class="win" *ngIf="ganador || esEmpate" role="dialog" aria-modal="true">
+    <div class="win__card">
+      <ng-container *ngIf="ganador">
+        <img class="winner__img" [src]="ganador.imageUrl" [alt]="ganador.nombre">
+        <h2 class="win__title">¡Victoria para {{ ganador.nombre }}!</h2>
+      </ng-container>
+      <ng-container *ngIf="esEmpate">
+        <svg class="ic win__trophy" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l4-3 4 1 3-1 4 3-3 4-3 1-2-1-2 1-3-1z"/><path d="M7 9v7M17 9v7"/></svg>
+        <h2 class="win__title">¡Empate técnico!</h2>
+      </ng-container>
+      <div class="end-actions">
+        <button type="button" class="btn" (click)="iniciarPartida()">Jugar Otra Revancha</button>
+        <button type="button" class="btn btn--ghost" (click)="reiniciarConfiguracion()">Cambiar Jugadores</button>
+      </div>
+    </div>
+  </div>
+</section>
