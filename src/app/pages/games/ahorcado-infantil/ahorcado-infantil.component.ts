@@ -1,34 +1,36 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface ChildrenTheme {
   id: number;
   name: string;
-  icon: string; // Emoji o nombre de clase
-  words: string[]; // Lista de palabras sencillas
+  icon: string;
+  words: string[];
   backgroundClass: string;
 }
 
 export type GameDifficulty = 'Fácil' | 'Normal' | 'Difícil';
+export type ModoTemaSeleccion = 'aleatorio' | 'elegir' | 'personalizado';
 
 @Component({
   selector: 'app-ahorcado-infantil',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './ahorcado-infantil.component.html',
   styleUrls: ['./ahorcado-infantil.component.css']
 })
 export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
-  // Configuración de Temáticas Infantiles y Palabras Sencillas
   themes: ChildrenTheme[] = [
     {
-      id: 1, name: 'Películas de Disney', icon: '🎬',
-      words: ['FROZEN', 'COCO', 'LUCA', 'TOY STORY', 'CARS', 'DUMBO', 'NEMO', 'MULAN', 'ALADDIN', 'MOANA'],
+      id: 1, name: 'Películas y series', icon: '🎬',
+      words: ['FROZEN', 'COCO', 'TOY STORY', 'CARS', 'DUMBO', 'NEMO', 'MULAN', 'ALADDIN', 'GUERRERAS KPOP', 'DRAGON BALL', 'KARATE KID', 'NINJAGO', 'BEBES LLORONES', 'EL BEBE JEFAZO'],
       backgroundClass: 'theme-disney'
     },
     {
       id: 2, name: 'Juegos de Parque', icon: '⚽',
-      words: ['PELOTA', 'TOBOGAN', 'COLUMPIO', 'CARRUSEL', 'ARENA', 'RELOJ', 'CUERDA', 'COMETA', 'PATINES', 'AVION'],
+      words: ['PELOTA', 'TOBOGAN', 'COLUMPIO', 'ARENA', 'CUERDA', 'COMETA', 'PATINES'],
       backgroundClass: 'theme-park'
     },
     {
@@ -38,27 +40,31 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     }
   ];
 
-  // Las imágenes del "ahorcado" son representaciones visuales (SVG o PNG)
-  // que construyen un muñeco de peluche o personaje, no una ejecución.
-  // Reemplaza estas rutas por tus assets locales: 'assets/games/ahorcado-infantil/h1.svg'
   drawImages: string[] = [
-    'assets/icons/h0.svg', // Base vacía, solo la estructura del columpio
-    'assets/icons/h1.svg', // Cabeza del muñeco de peluche
-    'assets/icons/h2.svg', // Cabeza + Cuerpo
-    'assets/icons/h3.svg', // Cabeza + Cuerpo + 1 Brazo
-    'assets/icons/h4.svg', // Cabeza + Cuerpo + 2 Brazos
-    'assets/icons/h5.svg', // Cabeza + Cuerpo + 2 Brazos + 1 Pierna
-    'assets/icons/h6.svg'  // Muñeco completo, feliz, en el columpio. ¡Perdiste!
+    'assets/icons/h0.svg',
+    'assets/icons/h1.svg',
+    'assets/icons/h2.svg',
+    'assets/icons/h3.svg',
+    'assets/icons/h4.svg',
+    'assets/icons/h5.svg',
+    'assets/icons/h6.svg'
   ];
 
-  // Teclado virtual QWERTY
   keyboard: string[][] = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
     ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
   ];
 
-  // Estado del Juego
+  // Configuración y tema/palabras manuales
+  modoTema: ModoTemaSeleccion = 'aleatorio';
+  temaSeleccionadoId: number = 1;
+  nombreTemaPersonalizado: string = '';
+  iconoTemaPersonalizado: string = '✨';
+  palabrasManualesInput: string = '';
+  palabrasPersonalizadasLista: string[] = [];
+  errorPersonalizado: string = '';
+
   difficulty: GameDifficulty = 'Fácil';
   score: number = 0;
   highScore: number = 0;
@@ -74,16 +80,13 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
   gameState: 'start' | 'playing' | 'won' | 'gameover' = 'start';
   pistaUsadaEnPalabra: boolean = false;
 
-  // Temporizador
   secondsElapsed: number = 0;
   private timerInterval: any;
-
-  constructor() {}
 
   ngOnInit(): void {
     const savedHigh = localStorage.getItem('pequeahorcado_highscore');
     if (savedHigh) {
-      this.highScore = parseInt(savedHigh, 10);
+      this.highScore = parseInt(savedHigh, 10) || 0;
     }
   }
 
@@ -91,14 +94,106 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     this.stopTimer();
   }
 
-  // Lógica de Niveles: El usuario elige un nivel de dificultad
+  private limpiarPalabra(raw: string): string {
+    return raw
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toUpperCase()
+      .replace(/[^A-Z\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  agregarPalabrasManuales(): void {
+    this.errorPersonalizado = '';
+    const trozos = this.palabrasManualesInput
+      .split(',')
+      .map((p) => this.limpiarPalabra(p))
+      .filter((p) => p.length > 0);
+
+    if (!trozos.length) {
+      return;
+    }
+
+    if (this.modoTema === 'elegir') {
+      const tema = this.themes.find((t) => t.id === Number(this.temaSeleccionadoId));
+      if (tema) {
+        for (const w of trozos) {
+          if (!tema.words.includes(w)) {
+            tema.words.push(w);
+          }
+        }
+      }
+    } else if (this.modoTema === 'personalizado') {
+      for (const w of trozos) {
+        if (!this.palabrasPersonalizadasLista.includes(w)) {
+          this.palabrasPersonalizadasLista.push(w);
+        }
+      }
+    }
+
+    this.palabrasManualesInput = '';
+  }
+
+  quitarPalabraPersonalizada(index: number): void {
+    this.palabrasPersonalizadasLista.splice(index, 1);
+  }
+
   setDifficulty(diff: GameDifficulty): void {
+    this.errorPersonalizado = '';
     this.difficulty = diff;
     this.maxLives = this.difficulty === 'Fácil' ? 6 : this.difficulty === 'Normal' ? 5 : 4;
+
+    // Si dejó palabras escritas sin pulsar "+", las incorporamos automáticamente
+    if (this.palabrasManualesInput.trim()) {
+      this.agregarPalabrasManuales();
+    }
+
+    if (this.modoTema === 'personalizado') {
+      const nombreLimpio = (this.nombreTemaPersonalizado || '').trim();
+      if (!nombreLimpio) {
+        this.errorPersonalizado = 'Escribe el nombre del tema o variedad personalizada.';
+        return;
+      }
+      if (!this.palabrasPersonalizadasLista.length) {
+        this.errorPersonalizado = 'Añade al menos una palabra para jugar con tu tema personalizado.';
+        return;
+      }
+
+      const existente = this.themes.find(
+        (t) => t.name.toLowerCase() === nombreLimpio.toLowerCase()
+      );
+
+      if (existente) {
+        for (const w of this.palabrasPersonalizadasLista) {
+          if (!existente.words.includes(w)) {
+            existente.words.push(w);
+          }
+        }
+        this.themeActual = existente;
+      } else {
+        const nuevoTema: ChildrenTheme = {
+          id: Date.now(),
+          name: nombreLimpio,
+          icon: (this.iconoTemaPersonalizado || '✨').trim() || '✨',
+          words: [...this.palabrasPersonalizadasLista],
+          backgroundClass: ''
+        };
+        this.themes.push(nuevoTema);
+        this.temaSeleccionadoId = nuevoTema.id;
+        this.themeActual = nuevoTema;
+      }
+    } else if (this.modoTema === 'elegir') {
+      this.themeActual =
+        this.themes.find((t) => t.id === Number(this.temaSeleccionadoId)) ?? this.themes[0];
+    } else {
+      const themeIndex = Math.floor(Math.random() * this.themes.length);
+      this.themeActual = this.themes[themeIndex];
+    }
+
     this.startNewGame();
   }
 
-  // Lógica Principal: Inicia una nueva partida eligiendo una temática y palabra
   startNewGame(): void {
     this.stopTimer();
     this.secondsElapsed = 0;
@@ -110,15 +205,14 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     this.guionesOcultos = [];
     this.pistaUsadaEnPalabra = false;
 
-    // Elige temática aleatoria
-    const themeIndex = Math.floor(Math.random() * this.themes.length);
-    this.themeActual = this.themes[themeIndex];
+    if (!this.themeActual || !this.themeActual.words.length) {
+      const themeIndex = Math.floor(Math.random() * this.themes.length);
+      this.themeActual = this.themes[themeIndex];
+    }
 
-    // Elige palabra aleatoria de la temática
     const wordIndex = Math.floor(Math.random() * this.themeActual.words.length);
     this.palabraActual = this.themeActual.words[wordIndex];
 
-    // Crea los guiones bajos
     for (let i = 0; i < this.palabraActual.length; i++) {
       this.guionesOcultos.push(this.palabraActual[i] === ' ' ? ' ' : '_');
     }
@@ -127,14 +221,12 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     this.startTimer();
   }
 
-  // Interacción del usuario: Al presionar una letra en el teclado virtual
   checkLetter(letra: string): void {
     if (this.gameState !== 'playing' || this.letrasSeleccionadas.includes(letra)) return;
 
     this.letrasSeleccionadas.push(letra);
     const indicesCorrectos: number[] = [];
 
-    // Comprueba si la letra está en la palabra
     for (let i = 0; i < this.palabraActual.length; i++) {
       if (this.palabraActual[i] === letra) {
         indicesCorrectos.push(i);
@@ -142,22 +234,19 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     }
 
     if (indicesCorrectos.length > 0) {
-      // ¡Acierto!
-      indicesCorrectos.forEach(idx => this.guionesOcultos[idx] = letra);
+      indicesCorrectos.forEach((idx) => (this.guionesOcultos[idx] = letra));
       const multiplier = this.difficulty === 'Fácil' ? 1 : this.difficulty === 'Normal' ? 1.5 : 2;
       this.score += Math.round(50 * this.combo * multiplier);
-      this.combo = Math.min(this.combo + 0.5, 3); // Combo máximo x3
+      this.combo = Math.min(this.combo + 0.5, 3);
       this.updateHighScore();
       this.checkWinCondition();
     } else {
-      // ¡Error!
       this.lives--;
       this.combo = 1;
       this.checkLoseCondition();
     }
   }
 
-  // Lógica de Pistas: Revela una letra no adivinada
   useHint(): void {
     if (this.gameState !== 'playing' || this.hintsLeft <= 0 || this.pistaUsadaEnPalabra) return;
 
@@ -172,32 +261,25 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
       const idxAleatorio = indicesNoAdivinados[Math.floor(Math.random() * indicesNoAdivinados.length)];
       this.checkLetter(this.palabraActual[idxAleatorio]);
       this.hintsLeft--;
-      this.pistaUsadaEnPalabra = true; // Solo una pista por palabra
+      this.pistaUsadaEnPalabra = true;
     }
   }
 
-  // Lógica de Dibujo: Actualiza la imagen del "ahorcado" (personaje construyéndose)
   get currentDrawImage(): string {
     const errorIndex = this.maxLives - this.lives;
-    // La imagen describe un personaje que se construye o construye un juguete.
-    // Ej: h0 es una estrella, h6 es un osito completo en un columpio.
-    // Esto es puramente descriptivo, reemplaza con tus archivos locales.
     return `assets/icons/h${errorIndex}.svg`;
   }
 
-  // Devuelve la clase del estado de la letra para estilizar el teclado
   getLetterState(letra: string): 'default' | 'correct' | 'incorrect' {
     if (!this.letrasSeleccionadas.includes(letra)) return 'default';
     if (this.palabraActual.includes(letra)) return 'correct';
     return 'incorrect';
   }
 
-  // Comprueba si el usuario ha ganado
   private checkWinCondition(): void {
     if (!this.guionesOcultos.includes('_')) {
       this.gameState = 'won';
       this.stopTimer();
-      // Bonus por tiempo y vidas
       const timeBonus = Math.max(0, 500 - this.secondsElapsed);
       const lifeBonus = this.lives * 100;
       this.score += Math.round(timeBonus + lifeBonus);
@@ -205,7 +287,6 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Comprueba si el usuario ha perdido
   private checkLoseCondition(): void {
     if (this.lives <= 0) {
       this.gameState = 'gameover';
@@ -213,7 +294,6 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Actualiza el récord en el almacenamiento local
   private updateHighScore(): void {
     if (this.score > this.highScore) {
       this.highScore = this.score;
@@ -221,7 +301,6 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Control del temporizador
   private startTimer(): void {
     this.timerInterval = setInterval(() => {
       if (this.gameState === 'playing') {
@@ -242,8 +321,8 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     return `${mins}:${secs}`;
   }
 
-  // Reinicia todo para volver a jugar
   resetGame(): void {
+    this.stopTimer();
     this.gameState = 'start';
     this.difficulty = 'Fácil';
     this.score = 0;
@@ -251,5 +330,6 @@ export class AhorcadoInfantilComponent implements OnInit, OnDestroy {
     this.themeActual = null;
     this.letrasSeleccionadas = [];
     this.guionesOcultos = [];
+    this.errorPersonalizado = '';
   }
 }

@@ -1,19 +1,19 @@
 <header class="page-head">
-  <a class="round-btn" href="#/games" aria-label="Volver a los juegos">
+  <a class="round-btn" href="#/games" [attr.aria-label]="'simon.volverJuegos' | translate">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
   </a>
   <div class="page-head__text">
-    <h1 class="page-head__title">Simón Dice Familiar</h1>
-    <p class="page-head__sub">Memoriza la secuencia de caras y risas de la familia.</p>
+    <h1 class="page-head__title">{{ 'simon.titulo' | translate }}</h1>
+    <p class="page-head__sub">{{ 'simon.subtitulo' | translate }}</p>
   </div>
   <span class="badge"><svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 116V76A40 40 0 0 0 60 116z" fill="#C8643C"/><path d="M100 116h40A40 40 0 0 0 100 76z" fill="#E3A93C"/><path d="M100 116v40A40 40 0 0 0 140 116z" fill="#5E7B4B"/><path d="M100 116H60A40 40 0 0 0 100 156z" fill="#2F7C94"/><path d="M60 116h80M100 76v80" stroke="#12313B" stroke-width="5"/><circle cx="100" cy="116" r="11" fill="#FFFCF7"/></g></svg></span>
 </header>
 
 <div class="stats">
-  <div class="stat">Nivel <strong>{{ ronda }}</strong></div>
+  <div class="stat">{{ 'simon.nivel' | translate }} <strong>{{ ronda }}</strong></div>
   <div class="stat">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a2 2 0 0 0 0 4c1 0 2.5 0 3.5-.5M16 6h3a2 2 0 0 1 0 4c-1 0-2.5 0-3.5-.5M12 13v4M8 20h8"/></svg>
-    Récord <strong>{{ recordPersonal }}</strong>
+    {{ 'simon.record' | translate }} <strong>{{ recordPersonal }}</strong>
   </div>
 </div>
 
@@ -35,6 +35,6 @@
 
 <div class="controls" *ngIf="estadoJuego === 'inicio' || estadoJuego === 'game_over'">
   <button type="button" class="btn start" (click)="iniciarJuego()">
-    {{ estadoJuego === 'inicio' ? '¡Comenzar Juego!' : 'Jugar de Nuevo' }}
+    {{ (estadoJuego === 'inicio' ? 'simon.comenzarJuego' : 'simon.jugarDeNuevo') | translate }}
   </button>
 </div>

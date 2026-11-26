@@ -2,10 +2,10 @@
   <!-- PANTALLA 1: SELECTOR DE PERSONAJE -->
   <section *ngIf="(estadoService.pantalla$ | async) === 'SELECCION'" class="selector-screen">
     <header class="selector-header">
-      <h2>🌍 La Aventura Familiar</h2>
-      <p>Elige quién recorrerá nuestros recuerdos de viaje</p>
+      <h2>{{ 'aventuraFamiliar.titulo' | translate }}</h2>
+      <p>{{ 'aventuraFamiliar.subtitulo' | translate }}</p>
       <div *ngIf="estadoService.recordFamiliar" class="record-badge">
-        🏆 Récord Familiar: <strong>{{ estadoService.recordFamiliar.nombre }}</strong> ({{ estadoService.recordFamiliar.puntos }} pts)
+        {{ 'aventuraFamiliar.recordFamiliar' | translate }} <strong>{{ estadoService.recordFamiliar.nombre }}</strong> ({{ estadoService.recordFamiliar.puntos }} {{ 'aventuraFamiliar.pts' | translate }})
       </div>
     </header>
 
@@ -21,24 +21,24 @@
 
         <h3>{{ p.nombre }}</h3>
         <span class="role-badge" [style.background]="p.colorBorde">{{ p.rol }}</span>
-        <p class="bio-metrics">📏 {{ p.alturaCm }} cm · ⚖️ {{ p.pesoKg }} kg</p>
+        <p class="bio-metrics">{{ 'aventuraFamiliar.altura' | translate }} {{ p.alturaCm }} {{ 'aventuraFamiliar.cm' | translate }} · {{ 'aventuraFamiliar.peso' | translate }} {{ p.pesoKg }} {{ 'aventuraFamiliar.kg' | translate }}</p>
 
         <div class="stats-list">
           <div class="stat-row">
-            <span>⚡ Velocidad</span>
+            <span>{{ 'aventuraFamiliar.velocidad' | translate }}</span>
             <div class="bar"><div class="fill" [style.width.%]="(p.velocidad / 7) * 100"></div></div>
           </div>
           <div class="stat-row">
-            <span>🦘 Agilidad</span>
+            <span>{{ 'aventuraFamiliar.agilidad' | translate }}</span>
             <div class="bar"><div class="fill" [style.width.%]="(100 - p.pesoKg) * 0.9"></div></div>
           </div>
           <div class="stat-row">
-            <span>❤️ Vidas</span>
+            <span>{{ 'aventuraFamiliar.vidas' | translate }}</span>
             <strong>{{ '❤️'.repeat(p.vidasIniciales) }}</strong>
           </div>
         </div>
 
-        <button class="play-btn" [style.background]="p.colorBorde">¡Jugar!</button>
+        <button class="play-btn" [style.background]="p.colorBorde">{{ 'aventuraFamiliar.jugar' | translate }}</button>
       </article>
     </div>
   </section>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="progress-wrapper">
-        <span>Meta: {{ porcentajeProgreso }}%</span>
+        <span>{{ 'aventuraFamiliar.meta' | translate }} {{ porcentajeProgreso }}%</span>
         <div class="progress-track">
           <div class="progress-fill" [style.width.%]="porcentajeProgreso"></div>
         </div>
@@ -67,10 +67,10 @@
       </div>
 
       <div class="hud-actions">
-        <button class="btn-sound" (click)="sonidoActivo = !sonidoActivo" title="Activar/Desactivar sonido">
+        <button class="btn-sound" (click)="sonidoActivo = !sonidoActivo" [attr.title]="'aventuraFamiliar.sonidoTitulo' | translate">
           {{ sonidoActivo ? '🔊' : '🔇' }}
         </button>
-        <button class="btn-exit" (click)="salirAlMenu()">Salir</button>
+        <button class="btn-exit" (click)="salirAlMenu()">{{ 'aventuraFamiliar.salir' | translate }}</button>
       </div>
     </div>
 
@@ -99,33 +99,33 @@
                 (touchend)="setControlTactil('Space', false, $event)"
                 (mousedown)="setControlTactil('Space', true, $event)"
                 (mouseup)="setControlTactil('Space', false, $event)"
-                (mouseleave)="setControlTactil('Space', false, $event)">SALTAR</button>
+                (mouseleave)="setControlTactil('Space', false, $event)">{{ 'aventuraFamiliar.saltar' | translate }}</button>
       </div>
     </div>
 
     <div class="controls-hint">
-      ⌨️ PC: <strong>Flechas ◀ ▶</strong> o <strong>A / D</strong> para moverte, <strong>Espacio</strong> para saltar (salta sobre los enemigos para derrotarlos).
+      {{ 'aventuraFamiliar.controlesPcAntes' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcFlechas' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcO' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcTeclas' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcMoverSaltar' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcEspacio' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcEnemigos' | translate }}
     </div>
   </section>
 
   <!-- PANTALLA INTERMEDIA: NIVEL COMPLETADO -->
   <section *ngIf="(estadoService.pantalla$ | async) === 'NIVEL_COMPLETADO'" class="status-screen">
-    <h2>🎉 ¡Etapa Completada!</h2>
-    <p>Has llegado al final del recorrido con <strong>{{ estadoService.puntuacion }} puntos</strong>.</p>
+    <h2>{{ 'aventuraFamiliar.etapaCompletada' | translate }}</h2>
+    <p>{{ 'aventuraFamiliar.finalRecorridoAntes' | translate }} <strong>{{ estadoService.puntuacion }} {{ 'aventuraFamiliar.puntos' | translate }}</strong>{{ 'aventuraFamiliar.finalRecorridoDespues' | translate }}</p>
     <button class="play-btn" style="max-width: 240px; background: #0284c7;" (click)="siguienteNivel()">
-      Ir al Nivel {{ estadoService.nivelActual }} ➔
+      {{ 'aventuraFamiliar.irAlNivel' | translate:{ nivel: estadoService.nivelActual } }}
     </button>
   </section>
 
   <!-- PANTALLA FINAL: VICTORIA O GAME OVER -->
   <section *ngIf="(estadoService.pantalla$ | async) === 'VICTORIA' || (estadoService.pantalla$ | async) === 'GAME_OVER'" class="status-screen">
-    <h2>{{ (estadoService.pantalla$ | async) === 'VICTORIA' ? '🏆 ¡Aventura Familiar Completada!' : '💔 ¡Oh no! Te quedaste sin vidas' }}</h2>
-    <p>Puntuación total conseguida: <strong>{{ estadoService.puntuacion }} puntos</strong></p>
+    <h2>{{ ((estadoService.pantalla$ | async) === 'VICTORIA' ? 'aventuraFamiliar.victoriaTitulo' : 'aventuraFamiliar.gameOverTitulo') | translate }}</h2>
+    <p>{{ 'aventuraFamiliar.puntuacionTotalAntes' | translate }} <strong>{{ estadoService.puntuacion }} {{ 'aventuraFamiliar.puntos' | translate }}</strong></p>
     <p *ngIf="estadoService.recordFamiliar" style="color: #0284c7; font-weight: bold;">
-      🌟 Récord Familiar: {{ estadoService.recordFamiliar.nombre }} - {{ estadoService.recordFamiliar.puntos }} pts
+      {{ 'aventuraFamiliar.recordEstrella' | translate }} {{ estadoService.recordFamiliar.nombre }} - {{ estadoService.recordFamiliar.puntos }} {{ 'aventuraFamiliar.pts' | translate }}
     </p>
     <button class="play-btn" style="max-width: 240px; background: #16a34a;" (click)="salirAlMenu()">
-      Volver a Elegir Personaje
+      {{ 'aventuraFamiliar.volverElegirPersonaje' | translate }}
     </button>
   </section>
 </div>

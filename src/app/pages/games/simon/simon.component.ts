@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 export interface BotonSimon {
   id: number;
@@ -9,14 +11,21 @@ export interface BotonSimon {
   sonidoFreq: number; // Frecuencia para el sintetizador de audio web
 }
 
+type ClaveEstadoSimon =
+  | 'simon.estadoInicio'
+  | 'simon.estadoNivel'
+  | 'simon.estadoTuTurno'
+  | 'simon.estadoBienHecho'
+  | 'simon.estadoGameOver';
+
 @Component({
   selector: 'app-simon',
   templateUrl: './simon.component.html',
   styleUrls: ['./simon.component.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, TranslateModule]
 })
-export class SimonComponent implements OnInit {
+export class SimonComponent implements OnInit, OnDestroy {
 
   // Los 4 miembros de la familia como botones del juego
   public botonesFamilia: BotonSimon[] = [
@@ -28,21 +37,46 @@ export class SimonComponent implements OnInit {
 
   public secuenciaMaquina: number[] = [];
   public secuenciaUsuario: number[] = [];
-  
+
   public ronda: number = 0;
   public recordPersonal: number = 0;
-  
+
   public estadoJuego: 'inicio' | 'reproduciendo' | 'turno_usuario' | 'game_over' = 'inicio';
   public botonIluminadoId: number | null = null;
-  public mensajeEstado: string = '¡Pulsa Comenzar para jugar!';
+  public mensajeEstado: string = '';
 
+  private claveEstadoActual: ClaveEstadoSimon = 'simon.estadoInicio';
+  private parametrosEstadoActual?: Record<string, unknown>;
+  private langSub?: Subscription;
   private audioCtx: AudioContext | null = null;
+
+  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
     const recordGuardado = localStorage.getItem('familia_simon_record');
     if (recordGuardado) {
-      this.recordPersonal = parseInt(recordGuardado, 10);
+      this.recordPersonal = parseInt(recordGuardado, 10) || 0;
     }
+
+    this.establecerMensajeEstado('simon.estadoInicio');
+
+    this.langSub = this.translate.onLangChange.subscribe(() => {
+      this.refrescarMensajeEstado();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.langSub?.unsubscribe();
+  }
+
+  private establecerMensajeEstado(clave: ClaveEstadoSimon, params?: Record<string, unknown>): void {
+    this.claveEstadoActual = clave;
+    this.parametrosEstadoActual = params;
+    this.refrescarMensajeEstado();
+  }
+
+  private refrescarMensajeEstado(): void {
+    this.mensajeEstado = this.translate.instant(this.claveEstadoActual, this.parametrosEstadoActual);
   }
 
   // Inicializa el contexto de audio del navegador en la primera interacción
@@ -92,8 +126,8 @@ export class SimonComponent implements OnInit {
   private siguienteRonda(): void {
     this.ronda++;
     this.secuenciaUsuario = [];
-    this.mensajeEstado = `Nivel ${this.ronda}: ¡Atenta la familia!`;
-    
+    this.establecerMensajeEstado('simon.estadoNivel', { ronda: this.ronda });
+
     // Añadir un nuevo paso aleatorio (0 a 3)
     const nuevoPaso = Math.floor(Math.random() * 4);
     this.secuenciaMaquina.push(nuevoPaso);
@@ -114,7 +148,7 @@ export class SimonComponent implements OnInit {
     }
 
     this.estadoJuego = 'turno_usuario';
-    this.mensajeEstado = '¡Tu turno! Repite la secuencia';
+    this.establecerMensajeEstado('simon.estadoTuTurno');
   }
 
   private iluminarBotonTemporalmente(id: number, duracion: number): Promise<void> {
@@ -154,7 +188,7 @@ export class SimonComponent implements OnInit {
     // Comprobar si ha completado toda la secuencia de la ronda actual
     if (this.secuenciaUsuario.length === this.secuenciaMaquina.length) {
       this.estadoJuego = 'reproduciendo';
-      this.mensajeEstado = '¡Bien hecho! Siguiente nivel...';
+      this.establecerMensajeEstado('simon.estadoBienHecho');
 
       if (this.ronda > this.recordPersonal) {
         this.recordPersonal = this.ronda;
@@ -169,7 +203,7 @@ export class SimonComponent implements OnInit {
 
   private gestionarGameOver(): void {
     this.estadoJuego = 'game_over';
-    this.mensajeEstado = `❌ ¡Fallaste en la ronda ${this.ronda}!`;
+    this.establecerMensajeEstado('simon.estadoGameOver', { ronda: this.ronda });
     this.reproducirTono(150.00); // Tono grave de error
   }
 }

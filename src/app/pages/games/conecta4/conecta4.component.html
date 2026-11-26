@@ -1,10 +1,10 @@
 <header class="page-head">
-  <a class="round-btn" href="#/games" aria-label="Volver a los juegos">
+  <a class="round-btn" href="#/games" [attr.aria-label]="'conecta4.volverJuegos' | translate">
     <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
   </a>
   <div class="page-head__text">
-    <h1 class="page-head__title">Conecta 4: Batalla de Primos</h1>
-    <p class="page-head__sub">Alinea 4 fichas de tu familiar favorito para ganar.</p>
+    <h1 class="page-head__title">{{ 'conecta4.titulo' | translate }}</h1>
+    <p class="page-head__sub">{{ 'conecta4.subtitulo' | translate }}</p>
   </div>
   <span class="badge"><svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="108" height="92" rx="12" fill="#1F5F73"/><circle cx="64" cy="94" r="8" fill="#12313B"/><circle cx="82" cy="94" r="8" fill="#12313B"/><circle cx="100" cy="94" r="8" fill="#12313B"/><circle cx="118" cy="94" r="8" fill="#12313B"/><circle cx="136" cy="94" r="8" fill="#12313B"/><circle cx="64" cy="114" r="8" fill="#12313B"/><circle cx="82" cy="114" r="8" fill="#12313B"/><circle cx="100" cy="114" r="8" fill="#C8643C"/><circle cx="118" cy="114" r="8" fill="#12313B"/><circle cx="136" cy="114" r="8" fill="#12313B"/><circle cx="64" cy="134" r="8" fill="#12313B"/><circle cx="82" cy="134" r="8" fill="#C8643C"/><circle cx="100" cy="134" r="8" fill="#E3A93C"/><circle cx="118" cy="134" r="8" fill="#12313B"/><circle cx="136" cy="134" r="8" fill="#12313B"/><circle cx="64" cy="154" r="8" fill="#C8643C"/><circle cx="82" cy="154" r="8" fill="#E3A93C"/><circle cx="100" cy="154" r="8" fill="#C8643C"/><circle cx="118" cy="154" r="8" fill="#E3A93C"/><circle cx="136" cy="154" r="8" fill="#12313B"/></g></svg></span>
 </header>
@@ -15,12 +15,12 @@
   <!-- Cara a cara -->
   <div class="versus" aria-hidden="true">
     <img class="versus__face versus__face--p1" [src]="jugador1.imageUrl" alt="">
-    <span class="versus__vs">VS</span>
+    <span class="versus__vs">{{ 'conecta4.vs' | translate }}</span>
     <img class="versus__face versus__face--p2" [src]="jugador2.imageUrl" alt="">
   </div>
 
   <div class="picker">
-    <h2 class="picker__title"><span class="dot dot--p1"></span>Jugador 1 (Fichas Rojas / Primario)</h2>
+    <h2 class="picker__title"><span class="dot dot--p1"></span>{{ 'conecta4.jugador1Titulo' | translate }}</h2>
     <div class="faces">
       <button *ngFor="let p of personajes" type="button" class="face face--p1"
               [class.is-on]="jugador1.id === p.id" [disabled]="jugador2.id === p.id" [attr.aria-pressed]="jugador1.id === p.id"
@@ -32,7 +32,7 @@
   </div>
 
   <div class="picker">
-    <h2 class="picker__title"><span class="dot dot--p2"></span>Jugador 2 (Fichas Amarillas / Retador)</h2>
+    <h2 class="picker__title"><span class="dot dot--p2"></span>{{ 'conecta4.jugador2Titulo' | translate }}</h2>
     <div class="faces">
       <button *ngFor="let p of personajes" type="button" class="face face--p2"
               [class.is-on]="jugador2.id === p.id" [disabled]="jugador1.id === p.id" [attr.aria-pressed]="jugador2.id === p.id"
@@ -43,14 +43,14 @@
     </div>
   </div>
 
-  <button type="button" class="btn start" (click)="iniciarPartida()">¡Comenzar Batalla!</button>
+  <button type="button" class="btn start" (click)="iniciarPartida()">{{ 'conecta4.comenzarBatalla' | translate }}</button>
 </section>
 
 <!-- PARTIDA -->
 <section class="game" *ngIf="juegoIniciado">
 
   <div class="turn" *ngIf="!ganador && !esEmpate" [class.is-p1]="turnoJugador === 1" [class.is-p2]="turnoJugador === 2">
-    <span class="turn__label">Turno de:</span>
+    <span class="turn__label">{{ 'conecta4.turnoDe' | translate }}</span>
     <img class="turn__img" [src]="turnoJugador === 1 ? jugador1.imageUrl : jugador2.imageUrl" alt="">
     <strong class="turn__name">{{ turnoJugador === 1 ? jugador1.nombre : jugador2.nombre }}</strong>
   </div>
@@ -70,15 +70,15 @@
     <div class="win__card">
       <ng-container *ngIf="ganador">
         <img class="winner__img" [src]="ganador.imageUrl" [alt]="ganador.nombre">
-        <h2 class="win__title">¡Victoria para {{ ganador.nombre }}!</h2>
+        <h2 class="win__title">{{ 'conecta4.victoriaPara' | translate:{ nombre: ganador.nombre } }}</h2>
       </ng-container>
       <ng-container *ngIf="esEmpate">
         <svg class="ic win__trophy" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12l4-3 4 1 3-1 4 3-3 4-3 1-2-1-2 1-3-1z"/><path d="M7 9v7M17 9v7"/></svg>
-        <h2 class="win__title">¡Empate técnico!</h2>
+        <h2 class="win__title">{{ 'conecta4.empateTecnico' | translate }}</h2>
       </ng-container>
       <div class="end-actions">
-        <button type="button" class="btn" (click)="iniciarPartida()">Jugar Otra Revancha</button>
-        <button type="button" class="btn btn--ghost" (click)="reiniciarConfiguracion()">Cambiar Jugadores</button>
+        <button type="button" class="btn" (click)="iniciarPartida()">{{ 'conecta4.jugarRevancha' | translate }}</button>
+        <button type="button" class="btn btn--ghost" (click)="reiniciarConfiguracion()">{{ 'conecta4.cambiarJugadores' | translate }}</button>
       </div>
     </div>
   </div>

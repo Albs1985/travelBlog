@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface PiezaPuzzle {
   id: number;
@@ -16,7 +17,7 @@ export interface PiezaPuzzle {
   templateUrl: './puzzle.component.html',
   styleUrls: ['./puzzle.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, TranslateModule]
 })
 export class PuzzleComponent implements OnInit, OnDestroy {
 

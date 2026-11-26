@@ -7,11 +7,12 @@ import {
   generarNivel
 } from './juego.models';
 import { JuegoEstadoService } from './juego-estado.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-aventura-familiar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   providers: [JuegoEstadoService],
   templateUrl: './aventura-familiar.component.html',
   styleUrls: ['./aventura-familiar.component.css'],

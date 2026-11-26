@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface AvatarItem {
   id: number;
@@ -13,7 +14,7 @@ export interface AvatarItem {
   templateUrl: './conecta4.component.html',
   styleUrls: ['./conecta4.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, TranslateModule]
 })
 export class Conecta4Component {
 

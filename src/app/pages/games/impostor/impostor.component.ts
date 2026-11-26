@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface JugadorPartida {
   id: string;
@@ -23,7 +24,7 @@ export interface SituacionFamiliar {
   templateUrl: './impostor.component.html',
   styleUrls: ['./impostor.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, TranslateModule]
 })
 export class ImpostorComponent {
 
