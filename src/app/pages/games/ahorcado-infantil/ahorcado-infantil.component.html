@@ -1,188 +1,209 @@
-<div class="mobile-app-wrapper {{ themeActual?.backgroundClass }}">
-  <div class="app-container">
-
-    <!-- PANTALLA DE INICIO: Selección de Tema y Nivel -->
-    <main *ngIf="gameState === 'start'" class="start-screen animate-fade">
-      <div class="game-intro">
-        <div class="game-logo">
-          <img src="assets/icons/ahorcado.png" [alt]="'pequeAhorcado.iconoAlt' | translate">
-        </div>
-        <h1>{{ 'pequeAhorcado.titulo' | translate }}</h1>
-        <p>{{ 'pequeAhorcado.subtitulo' | translate }}</p>
-      </div>
-
-      <!-- Selector de temática / creación manual -->
-      <div class="custom-theme-box">
-        <div class="mode-pills">
-          <button type="button" class="mode-pill" [class.active]="modoTema === 'aleatorio'" (click)="modoTema = 'aleatorio'">
-            🎲 Aleatorio
-          </button>
-          <button type="button" class="mode-pill" [class.active]="modoTema === 'elegir'" (click)="modoTema = 'elegir'">
-            📚 Elegir tema
-          </button>
-          <button type="button" class="mode-pill" [class.active]="modoTema === 'personalizado'" (click)="modoTema = 'personalizado'">
-            ✏️ Nuevo tema
-          </button>
-        </div>
-
-        <div *ngIf="modoTema === 'elegir'" class="custom-fields">
-          <select [(ngModel)]="temaSeleccionadoId" class="custom-input">
-            <option *ngFor="let t of themes" [ngValue]="t.id">{{ t.icon }} {{ t.name }} ({{ t.words.length }})</option>
-          </select>
-
-          <div class="add-word-row">
-            <input type="text"
-                   [(ngModel)]="palabrasManualesInput"
-                   (keyup.enter)="agregarPalabrasManuales()"
-                   placeholder="Añadir palabras a este tema (sep. por coma)"
-                   class="custom-input">
-            <button type="button" class="add-word-btn" (click)="agregarPalabrasManuales()">+</button>
-          </div>
-        </div>
-
-        <div *ngIf="modoTema === 'personalizado'" class="custom-fields">
-          <div class="custom-row">
-            <input type="text"
-                   [(ngModel)]="iconoTemaPersonalizado"
-                   maxlength="4"
-                   placeholder="🎭"
-                   class="custom-input custom-icon-input"
-                   aria-label="Emoji del tema">
-            <input type="text"
-                   [(ngModel)]="nombreTemaPersonalizado"
-                   placeholder="Nombre (ej. Película Encanto, Parque, Granja...)"
-                   class="custom-input">
-          </div>
-
-          <div class="add-word-row">
-            <input type="text"
-                   [(ngModel)]="palabrasManualesInput"
-                   (keyup.enter)="agregarPalabrasManuales()"
-                   placeholder="Palabras o títulos (ej. MIRABEL, BRUNO, CASITA)"
-                   class="custom-input">
-            <button type="button" class="add-word-btn" (click)="agregarPalabrasManuales()">+</button>
-          </div>
-
-          <div class="word-chips" *ngIf="palabrasPersonalizadasLista.length">
-            <span class="word-chip" *ngFor="let w of palabrasPersonalizadasLista; let i = index">
-              {{ w }}
-              <button type="button" (click)="quitarPalabraPersonalizada(i)" aria-label="Quitar palabra">×</button>
-            </span>
-          </div>
-        </div>
-
-        <p class="custom-error" *ngIf="errorPersonalizado">{{ errorPersonalizado }}</p>
-      </div>
-
-      <div class="level-selector">
-        <h2>{{ 'pequeAhorcado.preguntaNivel' | translate }}</h2>
-        <div class="level-buttons">
-          <button class="diff-btn facilidad" (click)="setDifficulty('Fácil')">
-            <span class="icon">😊</span> {{ 'pequeAhorcado.facil' | translate }}
-          </button>
-          <button class="diff-btn normalidad" (click)="setDifficulty('Normal')">
-            <span class="icon">🤓</span> {{ 'pequeAhorcado.normal' | translate }}
-          </button>
-          <button class="diff-btn dificultad" (click)="setDifficulty('Difícil')">
-            <span class="icon">🦁</span> {{ 'pequeAhorcado.dificil' | translate }}
-          </button>
-        </div>
-        <p class="high-score-info">{{ 'pequeAhorcado.mejorPuntuacion' | translate }} <strong>{{ highScore }}</strong> {{ 'pequeAhorcado.pts' | translate }}</p>
-      </div>
-    </main>
-
-    <!-- PANTALLA DE JUEGO PRINCIPAL -->
-    <main *ngIf="gameState !== 'start'" class="game-screen">
-
-      <!-- CABECERA: Estadísticas -->
-      <header class="app-header">
-        <button class="exit-btn" (click)="resetGame()" [attr.aria-label]="'pequeAhorcado.salirAria' | translate">X</button>
-        <div class="stats-group">
-          <div class="stat-box">
-            <span class="label">{{ 'pequeAhorcado.nivelLabel' | translate }}</span>
-            <span class="value">{{ difficulty }}</span>
-          </div>
-          <div class="stat-box">
-            <span class="label">{{ 'pequeAhorcado.tiempoLabel' | translate }}</span>
-            <span class="value">{{ formattedTime }}</span>
-          </div>
-          <div class="stat-box score-box">
-            <span class="label">{{ 'pequeAhorcado.puntosLabel' | translate }} <span class="combo-badge" *ngIf="combo > 1">x{{ combo | number:'1.1-1' }}</span></span>
-            <span class="value">{{ score }}</span>
-          </div>
-        </div>
-      </header>
-
-      <!-- ÁREA DE DIBUJO Y TEMÁTICA -->
-      <section class="game-visuals">
-        <div class="theme-info">
-          <span class="theme-icon">{{ themeActual?.icon }}</span>
-          <span class="theme-name">{{ themeActual?.name }}</span>
-        </div>
-        <div class="lives-indicator">
-          <span *ngFor="let h of [1,2,3,4,5,6]" [class.lost]="h > lives" class="heart">❤️</span>
-        </div>
-        <div class="draw-container">
-          <img [src]="currentDrawImage" [alt]="'pequeAhorcado.dibujoAlt' | translate">
-        </div>
-      </section>
-
-      <!-- ÁREA DE LA PALABRA OCULTA -->
-      <section class="word-display">
-        <div *ngFor="let char of guionesOcultos" class="letter-slot" [class.space]="char === ' '">
-          {{ char === '_' ? '?' : char }}
-        </div>
-      </section>
-
-      <!-- ÁREA DE HERRAMIENTAS Y PISTAS -->
-      <section class="tools-bar">
-        <button class="tool-btn hint-btn" [disabled]="hintsLeft === 0 || pistaUsadaEnPalabra" (click)="useHint()">
-          <span class="icon">💡</span> {{ 'pequeAhorcado.pista' | translate }} ({{ hintsLeft }})
-        </button>
-      </section>
-
-      <!-- ÁREA DEL TECLADO VIRTUAL -->
-      <footer class="keyboard-area">
-        <div *ngFor="let row of keyboard" class="keyboard-row">
-          <button
-            *ngFor="let letra of row"
-            class="key-btn"
-            [class.correct]="getLetterState(letra) === 'correct'"
-            [class.incorrect]="getLetterState(letra) === 'incorrect'"
-            [disabled]="letrasSeleccionadas.includes(letra)"
-            (click)="checkLetter(letra)">
-            {{ letra }}
-          </button>
-        </div>
-      </footer>
-
-      <!-- OVERLAY DE FIN DE PARTIDA: Victoria/Derrota -->
-      <div class="overlay-modal animate-pop" *ngIf="gameState === 'won' || gameState === 'gameover'">
-        <div class="modal-card">
-          <div class="result-emoji">{{ gameState === 'won' ? '🏆' : '💔' }}</div>
-          <h2>{{ (gameState === 'won' ? 'pequeAhorcado.victoriaTitulo' : 'pequeAhorcado.derrotaTitulo') | translate }}</h2>
-          <p *ngIf="gameState === 'won'">{{ 'pequeAhorcado.victoriaDescAntes' | translate }} <strong>{{ palabraActual }}</strong> {{ 'pequeAhorcado.victoriaDescEn' | translate }} {{ formattedTime }}{{ 'pequeAhorcado.victoriaDescDespues' | translate }}</p>
-          <p *ngIf="gameState === 'gameover'">{{ 'pequeAhorcado.derrotaDescAntes' | translate }} <strong>{{ palabraActual }}</strong>{{ 'pequeAhorcado.derrotaDescDespues' | translate }}</p>
-
-          <div class="final-scores">
-            <div>
-              <span>{{ 'pequeAhorcado.puntuacion' | translate }}</span>
-              <strong>{{ score }}</strong>
-            </div>
-            <div>
-              <span>{{ 'pequeAhorcado.mejor' | translate }}</span>
-              <strong>{{ highScore }}</strong>
-            </div>
-          </div>
-
-          <div class="modal-buttons">
-            <button class="secondary-btn" (click)="resetGame()">{{ 'pequeAhorcado.niveles' | translate }}</button>
-            <button class="primary-btn" (click)="startNewGame()">{{ 'pequeAhorcado.jugarDeNuevo' | translate }}</button>
-          </div>
-        </div>
-      </div>
-
-    </main>
-
+<header class="page-head">
+  <a class="round-btn" routerLink="/games" [attr.aria-label]="'intruso.volverJuegos' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'pequeAhorcado.titulo' | translate }}</h1>
+    <p class="page-head__sub">{{ 'pequeAhorcado.subtitulo' | translate }}</p>
   </div>
-</div>
+  <span class="badge">
+    <svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="260" fill="#4A6439"/>
+      <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+        <circle cx="100" cy="116" r="46" fill="#5E7B4B"/>
+        <circle cx="100" cy="96" r="18" fill="#FFFCF7"/>
+        <path d="M66 158c0-24 15-38 34-38s34 14 34 38z" fill="#FFFCF7"/>
+        <circle cx="144" cy="80" r="14" fill="#E3A93C"/>
+        <text x="144" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="18" fill="#12313B">?</text>
+      </g>
+    </svg>
+  </span>
+</header>
+
+<!-- PANTALLA DE INICIO: Selección de Tema y Nivel -->
+<section *ngIf="gameState === 'start'" class="setup">
+  <div class="field">
+    <span class="field__label">{{ 'pequeAhorcado.subtitulo' | translate }}</span>
+    <div class="mode-pills">
+      <button type="button" class="mode-pill" [class.active]="modoTema === 'aleatorio'" (click)="modoTema = 'aleatorio'">
+        🎲 Aleatorio
+      </button>
+      <button type="button" class="mode-pill" [class.active]="modoTema === 'elegir'" (click)="modoTema = 'elegir'">
+        📚 Elegir tema
+      </button>
+      <button type="button" class="mode-pill" [class.active]="modoTema === 'personalizado'" (click)="modoTema = 'personalizado'">
+        ✏️ Nuevo tema
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="modoTema === 'elegir'" class="custom-fields">
+    <select [(ngModel)]="temaSeleccionadoId" class="field__input">
+      <option *ngFor="let t of themes" [ngValue]="t.id">{{ t.icon }} {{ t.name }} ({{ t.words.length }})</option>
+    </select>
+
+    <div class="add-word-row">
+      <input type="text"
+             [(ngModel)]="palabrasManualesInput"
+             (keyup.enter)="agregarPalabrasManuales()"
+             placeholder="Añadir palabras a este tema (sep. por coma)"
+             class="field__input">
+      <button type="button" class="add-word-btn" (click)="agregarPalabrasManuales()">+</button>
+    </div>
+  </div>
+
+  <div *ngIf="modoTema === 'personalizado'" class="custom-fields">
+    <div class="custom-row">
+      <input type="text"
+             [(ngModel)]="iconoTemaPersonalizado"
+             maxlength="4"
+             placeholder="🎭"
+             class="field__input custom-icon-input"
+             aria-label="Emoji del tema">
+      <input type="text"
+             [(ngModel)]="nombreTemaPersonalizado"
+             placeholder="Nombre (ej. Película Encanto, Parque, Granja...)"
+             class="field__input">
+    </div>
+
+    <div class="add-word-row">
+      <input type="text"
+             [(ngModel)]="palabrasManualesInput"
+             (keyup.enter)="agregarPalabrasManuales()"
+             placeholder="Palabras o títulos (ej. MIRABEL, BRUNO, CASITA)"
+             class="field__input">
+      <button type="button" class="add-word-btn" (click)="agregarPalabrasManuales()">+</button>
+    </div>
+
+    <div class="word-chips" *ngIf="palabrasPersonalizadasLista.length">
+      <span class="word-chip" *ngFor="let w of palabrasPersonalizadasLista; let i = index">
+        {{ w }}
+        <button type="button" (click)="quitarPalabraPersonalizada(i)" aria-label="Quitar palabra">×</button>
+      </span>
+    </div>
+  </div>
+
+  <p class="custom-error" *ngIf="errorPersonalizado">{{ errorPersonalizado }}</p>
+
+  <div class="field">
+    <span class="field__label">{{ 'pequeAhorcado.preguntaNivel' | translate }}</span>
+    <div class="level-buttons">
+      <button type="button" class="diff-btn facilidad" (click)="setDifficulty('Fácil')">
+        <span class="icon">😊</span> {{ 'pequeAhorcado.facil' | translate }}
+      </button>
+      <button type="button" class="diff-btn normalidad" (click)="setDifficulty('Normal')">
+        <span class="icon">🤓</span> {{ 'pequeAhorcado.normal' | translate }}
+      </button>
+      <button type="button" class="diff-btn dificultad" (click)="setDifficulty('Difícil')">
+        <span class="icon">🦁</span> {{ 'pequeAhorcado.dificil' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <p class="high-score-info">
+    {{ 'pequeAhorcado.mejorPuntuacion' | translate }} <strong>{{ highScore }}</strong> {{ 'pequeAhorcado.pts' | translate }}
+  </p>
+</section>
+
+<!-- PANTALLA DE JUEGO PRINCIPAL -->
+<section *ngIf="gameState !== 'start'" class="game-screen">
+
+  <!-- CABECERA: Estadísticas -->
+  <header class="app-header">
+    <button type="button" class="round-btn" (click)="resetGame()" [attr.aria-label]="'pequeAhorcado.salirAria' | translate">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="stats-group">
+      <div class="stat-box">
+        <span class="label">{{ 'pequeAhorcado.nivelLabel' | translate }}</span>
+        <span class="value">{{ difficulty }}</span>
+      </div>
+      <div class="stat-box">
+        <span class="label">{{ 'pequeAhorcado.tiempoLabel' | translate }}</span>
+        <span class="value">{{ formattedTime }}</span>
+      </div>
+      <div class="stat-box score-box">
+        <span class="label">
+          {{ 'pequeAhorcado.puntosLabel' | translate }}
+          <span class="combo-badge" *ngIf="combo > 1">x{{ combo | number:'1.1-1' }}</span>
+        </span>
+        <span class="value">{{ score }}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ÁREA DE DIBUJO Y TEMÁTICA -->
+  <section class="game-visuals">
+    <div class="theme-info">
+      <span class="theme-icon">{{ themeActual?.icon }}</span>
+      <span class="theme-name">{{ themeActual?.name }}</span>
+    </div>
+    <div class="lives-indicator">
+      <span *ngFor="let h of [1,2,3,4,5,6]" [class.lost]="h > lives" class="heart">❤️</span>
+    </div>
+    <div class="draw-container">
+      <img [src]="currentDrawImage" [alt]="'pequeAhorcado.dibujoAlt' | translate">
+    </div>
+  </section>
+
+  <!-- ÁREA DE LA PALABRA OCULTA -->
+  <section class="word-display">
+    <div *ngFor="let char of guionesOcultos" class="letter-slot" [class.space]="char === ' '">
+      {{ char === '_' ? '?' : char }}
+    </div>
+  </section>
+
+  <!-- ÁREA DE HERRAMIENTAS Y PISTAS -->
+  <section class="tools-bar">
+    <button type="button" class="tool-btn" [disabled]="hintsLeft === 0 || pistaUsadaEnPalabra" (click)="useHint()">
+      <span class="icon">💡</span> {{ 'pequeAhorcado.pista' | translate }} ({{ hintsLeft }})
+    </button>
+  </section>
+
+  <!-- ÁREA DEL TECLADO VIRTUAL -->
+  <footer class="keyboard-area">
+    <div *ngFor="let row of keyboard" class="keyboard-row">
+      <button
+        type="button"
+        *ngFor="let letra of row"
+        class="key-btn"
+        [class.correct]="getLetterState(letra) === 'correct'"
+        [class.incorrect]="getLetterState(letra) === 'incorrect'"
+        [disabled]="letrasSeleccionadas.includes(letra)"
+        (click)="checkLetter(letra)">
+        {{ letra }}
+      </button>
+    </div>
+  </footer>
+
+  <!-- FIN DE PARTIDA: Victoria / Derrota -->
+  <div class="win" *ngIf="gameState === 'won' || gameState === 'gameover'" role="dialog" aria-modal="true">
+    <div class="win__card">
+      <div style="font-size: 3.5rem;">{{ gameState === 'won' ? '🏆' : '💔' }}</div>
+      <h2 class="win__title">{{ (gameState === 'won' ? 'pequeAhorcado.victoriaTitulo' : 'pequeAhorcado.derrotaTitulo') | translate }}</h2>
+      <p *ngIf="gameState === 'won'" class="win__label">
+        {{ 'pequeAhorcado.victoriaDescAntes' | translate }} <strong>{{ palabraActual }}</strong> {{ 'pequeAhorcado.victoriaDescEn' | translate }} {{ formattedTime }}{{ 'pequeAhorcado.victoriaDescDespues' | translate }}
+      </p>
+      <p *ngIf="gameState === 'gameover'" class="win__label">
+        {{ 'pequeAhorcado.derrotaDescAntes' | translate }} <strong>{{ palabraActual }}</strong>{{ 'pequeAhorcado.derrotaDescDespues' | translate }}
+      </p>
+
+      <div class="final-scores">
+        <div>
+          <span>{{ 'pequeAhorcado.puntuacion' | translate }}</span>
+          <strong>{{ score }}</strong>
+        </div>
+        <div>
+          <span>{{ 'pequeAhorcado.mejor' | translate }}</span>
+          <strong>{{ highScore }}</strong>
+        </div>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="button" class="btn btn--ghost" (click)="resetGame()">{{ 'pequeAhorcado.niveles' | translate }}</button>
+        <button type="button" class="btn" (click)="startNewGame()">{{ 'pequeAhorcado.jugarDeNuevo' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,46 +1,86 @@
-.iconJuego {
-  width: 120px;
-  height: 120px;
-}
+:host { display: block; }
 
-.game-container {
+.badge {
+  flex: none;
+  width: 52px;
+  height: 64px;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(5deg);
+}
+.badge__art { display: block; width: 100%; height: 100%; }
+
+.guess-card {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
   text-align: center;
 }
 
-.image-container {
-  position: flex;
+.guess-card__lead {
+  color: var(--ink-soft);
+  font-size: .95rem;
+  max-width: 52ch;
 }
 
-img {
+.image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--sand-200);
+  box-shadow: inset 0 0 0 1px var(--line), var(--shadow-sm);
+  cursor: pointer;
+}
+
+.image-frame__img {
   width: 100%;
   height: 100%;
-  padding: 25px;
+  object-fit: cover;
+  transition: filter .35s ease, transform .25s ease;
+}
+
+.image-frame:hover .image-frame__img {
+  transform: scale(1.015);
 }
 
 .turn-counter {
-  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem 1rem;
+  border-radius: var(--r-pill);
+  background: var(--sand-100);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font: 600 .92rem/1.2 var(--font-body);
+  color: var(--sea-900);
 }
 
-.restart-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: rgb(247, 200, 115);
-  color: black;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.revealed-place {
+  padding: .6rem 1.2rem;
+  border-radius: var(--r-pill);
+  background: var(--palm-100);
+  color: var(--palm-700);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
-.check-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
 }
 
-.restart-button:hover {
-  background-color: rgb(248, 191, 86);
+@media (min-width: 768px) {
+  .guess-card { padding: var(--space-5); }
 }

@@ -1,148 +1,123 @@
-.puzzle-normal-container {
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  background: #f8fafc;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
+:host { display: block; }
 
-h2 {
-  color: #1e293b;
-  margin-bottom: 5px;
+.badge {
+  flex: none;
+  width: 52px;
+  height: 64px;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(5deg);
 }
+.badge__art { display: block; width: 100%; height: 100%; }
 
-.subtit {
-  color: #64748b;
-  font-size: 0.85rem;
-  margin-bottom: 20px;
-}
-
+/* ---------- Configuración ---------- */
 .config-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
 }
 
-.grupo-control label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #334155;
+.grupo-control { display: grid; gap: .35rem; }
+.grupo-control > label:first-child {
+  font: 700 .8rem/1.2 var(--font-body);
+  color: var(--ink-soft);
   text-align: left;
 }
 
-.input-select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 0.95rem;
-}
-
 .checkbox-container label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: .5rem;
+  min-height: 40px;
   cursor: pointer;
-  font-weight: 500;
+  font: 600 .92rem/1.2 var(--font-body);
+  color: var(--ink);
+}
+.checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--terra-600);
+  cursor: pointer;
 }
 
-.btn-iniciar {
-  background: #ec4899;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-iniciar:hover {
-  background: #db2777;
+/* ---------- Partida ---------- */
+.juego-area {
+  display: grid;
+  gap: var(--space-4);
 }
 
 .info-partida {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background: white;
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
 }
 
-.btn-pista {
-  background: #f59e0b;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: bold;
+.info-partida__time {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .35rem .75rem;
+  border-radius: var(--r-pill);
+  background: var(--sand-100);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font-size: .92rem;
+  color: var(--sea-900);
 }
 
-.btn-reiniciar {
-  background: #64748b;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
+.info-partida__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
 }
 
 .mesa-trabajo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
 }
 
 /* TABLERO */
 .tablero-normal {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: min(100%, 360px);
+  aspect-ratio: 1 / 1;
   display: grid;
-  gap: 2px;
-  background: #1e293b;
-  padding: 4px;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  gap: 3px;
+  background: var(--sea-900);
+  padding: 6px;
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .imagen-pista-fondo {
   position: absolute;
-  top: 4px;
-  left: 4px;
-  right: 4px;
-  bottom: 4px;
+  inset: 6px;
   background-size: cover;
   background-position: center;
-  opacity: 0.35;
+  opacity: .32;
   filter: blur(1px);
   pointer-events: none;
   z-index: 1;
-  border-radius: 6px;
+  border-radius: var(--r-sm);
 }
 
 .celda-tablero {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  background: rgba(255, 252, 247, .08);
+  border: 1px dashed rgba(255, 252, 247, .35);
+  border-radius: 6px;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 /* PIEZAS DE PUZLE */
@@ -150,52 +125,52 @@ h2 {
   width: 100%;
   height: 100%;
   cursor: grab;
-  border-radius: 3px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(60, 38, 20, .25);
+  transition: transform .2s cubic-bezier(.3, .7, .3, 1);
 }
-
-.pieza-puzzle:active {
-  cursor: grabbing;
-}
+.pieza-puzzle:active { cursor: grabbing; }
 
 /* BANDEJA INFERIOR */
 .bandeja-piezas {
   width: 100%;
-  background: #e2e8f0;
-  padding: 12px;
-  border-radius: 10px;
-  min-height: 100px;
-  max-height: 160px;
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  min-height: 112px;
+  max-height: 180px;
   overflow-y: auto;
-  box-sizing: border-box;
 }
 
 .titulo-bandeja {
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: #475569;
-  margin-bottom: 8px;
-  margin-top: 0;
+  font: 700 .85rem/1.2 var(--font-body);
+  color: var(--ink-soft);
+  margin-bottom: var(--space-3);
 }
 
 .contenedor-fichas-bandeja {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
   justify-content: center;
 }
 
 .contenedor-fichas-bandeja .pieza-puzzle {
-  width: 55px;
-  height: 55px;
+  width: 60px;
+  height: 60px;
 }
 
-.victoria-modal {
-  margin-top: 20px;
-  background: #fce7f3;
-  border: 1px solid #f472b6;
-  padding: 20px;
-  border-radius: 12px;
-  color: #831843;
+.victoria-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .config-panel { padding: var(--space-5); }
+  .tablero-normal { width: 420px; }
+  .contenedor-fichas-bandeja .pieza-puzzle { width: 72px; height: 72px; }
 }

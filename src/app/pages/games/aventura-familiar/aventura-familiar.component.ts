@@ -8,11 +8,12 @@ import {
 } from './juego.models';
 import { JuegoEstadoService } from './juego-estado.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-aventura-familiar',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   providers: [JuegoEstadoService],
   templateUrl: './aventura-familiar.component.html',
   styleUrls: ['./aventura-familiar.component.css'],

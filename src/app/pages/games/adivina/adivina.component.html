@@ -1,27 +1,51 @@
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games/"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
-</div>
+<header class="page-head">
+  <a class="round-btn" routerLink="/games" [attr.aria-label]="'viaje.volver' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'app.juegoAdivina' | translate }}</h1>
+  </div>
+  <span class="badge">
+    <svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="260" fill="#1F5F73"/>
+      <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+        <circle cx="92" cy="108" r="34" fill="none" stroke="#FFFCF7" stroke-width="10"/>
+        <line x1="117" y1="133" x2="148" y2="164" stroke="#E3A93C" stroke-width="11" stroke-linecap="round"/>
+        <circle cx="92" cy="108" r="14" fill="#E3A93C"/>
+      </g>
+    </svg>
+  </span>
+</header>
 
-<div class="game-container">
-  <br><br><br><br><br><br><br>
-  <div class="imagenCentrada">
-    <img src="assets/icons/rompecabezas.png" class="iconJuego animated mueveIconos">
+<section class="guess-card">
+  <p class="guess-card__lead">{{ 'app.explicaAdivina' | translate }}</p>
+
+  <div class="image-frame" role="button" tabindex="0" (click)="revealImage()" (keydown.enter)="revealImage()" (keydown.space)="revealImage(); $event.preventDefault()">
+    <img class="image-frame__img" [src]="urlImagen" alt="" [style.filter]="blurFilter" loading="lazy">
   </div>
-  <h1>{{ 'app.juegoAdivina' | translate }}</h1>
-  <br>
-  <label>{{ 'app.explicaAdivina' | translate }}</label>
-  <br><br>
-  <div class="image-container" (click)="revealImage()">
-    <img src="{{urlImagen}}" alt="Imagen Borrosa" [style.filter]="blurFilter">
+
+  <div class="turn-counter">
+    <span>{{ 'app.turno' | translate }}:</span>
+    <strong>{{ turnCount }}</strong>
   </div>
-  <div class="turn-counter">{{ 'app.turno' | translate }}: {{ turnCount }}</div>
-  <div><button class="check-button" (click)="comprobar()">{{ 'app.comprobar' | translate }}</button></div>
-  <div><label class="winnerLabel" *ngIf="(showNomViaje | async) === true">{{nomViaje}}</label></div>
-  <div><button class="restart-button" (click)="restartGame()">{{ 'app.restart' | translate }}</button></div>
-</div>
-<div *ngIf="(finDelJuego | async) === true" class="overlay">
-  <div class="winnerMessage">
-    <div><button class="btnRestart" (click)="close()">{{ 'app.cerrar' | translate }}</button></div>
-    <div><label class="winnerLabel">{{ 'app.finDelJuego' | translate }}</label></div>
+
+  <div class="revealed-place" *ngIf="(showNomViaje | async) === true">
+    {{ nomViaje }}
+  </div>
+
+  <div class="actions-row">
+    <button type="button" class="btn btn--sea" (click)="comprobar()">{{ 'app.comprobar' | translate }}</button>
+    <button type="button" class="btn btn--ghost" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
+  </div>
+</section>
+
+<div *ngIf="(finDelJuego | async) === true" class="win" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <svg class="ic win__trophy" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 4h8v5a4 4 0 0 1-8 0z"/>
+      <path d="M8 6H5a2 2 0 0 0 0 4c1 0 2.5 0 3.5-.5M16 6h3a2 2 0 0 1 0 4c-1 0-2.5 0-3.5-.5M12 13v4M8 20h8M10 17h4v3h-4z"/>
+    </svg>
+    <h2 class="win__title">{{ 'app.finDelJuego' | translate }}</h2>
+    <button type="button" class="btn" (click)="close()">{{ 'app.cerrar' | translate }}</button>
   </div>
 </div>

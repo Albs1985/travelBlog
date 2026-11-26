@@ -1,115 +1,161 @@
-.container {
+:host { display: block; }
+
+.badge {
+  flex: none;
+  width: 52px;
+  height: 64px;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+  transform: rotate(5deg);
+}
+.badge__art { display: block; width: 100%; height: 100%; }
+
+/* ---------- Portada, meta y reglas ---------- */
+.intro-card {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
   text-align: center;
-  font-family: "Comic Sans MS", arial, sans-serif I !important;
-}
-
-.tooltip {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 99999;
-  opacity: 1;
-  margin-bottom: 25px;
-}
-
-.tooltip p {
-  margin: 0;
-}
-
-.temporizador {
-  font-size: 50px;
-  color: rgb(0, 0, 0);
-}
-
-.centraChecks {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.playerCheckbox {
-  display: flex;
-  align-items: center;
-  margin: 5px;
-}
-
-.imagen {
-  border: 1px solid #000000;
-  border-radius: 10px;
-  max-width: 98%;
-  max-height: 80%;
-}
-
-.jugadorSeleccionado {
-  border: 5px solid rgb(247, 200, 115);
-  border-radius: 10px;
+  margin-bottom: var(--space-4);
+  position: relative;
 }
 
 .portadaJuego {
-  width: 60%;
-  height: 40%;
-}
-
-.tablero {
-  margin-bottom: 20px;
-  margin-top: 20px;
-  width: 100%;
+  width: min(100%, 340px);
   height: auto;
-  border: 1px solid black;
-  border-radius: 15px;
-  background: linear-gradient(
-    to bottom left,
-    rgba(255, 255, 255, 0.2),
-    rgba(210, 210, 210, 0.5)
-  );
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
 }
 
-.cartas-mision,
-.cartas-boca-arriba,
-.cartas-jugador {
-  margin-top: 20px;
-  display: inline-flex;
+.meta-pills {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+  gap: var(--space-2);
 }
 
-.carta-mision {
-  border: 1px solid black;
-  width: 65px;
-  height: 90px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: xx-small;
-  cursor: pointer;
-  border-radius: 5px;
-  background-color: aliceblue;
-  box-shadow: 5px 10px 8px #888888;
+.meta-pill {
+  padding: .35rem .85rem;
+  border-radius: var(--r-pill);
+  background: var(--sand-100);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font: 600 .85rem/1.2 var(--font-body);
+  color: var(--ink-soft);
 }
 
-.carta-boca-arriba,
-.carta-jugador {
-  border: 1px solid black;
-  width: 55px;
-  height: 90px;
-  margin-right: 5px;
-  display: flex;
-  justify-content: center;
+.tooltip {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--sand-50);
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  z-index: 20;
+}
+
+.tooltip h2 { font-size: 1.15rem; margin-bottom: .35rem; color: var(--sea-900); }
+.tooltip p { font-size: .9rem; color: var(--ink-soft); margin-bottom: var(--space-2); }
+.tooltip ul { padding-left: 1.1rem; list-style: disc; display: grid; gap: .25rem; font-size: .88rem; color: var(--ink); }
+
+/* ---------- Ajustes y jugadores ---------- */
+.setup {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  margin-bottom: var(--space-5);
+}
+
+.picks { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.pick {
+  display: inline-flex;
   align-items: center;
+  gap: .5rem;
+  min-height: 44px;
+  padding: 4px 1rem 4px 4px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--sand-100);
+  color: var(--ink-soft);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font: 600 .92rem/1 var(--font-body);
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 50px;
-  color: whitesmoke;
-  box-shadow: 5px 10px 8px #888888;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.pick:disabled { opacity: .55; cursor: not-allowed; }
+.pick.is-on {
+  background: var(--palm-100);
+  color: var(--palm-700);
+  box-shadow: inset 0 0 0 1.5px var(--palm-600);
+}
+
+.players {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.player {
+  display: grid;
+  justify-items: center;
+  gap: .25rem;
+  width: 104px;
+  padding: var(--space-3) var(--space-2);
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--sand-50);
+  box-shadow: 0 0 0 1px var(--line);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+
+.player__img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--sand-200);
+}
+
+.player__name { font: 700 .9rem/1.15 var(--font-body); color: var(--ink); }
+
+.player.jugadorSeleccionado {
+  background: var(--terra-600);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-4px);
+}
+.player.jugadorSeleccionado .player__name { color: #fff; }
+.player.jugadorSeleccionado .player__img { box-shadow: 0 0 0 3px var(--ochre-500); }
+
+.setup__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* ---------- Tablero y cartas ---------- */
+.tablero {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  text-align: center;
 }
 
 .titulosCartas {
@@ -117,227 +163,174 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  width: 80%;
-  height: auto;
-  border: 1px solid black;
-  border-radius: 15px;
-  margin-top: 10px;
-  margin-left: 10%;
-  margin-right: 10%;
-  background-color: rgb(255, 228, 177);
+  gap: .25rem;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--r-md);
+  background: var(--ochre-100);
+  box-shadow: inset 0 0 0 1px rgba(138, 90, 16, .2);
+  color: var(--ink);
+  font: 700 .9rem/1.3 var(--font-body);
 }
 
+.cartas-mision,
+.cartas-boca-arriba,
+.cartas-jugador {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.carta-mision {
+  width: 72px;
+  min-height: 96px;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.15;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+  background: var(--sand-50);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px var(--line-strong), var(--shadow-sm);
+}
+
+.carta-boca-arriba,
+.carta-jugador {
+  width: 58px;
+  height: 92px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .18), var(--shadow-sm);
+  transition: transform .15s, box-shadow .15s;
+}
+
+.carta-boca-arriba:hover,
+.carta-jugador:hover { transform: translateY(-3px); }
+
 .cartaSeleccionada {
-  border: 2px solid rgb(247, 200, 115);
+  box-shadow: 0 0 0 3px var(--ochre-500), var(--shadow-sm);
+  transform: translateY(-5px);
 }
 
 .cartaSeleccionadaMesaError {
-  border: 5px solid rgb(192, 0, 0);
+  box-shadow: 0 0 0 3px var(--terra-700), var(--shadow-sm);
 }
 
 .misionCumplida {
-  border: 3px solid rgb(89, 89, 89);
-  background-color: rgb(164, 236, 140);
+  background: var(--palm-100);
+  color: var(--palm-700);
+  box-shadow: 0 0 0 2px var(--palm-600), var(--shadow-sm);
 }
 
 .errorCartaNoValida {
-  font-size: 1em;
-  color: rgb(180, 0, 0);
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--terra-700);
 }
 
-.espacio {
-  width: 50px;
-  height: 50px;
-}
-.espacio1 {
-  width: 30px;
-  height: 30px;
+.temporizador {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--sea-900);
 }
 
-.espacio2 {
-  width: 250px;
-  height: 250px;
-}
-
-.btnTurno {
-  background: transparent;
-  border-radius: 30px;
-  border: 2px solid rgb(33, 33, 33);
-  background-color: rgb(252, 197, 95);
-}
-
-.botonInstrucciones {
-  background: transparent;
-  border-radius: 30px;
-  border: 2px solid rgb(33, 33, 33);
-  background-color: rgb(252, 197, 95);
-}
-
-@keyframes pulse {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    transform: scale3d(1.15, 1.15, 1.15);
-  }
-
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-.pulseInfinito {
-  animation-name: pulse;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.pulseFinito {
-  animation-name: pulse;
-  animation-timing-function: linear;
-  animation-iteration-count: 2;
-}
-
-.settings {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: fit-content;
-}
-
-.selector {
-  border-radius: 10px;
-  width: 300px;
-  background-color: rgb(247, 200, 115);
-  margin-bottom: 15px;
-}
-
-.cartas-mazo-jugador {
-  margin-top: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 100px;
-}
-
+.cartas-mazo-jugador,
 .cartas-mazo-mision {
-  margin-top: 50px;
+  position: relative;
+  min-height: 104px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .mazoDeCartas {
   position: absolute;
-  border: 1px solid black;
-  width: 65px;
-  height: 95px;
-  border-radius: 5px;
-  font-size: 50px;
-  color: whitesmoke;
-}
-
-.numCartasRestantesJugador {
-  z-index: 99;
-  margin-top: -60px;
-  font-size: 30px;
-  color: rgb(216, 216, 216);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
-.numCartasRestantesMision {
-  z-index: 99;
-  font-size: 40px;
-  color: rgb(216, 216, 216);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-}
-
-.imgCarta {
-  width: 130%;
-  height: auto;
-  border-radius: 5px;
-  border: 1px solid black;
+  width: 66px;
+  height: 96px;
+  border-radius: var(--r-sm);
+  box-shadow: 0 0 0 1px var(--line-strong), var(--shadow-sm);
 }
 
 .mazoTop {
-  position: absolute;
-  border: 1px solid black;
+  position: relative;
   z-index: 5;
-  width: 55px;
-  height: 90px;
-  border-radius: 5px;
-  font-size: 30px;
-  color: rgb(0, 0, 0);
+  width: 62px;
+  height: 92px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(
-    to bottom left,
-    rgb(228, 3, 33),
-    rgba(180, 3, 33, 0.2)
-  );
+  background: var(--terra-100);
+  box-shadow: 0 0 0 1px var(--line-strong), var(--shadow-sm);
+}
+
+.imgCarta {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.numCartasRestantesJugador,
+.numCartasRestantesMision {
+  position: relative;
+  z-index: 10;
+  margin-left: var(--space-2);
+  padding: .2rem .65rem;
+  border-radius: var(--r-pill);
+  background: var(--sea-900);
+  color: #fff;
+  font: 700 .95rem/1.2 var(--font-body);
 }
 
 .inclinadoIzquierda {
-  transform: rotate(-2deg);
-  z-index: 1;
-  background: linear-gradient(
-    to bottom left,
-    rgb(7, 164, 121),
-    rgba(7, 120, 121, 0.2)
-  );
+  transform: translateX(-6px) rotate(-4deg);
+  background: var(--palm-100);
 }
 
 .inclinadoIzquierda2 {
-  transform: rotate(-5deg);
-  z-index: 1;
-  background: linear-gradient(
-    to bottom left,
-    rgb(228, 3, 33),
-    rgba(180, 3, 33, 0.2)
-  );
+  transform: translateX(-10px) rotate(-7deg);
+  background: var(--terra-100);
 }
 
 .inclinadoDerecha {
-  transform: rotate(2deg);
-  z-index: 2;
-  background: linear-gradient(
-    to bottom left,
-    rgb(0, 172, 234),
-    rgba(0, 172, 200, 0.2)
-  );
+  transform: translateX(6px) rotate(4deg);
+  background: var(--sea-100);
 }
 
 .inclinadoDerecha2 {
-  transform: rotate(8deg);
-  z-index: 2;
-  background: linear-gradient(
-    to bottom left,
-    rgb(249, 155, 0),
-    rgba(190, 155, 0, 0.2)
-  );
+  transform: translateX(10px) rotate(7deg);
+  background: var(--ochre-100);
 }
 
-@keyframes fadeOutUp {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
 }
 
-.fadeOutUp {
-  animation-name: fadeOutUp;
+.pulseInfinito {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.pulseFinito {
+  animation: pulse .4s ease-in-out 2;
+}
+
+@media (min-width: 768px) {
+  .intro-card,
+  .setup,
+  .tablero { padding: var(--space-5); }
 }

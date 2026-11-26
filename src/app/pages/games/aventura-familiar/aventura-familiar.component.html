@@ -1,131 +1,161 @@
-<div class="game-wrapper">
-  <!-- PANTALLA 1: SELECTOR DE PERSONAJE -->
-  <section *ngIf="(estadoService.pantalla$ | async) === 'SELECCION'" class="selector-screen">
-    <header class="selector-header">
-      <h2>{{ 'aventuraFamiliar.titulo' | translate }}</h2>
-      <p>{{ 'aventuraFamiliar.subtitulo' | translate }}</p>
-      <div *ngIf="estadoService.recordFamiliar" class="record-badge">
-        {{ 'aventuraFamiliar.recordFamiliar' | translate }} <strong>{{ estadoService.recordFamiliar.nombre }}</strong> ({{ estadoService.recordFamiliar.puntos }} {{ 'aventuraFamiliar.pts' | translate }})
-      </div>
-    </header>
+<header class="page-head">
+  <a class="round-btn" routerLink="/games" [attr.aria-label]="'intruso.volverJuegos' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'aventuraFamiliar.titulo' | translate }}</h1>
+    <p class="page-head__sub">{{ 'aventuraFamiliar.subtitulo' | translate }}</p>
+  </div>
+  <span class="badge">
+    <svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="260" fill="#1F5F73"/>
+      <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+        <circle cx="100" cy="94" r="32" fill="#E3A93C"/>
+        <path d="M36 164c24-28 48-28 72 0s48 28 56 4v26H36z" fill="#5E7B4B"/>
+        <path d="M36 178c28-14 56-14 84 0s44 14 44 0" fill="none" stroke="#FFFCF7" stroke-width="6" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </span>
+</header>
 
-    <div class="cards-grid">
-      <article *ngFor="let p of personajes"
-                class="character-card"
-                [style.border-color]="p.colorBorde"
-                (click)="elegirJugador(p)">
+<!-- PANTALLA 1: SELECTOR DE PERSONAJE -->
+<section *ngIf="(estadoService.pantalla$ | async) === 'SELECCION'" class="selector-screen">
+  <div *ngIf="estadoService.recordFamiliar">
+    <span class="record-badge">
+      {{ 'aventuraFamiliar.recordFamiliar' | translate }} <strong>{{ estadoService.recordFamiliar.nombre }}</strong> ({{ estadoService.recordFamiliar.puntos }} {{ 'aventuraFamiliar.pts' | translate }})
+    </span>
+  </div>
 
-        <div class="avatar-ring" [style.background]="p.colorBorde">
-          <img [src]="p.fotoUrl" [alt]="p.nombre" (error)="onImgError($event, p.nombre)">
-        </div>
+  <div class="cards-grid">
+    <article *ngFor="let p of personajes"
+             class="character-card"
+             [style.border-color]="p.colorBorde"
+             (click)="elegirJugador(p)">
 
-        <h3>{{ p.nombre }}</h3>
-        <span class="role-badge" [style.background]="p.colorBorde">{{ p.rol }}</span>
-        <p class="bio-metrics">{{ 'aventuraFamiliar.altura' | translate }} {{ p.alturaCm }} {{ 'aventuraFamiliar.cm' | translate }} · {{ 'aventuraFamiliar.peso' | translate }} {{ p.pesoKg }} {{ 'aventuraFamiliar.kg' | translate }}</p>
-
-        <div class="stats-list">
-          <div class="stat-row">
-            <span>{{ 'aventuraFamiliar.velocidad' | translate }}</span>
-            <div class="bar"><div class="fill" [style.width.%]="(p.velocidad / 7) * 100"></div></div>
-          </div>
-          <div class="stat-row">
-            <span>{{ 'aventuraFamiliar.agilidad' | translate }}</span>
-            <div class="bar"><div class="fill" [style.width.%]="(100 - p.pesoKg) * 0.9"></div></div>
-          </div>
-          <div class="stat-row">
-            <span>{{ 'aventuraFamiliar.vidas' | translate }}</span>
-            <strong>{{ '❤️'.repeat(p.vidasIniciales) }}</strong>
-          </div>
-        </div>
-
-        <button class="play-btn" [style.background]="p.colorBorde">{{ 'aventuraFamiliar.jugar' | translate }}</button>
-      </article>
-    </div>
-  </section>
-
-  <!-- PANTALLA 2: CANVAS DE JUEGO 2D -->
-  <section *ngIf="(estadoService.pantalla$ | async) === 'JUGANDO'" class="play-screen">
-    <div class="hud" *ngIf="jugadorActual">
-      <div class="hud-player">
-        <img [src]="jugadorActual.fotoUrl" [alt]="jugadorActual.nombre" (error)="onImgError($event, jugadorActual.nombre)">
-        <div>
-          <div class="hud-name">{{ jugadorActual.nombre }}</div>
-          <small>{{ nivelData?.titulo }}</small>
-        </div>
+      <div class="avatar-ring" [style.background]="p.colorBorde">
+        <img [src]="p.fotoUrl" [alt]="p.nombre" (error)="onImgError($event, p.nombre)">
       </div>
 
-      <div class="progress-wrapper">
-        <span>{{ 'aventuraFamiliar.meta' | translate }} {{ porcentajeProgreso }}%</span>
-        <div class="progress-track">
-          <div class="progress-fill" [style.width.%]="porcentajeProgreso"></div>
+      <h3>{{ p.nombre }}</h3>
+      <span class="role-badge" [style.background]="p.colorBorde">{{ p.rol }}</span>
+      <p class="bio-metrics">{{ 'aventuraFamiliar.altura' | translate }} {{ p.alturaCm }} {{ 'aventuraFamiliar.cm' | translate }} · {{ 'aventuraFamiliar.peso' | translate }} {{ p.pesoKg }} {{ 'aventuraFamiliar.kg' | translate }}</p>
+
+      <div class="stats-list">
+        <div class="stat-row">
+          <span>{{ 'aventuraFamiliar.velocidad' | translate }}</span>
+          <div class="bar"><div class="fill" [style.width.%]="(p.velocidad / 7) * 100"></div></div>
+        </div>
+        <div class="stat-row">
+          <span>{{ 'aventuraFamiliar.agilidad' | translate }}</span>
+          <div class="bar"><div class="fill" [style.width.%]="(100 - p.pesoKg) * 0.9"></div></div>
+        </div>
+        <div class="stat-row">
+          <span>{{ 'aventuraFamiliar.vidas' | translate }}</span>
+          <strong>{{ '❤️'.repeat(p.vidasIniciales) }}</strong>
         </div>
       </div>
 
-      <div class="hud-stats">
-        <span>🪙 {{ estadoService.puntuacion }}</span>
-        <span>{{ '❤️'.repeat(estadoService.vidas) }}</span>
-      </div>
+      <button type="button" class="play-btn" [style.background]="p.colorBorde">{{ 'aventuraFamiliar.jugar' | translate }}</button>
+    </article>
+  </div>
+</section>
 
-      <div class="hud-actions">
-        <button class="btn-sound" (click)="sonidoActivo = !sonidoActivo" [attr.title]="'aventuraFamiliar.sonidoTitulo' | translate">
-          {{ sonidoActivo ? '🔊' : '🔇' }}
-        </button>
-        <button class="btn-exit" (click)="salirAlMenu()">{{ 'aventuraFamiliar.salir' | translate }}</button>
+<!-- PANTALLA 2: CANVAS DE JUEGO 2D -->
+<section *ngIf="(estadoService.pantalla$ | async) === 'JUGANDO'" class="play-screen">
+  <div class="hud" *ngIf="jugadorActual">
+    <div class="hud-player">
+      <img [src]="jugadorActual.fotoUrl" [alt]="jugadorActual.nombre" (error)="onImgError($event, jugadorActual.nombre)">
+      <div>
+        <div class="hud-name">{{ jugadorActual.nombre }}</div>
+        <small>{{ nivelData?.titulo }}</small>
       </div>
     </div>
 
-    <div class="canvas-container">
-      <canvas #gameCanvas width="860" height="450"></canvas>
-
-      <!-- CONTROLES TÁCTILES SUPERPUESTOS (Móvil / Tablet) -->
-      <div class="touch-controls">
-        <div class="touch-dpad">
-          <button class="touch-btn"
-                  (touchstart)="setControlTactil('ArrowLeft', true, $event)"
-                  (touchend)="setControlTactil('ArrowLeft', false, $event)"
-                  (mousedown)="setControlTactil('ArrowLeft', true, $event)"
-                  (mouseup)="setControlTactil('ArrowLeft', false, $event)"
-                  (mouseleave)="setControlTactil('ArrowLeft', false, $event)">◀</button>
-          <button class="touch-btn"
-                  (touchstart)="setControlTactil('ArrowRight', true, $event)"
-                  (touchend)="setControlTactil('ArrowRight', false, $event)"
-                  (mousedown)="setControlTactil('ArrowRight', true, $event)"
-                  (mouseup)="setControlTactil('ArrowRight', false, $event)"
-                  (mouseleave)="setControlTactil('ArrowRight', false, $event)">▶</button>
-        </div>
-
-        <button class="touch-btn jump-btn"
-                (touchstart)="setControlTactil('Space', true, $event)"
-                (touchend)="setControlTactil('Space', false, $event)"
-                (mousedown)="setControlTactil('Space', true, $event)"
-                (mouseup)="setControlTactil('Space', false, $event)"
-                (mouseleave)="setControlTactil('Space', false, $event)">{{ 'aventuraFamiliar.saltar' | translate }}</button>
+    <div class="progress-wrapper">
+      <span>{{ 'aventuraFamiliar.meta' | translate }} {{ porcentajeProgreso }}%</span>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="porcentajeProgreso"></div>
       </div>
     </div>
 
-    <div class="controls-hint">
-      {{ 'aventuraFamiliar.controlesPcAntes' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcFlechas' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcO' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcTeclas' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcMoverSaltar' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcEspacio' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcEnemigos' | translate }}
+    <div class="hud-stats">
+      <span>🪙 {{ estadoService.puntuacion }}</span>
+      <span>{{ '❤️'.repeat(estadoService.vidas) }}</span>
     </div>
-  </section>
 
-  <!-- PANTALLA INTERMEDIA: NIVEL COMPLETADO -->
-  <section *ngIf="(estadoService.pantalla$ | async) === 'NIVEL_COMPLETADO'" class="status-screen">
-    <h2>{{ 'aventuraFamiliar.etapaCompletada' | translate }}</h2>
-    <p>{{ 'aventuraFamiliar.finalRecorridoAntes' | translate }} <strong>{{ estadoService.puntuacion }} {{ 'aventuraFamiliar.puntos' | translate }}</strong>{{ 'aventuraFamiliar.finalRecorridoDespues' | translate }}</p>
-    <button class="play-btn" style="max-width: 240px; background: #0284c7;" (click)="siguienteNivel()">
-      {{ 'aventuraFamiliar.irAlNivel' | translate:{ nivel: estadoService.nivelActual } }}
-    </button>
-  </section>
+    <div class="hud-actions">
+      <button type="button" class="btn-sound" (click)="sonidoActivo = !sonidoActivo" [attr.title]="'aventuraFamiliar.sonidoTitulo' | translate">
+        {{ sonidoActivo ? '🔊' : '🔇' }}
+      </button>
+      <button type="button" class="btn btn--sm" (click)="salirAlMenu()">{{ 'aventuraFamiliar.salir' | translate }}</button>
+    </div>
+  </div>
 
-  <!-- PANTALLA FINAL: VICTORIA O GAME OVER -->
-  <section *ngIf="(estadoService.pantalla$ | async) === 'VICTORIA' || (estadoService.pantalla$ | async) === 'GAME_OVER'" class="status-screen">
-    <h2>{{ ((estadoService.pantalla$ | async) === 'VICTORIA' ? 'aventuraFamiliar.victoriaTitulo' : 'aventuraFamiliar.gameOverTitulo') | translate }}</h2>
-    <p>{{ 'aventuraFamiliar.puntuacionTotalAntes' | translate }} <strong>{{ estadoService.puntuacion }} {{ 'aventuraFamiliar.puntos' | translate }}</strong></p>
-    <p *ngIf="estadoService.recordFamiliar" style="color: #0284c7; font-weight: bold;">
+  <div class="canvas-container">
+    <canvas #gameCanvas width="860" height="450"></canvas>
+
+    <!-- CONTROLES TÁCTILES SUPERPUESTOS (Móvil / Tablet) -->
+    <div class="touch-controls">
+      <div class="touch-dpad">
+        <button type="button" class="touch-btn"
+                (touchstart)="setControlTactil('ArrowLeft', true, $event)"
+                (touchend)="setControlTactil('ArrowLeft', false, $event)"
+                (mousedown)="setControlTactil('ArrowLeft', true, $event)"
+                (mouseup)="setControlTactil('ArrowLeft', false, $event)"
+                (mouseleave)="setControlTactil('ArrowLeft', false, $event)">◀</button>
+        <button type="button" class="touch-btn"
+                (touchstart)="setControlTactil('ArrowRight', true, $event)"
+                (touchend)="setControlTactil('ArrowRight', false, $event)"
+                (mousedown)="setControlTactil('ArrowRight', true, $event)"
+                (mouseup)="setControlTactil('ArrowRight', false, $event)"
+                (mouseleave)="setControlTactil('ArrowRight', false, $event)">▶</button>
+      </div>
+
+      <button type="button" class="touch-btn jump-btn"
+              (touchstart)="setControlTactil('Space', true, $event)"
+              (touchend)="setControlTactil('Space', false, $event)"
+              (mousedown)="setControlTactil('Space', true, $event)"
+              (mouseup)="setControlTactil('Space', false, $event)"
+              (mouseleave)="setControlTactil('Space', false, $event)">{{ 'aventuraFamiliar.saltar' | translate }}</button>
+    </div>
+  </div>
+
+  <div class="controls-hint">
+    {{ 'aventuraFamiliar.controlesPcAntes' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcFlechas' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcO' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcTeclas' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcMoverSaltar' | translate }} <strong>{{ 'aventuraFamiliar.controlesPcEspacio' | translate }}</strong> {{ 'aventuraFamiliar.controlesPcEnemigos' | translate }}
+  </div>
+</section>
+
+<!-- PANTALLA INTERMEDIA: NIVEL COMPLETADO -->
+<div *ngIf="(estadoService.pantalla$ | async) === 'NIVEL_COMPLETADO'" class="win" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <div style="font-size: 3.5rem;">🎉</div>
+    <h2 class="win__title">{{ 'aventuraFamiliar.etapaCompletada' | translate }}</h2>
+    <p class="win__label">
+      {{ 'aventuraFamiliar.finalRecorridoAntes' | translate }} <strong>{{ estadoService.puntuacion }} {{ 'aventuraFamiliar.puntos' | translate }}</strong>{{ 'aventuraFamiliar.finalRecorridoDespues' | translate }}
+    </p>
+    <div class="status-actions">
+      <button type="button" class="btn btn--sea" (click)="siguienteNivel()">
+        {{ 'aventuraFamiliar.irAlNivel' | translate:{ nivel: estadoService.nivelActual } }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- PANTALLA FINAL: VICTORIA O GAME OVER -->
+<div *ngIf="(estadoService.pantalla$ | async) === 'VICTORIA' || (estadoService.pantalla$ | async) === 'GAME_OVER'" class="win" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <div style="font-size: 3.5rem;">{{ (estadoService.pantalla$ | async) === 'VICTORIA' ? '🏆' : '💔' }}</div>
+    <h2 class="win__title">{{ ((estadoService.pantalla$ | async) === 'VICTORIA' ? 'aventuraFamiliar.victoriaTitulo' : 'aventuraFamiliar.gameOverTitulo') | translate }}</h2>
+    <p class="win__label">
+      {{ 'aventuraFamiliar.puntuacionTotalAntes' | translate }} <strong>{{ estadoService.puntuacion }} {{ 'aventuraFamiliar.puntos' | translate }}</strong>
+    </p>
+    <p *ngIf="estadoService.recordFamiliar" style="color: var(--sea-700); font-weight: 700; font-size: .9rem;">
       {{ 'aventuraFamiliar.recordEstrella' | translate }} {{ estadoService.recordFamiliar.nombre }} - {{ estadoService.recordFamiliar.puntos }} {{ 'aventuraFamiliar.pts' | translate }}
     </p>
-    <button class="play-btn" style="max-width: 240px; background: #16a34a;" (click)="salirAlMenu()">
-      {{ 'aventuraFamiliar.volverElegirPersonaje' | translate }}
-    </button>
-  </section>
+    <div class="status-actions">
+      <button type="button" class="btn" (click)="salirAlMenu()">
+        {{ 'aventuraFamiliar.volverElegirPersonaje' | translate }}
+      </button>
+    </div>
+  </div>
 </div>

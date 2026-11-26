@@ -1,101 +1,129 @@
-<div class="puzzle-normal-container">
-  <h2>{{ 'puzzleBoda.titulo' | translate }}</h2>
-  <p class="subtit">{{ 'puzzleBoda.subtitulo' | translate }}</p>
+<header class="page-head">
+  <a class="round-btn" routerLink="/games" [attr.aria-label]="'intruso.volverJuegos' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'puzzleBoda.titulo' | translate }}</h1>
+    <p class="page-head__sub">{{ 'puzzleBoda.subtitulo' | translate }}</p>
+  </div>
+  <span class="badge">
+    <svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="260" fill="#B4532A"/>
+      <g transform="translate(100 116) scale(.85) translate(-100 -116)">
+        <rect x="46" y="76" width="54" height="54" rx="10" fill="#FFFCF7" transform="rotate(-8 73 103)"/>
+        <rect x="100" y="76" width="54" height="54" rx="10" fill="#E3A93C" transform="rotate(6 127 103)"/>
+        <rect x="46" y="130" width="54" height="54" rx="10" fill="#1F5F73" transform="rotate(5 73 157)"/>
+        <rect x="100" y="130" width="54" height="54" rx="10" fill="#5E7B4B" transform="rotate(-6 127 157)"/>
+      </g>
+    </svg>
+  </span>
+</header>
 
-  <!-- PANEL DE CONFIGURACIÓN -->
-  <div class="config-panel" *ngIf="!juegoIniciado || juegoCompletado">
+<!-- PANEL DE CONFIGURACIÓN -->
+<section class="config-panel" *ngIf="!juegoIniciado || juegoCompletado">
 
-    <div class="grupo-control">
-      <label>{{ 'puzzleBoda.tamanoCuadricula' | translate }}</label>
-      <select [(ngModel)]="tamanoGrid" class="input-select">
-        <option [value]="3">{{ 'puzzleBoda.opcion3x3' | translate }}</option>
-        <option [value]="4">{{ 'puzzleBoda.opcion4x4' | translate }}</option>
-        <option [value]="5">{{ 'puzzleBoda.opcion5x5' | translate }}</option>
-        <option [value]="6">{{ 'puzzleBoda.opcion6x6' | translate }}</option>
-      </select>
-    </div>
-
-    <div class="grupo-control checkbox-container">
-      <label>
-        <input type="checkbox" [(ngModel)]="permitirRotacion"> {{ 'puzzleBoda.activarRotacion' | translate }}
-      </label>
-    </div>
-
-    <button class="btn-iniciar" (click)="iniciarJuego()">{{ 'puzzleBoda.empezarPuzzle' | translate }}</button>
+  <div class="grupo-control">
+    <label>{{ 'puzzleBoda.tamanoCuadricula' | translate }}</label>
+    <select [(ngModel)]="tamanoGrid" class="field__input">
+      <option [value]="3">{{ 'puzzleBoda.opcion3x3' | translate }}</option>
+      <option [value]="4">{{ 'puzzleBoda.opcion4x4' | translate }}</option>
+      <option [value]="5">{{ 'puzzleBoda.opcion5x5' | translate }}</option>
+      <option [value]="6">{{ 'puzzleBoda.opcion6x6' | translate }}</option>
+    </select>
   </div>
 
-  <!-- JUEGO ACTIVO -->
-  <div class="juego-area" *ngIf="juegoIniciado">
+  <div class="grupo-control checkbox-container">
+    <label>
+      <input type="checkbox" [(ngModel)]="permitirRotacion"> {{ 'puzzleBoda.activarRotacion' | translate }}
+    </label>
+  </div>
 
-    <div class="info-partida">
-      <span>⏱️ <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong></span>
-      <button class="btn-pista" (click)="mostrarPista = !mostrarPista">
+  <button type="button" class="btn" (click)="iniciarJuego()">{{ 'puzzleBoda.empezarPuzzle' | translate }}</button>
+</section>
+
+<!-- JUEGO ACTIVO -->
+<section class="juego-area" *ngIf="juegoIniciado">
+
+  <div class="info-partida">
+    <span class="info-partida__time">⏱️ <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong></span>
+    <div class="info-partida__actions">
+      <button type="button" class="btn btn--sm btn--soft" (click)="mostrarPista = !mostrarPista">
         {{ (mostrarPista ? 'puzzleBoda.ocultarPista' : 'puzzleBoda.verPista') | translate }}
       </button>
-      <button class="btn-reiniciar" (click)="iniciarJuego()">{{ 'puzzleBoda.reiniciar' | translate }}</button>
+      <button type="button" class="btn btn--sm btn--ghost" (click)="iniciarJuego()">
+        {{ 'puzzleBoda.reiniciar' | translate }}
+      </button>
     </div>
+  </div>
 
-    <div class="mesa-trabajo">
+  <div class="mesa-trabajo">
 
-      <!-- TABLERO PRINCIPAL -->
-      <div class="tablero-normal"
-           [style.grid-template-columns]="'repeat(' + tamanoGrid + ', 1fr)'"
-           [style.grid-template-rows]="'repeat(' + tamanoGrid + ', 1fr)'">
+    <!-- TABLERO PRINCIPAL -->
+    <div class="tablero-normal"
+         [style.grid-template-columns]="'repeat(' + tamanoGrid + ', 1fr)'"
+         [style.grid-template-rows]="'repeat(' + tamanoGrid + ', 1fr)'">
 
-        <!-- Imagen de fondo fantasma para la pista -->
-        <div class="imagen-pista-fondo"
-             *ngIf="mostrarPista"
-             [style.background-image]="'url(' + imagenActualUrl + ')'">
-        </div>
-
-        <div *ngFor="let celda of [].constructor(tamanoGrid * tamanoGrid); let i = index"
-             class="celda-tablero"
-             (dragover)="onDragOver($event)"
-             (drop)="onDropTablero($event, i)">
-
-          <!-- Si hay una pieza colocada en esta celda -->
-          <div *ngIf="getPiezaEnCelda(i) as pieza"
-               class="pieza-puzzle"
-               draggable="true"
-               (dragstart)="onDragStart($event, pieza.id)"
-               (click)="girarPieza(pieza, $event)"
-               [style.background-image]="'url(' + imagenActualUrl + ')'"
-               [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
-               [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
-               [style.transform]="'rotate(' + pieza.rotacion + 'deg)'"
-               [attr.title]="'puzzleBoda.ayudaPieza' | translate">
-          </div>
-        </div>
+      <!-- Imagen de fondo fantasma para la pista -->
+      <div class="imagen-pista-fondo"
+           *ngIf="mostrarPista"
+           [style.background-image]="'url(' + imagenActualUrl + ')'">
       </div>
 
-      <!-- BANDEJA DE PIEZAS (DISPONIBLES FUERA DEL TABLERO) -->
-      <div class="bandeja-piezas"
+      <div *ngFor="let celda of [].constructor(tamanoGrid * tamanoGrid); let i = index"
+           class="celda-tablero"
            (dragover)="onDragOver($event)"
-           (drop)="onDropBandeja($event)">
-        <p class="titulo-bandeja">{{ 'puzzleBoda.piezasSinColocar' | translate:{ cantidad: piezasEnBandeja.length } }}</p>
+           (drop)="onDropTablero($event, i)">
 
-        <div class="contenedor-fichas-bandeja">
-          <div *ngFor="let pieza of piezasEnBandeja"
-               class="pieza-puzzle"
-               draggable="true"
-               (dragstart)="onDragStart($event, pieza.id)"
-               (click)="girarPieza(pieza, $event)"
-               [style.background-image]="'url(' + imagenActualUrl + ')'"
-               [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
-               [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
-               [style.transform]="'rotate(' + pieza.rotacion + 'deg)'">
-          </div>
+        <!-- Si hay una pieza colocada en esta celda -->
+        <div *ngIf="getPiezaEnCelda(i) as pieza"
+             class="pieza-puzzle"
+             draggable="true"
+             (dragstart)="onDragStart($event, pieza.id)"
+             (click)="girarPieza(pieza, $event)"
+             [style.background-image]="'url(' + imagenActualUrl + ')'"
+             [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
+             [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
+             [style.transform]="'rotate(' + pieza.rotacion + 'deg)'"
+             [attr.title]="'puzzleBoda.ayudaPieza' | translate">
         </div>
       </div>
+    </div>
 
+    <!-- BANDEJA DE PIEZAS (DISPONIBLES FUERA DEL TABLERO) -->
+    <div class="bandeja-piezas"
+         (dragover)="onDragOver($event)"
+         (drop)="onDropBandeja($event)">
+      <p class="titulo-bandeja">{{ 'puzzleBoda.piezasSinColocar' | translate:{ cantidad: piezasEnBandeja.length } }}</p>
+
+      <div class="contenedor-fichas-bandeja">
+        <div *ngFor="let pieza of piezasEnBandeja"
+             class="pieza-puzzle"
+             draggable="true"
+             (dragstart)="onDragStart($event, pieza.id)"
+             (click)="girarPieza(pieza, $event)"
+             [style.background-image]="'url(' + imagenActualUrl + ')'"
+             [style.background-size]="(tamanoGrid * 100) + '% ' + (tamanoGrid * 100) + '%'"
+             [style.background-position]="pieza.bgX + '% ' + pieza.bgY + '%'"
+             [style.transform]="'rotate(' + pieza.rotacion + 'deg)'">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODAL VICTORIA -->
+<div class="win" *ngIf="juegoCompletado" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <div style="font-size: 3.5rem;">🎉</div>
+    <h2 class="win__title">{{ 'puzzleBoda.victoriaTitulo' | translate }}</h2>
+    <p class="win__label">
+      {{ 'puzzleBoda.victoriaDescAntes' | translate }} <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>{{ 'puzzleBoda.victoriaDescDespues' | translate }}
+    </p>
+    <div class="victoria-actions">
+      <button type="button" class="btn" (click)="juegoIniciado = false; juegoCompletado = false">
+        {{ 'puzzleBoda.jugarDeNuevo' | translate }}
+      </button>
     </div>
   </div>
-
-  <!-- MODAL VICTORIA -->
-  <div class="victoria-modal" *ngIf="juegoCompletado">
-    <h3>{{ 'puzzleBoda.victoriaTitulo' | translate }}</h3>
-    <p>{{ 'puzzleBoda.victoriaDescAntes' | translate }} <strong>{{ formatearTiempo(segundosTranscurridos) }}</strong>{{ 'puzzleBoda.victoriaDescDespues' | translate }}</p>
-    <button class="btn-iniciar" (click)="juegoIniciado = false; juegoCompletado = false">{{ 'puzzleBoda.jugarDeNuevo' | translate }}</button>
-  </div>
-
 </div>
