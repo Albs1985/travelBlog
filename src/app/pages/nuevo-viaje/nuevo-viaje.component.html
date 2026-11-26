@@ -1,0 +1,293 @@
+<section class="editor-banner">
+  <div class="editor-banner__bar">
+    <a class="round-btn" routerLink="/viajes" [attr.aria-label]="'viaje.volver' | translate">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+    </a>
+    <div class="editor-banner__info">
+      <h1 class="editor-banner__title">Nuevo viaje</h1>
+      <span class="editor-banner__file">Archivo: <code>{{ nombreArchivoJson }}</code></span>
+    </div>
+    <button type="button" class="btn-save" [disabled]="guardando" (click)="guardarEnGitHub()">
+      {{ guardando ? 'Subiendo...' : 'Publicar en GitHub' }}
+    </button>
+  </div>
+
+  <!-- Aviso y selector de portada anual si es un año nuevo -->
+  <div class="year-cover-box" *ngIf="esAnyoNuevo">
+    <div class="year-cover-box__info">
+      <strong>Año nuevo detectado ({{ anyo }})</strong>
+      <span>No existía la carpeta de este año. Sube la portada del año: <code>{{ rutaPortadaAnyo() }}</code></span>
+    </div>
+    <div class="year-cover-box__actions">
+      <img *ngIf="portadaAnyoPreviewUrl" class="year-cover-box__thumb" [src]="portadaAnyoPreviewUrl" [alt]="rutaPortadaAnyo()">
+      <label class="upload-pill upload-pill--sm">
+        <span>{{ portadaAnyoFile ? 'Cambiar ' + rutaPortadaAnyo() : 'Subir ' + rutaPortadaAnyo() }}</span>
+        <input type="file" accept="image/*" (change)="onSubirFotoPortadaAnyo($event)" hidden>
+      </label>
+    </div>
+  </div>
+
+  <!-- Subida de fotos de golpe + selector de idioma opcional -->
+  <div class="upload-toolbar">
+    <label class="upload-pill">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>
+      <span>Subir fotos de golpe</span>
+      <input type="file" accept="image/*" multiple (change)="onSubirMultiples($event)" hidden>
+    </label>
+
+    <div class="lang-toggle" role="group" aria-label="Idioma de edición">
+      <button type="button" [class.is-active]="idiomaActivo === 'es'" (click)="idiomaActivo = 'es'">ES</button>
+      <button type="button" [class.is-active]="idiomaActivo === 'val'" (click)="idiomaActivo = 'val'">VAL</button>
+      <button type="button" [class.is-active]="idiomaActivo === 'ambos'" (click)="idiomaActivo = 'ambos'">ES + VAL</button>
+    </div>
+  </div>
+
+  <!-- Bandeja de fotos del viaje para asignar 1 a 1 -->
+  <div class="tray" *ngIf="fotosGaleria.length">
+    <span class="tray__title">Fotos del viaje ({{ fotosGaleria.length }}) — pulsa una para seleccionarla y asignarla a un hueco:</span>
+    <div class="tray__list">
+      <button type="button"
+              class="tray__item"
+              *ngFor="let f of fotosGaleria; let i = index"
+              [class.is-selected]="fotoSeleccionadaIdx === i"
+              (click)="seleccionarFotoBandeja(i)">
+        <img [src]="f.previewUrl" [alt]="f.rutaRelativa">
+        <span>{{ f.nombreCorto }}</span>
+      </button>
+    </div>
+  </div>
+
+  <p class="msg msg--ok" *ngIf="mensajeEstado">{{ mensajeEstado }}</p>
+  <p class="msg msg--err" *ngIf="mensajeError">{{ mensajeError }}</p>
+</section>
+
+<!-- Portada con el mismo formato y hueco fake -->
+<section class="hero" (click)="detalle.scrollIntoView({ behavior: 'smooth', block: 'start' })">
+  <img *ngIf="portadaPreviewUrl; else portadaFake" class="hero__img" [src]="portadaPreviewUrl" [alt]="destino || 'Portada'">
+  <ng-template #portadaFake>
+    <div class="hero__fake-art" aria-hidden="true">
+      <div class="fake-badge">
+        <span>PORTADA DEL VIAJE (FOTO PLACEHOLDER)</span>
+        <small>{{ portada || (anyo + '/' + nombreBaseDestino() + 'Principal.jpg') }}</small>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="hero__top" (click)="$event.stopPropagation()">
+    <label class="round-btn round-btn--glass" title="Subir foto de portada">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      <input type="file" accept="image/*" (change)="onSubirFotoPortada($event)" hidden>
+    </label>
+    <button *ngIf="fotosGaleria.length && fotoSeleccionadaIdx !== null"
+            type="button"
+            class="pill-action"
+            (click)="asignarSeleccionadaAPortada()">
+      Poner foto elegida en portada
+    </button>
+  </div>
+
+  <div class="hero__body" (click)="$event.stopPropagation()">
+    <span class="hero__year">{{ anyo || '2026' }}</span>
+    <input class="inline-h1" type="text" [(ngModel)]="destino" (ngModelChange)="onCambiarDestino()" placeholder="Destino (ej. Isla Tabarca)">
+    <div class="inline-row">
+      <input class="inline-input" type="text" [(ngModel)]="provincia" placeholder="Provincia (ej. Alacant)">
+      <input class="inline-input" type="text" [(ngModel)]="pais" placeholder="País (ej. España)">
+    </div>
+    <button type="button" class="hero__cta" (click)="detalle.scrollIntoView({ behavior: 'smooth', block: 'start' })">
+      {{ 'app.verDetalle' | translate }}
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- Hoja con la descripción y bloques -->
+<article class="sheet" #detalle>
+  <div class="sheet__grab" aria-hidden="true"></div>
+
+  <div class="dates-editor">
+    <label>Fecha inicio: <input type="date" [(ngModel)]="fechaInicio" (ngModelChange)="onCambiarFechas()"></label>
+    <label>Fecha fin: <input type="date" [(ngModel)]="fechaFin" (ngModelChange)="onCambiarFechas()"></label>
+  </div>
+
+  <div class="bilingual-box">
+    <div *ngIf="idiomaActivo === 'es' || idiomaActivo === 'ambos'">
+      <label class="mini-lbl">Descripción principal (ES - opcional)</label>
+      <textarea class="sheet__lead-input" rows="3" [(ngModel)]="descPrincipalEs" placeholder="Escribe en castellano (opcional)..."></textarea>
+    </div>
+    <div *ngIf="idiomaActivo === 'val' || idiomaActivo === 'ambos'">
+      <label class="mini-lbl">Descripció principal (VAL - opcional)</label>
+      <textarea class="sheet__lead-input" rows="3" [(ngModel)]="descPrincipalVal" placeholder="Escriu en valencià (opcional)..."></textarea>
+    </div>
+  </div>
+
+  <dl class="facts">
+    <div class="fact">
+      <dt>{{ 'header.categoria' | translate }}</dt>
+      <dd><input class="fact-input" type="text" [(ngModel)]="categoria" placeholder="Playa / Montaña / Ciudad / Nieve"></dd>
+    </div>
+    <div class="fact">
+      <dt>{{ 'viaje.provincia' | translate }}</dt>
+      <dd><input class="fact-input" type="text" [(ngModel)]="provincia"></dd>
+    </div>
+    <div class="fact">
+      <dt>{{ 'viaje.pais' | translate }}</dt>
+      <dd><input class="fact-input" type="text" [(ngModel)]="pais"></dd>
+    </div>
+    <div class="fact">
+      <dt>{{ 'viaje.precio' | translate }}</dt>
+      <dd><input class="fact-input" type="number" [(ngModel)]="precio"> €</dd>
+    </div>
+    <div class="fact">
+      <dt>{{ 'viaje.estancia' | translate }}</dt>
+      <dd><input class="fact-input" type="text" [(ngModel)]="estancia" placeholder="Velero / Hotel / Casa..."></dd>
+    </div>
+    <div class="fact">
+      <dt>{{ 'viaje.tipoEstancia' | translate }}</dt>
+      <dd><input class="fact-input" type="text" [(ngModel)]="tipoEstancia" placeholder="Airbnb / Hotel..."></dd>
+    </div>
+  </dl>
+
+  <section class="block">
+    <h2 class="block__title">Transporte</h2>
+    <div class="chips">
+      <button type="button"
+              class="chip"
+              *ngFor="let t of transportesDisponibles"
+              [class.is-on]="transporte.includes(t)"
+              (click)="toggleArrayItem(transporte, t)">
+        {{ t }}
+      </button>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">{{ 'app.viajeros' | translate }}</h2>
+    <div class="chips">
+      <button type="button"
+              class="chip"
+              *ngFor="let p of personasDisponibles"
+              [class.is-on]="personas.includes(p)"
+              (click)="toggleArrayItem(personas, p)">
+        {{ p }}
+      </button>
+    </div>
+    <ul class="people" *ngIf="personas.length">
+      <li class="person" *ngFor="let persona of personas">
+        <img class="person__img" [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'" [alt]="persona" loading="lazy" (error)="ocultar($event)">
+        <span class="person__text">
+          <span class="person__name">{{ persona }}</span>
+          <span class="person__age" *ngIf="edadViajero(persona) as edad">{{ edad }} {{ 'app.edad' | translate }}</span>
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="block-add-bar">
+      <h2 class="block__title">Contenido del viaje</h2>
+      <div class="block-add-btns">
+        <button type="button" class="mini-btn" (click)="agregarBloque('titulo')">+ Título</button>
+        <button type="button" class="mini-btn" (click)="agregarBloque('parrafo')">+ Párrafo</button>
+        <button type="button" class="mini-btn" (click)="agregarBloque('cita')">+ Cita</button>
+        <button type="button" class="mini-btn" (click)="agregarBloque('fotos')">+ Bloque fotos</button>
+        <button type="button" class="mini-btn" (click)="agregarBloque('mapa')">+ Mapa</button>
+      </div>
+    </div>
+
+    <div class="bloque-editor" *ngFor="let b of bloquesEditables; let idx = index">
+      <div class="bloque-editor__head">
+        <span class="bloque-tag">{{ b.tipo | uppercase }} #{{ idx + 1 }}</span>
+        <button type="button" class="btn-remove" (click)="eliminarBloque(idx)">Eliminar</button>
+      </div>
+
+      <ng-container *ngIf="b.tipo === 'titulo' || b.tipo === 'parrafo'">
+        <div *ngIf="idiomaActivo === 'es' || idiomaActivo === 'ambos'">
+          <label class="mini-lbl">ES</label>
+          <textarea class="txt-edit" rows="2" [(ngModel)]="b.textoEs"></textarea>
+        </div>
+        <div *ngIf="idiomaActivo === 'val' || idiomaActivo === 'ambos'">
+          <label class="mini-lbl">VAL</label>
+          <textarea class="txt-edit" rows="2" [(ngModel)]="b.textoVal"></textarea>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="b.tipo === 'cita'">
+        <div *ngIf="idiomaActivo === 'es' || idiomaActivo === 'ambos'">
+          <label class="mini-lbl">Cita (ES)</label>
+          <input class="txt-edit" type="text" [(ngModel)]="b.textoEs">
+          <label class="mini-lbl">Autor (ES)</label>
+          <input class="txt-edit" type="text" [(ngModel)]="b.autorEs">
+        </div>
+        <div *ngIf="idiomaActivo === 'val' || idiomaActivo === 'ambos'">
+          <label class="mini-lbl">Cita (VAL)</label>
+          <input class="txt-edit" type="text" [(ngModel)]="b.textoVal">
+          <label class="mini-lbl">Autor (VAL)</label>
+          <input class="txt-edit" type="text" [(ngModel)]="b.autorVal">
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="b.tipo === 'fotos'">
+        <div class="photo-slots-grid">
+          <div class="photo-slot" *ngFor="let slot of b.slots; let sIdx = index">
+            <img *ngIf="slot.previewUrl; else slotFake" [src]="slot.previewUrl" [alt]="slot.src || 'Foto viaje'">
+            <ng-template #slotFake>
+              <div class="photo-slot__fake">
+                <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>
+                <span>Hueco foto {{ sIdx + 1 }}</span>
+                <small>Aquí irá tu foto</small>
+              </div>
+            </ng-template>
+            <div class="photo-slot__actions">
+              <label class="slot-btn">
+                Subir 1 foto
+                <input type="file" accept="image/*" (change)="onSubirFotoEnSlot($event, slot)" hidden>
+              </label>
+              <button *ngIf="fotoSeleccionadaIdx !== null" type="button" class="slot-btn" (click)="asignarSeleccionadaASlot(slot)">
+                Poner elegida
+              </button>
+              <button type="button" class="slot-btn slot-btn--danger" (click)="b.slots.splice(sIdx, 1)">Quitar</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="mini-btn mt-2" (click)="agregarHuecoFotoBloque(b)">+ Añadir hueco de foto</button>
+      </ng-container>
+
+      <ng-container *ngIf="b.tipo === 'mapa'">
+        <label class="mini-lbl">URL embed de Google Maps</label>
+        <input class="txt-edit" type="text" [(ngModel)]="mapa" placeholder="https://www.google.com/maps/embed?pb=...">
+      </ng-container>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Fotos extra</h2>
+    <div class="photo-slots-grid">
+      <div class="photo-slot" *ngFor="let slot of fotosExtraSlots; let eIdx = index">
+        <img *ngIf="slot.previewUrl; else extraFake" [src]="slot.previewUrl" [alt]="slot.src || 'Foto extra'">
+        <ng-template #extraFake>
+          <div class="photo-slot__fake">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>
+            <span>Extra {{ eIdx + 1 }}</span>
+            <small>Foto pendiente</small>
+          </div>
+        </ng-template>
+        <div class="photo-slot__actions">
+          <label class="slot-btn">
+            Subir 1 foto
+            <input type="file" accept="image/*" (change)="onSubirFotoEnSlot($event, slot)" hidden>
+          </label>
+          <button *ngIf="fotoSeleccionadaIdx !== null" type="button" class="slot-btn" (click)="asignarSeleccionadaASlot(slot)">
+            Poner elegida
+          </button>
+          <button type="button" class="slot-btn slot-btn--danger" (click)="fotosExtraSlots.splice(eIdx, 1)">Quitar</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="mini-btn mt-2" (click)="agregarHuecoExtra()">+ Añadir hueco foto extra</button>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">{{ 'app.infoInteres' | translate }}</h2>
+    <input class="txt-edit" type="text" [(ngModel)]="infoInteresTexto" placeholder="Una o varias URLs separadas por coma">
+  </section>
+</article>

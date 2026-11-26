@@ -3,6 +3,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ViajesService } from '../../services/viajes.service';
 import { AutenticationService } from 'src/app/services/autentication.service';
+import { Router } from '@angular/router';
 
 /** Un año con su portada y los destinos que se visitaron. */
 export interface AnyoConDestinos {
@@ -33,7 +34,15 @@ export class ViajesComponent {
     )
   );
 
-  constructor(public servicioViajes: ViajesService, public authenticationService: AutenticationService) {}
+  constructor(
+    public servicioViajes: ViajesService,
+    public authenticationService: AutenticationService,
+    private router: Router
+  ) {}
+
+  abrirNuevoViaje(): void {
+    this.router.navigate(['/nuevo-viaje']);
+  }
 
   ordenar(): void {
     this.orderDesc = !this.orderDesc;

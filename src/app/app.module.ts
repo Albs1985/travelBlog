@@ -45,6 +45,7 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { PaginacionComponent } from './shared/paginacion/paginacion.component';
 import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
+import { NuevoViajeComponent } from './pages/nuevo-viaje/nuevo-viaje.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
     PaginacionComponent,
     CumpleanosComponent,
     IaRinconComponent,
+    NuevoViajeComponent,
   ],
   imports: [
     BrowserModule,

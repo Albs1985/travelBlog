@@ -28,6 +28,7 @@ import { SimonComponent } from './pages/games/simon/simon.component';
 import { PuzzleComponent } from './pages/games/puzzle/puzzle.component';
 import { Conecta4Component } from './pages/games/conecta4/conecta4.component';
 import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
+import { NuevoViajeComponent } from './pages/nuevo-viaje/nuevo-viaje.component';
 
 const app_routes: Routes = [
   { path: 'principal', component : PrincipalComponent},
@@ -62,6 +63,7 @@ const app_routes: Routes = [
   { path: 'mapa', redirectTo : 'viajes', pathMatch : 'full'},
   { path: 'cumpleanyos', redirectTo : 'familia', pathMatch : 'full'},
   { path: 'ia', component: IaRinconComponent },
+  { path: 'nuevo-viaje', component: NuevoViajeComponent },
   { path: '**', pathMatch: 'full', redirectTo : 'principal'},
 ];
 

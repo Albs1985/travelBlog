@@ -68,3 +68,36 @@
 
 /* Mapa al final del listado */
 .map-section { margin-top: var(--space-7); }
+
+
+.add-trip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--terra-600);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform .18s ease, background .18s ease;
+}
+
+.add-trip-btn:hover { background: var(--terra-700, var(--terra-600)); }
+.add-trip-btn:active { transform: scale(.96); }
+
+.add-trip-btn__label { display: none; font: 600 .9rem/1 var(--font-body); white-space: nowrap; }
+
+@media (min-width: 768px) {
+  .add-trip-btn {
+    width: auto;
+    height: 40px;
+    padding: 0 1rem;
+  }
+  .add-trip-btn__label { display: inline; }
+}
