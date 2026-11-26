@@ -12,8 +12,8 @@ import { FotoViaje } from 'src/app/interfaces/viaje.interface';
 })
 export class GaleriaComponent {
   p = 1; // Página inicial
-  pageSize = 50; // Elementos por página
-  maxSizeDisplay = 50;
+  pageSize = 25;
+  maxSizeDisplay = 10;
   /** Posición (dentro de todas las fotos) de la foto abierta en el visor; null = cerrado */
   fotoAbierta: number | null = null;
 

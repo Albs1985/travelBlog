@@ -16,8 +16,8 @@
       ],
       "info":
       {
-          "es": "Hora de naciemiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00",
-          "val": "Hora de naciemiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00"
+          "es": "Hora de nacimiento: 11:30. LLegada al Hospital: 23:00. Bajada al paritorio: 06:00",
+          "val": "Hora de naixement: 11:30. Arribada l'hospital: 23:00. Baixada al paritori: 06:00"
       },
       "fotoPerfil": "assets/images/perfiles/fotoPerfilMarina.jpg"
   },
@@ -37,8 +37,8 @@
       ],
       "info":
       {
-          "es": "Hora de naciemiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00",
-          "val": "Hora de naciemiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00"
+          "es": "Hora de nacimiento: 08:30. LLegada al Hospital: 03:30. Bajada al paritorio: 05:00",
+          "val": "Hora de naixement: 08:30. Arribada l'hospital: 03:30. Baixada al paritori: 05:00"
       },
       "fotoPerfil": "assets/images/perfiles/fotoPerfilMateu.jpg"
   },
