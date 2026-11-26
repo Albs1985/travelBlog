@@ -4,11 +4,11 @@
       <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
     </a>
     <div class="editor-banner__info">
-      <h1 class="editor-banner__title">Nuevo viaje</h1>
+      <h1 class="editor-banner__title">{{ modoEdicion ? 'Editar viaje' : 'Nuevo viaje' }}</h1>
       <span class="editor-banner__file">Archivo: <code>{{ nombreArchivoJson }}</code></span>
     </div>
     <button type="button" class="btn-save" [disabled]="guardando" (click)="guardarEnGitHub()">
-      {{ guardando ? 'Subiendo...' : 'Publicar en GitHub' }}
+      {{ guardando ? 'Subiendo...' : (modoEdicion ? 'Guardar cambios' : 'Publicar en GitHub') }}
     </button>
   </div>
 

@@ -22,7 +22,7 @@ interface EntradaTreeGitHub {
   mode: '100644';
   type: 'blob';
   content?: string;
-  sha?: string;
+  sha?: string | null
 }
 
 @Injectable({ providedIn: 'root' })
@@ -357,6 +357,405 @@ export class GithubViajesService {
                               `${this.apiBase}/git/commits`,
                               {
                                 message: `Añadir viaje ${nombreArchivo}, actualizar index.json y enlazar siguiente`,
+                                tree: nuevoTree.sha,
+                                parents: [ultimoCommitSha],
+                              },
+                              { headers: this.headers() }
+                            )
+                          ),
+                          switchMap((nuevoCommit) =>
+                            this.http
+                              .patch(
+                                refUrl,
+                                {
+                                  sha: nuevoCommit.sha,
+                                  force: false,
+                                },
+                                { headers: this.headers() }
+                              )
+                              .pipe(map(() => void 0))
+                          )
+                        );
+                    })
+                  );
+                })
+              );
+            })
+          );
+      })
+    );
+  }
+
+
+  /**
+   * Elimina un viaje en una única transacción atómica sobre `this.branch`:
+   * 1. Borra `src/assets/data/viajes/{archivo}.json` y `docs/assets/data/viajes/{archivo}.json`.
+   * 2. Reenlaza `anterior.siguiente` y `siguiente.anterior` si existen.
+   * 3. Quita el viaje de `index.json` (`src` y `docs`) y, si el año se queda sin viajes, quita el año de `anyos`.
+   * 4. Borra las imágenes propias del viaje (portada, `fotos` y `fotosExtra`) en `src/` y `docs/`.
+   */
+  eliminarViaje(viaje: Viaje): Observable<void> {
+    if (!this.auth.obtenerTokenGithub()) {
+      return throwError(() => new Error('No hay token de GitHub configurado.'));
+    }
+
+    const refUrl = `${this.apiBase}/git/refs/heads/${encodeURIComponent(this.branch)}`;
+
+    return this.http.get<any>(refUrl, { headers: this.headers() }).pipe(
+      switchMap((refData) => {
+        const ultimoCommitSha: string = refData?.object?.sha;
+        if (!ultimoCommitSha) {
+          return throwError(() => new Error(`No se pudo obtener el SHA del último commit en ${this.branch}.`));
+        }
+
+        return this.http
+          .get<any>(`${this.apiBase}/git/commits/${ultimoCommitSha}`, { headers: this.headers() })
+          .pipe(
+            switchMap((commitData) => {
+              const baseTreeSha: string = commitData?.tree?.sha;
+              if (!baseTreeSha) {
+                return throwError(() => new Error('No se pudo obtener el árbol base del commit.'));
+              }
+
+              const rutasIndice = ['src/assets/data/index.json', 'docs/assets/data/index.json'];
+
+              return forkJoin(
+                rutasIndice.map((ruta) => this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato }))))
+              ).pipe(
+                switchMap((indicesLeidos) => {
+                  const indiceBase: IndiceViajes | undefined = indicesLeidos.find((i) => i.dato)?.dato
+                    ? JSON.parse(indicesLeidos.find((i) => i.dato)!.dato!.contenido)
+                    : undefined;
+
+                  const listaViajes = indiceBase?.viajes ?? [];
+                  const idxActual = listaViajes.findIndex(
+                    (v) => v.id === viaje.id || v.archivo === viaje.archivo
+                  );
+
+                  const idAnterior =
+                    viaje.anterior || (idxActual > 0 ? listaViajes[idxActual - 1]?.id : '');
+                  const idSiguiente =
+                    viaje.siguiente ||
+                    (idxActual >= 0 && idxActual < listaViajes.length - 1
+                      ? listaViajes[idxActual + 1]?.id
+                      : '');
+
+                  const resumenAnterior = listaViajes.find((v) => v.id === idAnterior);
+                  const resumenSiguiente = listaViajes.find((v) => v.id === idSiguiente);
+
+                  const rutasVecinos: string[] = [];
+                  if (resumenAnterior?.archivo) {
+                    rutasVecinos.push(
+                      `src/assets/data/viajes/${resumenAnterior.archivo}.json`,
+                      `docs/assets/data/viajes/${resumenAnterior.archivo}.json`
+                    );
+                  }
+                  if (resumenSiguiente?.archivo) {
+                    rutasVecinos.push(
+                      `src/assets/data/viajes/${resumenSiguiente.archivo}.json`,
+                      `docs/assets/data/viajes/${resumenSiguiente.archivo}.json`
+                    );
+                  }
+
+                  const lecturasVecinos$ = rutasVecinos.length
+                    ? forkJoin(
+                        rutasVecinos.map((ruta) =>
+                          this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato })))
+                        )
+                      )
+                    : of([] as Array<{ ruta: string; dato: { contenido: string; sha: string } | undefined }>);
+
+                  return lecturasVecinos$.pipe(
+                    switchMap((vecinosLeidos) => {
+                      const entradasTree: Array<{
+                        path: string;
+                        mode: '100644';
+                        type: 'blob';
+                        content?: string;
+                        sha?: string | null;
+                      }> = [];
+
+                      // 1. Reenlazar anterior y siguiente en sus JSON individuales
+                      for (const item of vecinosLeidos) {
+                        if (!item.dato) continue;
+                        const obj: Viaje = JSON.parse(item.dato.contenido);
+                        if (resumenAnterior && obj.id === resumenAnterior.id) {
+                          obj.siguiente = idSiguiente || '';
+                          entradasTree.push({
+                            path: item.ruta,
+                            mode: '100644',
+                            type: 'blob',
+                            content: JSON.stringify(obj, null, 2),
+                          });
+                        } else if (resumenSiguiente && obj.id === resumenSiguiente.id) {
+                          obj.anterior = idAnterior || '';
+                          entradasTree.push({
+                            path: item.ruta,
+                            mode: '100644',
+                            type: 'blob',
+                            content: JSON.stringify(obj, null, 2),
+                          });
+                        }
+                      }
+
+                      // 2. Actualizar index.json en src y docs
+                      for (const ind of indicesLeidos) {
+                        if (!ind.dato) continue;
+                        const indObj: IndiceViajes = JSON.parse(ind.dato.contenido);
+                        const viajesFiltrados = (indObj.viajes ?? [])
+                          .filter((v) => v.id !== viaje.id && v.archivo !== viaje.archivo)
+                          .map((v) => {
+                            if (idAnterior && v.id === idAnterior) {
+                              return { ...v, siguiente: idSiguiente || '' };
+                            }
+                            if (idSiguiente && v.id === idSiguiente) {
+                              return { ...v, anterior: idAnterior || '' };
+                            }
+                            return v;
+                          });
+
+                        const sigueHabiendoViajesDelAnyo = viajesFiltrados.some(
+                          (v) => Number(v.anyo) === Number(viaje.anyo)
+                        );
+                        const anyosFiltrados = sigueHabiendoViajesDelAnyo
+                          ? indObj.anyos ?? []
+                          : (indObj.anyos ?? []).filter((a) => Number(a.anyo) !== Number(viaje.anyo));
+
+                        entradasTree.push({
+                          path: ind.ruta,
+                          mode: '100644',
+                          type: 'blob',
+                          content: JSON.stringify({ anyos: anyosFiltrados, viajes: viajesFiltrados }, null, 2),
+                        });
+                      }
+
+                      // 3. Eliminar JSON del viaje en src y docs
+                      const archivoViaje = viaje.archivo || viaje.id;
+                      entradasTree.push(
+                        {
+                          path: `src/assets/data/viajes/${archivoViaje}.json`,
+                          mode: '100644',
+                          type: 'blob',
+                          sha: null,
+                        },
+                        {
+                          path: `docs/assets/data/viajes/${archivoViaje}.json`,
+                          mode: '100644',
+                          type: 'blob',
+                          sha: null,
+                        }
+                      );
+
+                      // 4. Eliminar imágenes del viaje en src y docs
+                      const rutasImagenes = Array.from(
+                        new Set(
+                          [
+                            viaje.portada,
+                            ...(viaje.fotos ?? []),
+                            ...(viaje.fotosExtra ?? []),
+                          ].filter((r): r is string => !!r && r.trim() !== '')
+                        )
+                      );
+
+                      for (const imgRel of rutasImagenes) {
+                        entradasTree.push(
+                          {
+                            path: `src/assets/images/${imgRel}`,
+                            mode: '100644',
+                            type: 'blob',
+                            sha: null,
+                          },
+                          {
+                            path: `docs/assets/images/${imgRel}`,
+                            mode: '100644',
+                            type: 'blob',
+                            sha: null,
+                          }
+                        );
+                      }
+
+                      return this.http
+                        .post<{ sha: string }>(
+                          `${this.apiBase}/git/trees`,
+                          {
+                            base_tree: baseTreeSha,
+                            tree: entradasTree,
+                          },
+                          { headers: this.headers() }
+                        )
+                        .pipe(
+                          switchMap((nuevoTree) =>
+                            this.http.post<{ sha: string }>(
+                              `${this.apiBase}/git/commits`,
+                              {
+                                message: `Eliminar viaje ${archivoViaje}.json y actualizar enlaces/índice`,
+                                tree: nuevoTree.sha,
+                                parents: [ultimoCommitSha],
+                              },
+                              { headers: this.headers() }
+                            )
+                          ),
+                          switchMap((nuevoCommit) =>
+                            this.http
+                              .patch(
+                                refUrl,
+                                {
+                                  sha: nuevoCommit.sha,
+                                  force: false,
+                                },
+                                { headers: this.headers() }
+                              )
+                              .pipe(map(() => void 0))
+                          )
+                        );
+                    })
+                  );
+                })
+              );
+            })
+          );
+      })
+    );
+  }
+
+  guardarEdicionViaje(
+    viajeEditado: Viaje,
+    fotos: FotoParaSubir[],
+    onProgreso?: (texto: string) => void
+  ): Observable<void> {
+    if (!this.auth.obtenerTokenGithub()) {
+      return throwError(() => new Error('No hay token de GitHub configurado.'));
+    }
+
+    const nombreArchivo = `${viajeEditado.archivo}.json`;
+    const jsonEditado = JSON.stringify(viajeEditado, null, 2);
+    const refUrl = `${this.apiBase}/git/refs/heads/${encodeURIComponent(this.branch)}`;
+
+    onProgreso?.(`Obteniendo estado actual de la rama ${this.branch}...`);
+
+    return this.http.get<any>(refUrl, { headers: this.headers() }).pipe(
+      switchMap((refData) => {
+        const ultimoCommitSha: string = refData?.object?.sha;
+        if (!ultimoCommitSha) {
+          return throwError(() => new Error(`No se pudo obtener el SHA del último commit en ${this.branch}.`));
+        }
+
+        return this.http
+          .get<any>(`${this.apiBase}/git/commits/${ultimoCommitSha}`, { headers: this.headers() })
+          .pipe(
+            switchMap((commitData) => {
+              const baseTreeSha: string = commitData?.tree?.sha;
+              if (!baseTreeSha) {
+                return throwError(() => new Error('No se pudo obtener el árbol base del commit.'));
+              }
+
+              const rutasIndice = ['src/assets/data/index.json', 'docs/assets/data/index.json'];
+
+              return forkJoin(
+                rutasIndice.map((ruta) => this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato }))))
+              ).pipe(
+                switchMap((indicesLeidos) => {
+                  const entradasTree: EntradaTreeGitHub[] = [
+                    {
+                      path: `src/assets/data/viajes/${nombreArchivo}`,
+                      mode: '100644',
+                      type: 'blob',
+                      content: jsonEditado,
+                    },
+                    {
+                      path: `docs/assets/data/viajes/${nombreArchivo}`,
+                      mode: '100644',
+                      type: 'blob',
+                      content: jsonEditado,
+                    },
+                  ];
+
+                  const resumenEditado = this.construirResumenViaje(viajeEditado);
+
+                  for (const ind of indicesLeidos) {
+                    if (ind.dato) {
+                      const indiceObj: IndiceViajes = JSON.parse(ind.dato.contenido);
+                      const anyos = [...(indiceObj.anyos ?? [])];
+                      if (!anyos.some((a) => Number(a.anyo) === Number(viajeEditado.anyo))) {
+                        anyos.push({
+                          anyo: Number(viajeEditado.anyo),
+                          portada: `${viajeEditado.anyo}/Portada${viajeEditado.anyo}.jpg`,
+                        });
+                        anyos.sort((a, b) => Number(b.anyo) - Number(a.anyo));
+                      }
+
+                      const viajes = [...(indiceObj.viajes ?? [])];
+                      const idx = viajes.findIndex(
+                        (v) => v.id === viajeEditado.id || v.archivo === viajeEditado.archivo
+                      );
+                      if (idx >= 0) {
+                        viajes[idx] = resumenEditado;
+                      }
+
+                      entradasTree.push({
+                        path: ind.ruta,
+                        mode: '100644',
+                        type: 'blob',
+                        content: JSON.stringify({ anyos, viajes }, null, 2),
+                      });
+                    }
+                  }
+
+                  onProgreso?.(`Comprimiendo ${fotos.length} foto(s) nueva(s)...`);
+
+                  const tareasFotos$ = fotos.map((foto, idx) =>
+                    from(this.comprimirImagenABase64(foto.file)).pipe(
+                      switchMap((base64Comprimido) => {
+                        onProgreso?.(
+                          `Subiendo blob de foto ${idx + 1}/${fotos.length}: ${foto.rutaRelativa}...`
+                        );
+                        return this.crearBlobBase64(base64Comprimido, 'base64').pipe(
+                          map((blobSha) => ({ rutaRelativa: foto.rutaRelativa, blobSha }))
+                        );
+                      })
+                    )
+                  );
+
+                  const blobsFotos$ = tareasFotos$.length
+                    ? forkJoin(tareasFotos$)
+                    : of([] as Array<{ rutaRelativa: string; blobSha: string }>);
+
+                  return blobsFotos$.pipe(
+                    switchMap((blobsSubidos) => {
+                      for (const b of blobsSubidos) {
+                        entradasTree.push(
+                          {
+                            path: `src/assets/images/${b.rutaRelativa}`,
+                            mode: '100644',
+                            type: 'blob',
+                            sha: b.blobSha,
+                          },
+                          {
+                            path: `docs/assets/images/${b.rutaRelativa}`,
+                            mode: '100644',
+                            type: 'blob',
+                            sha: b.blobSha,
+                          }
+                        );
+                      }
+
+                      onProgreso?.(`Creando commit de edición en ${this.branch}...`);
+
+                      return this.http
+                        .post<{ sha: string }>(
+                          `${this.apiBase}/git/trees`,
+                          {
+                            base_tree: baseTreeSha,
+                            tree: entradasTree,
+                          },
+                          { headers: this.headers() }
+                        )
+                        .pipe(
+                          switchMap((nuevoTree) =>
+                            this.http.post<{ sha: string }>(
+                              `${this.apiBase}/git/commits`,
+                              {
+                                message: `Editar viaje ${nombreArchivo}`,
                                 tree: nuevoTree.sha,
                                 parents: [ultimoCommitSha],
                               },

@@ -4,6 +4,7 @@ import { ViajesService } from '../../services/viajes.service';
 import { GithubViajesService, FotoParaSubir } from '../../services/github-viajes.service';
 import { CommonService } from '../../services/common.service';
 import { Bloque, Texto, Viaje, ViajeResumen } from '../../interfaces/viaje.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface FotoGaleriaItem {
   file: File;
@@ -57,6 +58,12 @@ export class NuevoViajeComponent implements OnInit {
   descPrincipalVal = '';
   mapa = '';
   infoInteresTexto = '';
+
+  modoEdicion = false;
+  private idViajeOriginal = '';
+  private archivoOriginal = '';
+  private anteriorOriginal = '';
+  private siguienteOriginal = '';
 
   /** Portada del viaje: `{YYYY}/{destino}Principal.jpg` */
   portada = '';
@@ -131,6 +138,8 @@ export class NuevoViajeComponent implements OnInit {
   mensajeError = '';
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private viajesService: ViajesService,
     private githubViajesService: GithubViajesService,
     private commonService: CommonService
@@ -147,6 +156,20 @@ export class NuevoViajeComponent implements OnInit {
         this.ultimoViajeResumen = viajes[viajes.length - 1];
       }
     });
+
+    const estadoNavigation = this.router.getCurrentNavigation()?.extras?.state as { viaje?: Viaje } | undefined;
+    const viajeEstado = estadoNavigation?.viaje ?? (history.state?.viaje as Viaje | undefined);
+    const paramEditar = this.route.snapshot.queryParamMap.get('editar');
+
+    if (viajeEstado) {
+      this.cargarViajeExistente(viajeEstado);
+    } else if (paramEditar) {
+      this.viajesService.viaje(paramEditar).pipe(take(1)).subscribe((viajeCargado) => {
+        if (viajeCargado) {
+          this.cargarViajeExistente(viajeCargado);
+        }
+      });
+    }
 
     this.onCambiarFechas();
   }
@@ -550,9 +573,15 @@ export class NuevoViajeComponent implements OnInit {
 
     const listaFotos = Array.from(new Set([...fotosEnBloques, ...fotosExtra]));
 
+    const idFinal = this.modoEdicion && this.idViajeOriginal ? this.idViajeOriginal : this.idViaje;
+    const archivoFinal =
+      this.modoEdicion && this.archivoOriginal ? this.archivoOriginal : this.nombreArchivoBase;
+    const anteriorFinal = this.modoEdicion ? this.anteriorOriginal : (this.ultimoViajeResumen?.id ?? '');
+    const siguienteFinal = this.modoEdicion ? this.siguienteOriginal : '';
+
     const viaje: Viaje = {
-      id: this.idViaje,
-      archivo: this.nombreArchivoBase,
+      id: idFinal,
+      archivo: archivoFinal,
       anyo: Number(this.anyo),
       fechaInicio: this.fechaInicio,
       fechaFin: this.fechaFin || this.fechaInicio,
@@ -572,8 +601,8 @@ export class NuevoViajeComponent implements OnInit {
       portada: rutaPortadaFinal,
       fotos: listaFotos,
       numFotos: listaFotos.length,
-      anterior: this.ultimoViajeResumen?.id ?? '',
-      siguiente: '',
+      anterior: anteriorFinal,
+      siguiente: siguienteFinal,
       mapa: this.mapa.trim(),
       infoInteres: this.infoInteresTexto
         .split(',')
@@ -606,19 +635,148 @@ export class NuevoViajeComponent implements OnInit {
     this.guardando = true;
     const { viaje, fotosParaSubir } = this.construirViajeJson();
 
-    this.githubViajesService
-      .publicarViaje(viaje, this.ultimoViajeResumen, fotosParaSubir, (estado) => {
-        this.mensajeEstado = estado;
-      })
-      .subscribe({
-        next: () => {
-          this.guardando = false;
-          this.mensajeEstado = `Viaje "${viaje.destino}" publicado como ${this.nombreArchivoBase}.json y viaje anterior actualizado.`;
-        },
-        error: (err) => {
-          this.guardando = false;
-          this.mensajeError = err?.message || 'Error al publicar el viaje en GitHub.';
-        },
+    const peticion$ = this.modoEdicion
+      ? this.githubViajesService.guardarEdicionViaje(viaje, fotosParaSubir, (estado) => {
+          this.mensajeEstado = estado;
+        })
+      : this.githubViajesService.publicarViaje(viaje, this.ultimoViajeResumen, fotosParaSubir, (estado) => {
+          this.mensajeEstado = estado;
+        });
+
+    peticion$.subscribe({
+      next: () => {
+        this.guardando = false;
+        this.mensajeEstado = this.modoEdicion
+          ? `Cambios del viaje "${viaje.destino}" guardados en ${viaje.archivo}.json.`
+          : `Viaje "${viaje.destino}" publicado como ${this.nombreArchivoBase}.json y viaje anterior actualizado.`;
+      },
+      error: (err) => {
+        this.guardando = false;
+        this.mensajeError = err?.message || 'Error al guardar el viaje en GitHub.';
+      },
+    });
+  }
+
+  private cargarViajeExistente(viaje: Viaje): void {
+    this.modoEdicion = true;
+    this.idViajeOriginal = viaje.id;
+    this.archivoOriginal = viaje.archivo;
+    this.anteriorOriginal = viaje.anterior ?? '';
+    this.siguienteOriginal = viaje.siguiente ?? '';
+
+    this.fechaInicio = viaje.fechaInicio || this.fechaInicio;
+    this.fechaFin = viaje.fechaFin || this.fechaInicio;
+    this.anyo = Number(viaje.anyo) || this.anyo;
+    this.diaInicio = viaje.diaInicio || this.diaInicio;
+    this.mesInicio = viaje.mesInicio || this.mesInicio;
+    this.diaFin = viaje.diaFin || this.diaFin;
+    this.mesFin = viaje.mesFin || this.mesFin;
+
+    this.destino = viaje.destino || '';
+    this.provincia = viaje.provincia || '';
+    this.pais = viaje.pais || 'España';
+    this.precio = Number(viaje.precio) || 0;
+    this.mapa = viaje.mapa || '';
+    this.infoInteresTexto = (viaje.infoInteres ?? []).join(', ');
+
+    this.descPrincipalEs = viaje.descPrincipal?.['es'] ?? '';
+    this.descPrincipalVal = viaje.descPrincipal?.['val'] ?? '';
+
+    // Selectores con soporte a opción personalizada
+    if (this.categoriasDisponibles.includes(viaje.categoria)) {
+      this.categoriaSeleccion = viaje.categoria;
+      this.categoriaPersonalizada = '';
+    } else if (viaje.categoria) {
+      this.categoriaSeleccion = this.OPCION_PERSONALIZADA;
+      this.categoriaPersonalizada = viaje.categoria;
+    }
+
+    if (this.estanciasDisponibles.includes(viaje.estancia)) {
+      this.estanciaSeleccion = viaje.estancia;
+      this.estanciaPersonalizada = '';
+    } else if (viaje.estancia) {
+      this.estanciaSeleccion = this.OPCION_PERSONALIZADA;
+      this.estanciaPersonalizada = viaje.estancia;
+    }
+
+    if (this.tiposEstanciaDisponibles.includes(viaje.tipoEstancia)) {
+      this.tipoEstanciaSeleccion = viaje.tipoEstancia;
+      this.tipoEstanciaPersonalizada = '';
+    } else if (viaje.tipoEstancia) {
+      this.tipoEstanciaSeleccion = this.OPCION_PERSONALIZADA;
+      this.tipoEstanciaPersonalizada = viaje.tipoEstancia;
+    }
+
+    // Transporte y personas (asegurando que existan en los arrays disponibles)
+    this.transporte = [...(viaje.transporte ?? [])];
+    for (const t of this.transporte) {
+      if (!this.transportesDisponibles.includes(t)) {
+        this.transportesDisponibles.push(t);
+      }
+    }
+
+    this.personas = [...(viaje.personas ?? [])];
+    for (const p of this.personas) {
+      if (!this.personasDisponibles.includes(p)) {
+        this.personasDisponibles.push(p);
+      }
+    }
+
+    // Portada existente
+    this.portada = viaje.portada || '';
+    this.portadaPreviewUrl = viaje.portada ? `assets/images/${viaje.portada}` : '';
+    this.portadaFile = undefined;
+
+    // Bloques existentes
+    if (viaje.bloques?.length) {
+      this.bloquesEditables = viaje.bloques.map((b): BloqueEditable => {
+        if (b.tipo === 'fotos') {
+          return {
+            tipo: 'fotos',
+            textoEs: '',
+            textoVal: '',
+            autorEs: '',
+            autorVal: '',
+            slots: (b.fotos ?? []).map((f) => ({
+              src: f.src,
+              previewUrl: f.src ? `assets/images/${f.src}` : '',
+            })),
+          };
+        }
+
+        const bloqueConTexto = b as Extract<typeof b, { texto?: Record<string, string> }>;
+        const bloqueConAutor = b as Extract<typeof b, { autor?: Record<string, string> }>;
+
+        let tipoEditable: BloqueEditable['tipo'] = 'parrafo';
+        if (b.tipo === 'titulo' || b.tipo === 'subtitulo') {
+          tipoEditable = 'titulo';
+        } else if (b.tipo === 'cita') {
+          tipoEditable = 'cita';
+        } else if (b.tipo === 'mapa') {
+          tipoEditable = 'mapa';
+        } else if (b.tipo === 'parrafo' || b.tipo === 'nota' || b.tipo === 'lista') {
+          tipoEditable = 'parrafo';
+        }
+
+        return {
+          tipo: tipoEditable,
+          textoEs: bloqueConTexto.texto?.['es'] ?? '',
+          textoVal: bloqueConTexto.texto?.['val'] ?? '',
+          autorEs: b.tipo === 'cita' ? (bloqueConAutor.autor?.['es'] ?? '') : '',
+          autorVal: b.tipo === 'cita' ? (bloqueConAutor.autor?.['val'] ?? '') : '',
+          slots: [],
+        };
       });
+    }
+
+    // Fotos extra existentes
+    this.fotosExtraSlots = (viaje.fotosExtra ?? []).length
+      ? (viaje.fotosExtra ?? []).map((src) => ({
+          src,
+          previewUrl: src ? `assets/images/${src}` : '',
+        }))
+      : [{ src: '', previewUrl: '' }];
+
+    this.evaluarAnyoNuevo();
   }
 }
