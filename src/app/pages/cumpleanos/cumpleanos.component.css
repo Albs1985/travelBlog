@@ -1,696 +1,118 @@
-.cumple-wrapper {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 20px 16px;
-  box-sizing: border-box;
-}
+:host { display: block; }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+.cumple__vista { max-width: 460px; margin-bottom: var(--space-5); }
 
-.cumple-hero {
-  text-align: center;
-  padding: 20px 16px;
-  margin-bottom: 18px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-  box-shadow: 0 10px 28px rgba(245, 158, 11, 0.14);
-}
-
-.cumple-titulo {
-  margin: 0 0 6px;
-  font-size: clamp(1.35rem, 4vw, 2rem);
-  font-weight: 800;
-  color: #2c3e50;
-}
-
-.cumple-subtitulo {
-  margin: 0;
-  color: #5a4a42;
-  font-size: 0.92rem;
-}
-
-.barra-selector-vista {
-  display: flex;
-  justify-content: flex-end;
-  margin: 12px 0 16px;
-}
-
-.btn-cambiar-vista {
-  background: #ffffff;
-  color: #92400e;
-  border: 2px solid #fbbf24;
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-weight: 800;
-  font-size: 0.88rem;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.12);
-  transition: all 0.2s ease;
-}
-
-.btn-cambiar-vista:hover {
-  background: #fffbeb;
-  transform: translateY(-1px);
-}
-
-/* Aviso del día */
-.aviso-hoy-banner {
+/* ---------- Aviso de hoy ---------- */
+.today {
   position: relative;
-  margin: 14px 0 22px;
-  padding: 16px 20px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 55%, #fed7aa 100%);
-  border: 2px solid #f59e0b;
-  box-shadow: 0 12px 30px rgba(245, 158, 11, 0.25);
-}
-
-.aviso-hoy-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid rgba(120, 53, 15, 0.25);
-  background: #ffffff;
-  color: #78350f;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.aviso-hoy-contenido {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding: var(--space-5) var(--space-5) var(--space-5) var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--terra-600);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
 }
-
-.aviso-hoy-avatares {
-  display: flex;
-  gap: 10px;
+.today__close { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; background: rgba(255, 252, 247, .2); color: #fff; box-shadow: none; }
+.today__close:hover { background: rgba(255, 252, 247, .35); }
+.today__faces { display: flex; flex: none; }
+.today__face {
+  width: 72px; height: 72px; margin-right: -14px;
+  border: 3px solid var(--terra-600); border-radius: 50%; object-fit: cover; background: var(--sand-200);
 }
+.today__text { display: grid; gap: .35rem; min-width: 0; padding-left: var(--space-3); padding-right: var(--space-5); }
+.today__badge { justify-self: start; padding: .3rem .7rem; border-radius: var(--r-pill); background: rgba(255, 252, 247, .94); color: var(--ink); font: 700 .75rem/1 var(--font-body); }
+.today__names { color: #fff; font-size: 1.4rem; line-height: 1.15; }
 
-.aviso-hoy-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ffffff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+/* ---------- Pies de formulario ---------- */
+.photo-field { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border: 1.5px dashed var(--line-strong); border-radius: 14px; background: var(--sand-50); }
+.photo-field__frame { flex: none; width: 52px; height: 52px; overflow: hidden; border-radius: 50%; background: var(--sand-200); }
+.photo-field__img { width: 100%; height: 100%; object-fit: cover; }
+.photo-field__side { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.photo-field__file { max-width: 100%; font-size: .8rem; }
+.photo-field__path { font-size: .72rem; color: var(--ink-soft); word-break: break-all; }
+
+/* ---------- Calendario mensual ---------- */
+.months { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+
+.month {
+  display: none;                      /* en móvil se ve un mes cada vez */
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
 }
+.month.is-current { display: block; }
 
-.aviso-hoy-badge {
-  display: inline-block;
-  background: #d97706;
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 3px 10px;
-  border-radius: 999px;
-  letter-spacing: 0.5px;
-  margin-bottom: 4px;
-}
+.month__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin-bottom: var(--space-3); }
+.month__name { display: inline-flex; align-items: center; gap: .5rem; font-size: 1.35rem; }
+.month__count { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; height: 24px; padding: 0 .4rem; border-radius: var(--r-pill); background: var(--terra-600); color: #fff; font: 700 .75rem/1 var(--font-body); }
 
-.aviso-hoy-texto h3 {
-  margin: 0 0 4px;
-  color: #78350f;
-  font-size: 1.15rem;
-  font-weight: 800;
-}
+.month__weekdays, .month__days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.month__weekdays { margin-bottom: 4px; text-align: center; font: 700 .72rem/1 var(--font-body); color: var(--ink-soft); }
 
-.aviso-hoy-texto p {
-  margin: 0;
-  color: #451a03;
-  font-size: 0.88rem;
-}
-
-/* ========================================================
-   VISTA CALENDARIO MENSUAL (PC: todos los meses | MÓVIL: 1 mes)
-   ======================================================== */
-.cal-grid-meses {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 275px), 1fr));
-  gap: 16px;
-}
-
-.cal-mes-card {
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1.5px solid #e2e8f0;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+.day {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: var(--sand-50);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
-
-.cal-mes-card.tiene-cumples {
-  border-color: #fde68a;
-}
-
-.cal-mes-header {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border-bottom: 1.5px solid #fde68a;
-  padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.cal-mes-titulo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: 1;
-}
-
-.cal-mes-nombre {
-  font-weight: 800;
-  color: #78350f;
-  font-size: 1rem;
-}
-
-.cal-mes-badge {
-  background: #f59e0b;
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 999px;
-}
-
-.btn-flecha-mes {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1.5px solid #f59e0b;
-  background: #ffffff;
-  color: #92400e;
-  font-size: 1.25rem;
-  font-weight: 800;
-  line-height: 1;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.solo-movil {
-  display: none;
-}
-
-.cal-dias-semana {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  padding: 6px 8px 4px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: #64748b;
-  background: #f8fafc;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.cal-dias-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  padding: 8px;
-}
-
-.cal-dia-vacio {
-  min-height: 40px;
-}
-
-.cal-dia-celda {
-  min-height: 42px;
-  border-radius: 10px;
-  border: 1px solid #f1f5f9;
-  background: #ffffff;
-  padding: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cal-dia-celda.es-hoy {
-  border-color: #ef4444;
-  background: #fef2f2;
-}
-
-.cal-dia-celda.tiene-cumple {
-  background: #fffbeb;
-  border-color: #fbbf24;
-}
-
-.cal-dia-numero {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #475569;
-  line-height: 1;
-}
-
-.cal-dia-celda.es-hoy .cal-dia-numero {
-  color: #dc2626;
-  font-weight: 800;
-}
-
-.cal-avatares-dia {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 3px;
-  margin-top: 2px;
-}
-
-.cal-avatares-dia.varios {
-  gap: 4px;
-  padding: 1px 0;
-}
-
-.cal-avatar-btn {
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  display: inline-flex;
-  border-radius: 50%;
-}
-
-.cal-avatar-img {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1.5px solid #f59e0b;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.14);
-}
-
-.cal-avatares-dia.varios .cal-avatar-img {
-  width: 19px;
-  height: 19px;
-}
-
-.cal-mes-resumen {
-  padding: 8px 10px 12px;
-  border-top: 1px dashed #fde68a;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.cal-chip-cumple {
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  color: #78350f;
-  border-radius: 999px;
-  padding: 3px 9px;
-  font-size: 0.74rem;
-  cursor: pointer;
-}
-
-.cal-chip-cumple:hover {
-  background: #fef3c7;
-}
-
-/* MÓVIL: solo se muestra la card del mes activo con flechas izq/der */
-@media only screen and (max-width: 768px) {
-  .solo-movil {
-    display: inline-flex;
-  }
-
-  .cal-grid-meses {
-    grid-template-columns: 1fr;
-  }
-
-  .cal-mes-card {
-    display: none;
-  }
-
-  .cal-mes-card.activo-movil {
-    display: flex;
-  }
-
-  .cal-dia-celda {
-    min-height: 48px;
-  }
-
-  .cal-avatar-img {
-    width: 28px;
-    height: 28px;
-  }
-
-  .cal-avatares-dia.varios .cal-avatar-img {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-/* ========================================================
-   VISTA TARJETAS POR MES
-   ======================================================== */
-.calendario-meses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
-  gap: 18px;
-}
-
-.mes-tarjeta {
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.mes-tarjeta.mes-con-cumples {
-  border-color: #fde68a;
-}
-
-.mes-cabecera {
-  background: #f8fafc;
-  padding: 12px 16px;
-  border-bottom: 1px solid #e2e8f0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mes-tarjeta.mes-con-cumples .mes-cabecera {
-  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-  border-bottom-color: #fde68a;
-}
-
-.mes-nombre {
-  font-weight: 800;
-  color: #1e293b;
-  font-size: 1rem;
-}
-
-.mes-contador {
-  background: #f59e0b;
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-
-.mes-cuerpo {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-}
-
-.mes-vacio {
-  margin: auto 0;
-  text-align: center;
-  color: #94a3b8;
-  font-size: 0.85rem;
-  padding: 18px 0;
-}
-
-.cumple-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 10px;
-  border-radius: 14px;
-  background: #fffdf9;
-  border: 1px solid #f1e6d2;
-}
-
-.cumple-item.es-hoy {
-  background: #fef3c7;
-  border-color: #f59e0b;
-}
-
-.cumple-dia-sello {
-  width: 42px;
-  height: 46px;
-  border-radius: 10px;
-  background: #ffffff;
-  border: 1.5px solid #fcd34d;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  line-height: 1.05;
-}
-
-.dia-num {
-  font-size: 1rem;
-  font-weight: 800;
-  color: #b45309;
-}
-
-.dia-mes {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #78350f;
-}
-
-.cumple-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #f59e0b;
-  flex-shrink: 0;
-}
-
-.cumple-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.cumple-nombre-fila {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.cumple-nombre {
-  font-size: 0.92rem;
-  color: #0f172a;
-}
-
-.badge-hoy {
-  background: #dc2626;
-  color: #ffffff;
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 999px;
-}
-
-.badge-edad {
-  background: #fef3c7;
-  color: #92400e;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 999px;
-  border: 1px solid #fde68a;
-}
-
-.cumple-nota {
-  margin: 3px 0 0;
-  font-size: 0.78rem;
-  color: #475569;
-  line-height: 1.3;
-}
-
-.cumple-cuenta {
-  display: block;
-  margin-top: 2px;
-  font-size: 0.72rem;
-  color: #64748b;
-}
-
-.cumple-acciones {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-.btn-icono {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  font-size: 0.78rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-icono:hover {
-  background: #fffbeb;
-  border-color: #f59e0b;
-}
-
-.btn-icono.borrar:hover {
-  background: #fee2e2;
-  border-color: #fca5a5;
-}
-
-/* Modal CRUD */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(15, 23, 42, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modal-card {
-  background: #ffffff;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 460px;
-  padding: 20px 22px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-  border: 2px solid #fde68a;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.modal-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #1e293b;
-}
-
-.btn-close-x {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid #e2e8f0;
-  background: #f8fafc;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.modal-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.fila-dos {
-  display: flex;
-  gap: 10px;
-}
-
-.campo-grupo {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.campo-grupo label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #475569;
-}
-
-.campo-grupo input,
-.campo-grupo select,
-.campo-grupo textarea {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 10px;
-  font-size: 0.88rem;
-  font-family: inherit;
-}
-
-.modal-acciones {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.btn-primario {
-  background: #f59e0b;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  padding: 9px 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.btn-secundario {
-  background: #f1f5f9;
-  color: #475569;
-  border: none;
-  border-radius: 10px;
-  padding: 9px 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.btn-eliminar-modal {
-  margin-right: auto;
-  background: #fee2e2;
-  color: #b91c1c;
-  border: 1px solid #fca5a5;
-  border-radius: 10px;
-  padding: 9px 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-/* Botón volver inferior */
-.footer-back-wrapper {
-  margin-top: 36px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.btn-volver-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #d97706;
-  text-decoration: none;
-  font-weight: 700;
-  background: #ffffff;
-  padding: 10px 18px;
-  border-radius: 50px;
-  border: 2px solid #fde68a;
-}
-
-.iconoFlecha {
-  width: 18px;
-  height: 18px;
+.day--empty { background: transparent; }
+.day__num { position: absolute; top: 4px; left: 6px; z-index: 1; font: 600 .72rem/1 var(--font-body); color: var(--ink-soft); }
+.day--birthday { background: var(--terra-100); }
+.day--birthday .day__num { color: #fff; text-shadow: 0 1px 3px rgba(0, 0, 0, .5); }
+.day--today { box-shadow: inset 0 0 0 2px var(--terra-600); }
+.day--today .day__num { color: var(--terra-700); font-weight: 800; }
+.day--birthday.day--today .day__num { color: #fff; }
+
+.day__faces { position: absolute; inset: 0; display: flex; }
+.day__face { flex: 1; min-width: 0; padding: 0; border: 0; background: var(--sand-200); cursor: pointer; }
+.day__face img { width: 100%; height: 100%; object-fit: cover; }
+
+.month__list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+.month__list .chip { background: var(--sand-100); }
+
+/* ---------- Tarjetas por mes ---------- */
+.cards { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
+.mcard { padding: var(--space-4); border-radius: var(--r-lg); background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.mcard:not(.mcard--has) { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+.mcard__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-3); }
+.mcard__name { font-size: 1.25rem; }
+.mcard__empty { color: var(--ink-soft); font-size: .92rem; }
+
+.bday { display: grid; grid-template-columns: auto auto 1fr; gap: var(--space-3); align-items: center; padding: var(--space-3) 0; border-top: 1px solid var(--line); }
+.bday:first-of-type { border-top: 0; }
+.bday--today { background: var(--terra-100); margin-inline: calc(var(--space-2) * -1); padding-inline: var(--space-2); border-radius: var(--r-md); }
+.bday__stamp { display: grid; place-items: center; width: 52px; height: 56px; border-radius: 14px; background: var(--terra-600); color: #fff; line-height: 1; }
+.bday__day { font: 600 1.4rem/1 var(--font-display); }
+.bday__month { font: 600 .7rem/1 var(--font-body); }
+.bday__avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; background: var(--sand-200); }
+.bday__info { display: grid; gap: .2rem; min-width: 0; grid-column: 3; }
+.bday__line { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.bday__name { font-size: 1.05rem; }
+.bday__note { font-size: .9rem; color: var(--ink-soft); }
+.bday__count { color: var(--ink-soft); }
+.bday__actions { grid-column: 1 / -1; display: flex; gap: var(--space-2); justify-content: flex-end; }
+.bday__actions .round-btn { width: 40px; height: 40px; }
+
+/* ---------- Pantallas grandes ---------- */
+@media (min-width: 768px) {
+  .month { display: block; }                           /* se ven los 12 */
+  .month__arrow { display: none; }
+  .month__head { justify-content: flex-start; }
+  .months { grid-template-columns: repeat(2, 1fr); }
+  .cards { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  .bday { grid-template-columns: auto auto 1fr auto; }
+  .bday__actions { grid-column: 4; }
+}
+@media (min-width: 1024px) {
+  .months { grid-template-columns: repeat(3, 1fr); }
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .today { flex-direction: column; align-items: flex-start; }
+  .today__text { padding-left: 0; }
 }

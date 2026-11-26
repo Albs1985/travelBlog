@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ViajesService } from '../../services/viajes.service';
@@ -8,6 +8,7 @@ import { Viaje } from '../../interfaces/viaje.interface';
 import { VistaBloques, prepararBloques } from '../../services/bloques.util';
 import { iconoAlojamiento, iconoCategoria, iconoTransporte } from '../../services/viajes.catalogo';
 import { CommonService } from 'src/app/services/common.service';
+import { GithubViajesService } from 'src/app/services/github-viajes.service';
 
 export interface VistaViaje extends VistaBloques {
   viaje: Viaje;
@@ -26,6 +27,9 @@ export class ViajeComponent {
   /** Posición de la foto abierta en el visor; null = cerrado. */
   fotoAbierta: number | null = null;
 
+  eliminando = false;
+  mensajeAccion = '';
+
   /** null mientras carga; { viaje: undefined } no se usa: si no existe, `vista.viaje` es undefined. */
   readonly vista$: Observable<VistaViaje | { viaje: undefined }> = this.route.paramMap.pipe(
     map((p) => p.get('ciudad') ?? ''),
@@ -35,9 +39,11 @@ export class ViajeComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public servicioViajes: ViajesService,
     public authenticationService: AutenticationService,
-    public commonService: CommonService
+    public commonService: CommonService,
+    private githubViajesService: GithubViajesService
   ) {}
 
   @HostListener('document:keydown.escape')
@@ -85,5 +91,39 @@ export class ViajeComponent {
       categoriaIcono: iconoCategoria(viaje.categoria),
       alojamientoIcono: viaje.tipoEstancia === 'Airbnb' ? '' : iconoAlojamiento(viaje.tipoEstancia),
     };
+  }
+  editarViaje(viaje: Viaje): void {
+    const param = viaje.archivo || viaje.id;
+    this.router.navigate(['/nuevo-viaje'], {
+      queryParams: { editar: param },
+      state: { viaje },
+    });
+  }
+
+  eliminarViaje(viaje: Viaje): void {
+    if (this.eliminando || !this.authenticationService.estaTokenGithubValido()) {
+      return;
+    }
+
+    const segura = window.confirm(
+      `¿Estás seguro de que quieres eliminar el viaje "${viaje.destino}" (${viaje.fechaInicio})? Esta acción borrará sus JSON, sus imágenes y actualizará index.json en GitHub.`
+    );
+    if (!segura) {
+      return;
+    }
+
+    this.eliminando = true;
+    this.mensajeAccion = 'Eliminando viaje en GitHub...';
+
+    this.githubViajesService.eliminarViaje(viaje).subscribe({
+      next: () => {
+        this.eliminando = false;
+        this.router.navigate(['/viajes']);
+      },
+      error: (err) => {
+        this.eliminando = false;
+        this.mensajeAccion = err?.message || 'No se pudo eliminar el viaje.';
+      },
+    });
   }
 }

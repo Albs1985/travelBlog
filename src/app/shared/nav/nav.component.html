@@ -1,0 +1,64 @@
+<nav class="tabbar" [attr.aria-label]="'nav.principal' | translate">
+
+  <!-- Marca: solo visible en la barra lateral (escritorio) -->
+  <a class="tabbar__brand" routerLink="/principal" [attr.aria-label]="'nav.irInicio' | translate">
+    <svg class="logo-mark tabbar__brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="logo-mark__sun" cx="16" cy="12" r="5.5"/><path class="logo-mark__wave" d="M3 20.5c3.2 0 3.2-2.2 6.4-2.2s3.2 2.2 6.6 2.2 3.2-2.2 6.4-2.2 3.2 2.2 6.6 2.2"/><path class="logo-mark__wave" d="M3 26c3.2 0 3.2-2.2 6.4-2.2s3.2 2.2 6.6 2.2 3.2-2.2 6.4-2.2 3.2 2.2 6.6 2.2"/></svg>
+    <span class="tabbar__brand-text">
+      <span class="tabbar__brand-name">{{ 'app.familia' | translate }}</span>
+      <span class="tabbar__brand-sub">Serrador Casares</span>
+    </span>
+  </a>
+
+  <div class="tabbar__list">
+    <a class="tab" routerLink="/principal"
+       [class.is-active]="grupo === 'inicio'" [attr.aria-current]="grupo === 'inicio' ? 'page' : null">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+      <span class="tab__label">{{ 'app.home' | translate }}</span>
+    </a>
+
+    <a class="tab" routerLink="/viajes"
+       [class.is-active]="grupo === 'viajes'" [attr.aria-current]="grupo === 'viajes' ? 'page' : null">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      <span class="tab__label">{{ 'app.viajes' | translate }}</span>
+    </a>
+
+    <a class="tab" routerLink="/fotos"
+       [class.is-active]="grupo === 'recuerdos'" [attr.aria-current]="grupo === 'recuerdos' ? 'page' : null">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.6"/><path d="m21 16-5-5-8 8"/></svg>
+      <span class="tab__label">{{ 'nav.recuerdos' | translate }}</span>
+    </a>
+
+    <a class="tab" routerLink="/familia"
+       [class.is-active]="grupo === 'familia'" [attr.aria-current]="grupo === 'familia' ? 'page' : null">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14.2c2.4.3 4 2.2 4 5"/></svg>
+      <span class="tab__label">{{ 'app.familia' | translate }}</span>
+    </a>
+
+    <a class="tab" routerLink="/games"
+       [class.is-active]="grupo === 'juegos'" [attr.aria-current]="grupo === 'juegos' ? 'page' : null">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="19" height="11" rx="5.5"/><path d="M7.5 10.5v4M5.5 12.5h4"/><circle cx="16" cy="11.5" r=".9"/><circle cx="18.5" cy="14" r=".9"/></svg>
+      <span class="tab__label">{{ 'app.juegos' | translate }}</span>
+    </a>
+  </div>
+
+  <!-- Accesos secundarios: solo en la barra lateral (en móvil están en el menú «···») -->
+  <!-- <div class="tabbar__extras">
+    <a class="tab" routerLink="/contactQR" routerLinkActive="is-active">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+      <span class="tab__label">{{ 'app.contactoQR' | translate }}</span>
+    </a>
+    <a class="tab" routerLink="/ia" routerLinkActive="is-active">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+      <span class="tab__label">{{ 'app.ia' | translate }}</span>
+    </a>
+  </div> -->
+</nav>
+
+<!-- Chips de segundo nivel (cambian según la pestaña) -->
+<!-- <div class="subnav" *ngIf="mostrarSubnav">
+  <div class="subnav__row">
+    <a class="chip" *ngFor="let s of subitems" [routerLink]="s.ruta" routerLinkActive="is-active">
+      {{ s.etiqueta | translate }}
+    </a>
+  </div>
+</div> -->

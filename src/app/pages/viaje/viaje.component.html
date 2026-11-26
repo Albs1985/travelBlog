@@ -1,172 +1,174 @@
-<div class="container-fluid">
+<ng-container *ngIf="vista$ | async as vista; else cargando">
 
-  <div>
+  <!-- El viaje no existe -->
+  <section class="empty" *ngIf="!esVista(vista)">
+    <p class="notice">{{ 'app.sinResultados' | translate }}</p>
+    <a class="btn" routerLink="/viajes">{{ 'app.volverAviajes' | translate }}</a>
+  </section>
 
-    <ng-container *ngIf="vista$ | async as vista; else cargando">
+  <ng-container *ngIf="esVista(vista)">
 
-      <div *ngIf="!esVista(vista)" class="container py-4">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-10 col-lg-8 mx-auto">
-            <app-toolbar
-              [volverLink]="'/viajes'"
-              [mostrarBotonNuevo]="false"
-              [mostrarBotonConfig]="false"
-              [mostrarBotonOrdenar]="false">
-            </app-toolbar>
-            <div class="aviso text-center py-5">
-              <p class="mb-0">{{ 'app.sinResultados' | translate }}</p>
-            </div>
-          </div>
+    <!-- Portada a pantalla completa: al pulsarla se baja a la descripción -->
+    <section class="hero" (click)="detalle.scrollIntoView({ behavior: 'smooth', block: 'start' })">
+      <img *ngIf="vista.viaje.portada" class="hero__img" [src]="'assets/images/' + vista.viaje.portada" [alt]="vista.viaje.destino">
+
+      <div class="hero__top">
+        <a class="round-btn round-btn--glass" [routerLink]="['/viajesFiltrados', vista.viaje.anyo]"
+           (click)="$event.stopPropagation()" [attr.aria-label]="'viaje.volver' | translate">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+        </a>
+        <ng-container *ngIf="(authenticationService.tokenGithubValido$ | async) === true">
+          <button type="button"
+                  class="round-btn round-btn--glass"
+                  [disabled]="eliminando"
+                  (click)="$event.stopPropagation(); editarViaje(vista.viaje)"
+                  title="Editar viaje"
+                  aria-label="Editar viaje">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z"/>
+            </svg>
+          </button>
+
+          <button type="button"
+                  class="round-btn round-btn--glass"
+                  [disabled]="eliminando"
+                  (click)="$event.stopPropagation(); eliminarViaje(vista.viaje)"
+                  title="Eliminar viaje"
+                  aria-label="Eliminar viaje">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 6h18"/>
+              <path d="M8 6V4h8v2"/>
+              <path d="M19 6l-1 14H6L5 6"/>
+              <path d="M10 11v6M14 11v6"/>
+            </svg>
+          </button>
+        </ng-container>
+        <button type="button" class="round-btn round-btn--glass" (click)="$event.stopPropagation(); fotoAbierta = 0"
+                [attr.aria-label]="vista.viaje.destino">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+        </button>
+      </div>
+
+      <div class="hero__body">
+        <span class="hero__year">{{ vista.viaje.anyo }}</span>
+        <h1 class="hero__title">{{ vista.viaje.destino }}</h1>
+        <p class="hero__where">{{ vista.viaje.provincia }}, {{ 'localidad.' + vista.viaje.pais | translate }}</p>
+        <button type="button" class="hero__cta">
+          {{ 'app.verDetalle' | translate }}
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <p class="notice" *ngIf="mensajeAccion">{{ mensajeAccion }}</p>
+
+    <!-- Hoja con la descripción -->
+    <article class="sheet" #detalle>
+      <div class="sheet__grab" aria-hidden="true"></div>
+
+      <p class="sheet__dates">
+        {{ 'viaje.desde' | translate }} <b>{{ vista.viaje.diaInicio }} de {{ 'mesAnyo.' + vista.viaje.mesInicio | translate }}</b>
+        {{ 'viaje.hasta' | translate }} <b>{{ vista.viaje.diaFin }} de {{ 'mesAnyo.' + vista.viaje.mesFin | translate }}</b>
+      </p>
+
+      <p class="sheet__lead" *ngIf="vista.viaje.descPrincipal">{{ vista.viaje.descPrincipal | l10n }}</p>
+
+      <dl class="facts">
+        <div class="fact" *ngIf="vista.viaje.categoria">
+          <dt>{{ 'header.categoria' | translate }}</dt>
+          <dd>{{ 'categoria.' + vista.viaje.categoria | translate }}</dd>
         </div>
-      </div>
+        <div class="fact">
+          <dt>{{ 'viaje.provincia' | translate }}</dt>
+          <dd>{{ vista.viaje.provincia }}</dd>
+        </div>
+        <div class="fact">
+          <dt>{{ 'viaje.pais' | translate }}</dt>
+          <dd>{{ 'localidad.' + vista.viaje.pais | translate }}</dd>
+        </div>
+        <div class="fact">
+          <dt>{{ 'viaje.precio' | translate }}</dt>
+          <dd>{{ vista.viaje.precio }}€</dd>
+        </div>
+        <div class="fact">
+          <dt>{{ 'viaje.estancia' | translate }}</dt>
+          <dd>{{ vista.viaje.estancia }}</dd>
+        </div>
+        <div class="fact">
+          <dt>{{ 'viaje.tipoEstancia' | translate }}</dt>
+          <dd>{{ 'tipoEstancia.' + vista.viaje.tipoEstancia | translate }}</dd>
+        </div>
+      </dl>
 
-      <div *ngIf="esVista(vista)" class="row fh5co-post-entry single-entry">
-        <article class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 animated fadeIn">
-          <div class="mb-4">
-            <app-toolbar
-              [volverLink]="'/viajesFiltrados/' + vista.viaje.anyo"
-              [mostrarBotonNuevo]="false"
-              [mostrarBotonConfig]="false"
-              [mostrarBotonOrdenar]="false">
-            </app-toolbar>
-          </div>
-          <h2 class="fh5co-article-title"><a>{{ vista.viaje.destino }}</a></h2>
+      <ul class="transport" *ngIf="vista.viaje.transporte?.length">
+        <li class="transport__item" *ngFor="let medio of vista.viaje.transporte">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true" [ngSwitch]="medio">
+          <g *ngSwitchCase="'Autobus'"><rect x="4" y="3.5" width="16" height="14" rx="3"/><path d="M4 10.5h16M7.5 17.5V20M16.5 17.5V20"/><circle cx="8" cy="14" r=".9"/><circle cx="16" cy="14" r=".9"/></g>
+          <g *ngSwitchCase="'Avion'"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></g>
+          <g *ngSwitchCase="'Barco'"><path d="M3 15h18l-2.2 4.5a1 1 0 0 1-.9.5H6.1a1 1 0 0 1-.9-.5z"/><path d="M6.5 15V9.5h11V15M10 9.5V6h4v3.5"/><path d="M9 12h.01M12 12h.01M15 12h.01"/></g>
+          <g *ngSwitchCase="'Barca'"><path d="M4 14h16l-2.5 4h-11z"/><path d="M12 14V4.5l5 7.5h-5"/><path d="M3 20.5c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1"/></g>
+          <g *ngSwitchCase="'Bicicleta'"><circle cx="5.5" cy="16" r="3.5"/><circle cx="18.5" cy="16" r="3.5"/><path d="M5.5 16 9 8h5l4.5 8M9 8l3.5 8M14 8l-1-3h3"/></g>
+          <g *ngSwitchCase="'Coche'"><path d="M4.5 16v-4l1.7-4.3A2 2 0 0 1 8.1 6.5h7.8a2 2 0 0 1 1.9 1.2L19.5 12v4"/><path d="M4.5 12h15M3.5 16h17"/><circle cx="8" cy="17.5" r="1.8"/><circle cx="16" cy="17.5" r="1.8"/></g>
+          <g *ngSwitchCase="'Moto'"><circle cx="5.5" cy="16.5" r="3"/><circle cx="18.5" cy="16.5" r="3"/><path d="M5.5 16.5 9.5 11h5l4 5.5M14.5 11 16 7.5h2.5M8 11H5.5"/><path d="M10 13.5h5v3h-5z"/></g>
+          <g *ngSwitchCase="'Tren'"><rect x="5" y="3.5" width="14" height="14" rx="3.5"/><path d="M5 11h14M9 21l2-3.5M15 21l-2-3.5"/><circle cx="9" cy="14.2" r=".9"/><circle cx="15" cy="14.2" r=".9"/></g>
+          <g *ngSwitchCase="'Furgoneta'"><path d="M3 17V9a2 2 0 0 1 2-2h9a2 2 0 0 1 1.7 1l3.3 5v4"/><path d="M15 8.5V13h4.5M3 17h18"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></g>
+          <g *ngSwitchCase="'Caravana'"><rect x="3" y="6.5" width="15" height="10" rx="3"/><rect x="6" y="9.5" width="4.5" height="3" rx=".8"/><path d="M18 14h3.5"/><circle cx="12" cy="17" r="2"/></g>
+          <g *ngSwitchCase="'FoodTruck'"><path d="M3 17V8a1 1 0 0 1 1-1h10v10M14 10h4l3 3v4h-1.5"/><path d="M5 7V5h8v2M3 17h2"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/></g>
+          <g *ngSwitchCase="'Boda'"><circle cx="9" cy="14.5" r="4.8"/><circle cx="15" cy="14.5" r="4.8"/><path d="M9 6.5 7.5 4.5h3zM15.5 5l.8-2M12 4V2"/></g>
+          </svg>
+          {{ 'transporte.' + medio | translate }}
+        </li>
+      </ul>
 
-          <figure *ngIf="vista.viaje.portada" class="animated zoomInDown">
-            <button type="button" class="foto-btn" (click)="fotoAbierta = 0">
-              <img [src]="'assets/images/' + vista.viaje.portada" [alt]="vista.viaje.destino" class="img-responsive">
-            </button>
-            <figcaption class="textoFoto" *ngIf="vista.viaje.descPrincipal">{{ vista.viaje.descPrincipal | l10n }}</figcaption>
-          </figure>
-
-          <div class="transportes-pista" *ngIf="vista.transporteIconos?.length">
-            <div *ngFor="let icono of vista.transporteIconos" class="disposicion">
-              <img [src]="icono" alt="" class="img-responsive iconos animated rollIn mueveTransporte">
-            </div>
-          </div>
-
-          <div class="viaje-meta-barra">
-            <span class="fh5co-meta">
-              <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="iconosImg animated rollIn">
-              <img *ngIf="vista.alojamientoIcono" [src]="vista.alojamientoIcono" alt="" class="iconosImg animated rollIn">
-              <img *ngIf="vista.viaje.tipoEstancia === 'Airbnb'" src="assets/icons/airbnb.png" alt="" class="iconoAirbnb animated rollIn">
-              <span class="anyo-pill">{{ vista.viaje.anyo }}</span>
-
-              <button type="button" class="infoButton" (click)="showTooltip()" [attr.aria-label]="'app.verDetalle' | translate">
-                <img src="assets/icons/informacion2.png" alt="" class="iconosImg animated rubberBand">
-              </button>
+      <section class="block" *ngIf="vista.viaje.personas?.length">
+        <h2 class="block__title">{{ 'app.viajeros' | translate }}</h2>
+        <ul class="people">
+          <li class="person" *ngFor="let persona of vista.viaje.personas">
+            <img class="person__img" [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'" [alt]="persona" loading="lazy" (error)="ocultar($event)">
+            <span class="person__text">
+              <span class="person__name">{{ persona }}</span>
+              <span class="person__age" *ngIf="edadViajero(persona, vista.viaje.anyo, vista.viaje.mesInicio, vista.viaje.diaInicio) as edad">{{ edad }} {{ 'app.edad' | translate }}</span>
             </span>
-          </div>
+          </li>
+        </ul>
+      </section>
 
-          <!-- Popover / Ficha Detallada del Viaje -->
-          <div *ngIf="showMsg" class="viaje-popover-backdrop" (click)="showTooltip()">
-            <div class="custom-tooltip" (click)="$event.stopPropagation()">
-              <div class="viaje-popover-header">
-                <div class="viaje-popover-titulo">
-                  <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="popover-mini-icon">
-                  <span>{{ vista.viaje.destino }}</span>
-                </div>
-                <span class="viaje-popover-anyo">🗓️ {{ vista.viaje.anyo }}</span>
-                <button type="button" class="viaje-popover-close" (click)="showTooltip()" aria-label="Cerrar" title="Cerrar">✕</button>
-              </div>
+      <!-- Contenido del viaje: cada bloque se pinta según su tipo, en el orden del archivo del viaje -->
+      <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.viaje.mapa" [alt]="vista.viaje.destino" (abrir)="fotoAbierta = $event"></app-bloques>
 
-              <div class="viaje-popover-body">
-                <div class="viaje-datos-grid">
-                  <div class="viaje-dato-item">
-                    <img *ngIf="vista.categoriaIcono" [src]="vista.categoriaIcono" alt="" class="popover-dato-icon">
-                    <span>🏷️ {{ 'header.categoria' | translate }}: <b>{{ 'categoria.' + vista.viaje.categoria | translate }}</b></span>
-                  </div>
+      <section class="block" *ngIf="vista.viaje.infoInteres.length && vista.viaje.infoInteres[0] !== ''">
+        <h2 class="block__title">{{ 'app.infoInteres' | translate }}</h2>
+        <ul class="links">
+          <li *ngFor="let info of vista.viaje.infoInteres">
+            <a class="link-row" target="_blank" rel="noopener" [href]="info">
+              <span class="link-row__text">{{ info }}</span>
+              <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            </a>
+          </li>
+        </ul>
+      </section>
 
-                  <div class="viaje-dato-item">
-                    <img src="assets/icons/mapa.png" alt="" class="popover-dato-icon">
-                    <span>📌 {{ 'viaje.provincia' | translate }}: <b>{{ vista.viaje.provincia }}</b></span>
-                  </div>
+      <nav class="pager" *ngIf="vista.viaje.anterior || vista.viaje.siguiente">
+        <a *ngIf="vista.viaje.anterior" class="pager__link pager__link--prev" [routerLink]="['/viaje', vista.viaje.anterior]">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+          {{ 'viaje.anterior' | translate }}
+        </a>
+        <a *ngIf="vista.viaje.siguiente" class="pager__link pager__link--next" [routerLink]="['/viaje', vista.viaje.siguiente]">
+          {{ 'viaje.siguiente' | translate }}
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+        </a>
+      </nav>
+    </article>
 
-                  <div class="viaje-dato-item">
-                    <img src="assets/icons/viajarMundo.png" alt="" class="popover-dato-icon">
-                    <span>🌍 {{ 'viaje.pais' | translate }}: <b>{{ 'localidad.' + vista.viaje.pais | translate }}</b></span>
-                  </div>
+    <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="vista.galeria" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
+  </ng-container>
 
-                  <div class="viaje-dato-item">
-                    <span>💶 {{ 'viaje.precio' | translate }}: <b>{{ vista.viaje.precio }}€</b></span>
-                  </div>
+</ng-container>
 
-                  <div class="viaje-dato-item">
-                    <img src="assets/icons/calendario.png" alt="" class="popover-dato-icon">
-                    <span>⏳ {{ 'viaje.estancia' | translate }}: <b>{{ vista.viaje.estancia }}</b></span>
-                  </div>
-
-                  <div class="viaje-dato-item">
-                    <img *ngIf="vista.viaje.tipoEstancia === 'Airbnb'" src="assets/icons/airbnb.png" alt="" class="popover-dato-icon">
-                    <img *ngIf="vista.viaje.tipoEstancia !== 'Airbnb' && vista.alojamientoIcono" [src]="vista.alojamientoIcono" alt="" class="popover-dato-icon">
-                    <span>🏠 {{ 'viaje.tipoEstancia' | translate }}: <b>{{ 'tipoEstancia.' + vista.viaje.tipoEstancia | translate }}</b></span>
-                  </div>
-                </div>
-
-                <div class="viaje-popover-viajeros-bloque" *ngIf="vista.viaje.personas?.length">
-                  <div class="viaje-popover-subtitulo">🧭 {{ 'app.viajeros' | translate }}</div>
-                  <div class="viaje-popover-viajeros-lista">
-                    <div class="viajero-ficha" *ngFor="let persona of vista.viaje.personas">
-                      <img
-                        [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'"
-                        [alt]="persona"
-                        class="viajero-ficha-avatar"
-                        loading="lazy"
-                        (error)="ocultar($event)">
-                      <div class="viajero-ficha-texto">
-                        <span class="viajero-ficha-nombre">{{ persona }}</span>
-                        <span class="viajero-ficha-edad" *ngIf="edadViajero(persona, vista.viaje.anyo, vista.viaje.mesInicio, vista.viaje.diaInicio) as edad">
-                          {{ edad }} {{ edad === 1 ? 'año' : 'años' }}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <span class="fh5co-meta fh5co-date">{{ 'viaje.desde' | translate }} <b>{{ vista.viaje.diaInicio }} de {{ 'mesAnyo.' + vista.viaje.mesInicio | translate }}</b> {{ 'viaje.hasta' | translate }} <b>{{ vista.viaje.diaFin }} de {{ 'mesAnyo.' + vista.viaje.mesFin | translate }}</b></span>
-
-          <div class="perfiles-barra" *ngIf="vista.viaje.personas?.length">
-            <div *ngFor="let persona of vista.viaje.personas" class="disposicion">
-              <img [src]="'assets/images/perfiles/fotoPerfil' + persona + '.jpg'" [alt]="persona" loading="lazy" class="img-responsive fotoPerfil animated bounceInRight" (error)="ocultar($event)">
-            </div>
-          </div>
-
-          <!-- Contenido del viaje: cada bloque se pinta según su tipo, en el orden del archivo del viaje -->
-          <app-bloques [bloques]="vista.bloques" [extra]="vista.extra" [mapa]="vista.viaje.mapa" [alt]="vista.viaje.destino" (abrir)="fotoAbierta = $event"></app-bloques>
-
-          <div class="bodyUrl" *ngIf="vista.viaje.infoInteres.length">
-            <div class="container">
-              <h1>{{ 'app.infoInteres' | translate }}</h1>
-              <br>
-              <ul>
-                <div *ngFor="let info of vista.viaje.infoInteres">
-                  <li><a target="_blank" rel="noopener" [href]="info" class="aUrl">{{ info }}</a></li>
-                </div>
-              </ul>
-            </div>
-          </div>
-
-          <app-paginacion
-            [linkAnterior]="vista.viaje.anterior ? ['/viaje', vista.viaje.anterior] : undefined"
-            [textoAnterior]="'viaje.anterior'"
-            [linkSiguiente]="vista.viaje.siguiente ? ['/viaje', vista.viaje.siguiente] : undefined"
-            [textoSiguiente]="'viaje.siguiente'">
-          </app-paginacion>
-        </article>
-      </div>
-
-      <app-lightbox *ngIf="esVista(vista) && fotoAbierta !== null" [fotos]="vista.galeria" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
-    </ng-container>
-
+<ng-template #cargando>
+  <div class="loader" role="status">
+    <span class="loader__ring"></span>
+    <span>{{ 'app.cargando' | translate }}</span>
   </div>
-
-  <ng-template #cargando>
-    <div class="spinner-container">
-      <div class="spinner"></div>
-      <span> &nbsp; {{ 'app.cargando' | translate }}</span>
-    </div>
-  </ng-template>
-</div>
+</ng-template>

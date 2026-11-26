@@ -1,80 +1,54 @@
-<!-- TOOLBAR SUPERIOR: Sustituye al enlace de volver y al botón de ordenar sueltos -->
-<div class="container py-3">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8 mx-auto">
-
-      <app-toolbar
-        [volverLink]="'/principal'"
-        [mostrarBotonNuevo]="false"
-        [mostrarBotonConfig]="false"
-        [mostrarBotonOrdenar]="true"
-        [orderDesc]="orderDesc"
-        (ordenar)="ordenar()">
-      </app-toolbar>
-
-    </div>
+<header class="page-head">
+  <a class="round-btn" routerLink="/principal" [attr.aria-label]="'app.home' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'header.mensajeCabeceraAnyos' | translate }}</h1>
   </div>
-</div>
 
-<!-- Título de la sección -->
-<div class="tituloOrdenar text-center my-3">
-  <h2 class="fh5co-article-title subtitulo animated fadeIn">
-      <a>{{ 'header.mensajeCabeceraAnyos' | translate }}
-          <img src="assets/icons/viajes.png" alt="" class="iconosImg4 animated rollIn">
+  <button *ngIf="(authenticationService.tokenGithubValido$ | async) === true"
+          type="button"
+          class="add-trip-btn"
+          (click)="abrirNuevoViaje()"
+          [attr.aria-label]="'Añadir viaje'"
+          [title]="'Añadir viaje'">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <span class="add-trip-btn__label">Añadir viaje</span>
+  </button>
+
+  <button type="button" class="round-btn sort" [class.is-asc]="!orderDesc" (click)="ordenar()"
+          [attr.aria-label]="'app.ordenarPorAnyo' | translate" [attr.title]="'app.ordenarPorAnyo' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4v16M8 20l-3-3M8 20l3-3M16 20V4M16 4l-3 3M16 4l3 3"/></svg>
+  </button>
+</header>
+
+<ng-container *ngIf="anyos$ | async as anyos; else cargando">
+  <p class="notice" *ngIf="(servicioViajes.error$ | async) === true">{{ 'app.errorCarga' | translate }}</p>
+
+  <ul class="years">
+    <li class="years__item" *ngFor="let a of ordenados(anyos)">
+      <a class="year-card" [routerLink]="['/viajesFiltrados', a.anyo]">
+        <img *ngIf="a.portada" class="year-card__img" [src]="'assets/images/' + a.portada" [alt]="'' + a.anyo" loading="lazy">
+        <span class="year-card__year">{{ a.anyo }}</span>
+        <span class="year-card__places">
+          <span *ngFor="let destino of a.destinos; let last = last">{{ destino }}{{ last ? '' : ', ' }}</span>
+        </span>
       </a>
-  </h2>
-</div>
+    </li>
+  </ul>
+</ng-container>
 
-<!-- Contenido principal -->
-<div class="container py-3">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+<!-- Mapa de los viajes -->
+<section class="map-section">
+  <h2 class="section-title">{{ 'app.mapa' | translate }}</h2>
+  <app-map></app-map>
+</section>
 
-      <ng-container *ngIf="anyos$ | async as anyos; else cargando">
-        <div *ngIf="(servicioViajes.error$ | async) === true" class="aviso">{{ 'app.errorCarga' | translate }}</div>
-        <div class="row fh5co-post-entry">
-          <div *ngFor="let a of ordenados(anyos)">
-            <article class="bloqueAnyo">
-              <span [routerLink]="['/viajesFiltrados', a.anyo]" class="fh5co-meta fh5co-date">{{ a.anyo }}</span>
-              <div class="contenedor-imagen">
-                  <a [routerLink]="['/viajesFiltrados', a.anyo]">
-                    <img *ngIf="a.portada" [src]="'assets/images/' + a.portada" [alt]="'' + a.anyo" class="img-responsive" loading="lazy">
-                  </a>
-                  <div [routerLink]="['/viajesFiltrados', a.anyo]" class="textoEnImagen img-responsiveAnyo">{{ a.anyo }}
-                      <img src="assets/icons/flechaDer.png" alt="" class="animated fadeIn pulse iconoFlechaPeque" [routerLink]="['/viajesFiltrados', a.anyo]">
-                  </div>
-              </div>
-              <div *ngFor="let destino of a.destinos">
-                  <h2 class="fh5co-article-title"><a [routerLink]="['/viajesFiltrados', a.anyo]">{{ destino }}</a></h2>
-              </div>
-            </article>
-          </div>
-        </div>
-      </ng-container>
-
-      <ng-template #cargando>
-        <div class="spinner-container">
-          <div class="spinner"></div>
-          <span> &nbsp; {{ 'app.cargando' | translate }}</span>
-        </div>
-      </ng-template>
-
-    </div>
+<ng-template #cargando>
+  <div class="loader" role="status">
+    <span class="loader__ring"></span>
+    <span>{{ 'app.cargando' | translate }}</span>
   </div>
-</div>
-
-<!-- TOOLBAR INFERIOR: Para repetir la opción de volver al final de la página de forma limpia -->
-<div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8 mx-auto">
-
-      <app-toolbar
-        [volverLink]="'/principal'"
-        [mostrarBotonNuevo]="false"
-        [mostrarBotonConfig]="false"
-        [mostrarBotonOrdenar]="false">>
-      </app-toolbar>
-
-    </div>
-  </div>
-</div>
+</ng-template>

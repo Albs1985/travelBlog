@@ -1,184 +1,333 @@
-a {
-  color: black;
-}
+:host { display: block; }
 
-.textoEnImg {
-  position: absolute;
-  bottom: 5vh;
-  right: 5vh;
-  font-size: 16px;
-  padding: 15px;
-  cursor: pointer;
-}
-
-.iconoChancla {
-  width: 30px !important;
-  height: 30px !important;
-  padding: 1px !important;
-  cursor: pointer;
-  margin-top: 35px !important;
-  margin-left: -30px !important;
-}
-
-.iconoViajeros {
-  width: 30px !important;
-  height: 30px !important;
-  padding: 1px !important;
-  cursor: pointer;
-}
-
-.iconoFlechaPeque {
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-  background-color: rgba(247, 200, 115, 0.6);
-  border-radius: 15px;
-}
-
-.videoContenedor {
+/* ---------- Portada ---------- */
+.hero {
   position: relative;
-  width: 90%;
-  padding-bottom: 56.25%; /* Este valor se calcula como el alto dividido por el ancho, en este caso, 9/16 */
-  height: 0;
-  margin: 15px;
+  display: flex;
+  align-items: flex-end;
+  /* min-height: 480px;
+  min-height: min(68svh, 560px); */
   overflow: hidden;
-  box-shadow: 5px 10px 8px #888888;
+  isolation: isolate;
+  border-radius: var(--r-xl);
+  background: var(--sea-700);
+  color: #fff;
 }
-
-.videoContenedor img {
+.hero__img {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  z-index: -2;
+  margin-top: -2px;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  animation: hero-asienta 1.6s cubic-bezier(.2, .7, .2, 1) both;   /* único gesto de entrada */
 }
-
-@media (min-width: 692px) {
-  .textoEnVideo {
-    bottom: 45px;
-    right: 45px;
-    font-size: 26px;
-  }
-  .videoContenedor {
-    margin: 45px;
-  }
+/* Degradado solo para que el texto se lea sobre la foto */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(40, 20, 8, .80) 0%, rgba(40, 20, 8, .28) 42%, rgba(40, 20, 8, 0) 70%);
 }
+.hero__body {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  max-width: 38rem;
+  padding: clamp(20px, 5vw, 48px);
+}
+.hero__title { /*color: #fff;*/ display: grid; gap: .35rem; }
+.hero__name { font: 600 clamp(3rem, 12vw, 5.5rem)/.95 var(--font-display); letter-spacing: -.02em; }
+.hero__surname { font: 500 clamp(1.25rem, 4.6vw, 1.9rem)/1.1 var(--font-display); }
+.hero__tagline { margin-bottom: var(--space-2); color: rgba(255, 255, 255, .92); font-size: 1.05rem; }
 
-.cuerpoImagenes {
-  margin-top: 25px;
-  padding: 0;
+/* ---------- Viajeros: tarjetas de foto con el nombre dentro ---------- */
+.crew { margin: var(--space-6); }
+
+.crew__list {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* height: 100vh; */
+  align-items: flex-start;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: var(--space-1) var(--gutter) var(--space-5);
 }
+.crew__list::-webkit-scrollbar { display: none; }
 
-.icon-container {
+.crew__item {
+  flex: 0 0 auto;
+  width: clamp(150px, 44vw, 230px);
+  scroll-snap-align: start;
+}
+/* Escalonadas, como un mosaico */
+/* .crew__item:nth-child(even) { margin-top: var(--space-5); } */
+
+/* Cada viajero tiene su color, que tiñe el pie de la foto */
+.crew__item:nth-child(4n + 1) { --tone: 18, 49, 59; }
+.crew__item:nth-child(4n + 2) { --tone: 151, 67, 31; }
+.crew__item:nth-child(4n + 3) { --tone: 74, 100, 57; }
+.crew__item:nth-child(4n + 4) { --tone: 138, 90, 16; }
+
+.traveler {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 600px;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 5 / 5;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-md);
+  background: rgb(var(--tone));
+  box-shadow: var(--shadow-sm);
+}
+.traveler__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.traveler::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(var(--tone), .94) 0%, rgba(var(--tone), .55) 30%, rgba(var(--tone), 0) 60%);
+}
+.traveler__age {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: .38rem .75rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 252, 247, .94);
+  color: var(--ink);
+  font: 700 .78rem/1 var(--font-body);
+}
+.traveler__name {
+  padding: var(--space-4);
+  color: #fff;
+  font: 600 1.5rem/1.05 var(--font-display);
 }
 
-.icon {
-  width: 70px;
-  height: 70px;
-  margin: 10px;
-  display: flex;
-  justify-content: center;
+/* ---------- Explora: filas de cards con ilustración ---------- */
+.explore { margin-top: var(--space-6); }
+.explore__grid { display: grid; gap: var(--space-6); }
+
+.block { display: grid; gap: var(--space-3); }
+
+.block__head { display: inline-flex; align-items: center; gap: var(--space-3); justify-self: start; }
+.block__icon {
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: var(--tone);
+  color: var(--on, #fff);
+}
+.block__title { font-size: clamp(1.4rem, 1.15rem + 1vw, 1.8rem); }
+
+/* Un color por grupo */
+.block--viajes { --tone: var(--sea-700); }
+.block--recuerdos { --tone: var(--terra-600); }
+.block--familia { --tone: var(--palm-600); }
+.block--juegos { --tone: var(--ochre-500); --on: var(--ink); }
+.block--mas { --tone: var(--sand-300); --on: var(--ink); }
+
+/* Móvil: carrusel que se desliza hacia los lados */
+.cards {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin-inline: calc(var(--gutter) * -1);
+  padding: var(--space-1) var(--gutter) var(--space-2);
+  scroll-padding-inline: var(--gutter);
+}
+.cards::-webkit-scrollbar { display: none; }
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex: 0 0 auto;
+  width: clamp(148px, 42vw, 200px);
+  aspect-ratio: 5 / 5;
+  overflow: hidden;
+  isolation: isolate;
+  scroll-snap-align: start;
+  border-radius: var(--r-md);
+  background: var(--sand-200);
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s;
+}
+.card:active { transform: scale(.98); }
+
+/* Solo cards de artículos que NO son de viajes: más compactas y cuadradas */
+.block:not(.block--viajes) .card {
+  width: clamp(122px, 34vw, 152px);
+  aspect-ratio: 1 / 1;
+}
+.block:not(.block--viajes) .card__label {
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  font-size: 1rem;
 }
 
-@media screen and (max-width: 600px) {
-  .icon {
-    width: 50px;
-    height: 50px;
+/* La ilustración de fondo (también vale un <img class="card__art"> con una foto) */
+.card__art {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Degradado solo para que el texto se lea */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(32, 18, 8, .74) 0%, rgba(32, 18, 8, .30) 30%, rgba(32, 18, 8, 0) 56%);
+}
+.card__label {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  color: #fff;
+  font: 600 1.15rem/1.15 var(--font-display);
+  text-wrap: balance;
+}
+
+/* ---------- Tablet y escritorio ---------- */
+@media (min-width: 768px) {
+  .hero { min-height: 460px; }
+
+  /* Sin deslizar: las cards ocupan todo el ancho disponible de la fila */
+  .cards {
+    flex-wrap: wrap;
+    overflow: visible;
+    scroll-snap-type: none;
+    gap: var(--space-4);
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+  .card {
+    flex: 1 1 150px;
+    width: auto;
+    height: 210px;
+    aspect-ratio: auto;
+  }
+  .block:not(.block--viajes) .card {
+    flex: 0 0 156px;
+    width: 156px;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 }
 
+@media (min-width: 1024px) {
+  .hero { min-height: 540px; }
+  .crew, .explore { margin-top: var(--space-7); }
+  .explore__grid { gap: var(--space-7); }
 
-/* ========================================================
-   VIAJEROS OPTIMIZADOS (Grandes en PC, Centrados, Flexibles)
-   ======================================================== */
-   .viajeros-stories-section {
-    margin-bottom: 25px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    border: 1px solid #edf2f7;
-    display: flex;
-    justify-content: center; /* Centrado perfecto en PC */
+  /* Los viajeros pasan de carrusel a mosaico */
+  .crew__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: start;
+    gap: var(--space-4);
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
   }
+  .crew__item { width: auto; }
 
-  .stories-container-centered {
-    overflow: hidden;
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    padding: 5px;
-    max-width: 100%;
-    justify-content: center;
-    flex-wrap: wrap; /* Se acomodan en móvil y se centran en PC */
-  }
+  .card { flex-basis: 170px; height: 236px; }
+  .card__label { font-size: 1.25rem; }
 
-  .story-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex-shrink: 0;
+  .block:not(.block--viajes) .card {
+    flex: 0 0 172px;
+    width: 172px;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
+  .block:not(.block--viajes) .card__label {
+    font-size: 1.08rem;
+  }
+}
 
-  .story-ring {
-    display: block;
-    padding: 4px;
-    background: linear-gradient(45deg, #f59e0b, #ec4899);
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-    /* box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25); */
-  }
+@keyframes hero-asienta { from { transform: scale(1.07); } to { transform: none; } }
 
-  .story-ring:hover {
-    transform: scale(1.08);
-  }
 
-  /* Tamaño de avatares grande en PC y adaptable en móvil */
-  .img-story {
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffffff;
-    display: block;
-  }
+/* Un año = una card con su portada; los destinos van dentro */
+.years {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+/* Escalonadas en móvil, como un mosaico */
+.years__item:nth-child(even) { margin-top: var(--space-5); }
 
-  @media only screen and (max-width: 768px) {
-    .img-story {
-      width: 60px;
-      height: 60px;
-    }
-    .stories-container-centered {
-      justify-content: flex-start; /* Scroll horizontal fluido en pantallas pequeñas */
-    }
-  }
+.year-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 4 / 5;
+  padding: var(--space-4);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-md);
+  background: var(--terra-600);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s;
+}
+.year-card:active { transform: scale(.98); }
 
-  .story-meta {
-    margin-top: 8px;
-  }
+.year-card__img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.year-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(32, 18, 8, .50) 0%, rgba(32, 18, 8, 0) 38%, rgba(32, 18, 8, 0) 52%, rgba(32, 18, 8, .78) 100%);
+}
 
-  .story-meta .nombre {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #2d3748;
-    max-width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.year-card__year { font: 600 clamp(2rem, 9vw, 2.9rem)/1 var(--font-display); letter-spacing: -.02em; }
+.year-card__places {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  font: 500 .92rem/1.3 var(--font-body);
+}
 
-  .story-meta .edad {
-    font-size: 0.75rem;
-    color: #718096;
-  }
+@media (min-width: 768px) {
+  .years { grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  .years__item:nth-child(even) { margin-top: 0; }
+  .years__item:nth-child(3n + 2) { margin-top: var(--space-5); }
+}
+@media (min-width: 1024px) {
+  .years { grid-template-columns: repeat(4, 1fr); }
+  .years__item:nth-child(3n + 2) { margin-top: 0; }
+  .years__item:nth-child(even) { margin-top: var(--space-5); }
+}

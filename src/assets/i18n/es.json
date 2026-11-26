@@ -87,9 +87,9 @@
     "categoriaRecetas": "Selecciona una categoría",
     "listaRecetas": "O mira la ",
     "lista": "lista",
-    "categoriaDulce": "dulces",
-    "categoriaFrio": "frías",
-    "categoriaCaliente": "calientes",
+    "categoriaDulce": "Dulces",
+    "categoriaFrio": "Frías",
+    "categoriaCaliente": "Calientes",
     "juegos": "Juegos",
     "juegosTitulo": "Juegos para toda la familia",
     "juegosSubtitulo1": "Disfruta de las fotos de los viajes jugando",
@@ -153,6 +153,7 @@
     "errorCartaNoPuedeJugar": "La carta que se juega debe ser del mismo color, el mismo número, o ambas cosas",
     "errorCarga": "No se han podido cargar los datos. Inténtalo de nuevo más tarde.",
     "adminTokenConfig": "Configuración de Administrador",
+    "config": "Configuración",
     "adminTokenDescripcion": "Introduce tu contraseña para poder añadir y editar frases directamente:",
     "adminTokenPlaceholder": "ghp_xxxxxxxxxxxx",
     "guardar": "Guardar",
@@ -313,7 +314,7 @@
     "buscar": "Buscar",
     "buscarViajes": "Buscar Viajes",
     "informacion": "Información",
-    "palabra": "Filtrar",
+    "palabra": "Persona, categoría, destino, provincia, año...",
     "mensajeCabeceraAnyos": "Viajes por año",
     "mensajeCabeceraAny": "Viajes en el año",
     "mensajeCabeceraFiltrar": "Filtrar por ",
@@ -383,10 +384,34 @@
     "empezar": "Empezar a viajar: primer viaje",
     "conoceViaje": "Conoce los viajes",
     "conocerHistoria": "Conoce la historia",
-    "masFotos": "Más fotos"
+    "masFotos": "Más fotos",
+    "resumenGlobal": "Resumen Global",
+    "paisesExplorados": "Paises Explorados",
+    "aventurasTotales": "Aventuras Totales"
   },
   "favoritos": {
     "filtrado": "Año, persona, lugar, categoría...",
     "sinTexto": ""
+  },
+  "transporte": {
+    "Barca": "Barca",
+    "Barco": "Barco",
+    "Coche": "Coche",
+    "Moto": "Moto",
+    "Avion": "Avión",
+    "Furgoneta": "Furgoneta",
+    "Caravana": "Caravana",
+    "Tren": "Tren",
+    "Boda": "Boda"
+  },
+  "nav": {
+    "principal": "Navegación principal",
+    "recuerdos": "Recuerdos",
+    "cumpleanos": "Cumpleaños",
+    "masOpciones": "Más opciones",
+    "irInicio": "Ir al inicio",
+    "explora": "Explora",
+    "fotos": "Fotos",
+    "historias": "Memorias de una vida"
   }
 }

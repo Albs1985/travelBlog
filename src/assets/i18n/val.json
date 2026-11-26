@@ -87,9 +87,9 @@
     "categoriaRecetas": "Selecciona una categoria",
     "listaRecetas": "O mira la",
     "lista": "llista",
-    "categoriaDulce": "dolces",
-    "categoriaFrio": "fredes",
-    "categoriaCaliente": "calentes",
+    "categoriaDulce": "Dolces",
+    "categoriaFrio": "Fredes",
+    "categoriaCaliente": "Calentes",
     "juegos": "Jocs",
     "juegosTitulo": "Jocs per a tota la família",
     "juegosSubtitulo1": "Gaudix de les fotos dels viatges jugant",
@@ -153,6 +153,7 @@
     "errorCartaNoPuedeJugar": "La carta que es juga ha de ser del mateix color, el mateix número, o totes dues coses",
     "errorCarga": "No s'han pogut carregar les dades. Torna-ho a provar més tard.",
     "adminTokenConfig": "Configuració de Administrador",
+    "config": "Configuració",
     "adminTokenDescripcion": "Introduïu la vostra contrasenya per a poder afegir i editar frases directament:",
     "adminTokenPlaceholder": "ghp_xxxxxxxxxxxx",
     "guardar": "Guarda",
@@ -313,7 +314,7 @@
     "buscar": "Busca",
     "buscarViajes": "Buscar Viatges",
     "informacion": "Informació",
-    "palabra": "Filtrar",
+    "palabra": "Persona, categoría, destí, província, any...",
     "mensajeCabeceraAnyos": "Viatges per any",
     "mensajeCabeceraAny": "Viatges en l'any",
     "mensajeCabeceraFiltrar": "Filtrar per ",
@@ -382,10 +383,34 @@
     "empezar": "Començar a viatjar: Primer viatge",
     "conoceViaje": "Coneix els viatges",
     "conocerHistoria": "Coneix la història",
-    "masFotos": "Més fotos"
+    "masFotos": "Més fotos",
+    "resumenGlobal": "Resum Global",
+    "paisesExplorados": "Països Explorats",
+    "aventurasTotales": "Aventures Totals"
   },
   "favoritos": {
     "filtrado": "Any, persona, lloc, categoria...",
     "sinTexto": ""
+  },
+  "transporte": {
+    "Barca": "Barca",
+    "Barco": "Vaixell",
+    "Coche": "Cotxe",
+    "Moto": "Moto",
+    "Avion": "Avió",
+    "Furgoneta": "Furgoneta",
+    "Caravana": "Caravana",
+    "Tren": "Tren",
+    "Boda": "Boda"
+  },
+  "nav": {
+    "principal": "Navegació principal",
+    "recuerdos": "Records",
+    "cumpleanos": "Aniversaris",
+    "masOpciones": "Més opcions",
+    "irInicio": "Anar a l'inici",
+    "explora": "Explora",
+    "fotos": "Fotos",
+    "historias": "Memòries d'una vida"
   }
 }

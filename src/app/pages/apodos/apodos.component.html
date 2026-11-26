@@ -1,82 +1,27 @@
-<div class="apodos-wrapper">
-
-  <!-- Cabecera Hero Editorial (Con fondo naranja degradado exclusivo del banner) -->
-  <header class="apodos-hero-header">
-    <div class="hero-content">
-      <h2 class="titulo animated fadeInDown">
-        <img src="assets/icons/firma.png" alt="" class="iconosImgFav5 animated rollIn">
-        <span>{{ 'app.apodosTitulo' | translate }}</span>
-      </h2>
-      <div class="subtitulos-group animated fadeIn">
-        <h3 class="subTitulo">
-          <img src="assets/icons/apodo2.png" alt="" class="iconosImg2 animated rollIn">
-          <span>{{ 'app.apodosSubtitulo1' | translate }}</span>
-        </h3>
-        <h4 class="subTitulo subTitulo2">
-          <img src="assets/icons/apodo.png" alt="" class="iconosImgFav5 animated rollIn">
-          <span>{{ 'app.apodosSubtitulo2' | translate }}</span>
-        </h4>
-      </div>
+<section class="apodos">
+  <header class="sec-head">
+    <div class="sec-head__text">
+      <h2 class="sec-title">{{ 'app.apodosTitulo' | translate }}</h2>
+      <p class="sec-sub">{{ 'app.apodosSubtitulo1' | translate }} {{ 'app.apodosSubtitulo2' | translate }}</p>
     </div>
   </header>
 
-  <app-toolbar
-    [volverLink]="'/principal'"
-    [mostrarBotonNuevo]="false"
-    [mostrarBotonConfig]="false">
-  </app-toolbar>
+  <ul class="people" *ngIf="viajerosService.viajeros$ | async as viajeros">
+    <li class="person" *ngFor="let viajero of viajeros; let i = index" [ngClass]="'tone-' + (i % 4)">
 
-  <!-- Contenido Protegido -->
-  <div>
-    <div class="divAka">
-      <div class="familia-header-section">
-        <h3>{{ 'app.familiaApodos' | translate}}</h3>
-        <img src="assets/icons/familia.png" alt="familia" class="icon animated fadeIn">
+      <a class="person__photo" target="_blank" rel="noopener" [href]="viajero.fotoPerfil">
+        <img [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" loading="lazy">
+      </a>
+
+      <div class="person__main">
+        <h3 class="person__name">{{ viajero.nombreCorto }}</h3>
+        <span class="person__age">{{ viajero.edad }} {{ 'app.edad' | translate }}</span>
+        <p class="person__info" *ngIf="viajero.info">{{ viajero.info | l10n }}</p>
       </div>
 
-      <!-- Grid de Fichas de Viajeros (Mateu, Marina y todos los perfiles) -->
-      <div class="viajeros-cards-grid" *ngIf="viajerosService.viajeros$ | async as viajeros">
-        <article *ngFor="let viajero of viajeros; let i = index"
-                 class="id-card animated fadeInUp"
-                 [ngClass]="'card-theme-' + (i % 4)">
-
-          <!-- Cabecera de la ficha con foto de perfil -->
-          <div class="id-card-top">
-            <div class="avatar-container">
-              <a target="_blank" rel="noopener" [href]="viajero.fotoPerfil" title="Ver foto">
-                <img [src]="viajero.fotoPerfil" [alt]="viajero.nombreCorto" class="viajero-avatar">
-              </a>
-              <span class="edad-pill">{{viajero.edad}} {{ 'app.edad' | translate}}</span>
-            </div>
-
-            <div class="viajero-titular">
-              <h4 class="nombre">{{viajero.nombreCorto}}</h4>
-              <p class="info" *ngIf="viajero.info">{{viajero.info | l10n}}</p>
-            </div>
-          </div>
-
-          <!-- Zona de Apodos en formato Stickers/Etiquetas -->
-          <div class="id-card-akabox" *ngIf="viajero.aka && viajero.aka.length > 0">
-            <div class="stickers-cloud">
-              <span *ngFor="let apodo of viajero.aka; let j = index"
-                    class="apodo-sticker"
-                    [style.--rot]="((j % 3) - 1) * 2 + 'deg'">
-                🏷️ {{apodo}}
-              </span>
-            </div>
-          </div>
-
-        </article>
-      </div>
-    </div>
-  </div> <!-- de la autenticacion -->
-
-  <!-- Botón Volver Inferior (Estilo pastilla con borde) -->
-  <div class="footer-back-wrapper">
-    <a routerLink="/principal" class="btn-volver-pill">
-      <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha">
-      <span>{{ 'viaje.volver' | translate}}</span>
-    </a>
-  </div>
-
-</div>
+      <ul class="person__aka" *ngIf="viajero.aka && viajero.aka.length > 0">
+        <li *ngFor="let apodo of viajero.aka; let j = index" [style.--rot]="((j % 3) - 1) * 2 + 'deg'">{{ apodo }}</li>
+      </ul>
+    </li>
+  </ul>
+</section>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AutenticationService } from 'src/app/services/autentication.service';
 import { CommonService } from 'src/app/services/common.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class HeaderComponent {
   constructor(/*private route: ActivatedRoute, */
               private translate: TranslateService,
               protected commonService : CommonService,
+              public authenticationService: AutenticationService,
               private router: Router){
 
                 // this.mensajeCabeceraAnyo = true;
@@ -44,22 +46,21 @@ export class HeaderComponent {
     // this.mensajeCabecera = 'Viatges per any';
   }
 
-  buscar(){
-    // console.log('Buscar por '+$('#myInput').val());
-    if($('#myInput').val() == ''){
+  buscar(palabra: string): void {
+
+    // Limpiamos espacios y comprobamos que haya texto
+    const texto = palabra?.trim();
+
+    if (!texto) {
       return;
-    } else {
-      this.palabra = $('#myInput').val();
     }
-    // console.log("Busca por "+this.palabra);
 
-    // this.mensajeCabeceraAnyo = false;
-    // this.mensajeCabeceraFiltrar = true;
-    // this.mensajeCabeceraAny = '';
+    // Navegamos a la página de resultados
+    this.router.navigate(['/viajesFiltrados', texto]);
 
-    // this.mensajeCabecera = 'Filtramos por '+ this.palabra;
-    // La búsqueda la hace la página /viajesFiltrados/:palabra al abrirse
-    this.router.navigate(['/viajesFiltrados/', this.palabra]);
+  }
 
+  onTokenIaGuardado(token: string): void {
+    this.commonService.claveGuardada = Boolean((token ?? '').trim());
   }
 }

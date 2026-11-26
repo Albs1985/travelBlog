@@ -1,11 +1,22 @@
-<div class="filtrado animated fadeIn" [class.sin-margen]="sinMargenSuperior">
-  <h3 class="heading">{{ 'header.buscar' | translate }}</h3>
-  <form id="busquedaForm" (submit)="enviar($event)">
-    <div id="busquedaForm" class="form-group">
-      <input type="text" class="form-control gradiente" name="texto" [(ngModel)]="texto" [placeholder]="placeholder" autocomplete="off">
-      <button id="botonLupa" type="submit" [attr.aria-label]="'header.buscar' | translate">
-        <img src="assets/icons/lupa.gif" alt="" class="iconosImg">
-      </button>
-    </div>
-  </form>
-</div>
+<form class="srch" [class.srch--flush]="sinMargenSuperior" role="search" (submit)="enviar($event)">
+  <svg class="ic srch__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+
+  <input
+    type="text"
+    class="srch__input"
+    name="texto"
+    [(ngModel)]="texto"
+    [placeholder]="placeholder"
+    [attr.aria-label]="'header.buscar' | translate"
+    autocomplete="off"
+    enterkeyhint="search">
+
+  <!-- Borrar lo escrito y quitar el filtro -->
+  <button *ngIf="texto" type="button" class="srch__clear" (click)="texto = ''; enviar()" [attr.aria-label]="'app.cerrar' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+
+  <button type="submit" class="srch__go" [attr.aria-label]="'header.buscar' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+  </button>
+</form>

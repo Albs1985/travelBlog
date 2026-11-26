@@ -1,27 +1,5 @@
 <div class="apodos-wrapper">
 
-  <!-- Cabecera Hero Editorial -->
-  <header class="apodos-hero-header">
-    <div class="hero-content">
-      <h2 class="titulo animated fadeInDown">
-        <img src="assets/icons/mapa.png" alt="" class="iconosImgFav5 animated rollIn">
-        <span>{{ 'app.tituloMapa' | translate }}</span>
-      </h2>
-      <div class="subtitulos-group animated fadeIn">
-        <h3 class="subTitulo">
-          <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">
-          <span>{{ 'app.subtituloMapa1' | translate }}</span>
-        </h3>
-      </div>
-    </div>
-  </header>
-
-  <app-toolbar
-    [volverLink]="'/principal'"
-    [mostrarBotonNuevo]="false"
-    [mostrarBotonConfig]="false">
-  </app-toolbar>
-
   <!-- Spinner de Carga -->
   <div *ngIf="(servicioLocalizaciones.cargandoLocalizaciones$ | async) === true" class="spinner-container-creative">
     <div class="spinner-ring"></div>
@@ -108,7 +86,7 @@
           📊 {{ 'app.graficoBarras' | translate }}
         </button>
         <button [class.active]="tipoGrafico === 'resumen'" (click)="cambiaGrafico('resumen')" class="tab-btn">
-          🌍 Resumen Global
+          🌍 {{ 'viaje.resumenGlobal' | translate }}
         </button>
       </div>
     </div>
@@ -125,15 +103,11 @@
       <div *ngIf="tipoGrafico === 'resumen'" class="stats-hero-grid animated fadeIn">
         <div class="stat-pill-card">
           <span class="stat-number">✈️ {{ totalPaisesVisitados }}</span>
-          <span class="stat-label">Países Explorados</span>
+          <span class="stat-label"> {{ 'viaje.paisesExplorados' | translate }}</span>
         </div>
         <div class="stat-pill-card">
           <span class="stat-number">📸 {{ totalVisitasGlobales }}</span>
-          <span class="stat-label">Aventuras Totales</span>
-        </div>
-        <div class="stat-pill-card">
-          <span class="stat-number">👨‍👩‍👧‍👦 Activa</span>
-          <span class="stat-label">Familia Viajera</span>
+          <span class="stat-label">{{ 'viaje.aventurasTotales' | translate }}</span>
         </div>
       </div>
 
@@ -142,11 +116,11 @@
   </div>
 
   <!-- Botón Volver Inferior -->
-  <div class="footer-back-wrapper">
+  <!-- <div class="footer-back-wrapper">
     <a routerLink="/principal" class="btn-volver-pill">
       <img src="assets/icons/flechaAtras.png" loading="lazy" class="animated fadeIn iconoFlecha">
       <span>{{ 'viaje.volver' | translate}}</span>
     </a>
-  </div>
+  </div> -->
 
 </div>

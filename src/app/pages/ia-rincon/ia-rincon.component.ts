@@ -10,6 +10,8 @@ import {
 } from '../../services/ia-familia.service';
 import { finalize, of, catchError, map, Subscription, Observable, forkJoin, switchMap } from 'rxjs';
 import { jsPDF } from 'jspdf';
+import { CommonService } from 'src/app/services/common.service';
+import { AutenticationService } from 'src/app/services/autentication.service';
 
 export interface MensajeChatFamilia {
   remitente: 'usuario' | 'ia';
@@ -50,7 +52,7 @@ export class IaRinconComponent implements OnInit, OnDestroy {
   fuentesCuento: FuentesCuentoConfig = { ...FUENTES_CUENTO_LIBRE };
 
   apiKeyInput = '';
-  claveGuardada = false;
+  // claveGuardada = false;
   mostrarPanelToken = false;
 
   consulta = '';
@@ -106,12 +108,14 @@ export class IaRinconComponent implements OnInit, OnDestroy {
   constructor(
     private iaService: IaFamiliaService,
     private translate: TranslateService,
+    private commonService: CommonService,
+    protected autenticationService: AutenticationService,
     private http: HttpClient
   ) {}
 
   ngOnInit(): void {
     this.apiKeyInput = this.iaService.obtenerApiKey();
-    this.claveGuardada = this.iaService.tieneApiKey();
+    this.commonService.claveGuardada = this.iaService.tieneApiKey();
     this.iaService.limpiarCacheContexto();
   }
 
@@ -1083,8 +1087,8 @@ export class IaRinconComponent implements OnInit, OnDestroy {
   }
 
   onTokenIaGuardado(token: string): void {
-    this.claveGuardada = Boolean((token ?? '').trim());
-    if (this.claveGuardada) {
+    this.commonService.claveGuardada = Boolean((token ?? '').trim());
+    if (this.commonService.claveGuardada) {
       this.errorMsg = '';
     }
   }

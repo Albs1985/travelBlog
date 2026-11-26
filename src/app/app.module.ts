@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { FamiliaComponent } from './pages/familia/familia.component';
+import { FotosComponent } from './pages/fotos/fotos.component';
 import { ViajeComponent } from './pages/viaje/viaje.component';
 import { ViajesPorAnyoComponent } from './pages/viajes-por-anyo/viajes-por-anyo.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -42,12 +45,16 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { PaginacionComponent } from './shared/paginacion/paginacion.component';
 import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
+import { NuevoViajeComponent } from './pages/nuevo-viaje/nuevo-viaje.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    NavComponent,
+    FamiliaComponent,
+    FotosComponent,
     ViajeComponent,
     ViajesPorAnyoComponent,
     SafePipe,
@@ -80,6 +87,7 @@ import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
     PaginacionComponent,
     CumpleanosComponent,
     IaRinconComponent,
+    NuevoViajeComponent,
   ],
   imports: [
     BrowserModule,

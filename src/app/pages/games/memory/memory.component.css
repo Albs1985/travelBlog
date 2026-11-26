@@ -1,143 +1,96 @@
-.game-wrapper {
-  padding: 10px; /* Ajusta el espacio alrededor del juego */
-}
+:host { display: block; }
 
-.imagenCentrada {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+.badge { flex: none; width: 52px; height: 64px; overflow: hidden; border-radius: 14px; box-shadow: var(--shadow-sm); transform: rotate(5deg); }
+.badge__art { display: block; width: 100%; height: 100%; }
 
-.iconJuego {
-  width: 60px;
-  height: 60px;
-  /* margin: 10px; */
-}
+/* ---------- Ajustes ---------- */
+.setup { display: grid; gap: var(--space-4); padding: var(--space-4); border-radius: var(--r-lg); background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+.setup__row { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
 
-.settings {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra los elementos verticalmente */
-  align-items: center; /* Centra los elementos horizontalmente */
-  margin-bottom: 20px;
-  margin-left: auto; /* Mueve el contenedor a la derecha */
-  margin-right: auto; /* Mueve el contenedor a la izquierda */
-  width: fit-content; /* Ajusta el ancho del contenedor al contenido */
-}
-
-.select-container {
-  display: block; /* Opcionalmente puedes usar 'flex' en lugar de 'block' */
-  margin-bottom: 10px; /* Espacio entre los dos divs */
-}
-
-.btnStart {
-  text-align: center;
-  background: transparent;
-  border-radius: 30px;
-  border: 4px solid rgb(33, 33, 33);
-  background-color: rgb(255, 228, 177);
-  width: 230px;
-  height: 50px;
-}
-
-.selector {
-  border-radius: 10px;
-  width: 300px;
-  background-color: rgb(247, 200, 115);
-}
-
-.imagen {
-  border: 1px solid #000000;
-  border-radius: 10px;
-  max-width: 90%;
-  max-height: 80%;
-}
-
-.jugadorSeleccionado {
-  border: 5px solid rgb(247, 200, 115);
-  border-radius: 10px;
-}
-
-.listaJugadores {
-  margin-left: 30px;
-  text-align: center;
-}
-
-.centraChecks {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.playerCheckbox {
-  display: flex;
-  align-items: center;
-  margin: 5px; /* Espacio entre las checkboxes */
-}
-
-.playerCheckbox input[type="checkbox"] {
-  margin-right: 5px; /* Espacio entre el checkbox y el texto */
-}
-
-.memory-game-container {
+.picks { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.pick {
   display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-}
-
-.memory-card {
-  width: 100px;
-  height: 100px;
-  margin: 10px;
-  border: 1px solid #000000;
-  border-radius: 10px;
+  gap: .5rem;
+  min-height: 44px;
+  padding: 4px 1rem 4px 4px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--sand-100);
+  color: var(--ink-soft);
+  box-shadow: inset 0 0 0 1px var(--line);
+  font: 600 .92rem/1 var(--font-body);
   cursor: pointer;
-  position: relative;
-  perspective: 1000px;
+  transition: background .2s, color .2s, box-shadow .2s;
 }
+.pick__img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--sand-200); filter: grayscale(.8); transition: filter .2s; }
+.pick.is-on { background: var(--palm-100); color: var(--palm-700); box-shadow: inset 0 0 0 1.5px var(--palm-600); }
+.pick.is-on .pick__img { filter: none; }
 
-.card-front,
-.card-back {
+/* ---------- Marcador ---------- */
+.players { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); margin-top: var(--space-5); }
+.player {
+  display: grid;
+  justify-items: center;
+  gap: .15rem;
+  width: 104px;
+  padding: var(--space-3) var(--space-2);
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.player__img { width: 64px; height: 64px; margin-bottom: .3rem; border-radius: 50%; object-fit: cover; background: var(--sand-200); }
+.player__name { font: 700 .95rem/1.1 var(--font-body); }
+.player__score { font: 500 .8rem/1.2 var(--font-body); color: var(--ink-soft); }
+/* El jugador con el turno se levanta y se tiñe */
+.player.is-turn { background: var(--terra-600); color: #fff; box-shadow: var(--shadow-sm); transform: translateY(-5px); }
+.player.is-turn .player__score { color: rgba(255, 255, 255, .9); }
+.player.is-turn .player__img { box-shadow: 0 0 0 3px var(--ochre-500); }
+
+.start { display: grid; justify-items: center; gap: var(--space-3); margin-top: var(--space-5); }
+.start__btn { min-height: 54px; padding: 0 2rem; font-size: 1.05rem; }
+
+/* ---------- Tablero ---------- */
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 10px; margin-top: var(--space-6); }
+
+.mcard { position: relative; aspect-ratio: 3 / 4; perspective: 800px; cursor: pointer; border-radius: 14px; }
+.mcard__inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.3, .7, .3, 1); }
+.mcard.is-flipped .mcard__inner { transform: rotateY(180deg); }
+
+.mcard__face { position: absolute; inset: 0; overflow: hidden; border-radius: 14px; -webkit-backface-visibility: hidden; backface-visibility: hidden; box-shadow: var(--shadow-sm); }
+
+/* Dorso: un sol con sus rayos */
+.mcard__front {
+  background:
+    radial-gradient(circle at 50% 50%, var(--ochre-500) 0 13%, transparent 14%),
+    repeating-radial-gradient(circle at 50% 50%, var(--terra-600) 0 7px, var(--terra-700) 7px 9px);
+}
+.mcard__back { transform: rotateY(180deg); background: var(--sand-200); }
+.mcard__img { width: 100%; height: 100%; object-fit: cover; }
+.mcard.is-matched .mcard__back { box-shadow: 0 0 0 3px var(--palm-600), var(--shadow-sm); }
+.mcard__player {
   position: absolute;
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden; /* Evita que la cara trasera sea visible durante la rotación */
-}
-
-.card-back {
-  transform: rotateY(180deg); /* Inicia la parte trasera de la carta girada */
-}
-
-.memory-card.flipped .card-front {
-  transform: rotateY(180deg); /* Gira la carta a su posición normal */
-  transition: transform 0.5s ease; /* Agrega una transición suave al giro */
-}
-
-.memory-card.flipped .card-back {
-  transform: rotateY(360deg); /* Gira la parte trasera a su posición normal */
-  transition: transform 0.5s ease; /* Agrega una transición suave al giro */
-}
-
-.memory-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.player-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(255, 255, 255, 0.4);
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  padding: .25rem .4rem;
+  border-radius: var(--r-pill);
+  background: rgba(255, 252, 247, .94);
+  color: var(--ink);
   text-align: center;
-  padding: 5px;
-  font-weight: bold;
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font: 700 .68rem/1.1 var(--font-body);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .setup { padding: var(--space-5); }
+  .setup__row { grid-template-columns: 1fr 1fr; }
+  .board { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 14px; }
+  .player { width: 124px; }
+  .player__img { width: 76px; height: 76px; }
 }

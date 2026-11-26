@@ -1,139 +1,112 @@
-<div class="games-home-wrapper">
+<!-- Portada de los juegos -->
+<section class="hero">
+  <img class="hero__img" src="assets/images/games/backgroundGames.jpg" alt="" (error)="$any($event.target).style.display = 'none'">
 
-  <div class="padding3">
-    <app-toolbar
-      [volverLink]="'/principal'"
-      [mostrarBotonNuevo]="false"
-      [mostrarBotonConfig]="false">
-    </app-toolbar>
+  <!-- Confeti de fichas y dados -->
+  <svg class="hero__confetti" viewBox="0 0 400 220" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
+    <circle cx="330" cy="46" r="20" fill="#E3A93C"/>
+    <rect x="270" y="96" width="34" height="34" rx="9" fill="#C8643C" transform="rotate(18 287 113)"/>
+    <path d="M356 150l24 42h-48z" fill="#2F7C94"/>
+    <circle cx="238" cy="38" r="9" fill="#FFFCF7"/>
+    <rect x="360" y="92" width="18" height="18" rx="5" fill="#FFFCF7" transform="rotate(-14 369 101)"/>
+    <path d="M300.0 165.0L302.6 173.4L311.0 176.0L302.6 178.6L300.0 187.0L297.4 178.6L289.0 176.0L297.4 173.4z" fill="#FFFCF7"/>
+  </svg>
+
+  <a class="round-btn round-btn--glass hero__back" routerLink="/principal" [attr.aria-label]="'viaje.volver' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+
+  <div class="hero__text">
+    <h1 class="hero__title">{{ 'app.juegosTitulo' | translate }}</h1>
+    <p class="hero__sub">{{ 'app.juegosSubtitulo1' | translate }} {{ 'app.juegosSubtitulo2' | translate }}</p>
   </div>
+</section>
 
-  <!-- Contenido Protegido / Home de Juegos -->
-  <div class="games-hero-section">
+<!-- Un juego = una card -->
+<ul class="games">
+    <li>
+      <a class="game" routerLink="/games/memory/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#B4532A"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="56" height="76" rx="8" fill="#FFFCF7" transform="rotate(-10 74 114)"/><circle cx="74" cy="114" r="12" fill="#C8643C"/><rect x="98" y="76" width="56" height="76" rx="8" fill="#12313B" transform="rotate(8 126 114)"/><text x="126" y="132" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="44" font-weight="700" fill="#E3A93C" transform="rotate(8 126 114)">?</text></g></svg>
+        <span class="game__name">{{ 'app.memory' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/quien-es-quien/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#5E7B4B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="100" cy="112" r="32" fill="#F6DFD2"/><path d="M68 108a32 32 0 0 1 64 0c-12-9-52-9-64 0z" fill="#12313B"/><circle cx="89" cy="116" r="3" fill="#12313B"/><circle cx="111" cy="116" r="3" fill="#12313B"/><path d="M91 128q9 7 18 0" stroke="#12313B" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="142" cy="80" r="15" fill="#E3A93C"/><text x="142" y="88" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="700" fill="#12313B">?</text></g></svg>
+        <span class="game__name">{{ 'app.quienEsQuien' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/conecta4/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="108" height="92" rx="12" fill="#1F5F73"/><circle cx="64" cy="94" r="8" fill="#12313B"/><circle cx="82" cy="94" r="8" fill="#12313B"/><circle cx="100" cy="94" r="8" fill="#12313B"/><circle cx="118" cy="94" r="8" fill="#12313B"/><circle cx="136" cy="94" r="8" fill="#12313B"/><circle cx="64" cy="114" r="8" fill="#12313B"/><circle cx="82" cy="114" r="8" fill="#12313B"/><circle cx="100" cy="114" r="8" fill="#C8643C"/><circle cx="118" cy="114" r="8" fill="#12313B"/><circle cx="136" cy="114" r="8" fill="#12313B"/><circle cx="64" cy="134" r="8" fill="#12313B"/><circle cx="82" cy="134" r="8" fill="#C8643C"/><circle cx="100" cy="134" r="8" fill="#E3A93C"/><circle cx="118" cy="134" r="8" fill="#12313B"/><circle cx="136" cy="134" r="8" fill="#12313B"/><circle cx="64" cy="154" r="8" fill="#C8643C"/><circle cx="82" cy="154" r="8" fill="#E3A93C"/><circle cx="100" cy="154" r="8" fill="#C8643C"/><circle cx="118" cy="154" r="8" fill="#E3A93C"/><circle cx="136" cy="154" r="8" fill="#12313B"/></g></svg>
+        <span class="game__name">{{ 'app.conecta4' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/impostor/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#4A6439"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="100" cy="118" r="46" fill="#5E7B4B"/><circle cx="100" cy="98" r="20" fill="#12313B"/><path d="M62 160c0-26 16-40 38-40s38 14 38 40z" fill="#12313B"/><ellipse cx="92" cy="98" rx="3.5" ry="5" fill="#E3A93C"/><ellipse cx="108" cy="98" rx="3.5" ry="5" fill="#E3A93C"/><circle cx="146" cy="82" r="13" fill="#E3A93C"/><text x="146" y="89" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="19" fill="#12313B">?</text></g></svg>
+        <span class="game__name">{{ 'app.impostor' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/simon/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#12313B"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path d="M100 116V76A40 40 0 0 0 60 116z" fill="#C8643C"/><path d="M100 116h40A40 40 0 0 0 100 76z" fill="#E3A93C"/><path d="M100 116v40A40 40 0 0 0 140 116z" fill="#5E7B4B"/><path d="M100 116H60A40 40 0 0 0 100 156z" fill="#2F7C94"/><path d="M60 116h80M100 76v80" stroke="#12313B" stroke-width="5"/><circle cx="100" cy="116" r="11" fill="#FFFCF7"/></g></svg>
+        <span class="game__name">{{ 'app.simon' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/facedoku/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="72" width="92" height="92" rx="10" fill="#12313B"/><rect x="60" y="76" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="73" cy="89" r="10" fill="#C8643C"/><circle cx="69.5" cy="87.5" r="1.6" fill="#FFFCF7"/><circle cx="76.5" cy="87.5" r="1.6" fill="#FFFCF7"/><path d="M69.5 92.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="88" y="76" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="116" y="76" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="129" cy="89" r="10" fill="#5E7B4B"/><circle cx="125.5" cy="87.5" r="1.6" fill="#FFFCF7"/><circle cx="132.5" cy="87.5" r="1.6" fill="#FFFCF7"/><path d="M125.5 92.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="60" y="104" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="88" y="104" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="101" cy="117" r="10" fill="#E3A93C"/><circle cx="97.5" cy="115.5" r="1.6" fill="#FFFCF7"/><circle cx="104.5" cy="115.5" r="1.6" fill="#FFFCF7"/><path d="M97.5 120.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="116" y="104" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="60" y="132" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="73" cy="145" r="10" fill="#2F7C94"/><circle cx="69.5" cy="143.5" r="1.6" fill="#FFFCF7"/><circle cx="76.5" cy="143.5" r="1.6" fill="#FFFCF7"/><path d="M69.5 148.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="88" y="132" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="116" y="132" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="129" cy="145" r="10" fill="#97431F"/><circle cx="125.5" cy="143.5" r="1.6" fill="#FFFCF7"/><circle cx="132.5" cy="143.5" r="1.6" fill="#FFFCF7"/><path d="M125.5 148.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/></g></svg>
+        <span class="game__name">{{ 'app.faceDoku' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/puzzle/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3A93C"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="62" y="82" width="38" height="38" rx="6" fill="#C8643C"/><rect x="102" y="82" width="38" height="38" rx="6" fill="#12313B"/><rect x="62" y="122" width="38" height="38" rx="6" fill="#1F5F73"/><rect x="102" y="122" width="38" height="38" rx="6" fill="#FFFCF7"/><circle cx="101" cy="101" r="8" fill="#C8643C"/><circle cx="81" cy="121" r="8" fill="#1F5F73"/><circle cx="121" cy="121" r="8" fill="#FFFCF7"/></g></svg>
+        <span class="game__name">{{ 'app.puzzle' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/adivina/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#FBEBC8"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="92" cy="106" r="30" fill="#FFFCF7" stroke="#12313B" stroke-width="8"/><path d="M114 128l28 28" stroke="#12313B" stroke-width="11" stroke-linecap="round"/><text x="92" y="120" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="38" fill="#C8643C">?</text><path d="M150.0 70.0L151.9 76.1L158.0 78.0L151.9 79.9L150.0 86.0L148.1 79.9L142.0 78.0L148.1 76.1z" fill="#C8643C"/></g></svg>
+        <span class="game__name">{{ 'app.juegoAdivina' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/misionCumplida/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#2F7C94"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><g transform="rotate(-18 100 156)"><rect x="70" y="76" width="56" height="80" rx="8" fill="#EBDFCB"/></g><g transform="rotate(18 100 156)"><rect x="74" y="76" width="56" height="80" rx="8" fill="#DCCBAE"/></g><rect x="72" y="74" width="56" height="84" rx="9" fill="#FFFCF7"/><path d="M86 114l10 10 20-23" fill="none" stroke="#C8643C" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M112.0 84.0L113.4 88.6L118.0 90.0L113.4 91.4L112.0 96.0L110.6 91.4L106.0 90.0L110.6 88.6z" fill="#E3A93C"/></g></svg>
+        <span class="game__name">{{ 'app.juegoMisionCumplida' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/aventura/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#E3EBD9"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="100" cy="116" r="40" fill="#FFFCF7" stroke="#12313B" stroke-width="6"/><path d="M100 80v6" stroke="#12313B" stroke-width="3" stroke-linecap="round" transform="rotate(0 100 116)"/><path d="M100 80v6" stroke="#12313B" stroke-width="3" stroke-linecap="round" transform="rotate(90 100 116)"/><path d="M100 80v6" stroke="#12313B" stroke-width="3" stroke-linecap="round" transform="rotate(180 100 116)"/><path d="M100 80v6" stroke="#12313B" stroke-width="3" stroke-linecap="round" transform="rotate(270 100 116)"/><path d="M100 88l10 28H90z" fill="#C8643C"/><path d="M100 144l10-28H90z" fill="#12313B"/><circle cx="100" cy="116" r="4.5" fill="#FFFCF7" stroke="#12313B" stroke-width="2"/></g></svg>
+        <span class="game__name">{{ 'app.aventura' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/tableros/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#4A6439"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="54" y="70" width="96" height="96" rx="8" fill="#12313B"/><rect x="58" y="74" width="22" height="22" fill="#FFFCF7"/><rect x="80" y="74" width="22" height="22" fill="#C8643C"/><rect x="102" y="74" width="22" height="22" fill="#FFFCF7"/><rect x="124" y="74" width="22" height="22" fill="#C8643C"/><rect x="58" y="96" width="22" height="22" fill="#C8643C"/><rect x="80" y="96" width="22" height="22" fill="#FFFCF7"/><rect x="102" y="96" width="22" height="22" fill="#C8643C"/><rect x="124" y="96" width="22" height="22" fill="#FFFCF7"/><rect x="58" y="118" width="22" height="22" fill="#FFFCF7"/><rect x="80" y="118" width="22" height="22" fill="#C8643C"/><rect x="102" y="118" width="22" height="22" fill="#FFFCF7"/><rect x="124" y="118" width="22" height="22" fill="#C8643C"/><rect x="58" y="140" width="22" height="22" fill="#C8643C"/><rect x="80" y="140" width="22" height="22" fill="#FFFCF7"/><rect x="102" y="140" width="22" height="22" fill="#C8643C"/><rect x="124" y="140" width="22" height="22" fill="#FFFCF7"/><g transform="rotate(14 138 142)"><rect x="118" y="122" width="40" height="40" rx="9" fill="#E3A93C"/><circle cx="126" cy="128" r="3" fill="#12313B"/><circle cx="146" cy="128" r="3" fill="#12313B"/><circle cx="126" cy="148" r="3" fill="#12313B"/><circle cx="146" cy="148" r="3" fill="#12313B"/><circle cx="136" cy="138" r="3" fill="#12313B"/></g></g></svg>
+        <span class="game__name">{{ 'app.juegoMesa' | translate }}</span>
+      </a>
+    </li>
+ <!--    <li>
+      <a class="game" routerLink="/games/ahorcado/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#DCEBEF"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><path transform="translate(80 96)" d="M0 4c-4-2.5-6-4.8-6-7.5a3 3 0 0 1 6-.8 3 3 0 0 1 6 .8c0 2.7-2 5-6 7.5z" fill="#C8643C"/><path transform="translate(100 96)" d="M0 4c-4-2.5-6-4.8-6-7.5a3 3 0 0 1 6-.8 3 3 0 0 1 6 .8c0 2.7-2 5-6 7.5z" fill="#C8643C"/><path transform="translate(120 96)" d="M0 4c-4-2.5-6-4.8-6-7.5a3 3 0 0 1 6-.8 3 3 0 0 1 6 .8c0 2.7-2 5-6 7.5z" fill="#DCCBAE"/><rect x="52" y="118" width="17" height="26" rx="5" fill="#FFFCF7" stroke="#12313B" stroke-width="2.5"/><text x="60.5" y="138" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="17" fill="#12313B">J</text><rect x="72" y="118" width="17" height="26" rx="5" fill="#FFFCF7" stroke="#12313B" stroke-width="2.5"/><path d="M76 139h9" stroke="#12313B" stroke-width="2.5" stroke-linecap="round"/><rect x="92" y="118" width="17" height="26" rx="5" fill="#FFFCF7" stroke="#12313B" stroke-width="2.5"/><text x="100.5" y="138" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="17" fill="#12313B">E</text><rect x="112" y="118" width="17" height="26" rx="5" fill="#FFFCF7" stroke="#12313B" stroke-width="2.5"/><path d="M116 139h9" stroke="#12313B" stroke-width="2.5" stroke-linecap="round"/><rect x="132" y="118" width="17" height="26" rx="5" fill="#FFFCF7" stroke="#12313B" stroke-width="2.5"/><text x="140.5" y="138" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="17" fill="#12313B">O</text></g></svg>
+        <span class="game__name">{{ 'app.ahorcado' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/quiz/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#1F5F73"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><circle cx="100" cy="114" r="40" fill="#E3A93C"/><text x="100" y="136" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="64" font-weight="700" fill="#12313B">?</text><path d="M52.0 68.0L53.9 74.1L60.0 76.0L53.9 77.9L52.0 84.0L50.1 77.9L44.0 76.0L50.1 74.1z" fill="#FBEBC8"/><path d="M152.0 143.0L153.7 148.3L159.0 150.0L153.7 151.7L152.0 157.0L150.3 151.7L145.0 150.0L150.3 148.3z" fill="#FBEBC8"/></g></svg>
+        <span class="game__name">{{ 'app.juegoQuiz' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="game" routerLink="/games/puzzle-deslizante/">
+        <svg class="game__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#97431F"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="53" y="72" width="30" height="30" rx="7" fill="#FFFCF7"/><text x="68" y="93" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">1</text><rect x="87" y="72" width="30" height="30" rx="7" fill="#FBEBC8"/><text x="102" y="93" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">2</text><rect x="121" y="72" width="30" height="30" rx="7" fill="#F6DFD2"/><text x="136" y="93" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">3</text><rect x="53" y="106" width="30" height="30" rx="7" fill="#DCEBEF"/><text x="68" y="127" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">4</text><rect x="87" y="106" width="30" height="30" rx="7" fill="#FFFCF7"/><text x="102" y="127" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">5</text><rect x="121" y="106" width="30" height="30" rx="7" fill="#FBEBC8"/><text x="136" y="127" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">6</text><rect x="53" y="140" width="30" height="30" rx="7" fill="#F6DFD2"/><text x="68" y="161" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">7</text><rect x="87" y="140" width="30" height="30" rx="7" fill="#DCEBEF"/><text x="102" y="161" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="16" fill="#97431F">8</text><rect x="121" y="140" width="30" height="30" rx="7" fill="#12313B" opacity=".35"/></g></svg>
+        <span class="game__name">{{ 'app.puzzleDeslizante' | translate }}</span>
+      </a>
+    </li> -->
 
-    <!-- Contenedor de la imagen de fondo difuminada -->
-    <!-- Contenedor de la imagen de fondo difuminada -->
-    <div class="hero-bg-container">
-      <img src="assets/images/games/backgroundGames.jpg" loading="lazy" alt="inicio" class="hero-bg-image">
-      <div class="hero-dark-overlay"></div>
-      <!-- Capa de fundido superior hacia blanco -->
-      <div class="hero-white-fade-top"></div>
-      <!-- 👈 Añadido: Capa de fundido inferior hacia blanco -->
-      <div class="hero-white-fade-bottom"></div>
-    </div>
-
-    <!-- Contenido Principal Superpuesto sobre la imagen -->
-    <div class="hero-content-overlay">
-
-      <!-- Cabecera de Títulos -->
-      <div class="titles-container animated fadeInDown">
-        <h2 class="titulo-juegos">
-          <img src="assets/icons/juegos.png" alt="" class="iconosImgFav animated rollIn">
-          <span>{{ 'app.juegosTitulo' | translate }}</span>
-        </h2>
-        <div class="subtitulos-group">
-          <h3 class="subTitulo-juegos">
-            <img src="assets/icons/consola.png" alt="" class="iconosImgFav animated rollIn">
-            <span>{{ 'app.juegosSubtitulo1' | translate }}</span>
-          </h3>
-          <h4 class="subTitulo-juegos sub2">
-            {{ 'app.juegosSubtitulo2' | translate }}
-          </h4>
-        </div>
-      </div>
-
-      <!-- Grid de Iconos de Juegos Estilo Glassmorphism (Flotantes) -->
-      <div class="cuerpoImagenes animated fadeInUp">
-        <div class="icon-container-glass">
-
-          <div class="game-icon-card" title="Memory">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/memory/">
-              <img src="assets/icons/memory.png" alt="Memory">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Quién es quién">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/quien-es-quien/">
-              <img src="assets/icons/quien.png" alt="Quién es quién">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Adivina">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/adivina/">
-              <img src="assets/icons/rompecabezas.png" alt="Adivina">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Quiz">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/quiz/">
-              <img src="assets/icons/prueba.png" alt="Quiz">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Tableros">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/tableros/">
-              <img src="assets/icons/juego-de-mesa.png" alt="Tableros">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Misión Cumplida">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/misionCumplida/">
-              <img src="assets/icons/juegos-de-cartas.png" alt="Misión Cumplida">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Facedoku">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/facedoku/">
-              <img src="assets/icons/facedoku.png" alt="Facedoku">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Ahorcado">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/ahorcado/">
-              <img src="assets/icons/ahorcado.png" alt="Ahorcado">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Aventura">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/aventura/">
-              <img src="assets/icons/aventura.jpeg" alt="Aventura">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Puzzle Deslizante">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle-deslizante/">
-              <img src="assets/icons/puzzle-deslizante.jpeg" alt="Puzzle Deslizante">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Impostor">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/impostor/">
-              <img src="assets/icons/impostor.png" alt="Impostor">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Simón">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/simon/">
-              <img src="assets/icons/simon.png" alt="Simón">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Puzzle">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle/">
-              <img src="assets/icons/puzzle.png" alt="Puzzle">
-            </a>
-          </div>
-
-          <div class="game-icon-card" title="Conecta 4">
-            <a class="js-fh5co-close-offcanvas" routerLink="/games/conecta4/">
-              <img src="assets/icons/conecta4.jpeg" alt="Conecta 4">
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
+</ul>

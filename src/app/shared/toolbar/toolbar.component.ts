@@ -27,9 +27,10 @@ export class ToolbarComponent implements OnInit {
   @Input() volverLink: string = '/principal';
   @Input() textoNuevo: string = 'app.nuevoElemento';
   @Input() mostrarBotonNuevo: boolean = true;
-  @Input() mostrarBotonConfig: boolean = true;
+  @Input() mostrarBotonConfig: boolean = false;
   @Input() textoBotonExtra: string = '';
   @Input() iconoBotonExtra: string = '';
+  @Input() mostrarPanelToken: boolean = false;
   @Input() tipoToken: TipoTokenToolbar = 'github';
 
   // Opciones de ordenación (opcional)
@@ -50,7 +51,7 @@ export class ToolbarComponent implements OnInit {
   @Output() tokenGuardado = new EventEmitter<string>();
 
   tokenActual: string = '';
-  mostrarPanelToken = false;
+  // mostrarPanelToken = false;
   mostrarClaves = false;
 
   /**
@@ -193,6 +194,5 @@ export class ToolbarComponent implements OnInit {
     }
 
     this.tokenGuardado.emit(this.tokenActual);
-    this.mostrarPanelToken = false;
   }
 }

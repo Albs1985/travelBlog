@@ -1,77 +1,37 @@
-<div class="apodos-wrapper">
+<section class="galeria">
 
-  <!-- Cabecera Hero Editorial (Con fondo naranja acotado al banner) -->
-  <header class="apodos-hero-header">
-    <div class="hero-content">
-      <h2 class="titulo animated fadeInDown">
-        <img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">
-        <span>{{ 'app.galeriaImagenes' | translate }}</span>
-      </h2>
-      <div class="subtitulos-group animated fadeIn">
-        <h3 class="subTitulo">
-          <img src="assets/icons/viajarMundo.png" alt="" class="iconosImgFav animated rollIn">
-          <span>{{ 'app.subTituloGal' | translate }}</span>
-        </h3>
-        <h4 class="subTitulo subTitulo2">
-          {{ 'app.subTituloGal2' | translate }}
-        </h4>
-      </div>
+  <header class="sec-head">
+    <div class="sec-head__text">
+      <h2 class="sec-title">{{ 'app.galeriaImagenes' | translate }}</h2>
+      <p class="sec-sub">{{ 'app.subTituloGal' | translate }} {{ 'app.subTituloGal2' | translate }}</p>
     </div>
   </header>
 
-  <app-toolbar
-    [volverLink]="'/principal'"
-    [mostrarBotonNuevo]="false"
-    [mostrarBotonConfig]="false">
-  </app-toolbar>
+  <ng-container *ngIf="fotos$ | async as fotos; else cargando">
 
-  <div>
-    <ng-container *ngIf="fotos$ | async as fotos; else cargando">
+    <div *ngIf="fotos.length > maxSizeDisplay">
+      <pagination-controls id="gal" nextLabel="{{ 'app.siguiente' | translate }}" previousLabel="{{ 'app.anterior' | translate }}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+    </div>
 
-      <!-- Paginación superior compacta -->
-      <div class="paginacion-container" *ngIf="fotos.length > maxSizeDisplay">
-        <pagination-controls class="my-pagination compact-pagination" id="gal" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
-      </div>
+    <div class="masonry">
+      <figure class="tile" *ngFor="let foto of fotos | paginate: { id: 'gal', itemsPerPage: pageSize, currentPage: p }; let i = index">
+        <button type="button" class="tile__btn" (click)="fotoAbierta = posicion(i)">
+          <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
+        </button>
+      </figure>
+    </div>
 
-      <!-- Grid de Galería (Masonry que respeta proporciones originales y sin floats) -->
-      <div class="masonry-gallery-grid">
-        <div *ngFor="let foto of fotos | paginate: { id: 'gal', itemsPerPage: pageSize, currentPage: p }; let i = index" class="masonry-card-wrapper animated zoomInDown">
-          <div class="gallery art-card">
-            <a href="#" (click)="fotoAbierta = posicion(i); $event.preventDefault()">
-              <div class="img-frame">
-                <img [src]="'assets/images/' + foto.src" loading="lazy" alt="">
-                <div class="card-glass-overlay">
-                  <span class="explore-pill">✨ Ver foto</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="fotos.length > maxSizeDisplay">
+      <pagination-controls id="gal" nextLabel="{{ 'app.siguiente' | translate }}" previousLabel="{{ 'app.anterior' | translate }}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
+    </div>
 
-      <!-- Paginación inferior compacta -->
-      <div class="paginacion-container" *ngIf="fotos.length > maxSizeDisplay">
-        <pagination-controls class="my-pagination compact-pagination" id="gal" nextLabel="{{ 'app.siguiente' | translate}}" previousLabel="{{ 'app.anterior' | translate}}" [maxSize]="maxSizeDisplay" (pageChange)="p = $event"></pagination-controls>
-      </div>
+    <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="fotos" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
+  </ng-container>
 
-      <!-- Visor Lightbox -->
-      <app-lightbox *ngIf="fotoAbierta !== null" [fotos]="fotos" [indice]="fotoAbierta" (cerrar)="fotoAbierta = null"></app-lightbox>
-    </ng-container>
-
-    <ng-template #cargando>
-      <div class="spinner-container-creative">
-        <div class="spinner-ring"></div>
-        <span>{{ 'app.cargando' | translate}}</span>
-      </div>
-    </ng-template>
-  </div> <!-- de la autenticacion -->
-
-  <!-- Botón Volver Inferior (Estilo pastilla con borde) -->
-  <div class="footer-back-wrapper">
-    <a routerLink="/principal" class="btn-volver-pill">
-      <img src="assets/icons/flechaAtras.png" loading="lazy" class="animated fadeIn iconoFlecha">
-      <span>{{ 'viaje.volver' | translate}}</span>
-    </a>
-  </div>
-
-</div>
+  <ng-template #cargando>
+    <div class="loader" role="status">
+      <span class="loader__ring"></span>
+      <span>{{ 'app.cargando' | translate }}</span>
+    </div>
+  </ng-template>
+</section>

@@ -1,19 +1,11 @@
-<div class="paginacion-toolbar">
+<nav class="pager">
+  <a *ngIf="linkAnterior" class="pager__link pager__link--prev" [routerLink]="linkAnterior" [title]="textoAnterior | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+    {{ textoAnterior | translate }}
+  </a>
 
-  <!-- Botón Anterior (Izquierda) -->
-  <div class="paginacion-slot">
-    <a *ngIf="linkAnterior" [routerLink]="linkAnterior" class="toolbar-btn animated fadeIn" [title]="textoAnterior | translate">
-      <img src="assets/icons/flechaIzq.png" alt="" [class]="claseIcono">
-      <span class="btn-text">{{ textoAnterior | translate }}</span>
-    </a>
-  </div>
-
-  <!-- Botón Siguiente (Derecha) -->
-  <div class="paginacion-slot">
-    <a *ngIf="linkSiguiente" [routerLink]="linkSiguiente" class="toolbar-btn animated fadeIn" [title]="textoSiguiente | translate">
-      <span class="btn-text">{{ textoSiguiente | translate }}</span>
-      <img src="assets/icons/flechaDer.png" alt="" [class]="claseIcono">
-    </a>
-  </div>
-
-</div>
+  <a *ngIf="linkSiguiente" class="pager__link pager__link--next" [routerLink]="linkSiguiente" [title]="textoSiguiente | translate">
+    {{ textoSiguiente | translate }}
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+  </a>
+</nav>

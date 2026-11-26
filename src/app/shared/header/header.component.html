@@ -1,152 +1,152 @@
-<!-- Menú Desplegable (Offcanvas) -->
-<div id="fh5co-offcanvas">
-  <a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
-      <span><i class="icon-cross3"></i> <span>{{ 'app.cerrar' | translate }}</span></span>
+<header class="topbar">
+  <a class="brand" routerLink="/principal" [attr.aria-label]="'nav.irInicio' | translate">
+    <svg class="logo-mark brand__mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="logo-mark__sun" cx="16" cy="12" r="5.5"/><path class="logo-mark__wave" d="M3 20.5c3.2 0 3.2-2.2 6.4-2.2s3.2 2.2 6.6 2.2 3.2-2.2 6.4-2.2 3.2 2.2 6.6 2.2"/><path class="logo-mark__wave" d="M3 26c3.2 0 3.2-2.2 6.4-2.2s3.2 2.2 6.6 2.2 3.2-2.2 6.4-2.2 3.2 2.2 6.6 2.2"/></svg>
+    <span class="brand__text">
+      <span class="brand__name">{{ 'app.familia' | translate }}</span>
+      <span class="brand__sub">Serrador Casares</span>
+    </span>
   </a>
 
-  <div class="fh5co-menu">
-      <!-- Cabecera del Menú Lateral -->
-      <div class="fh5co-box menu-header-box">
-          <ul>
-              <li class="liViajes">
-                  <div class="margenTop col-12 text-center">
-                      <h3 id="fh5co-logo">
-                          <img src="assets/icons/chancletas.png" class="animated fadeIn iconoChancla">
-                          {{ 'app.familia' | translate }}
-                          <sup>Serrador Casares</sup>
-                          <sub>
-                              <img src="assets/icons/sol.png" class="animated fadeIn iconoViajeros" routerLink="/principal/">
-                          </sub>
-                      </h3>
-                  </div>
-                  <img class="imagenPerfil animated bounceInUp" loading="lazy" src="assets/images/inicio.jpg" alt="fondo">
-              </li>
-          </ul>
-      </div>
+  <div class="actions">
+    <!-- Contraseña -->
+    <div class="lang" role="group" [attr.aria-label]="'app.contrasenya' | translate">
+      <ng-container>
+        <button type="button" class="lang__btn" [attr.title]="'app.contrasenya' | translate" (click)="configuracion.showModal()">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l3 3M14 9l2 2"/></svg>
+        </button>
+      </ng-container>
+    </div>
+    <!-- Idioma -->
+    <div class="lang" role="group" [attr.aria-label]="'app.idioma' | translate">
+      <ng-container *ngIf="(commonService.sinIdioma$ | async) === true; else idiomasLibres">
+        <button type="button" class="lang__btn" disabled [attr.title]="'app.valenciano' | translate">VAL</button>
+        <button type="button" class="lang__btn is-active" disabled [attr.title]="'app.spanish' | translate">ES</button>
+      </ng-container>
+      <ng-template #idiomasLibres>
+        <button type="button" class="lang__btn"
+                [class.is-active]="isSelectedValenciano"
+                [attr.aria-pressed]="isSelectedValenciano"
+                [attr.title]="'app.valenciano' | translate"
+                (click)="changeLanguageToValenciano()">VAL</button>
+        <button type="button" class="lang__btn"
+                [class.is-active]="isSelectedSpanish"
+                [attr.aria-pressed]="isSelectedSpanish"
+                [attr.title]="'app.spanish' | translate"
+                (click)="changeLanguageToSpanish()">ES</button>
+      </ng-template>
+    </div>
 
-      <!-- Sección Principal: Familia -->
-      <div class="fh5co-box menuBloques">
-          <h3 class="heading"><img src="assets/icons/iconoFamiliar.png" alt="" class="iconFamilia animated fadeIn"><b>&nbsp;{{ 'app.familia' | translate }}</b></h3>
-          <ul>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/viajes/"><img src="assets/icons/viajes.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.viajes' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/frases/"><img src="assets/icons/frases.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.frases' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/favoritos/"><img src="assets/icons/favorito.png" alt="" class="iconosImgFav6 animated rollIn">&nbsp;{{ 'app.galeriaFav' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/dibujos/"><img src="assets/icons/dibujo.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.dibujos' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/galeria/"><img src="assets/icons/galeria.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.galeria' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/apodos/"><img src="assets/icons/apodo.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.apodos' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/recetas/"><img src="assets/icons/cocina.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.recetas' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/mapa/"><img src="assets/icons/mapa.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.mapa' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/mapa/"><img src="assets/icons/calendario.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'cumpleanyos.titulo' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/ia/"><img src="assets/icons/ai.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.ia' | translate }}</a></li>
-          </ul>
-      </div>
+    <!-- Buscar -->
+    <button type="button" class="icon-btn icon-btn--search" (click)="buscador.showModal()"
+            [attr.aria-label]="'header.buscarViajes' | translate">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+      <span class="icon-btn__label">{{ 'header.buscarViajes' | translate }}</span>
+    </button>
 
-      <!-- Sección: Relatos -->
-      <div class="fh5co-box menuBloques">
-          <h3 class="heading"><img src="assets/icons/relatos.png" alt="" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'header.relatos' | translate }}</b></h3>
-          <ul>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoAlbert/"><img src="assets/icons/relacion.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.historiaAlbaAlbert' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoIaiaAna/"><img src="assets/icons/anciana.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.iaiaAna' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/historias/relatoBodaEsteve/"><img src="assets/icons/discurso.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.bodaEsteve' | translate }}</a></li>
-          </ul>
-      </div>
-
-      <!-- Sección: Juegos -->
-      <div class="fh5co-box menuBloques">
-          <a class="js-fh5co-close-offcanvas text-decoration-none" routerLink="/games/">
-              <h3 class="heading"><img src="assets/icons/consola.png" alt="" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'app.juegos' | translate }}</b></h3>
-          </a>
-          <ul class="menu-juegos-grid">
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/memory/"><img src="assets/icons/memory.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.memory' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/quien-es-quien/"><img src="assets/icons/quien.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.quienEsQuien' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/adivina/"><img src="assets/icons/rompecabezas.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.juegoAdivina' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/quiz/"><img src="assets/icons/prueba.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.juegoQuiz' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/tableros/"><img src="assets/icons/juego-de-mesa.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.juegoMesa' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/misionCumplida/"><img src="assets/icons/juegos-de-cartas.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.juegoMisionCumplida' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/facedoku/"><img src="assets/icons/facedoku.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.faceDoku' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/ahorcado/"><img src="assets/icons/ahorcado.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.ahorcado' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/aventura/"><img src="assets/icons/aventura.jpeg" alt="" class="iconosImg animated rollIn"><span>{{ 'app.aventura' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle-deslizante/"><img src="assets/icons/puzzle-deslizante.jpeg" alt="" class="iconosImg animated rollIn"><span>{{ 'app.puzzleDeslizante' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/impostor/"><img src="assets/icons/impostor.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.impostor' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/simon/"><img src="assets/icons/simon.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.simon' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/puzzle/"><img src="assets/icons/puzzle.png" alt="" class="iconosImg animated rollIn"><span>{{ 'app.puzzle' | translate }}</span></a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/games/conecta4/"><img src="assets/icons/conecta4.jpeg" alt="" class="iconosImg animated rollIn"><span>{{ 'app.conecta4' | translate }}</span></a></li>
-              <!-- <li><a class="js-fh5co-close-offcanvas" routerLink="/games/ticket-tren/"><img src="assets/icons/ticket-tren.jpeg" alt="" class="iconosImg animated rollIn"><span>{{ 'app.ticket-tren' | translate }}</span></a></li> -->
-          </ul>
-      </div>
-
-      <!-- Sección: Categorías -->
-      <div class="fh5co-box menuBloques">
-          <h3 class="heading"><img src="assets/icons/categoria.png" alt="" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'header.categoria' | translate }}</b></h3>
-          <ul>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/playa"><img src="assets/icons/playa.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.playa' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/montanya"><img src="assets/icons/montanya.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.montanya' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/ciudad"><img src="assets/icons/ciudad.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.ciudad' | translate }}</a></li>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/viajesFiltrados/nieve"><img src="assets/icons/nieve.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'header.nieve' | translate }}</a></li>
-          </ul>
-      </div>
-
-      <!-- Sección: Búsqueda -->
-      <div class="fh5co-box menuBloques">
-          <h3 class="heading"><img src="assets/icons/buscar.png" alt="" class="iconRelatos animated fadeIn"><b>&nbsp;{{ 'header.buscarViajes' | translate }}</b></h3>
-          <form id="busquedaForm" (submit)="$event.preventDefault()">
-              <div class="form-group">
-                  <input id="myInput" type="text" class="form-control gradiente" placeholder="{{ 'header.palabra' | translate }}">
-                  <button id="botonLupa" (touchstart)="buscar()" (click)="buscar()">
-                      <img src="assets/icons/lupa.gif" alt="" class="iconosImg js-fh5co-close-offcanvas">
-                  </button>
-              </div>
-          </form>
-      </div>
-
-      <!-- Sección: Contacto -->
-      <div class="fh5co-box menuBloques">
-          <ul>
-              <li><a class="js-fh5co-close-offcanvas" routerLink="/contactQR/"><img src="assets/icons/correo.png" alt="" class="iconosImg animated rollIn">&nbsp;{{ 'app.contactoQR' | translate }}</a></li>
-          </ul>
-      </div>
-  </div>
-</div>
-
-<!-- Cabecera Superior Principal Rediseñada -->
-<!-- Cabecera Superior Principal Rediseñada -->
-<header id="fh5co-header overrideHeader">
-  <div class="container-fluid header-container">
-
-      <!-- Botón de Menú Hamburguesa (Izquierda) -->
-      <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-
-      <!-- Logotipo Central (Bajado y Centrado) -->
-      <div class="text-center">
-        <div class="text-center animated pulse logo-container logo-centrado-abajo">
-            <h3 id="fh5co-logo">
-              <img src="assets/icons/chancletas.png" class="animated fadeIn pulseInfinito iconoChancla">
-              {{ 'app.familia' | translate }}
-              <sup>Serrador Casares</sup>
-              <sub>
-                  <img src="assets/icons/sol.png" class="animated fadeIn pulseInfinito iconoViajeros" routerLink="/principal/">
-              </sub>
-            </h3>
-        </div>
-
-        <!-- Grupo Derecho: Idiomas y Botón de Inicio (Home) -->
-        <div class="header-actions-right">
-            <!-- Selectores de Idioma pequeños y con margen -->
-            <div class="idiomas-wrapper">
-                <ul *ngIf="(this.commonService.sinIdioma$ | async) === false" class="idiomas-container">
-                    <li><button [class.seleccionado]="isSelectedValenciano" class="idioma" (touchstart)="changeLanguageToValenciano()" (click)="changeLanguageToValenciano()">{{ 'app.valenciano' | translate }}</button></li>
-                    <li><button [class.seleccionado]="isSelectedSpanish" class="idioma" (touchstart)="changeLanguageToSpanish()" (click)="changeLanguageToSpanish()">{{ 'app.spanish' | translate }}</button></li>
-                </ul>
-                <ul *ngIf="(this.commonService.sinIdioma$ | async) === true" class="idiomas-container">
-                    <li><button class="disabled-button idioma" disabled>{{ 'app.valenciano' | translate }}</button></li>
-                    <li><button class="disabled-button idioma seleccionado" disabled>{{ 'app.spanish' | translate }}</button></li>
-                </ul>
-            </div>
-
-            <!-- Botón Home (Casa) -->
-            <img src="assets/icons/casa.png" class="animated pulse iconoCasa" routerLink="principal/" alt="Inicio" title="Inicio">
-        </div>
-      </div>
-
+    <!-- Más opciones (solo móvil y tablet; en escritorio están en la barra lateral) -->
+    <!-- <button type="button" class="icon-btn icon-btn--more" (click)="menu.showModal()"
+            [attr.aria-label]="'nav.masOpciones' | translate">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18.5" cy="12" r="1.4"/></svg>
+    </button> -->
   </div>
 </header>
+
+<!-- Hoja de búsqueda -->
+<dialog #buscador class="sheet" aria-labelledby="buscador-titulo"
+        (click)="$event.target === buscador && buscador.close()">
+  <div class="sheet__inner">
+    <div class="sheet__grab" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="buscador-titulo">{{ 'header.buscarViajes' | translate }}</h2>
+      <button type="button" class="icon-btn" (click)="buscador.close()" [attr.aria-label]="'app.cerrar' | translate">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <form id="busquedaForm" class="search"
+      (click)="$event.preventDefault(); buscar(caja.value); buscador.close()">
+
+      <input #caja
+        id="myInput"
+        class="search__input"
+        type="search"
+        autocomplete="off"
+        enterkeyhint="search"
+        [placeholder]="'header.palabra' | translate"
+        autofocus>
+
+      <button type="submit"
+              class="search__go"
+              [attr.aria-label]="'header.buscar' | translate">
+
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="6.5"/>
+          <path d="m20 20-4.2-4.2"/>
+        </svg>
+
+      </button>
+    </form>
+
+    <p class="sheet__label">{{ 'header.categoria' | translate }}</p>
+    <div class="cats">
+      <a class="chip" routerLink="/viajesFiltrados/playa" (click)="buscador.close()">{{ 'header.playa' | translate }}</a>
+      <a class="chip" routerLink="/viajesFiltrados/montanya" (click)="buscador.close()">{{ 'header.montanya' | translate }}</a>
+      <a class="chip" routerLink="/viajesFiltrados/ciudad" (click)="buscador.close()">{{ 'header.ciudad' | translate }}</a>
+      <a class="chip" routerLink="/viajesFiltrados/nieve" (click)="buscador.close()">{{ 'header.nieve' | translate }}</a>
+    </div>
+  </div>
+</dialog>
+
+<!-- Toolbar de la app configurada para token de IA -->
+<dialog #configuracion class="sheet" aria-labelledby="configuracion-titulo"
+  (click)="$event.target === configuracion && configuracion.close()">
+  <div class="sheet__inner">
+  <div class="sheet__grab" aria-hidden="true"></div>
+  <div class="sheet__head">
+  <h2 class="sheet__title" id="configuracion-titulo">{{ 'app.config' | translate }}</h2>
+  <button type="button" class="icon-btn" (click)="configuracion.close()" [attr.aria-label]="'app.cerrar' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  </div>
+  <app-toolbar
+    [volverLink]="''"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="false"
+    [mostrarPanelToken]="true">
+  </app-toolbar>
+  <app-toolbar
+    [volverLink]="''"
+    [mostrarBotonNuevo]="false"
+    [mostrarBotonConfig]="false"
+    [mostrarPanelToken]="true"
+    [tipoToken]="'ia'"
+    (tokenGuardado)="onTokenIaGuardado($event)">
+  </app-toolbar>
+
+  </div>
+</dialog>
+
+
+<!-- Hoja «Más opciones» -->
+<!-- <dialog #menu class="sheet" aria-labelledby="menu-titulo"
+        (click)="$event.target === menu && menu.close()">
+  <div class="sheet__inner">
+    <div class="sheet__grab" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 class="sheet__title" id="menu-titulo">{{ 'nav.masOpciones' | translate }}</h2>
+      <button type="button" class="icon-btn" (click)="menu.close()" [attr.aria-label]="'app.cerrar' | translate">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <nav class="menu-list">
+      <a class="menu-row" routerLink="/contactQR" (click)="menu.close()">
+        <span class="menu-row__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
+        <span class="menu-row__text">{{ 'app.contactoQR' | translate }}</span>
+      </a>
+      <a class="menu-row" routerLink="/ia" (click)="menu.close()">
+        <span class="menu-row__icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span>
+        <span class="menu-row__text">{{ 'app.ia' | translate }}</span>
+      </a>
+    </nav>
+  </div>
+</dialog> -->

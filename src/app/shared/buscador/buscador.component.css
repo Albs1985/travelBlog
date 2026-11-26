@@ -1,36 +1,62 @@
-.heading {
-  font-family: "Playfair Display", times, serif;
-}
+:host { display: block; }
 
-#botonLupa {
+.srch {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: 4px 4px 4px var(--space-4);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  transition: box-shadow .2s;
+}
+.srch--flush { margin-top: 0; }
+.srch:focus-within { box-shadow: inset 0 0 0 2px var(--sea-500), 0 0 0 4px rgba(47, 124, 148, .18); }
+
+.srch__icon { color: var(--ink-soft); }
+
+.srch__input {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  padding: 0;
+  border: 0;
   background: transparent;
-  border-color: transparent;
+  color: var(--ink);
+  font-size: 1rem;            /* 16px: evita el zoom de iOS */
 }
+.srch__input:focus { outline: none; }
+.srch__input::placeholder { color: var(--ink-soft); opacity: .8; }
 
-.filtrado {
-  margin-left: 35px;
-  margin-right: 0px;
-  margin-top: -40px;
+.srch__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--sand-200);
+  color: var(--ink);
 }
+.srch__clear .ic { width: 18px; height: 18px; }
+.srch__clear:hover { background: var(--sand-300); }
 
-.filtrado.sin-margen {
-  margin-top: 0;
+.srch__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--terra-600);
+  color: #fff;
+  transition: background .2s;
 }
-
-#busquedaForm {
-  display: inline-flex !important;
-  width: 100% !important;
-  margin-right: 25px;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.gradiente {
-  background: linear-gradient(-45deg, #e9d3c6, #e4b69c, #f7af85, #ee9c6c);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
+.srch__go:hover { background: var(--terra-700); }
