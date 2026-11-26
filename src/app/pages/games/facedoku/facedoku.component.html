@@ -1,153 +1,138 @@
-<div class="mobile-app-wrapper">
-  <div class="app-container">
-    
-    <!-- CABECERA SUPERIOR -->
-    <header class="app-header">
-      <div class="brand">
-        <span class="logo-icon">🎭</span>
-        <h1>FaceDoku</h1>
+<header class="page-head">
+  <a class="round-btn" href="#/games" aria-label="Volver a los juegos">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">FaceDoku</h1>
+  </div>
+  <span class="badge"><svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#F6DFD2"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="56" y="72" width="92" height="92" rx="10" fill="#12313B"/><rect x="60" y="76" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="73" cy="89" r="10" fill="#C8643C"/><circle cx="69.5" cy="87.5" r="1.6" fill="#FFFCF7"/><circle cx="76.5" cy="87.5" r="1.6" fill="#FFFCF7"/><path d="M69.5 92.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="88" y="76" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="116" y="76" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="129" cy="89" r="10" fill="#5E7B4B"/><circle cx="125.5" cy="87.5" r="1.6" fill="#FFFCF7"/><circle cx="132.5" cy="87.5" r="1.6" fill="#FFFCF7"/><path d="M125.5 92.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="60" y="104" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="88" y="104" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="101" cy="117" r="10" fill="#E3A93C"/><circle cx="97.5" cy="115.5" r="1.6" fill="#FFFCF7"/><circle cx="104.5" cy="115.5" r="1.6" fill="#FFFCF7"/><path d="M97.5 120.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="116" y="104" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="60" y="132" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="73" cy="145" r="10" fill="#2F7C94"/><circle cx="69.5" cy="143.5" r="1.6" fill="#FFFCF7"/><circle cx="76.5" cy="143.5" r="1.6" fill="#FFFCF7"/><path d="M69.5 148.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/><rect x="88" y="132" width="26" height="26" rx="6" fill="#FFFCF7"/><rect x="116" y="132" width="26" height="26" rx="6" fill="#FFFCF7"/><circle cx="129" cy="145" r="10" fill="#97431F"/><circle cx="125.5" cy="143.5" r="1.6" fill="#FFFCF7"/><circle cx="132.5" cy="143.5" r="1.6" fill="#FFFCF7"/><path d="M125.5 148.5q3.5 3 7 0" fill="none" stroke="#FFFCF7" stroke-width="1.6" stroke-linecap="round"/></g></svg></span>
+</header>
+
+<div class="fd">
+
+  <!-- Dificultad -->
+  <div class="segmented fd__diff" role="group" aria-label="Dificultad">
+    <button *ngFor="let diff of ['Fácil', 'Normal', 'Difícil']" type="button" class="segmented__btn"
+            [class.is-active]="difficulty === diff" [attr.aria-pressed]="difficulty === diff"
+            (click)="startNewGame($any(diff))">
+      {{ diff }}
+    </button>
+  </div>
+
+  <!-- Vidas, puntos y tiempo -->
+  <section class="stats fd__stats">
+    <div class="stat">
+      <span class="stat__label">Vidas</span>
+      <div class="lives">
+        <svg *ngFor="let h of [1, 2, 3]" class="heart" [class.lost]="h > lives" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5c-6-4-8.5-7-8.5-10.2A4.3 4.3 0 0 1 12 8.2a4.3 4.3 0 0 1 8.5 2.1c0 3.2-2.5 6.2-8.5 10.2z"/></svg>
       </div>
-      
-      <div class="difficulty-selector">
-        <button 
-          *ngFor="let diff of ['Fácil', 'Normal', 'Difícil']"
-          [class.active]="difficulty === diff"
-          (click)="startNewGame($any(diff))">
-          {{ diff }}
+    </div>
+
+    <div class="stat">
+      <span class="stat__label">Puntos <span class="combo" *ngIf="combo > 1">x{{ combo }}</span></span>
+      <span class="stat__value">{{ score }}</span>
+    </div>
+
+    <div class="stat">
+      <span class="stat__label">Tiempo</span>
+      <div class="timer">
+        <span class="stat__value">{{ formattedTime }}</span>
+        <button type="button" class="pause" (click)="togglePause()" [attr.aria-label]="isPaused ? 'Continuar' : 'Pausar'">
+          <svg *ngIf="!isPaused" class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+          <svg *ngIf="isPaused" class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>
         </button>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <!-- BARRA DE ESTADÍSTICAS -->
-    <section class="stats-bar">
-      <div class="stat-box">
-        <span class="stat-label">VIDAS</span>
-        <div class="lives-container">
-          <span *ngFor="let h of [1, 2, 3]" [class.lost]="h > lives">❤️</span>
-        </div>
-      </div>
+  <!-- Tablero 9x9 -->
+  <main class="fd__board">
+    <div class="sudoku" [class.blurred]="isPaused || gameState !== 'playing'">
+      <ng-container *ngFor="let row of board; let r = index">
+        <div *ngFor="let cell of row; let c = index" class="cell"
+             [class.border-right]="c === 2 || c === 5"
+             [class.border-bottom]="r === 2 || r === 5"
+             [class.initial]="cell.isInitial"
+             [class.selected]="selectedCell?.row === r && selectedCell?.col === c"
+             [class.highlighted]="isHighlighted(r, c)"
+             [class.same-avatar]="isSameAvatarSelected(cell)"
+             [class.error]="cell.isError"
+             (click)="selectCell(r, c)">
 
-      <div class="stat-box score-box">
-        <span class="stat-label">PUNTOS <span class="combo-badge" *ngIf="combo > 1">x{{ combo }}</span></span>
-        <span class="stat-value">{{ score }}</span>
-      </div>
+          <img *ngIf="cell.value !== 0" class="cell-avatar" [src]="getAvatarUrl(cell.value)" alt="">
 
-      <div class="stat-box">
-        <span class="stat-label">TIEMPO</span>
-        <div class="timer-controls">
-          <span class="stat-value">{{ formattedTime }}</span>
-          <button class="pause-btn" (click)="togglePause()">
-            {{ isPaused ? '▶️' : '⏸️' }}
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- TABLERO DE JUEGO 9x9 -->
-    <main class="board-container">
-      <div class="sudoku-grid" [class.blurred]="isPaused || gameState !== 'playing'">
-        <ng-container *ngFor="let row of board; let r = index">
-          <div 
-            *ngFor="let cell of row; let c = index"
-            class="cell"
-            [class.border-right]="c === 2 || c === 5"
-            [class.border-bottom]="r === 2 || r === 5"
-            [class.initial]="cell.isInitial"
-            [class.selected]="selectedCell?.row === r && selectedCell?.col === c"
-            [class.highlighted]="isHighlighted(r, c)"
-            [class.same-avatar]="isSameAvatarSelected(cell)"
-            [class.error]="cell.isError"
-            (click)="selectCell(r, c)">
-            
-            <!-- Cara colocada -->
-            <img 
-              *ngIf="cell.value !== 0" 
-              [src]="getAvatarUrl(cell.value)" 
-              alt="Avatar"
-              class="cell-avatar animate-pop">
-
-            <!-- Cuadrícula de mini-notas (3x3) -->
-            <div *ngIf="cell.value === 0 && cell.notes.length > 0" class="notes-grid">
-              <div *ngFor="let n of [1,2,3,4,5,6,7,8,9]" class="note-slot">
-                <img *ngIf="cell.notes.includes(n)" [src]="getAvatarUrl(n)" alt="Nota">
-              </div>
-            </div>
-
-          </div>
-        </ng-container>
-      </div>
-
-      <!-- OVERLAY DE PAUSA -->
-      <div class="overlay-modal" *ngIf="isPaused && gameState === 'playing'">
-        <div class="modal-card">
-          <h2>Juego en Pausa</h2>
-          <p>Récord actual: <strong>{{ highScore }}</strong> pts</p>
-          <button class="primary-btn" (click)="togglePause()">Continuar Jugando</button>
-          <button class="secondary-btn" (click)="startNewGame(difficulty)">Reiniciar Nivel</button>
-        </div>
-      </div>
-
-      <!-- OVERLAY DE VICTORIA O DERROTA -->
-      <div class="overlay-modal" *ngIf="gameState !== 'playing'">
-        <div class="modal-card">
-          <div class="result-emoji">{{ gameState === 'won' ? '🏆' : '💔' }}</div>
-          <h2>{{ gameState === 'won' ? '¡Tablero Completado!' : '¡Sin Vidas!' }}</h2>
-          <p *ngIf="gameState === 'won'">Has resuelto el FaceDoku en <strong>{{ formattedTime }}</strong>.</p>
-          <p *ngIf="gameState === 'gameover'">Te has quedado sin oportunidades.</p>
-          
-          <div class="final-scores">
-            <div>
-              <span>Puntuación</span>
-              <strong>{{ score }}</strong>
-            </div>
-            <div>
-              <span>Récord</span>
-              <strong>{{ highScore }}</strong>
+          <!-- Notas (3x3) -->
+          <div *ngIf="cell.value === 0 && cell.notes.length > 0" class="notes">
+            <div *ngFor="let n of [1,2,3,4,5,6,7,8,9]" class="note">
+              <img *ngIf="cell.notes.includes(n)" [src]="getAvatarUrl(n)" alt="">
             </div>
           </div>
-
-          <button class="primary-btn" (click)="startNewGame(difficulty)">Jugar de Nuevo</button>
         </div>
-      </div>
-    </main>
+      </ng-container>
+    </div>
+  </main>
 
-    <!-- HERRAMIENTAS DE ACCIÓN -->
-    <section class="tools-bar">
-      <button class="tool-btn" (click)="eraseCell()">
-        <span class="tool-icon">🧹</span>
-        <span>Borrar</span>
-      </button>
+  <!-- Herramientas -->
+  <section class="tools fd__tools">
+    <button type="button" class="tool" (click)="eraseCell()">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7M5 11l9 9"/></svg>
+      <span>Borrar</span>
+    </button>
 
-      <button class="tool-btn" [class.active-tool]="isNoteMode" (click)="toggleNoteMode()">
-        <span class="tool-icon">✏️</span>
-        <span>Notas {{ isNoteMode ? 'ON' : 'OFF' }}</span>
-      </button>
+    <button type="button" class="tool" [class.is-on]="isNoteMode" [attr.aria-pressed]="isNoteMode" (click)="toggleNoteMode()">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="m14 7 3 3"/></svg>
+      <span>Notas {{ isNoteMode ? 'ON' : 'OFF' }}</span>
+    </button>
 
-      <button class="tool-btn" [disabled]="hintsLeft === 0" (click)="useHint()">
-        <span class="tool-icon">💡</span>
-        <span>Pista ({{ hintsLeft }})</span>
-      </button>
+    <button type="button" class="tool" [disabled]="hintsLeft === 0" (click)="useHint()">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>
+      <span>Pista ({{ hintsLeft }})</span>
+    </button>
 
-      <button class="tool-btn" (click)="startNewGame(difficulty)">
-        <span class="tool-icon">🔄</span>
-        <span>Nuevo</span>
-      </button>
-    </section>
+    <button type="button" class="tool" (click)="startNewGame(difficulty)">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg>
+      <span>Nuevo</span>
+    </button>
+  </section>
 
-    <!-- TECLADO DE CARAS (DOCK INFERIOR) -->
-    <footer class="avatar-dock">
-      <button 
-        *ngFor="let avatar of avatars"
-        class="avatar-btn"
-        [class.completed]="getRemainingCount(avatar.id) === 0"
-        [disabled]="getRemainingCount(avatar.id) === 0"
-        (click)="selectAvatar(avatar.id)">
-        <img [src]="avatar.imageUrl" [alt]="avatar.name">
-        <span class="remaining-badge" *ngIf="getRemainingCount(avatar.id) > 0">
-          {{ getRemainingCount(avatar.id) }}
-        </span>
-      </button>
-    </footer>
+  <!-- Teclado de caras -->
+  <footer class="dock fd__dock">
+    <button *ngFor="let avatar of avatars" type="button" class="face"
+            [class.completed]="getRemainingCount(avatar.id) === 0"
+            [disabled]="getRemainingCount(avatar.id) === 0"
+            (click)="selectAvatar(avatar.id)">
+      <img class="face__img" [src]="avatar.imageUrl" [alt]="avatar.name">
+      <span class="face__left" *ngIf="getRemainingCount(avatar.id) > 0">{{ getRemainingCount(avatar.id) }}</span>
+    </button>
+  </footer>
+</div>
 
+<!-- Pausa -->
+<div class="win" *ngIf="isPaused && gameState === 'playing'" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <h2 class="win__title">Juego en Pausa</h2>
+    <p class="win__label">Récord actual: <strong>{{ highScore }}</strong> pts</p>
+    <div class="end-actions">
+      <button type="button" class="btn" (click)="togglePause()">Continuar Jugando</button>
+      <button type="button" class="btn btn--ghost" (click)="startNewGame(difficulty)">Reiniciar Nivel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Victoria o derrota -->
+<div class="win" *ngIf="gameState !== 'playing'" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <svg *ngIf="gameState === 'won'" class="ic win__trophy" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a2 2 0 0 0 0 4c1 0 2.5 0 3.5-.5M16 6h3a2 2 0 0 1 0 4c-1 0-2.5 0-3.5-.5M12 13v4M8 20h8M10 17h4v3h-4z"/></svg>
+    <svg *ngIf="gameState !== 'won'" class="ic win__trophy win__trophy--lost" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5c-6-4-8.5-7-8.5-10.2A4.3 4.3 0 0 1 12 8.2a4.3 4.3 0 0 1 8.5 2.1c0 3.2-2.5 6.2-8.5 10.2z"/><path d="M12 8.2 10.2 12l3 2-1.4 3.6"/></svg>
+    <h2 class="win__title">{{ gameState === 'won' ? '¡Tablero Completado!' : '¡Sin Vidas!' }}</h2>
+    <p *ngIf="gameState === 'won'" class="win__label">Has resuelto el FaceDoku en <strong>{{ formattedTime }}</strong>.</p>
+    <p *ngIf="gameState === 'gameover'" class="win__label">Te has quedado sin oportunidades.</p>
+
+    <div class="final">
+      <div><span>Puntuación</span><strong>{{ score }}</strong></div>
+      <div><span>Récord</span><strong>{{ highScore }}</strong></div>
+    </div>
+
+    <button type="button" class="btn" (click)="startNewGame(difficulty)">Jugar de Nuevo</button>
   </div>
 </div>
