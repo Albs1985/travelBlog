@@ -1337,9 +1337,9 @@
       "id": "2027-06-29_Mordor",
       "archivo": "2027-06-29-Mordor",
       "anyo": 2027,
-      "fechaInicio": "2027-06-29",
+      "fechaInicio": "2027-06-23",
       "fechaFin": "2027-06-29",
-      "diaInicio": "29",
+      "diaInicio": "23",
       "mesInicio": "06",
       "diaFin": "29",
       "mesFin": "06",
@@ -1355,7 +1355,6 @@
         "Avion"
       ],
       "personas": [
-        "MAMAMAMA",
         "Alba",
         "Albert",
         "Mateu",
