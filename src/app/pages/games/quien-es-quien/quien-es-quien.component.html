@@ -1,38 +1,47 @@
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games/"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
-</div>
-<br><br><br><br><br>
-<div *ngIf="(inicioDelJuego | async) === true" class="quien-es-quien-container">
-  <br>
-  <div class="imagenCentrada">
-    <img src="assets/icons/interrogacion.png" class="iconJuego animated mueveIconos">
+<header class="page-head">
+  <a class="round-btn" routerLink="/games" [attr.aria-label]="'viaje.volver' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'app.quienEsQuien' | translate }}</h1>
+    <p class="page-head__sub">{{ 'app.explicaQuien' | translate }}</p>
   </div>
-  <h1>{{'app.quienEsQuien' | translate}}</h1>
-  <label>{{'app.explicaQuien' | translate}}</label>
-  <div class="adversary-character">
-    <br>
-    <div class="adversary-container">
-      <img [src]="adversaryPersonaje?.imagen" alt="Personaje a adivinar">
-      <div class="labelNomRival">{{adversaryPersonaje?.nombre}}</div>
-    </div>
+</header>
 
-    <h2>{{'app.quienEs' | translate}}</h2>
-    <button class="turn-button" (click)="restartGame()">{{ 'app.restart'|translate}}</button>
-    <!-- <div class="turn-label">{{ 'app.turno'|translate}} {{numTurno}}</div> -->
-  </div>
-  <br>
+<ng-container *ngIf="(inicioDelJuego | async) === true; else cargando">
+
+  <!-- El personaje que hay que adivinar -->
+  <section class="secret">
+    <figure class="secret__card">
+      <figcaption class="secret__tag">{{ 'app.quienEs' | translate }}</figcaption>
+      <img class="secret__img" [src]="adversaryPersonaje?.imagen" [alt]="adversaryPersonaje?.nombre || ''">
+      <span class="secret__name">{{ adversaryPersonaje?.nombre }}</span>
+    </figure>
+    <button type="button" class="btn btn--ghost" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
+  </section>
+
+  <!-- Tablero: se tachan los descartados -->
   <div class="board">
-    <div class="character-card" *ngFor="let personaje of personajes" (click)="markAsDiscarded(personaje)">
-      <img [src]="personaje.imagen" alt="{{ personaje.nombre }}">
-      <p>{{ personaje.nombre }}</p>
-      <div class="cross" *ngIf="personaje.descartado"></div>
+    <button *ngFor="let personaje of personajes" type="button" class="char" [class.is-out]="personaje.descartado"
+            [attr.aria-pressed]="personaje.descartado" (click)="markAsDiscarded(personaje)">
+      <img class="char__img" [src]="personaje.imagen" [alt]="personaje.nombre">
+      <span class="char__name">{{ personaje.nombre }}</span>
+      <span class="cross" *ngIf="personaje.descartado" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- Fin del juego -->
+  <div *ngIf="(finDelJuego | async) === true" class="win" role="dialog" aria-modal="true">
+    <div class="win__card">
+      <svg class="ic win__trophy" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a2 2 0 0 0 0 4c1 0 2.5 0 3.5-.5M16 6h3a2 2 0 0 1 0 4c-1 0-2.5 0-3.5-.5M12 13v4M8 20h8M10 17h4v3h-4z"/></svg>
+      <h2 class="win__title">{{ 'app.finDelJuego' | translate }}!!</h2>
+      <button type="button" class="btn" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
     </div>
   </div>
-  <div *ngIf="(finDelJuego | async) === true" class="overlay">
-    <div class="endGameMessage">
-      <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
-      <label class="endGameLabel">{{ 'app.finDelJuego' | translate }}!!</label>
-    </div>
+</ng-container>
+
+<ng-template #cargando>
+  <div class="loader" role="status">
+    <span class="loader__ring"></span>
   </div>
-</div>
+</ng-template>

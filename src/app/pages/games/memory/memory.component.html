@@ -1,93 +1,89 @@
-<br>
-<div class="divRight">
-  <img src="assets/icons/flechaAtras.png" class="animated fadeIn iconoFlecha" routerLink="/games"><a routerLink="/games">{{ 'viaje.volver' | translate}}</a>
-</div>
-<br><br><br><br><br><br>
-<div class="game-wrapper">
-  <div class="imagenCentrada">
-    <img src="assets/icons/memory.png" class="iconJuego animated mueveIconos">
+<header class="page-head">
+  <a class="round-btn" routerLink="/games" [attr.aria-label]="'viaje.volver' | translate">
+    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+  </a>
+  <div class="page-head__text">
+    <h1 class="page-head__title">{{ 'app.memory' | translate }}</h1>
   </div>
-  <div class="centerText">
-    <h1>{{'app.memory' | translate}}</h1>
+  <span class="badge"><svg class="badge__art" viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="200" height="260" fill="#B4532A"/><g transform="translate(100 116) scale(.85) translate(-100 -116)"><rect x="46" y="76" width="56" height="76" rx="8" fill="#FFFCF7" transform="rotate(-10 74 114)"/><circle cx="74" cy="114" r="12" fill="#C8643C"/><rect x="98" y="76" width="56" height="76" rx="8" fill="#12313B" transform="rotate(8 126 114)"/><text x="126" y="132" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="44" font-weight="700" fill="#E3A93C" transform="rotate(8 126 114)">?</text></g></svg></span>
+</header>
+
+<!-- Ajustes de la partida -->
+<section class="setup">
+  <div class="setup__row">
+    <label class="field">
+      <span class="field__label">{{ 'app.dificultad' | translate }}</span>
+      <select class="field__input" id="difficulty" [(ngModel)]="difficulty" (change)="onDifficultyChange()">
+        <option value="facil">{{ 'app.facil' | translate }}</option>
+        <option value="medio">{{ 'app.medio' | translate }}</option>
+        <option value="dificil">{{ 'app.dificil' | translate }}</option>
+        <option value="loco">{{ 'app.deLocos' | translate }}</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span class="field__label">{{ 'app.tipoFotos' | translate }}</span>
+      <select class="field__input" id="imagesType" [(ngModel)]="fotosJuegoSeleccionado" (change)="onSelectImagesGameChange()">
+        <option *ngFor="let viaje of viajesConFotos" [value]="viaje.id">{{ viaje.destino }} ({{ viaje.anyo }})</option>
+      </select>
+    </label>
   </div>
 
-</div>
-<div class="settings">
-  <label for="difficulty">{{ 'app.dificultad' | translate }}</label>
-  <div class="select-container">
-    <select class="selector" id="difficulty" [(ngModel)]="difficulty" (change)="onDifficultyChange()">
-      <option class="centerText" value="facil">{{ 'app.facil' | translate }}</option>
-      <option class="centerText" value="medio">{{ 'app.medio' | translate }}</option>
-      <option class="centerText" value="dificil">{{ 'app.dificil' | translate }}</option>
-      <option class="centerText" value="loco">{{ 'app.deLocos' | translate }}</option>
-    </select>
-  </div>
-
-  <label for="imagesType">{{ 'app.tipoFotos' | translate }}</label>
-  <select class="selector" id="imagesType" [(ngModel)]="fotosJuegoSeleccionado" (change)="onSelectImagesGameChange()">
-    <option *ngFor="let viaje of viajesConFotos" class="centerText" [value]="viaje.id">{{viaje.destino}} ({{viaje.anyo}})</option>
-  </select>
-
-</div>
-
-<!-- <div class="listaJugadores centerText">
-  <label for="jugadores">{{ 'app.jugadores' | translate }}</label>
-  <div *ngFor="let jugador of servicioJugadores.viajerosLista" class="centraChecks">
-    <div style="display: inline-block;">
-      <input type="checkbox" (change)="togglePlayerSelection(jugador)" [checked]="isPlayerSelected(jugador)"><a (click)="togglePlayerSelection(jugador)">&nbsp;{{jugador.nombreCorto}}</a>
+  <!-- Jugadores -->
+  <div class="field">
+    <span class="field__label">{{ 'app.jugadores' | translate }}</span>
+    <div class="picks">
+      <button *ngFor="let jugador of servicioJugadores.viajerosLista" type="button" class="pick"
+              [class.is-on]="isPlayerSelected(jugador)" [attr.aria-pressed]="isPlayerSelected(jugador)"
+              (click)="togglePlayerSelection(jugador)">
+        <img class="pick__img" [src]="jugador.fotoPerfil" [alt]="" loading="lazy">
+        <span>{{ jugador.nombreCorto }}</span>
+      </button>
     </div>
   </div>
-</div> -->
+</section>
 
-<div class="listaJugadores centerText">
-  <label for="jugadores">{{ 'app.jugadores' | translate }}</label>
-  <div class="centraChecks">
-    <ng-container *ngFor="let jugador of servicioJugadores.viajerosLista">
-      <div class="playerCheckbox">
-        <input type="checkbox" (change)="togglePlayerSelection(jugador)" [checked]="isPlayerSelected(jugador)">
-        <a (click)="togglePlayerSelection(jugador)">{{ jugador.nombreCorto }}</a>
+<!-- Marcador: quien tiene el turno y sus puntos -->
+<section class="players" *ngIf="jugadoresSeleccionados.length > 0">
+  <button *ngFor="let jugador of jugadoresSeleccionados" type="button" class="player"
+          [class.is-turn]="jugador.nombreCorto === selectedPlayer" (click)="seleccionarJugador(jugador.nombreCorto)">
+    <img class="player__img" [src]="jugador.fotoPerfil" [alt]="jugador.nombreCorto">
+    <span class="player__name">{{ jugador.nombreCorto }}</span>
+    <span class="player__score" [ngSwitch]="jugador.nombreCorto">
+      <ng-container *ngSwitchCase="'Marina'">{{ marinaScore / 2 }} puntos</ng-container>
+      <ng-container *ngSwitchCase="'Mateu'">{{ mateuScore / 2 }} puntos</ng-container>
+      <ng-container *ngSwitchCase="'Alba'">{{ albaScore / 2 }} puntos</ng-container>
+      <ng-container *ngSwitchCase="'Albert'">{{ albertScore / 2 }} puntos</ng-container>
+    </span>
+  </button>
+</section>
+
+<div class="start">
+  <button type="button" class="btn start__btn" (click)="startGame()">{{ 'app.startGame' | translate }}</button>
+  <p class="notice" *ngIf="(jugadorInicialNoSeleccionado | async) === true" role="alert">{{ 'app.selectPlayer' | translate }}</p>
+</div>
+
+<!-- Tablero -->
+<div *ngIf="(inicioDelJuego | async) === true" class="board">
+  <div class="mcard" *ngFor="let card of cards" role="button" tabindex="0"
+       [class.is-flipped]="card.isFlipped" [class.is-matched]="card.isMatched"
+       (click)="flipCard(card)" (keydown.enter)="flipCard(card)" (keydown.space)="flipCard(card); $event.preventDefault()">
+    <div class="mcard__inner">
+      <div class="mcard__face mcard__front" aria-hidden="true"></div>
+      <div class="mcard__face mcard__back">
+        <img class="mcard__img" [src]="card.image" alt="">
+        <span class="mcard__player" *ngIf="card.player">{{ card.player }}</span>
       </div>
-    </ng-container>
-  </div>
-</div>
-
-
-<div class="row fotosPerfiles">
-  <div *ngFor="let jugador of jugadoresSeleccionados" class="row dobleFotos">
-    <figure [ngClass]="{ 'jugadorSeleccionado': jugador.nombreCorto === selectedPlayer }">
-      <img src="{{jugador.fotoPerfil}}" alt="{{jugador.nombreCorto}}" class="imagen img-responsive" (click)="seleccionarJugador(jugador.nombreCorto)">
-      <figcaption class="centerText">{{jugador.nombreCorto}} </figcaption>
-      <figcaption *ngIf="jugador.nombreCorto === 'Marina'" class="centerText">{{marinaScore/2}} puntos </figcaption>
-      <figcaption *ngIf="jugador.nombreCorto === 'Mateu'" class="centerText">{{mateuScore/2}} puntos</figcaption>
-      <figcaption *ngIf="jugador.nombreCorto === 'Alba'" class="centerText">{{albaScore/2}} puntos</figcaption>
-      <figcaption *ngIf="jugador.nombreCorto === 'Albert'" class="centerText">{{albertScore/2}} puntos</figcaption>
-    </figure>
-  </div>
-</div>
-
-<div class="centerText">
-  <br>
-  <button  class="btnStart" (click)="startGame()">{{ 'app.startGame' | translate }}</button>
-  <br><br>
-  <label class="titulo" *ngIf="(this.jugadorInicialNoSeleccionado | async) === true">{{ 'app.selectPlayer' | translate }}</label>
-</div>
-
-<div *ngIf="(this.inicioDelJuego | async) === true" class="memory-game-container">
-  <div class="memory-card" *ngFor="let card of cards" (click)="flipCard(card)" [ngClass]="{'flipped': card.isFlipped}">
-    <div class="card-front">
-      <img src="assets/images/fondoPiedras.jpg" alt="Card Back">
-    </div>
-    <div class="card-back">
-      <img [src]="card.image">
-      <div class="player-name" *ngIf="card.player">{{ card.player }}</div>
     </div>
   </div>
 </div>
 
-<div *ngIf="(finDelJuego | async) === true" class="overlay">
-  <div class="winnerMessage">
-    <button class="btnRestart" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
-    <label class="winnerLabel">{{ 'app.ganador' | translate }} {{winnerPlayer}}</label>
+<!-- Fin de la partida -->
+<div *ngIf="(finDelJuego | async) === true" class="win" role="dialog" aria-modal="true">
+  <div class="win__card">
+    <svg class="ic win__trophy" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a2 2 0 0 0 0 4c1 0 2.5 0 3.5-.5M16 6h3a2 2 0 0 1 0 4c-1 0-2.5 0-3.5-.5M12 13v4M8 20h8M10 17h4v3h-4z"/></svg>
+    <span class="win__label">{{ 'app.ganador' | translate }}</span>
+    <h2 class="win__title">{{ winnerPlayer }}</h2>
+    <button type="button" class="btn" (click)="restartGame()">{{ 'app.restart' | translate }}</button>
   </div>
 </div>
-

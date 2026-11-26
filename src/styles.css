@@ -184,6 +184,7 @@ button { cursor: pointer; }
   scroll-snap-type: x proximity;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  margin-inline: calc(var(--gutter) * -1);
   padding: var(--space-1) var(--gutter);
 }
 .chips::-webkit-scrollbar { display: none; }
@@ -428,13 +429,33 @@ textarea.field__input { min-height: 96px; resize: vertical; }
 .ngx-pagination li.disabled { opacity: .45; }
 .ngx-pagination li.disabled > span, .ngx-pagination li.disabled > a { cursor: not-allowed; }
 .ngx-pagination .show-for-sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
-/* .ngx-pagination li.ellipsis::after { content: "\2026"; padding: 0 .4rem; color: var(--ink-soft); } */
+.ngx-pagination li.ellipsis::after { content: "\2026"; padding: 0 .4rem; color: var(--ink-soft); }
 .ngx-pagination li a::before, .ngx-pagination li a::after { display: none !important; }
 
 .empty-note { padding: var(--space-6) var(--space-4); text-align: center; color: var(--ink-soft); }
 
 @keyframes modal-fondo { from { opacity: 0; } to { opacity: 1; } }
 @keyframes modal-sube { from { transform: translateY(28px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Fin de partida (la usan todos los juegos) */
+.win {
+  position: fixed; inset: 0; z-index: 150;
+  display: grid; place-items: center; padding: var(--space-4);
+  background: rgba(18, 49, 59, .72);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+  animation: modal-fondo .25s ease-out;
+}
+.win__card {
+  display: grid; justify-items: center; gap: var(--space-3);
+  width: min(100%, 420px); padding: var(--space-6) var(--space-5);
+  border-radius: var(--r-xl); background: var(--surface); text-align: center;
+  box-shadow: var(--shadow-lg);
+  animation: win-pop .45s cubic-bezier(.2, .9, .3, 1.3);
+}
+.win__trophy { width: 96px; height: 96px; fill: var(--ochre-100); stroke: var(--ochre-700); stroke-width: 1.4; }
+.win__label { font: 600 .95rem/1.2 var(--font-body); color: var(--ink-soft); }
+.win__title { font-size: clamp(1.7rem, 1.3rem + 2vw, 2.3rem); overflow-wrap: anywhere; }
+@keyframes win-pop { from { transform: scale(.8); opacity: 0; } to { transform: none; opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -443,79 +464,4 @@ textarea.field__input { min-height: 96px; resize: vertical; }
     transition-duration: .01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-
-
-/* Paginación responsive */
-@media (max-width: 767px) {
-
-  /* Ocultar anterior/siguiente cuando no están disponibles */
-  .ngx-pagination .pagination-previous.disabled,
-  .ngx-pagination .pagination-next.disabled {
-    display: none !important;
-  }
-
-  /* Eliminar los indicadores originales de ngx-pagination */
-  .ngx-pagination .pagination-previous::before,
-  .ngx-pagination .pagination-previous::after,
-  .ngx-pagination .pagination-next::before,
-  .ngx-pagination .pagination-next::after {
-    content: none !important;
-    display: none !important;
-  }
-
-  /* Ocultar el texto de los enlaces */
-  .ngx-pagination .pagination-previous > a,
-  .ngx-pagination .pagination-next > a {
-    font-size: 0 !important;
-  }
-
-  /* Flecha anterior */
-  .ngx-pagination .pagination-previous > a::before {
-    content: "←";
-    display: inline-block !important;
-    font-size: 22px !important;
-    font-family: Arial, sans-serif;
-    margin: 0 !important;
-  }
-
-  /* Flecha siguiente */
-  .ngx-pagination .pagination-next > a::after {
-    content: "→";
-    display: inline-block !important;
-    font-size: 22px !important;
-    font-family: Arial, sans-serif;
-    margin: 0 !important;
-  }
-}
-
-/* Los puntos suspensivos no deben tener aspecto de botón */
-.ngx-pagination li.ellipsis {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  min-width: auto !important;
-  padding: 0 .2rem !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.ngx-pagination li.ellipsis::after {
-  content: none !important;
-  display: none !important;
-}
-
-.ngx-pagination li.ellipsis > span,
-.ngx-pagination li.ellipsis > a {
-  display: inline !important;
-  min-width: 0 !important;
-  height: auto !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  color: var(--ink-soft) !important;
-  cursor: default !important;
 }

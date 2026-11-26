@@ -1,269 +1,74 @@
-/* Contenedor Principal a pantalla completa */
-.games-home-wrapper {
+:host { display: block; }
+
+/* ---------- Portada ---------- */
+.hero {
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  font-family: inherit;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
-.padding3{
-  padding: 3rem;
-}
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-/* Barra de navegación superior con botón Volver elegante */
-.top-nav-bar {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-}
-
-.btn-volver-glass {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.95rem;
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 10px 18px;
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-}
-
-.btn-volver-glass:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.iconoFlecha {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  filter: invert(1); /* Pone la flecha blanca para que contraste */
-}
-
-/* ========================================================
-   HERO SECTION CON IMAGEN DIFUMINADA Y MÁXIMO ESPACIO
-   ======================================================== */
-.games-hero-section {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 16px;
-}
-
-/* Contenedor de la imagen de fondo difuminada */
-.hero-bg-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  justify-content: space-between;
+  min-height: 250px;
   overflow: hidden;
-  z-index: 1;
+  isolation: isolate;
+  border-radius: var(--r-xl);
+  background: var(--sea-900);
+  color: #fff;
 }
-
-.hero-bg-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(6px) brightness(0.6); /* Desenfoque y oscurecimiento para protagonismo a los iconos */
-  transform: scale(1.1); /* Evita bordes blancos por el blur */
-}
-
-.hero-dark-overlay {
+.hero__img { position: absolute; inset: 0; z-index: -3; width: 100%; height: 100%; object-fit: cover; }
+.hero::after {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.85)); */
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(18, 49, 59, .88) 0%, rgba(18, 49, 59, .5) 55%, rgba(18, 49, 59, .25) 100%);
 }
+.hero__confetti { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; opacity: .9; animation: confeti 7s ease-in-out infinite alternate; }
+@keyframes confeti { to { transform: translateY(8px) rotate(1.5deg); } }
 
-/* Capa de contenido flotando sobre la imagen */
-.hero-content-overlay {
+.hero__back { margin: var(--space-4) 0 0 var(--space-4); }
+.hero__text { max-width: 34rem; padding: var(--space-4) var(--space-5) var(--space-5); }
+.hero__title { color: #fff; font-size: clamp(2.2rem, 1.6rem + 3.4vw, 3.6rem); line-height: 1; }
+.hero__sub { margin-top: .5rem; color: rgba(255, 255, 255, .92); }
+
+/* ---------- Los juegos ---------- */
+.games { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-5); }
+
+.game {
   position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 1100px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 30px;
+  align-items: flex-end;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-md);
+  background: var(--sand-200);
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s;
 }
+.game:hover { transform: translateY(-4px) rotate(-.8deg); }
+.games li:nth-child(even) .game:hover { transform: translateY(-4px) rotate(.8deg); }
+.game:active { transform: scale(.97); }
 
-/* Títulos con estilo moderno y legible sobre fondo difuminado */
-.titles-container {
-  margin-bottom: 30px;
-  padding: 0 15px;
-}
-
-.titulo-juegos {
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 0 0 10px 0;
-  font-weight: 800;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  flex-wrap: wrap;
-}
-
-.subtitulos-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.subTitulo-juegos {
-  font-size: clamp(1rem, 3vw, 1.3rem);
-  color: #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 0;
-  font-weight: 600;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  flex-wrap: wrap;
-}
-
-.sub2 {
-  font-size: clamp(0.85rem, 2.5vw, 1rem);
-  color: #94a3b8;
-  font-weight: 400;
-}
-
-.iconosImgFav {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-/* ========================================================
-   GRID DE ICONOS DE JUEGOS (ESTILO GLASSMORPHISM)
-   ======================================================== */
-.cuerpoImagenes {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.icon-container-glass {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  max-width: 900px;
-  width: 100%;
-  padding: 10px;
-}
-
-/* Tarjeta individual de cada juego */
-.game-icon-card {
-  width: 76px;
-  height: 76px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.game-icon-card:hover {
-  transform: translateY(-8px) scale(1.08);
-  background: rgba(255, 255, 255, 0.25);
-  border-color: #f59e0b;
-  box-shadow: 0 14px 40px rgba(245, 158, 11, 0.4);
-}
-
-.game-icon-card a {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
-}
-
-.game-icon-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-  transition: transform 0.3s ease;
-}
-
-.game-icon-card:hover img {
-  transform: scale(1.1);
-}
-
-/* Adaptabilidad a pantallas pequeñas (Móviles) */
-@media screen and (max-width: 600px) {
-  .game-icon-card {
-    width: 62px;
-    height: 62px;
-    border-radius: 16px;
-  }
-
-  .games-hero-section {
-    padding: 20px 10px;
-    justify-content: flex-start;
-    padding-top: 70px;
-  }
-
-  .top-nav-bar {
-    top: 12px;
-    right: 12px;
-  }
-}
-
-/* Capa de fundido progresivo hacia el blanco en la parte superior */
-.hero-white-fade-top {
+.game__art { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
+.game::after {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 180px; /* Altura de la zona que se desvanecerá */
-  background: linear-gradient(to bottom, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-  z-index: 3; /* Por encima de la imagen y del overlay oscuro */
-  pointer-events: none; /* Permite hacer clic a través de ella si fuera necesario */
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(32, 18, 8, .74) 0%, rgba(32, 18, 8, .3) 30%, rgba(32, 18, 8, 0) 55%);
+}
+.game__name {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  color: #fff;
+  font: 600 1.15rem/1.15 var(--font-display);
+  text-wrap: balance;
 }
 
-/* Capa de fundido progresivo hacia el blanco en la parte inferior */
-.hero-white-fade-bottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 180px; /* Altura de la zona que se desvanecerá por abajo */
-  background: linear-gradient(to top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-  z-index: 3;
-  pointer-events: none;
+@media (min-width: 768px) {
+  .hero { min-height: 300px; }
+  .hero__text { padding: var(--space-5) var(--space-6) var(--space-6); }
+  .games { grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+}
+@media (min-width: 1024px) {
+  .games { grid-template-columns: repeat(5, 1fr); }
+  .game__name { font-size: 1.25rem; }
 }
