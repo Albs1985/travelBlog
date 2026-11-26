@@ -272,7 +272,7 @@
 
 /* Teclado */
 .keyboard-area { display: grid; gap: 6px; }
-.keyboard-row { display: flex; justify-content: center; gap: 5px; }
+.keyboard-row { display: flex; justify-content: center; gap: 2px; }
 
 .key-btn {
   width: 36px;
