@@ -29,7 +29,7 @@ interface EntradaTreeGitHub {
 export class GithubViajesService {
   private readonly owner = 'Albs1985';
   private readonly repo = 'travelBlog';
-  private readonly branch = 'Nuevo-estilo-CSS';
+  private readonly branch = 'main';
 
   constructor(
     private http: HttpClient,
