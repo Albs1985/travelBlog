@@ -423,8 +423,8 @@ export class GithubViajesService {
                 rutasIndice.map((ruta) => this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato }))))
               ).pipe(
                 switchMap((indicesLeidos) => {
-                  const indiceBase: IndiceViajes | undefined = indicesLeidos.find((i) => i.dato)?.dato
-                    ? JSON.parse(indicesLeidos.find((i) => i.dato)!.dato!.contenido)
+                  const indiceBase: IndiceViajes | undefined = indicesLeidos[0]?.dato
+                    ? this.parsearJsonSeguro<IndiceViajes>(indicesLeidos[0].dato.contenido, indicesLeidos[0].ruta)
                     : undefined;
 
                   const listaViajes = indiceBase?.viajes ?? [];
@@ -478,7 +478,7 @@ export class GithubViajesService {
                       // 1. Reenlazar anterior y siguiente en sus JSON individuales
                       for (const item of vecinosLeidos) {
                         if (!item.dato) continue;
-                        const obj: Viaje = JSON.parse(item.dato.contenido);
+                        const obj: Viaje = this.parsearJsonSeguro<Viaje>(item.dato.contenido, item.ruta);
                         if (resumenAnterior && obj.id === resumenAnterior.id) {
                           obj.siguiente = idSiguiente || '';
                           entradasTree.push({
@@ -501,7 +501,7 @@ export class GithubViajesService {
                       // 2. Actualizar index.json en src y docs
                       for (const ind of indicesLeidos) {
                         if (!ind.dato) continue;
-                        const indObj: IndiceViajes = JSON.parse(ind.dato.contenido);
+                        const indObj: IndiceViajes = this.parsearJsonSeguro<IndiceViajes>(ind.dato.contenido, ind.ruta);
                         const viajesFiltrados = (indObj.viajes ?? [])
                           .filter((v) => v.id !== viaje.id && v.archivo !== viaje.archivo)
                           .map((v) => {
@@ -616,6 +616,18 @@ export class GithubViajesService {
           );
       })
     );
+  }
+
+  private parsearJsonSeguro<T>(contenido: string, ruta: string): T {
+    try {
+      return JSON.parse(contenido) as T;
+    } catch (err) {
+      const lineas = contenido.split('\n');
+      const fragmento = lineas.slice(Math.max(0, 48), 58).join('\n');
+      console.error(`Error parseando JSON en [${ruta}]:`, err);
+      console.error(`Fragmento cerca de línea 52 en [${ruta}]:\n${fragmento}`);
+      throw new Error(`El archivo ${ruta} en GitHub no tiene un JSON válido (revisa comas sobrantes o sintaxis cerca de la línea 52).`);
+    }
   }
 
   guardarEdicionViaje(
