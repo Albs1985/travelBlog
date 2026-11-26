@@ -1,0 +1,95 @@
+{
+  "id": "2027-06-29_Mordor",
+  "archivo": "2027-06-29-Mordor",
+  "anyo": 2027,
+  "fechaInicio": "2027-06-29",
+  "fechaFin": "2027-06-29",
+  "diaInicio": "29",
+  "mesInicio": "06",
+  "diaFin": "29",
+  "mesFin": "06",
+  "destino": "Mordor",
+  "categoria": "Ciudad",
+  "provincia": "31213312",
+  "pais": "España",
+  "precio": 123,
+  "estancia": "Caravana",
+  "tipoEstancia": "Airbnb",
+  "transporte": [
+    "Coche",
+    "Avion"
+  ],
+  "personas": [
+    "MAMAMAMA",
+    "Alba",
+    "Albert",
+    "Mateu",
+    "Marina"
+  ],
+  "portada": "2027/mordorPrincipal.jpg",
+  "fotos": [
+    "2027/mordor1.jpg",
+    "2027/mordor2.jpg",
+    "2027/mordor4.jpg",
+    "2027/mordor3.jpg"
+  ],
+  "numFotos": 4,
+  "anterior": "2026-06-29_Isla Tabarca",
+  "siguiente": "",
+  "mapa": "",
+  "infoInteres": [],
+  "descPrincipal": {
+    "val": "asdsadsadsad"
+  },
+  "bloques": [
+    {
+      "tipo": "titulo",
+      "texto": {
+        "val": "sdasdasdadsa"
+      }
+    },
+    {
+      "tipo": "parrafo",
+      "texto": {
+        "val": "sdadsadsasdasda"
+      }
+    },
+    {
+      "tipo": "fotos",
+      "fotos": [
+        {
+          "src": "2027/mordor1.jpg"
+        },
+        {
+          "src": "2027/mordor2.jpg"
+        }
+      ]
+    },
+    {
+      "tipo": "cita",
+      "texto": {
+        "val": "sdasa1e221"
+      },
+      "autor": {
+        "val": "asdsda21123312"
+      }
+    },
+    {
+      "tipo": "fotos",
+      "fotos": [
+        {
+          "src": "2027/mordor4.jpg"
+        }
+      ]
+    },
+    {
+      "tipo": "parrafo",
+      "texto": {
+        "val": "sasdasdasdasdadas"
+      }
+    }
+  ],
+  "fotosExtra": [
+    "2027/mordor3.jpg"
+  ]
+}
