@@ -86,13 +86,23 @@
         </div>
 
         <figcaption class="tile__caption">
-          <span class="pill pill--terra">{{ foto.anyo }}</span>
+          <div class="tile__top">
+            <span class="pill pill--terra">{{ foto.anyo }}</span>
+            <button *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true && !modoSeleccionMultiple"
+                    type="button"
+                    class="btn btn--icon btn--soft tile__del"
+                    [disabled]="idsEliminando.has(foto.src)"
+                    [attr.aria-label]="'app.eliminarBtn' | translate"
+                    [title]="'app.eliminarBtn' | translate"
+                    (click)="eliminar(foto.src, $event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+          </div>
           <strong class="tile__place" *ngIf="foto.lugar">{{ foto.lugar }}</strong>
           <p class="tile__desc" *ngIf="foto.desc">{{ foto.desc }}</p>
-          <button *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true && !modoSeleccionMultiple" type="button" class="btn btn--sm btn--soft tile__del"
-                  [disabled]="idsEliminando.has(foto.src)" (click)="eliminar(foto.src, $event)">
-            {{ 'app.eliminarBtn' | translate }}
-          </button>
         </figcaption>
       </figure>
     </div>

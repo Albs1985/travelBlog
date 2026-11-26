@@ -92,15 +92,25 @@
         </div>
 
         <figcaption class="tile__caption">
+          <div class="tile__top">
+            <span class="pill pill--terra">{{ dibujo.edad }} {{ 'app.edad' | translate }}</span>
+            <button *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true"
+                    type="button"
+                    class="btn btn--icon btn--soft tile__del"
+                    [disabled]="idsEliminando.has(dibujo.id!)"
+                    [attr.aria-label]="'app.eliminarBtn' | translate"
+                    [title]="'app.eliminarBtn' | translate"
+                    (click)="eliminar(dibujo.id, $event)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+          </div>
           <div class="tile__line">
             <strong>{{ dibujo.persona }} <span class="tile__year">({{ dibujo.anyo }})</span></strong>
-            <span class="pill pill--terra">{{ dibujo.edad }} {{ 'app.edad' | translate }}</span>
           </div>
           <p class="tile__desc" *ngIf="dibujo.detalle">{{ dibujo.detalle | l10n }}</p>
-          <button *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true" type="button" class="btn btn--sm btn--soft tile__del"
-                  [disabled]="idsEliminando.has(dibujo.id!)" (click)="eliminar(dibujo.id, $event)">
-            {{ 'app.eliminarBtn' | translate }}
-          </button>
         </figcaption>
       </figure>
     </div>

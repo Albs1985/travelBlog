@@ -9,3 +9,80 @@
 .tile__year { font-weight: 500; color: var(--ink-soft); }
 .tile__desc { font-size: .9rem; line-height: 1.45; color: var(--ink-soft); }
 .tile__del { justify-self: start; margin-top: var(--space-1); }
+
+:host { display: block; }
+
+.fav__search { margin-bottom: var(--space-4); }
+
+.tile { overflow: hidden; }
+.tile__btn img { transition: transform .35s; }
+.tile__btn:hover img { transform: scale(1.03); }
+.tile__place { font-size: 1rem; }
+.tile__desc { font-size: .9rem; line-height: 1.45; color: var(--ink-soft); }
+.tile__del { justify-self: start; margin-top: var(--space-1); }
+
+
+:host { display: block; }
+.fav__search { margin-bottom: var(--space-4); }
+
+.tile { overflow: hidden; }
+.tile__btn img { transition: transform .35s; }
+.tile__btn:hover img { transform: scale(1.03); }
+
+/* Nuevo contenedor flex para separar año y botón */
+.tile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.tile__place { font-size: 1rem; }
+.tile__desc { font-size: .9rem; line-height: 1.45; color: var(--ink-soft); }
+
+/* Eliminamos margin-top para que quede centrado verticalmente con el año */
+.tile__del { margin-top: 0; }
+
+.pill {
+  display: inline-flex;
+  align-self: center;
+  padding: .3rem .7rem;
+  border-radius: var(--r-pill);
+  background: var(--sand-200);
+  color: var(--ink);
+  font: 700 .75rem/1 var(--font-body);
+}
+.pill--terra { background: var(--terra-100); color: var(--terra-700); }
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 48px;
+  padding: 0 1.4rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--terra-600);
+  color: #fff;
+  font: 700 .95rem/1 var(--font-body);
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.btn:hover { background: var(--terra-700); color: #fff; }
+.btn--sm { min-height: 40px; padding: 0 1rem; font-size: .85rem; }
+
+/* Nueva variante compacta para botón solo de icono */
+.btn--icon {
+  min-height: 28px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.btn--soft { background: var(--terra-100); color: var(--terra-700); }
+.btn--soft:hover { background: #F0CDBB; color: var(--terra-700); }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
