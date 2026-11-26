@@ -160,8 +160,8 @@ export class NuevoViajeComponent implements OnInit {
     return `${this.anyo}/${this.nombreBaseDestino()}${numero}.jpg`;
   }
 
-  protected rutaPortadaAnyo(): string {
-    return `Portada${this.anyo}.jpg`;
+  rutaPortadaAnyo(): string {
+    return `${this.anyo}/Portada${this.anyo}.jpg`;
   }
 
   get idViaje(): string {

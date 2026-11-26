@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, forkJoin, from, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { AutenticationService } from './autentication.service';
-import { Viaje, ViajeResumen } from '../interfaces/viaje.interface';
+import { IndiceViajes, Viaje, ViajeResumen } from '../interfaces/viaje.interface';
 
 export interface FotoParaSubir {
-  /** Ej. "2027/canariasPrincipal.jpg", "2027/canarias1.jpg" o "Portada2027.jpg" */
+  /** Ej. "2027/canariasPrincipal.jpg", "2027/canarias1.jpg" o "2027/Portada2027.jpg" */
   rutaRelativa: string;
   file: File;
 }
@@ -58,10 +58,6 @@ export class GithubViajesService {
     return new TextDecoder('utf-8').decode(bytes);
   }
 
-  /**
-   * Comprime una imagen en el navegador antes de subirla y devuelve Base64 puro
-   * (sin el prefijo `data:image/jpeg;base64,`).
-   */
   async comprimirImagenABase64(
     file: File,
     opts: OpcionesCompresion = { maxAncho: 1600, maxAlto: 1600, calidad: 0.78 }
@@ -125,6 +121,78 @@ export class GithubViajesService {
       .pipe(map((res) => res.sha));
   }
 
+  /** Extrae los campos ligeros de `ViajeResumen` para insertar en `index.json`. */
+  private construirResumenViaje(viaje: Viaje): ViajeResumen {
+    return {
+      id: viaje.id,
+      archivo: viaje.archivo,
+      anyo: viaje.anyo,
+      fechaInicio: viaje.fechaInicio,
+      fechaFin: viaje.fechaFin,
+      diaInicio: viaje.diaInicio,
+      mesInicio: viaje.mesInicio,
+      diaFin: viaje.diaFin,
+      mesFin: viaje.mesFin,
+      destino: viaje.destino,
+      categoria: viaje.categoria,
+      provincia: viaje.provincia,
+      pais: viaje.pais,
+      precio: viaje.precio,
+      estancia: viaje.estancia,
+      tipoEstancia: viaje.tipoEstancia,
+      transporte: [...viaje.transporte],
+      personas: [...viaje.personas],
+      portada: viaje.portada,
+      fotos: [...viaje.fotos],
+      numFotos: viaje.numFotos,
+      anterior: viaje.anterior,
+      siguiente: viaje.siguiente,
+    };
+  }
+
+  /** Actualiza `anyos` (si el año es nuevo) y `viajes` (enlazando `siguiente` del anterior y añadiendo el nuevo). */
+  private actualizarContenidoIndice(indiceActual: IndiceViajes, nuevoViaje: Viaje): IndiceViajes {
+    const anyos = [...(indiceActual.anyos ?? [])];
+    const viajes = [...(indiceActual.viajes ?? [])];
+
+    // 1. Si el año no existe en `anyos`, lo añadimos al principio (ordenado de más reciente a más antiguo)
+    if (!anyos.some((a) => Number(a.anyo) === Number(nuevoViaje.anyo))) {
+      anyos.push({
+        anyo: Number(nuevoViaje.anyo),
+        portada: `${nuevoViaje.anyo}/Portada${nuevoViaje.anyo}.jpg`,
+      });
+      anyos.sort((a, b) => Number(b.anyo) - Number(a.anyo));
+    }
+
+    // 2. Actualizar `siguiente` del viaje anterior en el listado
+    if (nuevoViaje.anterior) {
+      const idxAnterior = viajes.findIndex((v) => v.id === nuevoViaje.anterior);
+      if (idxAnterior >= 0) {
+        viajes[idxAnterior] = {
+          ...viajes[idxAnterior],
+          siguiente: nuevoViaje.id,
+        };
+      }
+    } else if (viajes.length > 0) {
+      const ultimoIdx = viajes.length - 1;
+      viajes[ultimoIdx] = {
+        ...viajes[ultimoIdx],
+        siguiente: nuevoViaje.id,
+      };
+    }
+
+    // 3. Añadir o reemplazar el resumen del nuevo viaje
+    const resumenNuevo = this.construirResumenViaje(nuevoViaje);
+    const idxExistente = viajes.findIndex((v) => v.id === nuevoViaje.id);
+    if (idxExistente >= 0) {
+      viajes[idxExistente] = resumenNuevo;
+    } else {
+      viajes.push(resumenNuevo);
+    }
+
+    return { anyos, viajes };
+  }
+
   publicarViaje(
     nuevoViaje: Viaje,
     ultimoViajeResumen: ViajeResumen | undefined,
@@ -165,33 +233,59 @@ export class GithubViajesService {
                   ]
                 : [];
 
-              const lecturasAnteriores$ = rutasAnteriores.length
-                ? forkJoin(
-                    rutasAnteriores.map((ruta) =>
-                      this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato })))
-                    )
-                  )
-                : of([] as Array<{ ruta: string; dato: { contenido: string; sha: string } | undefined }>);
+              const rutasIndice = [
+                'src/assets/data/index.json',
+                'docs/assets/data/index.json',
+              ];
 
-              return lecturasAnteriores$.pipe(
-                switchMap((anterioresLeidos) => {
+              const lecturas$ = forkJoin({
+                anteriores: rutasAnteriores.length
+                  ? forkJoin(
+                      rutasAnteriores.map((ruta) =>
+                        this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato })))
+                      )
+                    )
+                  : of([] as Array<{ ruta: string; dato: { contenido: string; sha: string } | undefined }>),
+                indices: forkJoin(
+                  rutasIndice.map((ruta) =>
+                    this.leerTextoSiExiste(ruta).pipe(map((dato) => ({ ruta, dato })))
+                  )
+                ),
+              });
+
+              return lecturas$.pipe(
+                switchMap(({ anteriores, indices }) => {
                   const entradasTree: EntradaTreeGitHub[] = [];
 
-                  for (const item of anterioresLeidos) {
+                  // 1. Actualizar `siguiente` en el JSON del viaje anterior
+                  for (const item of anteriores) {
                     if (item.dato) {
                       const objAnterior: Viaje = JSON.parse(item.dato.contenido);
                       objAnterior.siguiente = nuevoViaje.id;
-                      const jsonAntActualizado = JSON.stringify(objAnterior, null, 2);
-
                       entradasTree.push({
                         path: item.ruta,
                         mode: '100644',
                         type: 'blob',
-                        content: jsonAntActualizado,
+                        content: JSON.stringify(objAnterior, null, 2),
                       });
                     }
                   }
 
+                  // 2. Actualizar `src/assets/data/index.json` y `docs/assets/data/index.json`
+                  for (const ind of indices) {
+                    if (ind.dato) {
+                      const indiceObj: IndiceViajes = JSON.parse(ind.dato.contenido);
+                      const indiceActualizado = this.actualizarContenidoIndice(indiceObj, nuevoViaje);
+                      entradasTree.push({
+                        path: ind.ruta,
+                        mode: '100644',
+                        type: 'blob',
+                        content: JSON.stringify(indiceActualizado, null, 2),
+                      });
+                    }
+                  }
+
+                  // 3. Añadir el JSON del viaje nuevo en `src` y `docs`
                   entradasTree.push(
                     {
                       path: `src/assets/data/viajes/${nombreArchivo}`,
@@ -207,6 +301,7 @@ export class GithubViajesService {
                     }
                   );
 
+                  // 4. Comprimir y subir fotos como blobs
                   onProgreso?.(`Comprimiendo ${fotos.length} foto(s) y preparando subida...`);
 
                   const tareasFotos$ = fotos.map((foto, idx) =>
@@ -222,7 +317,7 @@ export class GithubViajesService {
                     )
                   );
 
-                  const blobsFotos$= tareasFotos$.length
+                  const blobsFotos$ = tareasFotos$.length
                     ? forkJoin(tareasFotos$)
                     : of([] as Array<{ rutaRelativa: string; blobSha: string }>);
 
@@ -261,7 +356,7 @@ export class GithubViajesService {
                             this.http.post<{ sha: string }>(
                               `${this.apiBase}/git/commits`,
                               {
-                                message: `Añadir viaje ${nombreArchivo} y enlazar siguiente`,
+                                message: `Añadir viaje ${nombreArchivo}, actualizar index.json y enlazar siguiente`,
                                 tree: nuevoTree.sha,
                                 parents: [ultimoCommitSha],
                               },
