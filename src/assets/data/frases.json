@@ -327,5 +327,12 @@
     "fecha": "2026",
     "frase": "Peixo, calaixo...",
     "explicacion": "Tot ho acaba en O"
+  },
+  {
+    "id": 48,
+    "persona": "Marina",
+    "fecha": "2026",
+    "frase": "Ara anem al llit, i tu me mantes",
+    "explicacion": "Per a dir que li poses la manta"
   }
 ]
