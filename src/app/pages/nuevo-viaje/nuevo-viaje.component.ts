@@ -100,6 +100,30 @@ export class NuevoViajeComponent implements OnInit {
     'Alba', 'Albert', 'Mateu', 'Marina', 'Maria', 'Emili', 'Marcel', 'Matilde', 'Pep',
   ];
 
+  nuevoTransporteExtra = '';
+  nuevaPersonaExtra = '';
+  nuevaPersonaFotoPreviewUrl = '';
+  private nuevaPersonaFotoFile?: File;
+  private fotosPerfilesNuevos = new Map<string, FotoParaSubir>();
+
+  readonly categoriasDisponibles = ['Playa', 'Montaña', 'Ciudad', 'Nieve'];
+  readonly estanciasDisponibles = ['Caravana', 'Apartamento', 'Furgoneta', 'Casa', 'Velero', 'Otros'];
+  readonly tiposEstanciaDisponibles = [
+    'Furgoneta', 'Airbnb', 'Casa', 'Hotel', 'Apartamento',
+    'Bungalow', 'Cabaña', 'Albergue', 'Caravana',
+  ];
+
+  readonly OPCION_PERSONALIZADA = '__CUSTOM__';
+
+  categoriaSeleccion = 'Playa';
+  categoriaPersonalizada = '';
+
+  estanciaSeleccion = 'Caravana';
+  estanciaPersonalizada = '';
+
+  tipoEstanciaSeleccion = 'Airbnb';
+  tipoEstanciaPersonalizada = '';
+
   private anyosExistentes = new Set<number>();
   ultimoViajeResumen?: ViajeResumen;
   guardando = false;
@@ -400,6 +424,70 @@ export class NuevoViajeComponent implements OnInit {
     return Object.keys(obj).length ? obj : undefined;
   }
 
+  agregarTransporteExtra(): void {
+    const valor = this.nuevoTransporteExtra.trim();
+    if (!valor) return;
+
+    const existente = this.transportesDisponibles.find(
+      (t) => t.toLowerCase() === valor.toLowerCase()
+    );
+    const nombreFinal = existente ?? valor;
+
+    if (!existente) {
+      this.transportesDisponibles.push(nombreFinal);
+    }
+    if (!this.transporte.includes(nombreFinal)) {
+      this.transporte.push(nombreFinal);
+    }
+    this.nuevoTransporteExtra = '';
+  }
+
+  onSeleccionarFotoNuevaPersona(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    this.nuevaPersonaFotoFile = file;
+    this.nuevaPersonaFotoPreviewUrl = URL.createObjectURL(file);
+    input.value = '';
+  }
+
+  agregarPersonaExtra(): void {
+    const valor = this.nuevaPersonaExtra.trim();
+    if (!valor) return;
+
+    const existente = this.personasDisponibles.find(
+      (p) => p.toLowerCase() === valor.toLowerCase()
+    );
+    const nombreFinal = existente ?? valor;
+
+    if (!existente) {
+      this.personasDisponibles.push(nombreFinal);
+    }
+    if (!this.personas.includes(nombreFinal)) {
+      this.personas.push(nombreFinal);
+    }
+
+    if (this.nuevaPersonaFotoFile) {
+      const rutaRelativa = `perfiles/fotoPerfil${nombreFinal}.jpg`;
+      this.fotosPerfilesNuevos.set(nombreFinal, {
+        rutaRelativa,
+        file: this.nuevaPersonaFotoFile,
+      });
+    }
+
+    this.nuevaPersonaExtra = '';
+    this.nuevaPersonaFotoFile = undefined;
+    this.nuevaPersonaFotoPreviewUrl = '';
+  }
+
+  private resolverCampoConCustom(seleccion: string, personalizada: string): string {
+    if (seleccion === this.OPCION_PERSONALIZADA) {
+      return personalizada.trim();
+    }
+    return seleccion.trim();
+  }
+
   private construirViajeJson(): { viaje: Viaje; fotosParaSubir: FotoParaSubir[] } {
     const bloques: Bloque[] = [];
     const fotosEnBloques: string[] = [];
@@ -410,6 +498,13 @@ export class NuevoViajeComponent implements OnInit {
         fotosMap.set(ruta, { rutaRelativa: ruta, file });
       }
     };
+
+    for (const persona of this.personas) {
+      const fotoPerfil = this.fotosPerfilesNuevos.get(persona);
+      if (fotoPerfil) {
+        registrarSubida(fotoPerfil.rutaRelativa, fotoPerfil.file);
+      }
+    }
 
     const rutaPortadaFinal = this.portadaFile ? this.rutaPortadaViaje() : this.portada.trim();
     registrarSubida(rutaPortadaFinal, this.portadaFile);
@@ -466,12 +561,12 @@ export class NuevoViajeComponent implements OnInit {
       diaFin: this.diaFin || this.diaInicio,
       mesFin: this.mesFin || this.mesInicio,
       destino: this.destino.trim() || 'Lugar',
-      categoria: this.categoria.trim(),
+      categoria: this.resolverCampoConCustom(this.categoriaSeleccion, this.categoriaPersonalizada),
       provincia: this.provincia.trim(),
       pais: this.pais.trim(),
       precio: Number(this.precio) || 0,
-      estancia: this.estancia.trim(),
-      tipoEstancia: this.tipoEstancia.trim(),
+      estancia: this.resolverCampoConCustom(this.estanciaSeleccion, this.estanciaPersonalizada),
+      tipoEstancia: this.resolverCampoConCustom(this.tipoEstanciaSeleccion, this.tipoEstanciaPersonalizada),
       transporte: [...this.transporte],
       personas: [...this.personas],
       portada: rutaPortadaFinal,

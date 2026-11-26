@@ -349,3 +349,44 @@
 @media (min-width: 1024px) {
   .sheet { width: min(100%, 880px); margin: -48px auto 0; border-radius: var(--r-xl); box-shadow: var(--shadow-lg); }
 }
+
+.fact-select {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--ink);
+  padding: .3rem .45rem;
+  font: 600 .95rem/1.25 var(--font-body);
+}
+
+.fact-input--custom {
+  margin-top: .4rem;
+}
+
+.extra-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin-bottom: var(--space-3);
+}
+
+.extra-inline__input {
+  flex: 1 1 180px;
+  max-width: 260px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--ink);
+  padding: .35rem .75rem;
+  font: 500 .85rem/1.2 var(--font-body);
+}
+
+.extra-inline__thumb {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+}

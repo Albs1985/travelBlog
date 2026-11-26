@@ -123,27 +123,62 @@
   <dl class="facts">
     <div class="fact">
       <dt>{{ 'header.categoria' | translate }}</dt>
-      <dd><input class="fact-input" type="text" [(ngModel)]="categoria" placeholder="Playa / Montaña / Ciudad / Nieve"></dd>
+      <dd>
+        <select class="fact-select" [(ngModel)]="categoriaSeleccion">
+          <option *ngFor="let c of categoriasDisponibles" [value]="c">{{ c }}</option>
+          <option [value]="OPCION_PERSONALIZADA">Otra categoría...</option>
+        </select>
+        <input *ngIf="categoriaSeleccion === OPCION_PERSONALIZADA"
+               class="fact-input fact-input--custom"
+               type="text"
+               [(ngModel)]="categoriaPersonalizada"
+               placeholder="Escribe la categoría...">
+      </dd>
     </div>
+
     <div class="fact">
       <dt>{{ 'viaje.provincia' | translate }}</dt>
       <dd><input class="fact-input" type="text" [(ngModel)]="provincia"></dd>
     </div>
+
     <div class="fact">
       <dt>{{ 'viaje.pais' | translate }}</dt>
       <dd><input class="fact-input" type="text" [(ngModel)]="pais"></dd>
     </div>
+
     <div class="fact">
       <dt>{{ 'viaje.precio' | translate }}</dt>
       <dd><input class="fact-input" type="number" [(ngModel)]="precio"> €</dd>
     </div>
+
     <div class="fact">
       <dt>{{ 'viaje.estancia' | translate }}</dt>
-      <dd><input class="fact-input" type="text" [(ngModel)]="estancia" placeholder="Velero / Hotel / Casa..."></dd>
+      <dd>
+        <select class="fact-select" [(ngModel)]="estanciaSeleccion">
+          <option *ngFor="let e of estanciasDisponibles" [value]="e">{{ e }}</option>
+          <option [value]="OPCION_PERSONALIZADA">Otra estancia...</option>
+        </select>
+        <input *ngIf="estanciaSeleccion === OPCION_PERSONALIZADA"
+               class="fact-input fact-input--custom"
+               type="text"
+               [(ngModel)]="estanciaPersonalizada"
+               placeholder="Escribe la estancia...">
+      </dd>
     </div>
+
     <div class="fact">
       <dt>{{ 'viaje.tipoEstancia' | translate }}</dt>
-      <dd><input class="fact-input" type="text" [(ngModel)]="tipoEstancia" placeholder="Airbnb / Hotel..."></dd>
+      <dd>
+        <select class="fact-select" [(ngModel)]="tipoEstanciaSeleccion">
+          <option *ngFor="let te of tiposEstanciaDisponibles" [value]="te">{{ te }}</option>
+          <option [value]="OPCION_PERSONALIZADA">Otro tipo de estancia...</option>
+        </select>
+        <input *ngIf="tipoEstanciaSeleccion === OPCION_PERSONALIZADA"
+               class="fact-input fact-input--custom"
+               type="text"
+               [(ngModel)]="tipoEstanciaPersonalizada"
+               placeholder="Escribe el tipo...">
+      </dd>
     </div>
   </dl>
 
@@ -158,6 +193,14 @@
         {{ t }}
       </button>
     </div>
+    <div class="extra-inline">
+      <input class="extra-inline__input"
+             type="text"
+             [(ngModel)]="nuevoTransporteExtra"
+             (keydown.enter)="agregarTransporteExtra(); $event.preventDefault()"
+             placeholder="Otro transporte...">
+      <button type="button" class="mini-btn" (click)="agregarTransporteExtra()">+ Añadir</button>
+    </div>
   </section>
 
   <section class="block">
@@ -170,6 +213,25 @@
               (click)="toggleArrayItem(personas, p)">
         {{ p }}
       </button>
+    </div>
+    <div class="extra-inline">
+      <input class="extra-inline__input"
+             type="text"
+             [(ngModel)]="nuevaPersonaExtra"
+             (keydown.enter)="agregarPersonaExtra(); $event.preventDefault()"
+             placeholder="Otra persona / viajero...">
+
+      <label class="slot-btn">
+        <span>{{ nuevaPersonaFotoPreviewUrl ? 'Cambiar foto' : 'Foto perfil' }}</span>
+        <input type="file" accept="image/*" (change)="onSeleccionarFotoNuevaPersona($event)" hidden>
+      </label>
+
+      <img *ngIf="nuevaPersonaFotoPreviewUrl"
+           class="extra-inline__thumb"
+           [src]="nuevaPersonaFotoPreviewUrl"
+           alt="Vista previa viajero">
+
+      <button type="button" class="mini-btn" (click)="agregarPersonaExtra()">+ Añadir</button>
     </div>
     <ul class="people" *ngIf="personas.length">
       <li class="person" *ngFor="let persona of personas">
