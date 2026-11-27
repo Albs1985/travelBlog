@@ -334,5 +334,12 @@
     "fecha": "2026",
     "frase": "Ara anem al llit, i tu me mantes",
     "explicacion": "Per a dir que li poses la manta"
+  },
+  {
+    "id": 49,
+    "persona": "Mateu",
+    "fecha": "2026",
+    "frase": "Noti",
+    "explicacion": "Fica"
   }
 ]
