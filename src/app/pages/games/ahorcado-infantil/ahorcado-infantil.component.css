@@ -1,4 +1,4 @@
-:host { display: block; }
+:host { display: block; min-width: 0; }
 
 .badge {
   flex: none;
@@ -14,6 +14,7 @@
 /* ---------- Configuración ---------- */
 .setup {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
   padding: var(--space-4);
   border-radius: var(--r-lg);
@@ -24,7 +25,7 @@
 .setup__row {
   display: grid;
   gap: var(--space-3);
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .mode-pills {
@@ -52,7 +53,7 @@
   color: #fff;
 }
 
-.custom-fields { display: grid; gap: var(--space-2); }
+.custom-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
 .custom-row,
 .add-word-row { display: flex; gap: var(--space-2); align-items: center; }
 
@@ -102,18 +103,20 @@
 
 .level-buttons {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-2);
 }
 
 .diff-btn {
+  min-width: 0;
   min-height: 48px;
-  padding: .65rem .8rem;
+  padding: .65rem clamp(.3rem, 1.6vw, .8rem);
   border-radius: var(--r-pill);
   border: 1.5px solid var(--line-strong);
   background: var(--sand-50);
   color: var(--ink);
-  font: 700 .92rem/1 var(--font-body);
+  font: 700 clamp(.78rem, 3.6vw, .92rem)/1 var(--font-body);
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -135,6 +138,7 @@
 /* ---------- Partida ---------- */
 .game-screen {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
   margin-top: var(--space-3);
 }
@@ -143,8 +147,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
+  gap: var(--space-2);
+  padding: var(--space-3) clamp(.6rem, 3vw, 1rem);
   border-radius: var(--r-lg);
   background: var(--surface);
   box-shadow: 0 0 0 1px var(--line);
@@ -153,7 +157,9 @@
 .stats-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  justify-content: flex-end;
+  gap: 6px;
+  min-width: 0;
   margin-left: auto;
 }
 
@@ -161,7 +167,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: .35rem .75rem;
+  min-width: 0;
+  padding: .35rem clamp(.4rem, 2vw, .75rem);
   border-radius: var(--r-sm);
   background: var(--sand-100);
   box-shadow: inset 0 0 0 1px var(--line);
@@ -180,6 +187,7 @@
 /* Visuales y dibujo */
 .game-visuals {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
   padding: var(--space-4);
   border-radius: var(--r-lg);
@@ -205,7 +213,7 @@
 
 .draw-container {
   width: 100%;
-  max-width: 360px;
+  max-width: min(100%, 420px);
   margin-inline: auto;
   aspect-ratio: 1.5 / 1;
   background: var(--sand-50);
@@ -218,32 +226,43 @@
 }
 .draw-container img { max-height: 100%; max-width: 100%; object-fit: contain; }
 
-/* Palabra oculta */
+/* Palabra oculta: una sola línea; las cajas se encogen (y su letra con ellas) para que quepa entera */
 .word-display {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  align-items: center;
+  gap: clamp(2px, 1.2vw, 8px);
+  width: 100%;
+  max-width: 640px;
+  margin-inline: auto;
   padding: var(--space-2) 0;
 }
 
 .letter-slot {
-  width: 36px;
-  height: 46px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  container-type: inline-size;          /* la letra se mide respecto a su propia caja */
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: clamp(34px, 9vw, 58px);    /* crece con la pantalla, con un tope */
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
   background: var(--surface);
-  border-bottom: 3px solid var(--sea-700);
-  border-radius: var(--r-sm);
+  border-bottom: clamp(2px, .7vw, 3px) solid var(--sea-700);
+  border-radius: clamp(5px, 1.4vw, 10px);
   box-shadow: 0 0 0 1px var(--line);
   font-family: var(--font-display);
-  font-size: 1.45rem;
   font-weight: 700;
   color: var(--sea-900);
 }
+.letter-slot .letter { font-size: clamp(.75rem, 5vw, 1.9rem); line-height: 1; }
+@supports (container-type: inline-size) {
+  .letter-slot .letter { font-size: 62cqw; }
+}
 .letter-slot.space {
-  width: 16px;
+  flex: 0 0 clamp(6px, 2.4vw, 16px);
+  max-width: none;
+  aspect-ratio: auto;
   background: transparent;
   border: 0;
   box-shadow: none;
@@ -270,20 +289,41 @@
 .tool-btn:active:not(:disabled) { transform: scale(.97); }
 .tool-btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
 
-/* Teclado */
-.keyboard-area { display: grid; gap: 6px; }
-.keyboard-row { display: flex; justify-content: center; gap: 2px; }
+/* Teclado: las teclas se reparten el ancho disponible y escalan con él */
+.keyboard-area {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(4px, 1.4vw, 8px);
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+}
+.keyboard-row {
+  --gap: clamp(3px, 1vw, 6px);
+  --cols: 10;                           /* teclas de la fila más larga */
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+  gap: var(--gap);
+}
 
 .key-btn {
-  width: 36px;
-  height: 44px;
+  flex: 0 1 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  display: grid;
+  place-items: center;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: clamp(8px, 2.4vw, 12px);
   background: var(--surface);
   color: var(--ink);
-  font: 700 1rem/1 var(--font-body);
+  font: 700 clamp(.8rem, 4.4vw, 1.3rem)/1 var(--font-body);
   box-shadow: 0 2px 6px rgba(60, 38, 20, .06);
   transition: background .15s, color .15s, border-color .15s, transform .1s;
+}
+@supports (container-type: inline-size) {
+  .key-btn { font-size: min(4.8cqw, 1.3rem); }
 }
 .key-btn:hover:not(:disabled) { border-color: var(--terra-500); background: var(--sand-200); }
 .key-btn:active:not(:disabled) { transform: scale(.95); }
@@ -325,12 +365,5 @@
 
 @media (min-width: 768px) {
   .setup { padding: var(--space-5); }
-  .setup__row { grid-template-columns: 1fr 1fr; }
-  .key-btn { width: 46px; height: 50px; font-size: 1.05rem; }
-  .letter-slot { width: 42px; height: 52px; font-size: 1.65rem; }
-}
-
-@media (max-width: 380px) {
-  .key-btn { width: 30px; height: 38px; font-size: .92rem; }
-  .letter-slot { width: 28px; height: 36px; font-size: 1.25rem; }
+  .setup__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

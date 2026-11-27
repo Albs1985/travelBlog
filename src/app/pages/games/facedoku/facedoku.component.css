@@ -23,12 +23,11 @@
 .pause .ic { width: 18px; height: 18px; }
 
 /* ---------- Tablero ---------- */
-.fd__board { width: min(100%, 580px); margin-inline: auto; }
+.fd__board { width: min(100%, 580px); width: min(100%, 580px, max(260px, calc(100dvh - 250px))); margin-inline: auto; }
 .sudoku {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(9, minmax(0, 1fr));
   padding: 4px;
-  border-radius: var(--r-md);
   background: var(--sea-900);
   box-shadow: var(--shadow-sm);
   transition: filter .3s;
@@ -37,8 +36,10 @@
 
 .cell {
   position: relative;
-  display: grid;
-  place-items: center;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
   aspect-ratio: 1;
   background: var(--surface);
   border: 0.5px solid var(--line-strong);
@@ -53,15 +54,15 @@
 .cell.selected { background: var(--terra-100); box-shadow: inset 0 0 0 2.5px var(--terra-600); z-index: 1; }
 .cell.error { background: #F7CFC4; box-shadow: inset 0 0 0 2px var(--terra-600); }
 
-.cell-avatar { width: 86%; height: 86%; border-radius: 50%; object-fit: cover; background: var(--sand-200); animation: pop .25s cubic-bezier(.3, 1.4, .5, 1); }
+.cell-avatar { position: absolute; inset: 7%; width: 86%; height: 86%; max-width: none; border-radius: 50%; object-fit: cover; background: var(--sand-200); animation: pop .25s cubic-bezier(.3, 1.4, .5, 1); }
 .cell.initial .cell-avatar { box-shadow: 0 0 0 2px var(--sea-700); }
 .cell:not(.initial) .cell-avatar { box-shadow: 0 0 0 2px var(--palm-600); }
 .cell.error .cell-avatar { box-shadow: 0 0 0 2px var(--terra-600); filter: saturate(.6); }
 @keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
 
-.notes { position: absolute; inset: 1px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); }
-.note { display: grid; place-items: center; }
-.note img { width: 88%; height: 88%; border-radius: 50%; object-fit: cover; }
+.notes { position: absolute; inset: 1px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); }
+.note { position: relative; min-width: 0; min-height: 0; }
+.note img { position: absolute; inset: 6%; width: 88%; height: 88%; max-width: none; border-radius: 50%; object-fit: cover; }
 
 /* ---------- Herramientas ---------- */
 .tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
@@ -98,9 +99,9 @@
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow-sm), 0 0 0 1px var(--line);
 }
-.face { position: relative; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; transition: transform .15s; }
+.face { position: relative; min-width: 0; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; transition: transform .15s; }
 .face:active { transform: scale(.9); }
-.face__img { width: 100%; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--sand-200); box-shadow: 0 0 0 2px var(--sea-700); }
+.face__img { display: block; width: 100%; max-width: none; aspect-ratio: 1; border-radius: 50%; object-fit: cover; background: var(--sand-200); box-shadow: 0 0 0 2px var(--sea-700); }
 .face__left {
   position: absolute;
   top: -5px;
@@ -135,11 +136,12 @@
     align-items: start;
     column-gap: var(--space-6);
   }
-  .fd__board { grid-area: board; width: 100%; }
+  .fd__board { grid-area: board; width: min(100%, max(260px, calc(100dvh - 250px))); margin: 0; }
   .fd__diff { grid-area: diff; margin: 0; }
   .fd__stats { grid-area: stats; }
   .fd__tools { grid-area: tools; }
-  .fd__dock { grid-area: dock; position: static; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); padding: var(--space-4); }
+  .fd__dock { grid-area: dock; position: static; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); padding: var(--space-4); }
+  .fd__dock .face { width: 100%; max-width: 112px; justify-self: center; }
   .face__img { box-shadow: 0 0 0 3px var(--sea-700); }
   .face__left { top: -2px; right: -2px; min-width: 22px; height: 22px; font-size: .8rem; }
   .end-actions { grid-template-columns: 1fr 1fr; }
