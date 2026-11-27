@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +46,7 @@ import { PaginacionComponent } from './shared/paginacion/paginacion.component';
 import { CumpleanosComponent } from './pages/cumpleanos/cumpleanos.component';
 import { IaRinconComponent } from './pages/ia-rincon/ia-rincon.component';
 import { NuevoViajeComponent } from './pages/nuevo-viaje/nuevo-viaje.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,10 @@ import { NuevoViajeComponent } from './pages/nuevo-viaje/nuevo-viaje.component';
   ],
   imports: [
     BrowserModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     NgxPaginationModule,
     AppRoutingModule,
     FormsModule,

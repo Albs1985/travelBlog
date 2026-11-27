@@ -68,3 +68,11 @@ Si el mapa deja de compilar tras regenerarlo, fijar `"ol": "9.0.0"` (sin `^`) en
 
 ## Publicación automática (opcional)
 `opcional/github-actions-deploy.yml` (instrucciones dentro): publica en Pages con cada push, sin compilar en local.
+
+
+## SCRIPT PARA GENERAR ICONOS DE PWA:
+mkdir -p src/assets/icons
+for size in 72 96 128 144 152 180 192 384 512; do
+  sips -z "$size" "$size" src/assets/icons/logoFamilia3.png --out "src/assets/icons/icon-${size}x${size}.png"
+done
+cp src/assets/icons/icon-180x180.png src/assets/icons/apple-touch-icon.png
