@@ -14,7 +14,7 @@ export type FiltroFotos = 'galeria' | 'favoritos' | 'dibujos';
   styleUrls: ['./fotos.component.css']
 })
 export class FotosComponent {
-  filtro: FiltroFotos = 'galeria';
+  filtro: FiltroFotos = 'favoritos';
 
   constructor(private route: ActivatedRoute) {
     this.route.queryParamMap.subscribe((params) => {

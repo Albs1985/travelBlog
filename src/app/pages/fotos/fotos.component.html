@@ -5,9 +5,9 @@
 </header>
 
 <div class="segmented fotos__filter" role="group" [attr.aria-label]="'nav.recuerdos' | translate">
-  <button type="button" class="segmented__btn" [class.is-active]="filtro === 'galeria'" [attr.aria-pressed]="filtro === 'galeria'" (click)="elegir('galeria')">{{ 'app.galeria' | translate }}</button>
   <button type="button" class="segmented__btn" [class.is-active]="filtro === 'favoritos'" [attr.aria-pressed]="filtro === 'favoritos'" (click)="elegir('favoritos')">{{ 'app.galeriaFav' | translate }}</button>
   <button type="button" class="segmented__btn" [class.is-active]="filtro === 'dibujos'" [attr.aria-pressed]="filtro === 'dibujos'" (click)="elegir('dibujos')">{{ 'app.dibujos' | translate }}</button>
+  <button type="button" class="segmented__btn" [class.is-active]="filtro === 'galeria'" [attr.aria-pressed]="filtro === 'galeria'" (click)="elegir('galeria')">{{ 'app.galeria' | translate }}</button>
 </div>
 
 <div class="fotos__body">

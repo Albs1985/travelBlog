@@ -79,23 +79,32 @@
 
         <header class="quote__top">
           <img class="quote__avatar"
-               [src]="frase.persona?.toLowerCase() === 'marina' ? 'assets/images/perfiles/fotoPerfilMarina.jpg' : 'assets/images/perfiles/fotoPerfilMateu.jpg'"
-               [alt]="'Foto de ' + frase.persona" loading="lazy" (error)="$any($event.target).style.visibility = 'hidden'">
+            [src]="frase.persona?.toLowerCase() === 'marina' ? 'assets/images/perfiles/fotoPerfilMarina.jpg' : 'assets/images/perfiles/fotoPerfilMateu.jpg'"
+            [alt]="'Foto de ' + frase.persona" loading="lazy" (error)="$any($event.target).style.visibility = 'hidden'">
           <div class="quote__who">
             <span class="quote__label">{{ 'app.unaFraseDe' | translate }}</span>
             <h3 class="quote__name">{{ frase.persona }}</h3>
           </div>
           <span class="pill pill--terra">{{ frase.fecha }}</span>
+          <div class="quote__admin" *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true">
+            <button type="button" class="btn btn--icon btn--soft tile__del" (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+                <path d="m15 5 4 4"></path>
+              </svg>
+            </button>
+            <button type="button" class="btn btn--icon btn--soft tile__del" (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+          </div>
         </header>
 
         <blockquote class="quote__text">{{ frase.frase }}</blockquote>
 
         <p class="quote__note" *ngIf="frase.explicacion">{{ frase.explicacion }}</p>
-
-        <div class="quote__admin" *ngIf="(this.authenticationService.tokenGithubValidoSubject$ | async) === true">
-          <button type="button" class="btn btn--sm btn--ghost" (click)="abrirEditar(frase)" [disabled]="idsEliminando.has(frase.id!)">{{ 'app.editarBtn' | translate }}</button>
-          <button type="button" class="btn btn--sm btn--soft" (click)="eliminar(frase.id, $event)" [disabled]="idsEliminando.has(frase.id!)">{{ 'app.eliminarBtn' | translate }}</button>
-        </div>
       </article>
     </div>
 
