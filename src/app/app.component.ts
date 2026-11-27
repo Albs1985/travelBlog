@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CumpleanosService } from './services/cumpleanos.service';
+import { NotificationPushService } from './services/notification-push.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,13 @@ export class AppComponent {
   cumpleanerosHoy$ = this.cumpleanosService.cumpleanerosHoy$;
   mostrarAvisoCumple = true;
 
+  notificationPushService = inject(NotificationPushService);
+
   constructor(translate: TranslateService, public cumpleanosService: CumpleanosService){
     translate.setDefaultLang('val');
     translate.use('val');
+
+    this.notificationPushService.iniciar();
     // translate.onLangChange.subscribe((event: LangChangeEvent) => {
     //   translate.get('app.title').subscribe((res: string) => {
     //     this.titleService.setTitle(res);
