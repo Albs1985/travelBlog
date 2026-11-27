@@ -16,12 +16,21 @@
 .hero__img {
   position: absolute;
   inset: 0;
-  z-index: -2;
-  margin-top: -2px;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  animation: hero-asienta 1.6s cubic-bezier(.2, .7, .2, 1) both;   /* único gesto de entrada */
+  display: block;
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__body {
+  position: relative;
+  z-index: 1;
 }
 /* Degradado solo para que el texto se lea sobre la foto */
 .hero::after {

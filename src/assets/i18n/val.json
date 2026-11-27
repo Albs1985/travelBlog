@@ -405,7 +405,8 @@
   },
   "nav": {
     "principal": "Navegació principal",
-    "recuerdos": "Records en imatges",
+    "recuerdosImagenes": "Records en imatges",
+    "recuerdos": "Records",
     "cumpleanos": "Aniversaris",
     "masOpciones": "Més opcions",
     "irInicio": "Anar a l'inici",
