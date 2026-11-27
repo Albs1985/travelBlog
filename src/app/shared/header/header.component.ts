@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AutenticationService } from 'src/app/services/autentication.service';
 import { CommonService } from 'src/app/services/common.service';
+import { NotificationPushService } from 'src/app/services/notification-push.service';
 
 @Component({
   selector: 'app-header',
@@ -16,11 +17,13 @@ export class HeaderComponent {
   // mensajeCabeceraAnyo : boolean = true;
   // mensajeCabeceraFiltrar : boolean = false;
   // mensajeCabeceraAny : string = '';
+  registrandoPush = false;
 
   constructor(/*private route: ActivatedRoute, */
               private translate: TranslateService,
               protected commonService : CommonService,
               public authenticationService: AutenticationService,
+              protected notificationPushService: NotificationPushService,
               private router: Router){
 
                 // this.mensajeCabeceraAnyo = true;
@@ -62,5 +65,30 @@ export class HeaderComponent {
 
   onTokenIaGuardado(token: string): void {
     this.commonService.claveGuardada = Boolean((token ?? '').trim());
+  }
+
+  async registrarDispositivo(nombreIngresado: string, inputEl?: HTMLInputElement): Promise<void> {
+    const token = (localStorage.getItem('gh_travel_token') || '').trim();
+    const nombre = (nombreIngresado || '').trim() || 'Móvil Albert';
+debugger
+    if (!token) {
+      console.warn('No hay token de GitHub guardado en localStorage (gh_travel_token).');
+      return;
+    }
+
+    if (this.registrandoPush) return;
+    this.registrandoPush = true;
+
+    try {
+      await this.notificationPushService.registrarDispositivo(token, nombre);
+      if (inputEl) {
+        inputEl.value = '';
+      }
+      console.log(`Dispositivo "${nombre}" registrado correctamente.`);
+    } catch (error) {
+      console.error('Error al registrar el dispositivo push:', error);
+    } finally {
+      this.registrandoPush = false;
+    }
   }
 }

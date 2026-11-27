@@ -205,7 +205,8 @@
     "impostor": "L'Impostor",
     "simon": "Simó",
     "puzzle": "Trencaclosques",
-    "conecta4": "Connecta 4"
+    "conecta4": "Connecta 4",
+    "registrar_push": "Registra dispositiu"
   },
   "cumpleanos": {
     "titulo": "Calendari d'Aniversaris",

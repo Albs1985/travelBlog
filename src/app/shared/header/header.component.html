@@ -113,6 +113,38 @@
     [mostrarBotonConfig]="false"
     [mostrarPanelToken]="true">
   </app-toolbar>
+
+  <div class="mt-2 tb-panel__row" style="margin-top: 1rem;">
+    <input
+      #dispositivo
+      id="dispositivo"
+      type="text"
+      placeholder="Móvil Albert"
+      class="tb-input"
+      [disabled]="registrandoPush" />
+
+    <button
+      type="button"
+      class="tb__btn tb__btn--primary"
+      [disabled]="registrandoPush"
+      (click)="registrarDispositivo(dispositivo.value, dispositivo)"
+      [attr.aria-label]="'app.registrar_push' | translate">
+      <svg class="tb__icon" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true">
+        <rect x="4" y="2" width="12" height="20" rx="2.2"/>
+        <path d="M8 5h4M9 19h2"/>
+        <circle cx="18" cy="17" r="4.5" fill="none"/>
+        <path d="M18 14.8v4.4M15.8 17h4.4"/>
+      </svg>
+      <span class="tb__text">{{ 'app.registrar_push' | translate }}</span>
+    </button>
+  </div>
+
   <app-toolbar
     [volverLink]="''"
     [mostrarBotonNuevo]="false"

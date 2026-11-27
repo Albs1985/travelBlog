@@ -205,7 +205,8 @@
     "impostor": "El Impostor",
     "simon": "Simón",
     "puzzle": "Rompecabezas",
-    "conecta4": "Conecta 4"
+    "conecta4": "Conecta 4",
+    "registrar_push": "Registra dispositivo"
   },
   "cumpleanos": {
     "titulo": "Calendario de Cumpleaños",
