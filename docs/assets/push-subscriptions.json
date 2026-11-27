@@ -1,3 +1,17 @@
 {
-  "subscriptions": []
+  "subscriptions": [
+    {
+      "id": "aHR0cHM6Ly9mY20u",
+      "nombre": "Movil Albert",
+      "actualizadoEn": "2026-11-27T11:30:25.039Z",
+      "subscription": {
+        "endpoint": "https://fcm.googleapis.com/fcm/send/dCqPjl521go:APA91bH5d07E1KgVIczH1fUoDff66srMVNNvRPkhC10IbdeRtfeox4xTz608FTVKwRxCNLhDdvyETpidrJql0sxhxWgsp4Sp4xjQKBSnmG9AJShQWqYosy9ZM89L8JhD24mXNEuZ0GJB",
+        "expirationTime": null,
+        "keys": {
+          "p256dh": "BCfBir1KQQ8DcIdDod9vuV_6OvZKs5lfZ3ca8usP_UdN6_Ya0zL0QkRU7r2IcU-2ktZ9U69unqCVVTQMRfmEZaQ",
+          "auth": "_CNLFtX9gF8aPg6iEpduug"
+        }
+      }
+    }
+  ]
 }
