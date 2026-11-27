@@ -35,7 +35,7 @@
 
       <!-- Badge inferior con total de pines mostrados -->
       <div class="map-counter-badge" *ngIf="totalMostrados > 0">
-        📍 {{ totalMostrados }} {{ totalMostrados === 1 ? 'destino' : 'destinos' }}
+        📍 {{ totalMostrados }} {{ totalMostrados === 1 ? ('viaje.destino' | translate) :  ('viaje.destinos' | translate)  }}
       </div>
 
     </div>
