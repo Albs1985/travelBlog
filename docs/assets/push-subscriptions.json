@@ -12,6 +12,18 @@
           "auth": "_CNLFtX9gF8aPg6iEpduug"
         }
       }
+    },
+    {
+      "id": "aHR0cHM6Ly93ZWIu",
+      "nombre": "Movil 2",
+      "actualizadoEn": "2026-11-27T11:32:57.287Z",
+      "subscription": {
+        "endpoint": "https://web.push.apple.com/QHKWPbKQBSEg90bTgT-JQVWFCYV2A0NBdpUJbzf_0advZNcXashe5E-ZVy_EPU0Z3t_GzIDuyKox9ViwZw3PtxUqaj48dpKXTDjAtgGAvn8yD_-GYzM15bLcJ8gfcq-8Sn_W3jUukv2IJjrMregO20fE2VzQBW-CFHsbagqVd1I",
+        "keys": {
+          "p256dh": "BEHZ4D8jKpQPMeE2Xp8DvjjmCh_MsfZpenBpGEhIdME7SWNpEhbsIMbGe_IViqmA1vEaBuOsBKyhMB3bCDLI7Rs",
+          "auth": "nsT0IxbY91WDafFc8De0vw"
+        }
+      }
     }
   ]
 }
