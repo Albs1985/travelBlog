@@ -5,6 +5,7 @@ import { concatMap, map, switchMap, tap, catchError } from 'rxjs/operators';
 import { ContenidoService } from './contenido.service';
 import { filtrar } from './buscar.util';
 import { Dibujo } from '../interfaces/contenido.interface';
+import { NotificationPushService } from './notification-push.service';
 
 @Injectable({ providedIn: 'root' })
 export class DibujosService {
@@ -22,7 +23,11 @@ export class DibujosService {
 
   readonly dibujos$: Observable<Dibujo[]> = this.contenido.coleccion<Dibujo>('dibujos');
 
-  constructor(private contenido: ContenidoService, private http: HttpClient) {}
+  constructor(
+    private contenido: ContenidoService,
+    private http: HttpClient,
+    private push: NotificationPushService
+  ) {}
 
   buscar(termino: string): Observable<Dibujo[]> {
     return this.dibujos$.pipe(
@@ -180,7 +185,15 @@ export class DibujosService {
 
                 listaSegura.push(dibujoNormalizado);
                 return listaSegura;
-              }))
+              })),
+              concatMap(() =>
+                this.push.dispararNotificacion(token, 'dibujo', nuevoDibujo.persona || 'Dibujo nuevo').pipe(
+                  catchError((err) => {
+                    console.warn('Dibujo guardado, pero falló el disparo de notificación push:', err);
+                    return of(null);
+                  })
+                )
+              )
             )
             .subscribe({
               next: (res) => { observer.next(res); observer.complete(); },
@@ -325,7 +338,19 @@ export class DibujosService {
                 });
 
                 return listaSegura;
-              }))
+              })),
+              concatMap(() => {
+                const tituloLote =
+                  nuevosRegistrosData.length === 1
+                    ? nuevosRegistrosData[0].persona || 'Dibujo nuevo'
+                    : `${nuevosRegistrosData.length} dibujos nuevos`;
+                return this.push.dispararNotificacion(token, 'dibujo', tituloLote).pipe(
+                  catchError((err) => {
+                    console.warn('Dibujos guardados, pero falló el disparo de notificación push:', err);
+                    return of(null);
+                  })
+                );
+              })
             ).subscribe({
               next: (res) => { observer.next(res); observer.complete(); },
               error: (err) => observer.error(err)

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1795778735571,
+  "timestamp": 1795779892938,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -16,7 +16,7 @@
         "/456.5992838e6c18c6c6.js",
         "/favicon.ico",
         "/index.html",
-        "/main.ece1638c301c131d.js",
+        "/main.cde58334fbb18796.js",
         "/manifest.webmanifest",
         "/polyfills.7b9aeaf5bd43b028.js",
         "/runtime.de6663e7db7989b9.js",
@@ -369,8 +369,8 @@
     "/assets/icons/viajeros.png": "5d8e1d475d33a82dd29802df8276a712978bc6a5",
     "/assets/icons/viajes.png": "d06990a8bd0b1313a0594f76601819a1f9485380",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "d06754c6489c7309e7e1f9b85ad0a7f38b7ced86",
-    "/main.ece1638c301c131d.js": "a5092a74fdc0b2b5651b390260f40c834dac1a69",
+    "/index.html": "d21c93baba4c132ec7f677a0b4b16a648b10fa96",
+    "/main.cde58334fbb18796.js": "7de33b1e14c78c67d4bb72e0ed1d8e97435ff050",
     "/manifest.webmanifest": "9fad5e608e35a0f31a180ddad870b7ee89b91da6",
     "/polyfills.7b9aeaf5bd43b028.js": "0095e1b0447e9296d32c9d40ba14cfbc3cc9cabc",
     "/runtime.de6663e7db7989b9.js": "dbee1c0cb5de83e3093337b07eef27df4e3c8cb2",

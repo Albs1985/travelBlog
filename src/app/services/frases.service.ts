@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { ContenidoService } from './contenido.service';
 import { filtrar } from './buscar.util';
 import { Frase } from '../interfaces/contenido.interface';
+import { NotificationPushService } from './notification-push.service';
 
 @Injectable({ providedIn: 'root' })
 export class FrasesService {
@@ -15,7 +16,11 @@ export class FrasesService {
   private readonly originFilePath = 'src/assets/data/frases.json';
   private readonly docsFilePath = 'docs/assets/data/frases.json';
 
-  constructor(private contenido: ContenidoService, private http: HttpClient) {}
+  constructor(
+    private contenido: ContenidoService,
+    private http: HttpClient,
+    private push: NotificationPushService
+  ) {}
 
   /** Obtiene las frases frescas (invalidando caché) y aplica el filtro de búsqueda */
   obtenerFrasesYFiltrar(termino: string): Observable<Frase[]> {
@@ -75,7 +80,16 @@ export class FrasesService {
       nuevaFrase.id = maxId + 1;
       frases.push(nuevaFrase);
       return frases;
-    });
+    }).pipe(
+      switchMap(() =>
+        this.push.dispararNotificacion(token, 'frase', nuevaFrase.persona || 'Frase nueva').pipe(
+          catchError((err) => {
+            console.warn('Frase guardada, pero falló el disparo de notificación push:', err);
+            return of(null);
+          })
+        )
+      )
+    );
   }
 
   editarFrase(fraseEditada: Frase, token: string): Observable<any> {

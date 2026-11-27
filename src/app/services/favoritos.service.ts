@@ -5,6 +5,7 @@ import { concatMap, map, switchMap, tap, catchError } from 'rxjs/operators';
 import { ContenidoService } from './contenido.service';
 import { filtrar } from './buscar.util';
 import { FotoFavorita } from '../interfaces/contenido.interface';
+import { NotificationPushService } from './notification-push.service';
 
 export interface FotoFavoritaPendiente {
   file: File;
@@ -30,7 +31,11 @@ export class FavoritosService {
 
   readonly favoritos$: Observable<FotoFavorita[]> = this.contenido.coleccion<FotoFavorita>('favoritos');
 
-  constructor(private contenido: ContenidoService, private http: HttpClient) {}
+  constructor(
+    private contenido: ContenidoService,
+    private http: HttpClient,
+    private push: NotificationPushService
+  ) {}
 
   buscar(termino: string): Observable<FotoFavorita[]> {
     return this.favoritos$.pipe(
@@ -202,7 +207,19 @@ export class FavoritosService {
                   listaSegura.unshift(nuevo);
                 });
                 return listaSegura;
-              }))
+              })),
+              concatMap(() => {
+                const tituloLote =
+                  nuevosRegistrosData.length === 1
+                    ? nuevosRegistrosData[0].lugar || 'Foto favorita nueva'
+                    : `${nuevosRegistrosData.length} fotos favoritas nuevas`;
+                return this.push.dispararNotificacion(token, 'favorito', tituloLote).pipe(
+                  catchError((err) => {
+                    console.warn('Favoritos guardados, pero falló el disparo de notificación push:', err);
+                    return of(null);
+                  })
+                );
+              })
             ).subscribe({
               next: (res) => { observer.next(res); observer.complete(); },
               error: (err) => observer.error(err)
