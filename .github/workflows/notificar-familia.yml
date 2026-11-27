@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tipo:
-        description: 'Tipo de novedad'
+        description: 'Tipus de novetat'
         type: choice
         required: true
         default: 'fotos'
