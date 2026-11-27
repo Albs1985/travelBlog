@@ -11,6 +11,55 @@
 }
 .badge__art { display: block; width: 100%; height: 100%; }
 
+/* Contenedor principal del juego: permite expandirse a pantalla completa */
+.game-stage {
+  position: relative;
+}
+
+.game-stage.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  padding: var(--space-3) var(--space-4) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  background: var(--sand-100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.exit-fullscreen-btn {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  right: calc(12px + env(safe-area-inset-right, 0px));
+  z-index: 260;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--sea-900);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+
+.exit-fullscreen-btn:hover { background: var(--terra-600); }
+.exit-fullscreen-btn:active { transform: scale(.94); }
+
+.head-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: none;
+}
+
 /* ---------- Selector de personaje ---------- */
 .selector-screen {
   display: grid;
@@ -144,8 +193,15 @@
 /* ---------- HUD y Canvas ---------- */
 .play-screen {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
   user-select: none;
+}
+
+.game-stage.is-fullscreen .play-screen {
+  width: 100%;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
+  padding-right: 48px; /* deja espacio al botón fijo de salir arriba a la derecha */
 }
 
 .hud {
@@ -158,7 +214,7 @@
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-sm);
   flex-wrap: wrap;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
 .hud-player {
@@ -181,7 +237,7 @@
 
 .progress-wrapper {
   flex: 1;
-  min-width: 120px;
+  min-width: 110px;
   max-width: 210px;
   font-size: .76rem;
   font-weight: 600;
@@ -239,12 +295,26 @@
   overflow: hidden;
   box-shadow: 0 0 0 1px var(--line), var(--shadow-sm);
   background: var(--sea-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-stage.is-fullscreen .canvas-container {
+  height: 100%;
+  min-height: 0;
 }
 
 canvas {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.game-stage.is-fullscreen canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .touch-controls {
@@ -305,12 +375,38 @@ canvas {
   box-shadow: 0 0 0 1px var(--line);
 }
 
+.game-stage.is-fullscreen .controls-hint {
+  display: none;
+}
+
 .status-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-2);
   margin-top: var(--space-2);
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .game-stage.is-fullscreen {
+    padding: 8px 12px;
+  }
+  .game-stage.is-fullscreen .hud {
+    padding: 4px 12px;
+    gap: 8px;
+  }
+  .game-stage.is-fullscreen .hud-player img {
+    width: 30px;
+    height: 30px;
+  }
+  .touch-btn {
+    width: 48px;
+    height: 48px;
+  }
+  .jump-btn {
+    width: 74px;
+    height: 48px;
+  }
 }
 
 @media (min-width: 768px) {

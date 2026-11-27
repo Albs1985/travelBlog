@@ -20,11 +20,14 @@ import { RouterModule } from '@angular/router';
 })
 export class AventuraFamiliarComponent implements OnDestroy {
   @ViewChild('gameCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('gameStage') stageRef!: ElementRef<HTMLDivElement>;
 
   estadoService = inject(JuegoEstadoService);
   personajes = PERSONAJES_FAMILIA;
   jugadorActual: PersonajeFamiliar | null = null;
   nivelData: NivelConfig | null = null;
+
+  isFullscreen = false;
 
   private caraImg = new Image();
   private caraCargada = false;
@@ -63,6 +66,46 @@ export class AventuraFamiliarComponent implements OnDestroy {
 
     this.cargarFotoJugador(personaje);
     setTimeout(() => this.iniciarNivel(1), 50);
+  }
+
+  async entrarPantallaCompleta(): Promise<void> {
+    this.isFullscreen = true;
+    const el = this.stageRef?.nativeElement as (HTMLDivElement & {
+      webkitRequestFullscreen?: () => Promise<void> | void;
+    }) | undefined;
+
+    try {
+      if (el?.requestFullscreen && !document.fullscreenElement) {
+        await el.requestFullscreen();
+      } else if (el?.webkitRequestFullscreen && !(document as any).webkitFullscreenElement) {
+        await el.webkitRequestFullscreen();
+      }
+    } catch {
+      // Si el navegador o dispositivo no permite Fullscreen API, mantenemos el modo inmersivo en pantalla
+    }
+  }
+
+  async salirPantallaCompleta(): Promise<void> {
+    this.isFullscreen = false;
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else if ((document as any).webkitFullscreenElement) {
+        await (document as any).webkitExitFullscreen();
+      }
+    } catch {
+      // Ignorar si ya no estaba en fullscreen nativo
+    }
+  }
+
+  @HostListener('document:fullscreenchange')
+  @HostListener('document:webkitfullscreenchange')
+  onFullscreenChange(): void {
+    const fsElement =
+      document.fullscreenElement || (document as any).webkitFullscreenElement;
+    if (!fsElement && this.isFullscreen) {
+      this.isFullscreen = false;
+    }
   }
 
   private cargarFotoJugador(personaje: PersonajeFamiliar): void {
@@ -360,29 +403,23 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.restore();
   }
 
-  /**
-   * Renderizado humano articulado con cinemática de carrera, salto y respiración
-   */
   private dibujarPersonajeArticulado(ctx: CanvasRenderingContext2D): void {
     if (!this.jugadorActual) return;
 
     const { x, y, ancho, alto, pasoAnim, idleAnim, enSuelo, mirandoDerecha, vx } = this.player;
     const estaCorriendo = Math.abs(vx) > 0.3 && enSuelo;
 
-    // Rebote vertical natural al correr o respirar
     const reboteY = estaCorriendo
       ? Math.abs(Math.sin(pasoAnim)) * -4
       : Math.sin(idleAnim) * 1.5;
 
     ctx.save();
-    // Centro horizontal del personaje y volteo según dirección
     const centroX = x + ancho / 2;
     ctx.translate(centroX, y + alto);
     if (!mirandoDerecha) {
       ctx.scale(-1, 1);
     }
 
-    // Sombra suave bajo los pies si está en el suelo
     if (enSuelo) {
       ctx.fillStyle = 'rgba(15, 23, 42, 0.25)';
       ctx.beginPath();
@@ -390,7 +427,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
       ctx.fill();
     }
 
-    // Proporciones anatómicas según altura y peso real
     const radioCabeza = this.jugadorActual.alturaCm < 150 ? 20 : 22;
     const cuerpoDisponible = alto - radioCabeza * 2;
     const largoTorso = cuerpoDisponible * 0.48;
@@ -402,7 +438,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     const baseHombroY = baseCaderaY - largoTorso;
     const centroCabezaY = baseHombroY - radioCabeza - 3;
 
-    // Ángulos articulares según estado (Corriendo / Saltando / Quieto)
     let anguloPiernaDel = 0;
     let anguloRodillaDel = 0;
     let anguloPiernaTras = 0;
@@ -414,18 +449,16 @@ export class AventuraFamiliarComponent implements OnDestroy {
     let inclinacionTorso = 0;
 
     if (!enSuelo) {
-      // Pose dinámica de salto
       inclinacionTorso = 0.14;
       anguloPiernaDel = -0.65;
       anguloRodillaDel = 1.1;
       anguloPiernaTras = 0.45;
       anguloRodillaTras = 0.5;
-      anguloBrazoDel = -2.3; // Brazo hacia arriba al saltar
+      anguloBrazoDel = -2.3;
       anguloCodoDel = -0.4;
       anguloBrazoTras = 0.7;
       anguloCodoTras = -0.5;
     } else if (estaCorriendo) {
-      // Ciclo biomecánico de carrera (brazos opuestos a piernas)
       inclinacionTorso = 0.12;
       const ciclo = Math.sin(pasoAnim);
       anguloPiernaDel = ciclo * 0.75;
@@ -440,7 +473,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
       anguloBrazoTras = ciclo * 0.75;
       anguloCodoTras = -0.55 - Math.max(0, ciclo * 0.4);
     } else {
-      // Pose relajada de espera (respiración suave)
       anguloBrazoDel = Math.sin(idleAnim) * 0.05;
       anguloBrazoTras = -Math.sin(idleAnim) * 0.05;
     }
@@ -449,7 +481,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     const colorPantalon = '#1e3a8a';
     const colorZapato = '#334155';
 
-    // 1. BRAZO TRASERO (detrás del torso para dar profundidad 3D)
     this.dibujarBrazo(
       ctx,
       0,
@@ -463,7 +494,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
       colorPiel
     );
 
-    // 2. PIERNA TRASERA
     this.dibujarPierna(
       ctx,
       0,
@@ -477,23 +507,19 @@ export class AventuraFamiliarComponent implements OnDestroy {
       colorZapato
     );
 
-    // 3. TORSO Y CUELLO (con ligera inclinación al correr)
     ctx.save();
     ctx.translate(0, baseCaderaY);
     ctx.rotate(inclinacionTorso);
 
-    // Cuello
     ctx.fillStyle = colorPiel;
     ctx.fillRect(-4, -largoTorso - 6, 8, 9);
 
-    // Camiseta anatómica con hombros redondeados
     const anchoTorso = ancho * 0.68;
     ctx.fillStyle = this.jugadorActual.colorRopa;
     ctx.beginPath();
     ctx.roundRect(-anchoTorso / 2, -largoTorso, anchoTorso, largoTorso + 4, [10, 10, 4, 4]);
     ctx.fill();
 
-    // Detalle cuello de camiseta
     ctx.strokeStyle = 'rgba(255,255,255,0.4)';
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -502,7 +528,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
 
     ctx.restore();
 
-    // 4. PIERNA DELANTERA
     this.dibujarPierna(
       ctx,
       0,
@@ -516,7 +541,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
       colorZapato
     );
 
-    // 5. BRAZO DELANTERO
     this.dibujarBrazo(
       ctx,
       0,
@@ -530,7 +554,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
       colorPiel
     );
 
-    // 6. CABEZA CON FOTO REAL RECORTADA
     const cabezaX = Math.sin(inclinacionTorso) * largoTorso;
     ctx.save();
     ctx.beginPath();
@@ -539,7 +562,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.clip();
 
     if (this.caraCargada) {
-      // Si la imagen se volteó por scale(-1,1), la des-volteamos para que la cara no salga invertida
       if (!mirandoDerecha) {
         ctx.scale(-1, 1);
         ctx.drawImage(
@@ -564,7 +586,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     }
     ctx.restore();
 
-    // Borde circular de la cara
     ctx.strokeStyle = this.jugadorActual.colorBorde;
     ctx.lineWidth = 2.8;
     ctx.beginPath();
@@ -590,7 +611,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.translate(x, y);
     ctx.rotate(anguloCadera);
 
-    // Muslo
     ctx.strokeStyle = colorPantalon;
     ctx.lineWidth = grosor;
     ctx.lineCap = 'round';
@@ -599,7 +619,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.lineTo(0, largoMuslo);
     ctx.stroke();
 
-    // Articulación rodilla -> Pantorrilla
     ctx.translate(0, largoMuslo);
     ctx.rotate(anguloRodilla);
     ctx.beginPath();
@@ -607,7 +626,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.lineTo(0, largoPantorrilla - 3);
     ctx.stroke();
 
-    // Zapato deportivo
     ctx.fillStyle = colorZapato;
     ctx.beginPath();
     ctx.roundRect(-grosor * 0.45, largoPantorrilla - 6, grosor * 1.45, 7, [3, 6, 2, 2]);
@@ -632,7 +650,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.translate(x, y);
     ctx.rotate(anguloHombro);
 
-    // Manga / Brazo superior
     ctx.strokeStyle = colorManga;
     ctx.lineWidth = grosor;
     ctx.lineCap = 'round';
@@ -641,7 +658,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.lineTo(0, largoHombro);
     ctx.stroke();
 
-    // Antebrazo y mano
     ctx.translate(0, largoHombro);
     ctx.rotate(anguloCodo);
     ctx.strokeStyle = colorPiel;
@@ -651,7 +667,6 @@ export class AventuraFamiliarComponent implements OnDestroy {
     ctx.lineTo(0, largoAntebrazo);
     ctx.stroke();
 
-    // Mano
     ctx.fillStyle = colorPiel;
     ctx.beginPath();
     ctx.arc(0, largoAntebrazo, grosor * 0.55, 0, Math.PI * 2);
@@ -737,5 +752,8 @@ export class AventuraFamiliarComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.detenerBucle();
+    if (this.isFullscreen) {
+      this.salirPantallaCompleta();
+    }
   }
 }
